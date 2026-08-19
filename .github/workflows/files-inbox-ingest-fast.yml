@@ -99,7 +99,7 @@ jobs:
           if not anchor:
               alert_halt('锚件 ci-inbox/bridge/head-anchor.json 不可读',term); raise SystemExit(0)
           try:
-              age_h=(now-datetime.datetime.strptime(anchor['ts'],'%FT%TZ')).total_seconds()/3600
+              age_h=(now-datetime.datetime.strptime(anchor['ts'],'%Y-%m-%dT%H:%M:%SZ')).total_seconds()/3600
           except Exception: age_h=9e9
           if age_h>48:
               alert_halt(f'锚过期（{round(age_h,1)}h 未滚，阈 48h）',term); raise SystemExit(0)
