@@ -1,13 +1,19 @@
 name: files-inbox-ingest-fast
-# FAST-DOOR v2 —— vci-inbox 快门驻留版（ENVELOPE-01 K 令加固 2026-08-19）
-# K1 零私域留存：只路由不留存，L0/L1 件路由后即删（git 历史残留属 L0/L1 可接受，如实声明此限）
-# K2 加密中继：files-inbox-enc/{线}/ 密文原样转 ci-library _enc/（零知识摆渡），sweeper 持 sk 解密落正规目标
-# K3 纠缠停 v1：每跑先验 ci-inbox bridge/head-anchor.json 滚链，锚异→置 weave/HALTED 停执行+大厅告警
-# 门规：快门只收 L0/L1（PATS/L2 头标→隔离 ci-logs 私仓）；私密件走 ci-inbox 慢门或 fed-relay 加密道
+# FAST-DOOR v3.1 —— F1 修复：并发闸串行+del 幂等+写序=目标→台账→谱系→删源（台账记重建件 sha，重件天然幂等）
+# FAST-DOOR v3 —— vci-inbox 快门驻留版（BORROW-ENVELOPE-01 校准 2026-08-19）
+# 快门三关（族一 二极管/CDS guard）：①白名单关（路径/线名/.txt.md.json）②schema 关（UTF-8/json 可解析）
+#   ③解析后重建关（canonical 重序列化，落 ci-library 的是重建件非原件，台账记重建件哈希——斩断载荷夹带）
+# 加密中继（SealedBox 已置）：密文零知识原样转 _enc/（不可解析故重建关豁免，边界如实声明）；回执只许哈希值
+# entangle-gate v1（族二 sbd 自杀纪律）：首步统一过闸=无 HALT 文件 ∧ term 单调 ∧ 锚未过期（48h），否则自退；
+#   HALT schema {by,reason,term,ts}；RESUME 必须引用归因案编号（weave/RESUME-<case>.md 含 case: 方可清旗——没复盘不复工）
+# K1 零私域留存：只路由不留存，路由后即删（git 历史残留属 L0/L1 可接受，如实声明此限）
 on:
   workflow_dispatch: {}
   push:
     paths: ['files-inbox/**', 'files-inbox-enc/**']
+concurrency:                # F1 并发闸（实证崩批 32228580050：连推双跑后跑 del 404 崩批）
+  group: files-ingest       # 排队不取消——同组串行，后跑看到前跑已删件即幂等跳过
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
@@ -23,7 +29,7 @@ jobs:
           app-id: ${{ secrets.CI_OPS_APP_ID }}
           private-key: ${{ secrets.CI_OPS_APP_KEY }}
           owner: chepin-ai
-      - name: 快门摆渡（锚验→明文/密文双轨）
+      - name: entangle-gate + 快门三关摆渡
         if: env.HAS_KEY == 'true'
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
@@ -33,7 +39,9 @@ jobs:
           GH='https://api.github.com'
           H={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'}
           ts=datetime.datetime.utcnow().strftime('%FT%TZ')
+          now=datetime.datetime.utcnow()
           LINES={'ucif2','vinf','qgl','usrm','cfts','onto','gcml','cisvr'}
+          EXTS={'.txt','.md','.json'}
           MAXB=256*1024
           PATS=[r'ghp_[A-Za-z0-9]{10,}', r'github_pat_[A-Za-z0-9_]{10,}', r'rings-[A-Za-z0-9]',
                 r'sk-[A-Za-z0-9]{16,}', r'BEGIN [A-Z ]*PRIVATE'+' KEY', r'-----'+'BEGIN']
@@ -50,97 +58,134 @@ jobs:
               if ex and ex.get('sha'): body['sha']=ex['sha']
               return api('PUT',f'/repos/chepin-ai/{repo}/contents/{path}',json=body)
           def del_file(repo,path,sha,msg):
+              if not get_file(repo,path):   # F1 幂等：404 视为已收，不计败不崩批
+                  print('del 幂等跳过（已不在）：',path); return {}
               return api('DELETE',f'/repos/chepin-ai/{repo}/contents/{path}',json={'message':msg,'sha':sha})
-          def halt(why):
-              # 纠缠停 v1：置 HALTED 旗（后续跑见旗即退）+ ci-control 通道告警 + 大厅帖
-              put_file('vci-inbox','weave/HALTED',f'HALTED {ts}\nwhy: {why}\n'.encode(),'fastdoor HALT: '+why[:40])
-              try:
-                  put_file('ci-control','bridge/fastdoor-halt.json',json.dumps({'ts':ts,'why':why},ensure_ascii=False).encode(),'fastdoor HALT 告警 [skip ci]')
+          def getj(repo,path):
+              f=get_file(repo,path)
+              if not f: return None
+              try: return json.loads(base64.b64decode(f['content']).decode())
+              except Exception: return None
+          def alert_halt(why,term):
+              # HALT schema（entangle-gate v1）：{by, reason, term, ts}
+              doc=json.dumps({'by':'fastdoor@vci-inbox','reason':why,'term':term,'ts':ts},ensure_ascii=False,indent=1)
+              put_file('vci-inbox','weave/HALTED',doc.encode(),'fastdoor HALT: '+why[:40])
+              try: put_file('ci-control','bridge/fastdoor-halt.json',doc.encode(),'fastdoor HALT 告警 [skip ci]')
               except Exception: pass
               try:
                   api('POST','/repos/chepin-ai/ci-inbox/issues/144/comments',
-                      json={'body':f'dtag: fastdoor-halt\n\n**快门纠缠停 {ts}**：{why}。vci-inbox weave/HALTED 已置，排除干扰后人工撤旗复跑。'})
+                      json={'body':f'dtag: fastdoor-halt\n\n**快门纠缠停 {ts}**：{why}（term={term}）。RESUME 须引用归因案编号（weave/RESUME-<case>.md），没复盘不复工。'})
               except Exception: pass
               print('HALTED:', why)
-          # ── 停旗检查（每跑先验）──
-          if get_file('vci-inbox','weave/HALTED'):
-              print('HALTED 旗在——停执行'); raise SystemExit(0)
-          # ── K3 纠缠停锚验：App 读 ci-inbox bridge/head-anchor.json，滚链比对自存上次值 ──
-          anc=get_file('ci-inbox','bridge/head-anchor.json')
-          stf=get_file('vci-inbox','weave/anchor-state.json')
-          if not anc:
-              halt('锚件 ci-inbox/bridge/head-anchor.json 不可读——外来干扰迹象'); raise SystemExit(0)
+          # ── entangle-gate v1 首步统一过闸：无 HALT 文件 ∧ term 单调 ∧ 锚未过期 ──
+          st=getj('vci-inbox','weave/anchor-state.json') or {}
+          term=int(st.get('term') or 0)
+          halted=getj('vci-inbox','weave/HALTED')
+          if halted:
+              # RESUME 机制：存在引用归因案编号的 weave/RESUME-*.md 方可清旗复工（没复盘不复工）
+              resumes=[t for t in api('GET','/repos/chepin-ai/vci-inbox/git/trees/main?recursive=1').get('tree',[])
+                       if t['path'].startswith('weave/RESUME-') and t['type']=='blob']
+              ok=False
+              for r_ in resumes:
+                  b=api('GET',f"/repos/chepin-ai/vci-inbox/git/blobs/{r_['sha']}")
+                  if 'case:' in base64.b64decode(b['content']).decode('utf-8','replace'): ok=True; break
+              if ok:
+                  hf=get_file('vci-inbox','weave/HALTED')
+                  del_file('vci-inbox','weave/HALTED',hf['sha'],'RESUME 清旗（归因案已落链）')
+                  print('RESUMED via case file')
+              else:
+                  print('HALTED 旗在且无归因案——停执行'); raise SystemExit(0)
+          anchor=getj('ci-inbox','bridge/head-anchor.json')
+          if not anchor:
+              alert_halt('锚件 ci-inbox/bridge/head-anchor.json 不可读',term); raise SystemExit(0)
           try:
-              anchor=json.loads(base64.b64decode(anc['content']).decode())
-          except Exception:
-              halt('锚件解析失败——外来干扰迹象'); raise SystemExit(0)
-          head=api('GET','/repos/chepin-ai/vci-inbox/git/refs/heads/main')['object']['sha']
+              age_h=(now-datetime.datetime.strptime(anchor['ts'],'%FT%TZ')).total_seconds()/3600
+          except Exception: age_h=9e9
+          if age_h>48:
+              alert_halt(f'锚过期（{round(age_h,1)}h 未滚，阈 48h）',term); raise SystemExit(0)
           exp_chain=hashlib.sha256((anchor.get('prev_chain','')+anchor.get('head_sha','')).encode()).hexdigest()[:16]
           if exp_chain!=anchor.get('chain'):
-              halt('锚件自洽性失败（chain≠sha256(prev‖head)）——外来干扰迹象'); raise SystemExit(0)
-          if stf:
-              st=json.loads(base64.b64decode(stf['content']).decode())
-              if st.get('last_chain') and anchor.get('prev_chain')!=st['last_chain']:
-                  halt('锚滚链断链（prev_chain≠本侧上次值）——外来干扰迹象'); raise SystemExit(0)
-          # 锚验通过 → 滚新一拍
-          new_anchor={'ts':ts,'head_sha':head,'prev_chain':anchor['chain'],
+              alert_halt('锚自洽性失败（chain≠sha256(prev‖head)）',term); raise SystemExit(0)
+          # term 单调：锚 term 必须 > 本侧已见（回滚/替换即异常）；创世兼容：anchor.chain==last_chain（未滚）或 prev_chain==last_chain（滚一拍）
+          aterm=int(anchor.get('term') or 0)
+          if st.get('last_chain'):
+              if aterm<=int(st.get('term') or 0):
+                  alert_halt(f'锚 term 未单调（{aterm}<={st.get("term")}）——回滚迹象',term); raise SystemExit(0)
+              if anchor['chain']!=st['last_chain'] and anchor['prev_chain']!=st['last_chain']:
+                  alert_halt('锚滚链断链（chain/prev_chain 均≠本侧上次值）',term); raise SystemExit(0)
+          head=api('GET','/repos/chepin-ai/vci-inbox/git/refs/heads/main')['object']['sha']
+          term=aterm+1
+          new_anchor={'ts':ts,'term':term,'head_sha':head,'prev_chain':anchor['chain'],
                       'chain':hashlib.sha256((anchor['chain']+head).encode()).hexdigest()[:16]}
-          put_file('ci-inbox','bridge/head-anchor.json',json.dumps(new_anchor,ensure_ascii=False,indent=1).encode(),'anchor roll '+ts)
-          put_file('vci-inbox','weave/anchor-state.json',json.dumps({'last_chain':new_anchor['chain'],'ts':ts}).encode(),'anchor state '+ts)
-          # ── 收件：files-inbox/（明文 L0/L1）+ files-inbox-enc/（密文零知识摆渡）──
+          put_file('ci-inbox','bridge/head-anchor.json',json.dumps(new_anchor,ensure_ascii=False,indent=1).encode(),f'anchor roll t{term}')
+          put_file('vci-inbox','weave/anchor-state.json',json.dumps({'last_chain':new_anchor['chain'],'term':term,'ts':ts}).encode(),f'anchor state t{term}')
+          # ── 收件双轨 ──
           tree=api('GET','/repos/chepin-ai/vci-inbox/git/trees/main?recursive=1').get('tree',[])
           drops=[t for t in tree if t['path'].startswith('files-inbox/') and t['type']=='blob' and not t['path'].endswith('README.md')]
           encs=[t for t in tree if t['path'].startswith('files-inbox-enc/') and t['type']=='blob']
           ingested=[]; relayed=[]; findings=[]
+          def rebuild(txt, ext):
+              # 第三关·解析后重建：不原样转发——解析内容按 canonical 形式重新序列化，斩载荷夹带
+              if ext=='.json':
+                  return json.dumps(json.loads(txt), ensure_ascii=False, sort_keys=True, indent=1)+'\n'
+              txt=txt.replace('\r\n','\n').replace('\r','\n')
+              txt=''.join(c for c in txt if c=='\n' or c=='\t' or (ord(c)>=32 and ord(c)!=0x7f))
+              txt=re.sub(r'\n{3,}','\n\n',txt)
+              return txt if txt.endswith('\n') else txt+'\n'
           for d in drops:
               p=d['path']; parts=p.split('/')
               fp=hashlib.sha256(p.encode()).hexdigest()[:12]
-              ok=len(parts)>=3 and '..' not in parts and '.github' not in parts and '\\' not in p
               line=parts[1] if len(parts)>=3 else '?'
-              if not ok or line not in LINES:
-                  findings.append({'fp':fp,'path':p,'why':'路径越界/未知线名'}); continue
+              ext=os.path.splitext(p)[1].lower()
+              ok=len(parts)>=3 and '..' not in parts and '.github' not in parts and '\\' not in p
+              if not ok or line not in LINES or ext not in EXTS:   # 第一关·白名单：路径/线名/扩展名
+                  findings.append({'fp':fp,'path':p,'why':'白名单关拒收（路径越界/未知线名/非 .txt.md.json）'}); continue
               if d.get('size',0)>MAXB:
                   findings.append({'fp':fp,'path':p,'why':f'超 256KB（{d.get("size",0)}B）'}); continue
               blob=api('GET',f"/repos/chepin-ai/vci-inbox/git/blobs/{d['sha']}")
-              raw=base64.b64decode(blob['content'])
-              try: txt=raw.decode('utf-8')
+              raw0=base64.b64decode(blob['content'])
+              try: txt0=raw0.decode('utf-8')
               except UnicodeDecodeError:
-                  findings.append({'fp':fp,'path':p,'why':'二进制——快门不收，走 ci-inbox 慢门/root 接力'}); continue
-              hit=[pat for pat in PATS if re.search(pat,txt)]
-              l2 = 'CLASSIFY: L2' in txt[:300]
+                  findings.append({'fp':fp,'path':p,'why':'schema 关拒收：非 UTF-8 文本'}); continue
+              hit=[pat for pat in PATS if re.search(pat,txt0)]
+              l2='CLASSIFY: L2' in txt0[:300]
               if hit or l2:
                   why=('L2 头标件——快门只收 L0/L1' if l2 else '闸控命中：密钥模式')+'——已隔离 ci-logs（私仓），私密件请走 ci-inbox 慢门或 fed-relay 加密道'
                   findings.append({'fp':fp,'path':p,'why':why})
                   put_file('ci-logs',f'quarantine/fastdoor-{ts[:10]}-{fp}.txt',f'QUARANTINE {ts}\npath: vci-inbox/{p}\nwhy: {"L2-header" if l2 else "gate-hit"}\n'.encode(),'fastdoor quarantine '+fp)
                   del_file('vci-inbox',p,d['sha'],'fastdoor quarantine '+fp)
                   continue
-              rest='/'.join(parts[2:])
-              fsha=hashlib.sha256(raw).hexdigest()
+              try:
+                  rebuilt=rebuild(txt0, ext)   # schema 关（json 必可解析）+ 重建关
+              except Exception as e:
+                  findings.append({'fp':fp,'path':p,'why':f'schema 关拒收：解析失败（{str(e)[:60]}）'}); continue
+              raw=rebuilt.encode(); rest='/'.join(parts[2:])
+              fsha=hashlib.sha256(raw).hexdigest()   # 台账记的是重建件哈希（口径如实）
               # K1 零私域留存：只路由不留存——路由后即删（git 历史残留属 L0/L1 可接受，门规已声明此限）
               try:
-                  put_file('ci-library',f'lines/{line}/{rest}',raw,f'fastdoor: {line} <- vci-inbox/{p}')
+                  put_file('ci-library',f'lines/{line}/{rest}',raw,f'fastdoor v3: {line}（重建件）')
                   lg=get_file('ci-library',f'lines/{line}/_ledger.jsonl')
                   old=base64.b64decode(lg['content']).decode() if lg else ''
                   prev=old.strip().split('\n')[-1] if old.strip() else ''
                   prev_sha=json.loads(prev)['chain_sha256'] if prev else '0'*64
                   chain=hashlib.sha256((prev_sha+fsha).encode()).hexdigest()
-                  entry=json.dumps({'ts':ts,'file':f'lines/{line}/{rest}','sha256':fsha,'prev_sha256':prev_sha,'chain_sha256':chain,'size':len(raw),'src':'vci-inbox/files-inbox(fastdoor)'},ensure_ascii=False)
+                  entry=json.dumps({'ts':ts,'file':f'lines/{line}/{rest}','sha256':fsha,'prev_sha256':prev_sha,'chain_sha256':chain,'size':len(raw),'src':'vci-inbox/files-inbox(fastdoor-v3-rebuilt)'},ensure_ascii=False)
                   put_file('ci-library',f'lines/{line}/_ledger.jsonl',(old+entry+'\n').encode(),f'ledger: {line} +1')
                   idx=get_file('ci-library',f'lines/{line}/_index.jsonl')
                   old=base64.b64decode(idx['content']).decode() if idx else ''
-                  row=json.dumps({'ts':ts,'line':line,'repo':'ci-library','path':f'lines/{line}/{rest}','sha256':fsha,'size':len(raw),'digest':txt[:120].replace(chr(10),' ')},ensure_ascii=False)
+                  row=json.dumps({'ts':ts,'line':line,'repo':'ci-library','path':f'lines/{line}/{rest}','sha256':fsha,'size':len(raw),'digest':rebuilt[:120].replace(chr(10),' ')},ensure_ascii=False)
                   put_file('ci-library',f'lines/{line}/_index.jsonl',(old+row+'\n').encode(),f'index: {line} +1')
               except Exception as e:
                   findings.append({'fp':fp,'path':p,'why':f'ci-library 写失败（{str(e)[:80]}）——本件留队'})
                   continue
               del_file('vci-inbox',p,d['sha'],'fastdoor: 已入库即删（零留存） '+line)
-              ingested.append({'line':line,'dest':f'ci-library/lines/{line}/{rest}','size':len(raw)})
-          # ── K2 加密中继：原样转密文入 ci-library lines/{line}/_enc/（本仓全程只见密文）──
+              ingested.append({'line':line,'dest':f'ci-library/lines/{line}/{rest}','sha16':fsha[:16],'size':len(raw)})
+          # ── K2 加密中继：原样转密文（密文不可解析，重建关不适用——零知识边界如实声明）；回执只许哈希值 ──
           for d in encs:
               p=d['path']; parts=p.split('/')
               fp=hashlib.sha256(p.encode()).hexdigest()[:12]
-              ok=len(parts)>=3 and '..' not in parts and '.github' not in parts and '\\' not in p
               line=parts[1] if len(parts)>=3 else '?'
+              ok=len(parts)>=3 and '..' not in parts and '.github' not in parts and '\\' not in p
               if not ok or line not in LINES:
                   findings.append({'fp':fp,'path':p,'why':'加密道路径越界/未知线名'}); continue
               blob=api('GET',f"/repos/chepin-ai/vci-inbox/git/blobs/{d['sha']}")
@@ -152,20 +197,20 @@ jobs:
                   findings.append({'fp':fp,'path':p,'why':f'密文中转失败（{str(e)[:60]}）——留队'})
                   continue
               del_file('vci-inbox',p,d['sha'],'fed-relay: 密文已转即删 '+line)
-              relayed.append({'line':line,'dest':f'ci-library/lines/{line}/_enc/{rest}','size':len(raw)})
+              relayed.append({'line':line,'sha16':hashlib.sha256(raw).hexdigest()[:16],'size':len(raw)})
           if ingested or relayed or findings:
-              lines=['dtag: files-ingest-fast','',f'**快门摆渡 {ts}**（vci-inbox 事件驱动秒级；锚验过，链已滚）']
+              lines=['dtag: files-ingest-fast','',f'**快门摆渡 {ts}**（v3 三关+entangle-gate；锚验过 term={term}）']
               if ingested:
-                  lines.append(f'明文入库 {len(ingested)} 件：')
-                  lines+=[f"- `{i['dest']}`（{i['size']}B）" for i in ingested[:20]]
-              if relayed:
-                  lines.append(f'密文中转 {len(relayed)} 件（零知识，待 sweeper 解密落正规目标）：')
-                  lines+=[f"- `{r['dest']}`（{r['size']}B）" for r in relayed[:20]]
+                  lines.append(f'明文重建入库 {len(ingested)} 件：')
+                  lines+=[f"- `{i['dest']}`（sha16 {i['sha16']}，{i['size']}B）" for i in ingested[:20]]
+              if relayed:   # 加密件回执只许哈希值（族一 M3 窄反向通道）
+                  lines.append(f'密文中转 {len(relayed)} 件（哈希回执，不带内容语义）：')
+                  lines+=[f"- line={r['line']} sha16={r['sha16']}（{r['size']}B）" for r in relayed[:20]]
               if findings:
-                  lines.append(f'闸控/隔离 {len(findings)} 件：')
+                  lines.append(f'闸控/拒收 {len(findings)} 件：')
                   lines+=[f"- `{f['path']}`：{f['why']}" for f in findings[:20]]
               api('POST','/repos/chepin-ai/ci-inbox/issues/144/comments',json={'body':'\n'.join(lines)})
-          print(json.dumps({'ingested':len(ingested),'relayed':len(relayed),'findings':len(findings)},ensure_ascii=False))
+          print(json.dumps({'ingested':len(ingested),'relayed':len(relayed),'findings':len(findings),'term':term},ensure_ascii=False))
 
           PYEOF
       - name: 静默待命（secrets 未配置）
