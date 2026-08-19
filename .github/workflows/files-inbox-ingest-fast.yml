@@ -1,0 +1,113 @@
+name: files-inbox-ingest-fast
+# FAST-DOOR —— vci-inbox 快门驻留版（root G 令 2026-08-19：不提额，双门摆渡）
+# 门规：快门只收 L0/L1——PATS 闸命中或 CLASSIFY:L2 头标件一律拒收/隔离 ci-logs（私仓）；
+#       私密件走 ci-inbox 慢门（sweeper 轮询）。路由=ci-library lines/{线}/（App 写私仓，内容回私域）
+#       +台账链+谱系行+大厅回执 dtag: files-ingest-fast。裁④容错：写失败留队不崩批。
+on:
+  workflow_dispatch: {}
+  push:
+    paths: ['files-inbox/**']
+permissions:
+  contents: read
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    env:
+      HAS_KEY: ${{ secrets.CI_OPS_APP_KEY != '' }}
+    steps:
+      - uses: actions/create-github-app-token@v1
+        if: env.HAS_KEY == 'true'
+        id: app
+        with:
+          app-id: ${{ secrets.CI_OPS_APP_ID }}
+          private-key: ${{ secrets.CI_OPS_APP_KEY }}
+          owner: chepin-ai
+      - name: 快门摆渡 files-inbox → ci-library
+        if: env.HAS_KEY == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, re, json, base64, datetime, hashlib, requests
+          GH='https://api.github.com'
+          H={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'}
+          ts=datetime.datetime.utcnow().strftime('%FT%TZ')
+          LINES={'ucif2','vinf','qgl','usrm','cfts','onto','gcml','cisvr'}
+          MAXB=256*1024
+          PATS=[r'ghp_[A-Za-z0-9]{10,}', r'github_pat_[A-Za-z0-9_]{10,}', r'rings-[A-Za-z0-9]',
+                r'sk-[A-Za-z0-9]{16,}', r'BEGIN [A-Z ]*PRIVATE'+' KEY', r'-----'+'BEGIN']
+          def api(m,url,**kw):
+              r=requests.request(m,GH+url,headers=H,timeout=30,**kw)
+              if r.status_code>=300: raise RuntimeError(f'{m} {url} -> {r.status_code} {r.text[:200]}')
+              return r.json() if r.text else {}
+          def get_file(repo,path):
+              try: return api('GET',f'/repos/chepin-ai/{repo}/contents/{path}')
+              except Exception: return None
+          def put_file(repo,path,raw,msg):
+              ex=get_file(repo,path)
+              body={'message':msg,'content':base64.b64encode(raw).decode()}
+              if ex and ex.get('sha'): body['sha']=ex['sha']
+              return api('PUT',f'/repos/chepin-ai/{repo}/contents/{path}',json=body)
+          def del_file(repo,path,sha,msg):
+              return api('DELETE',f'/repos/chepin-ai/{repo}/contents/{path}',json={'message':msg,'sha':sha})
+          tree=api('GET','/repos/chepin-ai/vci-inbox/git/trees/main?recursive=1').get('tree',[])
+          drops=[t for t in tree if t['path'].startswith('files-inbox/') and t['type']=='blob' and not t['path'].endswith('README.md')]
+          ingested=[]; findings=[]
+          for d in drops:
+              p=d['path']; parts=p.split('/')
+              fp=hashlib.sha256(p.encode()).hexdigest()[:12]
+              ok=len(parts)>=3 and '..' not in parts and '.github' not in parts and '\\' not in p
+              line=parts[1] if len(parts)>=3 else '?'
+              if not ok or line not in LINES:
+                  findings.append({'fp':fp,'path':p,'why':'路径越界/未知线名'}); continue
+              if d.get('size',0)>MAXB:
+                  findings.append({'fp':fp,'path':p,'why':f'超 256KB（{d.get("size",0)}B）'}); continue
+              blob=api('GET',f"/repos/chepin-ai/vci-inbox/git/blobs/{d['sha']}")
+              raw=base64.b64decode(blob['content'])
+              try: txt=raw.decode('utf-8')
+              except UnicodeDecodeError:
+                  findings.append({'fp':fp,'path':p,'why':'二进制——快门不收，走 ci-inbox 慢门/root 接力'}); continue
+              hit=[pat for pat in PATS if re.search(pat,txt)]
+              l2 = 'CLASSIFY: L2' in txt[:300]   # 门规：快门只收 L0/L1，L2 头标件一律隔离
+              if hit or l2:
+                  why=('L2 头标件——快门只收 L0/L1' if l2 else '闸控命中：密钥模式')+'——已隔离 ci-logs（私仓），私密件请走 ci-inbox 慢门'
+                  findings.append({'fp':fp,'path':p,'why':why})
+                  put_file('ci-logs',f'quarantine/fastdoor-{ts[:10]}-{fp}.txt',f'QUARANTINE {ts}\npath: vci-inbox/{p}\nwhy: {"L2-header" if l2 else "gate-hit"}\n'.encode(),'fastdoor quarantine '+fp)
+                  del_file('vci-inbox',p,d['sha'],'fastdoor quarantine '+fp)
+                  continue
+              rest='/'.join(parts[2:])
+              fsha=hashlib.sha256(raw).hexdigest()
+              # 路由（裁④容错版）：注册线/未注册线一律 → ci-library lines/{line}/（App 写私仓，内容回私域）
+              try:
+                  put_file('ci-library',f'lines/{line}/{rest}',raw,f'fastdoor: {line} <- vci-inbox/{p}')
+                  lg=get_file('ci-library',f'lines/{line}/_ledger.jsonl')
+                  old=base64.b64decode(lg['content']).decode() if lg else ''
+                  prev=old.strip().split('\n')[-1] if old.strip() else ''
+                  prev_sha=json.loads(prev)['chain_sha256'] if prev else '0'*64
+                  chain=hashlib.sha256((prev_sha+fsha).encode()).hexdigest()
+                  entry=json.dumps({'ts':ts,'file':f'lines/{line}/{rest}','sha256':fsha,'prev_sha256':prev_sha,'chain_sha256':chain,'size':len(raw),'src':'vci-inbox/files-inbox(fastdoor)'},ensure_ascii=False)
+                  put_file('ci-library',f'lines/{line}/_ledger.jsonl',(old+entry+'\n').encode(),f'ledger: {line} +1')
+                  idx=get_file('ci-library',f'lines/{line}/_index.jsonl')
+                  old=base64.b64decode(idx['content']).decode() if idx else ''
+                  row=json.dumps({'ts':ts,'line':line,'repo':'ci-library','path':f'lines/{line}/{rest}','sha256':fsha,'size':len(raw),'digest':txt[:120].replace(chr(10),' ')},ensure_ascii=False)
+                  put_file('ci-library',f'lines/{line}/_index.jsonl',(old+row+'\n').encode(),f'index: {line} +1')
+              except Exception as e:  # 兜底：留队下拍重试，绝不崩批
+                  findings.append({'fp':fp,'path':p,'why':f'ci-library 写失败（{str(e)[:80]}）——本件留队'})
+                  continue
+              del_file('vci-inbox',p,d['sha'],'fastdoor: 已入库 ci-library/lines/'+line)
+              ingested.append({'line':line,'dest':f'ci-library/lines/{line}/{rest}','size':len(raw)})
+          if ingested or findings:
+              lines=['dtag: files-ingest-fast','',f'**快门摆渡 {ts}**（vci-inbox 事件驱动，秒级）']
+              if ingested:
+                  lines.append(f'入库 {len(ingested)} 件：')
+                  lines+=[f"- `{i['dest']}`（{i['size']}B）" for i in ingested[:20]]
+              if findings:
+                  lines.append(f'闸控/隔离 {len(findings)} 件：')
+                  lines+=[f"- `{f['path']}`：{f['why']}" for f in findings[:20]]
+              api('POST','/repos/chepin-ai/ci-inbox/issues/144/comments',json={'body':'\n'.join(lines)})
+          print(json.dumps({'ingested':len(ingested),'findings':len(findings)},ensure_ascii=False))
+
+          PYEOF
+      - name: 静默待命（secrets 未配置）
+        if: env.HAS_KEY != 'true'
+        run: echo "CI_OPS secrets 未配于 vci-inbox——待 secret-seed 后生效"
