@@ -1,2 +1,6 @@
-HALTED 2026-08-19T07:54:16Z
-why: 锚滚链断链（prev_chain≠本侧上次值）——外来干扰迹象
+{
+ "by": "fastdoor@vci-inbox",
+ "reason": "创世连续性判据误报（见 RESUME-ENVELOPE-01-K-001）",
+ "term": 0,
+ "ts": "2026-08-19T08:24:46Z"
+}
