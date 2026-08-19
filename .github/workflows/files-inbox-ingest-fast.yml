@@ -152,8 +152,8 @@ jobs:
               if hit or l2:
                   why=('L2 头标件——快门只收 L0/L1' if l2 else '闸控命中：密钥模式')+'——已隔离 ci-logs（私仓），私密件请走 ci-inbox 慢门或 fed-relay 加密道'
                   findings.append({'fp':fp,'path':p,'why':why})
-                  put_file('ci-logs',f'quarantine/fastdoor-{ts[:10]}-{fp}.txt',f'QUARANTINE {ts}\npath: vci-inbox/{p}\nwhy: {"L2-header" if l2 else "gate-hit"}\n'.encode(),'fastdoor quarantine '+fp)
-                  del_file('vci-inbox',p,d['sha'],'fastdoor quarantine '+fp)
+                  put_file('ci-logs',f'quarantine/fastdoor-{ts[:10]}-{fp}.txt',f'QUARANTINE {ts}\npath: vci-inbox/{p}\nwhy: {"L2-header" if l2 else "gate-hit"}\n'.encode(),'fastdoor quarantine '+fp+' [skip ci]')
+                  del_file('vci-inbox',p,d['sha'],'fastdoor quarantine '+fp+' [skip ci]')
                   continue
               try:
                   rebuilt=rebuild(txt0, ext)   # schema 关（json 必可解析）+ 重建关
@@ -178,7 +178,7 @@ jobs:
               except Exception as e:
                   findings.append({'fp':fp,'path':p,'why':f'ci-library 写失败（{str(e)[:80]}）——本件留队'})
                   continue
-              del_file('vci-inbox',p,d['sha'],'fastdoor: 已入库即删（零留存） '+line)
+              del_file('vci-inbox',p,d['sha'],'fastdoor: 已入库即删（零留存） '+line+' [skip ci]')
               ingested.append({'line':line,'dest':f'ci-library/lines/{line}/{rest}','sha16':fsha[:16],'size':len(raw)})
           # ── K2 加密中继：原样转密文（密文不可解析，重建关不适用——零知识边界如实声明）；回执只许哈希值 ──
           for d in encs:
@@ -196,7 +196,7 @@ jobs:
               except Exception as e:
                   findings.append({'fp':fp,'path':p,'why':f'密文中转失败（{str(e)[:60]}）——留队'})
                   continue
-              del_file('vci-inbox',p,d['sha'],'fed-relay: 密文已转即删 '+line)
+              del_file('vci-inbox',p,d['sha'],'fed-relay: 密文已转即删 '+line+' [skip ci]')
               relayed.append({'line':line,'sha16':hashlib.sha256(raw).hexdigest()[:16],'size':len(raw)})
           if ingested or relayed or findings:
               lines=['dtag: files-ingest-fast','',f'**快门摆渡 {ts}**（v3 三关+entangle-gate；锚验过 term={term}）']
