@@ -109,7 +109,7 @@ jobs:
           # term 单调：锚 term 必须 > 本侧已见（回滚/替换即异常）；创世兼容：anchor.chain==last_chain（未滚）或 prev_chain==last_chain（滚一拍）
           aterm=int(anchor.get('term') or 0)
           if st.get('last_chain'):
-              if aterm<=int(st.get('term') or 0):
+              if aterm<int(st.get('term') or 0):
                   alert_halt(f'锚 term 未单调（{aterm}<={st.get("term")}）——回滚迹象',term); raise SystemExit(0)
               if anchor['chain']!=st['last_chain'] and anchor['prev_chain']!=st['last_chain']:
                   alert_halt('锚滚链断链（chain/prev_chain 均≠本侧上次值）',term); raise SystemExit(0)
