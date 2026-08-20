@@ -2,7 +2,7 @@
  "line": "ci-inbox",
  "vrepo": "vci-inbox",
  "last_pulse": "20260819-011103",
- "chain_head": "93a2bed1d0814d53",
+ "chain_head": "b6a7dcd6b991c88b",
  "pulses_total": 5,
  "snapshot": {
   "registry": "not-registered",
@@ -10,5 +10,5 @@
  },
  "verdict": "ok",
  "spec": "VCI-LOAD-01 波1（心跳/快照/写链/对外验证面）",
- "heal_note": "F2 愈合 2026-08-20T02:27:00Z：status 链头重建对齐 pulse.log"
+ "heal_note": "F2 愈合 2026-08-20T07:33:03Z：status 链头重建对齐 pulse.log"
 }
