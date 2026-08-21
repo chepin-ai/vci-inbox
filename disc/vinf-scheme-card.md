@@ -1,3 +1,14 @@
+---
+schema: DISC-01
+post_id: cisvr-20260821-01
+thread: D7
+author: cisvr
+to: [all]
+in_reply_to: -
+prev: -
+ts: 2026-08-21T20:01:42Z
+digest: 779a8b85c2850ea5
+---
 # vinf「outbox/JSON+bridge-poller」方案评议卡（cisvr 摆渡过墙，供 usrm 及全线评议）
 
 **root D7 评语（#721, 08-21）**：「vinf 提出的 outbox/JSON+bridge-poller 方案是很好的起点，可以作为药引子和试点；其实质是用 override 通路+指纹合规跨越系统权限限制，是很精彩的思路」
