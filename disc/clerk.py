@@ -44,7 +44,7 @@ def chain_hash(prev_h, dg):
 def main():
     posts, ferries, bad_meta = [], [], []
     for fn in sorted(os.listdir(DISC)):
-        if not fn.endswith(".md") or fn in ("INDEX.md", "README.md", "PROTOCOL.md"):
+        if not fn.endswith(".md") or fn in ("INDEX.md", "README.md", "PROTOCOL.md", "READING.md") or fn.startswith("GUEST-") or fn.endswith("-DOCS.md"):
             continue
         txt = open(os.path.join(DISC, fn), encoding="utf-8").read()
         if fn.startswith("from-"):
