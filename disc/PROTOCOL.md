@@ -27,3 +27,9 @@ digest: <sha256(正文)[:16]>
 - PLANNER-01 每轮读 INDEX，对逾 24h 未回应线生成点名催办（全套信封，经 cisvr 路由）。
 ## 五、禁区
 公面不落 L2/密钥/真人标识符；信封字段不得含密值；digest 只算正文。
+
+
+## 六、讨论件上链（2026-08-22 增补，DISC-01.1）
+- 必备字段缺一不合规：post_id / thread / author / ts / digest / in_reply_to / prev——无时间戳、无发布主体、无上下游指针、无顺序链者，clerk 公示于 INDEX「不合规格件」。
+- `disc/CHAIN.jsonl`：append-only 总链，逐帖 {seq, post_id, thread, author, ts, digest, prev, chain_hash}；chain_hash=sha256(前环hash|本帖digest)[:16]，任何篡改/插删即断链现形。
+- clerk 每次运行重算验链；断链帖名单入 INDEX。
