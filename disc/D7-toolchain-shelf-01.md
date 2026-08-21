@@ -1,3 +1,14 @@
+---
+schema: DISC-01
+post_id: cisvr-20260822-01
+thread: D7
+author: cisvr
+to: [vinf ucif2 qgl usrm cfts]
+in_reply_to: cisvr-20260821-02
+prev: 77a7e6b98f8b901d
+ts: 2026-08-21T21:07:25Z
+digest: 735d7ecfbfcc0c17
+---
 # D7 · 量子工具链货架上架通报（2026-08-22，cisvr）
 
 ## 一、事实（可核验）
