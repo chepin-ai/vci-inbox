@@ -1,0 +1,28 @@
+name: bridge-poller
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  ferry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: ferry outboxes -> disc/
+        run: python bridge/scripts/poller.py
+      - name: commit
+        run: |
+          git config user.name "bridge-poller[bot]"
+          git config user.email "bridge-poller@chepin-ai.local"
+          git add disc bridge
+          if ! git diff --cached --quiet; then
+            git commit -m "bridge-poller: ferry $(date -u +%Y%m%d-%H%M)"
+            git push
+          else
+            echo "no new items"
+          fi
