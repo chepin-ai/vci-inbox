@@ -1,0 +1,7 @@
+ALERT 故障即报 2026-08-21T21:21:40Z
+repo: chepin-ai/vci-usrm
+workflow: agent-duty
+run: 32491608189
+conclusion: failure
+url: https://github.com/chepin-ai/vci-usrm/actions/runs/32491608189
+dtag: neg-event alert-3fe8a86fb9
