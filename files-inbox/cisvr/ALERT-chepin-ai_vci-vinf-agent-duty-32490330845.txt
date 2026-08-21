@@ -1,0 +1,7 @@
+ALERT 故障即报 2026-08-21T21:20:10Z
+repo: chepin-ai/vci-vinf
+workflow: agent-duty
+run: 32490330845
+conclusion: failure
+url: https://github.com/chepin-ai/vci-vinf/actions/runs/32490330845
+dtag: neg-event alert-28170c83cf
