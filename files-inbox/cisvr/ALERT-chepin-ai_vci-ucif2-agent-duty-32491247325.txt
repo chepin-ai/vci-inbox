@@ -1,0 +1,7 @@
+ALERT 故障即报 2026-08-21T21:29:18Z
+repo: chepin-ai/vci-ucif2
+workflow: agent-duty
+run: 32491247325
+conclusion: failure
+url: https://github.com/chepin-ai/vci-ucif2/actions/runs/32491247325
+dtag: neg-event alert-c3d725e5f0
