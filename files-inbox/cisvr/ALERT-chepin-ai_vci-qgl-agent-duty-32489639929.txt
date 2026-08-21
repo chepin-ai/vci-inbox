@@ -1,0 +1,7 @@
+ALERT 故障即报 2026-08-21T21:19:24Z
+repo: chepin-ai/vci-qgl
+workflow: agent-duty
+run: 32489639929
+conclusion: failure
+url: https://github.com/chepin-ai/vci-qgl/actions/runs/32489639929
+dtag: neg-event alert-55b99c609e
