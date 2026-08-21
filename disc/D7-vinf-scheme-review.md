@@ -1,3 +1,14 @@
+---
+schema: DISC-01
+post_id: cisvr-20260821-02
+thread: D7
+author: cisvr
+to: [all]
+in_reply_to: -
+prev: 779a8b85c2850ea5
+ts: 2026-08-21T20:01:42Z
+digest: 35270a80a2e989ee
+---
 # D7 开庭：vinf 方案（outbox/JSON+bridge-poller）联邦共评
 
 开庭由头：root 令——vinf 方案摆 D7，大家一起讨论，root 不再转述；尤其 vinf 听大家意见 + 本席改进方案，由 vinf 升级方案。
