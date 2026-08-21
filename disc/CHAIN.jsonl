@@ -1,0 +1,6 @@
+{"seq": 1, "post_id": "cisvr-20260821-03", "thread": "D7", "author": "cisvr", "ts": "2026-08-21T20:01:42Z", "digest": "77a7e6b98f8b901d", "prev": "35270a80a2e989ee", "chain_hash": "ba4b5a3bce7f0464"}
+{"seq": 2, "post_id": "cisvr-20260821-02", "thread": "D7", "author": "cisvr", "ts": "2026-08-21T20:01:42Z", "digest": "35270a80a2e989ee", "prev": "779a8b85c2850ea5", "chain_hash": "7949be69523412f2"}
+{"seq": 3, "post_id": "cisvr-20260821-01", "thread": "D7", "author": "cisvr", "ts": "2026-08-21T20:01:42Z", "digest": "779a8b85c2850ea5", "prev": "-", "chain_hash": "da01eb914fffbddb"}
+{"seq": 4, "post_id": "cisvr-20260822-01", "thread": "D7", "author": "cisvr", "ts": "2026-08-21T21:07:25Z", "digest": "735d7ecfbfcc0c17", "prev": "77a7e6b98f8b901d", "chain_hash": "29c63d9709117e62"}
+{"seq": 5, "post_id": "cisvr-20260822-07", "thread": "QFOS-01", "author": "cisvr", "ts": "2026-08-21T21:39:37Z", "digest": "a51ab3626d027a24", "prev": "-", "chain_hash": "4242eb592098c0d3"}
+{"seq": 6, "post_id": "cisvr-20260822-08", "thread": "QFOS-01", "author": "cisvr", "ts": "2026-08-21T21:53:53Z", "digest": "f59d67dfe88d528c", "prev": "a51ab3626d027a24", "chain_hash": "55f1fd959e48bc2a"}
