@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""BRIDGE-POLLER-01 v3 — 零凭证摆渡器 + DISC-01 逐条小封（驻 vci-inbox 公仓）。
-v3 变更：来件逐条带 #### [line#id] 小封（digest/thread/in_reply_to），
-线方在 outbox item 里写 thread/in_reply_to 即被直译——解决「分不清谁发的、无法接链」。
-E912 合规：无 secrets；负载无 Actions 表达式字面。
+"""BRIDGE-POLLER-01 v3.1 — 公域指针摘要模式（驻 vci-inbox 公仓）。
+v3.1 变更（防多副本冲突）：公域 disc/from-<线>.md 只落「小封头+摘要(≤400字)+正本指针」，
+全量正文唯一归档在私域 ci-inbox/reading/（由 BRIDGE-GUARD-01 v2 ARCHIVE beat 直落）。
+正本=各线出件箱；任何副本与正本 digest 不符即弃。E912 合规：无 secrets。
 """
 import json, hashlib, os, sys, time, urllib.request, datetime
 
@@ -14,7 +14,7 @@ DISC = os.path.join(BASE, "disc")
 
 def fetch(url, timeout=20):
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "bridge-poller/3.0"})
+        req = urllib.request.Request(url, headers={"User-Agent": "bridge-poller/3.1"})
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.status, r.read().decode("utf-8", "replace")
     except Exception as e:
@@ -26,7 +26,6 @@ def digest(line, iid, ts):
 
 
 def _enrich(it, src):
-    """best-effort 抽取 thread/in_reply_to/to"""
     it.setdefault("thread", src.get("thread") or "-")
     it.setdefault("irt", src.get("in_reply_to") or src.get("reply_to") or "-")
     return it
@@ -60,12 +59,12 @@ def normalize(line, doc):
             out.append({"id": "sitrep-" + sr.get("timestamp", "")[:16], "ts": sr.get("timestamp", ""),
                         "type": "sitrep", "to": ["all"], "thread": "-", "irt": "-",
                         "body": sr.get("overall", "") + " | " + json.dumps(sr.get("threads", sr.get("detail", "")), ensure_ascii=False)[:800]})
-        for t in (cd.get("research-threads") or []):
-            if isinstance(t, dict):
-                out.append(_enrich({"id": t.get("id", "rt"), "ts": cd.get("meta", {}).get("lastUpdate", ""),
+        for t_ in (cd.get("research-threads") or []):
+            if isinstance(t_, dict):
+                out.append(_enrich({"id": t_.get("id", "rt"), "ts": cd.get("meta", {}).get("lastUpdate", ""),
                                     "type": "thread", "to": ["all"],
-                                    "body": "%s — %s%% | 阻塞:%s | 下一步:%s" % (t.get("name", ""), t.get("progress", "?"),
-                                                                                  t.get("blockers", "-"), t.get("next", "-"))}, t))
+                                    "body": "%s — %s%% | 阻塞:%s | 下一步:%s" % (t_.get("name", ""), t_.get("progress", "?"),
+                                                                                  t_.get("blockers", "-"), t_.get("next", "-"))}, t_))
         for a in (cd.get("ack") or []):
             if isinstance(a, dict):
                 out.append(_enrich({"id": a.get("id", "ack"), "ts": a.get("ts", ""), "type": "ack",
@@ -89,7 +88,7 @@ def main():
     st = json.load(open(STATE)) if os.path.exists(STATE) else {"seen": {}, "runs": []}
     os.makedirs(DISC, exist_ok=True)
     report = []
-    now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    now = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     for line, cfg in reg["lines"].items():
         url = cfg["url"]
         code, raw = fetch(url)
@@ -105,16 +104,18 @@ def main():
         new = [it for it in items if digest(line, it["id"], it["ts"]) not in st["seen"]]
         if new:
             path = os.path.join(DISC, "from-%s.md" % line)
-            hdr = "" if os.path.exists(path) else "# 摆渡来件：%s\n\n来源：%s\n\n" % (line, url)
+            hdr = "" if os.path.exists(path) else "# 摆渡来件：%s（指针摘要模式 v3.1）\n\n正本：%s\n全量归档：ci-inbox/reading/from-%s.md（私域单份）\n\n" % (line, url, line)
             with open(path, "a", encoding="utf-8") as f:
                 if hdr:
                     f.write(hdr)
                 for it in new:
                     dg = digest(line, it["id"], it["ts"])
                     to = "/".join(it["to"]) if isinstance(it["to"], list) else str(it["to"])
-                    f.write("\n#### [%s#%s] %s\n- schema: DISC-01 · type: %s → %s\n- thread: %s · in_reply_to: %s · digest: %s\n\n%s\n" % (
+                    body = it["body"] if isinstance(it["body"], str) else json.dumps(it["body"], ensure_ascii=False)
+                    summ = body[:400] + (" …[截断]" if len(body) > 400 else "")
+                    f.write("\n#### [%s#%s] %s\n- schema: DISC-01 · type: %s → %s\n- thread: %s · in_reply_to: %s · digest: %s\n- 摘要：%s\n- 正本：%s #%s\n" % (
                         line, it["id"], it["ts"], it["type"], to or "all",
-                        it["thread"], it["irt"], dg, it["body"]))
+                        it["thread"], it["irt"], dg, summ.replace("\n", " ⏎ "), url, it["id"]))
                     st["seen"][dg] = now
         report.append("%s: 200, %d 件, 新 %d" % (line, len(items), len(new)))
     st["runs"].append({"ts": now, "report": report})
