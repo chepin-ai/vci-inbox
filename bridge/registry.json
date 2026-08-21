@@ -1,6 +1,6 @@
 {
  "version": "1.0",
- "updated": "2026-08-21T19:38:03Z",
+ "updated": "2026-08-21T20:20:00Z",
  "note": "六线发布域注册·公面副本（与 ci-control/bridge/outboxes.json 对账；注册前必实证核对）",
  "lines": {
   "vinf": {
@@ -10,8 +10,7 @@
    "url": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json"
   },
   "qgl": {
-   "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json",
-   "status": "404 待发布——root 点版本卡 2dba394「发布」即上线"
+   "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json"
   },
   "usrm": {
    "url": "https://62q3nd73zxf52.ok.kimi.link/usrm-outbox.json"
