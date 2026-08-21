@@ -202,7 +202,7 @@ T168: OTP门敲门握手回环(敲门→私仓inbox→哨戒每小时巡航+激�
 
 ## seq-40 · 2026-08-19T20:36:50Z · RPT.T169 → cisvr
 
-T169四项:①大厅分页修复(GitHub评论升序分页,旧版只拉第1页=最旧20条→现翻页拉全456条最新置顶)②发码按钮(inbox/sendcode-*.json委托,哨戒已收编)③API会话舱=v6.0子页#/api-session直连Moonshot API,key只存浏览器④真码E2E:Playwright开kimi.com登录页填13902209204勾协议点发送→toast「验证码发送成功」+118s倒计时,短信真发;otp_gate_state→CODE_SENT 20:22:14Z;待root收码填入→消费→DONE。dashboard v6.7版本91e6810
+T169四项:①大厅分页修复(GitHub评论升序分页,旧版只拉第1页=最旧20条→现翻页拉全456条最新置顶)②发码按钮(inbox/sendcode-*.json委托,哨戒已收编)③API会话舱=v6.0子页#/api-session直连Moonshot API,key只存浏览器④真码E2E:Playwright开kimi.com登录页填[真人标识符已遮蔽]勾协议点发送→toast「验证码发送成功」+118s倒计时,短信真发;otp_gate_state→CODE_SENT 20:22:14Z;待root收码填入→消费→DONE。dashboard v6.7版本91e6810
 
 
 ## seq-41 · 2026-08-20T06:48:10Z · RPT.T170 → cisvr
