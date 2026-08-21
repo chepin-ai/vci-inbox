@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
-"""BRIDGE-GUARD-01 — 双向搬运守护（驻 vci-inbox 公仓）。
-IN : 本仓 disc/ 变动 → ci-inbox 私仓 archive/disc/（公面讨论即入私域存档）
-OUT: ci-inbox/outbound/ → 本仓 disc/outbound/（私域指令即出公面）
-凭证面：GITHUB_TOKEN 管本仓写；GUARD_APP_KEY（App 私钥，密封注入，值不出 runner）铸 token 管 ci-inbox。
-E912/E913 合规；负载无 ${{ 字面；只打印计数，不打印内容。
+"""BRIDGE-GUARD-01 v2 — 双向搬运守护 + ARCHIVE beat（驻 vci-inbox 公仓）。
+IN     : 本仓 disc/ 变动 → ci-inbox/archive/disc/（公面快照存档）
+OUT    : ci-inbox/outbound/ → 本仓 disc/outbound/（私域指令出公面）
+ARCHIVE: 六线出件箱全量正文 → ci-inbox/reading/from-<线>.md（私域唯一全量副本，只读专区）
+         公域 disc/ 自 poller v3.1 起只落指针摘要——正本=各线出件箱，digest 验真。
+凭证面：GITHUB_TOKEN 管本仓写；GUARD_APP_KEY 铸 token 管 ci-inbox（值不出 runner）。
+E912/E913 合规；只打印计数。
 """
-import json, os, time, hashlib, base64, urllib.request, datetime
+import json, os, sys, time, hashlib, base64, urllib.request, datetime
 import jwt
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from poller import normalize, digest, fetch  # noqa: E402
 
 ORG = "chepin-ai"
 PRIV = "ci-inbox"
-APP_ID = "4621702"  # chepin-ci-ops 应用 ID（公开元数据，非秘密）
+APP_ID = "4621702"  # chepin-ci-ops 应用 ID（公开元数据）
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DISC = os.path.join(BASE, "disc")
+REG = os.path.join(BASE, "bridge", "registry.json")
 STATE = os.path.join(BASE, "bridge", "guard-state.json")
 
 
@@ -45,6 +51,13 @@ def sha_text(s):
     return hashlib.sha256(s.encode()).hexdigest()
 
 
+def get_priv(tok, path):
+    r = gh("https://api.github.com/repos/%s/%s/contents/%s" % (ORG, PRIV, path), tok)
+    if isinstance(r, dict) and r.get("content"):
+        return base64.b64decode(r["content"]).decode("utf-8", "replace"), r.get("sha")
+    return "", None
+
+
 def put_priv(tok, path, content, msg):
     cur = gh("https://api.github.com/repos/%s/%s/contents/%s" % (ORG, PRIV, path), tok)
     data = {"message": msg, "content": base64.b64encode(content.encode()).decode()}
@@ -55,9 +68,10 @@ def put_priv(tok, path, content, msg):
 
 
 def main():
-    st = {"in": {}, "out": {}}
+    st = {"in": {}, "out": {}, "arch": {}}
     if os.path.exists(STATE):
         st = json.load(open(STATE))
+        st.setdefault("arch", {})
     tok = app_token()
     now = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -92,9 +106,43 @@ def main():
             st["out"][f["name"]] = f.get("sha")
             out_up += 1
 
+    # ARCHIVE：六线出件箱全量 → ci-inbox/reading/from-<线>.md（私域单份）
+    arch_up = 0
+    try:
+        reg = json.load(open(REG))
+    except Exception:
+        reg = {"lines": {}}
+    for line, cfg in reg.get("lines", {}).items():
+        url = cfg.get("url", "")
+        if not url.startswith("http"):
+            continue
+        code, raw = fetch(url)
+        if code != 200:
+            continue
+        try:
+            doc = json.loads(raw)
+        except Exception:
+            continue
+        items = normalize(line, doc)
+        new = [it for it in items if st["arch"].get(digest(line, it["id"], it["ts"])) is None]
+        if not new:
+            continue
+        cur, _sha = get_priv(tok, "reading/from-%s.md" % line)
+        if not cur:
+            cur = "# reading 专区归档：%s\n\n正本：%s\n本区为私域唯一全量副本（公域仅指针摘要）。\n" % (line, url)
+        for it in new:
+            dg = digest(line, it["id"], it["ts"])
+            to = "/".join(it["to"]) if isinstance(it["to"], list) else str(it["to"])
+            body = it["body"] if isinstance(it["body"], str) else json.dumps(it["body"], ensure_ascii=False)
+            cur += "\n#### [%s#%s] %s\n- schema: DISC-01 · type: %s → %s\n- thread: %s · in_reply_to: %s · digest: %s\n- 正本：%s #%s\n\n%s\n" % (
+                line, it["id"], it["ts"], it["type"], to or "all", it["thread"], it["irt"], dg, url, it["id"], body)
+            st["arch"][dg] = now
+            arch_up += 1
+        put_priv(tok, "reading/from-%s.md" % line, cur, "guard-ARCHIVE: %s +%d" % (line, len(new)))
+
     st["last_run"] = now
     json.dump(st, open(STATE, "w"), ensure_ascii=False, indent=1)
-    print("guard IN:%d OUT:%d @%s" % (in_up, out_up, now))
+    print("guard IN:%d OUT:%d ARCHIVE:%d @%s" % (in_up, out_up, arch_up, now))
 
 
 if __name__ == "__main__":
