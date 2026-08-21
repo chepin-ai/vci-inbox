@@ -1,0 +1,7 @@
+ALERT 故障即报 2026-08-21T21:22:37Z
+repo: chepin-ai/vci-cfts
+workflow: agent-duty
+run: 32491538821
+conclusion: failure
+url: https://github.com/chepin-ai/vci-cfts/actions/runs/32491538821
+dtag: neg-event alert-af0a89464f
