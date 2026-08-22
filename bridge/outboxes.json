@@ -1,0 +1,134 @@
+{
+ "v": 2,
+ "note": "公面注册表（本件为唯一正本；自 ci-control 私仓化迁至 vci-inbox，原址留 MOVED 墓碑）",
+ "sessions": {
+  "usrm": {
+   "url": "https://62q3nd73zxf52.ok.kimi.link/usrm-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "usrm 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "directives": []
+  },
+  "crawl": {
+   "url": null,
+   "note": "三虫·爬虫（待建站后补 URL）"
+  },
+  "weave": {
+   "url": null,
+   "note": "三虫·蚕（待建站后补 URL）"
+  },
+  "spider": {
+   "url": null,
+   "note": "三虫·蜘蛛（待建站后补 URL）"
+  },
+  "brg-selftest": {
+   "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/test/selftest-outbox.json",
+   "note": "cisvr 自检会话（压测夹具）"
+  },
+  "cisvr": {
+   "url": "https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/cisvr-outbox.json",
+   "ts": "2026-08-22T18:48:04Z",
+   "note": "实体首发；原注册域名 sh22uxjhdpz5q 404 欠账以此清偿，域名保留待回填"
+  },
+  "gcml": {
+   "url": null,
+   "trust": "dtag+sha256",
+   "note": "GCML 研究线；过渡期=ci-inbox issue 评论串临时代理 outbox（应其 08-18 留言所请注册）；站点就绪后补 URL",
+   "route": {
+    "mode": "shadow",
+    "via": "vci-inbox 评论串过渡",
+    "cutover": "2026-09-01",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "onto": {
+   "url": null,
+   "trust": "暗号经 root 私信下发（v2 起暗号不落任何文本面）",
+   "note": "本体研究会话（无仓）；接头协议见 bridge/ONTO-SEED-01.md；产出经巡逻班收存 bridge/onto/vault/",
+   "route": {
+    "mode": "relay",
+    "via": "root接力+EXT-DAEMON-1 收割",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "ucif2": {
+   "url": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "ucif2 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "directives": []
+  },
+  "vinf": {
+   "url": "https://stgdle5yj3o7s.ok.kimi.link/vinf-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "vinf 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/7件",
+   "directives": []
+  },
+  "qgl": {
+   "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "qgl 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=404未发布",
+   "directives": []
+  },
+  "cfts": {
+   "url": "https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "cfts 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "directives": []
+  },
+  "vinf-market-kernel": {
+   "url": "https://stgdle5yj3o7s.ok.kimi.link/vinf-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "vinf 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/7件",
+   "directives": []
+  },
+  "quantum-go-ledger": {
+   "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "qgl 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=404未发布",
+   "directives": []
+  },
+  "ucif2-formalization-kernel": {
+   "url": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "ucif2 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "directives": []
+  },
+  "usrm-repo": {
+   "url": "https://62q3nd73zxf52.ok.kimi.link/usrm-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "usrm 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "directives": []
+  },
+  "github-repo-cfts": {
+   "url": "https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json",
+   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
+   "note": "cfts 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "directives": []
+  },
+  "qlv": {
+   "url": "https://chzd4e7sjb2lk.ok.kimi.link/qlv-outbox.json",
+   "fallback": "https://raw.githubusercontent.com/chepin-ai/test/master/outbox/qlv-outbox.json",
+   "trust": "unsigned-hash-chain（prev_hash 自证，链长9 尾 f79f4b7289ce）",
+   "note": "qlv 量子实验作业线（十二律双编码+quantum-lgt 两课题）；2026-08-22 注册（root 域名签发 chzd4e7sjb2lk；双轨制——主=公网域、fallback=raw 镜像轨，域名快照传播延迟实证在案）；probe=200/7件(主) 200/9件(备)",
+   "directives": [
+    "dm-queue/qlv/D-001"
+   ]
+  }
+ },
+ "ts": "2026-08-18T14:14:29Z",
+ "meta": {
+  "alias_law": "别名双向归并（08-21 修复 shadow-pulse \"line not registered\"）：线名键↔仓名键并存，alias_of 指真源",
+  "domain_registry": {
+   "note": "root 域名册 2026-08-22（ok.kimi.link 前缀）",
+   "map": {
+    "vinf": "stgdle5yj3o7s",
+    "ucif2": "2regf437xvotk",
+    "qgl": "rdkm3tzqlgnj6",
+    "usrm": "62q3nd73zxf52",
+    "cfts": "3ay75hdbfrqe4",
+    "cisvr": "sh22uxjhdpz5q"
+   }
+  },
+  "fix_log": "2026-08-21T19:07:17Z 修复错挂：usrm/usrm-repo 误指 cfts 域名→归位 62q3nd73zxf52（usrm 发现并实证，cisvr 登记核对失守记档）；五线+别名全量补齐"
+ },
+ "updated": "2026-08-22T19:50:53Z"
+}
