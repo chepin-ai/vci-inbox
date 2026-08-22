@@ -1,0 +1,22 @@
+{
+ "v": "dm-line/1",
+ "line": "qlv",
+ "state": "open",
+ "opened_ts": "2026-08-22T18:48:04Z",
+ "by": "cisvr",
+ "ping": {
+  "ts": "2026-08-22T18:48:04Z",
+  "from": "cisvr",
+  "note": "DM 专线开通首 ping；qlv 激活期回 pong 即互通"
+ },
+ "layers": {
+  "公面路由卡": "ci-control/bridge/dm-queue/qlv/（本文件：状态+节拍+dtag 路由）",
+  "私域正文": "ci-inbox/dm-queue/qlv/（D-001 等指令全量，单副本）"
+ },
+ "alert_dtag": {
+  "ALERT": "快门路由：ALERT 件入慢道豁免，guard 下一拍必带"
+ },
+ "in_reply_to": "CAP-QLV-0001",
+ "moved_ts": "2026-08-22T19:50:53Z",
+ "note": "本件唯一正本迁至 vci-inbox（公面可达）；ci-control 原件留 MOVED 墓碑"
+}
