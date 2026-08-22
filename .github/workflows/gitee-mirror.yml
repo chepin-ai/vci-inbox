@@ -1,0 +1,48 @@
+name: gitee-mirror
+on:
+  schedule:
+    - cron: '41 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 门闸（secrets 未落则安静退场，不积尸）
+        env:
+          PAT: ${{ secrets.GITEE_MIRROR_PAT }}
+          APPK: ${{ secrets.GUARD_APP_KEY }}
+        run: |
+          if [ -z "$PAT" ] || [ -z "$APPK" ]; then echo "IDLE: secrets 未落 vci-inbox（P33 候 root）；本轮退场"; exit 0; fi
+          echo "secrets 齐"
+      - name: 镜像 ci-control → Gitee（App token 仓内铸，值不打印）
+        env:
+          PAT: ${{ secrets.GITEE_MIRROR_PAT }}
+          GU: ${{ vars.GITEE_USER }}
+          APPK: ${{ secrets.GUARD_APP_KEY }}
+        run: |
+          [ -n "$PAT" ] && [ -n "$APPK" ] || exit 0
+          set -e
+          printf '%s' "$APPK" > /tmp/hub.pem
+          pip install -q pyjwt cryptography
+          IT=$(python3 /tmp/mint.py 2>/dev/null || true)
+          cat > /tmp/mint.py <<'PYE'
+          import jwt,time,json,urllib.request
+          now=int(time.time())
+          t=jwt.encode({'iat':now-60,'exp':now+540,'iss':'4621702'},open('/tmp/hub.pem').read(),algorithm='RS256')
+          H={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'}
+          inst=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations',headers=H)).read())
+          iid=[i['id'] for i in inst if i['account']['login']=='chepin-ai'][0]
+          r=urllib.request.Request(f'https://api.github.com/app/installations/{iid}/access_tokens',method='POST',headers=H); r.data=b'{}'
+          print(json.loads(urllib.request.urlopen(r).read())['token'])
+          PYE
+          IT=$(python3 /tmp/mint.py)
+          rm -f /tmp/hub.pem /tmp/mint.py
+          git clone -q --mirror "https://x-access-token:${IT}@github.com/chepin-ai/ci-control.git" /tmp/cc.git
+          cd /tmp/cc.git
+          REAL=$(curl -s --max-time 25 "https://gitee.com/api/v5/user?access_token=${PAT}" | python3 -c "import sys,json;print(json.load(sys.stdin).get('login',''))")
+          [ -n "$REAL" ] || { echo 'FATAL: PAT 鉴权失败'; exit 1; }
+          echo "gitee login=${REAL}"
+          timeout 420 git push --mirror "https://${REAL}:${PAT}@gitee.com/${REAL}/ci-control-mirror.git" && echo "MIRROR-OK $(date -u +%FT%TZ)"
