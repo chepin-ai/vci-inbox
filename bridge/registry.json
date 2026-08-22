@@ -1,6 +1,6 @@
 {
  "version": "1.1",
- "updated": "2026-08-22T18:54:08Z",
+ "updated": "2026-08-22T19:50:53Z",
  "note": "六线发布域注册·公面副本（与 ci-control/bridge/outboxes.json 对账；注册前必实证核对）；v1.1 双轨（url 主+fallback 镜像轨，qlv 建议1 root 准）",
  "lines": {
   "vinf": {
@@ -24,7 +24,8 @@
   },
   "qlv": {
    "url": "https://chzd4e7sjb2lk.ok.kimi.link/qlv-outbox.json",
-   "fallback": "https://raw.githubusercontent.com/chepin-ai/test/master/outbox/qlv-outbox.json"
+   "fallback": null,
+   "fallback_note": "test 仓已删（P30 root 已执行）——fallback 待 qlv 重锚（建议 vci-library 或其自域）"
   }
  }
 }
