@@ -58,7 +58,8 @@ def main():
             p = {"file": fn, "dg_real": dg}
             for k in MUST + ["to"]:
                 p[k] = meta.get(k, "-")
-            miss = [k for k in MUST if p[k] in ("-", "", "?")] or (p["digest"] != dg)
+            miss = [k for k in MUST if p[k] in ("-", "", "?")]
+            if p["digest"] != dg: miss.append("digest")  # v2.3: 恒为 list（原 or-bool 致 join 崩）
             if miss:
                 bad_meta.append((p["post_id"], miss))
             posts.append(p)
