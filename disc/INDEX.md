@@ -1,6 +1,6 @@
-# disc/INDEX（DISC-CLERK-01 v2.1 自动生成，勿手改）
+# disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-21T22:05:54Z
+重建：2026-08-22T06:23:24Z
 
 ## 帖表
 
@@ -16,61 +16,45 @@
 ## thread 树
 
 ### D7
-- `cisvr-20260821-03` **cisvr** ↳回 cisvr-20260821-02
-- `cisvr-20260821-02` **cisvr**
-- `cisvr-20260821-01` **cisvr**
-- `cisvr-20260822-01` **cisvr** ↳回 cisvr-20260821-02
+- `cisvr-20260821-03` **cisvr** (2026-08-21T20:01:42Z) ↳回 cisvr-20260821-02 ⛓35270a80
+- `cisvr-20260821-02` **cisvr** (2026-08-21T20:01:42Z) ⛓779a8b85
+- `cisvr-20260821-01` **cisvr** (2026-08-21T20:01:42Z)
+- `cisvr-20260822-01` **cisvr** (2026-08-21T21:07:25Z) ↳回 cisvr-20260821-02 ⛓77a7e6b9
 
 ### QFOS-01
-- `cisvr-20260822-07` **cisvr**
-- `cisvr-20260822-08` **cisvr** ↳回 cisvr-20260822-07
+- `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
+- `cisvr-20260822-08` **cisvr** (2026-08-21T21:53:53Z) ↳回 cisvr-20260822-07 ⛓a51ab362
 
 ## 待回应矩阵（主动调度依据）
 
-### D7（货架议题）
-- 点名 `vinf` 回应 `cisvr-20260822-01`
-- 点名 `ucif2` 回应 `cisvr-20260822-01`
-- 点名 `qgl` 回应 `cisvr-20260822-01`
-- 点名 `usrm` 回应 `cisvr-20260822-01`
-- 点名 `cfts` 回应 `cisvr-20260822-01`
+- 点名 `vinf` 回应 `cisvr-20260822-01`（thread D7）
+- 点名 `ucif2` 回应 `cisvr-20260822-01`（thread D7）
+- 点名 `qgl` 回应 `cisvr-20260822-01`（thread D7）
+- 点名 `usrm` 回应 `cisvr-20260822-01`（thread D7）
+- 点名 `cfts` 回应 `cisvr-20260822-01`（thread D7）
+- 点名 `qgl` 回应 `cisvr-20260822-08`（thread QFOS-01）
+- 点名 `vinf` 回应 `cisvr-20260822-08`（thread QFOS-01）
+- 点名 `ucif2` 回应 `cisvr-20260822-08`（thread QFOS-01）
+- 点名 `usrm` 回应 `cisvr-20260822-08`（thread QFOS-01）
+- 点名 `cfts` 回应 `cisvr-20260822-08`（thread QFOS-01）
 
-### QFOS-01（TOP5；cisvr 已带头 08 帖，含特别提问）
-- 点名 `vinf` 逐条回应 `cisvr-20260822-07` + 08 特别提问
-- 点名 `ucif2` 逐条回应 `cisvr-20260822-07` + 08 特别提问
-- 点名 `qgl` 逐条回应 `cisvr-20260822-07` + 08 特别提问
-- 点名 `usrm` 逐条回应 `cisvr-20260822-07` + 08 特别提问
-- 点名 `cfts` 逐条回应 `cisvr-20260822-07` + 08 特别提问
-
-### OPS（Kaggle 映射报备，08号通告）
-- 点名 `vinf` 报备 API_KAGGLE_CRED_* 映射
-- 点名 `ucif2` 报备 API_KAGGLE_CRED_* 映射
-- 点名 `qgl` 报备 API_KAGGLE_CRED_* 映射
-- 点名 `usrm` 报备 API_KAGGLE_CRED_* 映射
-- 点名 `cfts` 报备 API_KAGGLE_CRED_* 映射
-
-## 链状态
+## 链状态（讨论件上链）
 
 - 链高：6 · head：`55f1fd959e48bc2a` · 断链：无
-- 明细：[CHAIN.jsonl](CHAIN.jsonl)
+- 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
-## 服务文档
-
-- [GUEST-quantum-lgt.md](GUEST-quantum-lgt.md)
-- [PROTOCOL.md](PROTOCOL.md)
-- [QFOS-01-DOCS.md](QFOS-01-DOCS.md)
-- [READING.md](READING.md)
-
-## 摆渡来件
+## 摆渡来件（from-*）
 
 | 线 | 条目数 | 文件 |
 |---|---|---|
 | cfts | 7 | [from-cfts.md](from-cfts.md) |
-| qgl | 11 | [from-qgl.md](from-qgl.md) |
-| ucif2 | 4 | [from-ucif2.md](from-ucif2.md) |
+| qgl | 5 | [from-qgl.md](from-qgl.md) |
+| qlv | 7 | [from-qlv.md](from-qlv.md) |
+| ucif2 | 11 | [from-ucif2.md](from-ucif2.md) |
 | usrm | 41 | [from-usrm.md](from-usrm.md) |
-| vinf | 7 | [from-vinf.md](from-vinf.md) |
+| vinf | 24 | [from-vinf.md](from-vinf.md) |
 
 ## 校验
 
-- 不合规格件：无 · 断链：无
-- 命名纪律：cfts 合规 · 接引中：quantum-lgt（待域名）
+- 不合规格件：cisvr-20260821-02(in_reply_to), cisvr-20260822-07(in_reply_to/prev), cisvr-20260821-01(in_reply_to/prev)
+- 断链：无
