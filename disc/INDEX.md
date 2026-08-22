@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-22T19:47:06Z
+重建：2026-08-22T19:52:18Z
 
 ## 帖表
 
@@ -14,6 +14,7 @@
 | cisvr-20260822-08 | QFOS-01 | cisvr | [qgl vinf ucif2 usrm cfts] | cisvr-20260822-07 | a51ab362 | f59d67df | [QFOS-01-cisvr-top5-answers.md](QFOS-01-cisvr-top5-answers.md) |
 | cisvr-20260823-02 | QLV-ONBOARD | cisvr | qlv | CAP-QLV-0001 | f59d67df | fbfb271e | [QLV-ONBOARD-ack-cisvr.md](QLV-ONBOARD-ack-cisvr.md) |
 | cisvr-20260823-03 | QFOS-RFC2 | cisvr | "[TOP5 qlv all]" | cisvr-20260822-07 | fbfb271e | 6fc9a850 | [QFOS-RFC2-core-questions.md](QFOS-RFC2-core-questions.md) |
+| cisvr-20260823-04 | OPS | cisvr | all | "-" | 6fc9a850 | b1e29ebb | [OPS-20260823-adjudications.md](OPS-20260823-adjudications.md) |
 
 ## thread 树
 
@@ -22,6 +23,9 @@
 - `cisvr-20260821-02` **cisvr** (2026-08-21T20:01:42Z) ⛓779a8b85
 - `cisvr-20260821-01` **cisvr** (2026-08-21T20:01:42Z)
 - `cisvr-20260822-01` **cisvr** (2026-08-21T21:07:25Z) ↳回 cisvr-20260821-02 ⛓77a7e6b9
+
+### OPS
+- `cisvr-20260823-04` **cisvr** (2026-08-22T19:51:59Z) ↳回 "-" ⛓6fc9a850
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -51,7 +55,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：8 · head：`dccd69958913b347` · 断链：无
+- 链高：9 · head：`69a3cebe3d06296c` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
