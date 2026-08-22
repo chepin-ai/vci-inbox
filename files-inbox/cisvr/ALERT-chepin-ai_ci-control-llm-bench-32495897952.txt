@@ -1,0 +1,7 @@
+ALERT 故障即报 2026-08-22T02:12:00Z
+repo: chepin-ai/ci-control
+workflow: llm-bench
+run: 32495897952
+conclusion: failure
+url: https://github.com/chepin-ai/ci-control/actions/runs/32495897952
+dtag: neg-event alert-a9e202791c
