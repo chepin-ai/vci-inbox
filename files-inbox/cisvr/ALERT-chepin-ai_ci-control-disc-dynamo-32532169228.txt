@@ -1,0 +1,7 @@
+ALERT 故障即报 2026-08-22T03:33:53Z
+repo: chepin-ai/ci-control
+workflow: disc-dynamo
+run: 32532169228
+conclusion: failure
+url: https://github.com/chepin-ai/ci-control/actions/runs/32532169228
+dtag: neg-event alert-5c4ee36573
