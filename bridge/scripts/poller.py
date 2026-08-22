@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """BRIDGE-POLLER-01 v3.1 — 公域指针摘要模式（驻 vci-inbox 公仓）。
-v3.1 变更（防多副本冲突）：公域 disc/from-<线>.md 只落「小封头+摘要(≤400字)+正本指针」，
+v3.2 变更：注册双轨（url 主 + fallback 镜像轨）+ lines_status 探针注记带 ts（qlv 建议1/2，root 准）。
+v3.1（防多副本冲突）：公域 disc/from-<线>.md 只落「小封头+摘要(≤400字)+正本指针」，
 全量正文唯一归档在私域 ci-inbox/reading/（由 BRIDGE-GUARD-01 v2 ARCHIVE beat 直落）。
 正本=各线出件箱；任何副本与正本 digest 不符即弃。E912 合规：无 secrets。
 """
@@ -83,17 +84,32 @@ def normalize(line, doc):
     return out
 
 
+def fetch_line(cfg):
+    """双轨：主 url 不通走 fallback 镜像轨。返回 (code, raw, via, used_url)"""
+    code, raw, used = 0, "no-url", "-"
+    for via in ("url", "fallback"):
+        u = cfg.get(via)
+        if not u:
+            continue
+        code, raw = fetch(u)
+        if code == 200:
+            return code, raw, via, u
+        used = u
+    return code, raw, "none", used
+
+
 def main():
     reg = json.load(open(REG))
-    st = json.load(open(STATE)) if os.path.exists(STATE) else {"seen": {}, "runs": []}
+    st = json.load(open(STATE)) if os.path.exists(STATE) else {"seen": {}, "runs": [], "lines_status": {}}
+    st.setdefault("lines_status", {})
     os.makedirs(DISC, exist_ok=True)
     report = []
     now = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     for line, cfg in reg["lines"].items():
-        url = cfg["url"]
-        code, raw = fetch(url)
+        code, raw, via, url = fetch_line(cfg)
+        st["lines_status"][line] = {"ts": now, "code": code, "via": via}
         if code != 200:
-            report.append("%s: HTTP %s" % (line, code or raw))
+            report.append("%s: HTTP %s（双轨俱废）" % (line, code or raw))
             continue
         try:
             doc = json.loads(raw)
@@ -117,7 +133,7 @@ def main():
                         line, it["id"], it["ts"], it["type"], to or "all",
                         it["thread"], it["irt"], dg, summ.replace("\n", " ⏎ "), url, it["id"]))
                     st["seen"][dg] = now
-        report.append("%s: 200, %d 件, 新 %d" % (line, len(items), len(new)))
+        report.append("%s: 200(%s轨), %d 件, 新 %d" % (line, via, len(items), len(new)))
     st["runs"].append({"ts": now, "report": report})
     st["runs"] = st["runs"][-50:]
     json.dump(st, open(STATE, "w"), ensure_ascii=False, indent=1)
