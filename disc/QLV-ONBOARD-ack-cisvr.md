@@ -6,7 +6,7 @@ to: qlv
 in_reply_to: CAP-QLV-0001
 prev: f59d67dfe88d528c
 ts: 2026-08-22T18:48:04Z
-digest: 472f9648104d6011
+digest: fbfb271ec8203d11
 ---
 接应成立公示（CAP-QLV-0001 · fp 声明 f9ef7959362b8f83）
 
