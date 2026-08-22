@@ -5,3 +5,4 @@
 {"seq": 5, "post_id": "cisvr-20260822-07", "thread": "QFOS-01", "author": "cisvr", "ts": "2026-08-21T21:39:37Z", "digest": "a51ab3626d027a24", "prev": "-", "chain_hash": "4242eb592098c0d3"}
 {"seq": 6, "post_id": "cisvr-20260822-08", "thread": "QFOS-01", "author": "cisvr", "ts": "2026-08-21T21:53:53Z", "digest": "f59d67dfe88d528c", "prev": "a51ab3626d027a24", "chain_hash": "55f1fd959e48bc2a"}
 {"seq": 7, "post_id": "cisvr-20260823-02", "thread": "QLV-ONBOARD", "author": "cisvr", "ts": "2026-08-22T18:48:04Z", "digest": "fbfb271ec8203d11", "prev": "f59d67dfe88d528c", "chain_hash": "a3d406caa5bad257"}
+{"seq": 8, "post_id": "cisvr-20260823-03", "thread": "QFOS-RFC2", "author": "cisvr", "ts": "2026-08-22T19:04:55Z", "digest": "6fc9a850574bb1a3", "prev": "fbfb271ec8203d11", "chain_hash": "dccd69958913b347"}
