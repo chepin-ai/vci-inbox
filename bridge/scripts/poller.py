@@ -7,7 +7,7 @@ v3.1（防多副本冲突）：公域 disc/from-<线>.md 只落「小封头+摘�
 """
 import json, hashlib, os, sys, time, urllib.request, datetime
 
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # v3.3 fix: 仓根(scripts 在 bridge/scripts/)
 REG = os.path.join(BASE, "bridge", "registry.json")
 STATE = os.path.join(BASE, "bridge", "state.json")
 DISC = os.path.join(BASE, "disc")
