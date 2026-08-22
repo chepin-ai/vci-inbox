@@ -16,7 +16,7 @@ from poller import normalize, digest, fetch  # noqa: E402
 ORG = "chepin-ai"
 PRIV = "ci-inbox"
 APP_ID = "4621702"  # chepin-ci-ops 应用 ID（公开元数据）
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # v3.3 fix: 仓根(scripts 在 bridge/scripts/)
 DISC = os.path.join(BASE, "disc")
 REG = os.path.join(BASE, "bridge", "registry.json")
 STATE = os.path.join(BASE, "bridge", "guard-state.json")
