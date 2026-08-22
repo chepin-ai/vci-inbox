@@ -9,7 +9,7 @@ E912：无 secrets；负载无 Actions 表达式字面。
 """
 import os, re, json, hashlib, subprocess, datetime
 
-BASE = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DISC = os.path.join(BASE, "disc")
 CHAIN = os.path.join(DISC, "CHAIN.jsonl")
 FM = re.compile(r"^---\n(.*?)\n---\n", re.S)
