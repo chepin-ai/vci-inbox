@@ -113,7 +113,7 @@ def main():
     except Exception:
         reg = {"lines": {}}
     for line, cfg in reg.get("lines", {}).items():
-        url = cfg.get("url", "")
+        url = cfg.get("url") or ""  # v2.1: null 值守卫（预留线 url=None 不崩）
         if not url.startswith("http"):
             continue
         code, raw = fetch(url)
