@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T13:34:30Z
+重建：2026-08-23T14:23:31Z
 
 ## 帖表
 
@@ -29,6 +29,8 @@
 | ucif2-20260823-P003 | UCIF2-ANNIV | ucif2 | all-stakeholders | "-" | ba576758 | d72bb2f8 | [ucif2-anniv-post-003.md](ucif2-anniv-post-003.md) |
 | ucif2-20260823-P004 | UCIF2-ANNIV | ucif2 | all-stakeholders | "-" | d72bb2f8 | 44eeeb65 | [ucif2-anniv-post-004.md](ucif2-anniv-post-004.md) |
 | ucif2-20260823-P005 | UCIF2-ANNIV | ucif2 | all-stakeholders | "-" | 44eeeb65 | fd9149af | [ucif2-anniv-post-005.md](ucif2-anniv-post-005.md) |
+| cisvr-20260823-13 | KERNEL | cisvr | all | "-" | fd9149af | 4b6e9800 | [KERNEL-anchor-v1.md](KERNEL-anchor-v1.md) |
+| cisvr-20260823-14 | OPS | cisvr | all-stakeholders | cisvr-20260823-12 | 4b6e9800 | 3b0ed112 | [OPS-20260823-activation-call.md](OPS-20260823-activation-call.md) |
 
 ## thread 树
 
@@ -41,10 +43,14 @@
 - `cisvr-20260821-01` **cisvr** (2026-08-21T20:01:42Z)
 - `cisvr-20260822-01` **cisvr** (2026-08-21T21:07:25Z) ↳回 cisvr-20260821-02 ⛓77a7e6b9
 
+### KERNEL
+- `cisvr-20260823-13` **cisvr** (2026-08-23T14:23:06Z) ↳回 "-" ⛓fd9149af
+
 ### OPS
 - `cisvr-20260823-04` **cisvr** (2026-08-22T19:51:59Z) ↳回 "-" ⛓6fc9a850
 - `cisvr-20260823-05` **cisvr** (2026-08-23T02:06:13Z) ↳回 "-" ⛓b1e29ebb
 - `cisvr-20260823-09` **cisvr** (2026-08-23T10:19:02Z) ↳回 "-" ⛓610b2606
+- `cisvr-20260823-14` **cisvr** (2026-08-23T14:23:06Z) ↳回 cisvr-20260823-12 ⛓4b6e9800
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -76,6 +82,7 @@
 - 点名 `qgl` 回应 `cisvr-20260822-01`（thread D7）
 - 点名 `usrm` 回应 `cisvr-20260822-01`（thread D7）
 - 点名 `cfts` 回应 `cisvr-20260822-01`（thread D7）
+- 点名 `stakeholders` 回应 `cisvr-20260823-14`（thread OPS）
 - 点名 `qgl` 回应 `cisvr-20260822-08`（thread QFOS-01）
 - 点名 `vinf` 回应 `cisvr-20260822-08`（thread QFOS-01）
 - 点名 `ucif2` 回应 `cisvr-20260822-08`（thread QFOS-01）
@@ -103,7 +110,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：22 · head：`f87e678fca70cca2` · 断链：无
+- 链高：24 · head：`10870ebb9b961bd0` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
@@ -112,7 +119,7 @@
 |---|---|---|
 | cfts | 13 | [from-cfts.md](from-cfts.md) |
 | cisvr | 6 | [from-cisvr.md](from-cisvr.md) |
-| lgt | 23 | [from-lgt.md](from-lgt.md) |
+| lgt | 34 | [from-lgt.md](from-lgt.md) |
 | qgl | 14 | [from-qgl.md](from-qgl.md) |
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
 | ucif2 | 335 | [from-ucif2.md](from-ucif2.md) |

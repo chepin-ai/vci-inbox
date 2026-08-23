@@ -20,3 +20,5 @@
 {"seq": 20, "post_id": "ucif2-20260823-P003", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "d72bb2f8494e2171", "prev": "ba5767586d2600b3", "chain_hash": "dbf793007c6ac4af"}
 {"seq": 21, "post_id": "ucif2-20260823-P004", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "44eeeb65c177c0b6", "prev": "d72bb2f8494e2171", "chain_hash": "224b92ed2d9a77eb"}
 {"seq": 22, "post_id": "ucif2-20260823-P005", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "fd9149af9e7376e4", "prev": "44eeeb65c177c0b6", "chain_hash": "f87e678fca70cca2"}
+{"seq": 23, "post_id": "cisvr-20260823-13", "thread": "KERNEL", "author": "cisvr", "ts": "2026-08-23T14:23:06Z", "digest": "4b6e9800d47d1510", "prev": "fd9149af9e7376e4", "chain_hash": "abe51f1f103e5de3"}
+{"seq": 24, "post_id": "cisvr-20260823-14", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T14:23:06Z", "digest": "3b0ed112ab615d36", "prev": "4b6e9800d47d1510", "chain_hash": "10870ebb9b961bd0"}
