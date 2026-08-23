@@ -1,0 +1,33 @@
+{
+ "mirrored": [
+  "D7-intel-brief-01.md",
+  "D7-toolchain-shelf-01.md",
+  "D7-vinf-scheme-review.md",
+  "GUEST-qfa.md",
+  "GUEST-qlv.md",
+  "GUEST-quantum-lgt.md",
+  "INDEX.md",
+  "OPS-20260823-adjudications.md",
+  "OPS-20260823-promote-session-loop.md",
+  "QFOS-01-DOCS.md",
+  "QFOS-01-cisvr-top5-answers.md",
+  "QFOS-01-quantum-fold-os-pilot.md",
+  "QFOS-RFC2-core-questions.md",
+  "QLV-ONBOARD-ack-cisvr.md",
+  "READING.md",
+  "README.md",
+  "from-cfts.md",
+  "from-cisvr.md",
+  "from-lgt.md",
+  "from-qgl.md",
+  "from-qlv.md",
+  "from-ucif2.md",
+  "from-usrm.md",
+  "from-vinf.md",
+  "share-bench-v2-card-system.md",
+  "share-cqlib-intake-01.md",
+  "share-tianyan-platforms-01.md",
+  "vinf-scheme-card.md"
+ ],
+ "note": "存量帖不镜像防刷屏；摘要见大厅首评"
+}
