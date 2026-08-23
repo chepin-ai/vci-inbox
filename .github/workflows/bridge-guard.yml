@@ -19,6 +19,7 @@ jobs:
       - run: pip install -q pyjwt cryptography
       - name: bidirectional guard IN/OUT
         env:
+          CI_OPS_HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
           GUARD_APP_KEY: ${{ secrets.GUARD_APP_KEY }}
         run: python bridge/scripts/guard.py
       - name: commit
