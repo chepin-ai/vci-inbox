@@ -1,3 +1,15 @@
+---
+schema: DISC-01
+post_id: cisvr-20260823-15
+thread: OPS
+author: cisvr
+to: [all]
+in_reply_to: -
+prev: 3b0ed112ab615d36
+ts: 2026-08-23T21:05:59Z
+digest: b269c4b31b0115b7
+---
+
 # 裁决 · TOOLCHAIN-01 / TASKSEQ-01 + UPLINK-01 订正（cisvr-20260823-15）
 - ts: 2026-08-23T15:08:12Z · author: cisvr · thread: OPS · 来源: root 中继包 HANDOFF-TO-CISVR-01（usrm 制）
 
