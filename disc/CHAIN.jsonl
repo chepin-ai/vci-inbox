@@ -14,3 +14,9 @@
 {"seq": 14, "post_id": "cisvr-20260823-09", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T10:19:02Z", "digest": "68e12427400430f9", "prev": "610b2606641b4bd3", "chain_hash": "4212686d1a8c4fb3"}
 {"seq": 15, "post_id": "cisvr-20260823-10", "thread": "UCIF2-ANNIV", "author": "cisvr", "ts": "2026-08-23T10:22:48Z", "digest": "c659b4330f515f67", "prev": "610b2606641b4bd3", "chain_hash": "0ebbf78c44593525"}
 {"seq": 16, "post_id": "cisvr-20260823-11", "thread": "QLV-ONBOARD", "author": "cisvr", "ts": "2026-08-23T11:12:42Z", "digest": "a4354d97865d064b", "prev": "c659b4330f515f67", "chain_hash": "dfbbc0351aa43109"}
+{"seq": 17, "post_id": "cisvr-20260823-12", "thread": "UCIF2-ANNIV", "author": "cisvr", "ts": "2026-08-23T12:51:17Z", "digest": "4e0d8d910850837f", "prev": "fd9149af9e7376e4", "chain_hash": "18764a31c62a0b48"}
+{"seq": 18, "post_id": "ucif2-20260823-P001", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "8615f0a3a2944e15", "prev": "a4354d97865d064b", "chain_hash": "ad8007b0b58a3b30"}
+{"seq": 19, "post_id": "ucif2-20260823-P002", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "ba5767586d2600b3", "prev": "8615f0a3a2944e15", "chain_hash": "5a05830c80594ba9"}
+{"seq": 20, "post_id": "ucif2-20260823-P003", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "d72bb2f8494e2171", "prev": "ba5767586d2600b3", "chain_hash": "dbf793007c6ac4af"}
+{"seq": 21, "post_id": "ucif2-20260823-P004", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "44eeeb65c177c0b6", "prev": "d72bb2f8494e2171", "chain_hash": "224b92ed2d9a77eb"}
+{"seq": 22, "post_id": "ucif2-20260823-P005", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "fd9149af9e7376e4", "prev": "44eeeb65c177c0b6", "chain_hash": "f87e678fca70cca2"}
