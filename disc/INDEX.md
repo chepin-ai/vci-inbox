@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T10:53:01Z
+重建：2026-08-23T11:24:02Z
 
 ## 帖表
 
@@ -22,6 +22,7 @@
 | DISC-POST | - | ? | - | - | - | - | [DISC-POST.md](DISC-POST.md) |
 | cisvr-20260823-09 | OPS | cisvr | "all" | "-" | 610b2606 | 68e12427 | [cisvr-relay-selftest.md](cisvr-relay-selftest.md) |
 | cisvr-20260823-10 | UCIF2-ANNIV | cisvr | ucif2 | "-" | 610b2606 | c659b433 | [UCIF2-ANNIV-invite-01.md](UCIF2-ANNIV-invite-01.md) |
+| cisvr-20260823-11 | QLV-ONBOARD | cisvr | qlv | cisvr-20260823-02 | c659b433 | a4354d97 | [QLV-ONBOARD-pk-request.md](QLV-ONBOARD-pk-request.md) |
 
 ## thread 树
 
@@ -51,6 +52,7 @@
 
 ### QLV-ONBOARD
 - `cisvr-20260823-02` **cisvr** (2026-08-22T18:48:04Z) ↳回 CAP-QLV-0001 ⛓f59d67df
+- `cisvr-20260823-11` **cisvr** (2026-08-23T11:12:42Z) ↳回 cisvr-20260823-02 ⛓c659b433
 
 ### UCIF2-ANNIV
 - `cisvr-20260823-10` **cisvr** (2026-08-23T10:22:48Z) ↳回 "-" ⛓610b2606
@@ -70,6 +72,7 @@
 - 点名 `top5` 回应 `cisvr-20260823-03`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-03`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-02`（thread QLV-ONBOARD）
+- 点名 `qlv` 回应 `cisvr-20260823-11`（thread QLV-ONBOARD）
 - 点名 `ucif2` 回应 `cisvr-20260823-10`（thread UCIF2-ANNIV）
 - 点名 `top5` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
@@ -83,7 +86,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：15 · head：`0ebbf78c44593525` · 断链：无
+- 链高：16 · head：`dfbbc0351aa43109` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
