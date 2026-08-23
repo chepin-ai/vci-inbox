@@ -13,7 +13,7 @@ jobs:
       - name: 门闸（secrets 未落则安静退场，不积尸）
         env:
           PAT: ${{ secrets.GITEE_MIRROR_PAT }}
-          APPK: ${{ secrets.GUARD_APP_KEY }}
+          APPK: ${{ secrets.CI_OPS_HUB_KEY }}
         run: |
           if [ -z "$PAT" ] || [ -z "$APPK" ]; then echo "IDLE: secrets 未落 vci-inbox（P33 候 root）；本轮退场"; exit 0; fi
           echo "secrets 齐"
@@ -21,7 +21,7 @@ jobs:
         env:
           PAT: ${{ secrets.GITEE_MIRROR_PAT }}
           GU: ${{ vars.GITEE_USER }}
-          APPK: ${{ secrets.GUARD_APP_KEY }}
+          APPK: ${{ secrets.CI_OPS_HUB_KEY }}
         run: |
           [ -n "$PAT" ] && [ -n "$APPK" ] || exit 0
           set -e
