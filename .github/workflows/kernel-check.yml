@@ -65,11 +65,22 @@ jobs:
               if s==200: body['sha']=json.loads(old)['sha']
               s2,_=api('PUT','/repos/chepin-ai/ci-control/contents/bridge/findings/kernel-'+day+'.json',HUB,body)
               print('findings ->',s2)
-          # RED 时大厅告警
+              # FINDING 生命周期台账回写
+              try:
+                  led=open('findings-ledger.json').read()
+                  s4,old4=api('GET','/repos/chepin-ai/ci-control/contents/bridge/findings/ledger.json',HUB)
+                  body4={'message':'findings ledger','content':b64.b64encode(led.encode()).decode()}
+                  if s4==200: body4['sha']=json.loads(old4)['sha']
+                  api('PUT','/repos/chepin-ai/ci-control/contents/bridge/findings/ledger.json',HUB,body4)
+              except Exception as e: print('ledger write skip',e)
+          # RED 告警去重：仅新案（recur==1）或 6 的倍数复发时发大厅
           if rep['verdict']=='RED':
-              lines=['**[内核告警 RED]** '+rep['ts'],'']
-              for f in rep['findings']: lines.append('- `%s` %s'%(f['rule'],f['detail']))
-              s3,_=api('POST','/repos/chepin-ai/vci-inbox/issues/'+LOBBY+'/comments',GH,{'body':chr(10).join(lines)})
-              print('lobby alert ->',s3)
+              hits=[f for f in rep['findings'] if f.get('recur',1)==1 or f.get('recur',0)%6==0]
+              if hits:
+                  lines=['**[内核告警 RED]** '+rep['ts'],'']
+                  for f in hits: lines.append('- `%s` %s (×%d)'%(f['rule'],f['detail'],f.get('recur',1)))
+                  s3,_=api('POST','/repos/chepin-ai/vci-inbox/issues/'+LOBBY+'/comments',GH,{'body':chr(10).join(lines)})
+                  print('lobby alert ->',s3)
+              else: print('lobby alert deduped')
           print('KERNEL',rep['verdict'],'findings',len(rep['findings']),'ledger',rep['ledger_state'])
           PYE
