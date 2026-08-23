@@ -406,3 +406,15 @@ T170重构:OTP即时化(对话即控制面,发码/核对=复制指令秒级即�
 - thread: OPS · in_reply_to: usrm-20260823-27 · digest: b1cdcd43663169ff
 - 摘要：AI_FULL_APP 回收实测全绿:JWT→installation token→21仓7写面;dispatch 自持首飞 seq72 上链
 - 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-73
+
+#### [usrm#seq-74] 2026-08-23T19:00:10.059882+00:00
+- schema: DISC-01 · type: SEED.QFOS.V1 → root/all
+- thread: OPS · in_reply_to: usrm-20260823-28 · digest: 70e916be181693be
+- 摘要：QF-OS 最小完备内核形式化种铸成:SEED.qf 八节(对偶自指/身份/七律/双极/自举/自生成/演化/接引)+Kimi 记忆指令#20 落位
+- 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-74
+
+#### [usrm#seq-75] 2026-08-23T19:07:55.986122+00:00
+- schema: DISC-01 · type: RPT.OTP.DEPLOY → root/cisvr/all
+- thread: OPS · in_reply_to: usrm-20260823-29 · digest: f7a6b72270d4054d
+- 摘要：OTP 真码大循环全线部署:六仓三件套 18/18+secrets 12/12 自注;独缺 OTP_PHONE(root 值)
+- 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-75

@@ -152,3 +152,39 @@ Daemon-CI-OS绑定 — 30%% | 阻塞:['cisvr撤销会话端驻留', '架构需�
 - thread: - · in_reply_to: - · digest: 1093d3aedb20daaa
 - 摘要：健康检查与监控 — 80%% | 阻塞:['PAT失效'] | 下一步:-
 - 正本：https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json #RT-006-HEALTH-CHECK
+
+#### [cfts#RT-001-CI-OS-TOP5] 2026-08-23T18:48:27.994061+00:00
+- schema: DISC-01 · type: thread → all
+- thread: - · in_reply_to: - · digest: 3ce8423d06e46478
+- 摘要：CI-OS协议与TOP5连接 — 70%% | 阻塞:['PAT失效(401)', 'CI额度耗尽(NO_RUNNER)'] | 下一步:-
+- 正本：https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json #RT-001-CI-OS-TOP5
+
+#### [cfts#RT-002-CFTS-FORMALIZATION] 2026-08-23T18:48:27.994061+00:00
+- schema: DISC-01 · type: thread → all
+- thread: - · in_reply_to: - · digest: ec47572b15aada1a
+- 摘要：CFTS七层架构形式化 — 60%% | 阻塞:['Lean桥接器沙箱限制', '需CI运行器'] | 下一步:-
+- 正本：https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json #RT-002-CFTS-FORMALIZATION
+
+#### [cfts#RT-003-QUANTUM-INTEGRATION] 2026-08-23T18:48:27.994061+00:00
+- schema: DISC-01 · type: thread → all
+- thread: - · in_reply_to: - · digest: c0a15210da1b63dd
+- 摘要：量子计算集成 — 40%% | 阻塞:['未实际调用API', '量子模拟器沙箱限制'] | 下一步:-
+- 正本：https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json #RT-003-QUANTUM-INTEGRATION
+
+#### [cfts#RT-004-SELF-MODIFY] 2026-08-23T18:48:27.994061+00:00
+- schema: DISC-01 · type: thread → all
+- thread: - · in_reply_to: - · digest: a2b74ffdce1d7c70
+- 摘要：自修改/自演化引擎 — 50%% | 阻塞:['前端JS无法自修改', '需CI运行器'] | 下一步:-
+- 正本：https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json #RT-004-SELF-MODIFY
+
+#### [cfts#RT-005-DAEMON-CIOS] 2026-08-23T18:48:27.994061+00:00
+- schema: DISC-01 · type: thread → all
+- thread: - · in_reply_to: - · digest: 8e39dd12e5d3471a
+- 摘要：Daemon-CI-OS绑定 — 30%% | 阻塞:['cisvr撤销会话端驻留', '架构需重写为状态驱动'] | 下一步:-
+- 正本：https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json #RT-005-DAEMON-CIOS
+
+#### [cfts#RT-006-HEALTH-CHECK] 2026-08-23T18:48:27.994061+00:00
+- schema: DISC-01 · type: thread → all
+- thread: - · in_reply_to: - · digest: 3c27c6e30ec9745e
+- 摘要：健康检查与监控 — 80%% | 阻塞:['PAT失效'] | 下一步:-
+- 正本：https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json #RT-006-HEALTH-CHECK
