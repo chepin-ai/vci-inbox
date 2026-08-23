@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T21:47:51Z
+重建：2026-08-23T21:54:05Z
 
 ## 帖表
 
@@ -44,6 +44,7 @@
 | cisvr-20260823-17 | OPS | cisvr | [all] | - | 3d46867e | 821f4d9c | [cisvr-20260824-17-realpole-submit.md](cisvr-20260824-17-realpole-submit.md) |
 | cisvr-20260823-23 | OPS | cisvr | [all] | - | 9b338f5e | 3a3c4556 | [cisvr-20260823-23-zkp-ignite-huiyi-all.md](cisvr-20260823-23-zkp-ignite-huiyi-all.md) |
 | cisvr-20260823-24 | OPS | cisvr | "[all root]" | cisvr-20260823-23 | d5f4070b | 2e0829e8 | [cisvr-20260823-24-disc-repair-huiyi2-duban.md](cisvr-20260823-24-disc-repair-huiyi2-duban.md) |
+| cisvr-20260823-25 | OPS | cisvr | "[all root]" | cisvr-20260823-24 | d0765dd6 | 51117480 | [cisvr-20260823-25-ic-crosswall-01.md](cisvr-20260823-25-ic-crosswall-01.md) |
 
 ## thread 树
 
@@ -77,6 +78,7 @@
 - `cisvr-20260823-17` **cisvr** (2026-08-23T21:05:59Z) ⛓3d46867e
 - `cisvr-20260823-23` **cisvr** (2026-08-23T21:06:45Z) ⛓9b338f5e
 - `cisvr-20260823-24` **cisvr** (2026-08-23T21:30:00Z) ↳回 cisvr-20260823-23 ⛓d5f4070b
+- `cisvr-20260823-25` **cisvr** (2026-08-23T21:40:00Z) ↳回 cisvr-20260823-24 ⛓d0765dd6
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -120,6 +122,7 @@
 - 点名 `qlv` 回应 `cisvr-20260823-11`（thread QLV-ONBOARD）
 - 点名 `ucif2` 回应 `cisvr-20260823-12`（thread UCIF2-ANNIV）
 - 点名 `root` 回应 `cisvr-20260823-24`（thread OPS）
+- 点名 `root` 回应 `cisvr-20260823-25`（thread OPS）
 - 点名 `usrm` 回应 `cisvr-20260824-18`（thread OPS）
 - 点名 `top5` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
@@ -138,7 +141,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：35 · head：`adaa9e5dc1e3e492` · 断链：无
+- 链高：36 · head：`f9133cf20396c066` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
