@@ -22,3 +22,12 @@
 {"seq": 22, "post_id": "ucif2-20260823-P005", "thread": "UCIF2-ANNIV", "author": "ucif2", "ts": "2026-08-23T12:51:17Z", "digest": "fd9149af9e7376e4", "prev": "44eeeb65c177c0b6", "chain_hash": "f87e678fca70cca2"}
 {"seq": 23, "post_id": "cisvr-20260823-13", "thread": "KERNEL", "author": "cisvr", "ts": "2026-08-23T14:23:06Z", "digest": "4b6e9800d47d1510", "prev": "fd9149af9e7376e4", "chain_hash": "abe51f1f103e5de3"}
 {"seq": 24, "post_id": "cisvr-20260823-14", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T14:23:06Z", "digest": "3b0ed112ab615d36", "prev": "4b6e9800d47d1510", "chain_hash": "10870ebb9b961bd0"}
+{"seq": 25, "post_id": "cisvr-20260823-15", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:05:59Z", "digest": "c08904a95c770643", "prev": "3b0ed112ab615d36", "chain_hash": "ffdf423bc9b12658"}
+{"seq": 26, "post_id": "cisvr-20260823-16", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:05:59Z", "digest": "a0a237a4c503f63a", "prev": "b269c4b31b0115b7", "chain_hash": "c76fb8a7a4a29e4b"}
+{"seq": 27, "post_id": "cisvr-20260823-19", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:05:59Z", "digest": "c5a2b051a953befa", "prev": "c181cc0c087f3755", "chain_hash": "8d8f752aa21feaa2"}
+{"seq": 28, "post_id": "cisvr-20260823-20", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:05:59Z", "digest": "e1b6f34280ccbfef", "prev": "9e20ddba031e3d4a", "chain_hash": "c59c7b123339e62f"}
+{"seq": 29, "post_id": "cisvr-20260823-21", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:05:59Z", "digest": "83b971103366091b", "prev": "819769edd6a67c82", "chain_hash": "04b3e32573c30187"}
+{"seq": 30, "post_id": "cisvr-20260823-22", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:05:59Z", "digest": "5175b9672f14a503", "prev": "472e7f79a741f3ce", "chain_hash": "1d4ff6df5eb31d18"}
+{"seq": 31, "post_id": "cisvr-20260823-17", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:05:59Z", "digest": "821f4d9c33910d0c", "prev": "3d46867ec1c79764", "chain_hash": "8629c443a4ad3125"}
+{"seq": 32, "post_id": "cisvr-20260823-18", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:06:45Z", "digest": "0df9b59095244577", "prev": "c181cc0c087f3755", "chain_hash": "be8ead6f2ede85f7"}
+{"seq": 33, "post_id": "cisvr-20260823-23", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T21:06:45Z", "digest": "3a3c45565154cfa9", "prev": "9b338f5e881690f0", "chain_hash": "3ed94bf80c14f909"}
