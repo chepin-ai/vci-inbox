@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '11 */4 * * *'
 permissions:
-  contents: read
+  contents: write
   issues: write
 concurrency:
   group: kernel-check
@@ -83,4 +83,12 @@ jobs:
                   print('lobby alert ->',s3)
               else: print('lobby alert deduped')
           print('KERNEL',rep['verdict'],'findings',len(rep['findings']),'ledger',rep['ledger_state'])
+          # G-K0 心跳（公面，元守卫层盯断搏）
+          import base64 as b64b, datetime as dtm
+          hb=json.dumps({'ts':rep['ts'],'verdict':rep['verdict'],'state_digest':rep['state_digest'],'kernel':rep['kernel']},ensure_ascii=False)
+          s5,old5=api('GET','/repos/chepin-ai/vci-inbox/contents/bridge/gate/heartbeat.json',GH)
+          body5={'message':'kernel heartbeat '+rep['ts'],'content':b64b.b64encode(hb.encode()).decode()}
+          if s5==200: body5['sha']=json.loads(old5)['sha']
+          s6,_=api('PUT','/repos/chepin-ai/vci-inbox/contents/bridge/gate/heartbeat.json',GH,body5)
+          print('heartbeat ->',s6)
           PYE
