@@ -15,7 +15,7 @@ from poller import normalize, digest, fetch  # noqa: E402
 
 ORG = "chepin-ai"
 PRIV = "ci-inbox"
-APP_ID = "4621702"  # chepin-ci-ops 应用 ID（公开元数据）
+APP_ID = os.environ.get("CI_OPS_HUB_ID") or "4621702"  # hub 应用 ID（公开元数据）
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # v3.3 fix: 仓根(scripts 在 bridge/scripts/)
 DISC = os.path.join(BASE, "disc")
 REG = os.path.join(BASE, "bridge", "registry.json")
@@ -38,7 +38,7 @@ def gh(url, token, method="GET", data=None):
 
 
 def app_token():
-    pk = os.environ["GUARD_APP_KEY"]
+    pk = os.environ.get("CI_OPS_HUB_KEY") or os.environ["GUARD_APP_KEY"]  # 新名优先，旧名兜底（过渡期）
     now = int(time.time())
     t = jwt.encode({"iat": now - 60, "exp": now + 540, "iss": APP_ID}, pk, algorithm="RS256")
     insts = gh("https://api.github.com/app/installations", t)
