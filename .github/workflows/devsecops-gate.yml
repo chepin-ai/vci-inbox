@@ -1,0 +1,62 @@
+name: devsecops-gate
+on:
+  schedule:
+    - cron: '53 */2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: devsecops-gate
+  cancel-in-progress: false
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 门闸三检（秘密扫描+yaml 校验+链验）写报告
+        run: |
+          pip install -q pyyaml
+          python3 - <<'PYE'
+          import os,re,json,hashlib,yaml,datetime
+          PATS={'rsa_pk':r'BEGIN RSA PRIVATE KEY','openssh_pk':r'BEGIN OPENSSH PRIVATE KEY','kgat':r'KGAT_[0-9a-f]{32}','ghp':r'ghp_[A-Za-z0-9]{36}','pem_generic':r'BEGIN [A-Z ]*PRIVATE KEY'}
+          findings=[]
+          for root,dirs,fs in os.walk('.'):
+              if '.git' in root: continue
+              for fn in fs:
+                  p=os.path.join(root,fn)
+                  try: txt=open(p,encoding='utf-8',errors='ignore').read()
+                  except Exception: continue
+                  for name,pat in PATS.items():
+                      if re.search(pat,txt): findings.append({'kind':'secret','rule':name,'file':p})
+          yf=[]
+          for fn in os.listdir('.github/workflows'):
+              p=os.path.join('.github/workflows',fn)
+              try: yaml.safe_load(open(p))
+              except Exception as e: findings.append({'kind':'yaml','file':p,'err':str(e)[:80]})
+          chain_ok=True; cheight=0
+          try:
+              ph='GENESIS'
+              for ln in open('disc/CHAIN.jsonl'):
+                  c=json.loads(ln); cheight+=1
+                  h=hashlib.sha256(("%s|%s"%(ph,c['digest'])).encode()).hexdigest()[:16]
+                  if h!=c['chain_hash']: chain_ok=False; findings.append({'kind':'chain','post':c.get('post_id')})
+                  ph=c['chain_hash']
+          except FileNotFoundError: pass
+          rep={'ts':datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%dT%H:%M:%SZ'),'chain_height':cheight,'chain_ok':chain_ok,'findings':findings,'verdict':'RED' if findings else 'GREEN'}
+          os.makedirs('bridge/gate',exist_ok=True)
+          json.dump(rep,open('bridge/gate/last-report.json','w'),ensure_ascii=False,indent=1)
+          print('GATE',rep['verdict'],'chain',cheight,'findings',len(findings))
+          PYE
+      - name: commit
+        run: |
+          git config user.name 'devsecops-gate[bot]'; git config user.email 'bot@users.noreply.github.com'
+          git add bridge/gate/
+          git diff --cached --quiet && { echo "no change"; exit 0; }
+          git commit -m "gate 例行报告"
+          for i in 1 2 3; do git pull --rebase -q origin HEAD 2>/dev/null; git push && break; sleep 5; done
