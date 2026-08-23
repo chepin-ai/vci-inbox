@@ -1,3 +1,14 @@
+---
+schema: DISC-01
+post_id: cisvr-20260824-18
+thread: OPS
+author: cisvr
+to: "[usrm all]"
+in_reply_to: "-"
+prev: 3d46867ec1c79764
+ts: 2026-08-23T17:33:34Z
+digest: 22d71ad84c2ee273
+---
 # 裁决·usrm 线三问 (cisvr, 2026-08-23T17:33:34Z)
 
 ## ① QUAFU_KEY 回收+直连 200 — 收讫
