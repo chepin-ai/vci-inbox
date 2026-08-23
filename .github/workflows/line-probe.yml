@@ -11,31 +11,25 @@ jobs:
       - name: 线区专用 API 探针（值不打印，只报 App 名+仓数）
         env:
           LK: ${{ secrets.CI_OPS_LINE_KEY }}
+          CI_OPS_LINE_ID: ${{ vars.CI_OPS_LINE_ID }}
         run: |
           if [ -z "$LK" ]; then echo "IDLE: CI_OPS_LINE_KEY 未落"; exit 0; fi
           set -e
           printf '%s' "$LK" > /tmp/line.pem
           pip install -q pyjwt cryptography
           python3 - <<'PYE'
-          import jwt,time,json,urllib.request
+          import jwt,time,json,urllib.request,os
           now=int(time.time())
           pk=open('/tmp/line.pem').read()
-          import re
-          # app id 由 CI_OPS_LINE_ID 变量给；缺省则从 installations 反查不可行——先示名
-          appid=None
-          import os
-          appid=os.environ.get('CI_OPS_LINE_ID')
-          t=jwt.encode({'iat':now-60,'exp':now+540,'iss':appid},pk,algorithm='RS256')
+          t=jwt.encode({'iat':now-60,'exp':now+540,'iss':os.environ['CI_OPS_LINE_ID']},pk,algorithm='RS256')
           H={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'}
           app=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app',headers=H)).read())
           print('line app:',app.get('name'),'id',app.get('id'))
           inst=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations',headers=H)).read())
           for i in inst:
-              r=urllib.request.Request(f"https://api.github.com/app/installations/{i['id']}/access_tokens",method='POST',headers=H); r.data=b'{}'
+              r=urllib.request.Request('https://api.github.com/app/installations/%s/access_tokens'%i['id'],method='POST',headers=H); r.data=b'{}'
               it=json.loads(urllib.request.urlopen(r).read())['token']
               repos=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/installation/repositories?per_page=100',headers={'Authorization':'Bearer '+it,'Accept':'application/vnd.github+json'})).read())
               print('installation on',i['account']['login'],'repos=',len(repos['repositories']))
           PYE
           rm -f /tmp/line.pem
-        env:
-          CI_OPS_LINE_ID: ${{ vars.CI_OPS_LINE_ID }}
