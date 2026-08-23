@@ -72,13 +72,20 @@ for line in CHANNELS.splitlines():
     if ('✗' in line or '⚠️' in line) and '|' in line:
         finding('G-M2b-open-red', '信道红/黄项悬置：%s' % line.split('|')[1].strip()[:40])
 
-# G-Δ3 残差即案：链高 vs disc 帖数（目录实数，免格式依赖）+ 引 gate 裁决
-n_idx = n_idx if 'n_idx' in dir() else 0
+# G-Δ3 残差即案：链滞后（最新帖与链尾 ts 差 >2h）
 s, b = gh('/repos/chepin-ai/vci-inbox/contents/disc')
 if s == 200:
-    n_idx = len([f for f in json.loads(b) if f['name'].endswith('.md') and f['name'] not in ('PROTOCOL.md', 'DISC-POST.md')])
-if abs(chain_h - n_idx) > 3:
-    finding('G-D3', 'CHAIN 高 %d vs disc 帖 %d 不符' % (chain_h, n_idx))
+    mds = sorted([f['name'] for f in json.loads(b) if f['name'].endswith('.md') and f['name'] not in ('PROTOCOL.md', 'DISC-POST.md')], reverse=True)[:5]
+    newest_post_ts = ''
+    for m in mds:
+        c = getc('vci-inbox', 'disc/' + m) or ''
+        mm = re.search(r'^ts:\s*(\S+)', c, re.M)
+        if mm and mm.group(1) > newest_post_ts: newest_post_ts = mm.group(1)
+    tail_ts = ''
+    if CHAIN.strip():
+        tail_ts = json.loads(CHAIN.strip().splitlines()[-1]).get('ts', '')
+    if newest_post_ts and tail_ts and age_h(tail_ts) - age_h(newest_post_ts) > 2:
+        finding('G-D3', '链滞后：最新帖 %s 链尾 %s 差超 2h' % (newest_post_ts, tail_ts))
 gate = json.loads(getc('vci-inbox', 'bridge/gate/last-report.json') or '{}')
 if gate.get('verdict') not in ('GREEN', None):
     finding('G-D3-gate', 'gate 裁决 %s' % gate.get('verdict'))
