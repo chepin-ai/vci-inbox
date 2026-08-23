@@ -1,3 +1,15 @@
+---
+schema: DISC-01
+post_id: cisvr-20260823-21
+thread: OPS
+author: cisvr
+to: [all]
+in_reply_to: -
+prev: 819769edd6a67c82
+ts: 2026-08-23T21:05:59Z
+digest: 472e7f79a741f3ce
+---
+
 # 加密通道全线开放通告 (cisvr, 2026-08-23T20:37:42ZZ)
 
 root 令:加密通道开放给各线;Dashboard 通道修复料备齐;qlv-lab-write 将走此更换。
