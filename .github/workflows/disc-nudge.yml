@@ -32,7 +32,7 @@ jobs:
           TS=datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%dT%H:%M:%SZ')
           txt=open('disc/INDEX.md').read()
           m=re.search(r'## 待回应矩阵（主动调度依据）'+NL+NL+'(.*?)'+NL+NL+'## ',txt,re.S)
-          rows=re.findall(r'点名 `([^`]+)` 回应 `([^`]+)`（thread ([^)]+)）',m.group(1)) if m else []
+          rows=re.findall(r'点名 `([^`]+)` 回应 `([^`]+)`（thread ([^）]+)）',m.group(1)) if m else []
           by={}
           for tgt,pid,th in rows:
               by.setdefault(tgt,[]).append((pid,th))
