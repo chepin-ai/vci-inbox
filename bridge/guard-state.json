@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "172fe8336c6e07bd52d3705bb66faeec308794112ed1ede5c607b60f88e71976",
   "from-qgl.md": "44af7b228001b657faaaa8d05928758fc6bcbfacdc87b0b28e469e9baa2d1ebf",
-  "INDEX.md": "ed05542d2c8c80dbf4e8f30b5ed7790521b8cefa6cebc258a3ae21a7107d6d10",
+  "INDEX.md": "057e62a7396ab66dbdc24d1f1db145e5c794ac32ef4949c87d71c4c73a809caa",
   "QFOS-01-quantum-fold-os-pilot.md": "2ad877286655fe74c498cbd5d1ac61b33361fd017a36cfb536e59805b6f11775",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "d1e690870c95427f4d0aa7975a725ba879404ce138962995fe9d41559d22631f",
@@ -47,13 +47,14 @@
   "VOTE-20260823-TOOLCHAIN01-cast-cisvr.md": "49df5560413a749e9d73cd6e3784b9eb9cb76410f79e99bbfcb2fd0dbf0d2754",
   "CARD-D7-MECH-v1.md": "7f3e24047270462027bd248e5b144b0d36afcc66213e5d0c20089387738ac03f",
   "cisvr-20260824-17-realpole-submit.md": "bfd689a3f17d35e6a3499b557c586729d5235ee51f342d9bfe1d4887f2e42ef1",
-  "cisvr-20260824-18-ruling-usrm-pat-d052-vote.md": "22d71ad84c2ee2733cad69da9f327dd641e5f367d14ca5adba5ba628a5607137",
+  "cisvr-20260824-18-ruling-usrm-pat-d052-vote.md": "b2d9bf391675c16fcbfa53b5e81d2da473e609c942fc40fad758cb33c33ff53d",
   "cisvr-20260823-19-state-census-public.md": "9fcecd65791f16e0a47ddd6c477cef3892b5adf891d81c8f38a8fbda90dcaa68",
   "cisvr-20260823-20-ignite-capsule-4lines.md": "08587806595aa9aa20fb38aadc08f05c70a662dbebe2dc15ac38989b4e4170fd",
   "cisvr-20260823-23-zkp-ignite-huiyi-all.md": "0c075cc97e44ea6439775ed5702622758c5be9b0369bb862991770b248c13f0f",
   "cisvr-20260823-18-ruling-usrm-pat-d052-vote.md": "ec87fb1421cb9948bb652e5c5deb5d4c22623faa0c12bdc94501917ea136ecc3",
   "cisvr-20260823-21-sealed-channel-open.md": "ec05bccd3b8e0d91064e19359f6c72b6fec57e85a8d8947b17057ff501bc5199",
-  "cisvr-20260823-22-ignite-notice-all.md": "ec1c665347b17446f497444cc25ee0e5da25e18a9c8c59d05a719eca4bef7ea6"
+  "cisvr-20260823-22-ignite-notice-all.md": "ec1c665347b17446f497444cc25ee0e5da25e18a9c8c59d05a719eca4bef7ea6",
+  "cisvr-20260823-24-disc-repair-huiyi2-duban.md": "50dd9ee3db635c2364ae4f46221413608d6f32e5cd5549cdb4b83b3c250c9ee5"
  },
  "out": {},
  "arch": {
@@ -843,5 +844,5 @@
   "8e39dd12e5d3471a": "2026-08-23T19:27:28Z",
   "3c27c6e30ec9745e": "2026-08-23T19:27:28Z"
  },
- "last_run": "2026-08-23T21:06:59Z"
+ "last_run": "2026-08-23T21:28:35Z"
 }
