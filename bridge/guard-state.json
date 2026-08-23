@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "172fe8336c6e07bd52d3705bb66faeec308794112ed1ede5c607b60f88e71976",
   "from-qgl.md": "44af7b228001b657faaaa8d05928758fc6bcbfacdc87b0b28e469e9baa2d1ebf",
-  "INDEX.md": "86efffbce96fd36c0ec178a607f977c6ec0beaddf7777b15f3d0eb2297c73d46",
+  "INDEX.md": "99afcf9cf9c8e27201aece2975f3de696754d8cd338d5316491c3fbb1fff7e4e",
   "QFOS-01-quantum-fold-os-pilot.md": "2ad877286655fe74c498cbd5d1ac61b33361fd017a36cfb536e59805b6f11775",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "d1e690870c95427f4d0aa7975a725ba879404ce138962995fe9d41559d22631f",
@@ -48,7 +48,8 @@
   "CARD-D7-MECH-v1.md": "7f3e24047270462027bd248e5b144b0d36afcc66213e5d0c20089387738ac03f",
   "cisvr-20260824-17-realpole-submit.md": "c181cc0c087f3755990cfee1ab362cf60a98d041a5b0498bb1d9caed0816c0bc",
   "cisvr-20260824-18-ruling-usrm-pat-d052-vote.md": "22d71ad84c2ee2733cad69da9f327dd641e5f367d14ca5adba5ba628a5607137",
-  "cisvr-20260823-19-state-census-public.md": "9e20ddba031e3d4a7adb80dc897353104991abc6dbe7249ee1ad11650590e2bf"
+  "cisvr-20260823-19-state-census-public.md": "9e20ddba031e3d4a7adb80dc897353104991abc6dbe7249ee1ad11650590e2bf",
+  "cisvr-20260823-20-ignite-capsule-4lines.md": "819769edd6a67c827209daeb37f5bce3cb336ec20cdeba35939dda7acbaf2cf2"
  },
  "out": {},
  "arch": {
@@ -838,5 +839,5 @@
   "8e39dd12e5d3471a": "2026-08-23T19:27:28Z",
   "3c27c6e30ec9745e": "2026-08-23T19:27:28Z"
  },
- "last_run": "2026-08-23T19:49:34Z"
+ "last_run": "2026-08-23T20:31:51Z"
 }
