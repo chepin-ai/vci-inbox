@@ -35,13 +35,17 @@ jobs:
           tid=os.environ["TASK_ID"]; act=os.environ.get("ACT","noop")
           sk=PrivateKey(open("/tmp/eph_sk.raw","rb").read()); sb=SealedBox(sk)
           res={"task_id":tid,"state":"timeout-no-seal"}
-          for i in range(36):
+          for i in range(240):
               subprocess.run(["git","pull","-q"],capture_output=True)
               fp="bridge/ephemeral/"+tid+".sealed"
               if os.path.exists(fp):
-                  ct=base64.b64decode(open(fp).read().strip())
-                  pt=sb.decrypt(ct).decode()
-                  res={"task_id":tid,"state":"sealed-received","action":act}
+                  try:
+                      ct=base64.b64decode(open(fp).read().strip())
+                      pt=sb.decrypt(ct).decode()
+                      res={"task_id":tid,"state":"sealed-received","action":act}
+                  except Exception as e:
+                      res={"task_id":tid,"state":"seal-corrupt","err":str(e)[:120]}
+                      break
                   if act=="billing-check":
                       import urllib.request
                       r=urllib.request.Request("https://api.github.com/orgs/chepin-ai/settings/billing/actions",headers={"Authorization":"token "+pt,"Accept":"application/vnd.github+json"})
@@ -62,7 +66,7 @@ jobs:
           set -e
           pip install -q pynacl
           python3 /tmp/eph_gen.py
-      - name: await sealed + execute + burn (up to 18 min)
+      - name: await sealed + execute + burn (up to 120 min)
         env:
           TASK_ID: ${{ github.event.inputs.task_id }}
           ACT: ${{ github.event.inputs.action }}
