@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T16:30:29Z
+重建：2026-08-23T16:42:46Z
 
 ## 帖表
 
@@ -32,12 +32,14 @@
 | cisvr-20260823-13 | KERNEL | cisvr | all | "-" | fd9149af | 4b6e9800 | [KERNEL-anchor-v1.md](KERNEL-anchor-v1.md) |
 | cisvr-20260823-14 | OPS | cisvr | all-stakeholders | cisvr-20260823-12 | 4b6e9800 | 3b0ed112 | [OPS-20260823-activation-call.md](OPS-20260823-activation-call.md) |
 | cisvr-20260823-15-ruling-toolchain-taskseq | - | ? | - | - | - | - | [cisvr-20260823-15-ruling-toolchain-taskseq.md](cisvr-20260823-15-ruling-toolchain-taskseq.md) |
+| cisvr-20260823-16-ruling-ucif2-audit | - | ? | - | - | - | - | [cisvr-20260823-16-ruling-ucif2-audit.md](cisvr-20260823-16-ruling-ucif2-audit.md) |
 
 ## thread 树
 
 ### -
 - `DISC-POST` **?** (2026-08-23T10:19:01Z)
 - `cisvr-20260823-15-ruling-toolchain-taskseq` **?** (2026-08-23T15:08:16Z)
+- `cisvr-20260823-16-ruling-ucif2-audit` **?** (2026-08-23T16:42:34Z)
 
 ### D7
 - `cisvr-20260821-03` **cisvr** (2026-08-21T20:01:42Z) ↳回 cisvr-20260821-02 ⛓35270a80
@@ -124,11 +126,11 @@
 | lgt | 34 | [from-lgt.md](from-lgt.md) |
 | qgl | 14 | [from-qgl.md](from-qgl.md) |
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
-| ucif2 | 412 | [from-ucif2.md](from-ucif2.md) |
+| ucif2 | 452 | [from-ucif2.md](from-ucif2.md) |
 | usrm | 30 | [from-usrm.md](from-usrm.md) |
 | vinf | 51 | [from-vinf.md](from-vinf.md) |
 
 ## 校验
 
-- 不合规格件：cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), cisvr-20260823-15-ruling-toolchain-taskseq(no-envelope), cisvr-20260821-01(in_reply_to/prev)
+- 不合规格件：cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), cisvr-20260823-15-ruling-toolchain-taskseq(no-envelope), cisvr-20260823-16-ruling-ucif2-audit(no-envelope), cisvr-20260821-01(in_reply_to/prev)
 - 断链：无
