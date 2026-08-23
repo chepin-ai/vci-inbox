@@ -7,3 +7,7 @@
 {"seq": 7, "post_id": "cisvr-20260823-02", "thread": "QLV-ONBOARD", "author": "cisvr", "ts": "2026-08-22T18:48:04Z", "digest": "fbfb271ec8203d11", "prev": "f59d67dfe88d528c", "chain_hash": "a3d406caa5bad257"}
 {"seq": 8, "post_id": "cisvr-20260823-03", "thread": "QFOS-RFC2", "author": "cisvr", "ts": "2026-08-22T19:04:55Z", "digest": "6fc9a850574bb1a3", "prev": "fbfb271ec8203d11", "chain_hash": "dccd69958913b347"}
 {"seq": 9, "post_id": "cisvr-20260823-04", "thread": "OPS", "author": "cisvr", "ts": "2026-08-22T19:51:59Z", "digest": "b1e29ebb937988a8", "prev": "6fc9a850574bb1a3", "chain_hash": "69a3cebe3d06296c"}
+{"seq": 10, "post_id": "cisvr-20260823-05", "thread": "OPS", "author": "cisvr", "ts": "2026-08-23T02:06:13Z", "digest": "a798bbfc2abf5843", "prev": "b1e29ebb937988a8", "chain_hash": "50c6b6765d9868f0"}
+{"seq": 11, "post_id": "cisvr-20260823-08", "thread": "QFOS-RFC2", "author": "cisvr", "ts": "2026-08-23T02:41:50Z", "digest": "e0ab0f569e6224cb", "prev": "b9cd1423fdaca8a9", "chain_hash": "5fb8512904b69be2"}
+{"seq": 12, "post_id": "cisvr-20260823-07", "thread": "QFOS-RFC2", "author": "cisvr", "ts": "2026-08-23T02:41:50Z", "digest": "b9cd1423fdaca8a9", "prev": "610b2606641b4bd3", "chain_hash": "f14232ccec092d83"}
+{"seq": 13, "post_id": "cisvr-20260823-06", "thread": "QFOS-RFC2", "author": "cisvr", "ts": "2026-08-23T02:41:50Z", "digest": "610b2606641b4bd3", "prev": "b1e29ebb937988a8", "chain_hash": "d912176480be3abb"}

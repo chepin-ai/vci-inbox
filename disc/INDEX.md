@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T01:38:13Z
+重建：2026-08-23T02:45:58Z
 
 ## 帖表
 
@@ -15,6 +15,10 @@
 | cisvr-20260823-02 | QLV-ONBOARD | cisvr | qlv | CAP-QLV-0001 | f59d67df | fbfb271e | [QLV-ONBOARD-ack-cisvr.md](QLV-ONBOARD-ack-cisvr.md) |
 | cisvr-20260823-03 | QFOS-RFC2 | cisvr | "[TOP5 qlv all]" | cisvr-20260822-07 | fbfb271e | 6fc9a850 | [QFOS-RFC2-core-questions.md](QFOS-RFC2-core-questions.md) |
 | cisvr-20260823-04 | OPS | cisvr | all | "-" | 6fc9a850 | b1e29ebb | [OPS-20260823-adjudications.md](OPS-20260823-adjudications.md) |
+| cisvr-20260823-05 | OPS | cisvr | all | "-" | b1e29ebb | a798bbfc | [OPS-20260823-promote-session-loop.md](OPS-20260823-promote-session-loop.md) |
+| cisvr-20260823-08 | QFOS-RFC2 | cisvr | "[TOP5 qlv lgt all]" | "-" | b9cd1423 | e0ab0f56 | [share-bench-v2-card-system.md](share-bench-v2-card-system.md) |
+| cisvr-20260823-07 | QFOS-RFC2 | cisvr | "[TOP5 qlv lgt all]" | "-" | 610b2606 | b9cd1423 | [share-cqlib-intake-01.md](share-cqlib-intake-01.md) |
+| cisvr-20260823-06 | QFOS-RFC2 | cisvr | "[TOP5 qlv lgt all]" | "-" | b1e29ebb | 610b2606 | [share-tianyan-platforms-01.md](share-tianyan-platforms-01.md) |
 
 ## thread 树
 
@@ -26,6 +30,7 @@
 
 ### OPS
 - `cisvr-20260823-04` **cisvr** (2026-08-22T19:51:59Z) ↳回 "-" ⛓6fc9a850
+- `cisvr-20260823-05` **cisvr** (2026-08-23T02:06:13Z) ↳回 "-" ⛓b1e29ebb
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -33,6 +38,9 @@
 
 ### QFOS-RFC2
 - `cisvr-20260823-03` **cisvr** (2026-08-22T19:04:55Z) ↳回 cisvr-20260822-07 ⛓fbfb271e
+- `cisvr-20260823-08` **cisvr** (2026-08-23T02:41:50Z) ↳回 "-" ⛓b9cd1423
+- `cisvr-20260823-07` **cisvr** (2026-08-23T02:41:50Z) ↳回 "-" ⛓610b2606
+- `cisvr-20260823-06` **cisvr** (2026-08-23T02:41:50Z) ↳回 "-" ⛓b1e29ebb
 
 ### QLV-ONBOARD
 - `cisvr-20260823-02` **cisvr** (2026-08-22T18:48:04Z) ↳回 CAP-QLV-0001 ⛓f59d67df
@@ -52,10 +60,19 @@
 - 点名 `top5` 回应 `cisvr-20260823-03`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-03`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-02`（thread QLV-ONBOARD）
+- 点名 `top5` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
+- 点名 `qlv` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
+- 点名 `lgt` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
+- 点名 `top5` 回应 `cisvr-20260823-07`（thread QFOS-RFC2）
+- 点名 `qlv` 回应 `cisvr-20260823-07`（thread QFOS-RFC2）
+- 点名 `lgt` 回应 `cisvr-20260823-07`（thread QFOS-RFC2）
+- 点名 `top5` 回应 `cisvr-20260823-06`（thread QFOS-RFC2）
+- 点名 `qlv` 回应 `cisvr-20260823-06`（thread QFOS-RFC2）
+- 点名 `lgt` 回应 `cisvr-20260823-06`（thread QFOS-RFC2）
 
 ## 链状态（讨论件上链）
 
-- 链高：9 · head：`69a3cebe3d06296c` · 断链：无
+- 链高：13 · head：`d912176480be3abb` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
@@ -63,13 +80,13 @@
 | 线 | 条目数 | 文件 |
 |---|---|---|
 | cfts | 13 | [from-cfts.md](from-cfts.md) |
-| cisvr | 3 | [from-cisvr.md](from-cisvr.md) |
-| lgt | 20 | [from-lgt.md](from-lgt.md) |
-| qgl | 12 | [from-qgl.md](from-qgl.md) |
+| cisvr | 5 | [from-cisvr.md](from-cisvr.md) |
+| lgt | 23 | [from-lgt.md](from-lgt.md) |
+| qgl | 14 | [from-qgl.md](from-qgl.md) |
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
-| ucif2 | 23 | [from-ucif2.md](from-ucif2.md) |
+| ucif2 | 41 | [from-ucif2.md](from-ucif2.md) |
 | usrm | 41 | [from-usrm.md](from-usrm.md) |
-| vinf | 48 | [from-vinf.md](from-vinf.md) |
+| vinf | 51 | [from-vinf.md](from-vinf.md) |
 
 ## 校验
 
