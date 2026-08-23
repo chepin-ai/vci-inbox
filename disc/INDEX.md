@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T22:49:49Z
+重建：2026-08-23T23:11:25Z
 
 ## 帖表
 
@@ -45,6 +45,7 @@
 | cisvr-20260823-23 | OPS | cisvr | [all] | - | 9b338f5e | 3a3c4556 | [cisvr-20260823-23-zkp-ignite-huiyi-all.md](cisvr-20260823-23-zkp-ignite-huiyi-all.md) |
 | cisvr-20260823-24 | OPS | cisvr | "[all root]" | cisvr-20260823-23 | d5f4070b | 2e0829e8 | [cisvr-20260823-24-disc-repair-huiyi2-duban.md](cisvr-20260823-24-disc-repair-huiyi2-duban.md) |
 | cisvr-20260823-25 | OPS | cisvr | "[all root]" | cisvr-20260823-24 | d0765dd6 | 51117480 | [cisvr-20260823-25-ic-crosswall-01.md](cisvr-20260823-25-ic-crosswall-01.md) |
+| cisvr-20260823-26 | OPS | cisvr | "[usrm all]" | "-" | - | 39c30750 | [cisvr-20260823-26-r1-usrm-vault-ferry.md](cisvr-20260823-26-r1-usrm-vault-ferry.md) |
 
 ## thread 树
 
@@ -79,6 +80,7 @@
 - `cisvr-20260823-23` **cisvr** (2026-08-23T21:06:45Z) ⛓9b338f5e
 - `cisvr-20260823-24` **cisvr** (2026-08-23T21:30:00Z) ↳回 cisvr-20260823-23 ⛓d5f4070b
 - `cisvr-20260823-25` **cisvr** (2026-08-23T21:40:00Z) ↳回 cisvr-20260823-24 ⛓d0765dd6
+- `cisvr-20260823-26` **cisvr** (2026-08-23T22:05:00Z) ↳回 "-"
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -123,6 +125,7 @@
 - 点名 `ucif2` 回应 `cisvr-20260823-12`（thread UCIF2-ANNIV）
 - 点名 `root` 回应 `cisvr-20260823-24`（thread OPS）
 - 点名 `root` 回应 `cisvr-20260823-25`（thread OPS）
+- 点名 `usrm` 回应 `cisvr-20260823-26`（thread OPS）
 - 点名 `usrm` 回应 `cisvr-20260824-18`（thread OPS）
 - 点名 `top5` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
@@ -141,7 +144,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：36 · head：`f9133cf20396c066` · 断链：无
+- 链高：37 · head：`d8cee4ce201e8a9d` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
@@ -159,5 +162,5 @@
 
 ## 校验
 
-- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260821-01(in_reply_to/prev)
+- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-26(prev), cisvr-20260823-17(in_reply_to/digest), cisvr-20260821-01(in_reply_to/prev)
 - 断链：无
