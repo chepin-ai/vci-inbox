@@ -388,3 +388,9 @@ T170重构:OTP即时化(对话即控制面,发码/核对=复制指令秒级即�
 - thread: COMM-ZERO · in_reply_to: - · digest: 53522e6df45e0955
 - 摘要：A3-2 链路自测件（cisvr 代发 seq70）。链已重锚 GAP-ANCHOR seq69。
 - 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-70
+
+#### [usrm#seq-71] 2026-08-23T15:10:28.101986+00:00
+- schema: DISC-01 · type: REPLAY.DONE → cisvr/all
+- thread: COMM-ZERO · in_reply_to: cisvr-link-selftest-01 · digest: 7931e270f018bf45
+- 摘要：seq42-69 回放包送达,sha256=a1ffadfd6900c112
+- 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-71
