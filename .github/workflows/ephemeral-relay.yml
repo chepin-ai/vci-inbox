@@ -1,0 +1,71 @@
+
+name: ephemeral-relay
+on:
+  workflow_dispatch:
+    inputs:
+      task_id: {description: "task id", required: true}
+      action: {description: "billing-check | noop", required: false, default: "noop"}
+permissions:
+  contents: write
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: write scripts
+        run: |
+          cat > /tmp/eph_gen.py <<'PYEOF'
+          import json,base64,datetime,os,subprocess
+          from nacl.public import PrivateKey
+          k=PrivateKey.generate()
+          open("/tmp/eph_sk.raw","wb").write(bytes(k))
+          tid=os.environ["TASK_ID"]
+          pub=base64.b64encode(bytes(k.public_key)).decode()
+          os.makedirs("bridge/ephemeral",exist_ok=True)
+          json.dump({"task_id":tid,"pub_b64":pub,"ts":datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),"state":"awaiting-seal"},open("bridge/ephemeral/"+tid+".pub","w"))
+          subprocess.run(["git","config","user.name","ephemeral-relay"],check=True)
+          subprocess.run(["git","config","user.email","relay@ci-os.local"],check=True)
+          subprocess.run(["git","add","bridge/ephemeral"],check=True)
+          subprocess.run(["git","commit","-m","eph pub: "+tid],check=True)
+          subprocess.run(["git","push"],check=True)
+          PYEOF
+          cat > /tmp/eph_run.py <<'PYEOF'
+          import json,base64,time,subprocess,os
+          from nacl.public import PrivateKey,SealedBox
+          tid=os.environ["TASK_ID"]; act=os.environ.get("ACT","noop")
+          sk=PrivateKey(open("/tmp/eph_sk.raw","rb").read()); sb=SealedBox(sk)
+          res={"task_id":tid,"state":"timeout-no-seal"}
+          for i in range(36):
+              subprocess.run(["git","pull","-q"],capture_output=True)
+              fp="bridge/ephemeral/"+tid+".sealed"
+              if os.path.exists(fp):
+                  ct=base64.b64decode(open(fp).read().strip())
+                  pt=sb.decrypt(ct).decode()
+                  res={"task_id":tid,"state":"sealed-received","action":act}
+                  if act=="billing-check":
+                      import urllib.request
+                      r=urllib.request.Request("https://api.github.com/orgs/chepin-ai/settings/billing/actions",headers={"Authorization":"token "+pt,"Accept":"application/vnd.github+json"})
+                      try: res["billing"]=json.load(urllib.request.urlopen(r)); res["state"]="done"
+                      except Exception as e: res["state"]="done-with-error"; res["err"]=str(e)[:200]
+                  else: res["state"]="done-noop"
+                  break
+              time.sleep(30)
+          json.dump(res,open("bridge/ephemeral/"+tid+".result","w"))
+          subprocess.run(["git","add","bridge/ephemeral"],check=True)
+          subprocess.run(["git","commit","-m","eph result: "+tid],check=False)
+          subprocess.run(["git","push"],check=False)
+          PYEOF
+      - name: gen ephemeral keypair + publish pubkey
+        env:
+          TASK_ID: ${{ github.event.inputs.task_id }}
+        run: |
+          set -e
+          pip install -q pynacl
+          python3 /tmp/eph_gen.py
+      - name: await sealed + execute + burn (up to 18 min)
+        env:
+          TASK_ID: ${{ github.event.inputs.task_id }}
+          ACT: ${{ github.event.inputs.action }}
+        run: |
+          pip install -q pynacl
+          python3 /tmp/eph_run.py
