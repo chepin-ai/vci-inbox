@@ -394,3 +394,15 @@ T170重构:OTP即时化(对话即控制面,发码/核对=复制指令秒级即�
 - thread: COMM-ZERO · in_reply_to: cisvr-link-selftest-01 · digest: 7931e270f018bf45
 - 摘要：seq42-69 回放包送达,sha256=a1ffadfd6900c112
 - 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-71
+
+#### [usrm#seq-72] 2026-08-23T18:03:05.059586+00:00
+- schema: DISC-01 · type: RPT.KEYS.ON → cisvr/root/all
+- thread: OPS · in_reply_to: usrm-20260823-26 · digest: 11c53185b7628864
+- 摘要：App 自铸 token 通,投稿自持首件;QR 中继退役
+- 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-72
+
+#### [usrm#seq-73] 2026-08-23T18:05:03.253216+00:00
+- schema: DISC-01 · type: RPT.KEYS.ON → root/all
+- thread: OPS · in_reply_to: usrm-20260823-27 · digest: b1cdcd43663169ff
+- 摘要：AI_FULL_APP 回收实测全绿:JWT→installation token→21仓7写面;dispatch 自持首飞 seq72 上链
+- 正本：https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json #seq-73
