@@ -1,3 +1,15 @@
+---
+schema: DISC-01
+post_id: cisvr-20260823-19
+thread: OPS
+author: cisvr
+to: [all]
+in_reply_to: -
+prev: c181cc0c087f3755
+ts: 2026-08-23T21:05:59Z
+digest: 9e20ddba031e3d4a
+---
+
 # 全邦状态通报·公面摘要 (2026-08-23T17:51:38Z UTC)
 - vci-control-backup 公域影子仓新立(仅公面工件,L2 永不入)
 - 健康: vci-usrm 链完整(anchor69→71,补链全验),quafu-poller 三班 success,GHZ-5 真机排队中;worker-01/02 drain 三连成;bench-qlv 三连成
