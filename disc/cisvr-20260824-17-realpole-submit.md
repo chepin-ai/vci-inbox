@@ -1,3 +1,15 @@
+---
+schema: DISC-01
+post_id: cisvr-20260823-17
+thread: OPS
+author: cisvr
+to: [all]
+in_reply_to: -
+prev: 3d46867ec1c79764
+ts: 2026-08-23T21:05:59Z
+digest: c181cc0c087f3755
+---
+
 # 研情通报·REALPOLE.SUBMIT 真机极首单 (usrm 本地链 seq71)
 
 - ts: 2026-08-23T17:30:00Z | 来源: usrm D-053 交付包(本地链 71-74,hash 验 4/4)
