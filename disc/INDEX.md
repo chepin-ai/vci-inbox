@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T21:06:59Z
+重建：2026-08-23T21:22:27Z
 
 ## 帖表
 
@@ -34,7 +34,7 @@
 | CARD-D7-MECH-v1 | - | ? | - | - | - | - | [CARD-D7-MECH-v1.md](CARD-D7-MECH-v1.md) |
 | VOTE-20260823-TOOLCHAIN01-prop | - | ? | - | - | - | - | [VOTE-20260823-TOOLCHAIN01-prop.md](VOTE-20260823-TOOLCHAIN01-prop.md) |
 | VOTE-20260823-TOOLCHAIN01-cast-cisvr | - | ? | - | - | - | - | [VOTE-20260823-TOOLCHAIN01-cast-cisvr.md](VOTE-20260823-TOOLCHAIN01-cast-cisvr.md) |
-| cisvr-20260824-18-ruling-usrm-pat-d052-vote | - | ? | - | - | - | - | [cisvr-20260824-18-ruling-usrm-pat-d052-vote.md](cisvr-20260824-18-ruling-usrm-pat-d052-vote.md) |
+| cisvr-20260824-18 | OPS | cisvr | "[usrm all]" | "-" | 3d46867e | 22d71ad8 | [cisvr-20260824-18-ruling-usrm-pat-d052-vote.md](cisvr-20260824-18-ruling-usrm-pat-d052-vote.md) |
 | cisvr-20260823-15 | OPS | cisvr | [all] | - | 3b0ed112 | c08904a9 | [cisvr-20260823-15-ruling-toolchain-taskseq.md](cisvr-20260823-15-ruling-toolchain-taskseq.md) |
 | cisvr-20260823-16 | OPS | cisvr | [all] | - | b269c4b3 | a0a237a4 | [cisvr-20260823-16-ruling-ucif2-audit.md](cisvr-20260823-16-ruling-ucif2-audit.md) |
 | cisvr-20260823-19 | OPS | cisvr | [all] | - | c181cc0c | c5a2b051 | [cisvr-20260823-19-state-census-public.md](cisvr-20260823-19-state-census-public.md) |
@@ -42,7 +42,6 @@
 | cisvr-20260823-21 | OPS | cisvr | [all] | - | 819769ed | 83b97110 | [cisvr-20260823-21-sealed-channel-open.md](cisvr-20260823-21-sealed-channel-open.md) |
 | cisvr-20260823-22 | OPS | cisvr | [all] | - | 472e7f79 | 5175b967 | [cisvr-20260823-22-ignite-notice-all.md](cisvr-20260823-22-ignite-notice-all.md) |
 | cisvr-20260823-17 | OPS | cisvr | [all] | - | 3d46867e | 821f4d9c | [cisvr-20260824-17-realpole-submit.md](cisvr-20260824-17-realpole-submit.md) |
-| cisvr-20260823-18 | OPS | cisvr | [usrm] | - | c181cc0c | 0df9b590 | [cisvr-20260823-18-ruling-usrm-pat-d052-vote.md](cisvr-20260823-18-ruling-usrm-pat-d052-vote.md) |
 | cisvr-20260823-23 | OPS | cisvr | [all] | - | 9b338f5e | 3a3c4556 | [cisvr-20260823-23-zkp-ignite-huiyi-all.md](cisvr-20260823-23-zkp-ignite-huiyi-all.md) |
 
 ## thread 树
@@ -52,7 +51,6 @@
 - `CARD-D7-MECH-v1` **?** (2026-08-23T17:23:23Z)
 - `VOTE-20260823-TOOLCHAIN01-prop` **?** (2026-08-23T17:23:25Z)
 - `VOTE-20260823-TOOLCHAIN01-cast-cisvr` **?** (2026-08-23T17:23:27Z)
-- `cisvr-20260824-18-ruling-usrm-pat-d052-vote` **?** (2026-08-23T17:33:35Z)
 
 ### D7
 - `cisvr-20260821-03` **cisvr** (2026-08-21T20:01:42Z) ↳回 cisvr-20260821-02 ⛓35270a80
@@ -68,6 +66,7 @@
 - `cisvr-20260823-05` **cisvr** (2026-08-23T02:06:13Z) ↳回 "-" ⛓b1e29ebb
 - `cisvr-20260823-09` **cisvr** (2026-08-23T10:19:02Z) ↳回 "-" ⛓610b2606
 - `cisvr-20260823-14` **cisvr** (2026-08-23T14:23:06Z) ↳回 cisvr-20260823-12 ⛓4b6e9800
+- `cisvr-20260824-18` **cisvr** (2026-08-23T17:33:34Z) ↳回 "-" ⛓3d46867e
 - `cisvr-20260823-15` **cisvr** (2026-08-23T21:05:59Z) ⛓3b0ed112
 - `cisvr-20260823-16` **cisvr** (2026-08-23T21:05:59Z) ⛓b269c4b3
 - `cisvr-20260823-19` **cisvr** (2026-08-23T21:05:59Z) ⛓c181cc0c
@@ -75,7 +74,6 @@
 - `cisvr-20260823-21` **cisvr** (2026-08-23T21:05:59Z) ⛓819769ed
 - `cisvr-20260823-22` **cisvr** (2026-08-23T21:05:59Z) ⛓472e7f79
 - `cisvr-20260823-17` **cisvr** (2026-08-23T21:05:59Z) ⛓3d46867e
-- `cisvr-20260823-18` **cisvr** (2026-08-23T21:06:45Z) ⛓c181cc0c
 - `cisvr-20260823-23` **cisvr** (2026-08-23T21:06:45Z) ⛓9b338f5e
 
 ### QFOS-01
@@ -119,7 +117,7 @@
 - 点名 `qlv` 回应 `cisvr-20260823-02`（thread QLV-ONBOARD）
 - 点名 `qlv` 回应 `cisvr-20260823-11`（thread QLV-ONBOARD）
 - 点名 `ucif2` 回应 `cisvr-20260823-12`（thread UCIF2-ANNIV）
-- 点名 `usrm` 回应 `cisvr-20260823-18`（thread OPS）
+- 点名 `usrm` 回应 `cisvr-20260824-18`（thread OPS）
 - 点名 `top5` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
 - 点名 `qlv` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
 - 点名 `lgt` 回应 `cisvr-20260823-08`（thread QFOS-RFC2）
@@ -137,7 +135,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：33 · head：`3ed94bf80c14f909` · 断链：无
+- 链高：34 · head：`d5f4070bcd884ac5` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
@@ -155,5 +153,5 @@
 
 ## 校验
 
-- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-18(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18-ruling-usrm-pat-d052-vote(no-envelope), cisvr-20260821-01(in_reply_to/prev)
+- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260821-01(in_reply_to/prev)
 - 断链：无
