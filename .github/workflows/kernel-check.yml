@@ -1,0 +1,75 @@
+name: kernel-check
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '11 */4 * * *'
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: kernel-check
+  cancel-in-progress: false
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 内核值守（hub 钥铸token→读四面→守卫评估→FINDING 落账+大厅告警）
+        env:
+          APPK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+          LOBBY: ${{ vars.LOBBY_ISSUE }}
+          GH: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ -n "$APPK" ] || { echo "hub key 未落"; exit 0; }
+          set -e
+          printf '%s' "$APPK" > /tmp/hub.pem
+          pip install -q pyjwt cryptography
+          cat > /tmp/mint.py <<'PYE'
+          import jwt,time,json,urllib.request,os
+          now=int(time.time())
+          t=jwt.encode({'iat':now-60,'exp':now+540,'iss':os.environ['HUB_ID']},open('/tmp/hub.pem').read(),algorithm='RS256')
+          H={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'}
+          inst=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations',headers=H)).read())
+          iid=[i['id'] for i in inst if i['account']['login']=='chepin-ai'][0]
+          r=urllib.request.Request('https://api.github.com/app/installations/%s/access_tokens'%iid,method='POST',headers=H); r.data=b'{}'
+          print(json.loads(urllib.request.urlopen(r).read())['token'])
+          PYE
+          echo "HUB_TOKEN=$(python3 /tmp/mint.py)" >> $GITHUB_ENV
+          rm -f /tmp/hub.pem /tmp/mint.py
+      - uses: actions/checkout@v4
+      - name: run kernel
+        env:
+          HUB_TOKEN: ${{ env.HUB_TOKEN }}
+          GH: ${{ secrets.GITHUB_TOKEN }}
+          LOBBY: ${{ vars.LOBBY_ISSUE }}
+        run: |
+          python3 bridge/kernel/kernel.py
+          python3 - <<'PYE'
+          import json,os,urllib.request,datetime
+          rep=json.load(open('kernel-report.json'))
+          GH=os.environ['GH']; LOBBY=os.environ.get('LOBBY','1')
+          # FINDING 落账 ci-control
+          HUB=os.environ.get('HUB_TOKEN','')
+          def api(m,u,tok,body=None):
+              r=urllib.request.Request('https://api.github.com'+u,method=m,headers={'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'})
+              if body is not None: r.data=json.dumps(body).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  with urllib.request.urlopen(r) as resp: return resp.status,resp.read()
+              except Exception as e: return getattr(e,'code',0),None
+          if HUB:
+              import base64 as b64
+              day=datetime.datetime.now(datetime.UTC).strftime('%Y%m%d-%H')
+              s,old=api('GET','/repos/chepin-ai/ci-control/contents/bridge/findings/kernel-'+day+'.json',HUB)
+              body={'message':'kernel findings '+day,'content':b64.b64encode(json.dumps(rep,ensure_ascii=False,indent=1).encode()).decode()}
+              if s==200: body['sha']=json.loads(old)['sha']
+              s2,_=api('PUT','/repos/chepin-ai/ci-control/contents/bridge/findings/kernel-'+day+'.json',HUB,body)
+              print('findings ->',s2)
+          # RED 时大厅告警
+          if rep['verdict']=='RED':
+              lines=['**[内核告警 RED]** '+rep['ts'],'']
+              for f in rep['findings']: lines.append('- `%s` %s'%(f['rule'],f['detail']))
+              s3,_=api('POST','/repos/chepin-ai/vci-inbox/issues/'+LOBBY+'/comments',GH,{'body':chr(10).join(lines)})
+              print('lobby alert ->',s3)
+          print('KERNEL',rep['verdict'],'findings',len(rep['findings']),'ledger',rep['ledger_state'])
+          PYE
