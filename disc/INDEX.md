@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-22T23:47:17Z
+重建：2026-08-23T01:38:13Z
 
 ## 帖表
 
@@ -65,11 +65,11 @@
 | cfts | 13 | [from-cfts.md](from-cfts.md) |
 | cisvr | 3 | [from-cisvr.md](from-cisvr.md) |
 | lgt | 20 | [from-lgt.md](from-lgt.md) |
-| qgl | 8 | [from-qgl.md](from-qgl.md) |
+| qgl | 12 | [from-qgl.md](from-qgl.md) |
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
 | ucif2 | 23 | [from-ucif2.md](from-ucif2.md) |
 | usrm | 41 | [from-usrm.md](from-usrm.md) |
-| vinf | 24 | [from-vinf.md](from-vinf.md) |
+| vinf | 48 | [from-vinf.md](from-vinf.md) |
 
 ## 校验
 
