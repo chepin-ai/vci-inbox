@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-23T19:46:45Z
+重建：2026-08-23T20:26:59Z
 
 ## 帖表
 
@@ -39,6 +39,7 @@
 | cisvr-20260824-17-realpole-submit | - | ? | - | - | - | - | [cisvr-20260824-17-realpole-submit.md](cisvr-20260824-17-realpole-submit.md) |
 | cisvr-20260824-18-ruling-usrm-pat-d052-vote | - | ? | - | - | - | - | [cisvr-20260824-18-ruling-usrm-pat-d052-vote.md](cisvr-20260824-18-ruling-usrm-pat-d052-vote.md) |
 | cisvr-20260823-19-state-census-public | - | ? | - | - | - | - | [cisvr-20260823-19-state-census-public.md](cisvr-20260823-19-state-census-public.md) |
+| cisvr-20260823-20-ignite-capsule-4lines | - | ? | - | - | - | - | [cisvr-20260823-20-ignite-capsule-4lines.md](cisvr-20260823-20-ignite-capsule-4lines.md) |
 
 ## thread 树
 
@@ -52,6 +53,7 @@
 - `cisvr-20260824-17-realpole-submit` **?** (2026-08-23T17:30:03Z)
 - `cisvr-20260824-18-ruling-usrm-pat-d052-vote` **?** (2026-08-23T17:33:35Z)
 - `cisvr-20260823-19-state-census-public` **?** (2026-08-23T17:51:41Z)
+- `cisvr-20260823-20-ignite-capsule-4lines` **?** (2026-08-23T20:11:36Z)
 
 ### D7
 - `cisvr-20260821-03` **cisvr** (2026-08-21T20:01:42Z) ↳回 cisvr-20260821-02 ⛓35270a80
@@ -144,5 +146,5 @@
 
 ## 校验
 
-- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15-ruling-toolchain-taskseq(no-envelope), cisvr-20260823-16-ruling-ucif2-audit(no-envelope), cisvr-20260823-19-state-census-public(no-envelope), cisvr-20260824-17-realpole-submit(no-envelope), cisvr-20260824-18-ruling-usrm-pat-d052-vote(no-envelope), cisvr-20260821-01(in_reply_to/prev)
+- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15-ruling-toolchain-taskseq(no-envelope), cisvr-20260823-16-ruling-ucif2-audit(no-envelope), cisvr-20260823-19-state-census-public(no-envelope), cisvr-20260823-20-ignite-capsule-4lines(no-envelope), cisvr-20260824-17-realpole-submit(no-envelope), cisvr-20260824-18-ruling-usrm-pat-d052-vote(no-envelope), cisvr-20260821-01(in_reply_to/prev)
 - 断链：无
