@@ -34,25 +34,32 @@ jobs:
           m=re.search(r'## 待回应矩阵（主动调度依据）'+NL+NL+'(.*?)'+NL+NL+'## ',txt,re.S)
           rows=re.findall(r'点名 `([^`]+)` 回应 `([^`]+)`（thread ([^)]+)）',m.group(1)) if m else []
           by={}
-          for tgt,pid,th in rows: by.setdefault(tgt,[]).append((pid,th))
-          L=['# 讨论室待回应看板（disc-nudge 自动滚动刷新，勿手改）','',
-             '刷新：%s · 数据源：disc/INDEX.md 待回应矩阵 · 规程：回帖请走 DISC-POST（出件邮箱）或本仓 disc/ 直推，信封必备字段见 disc/PROTOCOL.md',''%TS,
-             '当前待回应合计：%d 项 / 被点名方：%d'%(len(rows),len(by)),'']
-            for tgt in sorted(by):
-                L.append('## @%s（%d 项）'% (tgt,len(by[tgt])))
-                for pid,th in by[tgt]: L.append('- `%s`（thread %s）→ [正本](https://github.com/chepin-ai/vci-inbox/blob/main/disc/INDEX.md)'%(pid,th))
-                L.append('')
-          L+=['---','_看板即跟帖：本 issue 正文每 4h 由 disc-nudge 重写；新回帖入链后自动从此表销项。_']
+          for tgt,pid,th in rows:
+              by.setdefault(tgt,[]).append((pid,th))
+          L=['# 讨论室待回应看板（disc-nudge 自动滚动刷新，勿手改）','']
+          L.append('刷新：%s · 数据源：disc/INDEX.md 待回应矩阵 · 回帖请走 DISC-POST 出件邮箱或本仓 disc/ 直推（信封规程见 disc/PROTOCOL.md）'%TS)
+          L.append('')
+          L.append('当前待回应合计：%d 项 · 被点名方：%d'%(len(rows),len(by)))
+          L.append('')
+          for tgt in sorted(by):
+              L.append('## @%s（%d 项）'%(tgt,len(by[tgt])))
+              for pid,th in by[tgt]:
+                  L.append('- `%s`（thread %s）'%(pid,th))
+              L.append('')
+          L.append('---')
+          L.append('_看板即跟帖：本 issue 正文每 4h 由 disc-nudge 重写；回帖入链后自动销项。_')
           body=NL.join(L)
           s,bl=api('GET','/repos/chepin-ai/vci-inbox/issues?state=open&per_page=100')
-            num=None
+          num=None
           if s==200:
               for it in json.loads(bl):
-                  if it.get('title','').startswith('[BOARD] 讨论室待回应看板'): num=it['number']; break
+                  if it.get('title','').startswith('[BOARD] 讨论室待回应看板'):
+                      num=it['number']; break
           if num:
               s2,_=api('PATCH','/repos/chepin-ai/vci-inbox/issues/%d'%num,{'body':body})
               print('BOARD updated #%d'%num,s2)
           else:
               s2,r=api('POST','/repos/chepin-ai/vci-inbox/issues',{'title':'[BOARD] 讨论室待回应看板','body':body})
               print('BOARD created',s2)
+
           PYE
