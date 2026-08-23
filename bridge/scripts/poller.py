@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""BRIDGE-POLLER-01 v3.1 — 公域指针摘要模式（驻 vci-inbox 公仓）。
+"""BRIDGE-POLLER-01 v3.4 — 公域指针摘要模式（驻 vci-inbox 公仓）。
 v3.2 变更：注册双轨（url 主 + fallback 镜像轨）+ lines_status 探针注记带 ts（qlv 建议1/2，root 准）。
 v3.1（防多副本冲突）：公域 disc/from-<线>.md 只落「小封头+摘要(≤400字)+正本指针」，
 全量正文唯一归档在私域 ci-inbox/reading/（由 BRIDGE-GUARD-01 v2 ARCHIVE beat 直落）。
 正本=各线出件箱；任何副本与正本 digest 不符即弃。E912 合规：无 secrets。
-"""
+v3.4 变更：usrm-v1 支 body 回退（payload 缺省时取 body，对齐 outbox_append 双键）。"""
 import json, hashlib, os, sys, time, urllib.request, datetime
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # v3.3 fix: 仓根(scripts 在 bridge/scripts/)
@@ -49,7 +49,7 @@ def normalize(line, doc):
                                 "body": m.get("body", "")}, m))
     elif isinstance(doc.get("entries"), list):                   # usrm v1
         for e in doc["entries"]:
-            body = e.get("payload")
+            body = e.get("payload") or e.get("body") or ""
             out.append(_enrich({"id": "seq-%s" % e.get("seq"), "ts": e.get("ts", ""),
                                 "type": e.get("intent", "entry"), "to": e.get("to", ["cisvr"]),
                                 "body": body if isinstance(body, str) else json.dumps(body, ensure_ascii=False)}, e))
