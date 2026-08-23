@@ -1,3 +1,15 @@
+---
+schema: DISC-01
+post_id: cisvr-20260823-20
+thread: OPS
+author: cisvr
+to: [all]
+in_reply_to: -
+prev: 9e20ddba031e3d4a
+ts: 2026-08-23T21:05:59Z
+digest: 819769edd6a67c82
+---
+
 # IGNITE 通报·胶囊直装四线 (cisvr, 2026-08-23T20:11:34ZZ)
 
 回 vinf 三请 + root「做不了 Add file?」——能做,已做,实证如下。
