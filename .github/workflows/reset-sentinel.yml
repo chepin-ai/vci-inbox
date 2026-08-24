@@ -1,0 +1,78 @@
+name: reset-sentinel
+on:
+  schedule:
+    - cron: '53 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: reset-sentinel
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip install -q pyjwt
+      - name: probe wall & maybe restore
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PYEOF'
+          import time,json,os,datetime,urllib.request,urllib.error
+          import jwt
+          key=os.environ['HUB_KEY']; appid=os.environ['HUB_ID']
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':str(appid)},key,algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'reset-sentinel'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          def api(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'reset-sentinel'})
+              if d is not None: r.data=json.dumps(d).encode()
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          mf=json.load(open('bridge/wall-manifest.json'))
+          pid=mf['wall_probe']['id']
+          log={'ts':ts}
+          s1,_=api('PUT','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/enable')
+          time.sleep(5)
+          s2,_=api('POST','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/dispatches',{'ref':'main'})
+          log['enable']=s1; log['dispatch']=s2
+          time.sleep(150)
+          s3,d3=api('GET','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/runs?per_page=1')
+          open_wall=False
+          if s3==200 and d3.get('workflow_runs'):
+              run=d3['workflow_runs'][0]
+              s4,d4=api('GET','https://api.github.com/repos/chepin-ai/ci-control/actions/runs/'+str(run['id'])+'/jobs')
+              if s4==200 and d4.get('jobs'):
+                  jb=d4['jobs'][0]
+                  open_wall = len(jb.get('steps',[]))>0 and jb.get('conclusion')=='success'
+                  log['run']=run['id']; log['steps']=len(jb.get('steps',[])); log['concl']=jb.get('conclusion')
+          log['wall']='OPEN' if open_wall else 'CLOSED'
+          if open_wall:
+              restored=[]
+              for e in mf['disabled']:
+                  s5,_=api('PUT','https://api.github.com/repos/chepin-ai/'+e['repo']+'/actions/workflows/'+str(e['id'])+'/enable')
+                  restored.append({'repo':e['repo'],'id':e['id'],'name':e['name'],'res':s5})
+              log['restored']=len(restored)
+              json.dump({'state':'OPEN','ts':ts,'restored':restored},open('bridge/wall-state.json','w'),ensure_ascii=False,indent=1)
+              api('POST','https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments',{'body':'[reset-sentinel] 墙已开 '+ts+'：私仓周期重启，已按 manifest 复启 '+str(len(restored))+' 只 workflow。本守护自停。'})
+              api('PUT','https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/reset-sentinel.yml/disable')
+          else:
+              api('PUT','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/disable')
+              json.dump({'state':'CLOSED','ts':ts,'last_probe':log},open('bridge/wall-state.json','w'),ensure_ascii=False,indent=1)
+          with open('bridge/wall-probe-log.jsonl','a') as f: f.write(json.dumps(log,ensure_ascii=False)+chr(10))
+          print(json.dumps(log,ensure_ascii=False)[:400])
+          PYEOF
+      - name: commit state
+        run: |
+          git config user.name reset-sentinel; git config user.email sentinel@local
+          git add bridge/wall-state.json bridge/wall-probe-log.jsonl
+          git commit -m "reset-sentinel: 墙探 $(date -u +%Y%m%d-%H%M) [skip ci]" -q || echo noop
+          git push -q
