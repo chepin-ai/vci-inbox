@@ -20,14 +20,14 @@ jobs:
   ingest:
     runs-on: ubuntu-latest
     env:
-      HAS_KEY: ${{ secrets.CI_OPS_APP_KEY != '' }}
+      HAS_KEY: ${{ secrets.AI_FULL_APP_KEY != '' }}
     steps:
       - uses: actions/create-github-app-token@v1
         if: env.HAS_KEY == 'true'
         id: app
         with:
-          app-id: ${{ secrets.CI_OPS_APP_ID }}
-          private-key: ${{ secrets.CI_OPS_APP_KEY }}
+          app-id: ${{ secrets.AI_FULL_APP_ID }}
+          private-key: ${{ secrets.AI_FULL_APP_KEY }}
           owner: chepin-ai
       - name: entangle-gate + 快门三关摆渡
         if: env.HAS_KEY == 'true'
