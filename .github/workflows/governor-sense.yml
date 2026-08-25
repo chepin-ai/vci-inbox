@@ -1,0 +1,117 @@
+name: governor-sense
+on:
+  schedule:
+    - cron: '41 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: governor-sense
+  cancel-in-progress: false
+jobs:
+  sense:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip install -q pyjwt
+      - name: census x matrix diff + chain attest (GOVERNOR-01 sensing plane)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 - <<'PYEOF'
+          import time,json,os,datetime,urllib.request,urllib.error,hashlib,base64
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'governor-sense'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          def api(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'governor-sense'})
+              if d is not None: r.data=json.dumps(d).encode()
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          B='https://api.github.com/repos/chepin-ai'
+          REPOS=['ci-control','ci-control-backup','ci-library','ci-logs','ci-inbox','ci-bus','ci-playground','ci-build','qlv-lab',
+                 'vci-inbox','vci-cfts','vci-library','vci-logs','vci-playground','vci-qgl','vci-ucif2','vci-usrm','vci-vinf','ci-yard','ci-worker-01-','ci-worker-02']
+          PRIV9=REPOS[:9]
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          def getfile(repo,path):
+              s,d=api('GET',f'{B}/{repo}/contents/{path}')
+              if s!=200: return None
+              return json.loads(base64.b64decode(d['content']).decode())
+          mat=getfile('ci-control','bridge/GLOBAL-MATRIX-01.json')
+          perms=getfile('ci-control','bridge/GOV-PERMS-01.json')
+          # 自校验:矩阵须 root 亲签(chepin-ai 提交)方视为已批准
+          def ratified(path):
+              s,d=api('GET',f'{B}/ci-control/commits?path='+path+'&per_page=1')
+              if s==200 and d:
+                  c=d[0]['commit']; au=(c.get('author') or {}).get('name','')
+                  return au, ('[D]' in (c.get('message') or '')), (au=='chepin-ai')
+              return None,False,False
+              # noqa
+          au1,d1,r1=ratified('bridge/GLOBAL-MATRIX-01.json'); au2,d2,r2=ratified('bridge/GOV-PERMS-01.json')
+          KNOWN=('API_','CI_OPS_','CI_ROOT_','CI_APP_','WARM_BI','AI_FULL_','CMD_AUTH','QR_','OTP_','INBOX_','FED_','GITEE_','GUARD_APP_KEY','QUAFU_TOKEN','URE_','ATP_','VAULT_PRIV','T2W','DISPATCH_PAT','SHARED_KEYS')
+          census={}; unknowns=[]; excess=[]; unauth=[]
+          for rp in REPOS:
+              s1,sec=api('GET',f'{B}/{rp}/actions/secrets?per_page=100')
+              sn=[x['name'] for x in sec.get('secrets',[])] if s1==200 else []
+              s2,var=api('GET',f'{B}/{rp}/actions/variables?per_page=100')
+              vn=[x['name'] for x in var.get('variables',[])] if s2==200 else []
+              s3,wf=api('GET',f'{B}/{rp}/actions/workflows?per_page=100')
+              wl=[{'path':w['path'].split('/')[-1],'state':w['state']} for w in wf.get('workflows',[])] if s3==200 else []
+              census[rp]={'secrets':sn,'variables':vn,'workflows':wl}
+              for n in sn:
+                  if not n.startswith(KNOWN): unknowns.append({'repo':rp,'name':n})
+              if perms:
+                  for k,reps in perms['secrets_rules'].get('remove_pending_root6',{}).items():
+                      if isinstance(reps,list) and rp in reps and k in sn: excess.append({'repo':rp,'secret':k,'class':'pending_root6'})
+                  for k,reps in perms['secrets_rules'].get('remove_pending_line_residual',{}).items():
+                      if rp in reps and k in sn: excess.append({'repo':rp,'secret':k,'class':'line_residual'})
+              if rp in PRIV9:
+                  for w in wl:
+                      if w['state']=='active' and w['path'] not in ('wall-probe.yml','governor-exec.yml'):
+                          unauth.append({'repo':rp,'wf':w['path']})
+          rec={'ts':ts,'ratified':{'GLOBAL-MATRIX-01':{'author':au1,'ok':r1},'GOV-PERMS-01':{'author':au2,'ok':r2}},
+               'counts':{'unknown':len(unknowns),'excess':len(excess),'unauth_active':len(unauth)},
+               'unknowns':unknowns,'excess':excess,'unauth_active':unauth}
+          mat_hash=hashlib.sha256(json.dumps(mat,sort_keys=True,ensure_ascii=False).encode()).hexdigest() if mat else None
+          cen_hash=hashlib.sha256(json.dumps(census,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          # G-A: 未授权活跃的私仓workflow 自动再disable(root律:私仓CI只做应急响应)
+          acted=[]
+          if r1 and r2:
+              for u in unauth:
+                  s4,d4=api('GET',f"{B}/{u['repo']}/actions/workflows")
+                  wid=[w['id'] for w in d4.get('workflows',[]) if w['path'].endswith(u['wf'])]
+                  if wid:
+                      s5,_=api('PUT',f"{B}/{u['repo']}/actions/workflows/{wid[0]}/disable")
+                      acted.append({'repo':u['repo'],'wf':u['wf'],'disable':s5})
+          rec['G_A_acted']=acted
+          rec['mode']='ratified-enforce' if (r1 and r2) else 'report-only(matrix待root批准)'
+          # 链-哈希
+          chain='GENESIS'
+          if os.path.exists('bridge/governor-log.jsonl'):
+              lines=[l for l in open('bridge/governor-log.jsonl').read().strip().split(chr(10)) if l]
+              if lines: chain=json.loads(lines[-1]).get('hash','GENESIS')
+          rec['prev']=chain
+          rec['hash']=hashlib.sha256(json.dumps({k:v for k,v in rec.items() if k!='hash'},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          with open('bridge/governor-log.jsonl','a') as f: f.write(json.dumps(rec,ensure_ascii=False)+chr(10))
+          attest={'ts':ts,'matrix_sha256':mat_hash,'census_sha256':cen_hash,'verdict':'PASS' if (not unknowns and not unauth) else 'ATTENTION',
+                  'diffs':rec['counts'],'self_check':rec['ratified'],'mode':rec['mode'],'chain_head':rec['hash']}
+          os.makedirs('bridge/governor',exist_ok=True)
+          json.dump(attest,open('bridge/governor/attest-latest.json','w'),ensure_ascii=False,indent=1)
+          json.dump(census,open('bridge/governor/census-latest.json','w'),ensure_ascii=False,indent=1)
+          print(json.dumps(attest,ensure_ascii=False))
+          if attest['verdict']!='PASS':
+              body='[governor-sense] '+ts+' verdict='+attest['verdict']+' diffs='+json.dumps(rec['counts'],ensure_ascii=False)+' mode='+rec['mode']
+              api('POST',f'{B}/vci-inbox/issues/1/comments',{'body':body})
+          PYEOF
+      - name: commit governor state
+        run: |
+          git config user.name governor-sense; git config user.email governor@local
+          git add bridge/governor-log.jsonl bridge/governor/
+          git commit -m "governor-sense: $(date -u +%Y%m%d-%H%M) tick [skip ci]" -q || echo noop
+          git push -q
