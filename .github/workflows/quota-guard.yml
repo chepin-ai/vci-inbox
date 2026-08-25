@@ -111,4 +111,49 @@ jobs:
               try: u2.urlopen(rb)
               except Exception as e: print('alert fail',e)
           PYEOF
+      - name: daily report (LLM实测段+配额段→私仓;日报制度复活)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          pip -q install pyjwt
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,datetime,urllib.request,urllib.error,base64
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def gh(u):
+              r=urllib.request.Request(u,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          day=ts[:10]
+          lines=['# DAILY-REPORT '+day+' (quota-guard日tick)\n','ts: '+ts+'\n']
+          lines.append('## LLM实测\n')
+          for repo,fn in [('vci-playground','bench-qlv.yml'),('ci-yard','yard-llm-bench.yml')]:
+              s,w=gh(f'{B}/{repo}/actions/workflows?per_page=100')
+              wid=[x['id'] for x in w.get('workflows',[]) if x['path'].endswith(fn)] if s==200 else []
+              if wid:
+                  s2,rr=gh(f'{B}/{repo}/actions/workflows/{wid[0]}/runs?per_page=5')
+                  for r0 in rr.get('workflow_runs',[]):
+                      lines.append(f"- {repo}/{fn}: {r0['conclusion']} {r0['created_at']}\n")
+          lines.append('## 配额\n')
+          s3,st=gh(f'{B}/ci-control/contents/bridge/quota/state.json')
+          if s3==200:
+              stj=json.loads(base64.b64decode(st['content']).decode())
+              lines.append(f"- period_min={stj.get('period_ms',0)/60000:.1f} / 2000\n")
+          s4,bc=gh(f'{B}/ci-control/contents/bridge/beacon/BEACON.json')
+          if s4==200:
+              bcj=json.loads(base64.b64decode(bc['content']).decode())
+              lines.append(f"\n## 信标 seq={bcj.get('seq')} mode={bcj.get('mode')}\n")
+          body={'message':'daily report '+day,'content':base64.b64encode(''.join(lines).encode()).decode()}
+          s5,old=gh(f'{B}/ci-control/contents/bridge/reports/daily-{day}.md')
+          if s5==200: body['sha']=old['sha']
+          rq=urllib.request.Request(f'{B}/ci-control/contents/bridge/reports/daily-{day}.md',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(body).encode())
+          urllib.request.urlopen(rq)
+          print('daily report written',day)
+          PYEOF
       # 公仓零落:产物已全量进 ci-control(CLASSIFY-01,D-072)
