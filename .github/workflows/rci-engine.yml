@@ -87,6 +87,16 @@ jobs:
                       out={'copied':True}
                   else:
                       out={'error':'src-missing','src':p.get('src_repo')+'/'+p.get('src_path')}
+              elif typ=='fleet-drive':
+                  sI,dI=gh('GET','https://api.github.com/installation/repositories?per_page=100')
+                  reposI=[x['name'] for x in dI.get('repositories',[])] if sI==200 else []
+                  hit=[];miss=[]
+                  for rp in reposI:
+                      try:
+                          putc(rp,'bridge/beacon-mirror.json',beacon,'fleet-drive seq%s'%bseq)
+                          hit.append(rp)
+                      except Exception as e: miss.append({'repo':rp,'err':str(e)[:40]})
+                  out={'driven':len(hit),'miss':miss}
               else:
                   out={'skipped':'unknown op'}
               rec={'ts':ts,'job':job.get('id'),'type':typ,'beacon_seq':bseq,'challenge':challenge,'out':out,'prev':prev}
