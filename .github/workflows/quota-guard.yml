@@ -36,7 +36,13 @@ jobs:
               except urllib.error.HTTPError as e: return e.code,{}
           PRIV=['ci-control','ci-control-backup','ci-library','ci-logs','ci-inbox','ci-bus','ci-playground','ci-build','qlv-lab']
           st={'watermark':'2026-08-01T00:00:00Z','period_ms':0,'chain':'GENESIS'}
-          if os.path.exists('bridge/quota-state.json'): st=json.load(open('bridge/quota-state.json'))
+          def getc(repo,path):
+              r=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); import base64 as b64; return json.loads(b64.b64decode(json.loads(x.read().decode())['content']).decode())
+              except Exception: return None
+          prev_st=getc('ci-control','bridge/quota/state.json')
+          if prev_st: st=prev_st
           new_ms=0; day_ms=0; scanned=0
           day_ago=(datetime.datetime.now(datetime.timezone.utc)-datetime.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
           for repo in PRIV:
@@ -67,8 +73,21 @@ jobs:
                'pct_of_2000':pct,'scanned_runs':scanned,'prev':st['chain']}
           h=hashlib.sha256(json.dumps(rec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           rec['hash']=h; st['chain']=h
-          with open('bridge/quota-log.jsonl','a') as f: f.write(json.dumps(rec,ensure_ascii=False)+chr(10))
-          json.dump(st,open('bridge/quota-state.json','w'),ensure_ascii=False,indent=1)
+          def putc(repo,path,obj,msg):
+              import base64 as b64
+              r=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              sha=None
+              try:
+                  x=urllib.request.urlopen(r); sha=json.loads(x.read().decode()).get('sha')
+              except Exception: pass
+              body={'message':msg,'content':b64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if sha: body['sha']=sha
+              rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(body).encode())
+              urllib.request.urlopen(rq)
+          oldlog=getc('ci-control','bridge/quota/log-list.json') or []
+          oldlog.append(rec)
+          putc('ci-control','bridge/quota/log-list.json',oldlog,'quota-guard log+1')
+          putc('ci-control','bridge/quota/state.json',st,'quota-guard state')
           print(json.dumps(rec,ensure_ascii=False))
           if pct>=70:
               sev='CRITICAL' if pct>=90 else 'WARN'
@@ -79,9 +98,4 @@ jobs:
               try: u2.urlopen(rb)
               except Exception as e: print('alert fail',e)
           PYEOF
-      - name: commit quota state
-        run: |
-          git config user.name quota-guard; git config user.email quota@local
-          git add bridge/quota-state.json bridge/quota-log.jsonl
-          git commit -m "quota-guard: $(date -u +%Y-%m-%d) 计量 [skip ci]" -q || echo noop
-          git push -q
+      # 公仓零落:产物已全量进 ci-control(CLASSIFY-01,D-072)
