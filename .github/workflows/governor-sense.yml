@@ -224,8 +224,17 @@ jobs:
           dlog=getc('ci-control','bridge/governor/decision-log.json') or []
           prev=dlog[-1]['hash'] if dlog else 'GENESIS'
           nrem=sum(len(v['remove']) for v in desired.values()); nwv=sum(len(v['wf_violations']) for v in desired.values())
+          closure={'c2':[]}
+          try:
+              routes=getc('ci-bus','bridge/mesh/routes.json') or {'routes':[]}
+              for r0 in routes.get('routes',[]):
+                  for rp in (r0.get('producer',''),r0.get('consumer','')):
+                      base=rp.split('@')[0].split('(')[0]
+                      if base and base not in census and not base.startswith(('root','lobby')):
+                          closure['c2'].append({'route':r0.get('topic'),'missing':base})
+          except Exception as e: closure={'err':str(e)[:80]}
           drec={'ts':ts,'decision_id':'dec-'+str(len(dlog)+1),'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_sha256':k_h,
-                'diff':{'remove':nrem,'wf_violations':nwv},'prev':prev}
+                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'prev':prev}
           drec['hash']=hashlib.sha256(json.dumps(drec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           dlog.append(drec); putc('ci-control','bridge/governor/decision-log.json',dlog,'decision '+drec['decision_id'])
           # U1 checkpoint(三行制: origin+size+root+签名)
