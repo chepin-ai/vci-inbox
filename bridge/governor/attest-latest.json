@@ -1,11 +1,11 @@
 {
- "ts": "2026-08-25T16:03:12Z",
+ "ts": "2026-08-25T18:07:24Z",
  "matrix_sha256": "297d6110f7e89e64c187886f64f63833bcfe786be941835229f1e4d7b9fc4fed",
- "census_sha256": "d0a2d9be1b0e527f5d48c16a3426a2e8d4eec30fd4a4c466b22f42c75be65094",
+ "census_sha256": "3d48fea8a92648e7dff584ded224597c0ffc74aff9dde38161c603b76c379ebf",
  "verdict": "ATTENTION",
  "diffs": {
-  "unknown": 4,
-  "excess": 1,
+  "unknown": 3,
+  "excess": 0,
   "unauth_active": 0,
   "new_repos": 4
  },
@@ -20,5 +20,5 @@
   }
  },
  "mode": "ratified-enforce",
- "chain_head": "dae39bcd73d73bdc1d75223063ae517ab772d65839afd52f35e8494cc4e318bd"
+ "chain_head": "1db1921cd2ea4fb1ae5717e9a42229895e4e97a8b048f9c73c794bcf06474b78"
 }
