@@ -35,9 +35,18 @@ jobs:
                   x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
               except urllib.error.HTTPError as e: return e.code,{}
           B='https://api.github.com/repos/chepin-ai'
-          REPOS=['ci-control','ci-control-backup','ci-library','ci-logs','ci-inbox','ci-bus','ci-playground','ci-build','qlv-lab',
-                 'vci-inbox','vci-cfts','vci-library','vci-logs','vci-playground','vci-qgl','vci-ucif2','vci-usrm','vci-vinf','ci-yard','ci-worker-01-','ci-worker-02']
-          PRIV9=REPOS[:9]
+          # 动态发现(态势感知律:仓面不写死,新仓自动入列+未知仓报警)
+          pub=set(); page=1
+          while page<=3:
+              s,d=api('GET','https://api.github.com/users/chepin-ai/repos?per_page=100&page='+str(page))
+              if s!=200 or not d: break
+              pub|={x['name'] for x in d}; page+=1
+          s,inst=api('GET','https://api.github.com/installation/repositories?per_page=100')
+          inset={x['name'] for x in inst.get('repositories',[])} if s==200 else set()
+          REPOS=sorted(pub|inset)
+          KNOWN21={'ci-control','ci-control-backup','ci-library','ci-logs','ci-inbox','ci-bus','ci-playground','ci-build','qlv-lab','vci-inbox','vci-cfts','vci-library','vci-logs','vci-playground','vci-qgl','vci-ucif2','vci-usrm','vci-vinf','ci-yard','ci-worker-01-','ci-worker-02'}
+          NEWREPOS=sorted(set(REPOS)-KNOWN21)
+          PRIV9=[r for r in REPOS if r in inset and r not in pub]
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
           def getfile(repo,path):
               s,d=api('GET',f'{B}/{repo}/contents/{path}')
@@ -59,10 +68,14 @@ jobs:
           KNOWN=('API_','CI_OPS_','CI_ROOT_','CI_APP_','WARM_BI','AI_FULL_','CMD_AUTH','QR_','OTP_','INBOX_','FED_','GITEE_','GUARD_APP_KEY','QUAFU_TOKEN','URE_','ATP_','VAULT_PRIV','T2W','DISPATCH_PAT','SHARED_KEYS')
           census={}; unknowns=[]; excess=[]; unauth=[]
           for rp in REPOS:
-              s1,sec=api('GET',f'{B}/{rp}/actions/secrets?per_page=100')
-              sn=[x['name'] for x in sec.get('secrets',[])] if s1==200 else []
-              s2,var=api('GET',f'{B}/{rp}/actions/variables?per_page=100')
-              vn=[x['name'] for x in var.get('variables',[])] if s2==200 else []
+              if rp in inset:
+                  s1,sec=api('GET',f'{B}/{rp}/actions/secrets?per_page=100')
+                  sn=[x['name'] for x in sec.get('secrets',[])] if s1==200 else []
+                  s2,var=api('GET',f'{B}/{rp}/actions/variables?per_page=100')
+                  vn=[x['name'] for x in var.get('variables',[])] if s2==200 else []
+              else:
+                  sn=[]; vn=[]
+                  unknowns.append({'repo':rp,'name':'<out-of-installation: workflows-only coverage>'})
               s3,wf=api('GET',f'{B}/{rp}/actions/workflows?per_page=100')
               wl=[{'path':w['path'].split('/')[-1],'state':w['state']} for w in wf.get('workflows',[])] if s3==200 else []
               census[rp]={'secrets':sn,'variables':vn,'workflows':wl}
@@ -78,7 +91,7 @@ jobs:
                       if w['state']=='active' and w['path'] not in ('wall-probe.yml','governor-exec.yml'):
                           unauth.append({'repo':rp,'wf':w['path']})
           rec={'ts':ts,'ratified':{'GLOBAL-MATRIX-01':{'author':au1,'ok':r1},'GOV-PERMS-01':{'author':au2,'ok':r2}},
-               'counts':{'unknown':len(unknowns),'excess':len(excess),'unauth_active':len(unauth)},
+               'counts':{'unknown':len(unknowns),'excess':len(excess),'unauth_active':len(unauth),'new_repos':len(NEWREPOS)},'new_repos':NEWREPOS,
                'unknowns':unknowns,'excess':excess,'unauth_active':unauth}
           mat_hash=hashlib.sha256(json.dumps(mat,sort_keys=True,ensure_ascii=False).encode()).hexdigest() if mat else None
           cen_hash=hashlib.sha256(json.dumps(census,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
