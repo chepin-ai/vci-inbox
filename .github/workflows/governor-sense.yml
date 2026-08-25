@@ -234,6 +234,42 @@ jobs:
           json.dump({'origin':'ci-os/chain','size':size,'root_sha256':root_h,'ts':ts},open('bridge/chain-anchor.json','w'),ensure_ascii=False,indent=1)
           print(json.dumps({'dec':drec['decision_id'],'remove':nrem,'wfv':nwv,'cp_size':size},ensure_ascii=False))
           PYEOF
+      - name: mutual-watch (U5-lite:哨兵互守,过期即补跑,不信cron准时)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          pip -q install pyjwt
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,datetime,urllib.request,urllib.error
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def gh(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          WATCHL={'devsecops-gate.yml':7,'reset-sentinel.yml':7,'quota-guard.yml':26,'beacon-mint.yml':2,'rci-engine.yml':2,'bridge-guard.yml':3,'bridge-poller.yml':3,'disc-clerk.yml':26}
+          s,wl=gh('GET',f'{B}/vci-inbox/actions/workflows?per_page=100')
+          nowdt=datetime.datetime.now(datetime.timezone.utc)
+          for wf in wl.get('workflows',[]):
+              fn=wf['path'].split('/')[-1]
+              if fn not in WATCHL: continue
+              s2,rr=gh('GET',f"{B}/vci-inbox/actions/workflows/{wf['id']}/runs?per_page=1")
+              runs=rr.get('workflow_runs',[]) if s2==200 else []
+              stale=True
+              if runs:
+                  at=datetime.datetime.fromisoformat(runs[0]['created_at'].replace('Z','+00:00'))
+                  stale=(nowdt-at).total_seconds()>WATCHL[fn]*3600
+              if stale:
+                  s3,_=gh('POST',f"{B}/vci-inbox/actions/workflows/{wf['id']}/dispatches",{'ref':'main'})
+                  print('补跑',fn,s3)
+              else: print('鲜',fn)
+          PYEOF
       - name: commit governor state
         run: |
           git config user.name governor-sense; git config user.email governor@local
