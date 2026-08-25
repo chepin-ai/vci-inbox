@@ -72,7 +72,6 @@ jobs:
           print(json.dumps(rec,ensure_ascii=False))
           if pct>=70:
               sev='CRITICAL' if pct>=90 else 'WARN'
-              api('POST')  # placeholder guard
               import urllib.request as u2
               rb=u2.Request('https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments',method='POST',
                   headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'},data=json.dumps(
