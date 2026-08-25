@@ -1,0 +1,88 @@
+name: quota-guard
+on:
+  schedule:
+    - cron: '17 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: quota-guard
+  cancel-in-progress: false
+jobs:
+  meter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip install -q pyjwt
+      - name: meter private-surface billable minutes (incremental watermark + hash-chain; monitor-only until root 配额重排授权)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PYEOF'
+          import time,json,os,datetime,urllib.request,urllib.error,hashlib
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'quota-guard'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          def api(u):
+              r=urllib.request.Request(u,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'quota-guard'})
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          PRIV=['ci-control','ci-control-backup','ci-library','ci-logs','ci-inbox','ci-bus','ci-playground','ci-build','qlv-lab']
+          st={'watermark':'2026-08-01T00:00:00Z','period_ms':0,'chain':'GENESIS'}
+          if os.path.exists('bridge/quota-state.json'): st=json.load(open('bridge/quota-state.json'))
+          new_ms=0; day_ms=0; scanned=0
+          day_ago=(datetime.datetime.now(datetime.timezone.utc)-datetime.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
+          for repo in PRIV:
+              page=1
+              while page<=3:
+                  s,d=api(f'https://api.github.com/repos/chepin-ai/{repo}/actions/runs?per_page=100&page='+str(page))
+                  if s!=200: break
+                  runs=d.get('workflow_runs',[])
+                  if not runs: break
+                  oldest=None
+                  for rn in runs:
+                      ca=rn['created_at']
+                      if ca<st['watermark'] and ca<day_ago: continue
+                      s2,t2=api(f"https://api.github.com/repos/chepin-ai/{repo}/actions/runs/{rn['id']}/timing")
+                      scanned+=1
+                      if s2!=200: continue
+                      ms=sum(v.get('total_ms',0) for v in t2.get('billable',{}).values())
+                      if ca>=st['watermark']: new_ms+=ms
+                      if ca>=day_ago: day_ms+=ms
+                      oldest=ca
+                  if len(runs)<100 or (oldest and oldest<st['watermark'] and oldest<day_ago): break
+                  page+=1
+          st['period_ms']+=new_ms
+          st['watermark']=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          BUDGET_MS=2000*60000
+          pct=round(100*st['period_ms']/BUDGET_MS,2)
+          rec={'ts':st['watermark'],'day_min':round(day_ms/60000,1),'period_min':round(st['period_ms']/60000,1),
+               'pct_of_2000':pct,'scanned_runs':scanned,'prev':st['chain']}
+          h=hashlib.sha256(json.dumps(rec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          rec['hash']=h; st['chain']=h
+          with open('bridge/quota-log.jsonl','a') as f: f.write(json.dumps(rec,ensure_ascii=False)+chr(10))
+          json.dump(st,open('bridge/quota-state.json','w'),ensure_ascii=False,indent=1)
+          print(json.dumps(rec,ensure_ascii=False))
+          if pct>=70:
+              sev='CRITICAL' if pct>=90 else 'WARN'
+              api('POST')  # placeholder guard
+              import urllib.request as u2
+              rb=u2.Request('https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments',method='POST',
+                  headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'},data=json.dumps(
+                  {'body':f"[quota-guard/{sev}] 周期用量 {rec['period_min']}/2000 min ({pct}%)。monitor-only;熔断授权候 root D-068。"}).encode())
+              try: u2.urlopen(rb)
+              except Exception as e: print('alert fail',e)
+          PYEOF
+      - name: commit quota state
+        run: |
+          git config user.name quota-guard; git config user.email quota@local
+          git add bridge/quota-state.json bridge/quota-log.jsonl
+          git commit -m "quota-guard: $(date -u +%Y-%m-%d) 计量 [skip ci]" -q || echo noop
+          git push -q
