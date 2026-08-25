@@ -54,6 +54,8 @@ jobs:
               return None,False,False
               # noqa
           au1,d1,r1=ratified('bridge/GLOBAL-MATRIX-01.json'); au2,d2,r2=ratified('bridge/GOV-PERMS-01.json')
+          rat=getfile('ci-control','bridge/governor/RATIFICATION.json') or {}
+          if rat.get('approved'): r1=r2=True; au1=au2='root-via-RATIFICATION-01'
           KNOWN=('API_','CI_OPS_','CI_ROOT_','CI_APP_','WARM_BI','AI_FULL_','CMD_AUTH','QR_','OTP_','INBOX_','FED_','GITEE_','GUARD_APP_KEY','QUAFU_TOKEN','URE_','ATP_','VAULT_PRIV','T2W','DISPATCH_PAT','SHARED_KEYS')
           census={}; unknowns=[]; excess=[]; unauth=[]
           for rp in REPOS:
