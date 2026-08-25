@@ -37,7 +37,23 @@ jobs:
                   x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
               except urllib.error.HTTPError as e: return e.code,{}
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-          mf=json.load(open('bridge/wall-manifest.json'))
+          import base64 as _b64
+          def getc(repo,path):
+              r=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); return json.loads(_b64.b64decode(json.loads(x.read().decode())['content']).decode())
+              except Exception: return None
+          def putc(repo,path,obj,msg):
+              r=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              sha=None
+              try:
+                  x=urllib.request.urlopen(r); sha=json.loads(x.read().decode()).get('sha')
+              except Exception: pass
+              bd={'message':msg,'content':_b64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if sha: bd['sha']=sha
+              rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+              urllib.request.urlopen(rq)
+          mf=getc('ci-control','bridge/governor/wall-manifest.json')
           pid=mf['wall_probe']['id']
           log={'ts':ts,'mode':'report-only(D-068)'}
           s1,_=api('PUT','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/enable')
@@ -63,16 +79,13 @@ jobs:
                     '本守护本轮任务完成,自停;下周期由 root 或 cisvr 手动 workflow_dispatch 重启。')
               api('POST','https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments',{'body':body})
               api('PUT','https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/reset-sentinel.yml/disable')
-              json.dump({'state':'OPEN-REPORTED','ts':ts,'restored':0,'policy':'report-only'},open('bridge/wall-state.json','w'),ensure_ascii=False,indent=1)
+              putc('ci-control','bridge/governor/wall-state.json',{'state':'OPEN-REPORTED','ts':ts,'restored':0,'policy':'report-only'},'wall OPEN-REPORTED')
           else:
               api('PUT','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/disable')
-              json.dump({'state':'CLOSED','ts':ts,'last_probe':log},open('bridge/wall-state.json','w'),ensure_ascii=False,indent=1)
-          with open('bridge/wall-probe-log.jsonl','a') as f: f.write(json.dumps(log,ensure_ascii=False)+chr(10))
+              putc('ci-control','bridge/governor/wall-state.json',{'state':'CLOSED','ts':ts,'last_probe':log},'wall CLOSED')
+          oldlog=getc('ci-control','bridge/governor/wall-probe-log.json') or []
+          oldlog.append(log)
+          putc('ci-control','bridge/governor/wall-probe-log.json',oldlog,'wall-probe log+1')
           print(json.dumps(log,ensure_ascii=False)[:400])
           PYEOF
-      - name: commit state
-        run: |
-          git config user.name reset-sentinel; git config user.email sentinel@local
-          git add bridge/wall-state.json bridge/wall-probe-log.jsonl
-          git commit -m "reset-sentinel: 墙探 $(date -u +%Y%m%d-%H%M) [skip ci]" -q || echo noop
-          git push -q
+      # 公仓零落:产物全进 ci-control(CLASSIFY-01,D-072)
