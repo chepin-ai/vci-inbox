@@ -1,0 +1,79 @@
+name: governor-exec24
+on:
+  schedule:
+    - cron: '29 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: governor-exec24
+  cancel-in-progress: false
+jobs:
+  exec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip install -q pyjwt
+      - name: execute ratified queue (hub key; 24/7 free-lane; administration-class reserved to ci-root lane)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 - <<'PYEOF'
+          import time,json,os,datetime,urllib.request,urllib.error,hashlib,base64
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'governor-exec24'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          def api(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'governor-exec24'})
+              if d is not None: r.data=json.dumps(d).encode()
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          B='https://api.github.com/repos/chepin-ai'
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          def getfile(repo,path):
+              s,d=api('GET',f'{B}/{repo}/contents/{path}')
+              return json.loads(base64.b64decode(d['content']).decode()) if s==200 else None
+          queue=getfile('ci-control','bridge/governor/exec-queue.json') or {'items':[]}
+          rat=getfile('ci-control','bridge/governor/RATIFICATION.json') or {}
+          def root_signed(repo,path):
+              s,d=api('GET',f'{B}/{repo}/commits?path='+path+'&per_page=1')
+              if s==200 and d:
+                  c=d[0]['commit']; return ((c.get('author') or {}).get('name')=='chepin-ai') and ('[D]' in (c.get('message') or ''))
+              return False
+          ok=bool(rat.get('approved')) or root_signed('ci-control','bridge/governor/exec-queue.json')
+          rec={'ts':ts,'ratified':ok,'done':[],'skipped':[]}
+          if ok:
+              for it in queue.get('items',[]):
+                  act=it.get('action'); tgt=it.get('target'); nm=it.get('name')
+                  if it.get('class')=='G_C': rec['skipped'].append({'item':it,'why':'G_C永不自动'}); continue
+                  if act=='delete_secret':
+                      s,_=api('DELETE',f'{B}/{tgt}/actions/secrets/{nm}'); rec['done'].append({'del_secret':tgt+'/'+nm,'res':s})
+                  elif act=='delete_variable':
+                      s,_=api('DELETE',f'{B}/{tgt}/actions/variables/{nm}'); rec['done'].append({'del_var':tgt+'/'+nm,'res':s})
+                  elif act=='disable_workflow':
+                      s1,d1=api('GET',f'{B}/{tgt}/actions/workflows')
+                      wid=[w['id'] for w in d1.get('workflows',[]) if w['path'].endswith(nm)]
+                      if wid:
+                          s,_=api('PUT',f'{B}/{tgt}/actions/workflows/{wid[0]}/disable'); rec['done'].append({'disable':tgt+'/'+nm,'res':s})
+                  else: rec['skipped'].append(it)
+          chain='GENESIS'
+          if os.path.exists('bridge/governor-exec-log.jsonl'):
+              ls=[l for l in open('bridge/governor-exec-log.jsonl').read().strip().split(chr(10)) if l]
+              if ls: chain=json.loads(ls[-1]).get('hash','GENESIS')
+          rec['prev']=chain
+          rec['hash']=hashlib.sha256(json.dumps({k:v for k,v in rec.items() if k!='hash'},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          with open('bridge/governor-exec-log.jsonl','a') as f: f.write(json.dumps(rec,ensure_ascii=False)+chr(10))
+          print(json.dumps(rec,ensure_ascii=False)[:400])
+          PYEOF
+      - name: commit exec log
+        run: |
+          git config user.name governor-exec24; git config user.email governor@local
+          git add bridge/governor-exec-log.jsonl
+          git commit -m "governor-exec24: $(date -u +%Y%m%d-%H%M) [skip ci]" -q || echo noop
+          git push -q
