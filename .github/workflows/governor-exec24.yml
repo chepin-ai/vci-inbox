@@ -62,18 +62,21 @@ jobs:
                       if wid:
                           s,_=api('PUT',f'{B}/{tgt}/actions/workflows/{wid[0]}/disable'); rec['done'].append({'disable':tgt+'/'+nm,'res':s})
                   else: rec['skipped'].append(it)
-          chain='GENESIS'
-          if os.path.exists('bridge/governor-exec-log.jsonl'):
-              ls=[l for l in open('bridge/governor-exec-log.jsonl').read().strip().split(chr(10)) if l]
-              if ls: chain=json.loads(ls[-1]).get('hash','GENESIS')
-          rec['prev']=chain
+          import base64 as _b
+          rec['prev']='GENESIS'
           rec['hash']=hashlib.sha256(json.dumps({k:v for k,v in rec.items() if k!='hash'},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
-          with open('bridge/governor-exec-log.jsonl','a') as f: f.write(json.dumps(rec,ensure_ascii=False)+chr(10))
-          print(json.dumps(rec,ensure_ascii=False)[:400])
+          def putc3(repo,path,obj,msg):
+              rq0=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              sha=None; old=[]
+              try:
+                  x=urllib.request.urlopen(rq0); j=json.loads(x.read().decode()); sha=j.get('sha'); old=json.loads(_b.b64decode(j['content']).decode())
+              except Exception: pass
+              if isinstance(old,list): old.append(obj); obj=old
+              bd={'message':msg,'content':_b.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if sha: bd['sha']=sha
+              rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+              urllib.request.urlopen(rq)
+          putc3('ci-control','bridge/governor/exec24-log.json',rec,'exec24 log+1')
+          print(json.dumps({'ts':ts,'ratified':ok,'done':len(rec['done']),'hash':rec['hash'][:12]},ensure_ascii=False))
           PYEOF
-      - name: commit exec log
-        run: |
-          git config user.name governor-exec24; git config user.email governor@local
-          git add bridge/governor-exec-log.jsonl
-          git commit -m "governor-exec24: $(date -u +%Y%m%d-%H%M) [skip ci]" -q || echo noop
-          git push -q
+      # 公仓零落:执行链全进 ci-control(CLASSIFY-01,D-072)
