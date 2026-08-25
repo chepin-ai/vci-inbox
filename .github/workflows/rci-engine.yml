@@ -54,8 +54,11 @@ jobs:
                   s0,wl0=gh('GET',f'{B}/vci-inbox/actions/workflows?per_page=100')
                   bm0=[w['id'] for w in wl0.get('workflows',[]) if w['path'].endswith('beacon-mint.yml')]
                   if bm0:
-                      gh('POST',f'{B}/vci-inbox/actions/workflows/{bm0[0]}/dispatches',{'ref':'main'})
-                      print('信标过期',int(age),'s,已补拍')
+                      sE,_=gh('PUT',f'{B}/vci-inbox/actions/workflows/{bm0[0]}/enable')
+                      sD,_=gh('POST',f'{B}/vci-inbox/actions/workflows/{bm0[0]}/dispatches',{'ref':'main'})
+                      print('信标过期',int(age),'s,enable=',sE,'dispatch=',sD)
+                      if sD not in (201,204):
+                          gh('POST',f'{B}/vci-inbox/issues/1/comments',{'body':'[rci/FAILOVER] 信标过期%d s且补拍失败(enable=%s,dispatch=%s),候介入'% (int(age),sE,sD)})
           except Exception as e: print('stale-check skip',e)
           s,listing=gh('GET',f'{B}/ci-control/contents/bridge/rci/jobs')
           jobs=[]
