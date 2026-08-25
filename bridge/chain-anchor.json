@@ -1,6 +1,6 @@
 {
  "origin": "ci-os/chain",
- "size": 0,
- "root_sha256": null,
- "ts": "2026-08-25T15:58:46Z"
+ "size": 49,
+ "root_sha256": "1b1cd5468947a77a3ea58c10897d4f6e01f3c585b9af86736715ada4df2df19b",
+ "ts": "2026-08-25T16:03:24Z"
 }
