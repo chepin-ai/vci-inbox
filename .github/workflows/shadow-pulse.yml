@@ -17,17 +17,27 @@ jobs:
       - name: 脉冲
         env:
           LINE: ci-inbox
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 - <<'PYEOF'
           import json, os, urllib.request, datetime, hashlib, base64
+          import subprocess
+          subprocess.run(['pip','install','-q','pyjwt'],check=False)
+          import jwt,time
+          now=int(time.time())
+          tk=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+tk,'Accept':'application/vnd.github+json'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
           line=os.environ['LINE']; ts=datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')
-          UA={'User-Agent':'shadow-pulse','Accept':'application/vnd.github+json'}
+          UA={'User-Agent':'shadow-pulse','Accept':'application/vnd.github+json','Authorization':'token '+IT}
           def get(u):
               req=urllib.request.Request(u,headers=UA)
               try:
                   with urllib.request.urlopen(req,timeout=20) as r: return r.status,r.read()
               except Exception as e: return getattr(e,'code',0),b''
-          s,raw=get('https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/outboxes.json')
+          s,raw=get('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/outboxes.json')
+          if s==200: raw=base64.b64decode(json.loads(raw)['content'])
           rec={'ts':ts,'line':line,'outbox':None,'note':''}
           if s==200:
               url=(json.loads(raw).get('sessions',{}).get(line) or {}).get('url')
