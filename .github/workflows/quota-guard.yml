@@ -89,6 +89,19 @@ jobs:
           putc('ci-control','bridge/quota/log-list.json',oldlog,'quota-guard log+1')
           putc('ci-control','bridge/quota/state.json',st,'quota-guard state')
           print(json.dumps(rec,ensure_ascii=False))
+          # ⑤abc 熔断(已授权 RATIFICATION-02): enforce模式
+          if pct>=90:
+              WL={'wall-probe.yml'}
+              sW,dW=api(f'https://api.github.com/repos/chepin-ai/ci-control/actions/workflows') if False else (None,None)
+              for repo in PRIV:
+                  sW,dW=api(f'https://api.github.com/repos/chepin-ai/{repo}/actions/workflows?per_page=100')
+                  if sW!=200: continue
+                  for w in dW.get('workflows',[]):
+                      if w['state']=='active' and w['path'].split('/')[-1] not in WL:
+                          api2='https://api.github.com/repos/chepin-ai/%s/actions/workflows/%s/disable'%(repo,w['id'])
+                          rQ=urllib.request.Request(api2,method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+                          try: urllib.request.urlopen(rQ); print('⑤a熔断:',repo,w['path'])
+                          except Exception as e: print('熔断fail',repo,e)
           if pct>=70:
               sev='CRITICAL' if pct>=90 else 'WARN'
               import urllib.request as u2
