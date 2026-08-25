@@ -144,6 +144,85 @@ jobs:
               body='[governor-sense] '+ts+' verdict='+attest['verdict']+' diffs='+json.dumps(rec['counts'],ensure_ascii=False)+' mode='+rec['mode']
               api('POST',f'{B}/vci-inbox/issues/1/comments',{'body':body})
           PYEOF
+      - name: solver-tick (U4动态矩阵+决策链; U1 checkpoint; U3环引kernel)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          pip -q install pyjwt
+          python3 - <<'PYEOF'
+          import time,json,os,datetime,urllib.request,urllib.error,hashlib,base64
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'solver-tick'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def getc(repo,path):
+              r=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); j=json.loads(x.read().decode()); return json.loads(base64.b64decode(j['content']).decode())
+              except Exception: return None
+          def putc(repo,path,obj,msg):
+              rq0=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              sha=None
+              try:
+                  x=urllib.request.urlopen(rq0); sha=json.loads(x.read().decode()).get('sha')
+              except Exception: pass
+              bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if sha: bd['sha']=sha
+              rq=urllib.request.Request(f'{B}/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+              urllib.request.urlopen(rq)
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          census=getc('ci-control','bridge/governor/census-latest.json')
+          if not census: print('no census yet'); raise SystemExit(0)
+          pol=getc('ci-control','bridge/policies.yaml') or {}
+          KNOWN=("API_","CI_OPS_","CI_ROOT_","CI_APP_","WARM_BI","AI_FULL_","CMD_AUTH","QR_","OTP_","INBOX_","FED_","GITEE_","GUARD_APP_KEY","QUAFU_TOKEN","URE_","ATP_","VAULT_PRIV","T2W","DISPATCH_PAT","SHARED_KEYS","LOBBY")
+          ferry=set(pol.get('ferry_allow',['vci-inbox'])) if isinstance(pol,dict) else {'vci-inbox'}
+          desired={}
+          for repo,st in census.items():
+              pub=repo.startswith('vci-') or repo.startswith('ci-worker') or repo=='ci-yard'
+              keep=[];remove=[];flag=[]
+              for s in st.get('secrets',[]):
+                  if not s.startswith(KNOWN): flag.append({'secret':s,'rule':'R7'})
+                  if s=='CI_OPS_HUB_KEY' and pub and repo not in ferry: remove.append({'secret':s,'rule':'R6/R3'})
+                  elif s in ('AI_FULL_PAT','CI_OPS_APP_KEY'): remove.append({'secret':s,'rule':'R4/R2'})
+                  elif s=='CMD_AUTH' and pub: flag.append({'secret':s,'rule':'F-11候裁'})
+                  else: keep.append(s)
+              for v in st.get('variables',[]):
+                  if v=='CI_OPS_APP_ID': remove.append({'variable':v,'rule':'R4'})
+              wv=[{'wf':w['path'],'rule':'R5'} for w in st.get('workflows',[]) if (not pub) and w['state']=='active' and w['path']!='wall-probe.yml']
+              desired[repo]={'keep':keep,'remove':remove,'flag':flag,'wf_violations':wv}
+          cen_h=hashlib.sha256(json.dumps(census,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          pol_h=hashlib.sha256(json.dumps(pol,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          # U3 环引: 取kernel最新report hash
+          krep=getc('vci-inbox','kernel-report.json') or {}
+          k_h=hashlib.sha256(json.dumps(krep,sort_keys=True,ensure_ascii=False).encode()).hexdigest() if krep else None
+          mat={'provenance':{'solver':'MATRIX-SOLVER-01 v1.1(tick内嵌)','ts':ts,'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_report_sha256':k_h},'desired':desired}
+          putc('ci-control','bridge/MATRIX-SOLVED-01.json',mat,'[D] matrix tick '+ts)
+          # U4 决策链
+          dlog=getc('ci-control','bridge/governor/decision-log.json') or []
+          prev=dlog[-1]['hash'] if dlog else 'GENESIS'
+          nrem=sum(len(v['remove']) for v in desired.values()); nwv=sum(len(v['wf_violations']) for v in desired.values())
+          drec={'ts':ts,'decision_id':'dec-'+str(len(dlog)+1),'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_sha256':k_h,
+                'diff':{'remove':nrem,'wf_violations':nwv},'prev':prev}
+          drec['hash']=hashlib.sha256(json.dumps(drec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          dlog.append(drec); putc('ci-control','bridge/governor/decision-log.json',dlog,'decision '+drec['decision_id'])
+          # U1 checkpoint(三行制: origin+size+root+签名)
+          chain=getc('vci-inbox','disc/CHAIN.jsonl')
+          size=len(chain) if isinstance(chain,list) else 0
+          root_h=hashlib.sha256(json.dumps(chain,sort_keys=True,ensure_ascii=False).encode()).hexdigest() if chain else None
+          import cryptography.hazmat.primitives.serialization as ser
+          from cryptography.hazmat.primitives import hashes
+          from cryptography.hazmat.primitives.asymmetric import padding
+          key=ser.load_pem_private_key(os.environ['HUB_KEY'].encode(),password=None)
+          msg=f"ci-os/chain\n{size}\n{root_h}\n".encode()
+          sig=base64.b64encode(key.sign(msg,padding.PKCS1v15(),hashes.SHA256())).decode()
+          cp={'origin':'ci-os/chain','size':size,'root_sha256':root_h,'ts':ts,'signer':'chepin-ci-ops-hub','sig_b64':sig,'witnesses':['kernel(K7 verify)','sentinel(候U5)']}
+          putc('ci-control','bridge/chain/checkpoint-latest.json',cp,'checkpoint size%s'%size)
+          putc('vci-inbox','bridge/chain-anchor.json',{'origin':'ci-os/chain','size':size,'root_sha256':root_h,'ts':ts},'chain anchor size%s'%size)
+          print(json.dumps({'dec':drec['decision_id'],'remove':nrem,'wfv':nwv,'cp_size':size},ensure_ascii=False))
+          PYEOF
       - name: commit governor state
         run: |
           git config user.name governor-sense; git config user.email governor@local
