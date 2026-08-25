@@ -164,15 +164,20 @@ jobs:
                   x=urllib.request.urlopen(r); j=json.loads(x.read().decode()); return json.loads(base64.b64decode(j['content']).decode())
               except Exception: return None
           def putc(repo,path,obj,msg):
-              rq0=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
-              sha=None
-              try:
-                  x=urllib.request.urlopen(rq0); sha=json.loads(x.read().decode()).get('sha')
-              except Exception: pass
-              bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
-              if sha: bd['sha']=sha
-              rq=urllib.request.Request(f'{B}/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
-              urllib.request.urlopen(rq)
+              for _try in range(3):
+                  rq0=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+                  sha=None
+                  try:
+                      x=urllib.request.urlopen(rq0); sha=json.loads(x.read().decode()).get('sha')
+                  except Exception: pass
+                  bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+                  if sha: bd['sha']=sha
+                  rq=urllib.request.Request(f'{B}/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+                  try:
+                      urllib.request.urlopen(rq); return
+                  except urllib.error.HTTPError as e:
+                      if e.code==409 and _try<2: time.sleep(3+_try*3); continue
+                      raise
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
           census=getc('ci-control','bridge/governor/census-latest.json')
           if not census: print('no census yet'); raise SystemExit(0)
