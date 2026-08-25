@@ -85,6 +85,8 @@ jobs:
                   if data is not None:
                       putc(p.get('dst_repo'),p.get('dst_path'),data,'rci file-copy '+job['id'])
                       out={'copied':True}
+                  else:
+                      out={'error':'src-missing','src':p.get('src_repo')+'/'+p.get('src_path')}
               else:
                   out={'skipped':'unknown op'}
               rec={'ts':ts,'job':job.get('id'),'type':typ,'beacon_seq':bseq,'challenge':challenge,'out':out,'prev':prev}
