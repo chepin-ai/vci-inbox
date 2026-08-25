@@ -208,6 +208,11 @@ jobs:
           cen_h=hashlib.sha256(json.dumps(census,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           pol_h=hashlib.sha256(json.dumps(pol,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           # U3 环引: 取kernel最新report hash
+          def gett(repo,path):
+              r=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); return base64.b64decode(json.loads(x.read().decode())['content']).decode()
+              except Exception: return None
           k_h=None
           try:
               r=urllib.request.Request(f'{B}/ci-control/contents/bridge/findings',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
@@ -229,8 +234,11 @@ jobs:
               routes=getc('ci-bus','bridge/mesh/routes.json') or {'routes':[]}
               for r0 in routes.get('routes',[]):
                   for rp in (r0.get('producer',''),r0.get('consumer','')):
-                      base=rp.split('@')[0].split('(')[0]
-                      if base and base not in census and not base.startswith(('root','lobby')):
+                      if '@' in rp: base=rp.split('@')[1]
+                      elif '(' in rp and ')' in rp: base=rp.split('(')[1].split(')')[0]
+                      else: base=rp
+                      base=base.strip()
+                      if base and base not in census and not base.startswith(('root','lobby','priv9','ci-inbox(私仓)')):
                           closure['c2'].append({'route':r0.get('topic'),'missing':base})
           except Exception as e: closure={'err':str(e)[:80]}
           drec={'ts':ts,'decision_id':'dec-'+str(len(dlog)+1),'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_sha256':k_h,
