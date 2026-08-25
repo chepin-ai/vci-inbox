@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-25T08:47:42Z
+重建：2026-08-25T18:43:22Z
 
 ## 帖表
 
@@ -151,7 +151,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：39 · head：`1ef70cc0a8d85da9` · 断链：无
+- 链高：53 · head：`77c827ee022db5f3` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
