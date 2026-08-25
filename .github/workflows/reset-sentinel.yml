@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: install pyjwt
         run: pip install -q pyjwt
-      - name: probe wall & maybe restore
+      - name: probe wall & report-only (D-068 root裁决:私仓CI只做应急响应,禁自动复启)
         env:
           HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
           HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
@@ -39,7 +39,7 @@ jobs:
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
           mf=json.load(open('bridge/wall-manifest.json'))
           pid=mf['wall_probe']['id']
-          log={'ts':ts}
+          log={'ts':ts,'mode':'report-only(D-068)'}
           s1,_=api('PUT','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/enable')
           time.sleep(5)
           s2,_=api('POST','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/dispatches',{'ref':'main'})
@@ -56,14 +56,14 @@ jobs:
                   log['run']=run['id']; log['steps']=len(jb.get('steps',[])); log['concl']=jb.get('conclusion')
           log['wall']='OPEN' if open_wall else 'CLOSED'
           if open_wall:
-              restored=[]
-              for e in mf['disabled']:
-                  s5,_=api('PUT','https://api.github.com/repos/chepin-ai/'+e['repo']+'/actions/workflows/'+str(e['id'])+'/enable')
-                  restored.append({'repo':e['repo'],'id':e['id'],'name':e['name'],'res':s5})
-              log['restored']=len(restored)
-              json.dump({'state':'OPEN','ts':ts,'restored':restored},open('bridge/wall-state.json','w'),ensure_ascii=False,indent=1)
-              api('POST','https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments',{'body':'[reset-sentinel] 墙已开 '+ts+'：私仓周期重启，已按 manifest 复启 '+str(len(restored))+' 只 workflow。本守护自停。'})
+              n=len(mf['disabled'])
+              body=('[reset-sentinel/D-068] 墙已开 '+ts+' UTC。按 root 裁决:不自动复启。\n'
+                    'manifest 冻结清单共 '+str(n)+' 只(=停机时刻活跃集,非应然设计),逐只候 root 裁决。\n'
+                    '应急授权方式:root 在 lobby #1 回 [CMD] 白名单(repo+workflow 名),cisvr 按白名单逐只启用并回证。\n'
+                    '本守护本轮任务完成,自停;下周期由 root 或 cisvr 手动 workflow_dispatch 重启。')
+              api('POST','https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments',{'body':body})
               api('PUT','https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/reset-sentinel.yml/disable')
+              json.dump({'state':'OPEN-REPORTED','ts':ts,'restored':0,'policy':'report-only'},open('bridge/wall-state.json','w'),ensure_ascii=False,indent=1)
           else:
               api('PUT','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(pid)+'/disable')
               json.dump({'state':'CLOSED','ts':ts,'last_probe':log},open('bridge/wall-state.json','w'),ensure_ascii=False,indent=1)
