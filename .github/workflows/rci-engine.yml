@@ -46,6 +46,17 @@ jobs:
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
           beacon=getc('ci-control','bridge/beacon/BEACON.json') or {}
           bseq=beacon.get('seq',0); bqr=beacon.get('qrand','')
+          # 信标过期自愈:>40min未铸→dispatch beacon-mint补拍(不信cron)
+          try:
+              bt=datetime.datetime.fromisoformat(beacon.get('ts','2000-01-01T00:00:00Z').replace('Z','+00:00'))
+              age=(datetime.datetime.now(datetime.timezone.utc)-bt).total_seconds()
+              if age>2400:
+                  s0,wl0=gh('GET',f'{B}/vci-inbox/actions/workflows?per_page=100')
+                  bm0=[w['id'] for w in wl0.get('workflows',[]) if w['path'].endswith('beacon-mint.yml')]
+                  if bm0:
+                      gh('POST',f'{B}/vci-inbox/actions/workflows/{bm0[0]}/dispatches',{'ref':'main'})
+                      print('信标过期',int(age),'s,已补拍')
+          except Exception as e: print('stale-check skip',e)
           s,listing=gh('GET',f'{B}/ci-control/contents/bridge/rci/jobs')
           jobs=[]
           if s==200:
