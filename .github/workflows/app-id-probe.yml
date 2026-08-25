@@ -1,0 +1,45 @@
+name: app-id-probe
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pip install -q pyjwt
+      - name: probe
+        env:
+          K_LINE: ${{ secrets.CI_OPS_LINE_KEY }}
+          I_LINE: ${{ vars.CI_OPS_LINE_ID }}
+          K_HUB: ${{ secrets.CI_OPS_HUB_KEY }}
+          I_HUB: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 - <<'PYEOF'
+          import json,os,time,urllib.request,urllib.error
+          import jwt
+          def mint(k,i):
+              now=int(time.time()); return jwt.encode({"iat":now-90,"exp":now+540,"iss":str(i)},k,algorithm="RS256")
+          def call(t,u):
+              r=urllib.request.Request(u,headers={"Authorization":"Bearer "+t,"Accept":"application/vnd.github+json","User-Agent":"probe"})
+              try:
+                  x=urllib.request.urlopen(r,timeout=20); return x.status,json.loads(x.read().decode())
+              except urllib.error.HTTPError as e: return e.code,{}
+              except Exception: return -1,{}
+          k=os.environ.get("K_LINE",""); i=os.environ.get("I_LINE","")
+          if k and i:
+              t=mint(k,i)
+              s,b=call(t,"https://api.github.com/app")
+              print("PROBE[LINE] /app",s,b.get("slug"),b.get("id"),json.dumps(b.get("permissions",{})))
+              s2,b2=call(t,"https://api.github.com/app/installations")
+              print("PROBE[LINE] installations",s2,[(x["id"],x["account"]["login"],x["repository_selection"]) for x in b2] if s2==200 else b2)
+          else:
+              print("PROBE[LINE] MISSING env")
+          k=os.environ.get("K_HUB",""); i=os.environ.get("I_HUB","")
+          if k and i:
+              t=mint(k,i)
+              s,b=call(t,"https://api.github.com/app")
+              print("PROBE[HUB] /app",s,b.get("slug"),b.get("id"),json.dumps(b.get("permissions",{})))
+              s2,b2=call(t,"https://api.github.com/app/installations")
+              print("PROBE[HUB] installations",s2,[(x["id"],x["account"]["login"],x["repository_selection"]) for x in b2] if s2==200 else b2)
+          else:
+              print("PROBE[HUB] MISSING env")
+          PYEOF
