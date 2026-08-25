@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-25T18:07:24Z",
+ "ts": "2026-08-25T19:16:58Z",
  "matrix_sha256": "297d6110f7e89e64c187886f64f63833bcfe786be941835229f1e4d7b9fc4fed",
  "census_sha256": "3d48fea8a92648e7dff584ded224597c0ffc74aff9dde38161c603b76c379ebf",
  "verdict": "ATTENTION",
@@ -20,5 +20,5 @@
   }
  },
  "mode": "ratified-enforce",
- "chain_head": "1db1921cd2ea4fb1ae5717e9a42229895e4e97a8b048f9c73c794bcf06474b78"
+ "chain_head": "d421a20eea79c4046b8157aee96649ecaefb956f5dafba96f1b2b990479fd40b"
 }
