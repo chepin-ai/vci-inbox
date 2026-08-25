@@ -186,11 +186,11 @@ jobs:
               for s in st.get('secrets',[]):
                   if not s.startswith(KNOWN): flag.append({'secret':s,'rule':'R7'})
                   if s=='CI_OPS_HUB_KEY' and pub and repo not in ferry: remove.append({'secret':s,'rule':'R6/R3'})
-                  elif s in ('AI_FULL_PAT','CI_OPS_APP_KEY'): remove.append({'secret':s,'rule':'R4/R2'})
-                  elif s=='CMD_AUTH' and pub: flag.append({'secret':s,'rule':'F-11候裁'})
+                  elif s in ('AI_FULL_PAT','CI_OPS_APP_KEY','AI_FULL_APP_KEY'): remove.append({'secret':s,'rule':'R4/R2/R8'})
+                  elif s=='CMD_AUTH' and pub and repo not in (pol.get('allows',{}).get('cmd_auth_keep',{}) if isinstance(pol,dict) else {}): flag.append({'secret':s,'rule':'F-11'})
                   else: keep.append(s)
               for v in st.get('variables',[]):
-                  if v=='CI_OPS_APP_ID': remove.append({'variable':v,'rule':'R4'})
+                  if v in ('CI_OPS_APP_ID','AI_FULL_APP_ID'): remove.append({'variable':v,'rule':'R4/R8'})
               wv=[{'wf':w['path'],'rule':'R5'} for w in st.get('workflows',[]) if (not pub) and w['state']=='active' and w['path']!='wall-probe.yml']
               desired[repo]={'keep':keep,'remove':remove,'flag':flag,'wf_violations':wv}
           cen_h=hashlib.sha256(json.dumps(census,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
