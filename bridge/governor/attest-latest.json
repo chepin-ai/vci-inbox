@@ -1,7 +1,7 @@
 {
- "ts": "2026-08-25T20:18:43Z",
+ "ts": "2026-08-25T20:33:09Z",
  "matrix_sha256": "297d6110f7e89e64c187886f64f63833bcfe786be941835229f1e4d7b9fc4fed",
- "census_sha256": "3f460f78ded82d24121749d242f3cd2bb02cd75c9cec5dd072926fcd9bb3b1eb",
+ "census_sha256": "8e0a265ac39d62a325ff55e82aec97e4d20f2974c0b1088fac5cae6bf9c7fa05",
  "verdict": "ATTENTION",
  "diffs": {
   "unknown": 4,
@@ -20,5 +20,5 @@
   }
  },
  "mode": "ratified-enforce",
- "chain_head": "f85fe3639f9c2aec24f8fd69af93cd80aeecae1fcfe1c520fe2e247cfb161c8b"
+ "chain_head": "08a2f58ec0ec0a510841728e216dc31a323d3f9e98a47e39d3fbed1432813c0a"
 }
