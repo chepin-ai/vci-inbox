@@ -1,23 +1,23 @@
 {
- "ts": "2026-08-25T02:40:49Z",
+ "ts": "2026-08-25T03:23:10Z",
  "matrix_sha256": "297d6110f7e89e64c187886f64f63833bcfe786be941835229f1e4d7b9fc4fed",
- "census_sha256": "2e8d3af0cf570cb6d299f68789466bb9746be41e68209f31ca743ae2829d53b4",
- "verdict": "PASS",
+ "census_sha256": "96c5c7813c0702791d7495f9d8ed69e2bc2a4e0688093b0c65a2f1b6d1826cd7",
+ "verdict": "ATTENTION",
  "diffs": {
   "unknown": 0,
-  "excess": 24,
-  "unauth_active": 0
+  "excess": 1,
+  "unauth_active": 1
  },
  "self_check": {
   "GLOBAL-MATRIX-01": {
-   "author": "chepin-ci-ops-hub[bot]",
-   "ok": false
+   "author": "root-via-RATIFICATION-01",
+   "ok": true
   },
   "GOV-PERMS-01": {
-   "author": "chepin-ci-ops-hub[bot]",
-   "ok": false
+   "author": "root-via-RATIFICATION-01",
+   "ok": true
   }
  },
- "mode": "report-only(matrix待root批准)",
- "chain_head": "8cd21c46524f68693791ff547f6ed4a6b9270d0e5d7219b73c75ab0aaffbfe5f"
+ "mode": "ratified-enforce",
+ "chain_head": "d38af87a7c530c73becc4137f944fc155ee7237942150ef8c4d289994e9efa73"
 }

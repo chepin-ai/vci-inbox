@@ -2,7 +2,6 @@
  "ci-control": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "CI_APP_KEY",
    "CI_OPS_HUB_KEY",
    "CI_OPS_LINE_ID",
@@ -35,6 +34,10 @@
    "WARM_BI_APP_ID"
   ],
   "workflows": [
+   {
+    "path": "oblig-monitor.yml",
+    "state": "active"
+   },
    {
     "path": "discover-and-dispatch.yml",
     "state": "disabled_manually"
@@ -260,7 +263,6 @@
  "ci-control-backup": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "API_DEEPSEEK_KEY_1",
    "API_KIMI_KEY_1",
    "API_LONGCAT_KEY_1",
@@ -284,7 +286,6 @@
    "API_LONGCAT_KEY_8",
    "API_LONGCAT_KEY_9",
    "CI_APP_KEY",
-   "CI_OPS_APP_KEY",
    "CMD_AUTH",
    "DISPATCH_PAT",
    "INBOX_PRIVATE_KEY",
@@ -293,7 +294,6 @@
   "variables": [
    "AI_FULL_APP_ID",
    "CI_APP_ID",
-   "CI_OPS_APP_ID",
    "OTP_EMAIL1",
    "OTP_EMAIL2",
    "OTP_PHONE"
@@ -356,7 +356,6 @@
  "ci-library": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "API_DEEPSEEK_KEY_1",
    "API_DEEPSEEK_KEY_2",
    "API_DEEPSEEK_KEY_3",
@@ -372,12 +371,10 @@
    "API_KIMI_KEY_2",
    "API_KIMI_KEY_3",
    "API_LONGCAT_KEY",
-   "API_LONGCAT_KEY_1",
-   "CI_OPS_APP_KEY"
+   "API_LONGCAT_KEY_1"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -403,12 +400,10 @@
    "API_KIMI_KEY_2",
    "API_KIMI_KEY_3",
    "API_LONGCAT_KEY",
-   "API_LONGCAT_KEY_1",
-   "CI_OPS_APP_KEY"
+   "API_LONGCAT_KEY_1"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -420,7 +415,6 @@
  "ci-inbox": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "API_DEEPSEEK_KEY_1",
    "API_DEEPSEEK_KEY_2",
    "API_DEEPSEEK_KEY_3",
@@ -437,14 +431,12 @@
    "API_KIMI_KEY_3",
    "API_LONGCAT_KEY",
    "API_LONGCAT_KEY_1",
-   "CI_OPS_APP_KEY",
    "OTP_EMAIL1",
    "OTP_EMAIL2",
    "OTP_PHONE"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -476,7 +468,6 @@
  "ci-bus": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "API_DEEPSEEK_KEY_1",
    "API_DEEPSEEK_KEY_2",
    "API_DEEPSEEK_KEY_3",
@@ -489,14 +480,12 @@
    "API_KIMI_KEY_2",
    "API_KIMI_KEY_3",
    "API_LONGCAT_KEY_1",
-   "CI_OPS_APP_KEY",
    "OTP_EMAIL1",
    "OTP_EMAIL2",
    "OTP_PHONE"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -524,7 +513,6 @@
  "ci-playground": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "API_DEEPSEEK_KEY_1",
    "API_DEEPSEEK_KEY_2",
    "API_DEEPSEEK_KEY_3",
@@ -537,14 +525,12 @@
    "API_KIMI_KEY_2",
    "API_KIMI_KEY_3",
    "API_LONGCAT_KEY_1",
-   "CI_OPS_APP_KEY",
    "OTP_EMAIL1",
    "OTP_EMAIL2",
    "OTP_PHONE"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -568,7 +554,6 @@
  "ci-build": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "API_DEEPSEEK_KEY_1",
    "API_DEEPSEEK_KEY_2",
    "API_DEEPSEEK_KEY_3",
@@ -581,14 +566,12 @@
    "API_KIMI_KEY_2",
    "API_KIMI_KEY_3",
    "API_LONGCAT_KEY_1",
-   "CI_OPS_APP_KEY",
    "OTP_EMAIL1",
    "OTP_EMAIL2",
    "OTP_PHONE"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -608,7 +591,6 @@
  "qlv-lab": {
   "secrets": [
    "AI_FULL_APP_KEY",
-   "AI_FULL_PAT",
    "API_DEEPSEEK_KEY_1",
    "API_DEEPSEEK_KEY_2",
    "API_DEEPSEEK_KEY_3",
@@ -712,6 +694,10 @@
     "state": "active"
    },
    {
+    "path": "governor-exec24.yml",
+    "state": "active"
+   },
+   {
     "path": "governor-sense.yml",
     "state": "active"
    },
@@ -747,14 +733,11 @@
  },
  "vci-cfts": {
   "secrets": [
-   "CI_OPS_APP_ID",
-   "CI_OPS_APP_KEY",
    "CMD_AUTH",
    "QUAFU_TOKEN"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -789,8 +772,7 @@
  },
  "vci-library": {
   "secrets": [
-   "CI_OPS_APP_KEY",
-   "CI_OPS_HUB_KEY"
+   "CI_OPS_APP_KEY"
   ],
   "variables": [
    "AI_FULL_APP_ID",
@@ -812,13 +794,9 @@
   ]
  },
  "vci-logs": {
-  "secrets": [
-   "CI_OPS_APP_ID",
-   "CI_OPS_APP_KEY"
-  ],
+  "secrets": [],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -884,14 +862,11 @@
  },
  "vci-qgl": {
   "secrets": [
-   "CI_OPS_APP_ID",
-   "CI_OPS_APP_KEY",
    "CMD_AUTH",
    "QUAFU_TOKEN"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -965,9 +940,6 @@
  },
  "vci-usrm": {
   "secrets": [
-   "AI_FULL_PAT",
-   "CI_OPS_APP_ID",
-   "CI_OPS_APP_KEY",
    "CMD_AUTH",
    "OTP_EMAIL1",
    "OTP_EMAIL2",
@@ -978,8 +950,7 @@
    "URE_INSTALLATION_ID"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -1028,20 +999,17 @@
    },
    {
     "path": "zkp-pat-check.yml",
-    "state": "active"
+    "state": "disabled_manually"
    }
   ]
  },
  "vci-vinf": {
   "secrets": [
-   "CI_OPS_APP_ID",
-   "CI_OPS_APP_KEY",
    "CMD_AUTH",
    "QUAFU_TOKEN"
   ],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
@@ -1075,12 +1043,9 @@
   ]
  },
  "ci-yard": {
-  "secrets": [
-   "CI_OPS_APP_KEY"
-  ],
+  "secrets": [],
   "variables": [
-   "AI_FULL_APP_ID",
-   "CI_OPS_APP_ID"
+   "AI_FULL_APP_ID"
   ],
   "workflows": [
    {
