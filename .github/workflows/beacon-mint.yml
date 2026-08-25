@@ -1,0 +1,69 @@
+name: beacon-mint
+on:
+  schedule:
+    - cron: '*/31 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: beacon-mint
+  cancel-in-progress: false
+jobs:
+  mint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip install -q pyjwt
+      - name: mint QRNG-CLOCK beacon (内源优先,外源调味;degraded≠断供)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 - <<'PYEOF'
+          import time,json,os,datetime,urllib.request,urllib.error,hashlib,base64,secrets
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'beacon-mint'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def getc(repo,path):
+              r=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); return json.loads(base64.b64decode(json.loads(x.read().decode())['content']).decode()),json.loads(x.read().decode()) if False else (json.loads(base64.b64decode(json.loads(x.read().decode())['content']).decode()))
+              except Exception: return None
+          def putc(repo,path,obj,msg):
+              rq0=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              sha=None
+              try:
+                  x=urllib.request.urlopen(rq0); sha=json.loads(x.read().decode()).get('sha')
+              except Exception: pass
+              bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if sha: bd['sha']=sha
+              rq=urllib.request.Request(f'{B}/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+              urllib.request.urlopen(rq)
+          def fetch(u,tm=6):
+              try:
+                  x=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'beacon'}),timeout=tm)
+                  return x.read().decode()[:2000]
+              except Exception: return None
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          prev=getc('ci-control','bridge/beacon/BEACON.json') or {'seq':0,'hash':'GENESIS'}
+          # 外源调味(可断)
+          drand=fetch('https://api.drand.sh/public/latest')
+          nist=fetch('https://beacon.nist.gov/beacon/2.0/pulse/last')
+          anu=fetch('https://qrng.anu.edu.au/API/jsonI.php?length=2&type=hex16')
+          # 内源(不可断):urandom+prev链+高分辨时间
+          internal=secrets.token_hex(32)
+          ext_ok=[n for n,v in [('drand',drand),('nist',nist),('anu',anu)] if v]
+          mode='full' if len(ext_ok)>=2 else ('degraded' if ext_ok else 'internal-only')
+          mix=hashlib.sha256((internal+str(drand)+str(nist)+str(anu)+prev.get('hash','')).encode()).hexdigest()
+          rec={'seq':prev.get('seq',0)+1,'ts':ts,'mode':mode,'ext_ok':ext_ok,
+               'qrand':mix,'prev':prev.get('hash','GENESIS')}
+          rec['hash']=hashlib.sha256(json.dumps(rec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          putc('ci-control','bridge/beacon/BEACON.json',rec,'beacon seq%s'%rec['seq'])
+          putc('vci-inbox','bridge/beacon-anchor.json',{'seq':rec['seq'],'ts':ts,'mode':mode,'sha256':rec['hash']},'beacon anchor seq%s'%rec['seq'])
+          print(json.dumps({'seq':rec['seq'],'mode':mode,'ext_ok':ext_ok,'hash':rec['hash'][:12]}))
+          PYEOF
