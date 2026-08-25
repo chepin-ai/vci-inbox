@@ -1,0 +1,84 @@
+name: rci-engine
+on:
+  schedule:
+    - cron: '*/17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rci-engine
+  cancel-in-progress: false
+jobs:
+  run-jobs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip install -q pyjwt
+      - name: consume job cards (信标驱动参数化引擎;白名单op;Fiat-Shamir回执)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 - <<'PYEOF'
+          import time,json,os,datetime,urllib.request,urllib.error,hashlib,base64
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'rci-engine'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def gh(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          def getc(repo,path):
+              s,j=gh('GET',f'{B}/{repo}/contents/{path}')
+              return json.loads(base64.b64decode(j['content']).decode()) if s==200 else None
+          def putc(repo,path,obj,msg):
+              s,j=gh('GET',f'{B}/{repo}/contents/{path}')
+              bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if s==200: bd['sha']=j['sha']
+              gh('PUT',f'{B}/{repo}/contents/{path}',bd)
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          beacon=getc('ci-control','bridge/beacon/BEACON.json') or {}
+          bseq=beacon.get('seq',0); bqr=beacon.get('qrand','')
+          s,listing=gh('GET',f'{B}/ci-control/contents/bridge/rci/jobs')
+          jobs=[]
+          if s==200:
+              for f in listing:
+                  if f['name'].endswith('.json'):
+                      j=getc('ci-control','bridge/rci/jobs/'+f['name'])
+                      if j and j.get('enabled',True): jobs.append(j)
+          receipts=getc('ci-control','bridge/rci/receipts.json') or []
+          prev=receipts[-1]['hash'] if receipts else 'GENESIS'
+          ran=[]
+          for job in jobs:
+              if bseq < job.get('beacon_gte',0): continue
+              jh=hashlib.sha256(json.dumps(job,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+              challenge=hashlib.sha256((bqr+jh).encode()).hexdigest()[:16]
+              typ=job.get('type'); out=None
+              if typ=='beacon-echo':
+                  out={'echo_seq':bseq,'mode':beacon.get('mode')}
+              elif typ=='census-freshness':
+                  cen=getc('ci-control','bridge/governor/census-latest.json')
+                  out={'census_repos':len(cen) if cen else 0}
+              elif typ=='lobby-note':
+                  gh('POST',f'{B}/vci-inbox/issues/1/comments',{'body':job.get('params',{}).get('body','')+' [rci seq%d]'%bseq})
+                  out={'posted':True}
+              elif typ=='file-copy':
+                  p=job.get('params',{}); data=getc(p.get('src_repo'),p.get('src_path'))
+                  if data is not None:
+                      putc(p.get('dst_repo'),p.get('dst_path'),data,'rci file-copy '+job['id'])
+                      out={'copied':True}
+              else:
+                  out={'skipped':'unknown op'}
+              rec={'ts':ts,'job':job.get('id'),'type':typ,'beacon_seq':bseq,'challenge':challenge,'out':out,'prev':prev}
+              rec['hash']=hashlib.sha256(json.dumps(rec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+              receipts.append(rec); prev=rec['hash']; ran.append(job.get('id'))
+          if ran: putc('ci-control','bridge/rci/receipts.json',receipts,'rci receipts +'+str(len(ran)))
+          print(json.dumps({'bseq':bseq,'ran':ran},ensure_ascii=False))
+          PYEOF
