@@ -213,8 +213,11 @@ jobs:
               r=urllib.request.Request(f'{B}/ci-control/contents/bridge/findings',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
               fl=json.loads(urllib.request.urlopen(r).read().decode())
               kn=[f['name'] for f in fl if f['name'].startswith('kernel-')]
-              if kn: k_h=hashlib.sha256((gett('ci-control','bridge/findings/'+sorted(kn)[-1]) or '').encode()).hexdigest()
-          except Exception: pass
+              if kn:
+                  kf=gett('ci-control','bridge/findings/'+sorted(kn)[-1])
+                  print('kernel finding file:',sorted(kn)[-1],'fetched:',bool(kf))
+                  k_h=hashlib.sha256((kf or '').encode()).hexdigest()
+          except Exception as e: print('ring-ref err:',e)
           mat={'provenance':{'solver':'MATRIX-SOLVER-01 v1.1(tick内嵌)','ts':ts,'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_report_sha256':k_h},'desired':desired}
           putc('ci-control','bridge/MATRIX-SOLVED-01.json',mat,'[D] matrix tick '+ts)
           # U4 决策链
