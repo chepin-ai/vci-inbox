@@ -35,10 +35,6 @@
   ],
   "workflows": [
    {
-    "path": "oblig-monitor.yml",
-    "state": "active"
-   },
-   {
     "path": "discover-and-dispatch.yml",
     "state": "disabled_manually"
    },
@@ -256,6 +252,10 @@
    },
    {
     "path": "wall-probe.yml",
+    "state": "disabled_manually"
+   },
+   {
+    "path": "oblig-monitor.yml",
     "state": "disabled_manually"
    }
   ]
@@ -855,6 +855,10 @@
     "state": "active"
    },
    {
+    "path": "tn4l-smoke.yml",
+    "state": "active"
+   },
+   {
     "path": "watchdog.yml",
     "state": "disabled_manually"
    }
@@ -964,6 +968,10 @@
    {
     "path": "line-producer.yml",
     "state": "disabled_manually"
+   },
+   {
+    "path": "oblig-monitor.yml",
+    "state": "active"
    },
    {
     "path": "otp-gate.yml",
