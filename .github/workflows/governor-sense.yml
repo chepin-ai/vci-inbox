@@ -176,7 +176,14 @@ jobs:
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
           census=getc('ci-control','bridge/governor/census-latest.json')
           if not census: print('no census yet'); raise SystemExit(0)
-          pol=getc('ci-control','bridge/policies.yaml') or {}
+          import yaml as _y
+          _pt=getc_raw if False else None
+          def gety(repo,path):
+              r=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); return _y.safe_load(base64.b64decode(json.loads(x.read().decode())['content']).decode())
+              except Exception: return None
+          pol=gety('ci-control','bridge/policies.yaml') or {}
           KNOWN=("API_","CI_OPS_","CI_ROOT_","CI_APP_","WARM_BI","AI_FULL_","CMD_AUTH","QR_","OTP_","INBOX_","FED_","GITEE_","GUARD_APP_KEY","QUAFU_TOKEN","URE_","ATP_","VAULT_PRIV","T2W","DISPATCH_PAT","SHARED_KEYS","LOBBY")
           ferry=set(pol.get('ferry_allow',['vci-inbox'])) if isinstance(pol,dict) else {'vci-inbox'}
           desired={}
@@ -275,4 +282,4 @@ jobs:
           git config user.name governor-sense; git config user.email governor@local
           git add bridge/governor/attest-latest.json bridge/chain-anchor.json
           git commit -m "governor-sense: $(date -u +%Y%m%d-%H%M) tick [skip ci]" -q || echo noop
-          git push -q
+          ok=0; for i in 1 2 3; do git pull --rebase -q origin main && git push -q && { ok=1; break; }; sleep $((i*4)); done; [ "$ok" = 1 ] || echo "push retry exhausted" 
