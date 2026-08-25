@@ -196,8 +196,13 @@ jobs:
           cen_h=hashlib.sha256(json.dumps(census,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           pol_h=hashlib.sha256(json.dumps(pol,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           # U3 环引: 取kernel最新report hash
-          krep=getc('vci-inbox','kernel-report.json') or {}
-          k_h=hashlib.sha256(json.dumps(krep,sort_keys=True,ensure_ascii=False).encode()).hexdigest() if krep else None
+          k_h=None
+          try:
+              r=urllib.request.Request(f'{B}/ci-control/contents/bridge/findings',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              fl=json.loads(urllib.request.urlopen(r).read().decode())
+              kn=[f['name'] for f in fl if f['name'].startswith('kernel-')]
+              if kn: k_h=hashlib.sha256((gett('ci-control','bridge/findings/'+sorted(kn)[-1]) or '').encode()).hexdigest()
+          except Exception: pass
           mat={'provenance':{'solver':'MATRIX-SOLVER-01 v1.1(tick内嵌)','ts':ts,'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_report_sha256':k_h},'desired':desired}
           putc('ci-control','bridge/MATRIX-SOLVED-01.json',mat,'[D] matrix tick '+ts)
           # U4 决策链
@@ -209,9 +214,15 @@ jobs:
           drec['hash']=hashlib.sha256(json.dumps(drec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           dlog.append(drec); putc('ci-control','bridge/governor/decision-log.json',dlog,'decision '+drec['decision_id'])
           # U1 checkpoint(三行制: origin+size+root+签名)
-          chain=getc('vci-inbox','disc/CHAIN.jsonl')
-          size=len(chain) if isinstance(chain,list) else 0
-          root_h=hashlib.sha256(json.dumps(chain,sort_keys=True,ensure_ascii=False).encode()).hexdigest() if chain else None
+          def gett(repo,path):
+              r=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); return base64.b64decode(json.loads(x.read().decode())['content']).decode()
+              except Exception: return None
+          raw_chain=gett('vci-inbox','disc/CHAIN.jsonl') or ''
+          lines=[l for l in raw_chain.strip().split(chr(10)) if l.strip()]
+          size=len(lines)
+          root_h=hashlib.sha256(raw_chain.encode()).hexdigest() if raw_chain else None
           import cryptography.hazmat.primitives.serialization as ser
           from cryptography.hazmat.primitives import hashes
           from cryptography.hazmat.primitives.asymmetric import padding
@@ -220,12 +231,12 @@ jobs:
           sig=base64.b64encode(key.sign(msg,padding.PKCS1v15(),hashes.SHA256())).decode()
           cp={'origin':'ci-os/chain','size':size,'root_sha256':root_h,'ts':ts,'signer':'chepin-ci-ops-hub','sig_b64':sig,'witnesses':['kernel(K7 verify)','sentinel(候U5)']}
           putc('ci-control','bridge/chain/checkpoint-latest.json',cp,'checkpoint size%s'%size)
-          putc('vci-inbox','bridge/chain-anchor.json',{'origin':'ci-os/chain','size':size,'root_sha256':root_h,'ts':ts},'chain anchor size%s'%size)
+          json.dump({'origin':'ci-os/chain','size':size,'root_sha256':root_h,'ts':ts},open('bridge/chain-anchor.json','w'),ensure_ascii=False,indent=1)
           print(json.dumps({'dec':drec['decision_id'],'remove':nrem,'wfv':nwv,'cp_size':size},ensure_ascii=False))
           PYEOF
       - name: commit governor state
         run: |
           git config user.name governor-sense; git config user.email governor@local
-          git add bridge/governor/attest-latest.json
+          git add bridge/governor/attest-latest.json bridge/chain-anchor.json
           git commit -m "governor-sense: $(date -u +%Y%m%d-%H%M) tick [skip ci]" -q || echo noop
           git push -q
