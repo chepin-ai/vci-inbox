@@ -95,17 +95,37 @@ jobs:
           rec['mode']='ratified-enforce' if (r1 and r2) else 'report-only(matrix待root批准)'
           # 链-哈希
           chain='GENESIS'
-          if os.path.exists('bridge/governor-log.jsonl'):
-              lines=[l for l in open('bridge/governor-log.jsonl').read().strip().split(chr(10)) if l]
-              if lines: chain=json.loads(lines[-1]).get('hash','GENESIS')
+          try:
+              rq0=urllib.request.Request(f'{B}/ci-control/contents/bridge/governor/governor-log.json',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              _old=json.loads(__import__('base64').b64decode(json.loads(urllib.request.urlopen(rq0).read().decode())['content']).decode())
+              if _old: chain=_old[-1].get('hash','GENESIS')
+          except Exception: pass
           rec['prev']=chain
           rec['hash']=hashlib.sha256(json.dumps({k:v for k,v in rec.items() if k!='hash'},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
-          with open('bridge/governor-log.jsonl','a') as f: f.write(json.dumps(rec,ensure_ascii=False)+chr(10))
           attest={'ts':ts,'matrix_sha256':mat_hash,'census_sha256':cen_hash,'verdict':'PASS' if (not unknowns and not unauth) else 'ATTENTION',
                   'diffs':rec['counts'],'self_check':rec['ratified'],'mode':rec['mode'],'chain_head':rec['hash']}
           os.makedirs('bridge/governor',exist_ok=True)
           json.dump(attest,open('bridge/governor/attest-latest.json','w'),ensure_ascii=False,indent=1)
-          json.dump(census,open('bridge/governor/census-latest.json','w'),ensure_ascii=False,indent=1)
+          # L2明细全进私仓(CLASSIFY-01,D-072):census+log chain
+          import base64 as _b
+          def putc2(repo,path,obj,msg):
+              rq0=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              sha=None
+              try:
+                  x=urllib.request.urlopen(rq0); sha=json.loads(x.read().decode()).get('sha')
+              except Exception: pass
+              bd={'message':msg,'content':_b.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if sha: bd['sha']=sha
+              rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+              urllib.request.urlopen(rq)
+          putc2('ci-control','bridge/governor/census-latest.json',census,'governor census '+ts)
+          oldlog=[]
+          try:
+              rq0=urllib.request.Request(f'{B}/ci-control/contents/bridge/governor/governor-log.json',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              oldlog=json.loads(_b.b64decode(json.loads(urllib.request.urlopen(rq0).read().decode())['content']).decode())
+          except Exception: pass
+          oldlog.append(rec)
+          putc2('ci-control','bridge/governor/governor-log.json',oldlog,'governor log+1')
           print(json.dumps(attest,ensure_ascii=False))
           if attest['verdict']!='PASS':
               body='[governor-sense] '+ts+' verdict='+attest['verdict']+' diffs='+json.dumps(rec['counts'],ensure_ascii=False)+' mode='+rec['mode']
@@ -114,6 +134,6 @@ jobs:
       - name: commit governor state
         run: |
           git config user.name governor-sense; git config user.email governor@local
-          git add bridge/governor-log.jsonl bridge/governor/
+          git add bridge/governor/attest-latest.json
           git commit -m "governor-sense: $(date -u +%Y%m%d-%H%M) tick [skip ci]" -q || echo noop
           git push -q
