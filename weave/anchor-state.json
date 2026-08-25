@@ -1,1 +1,6 @@
-{"last_chain": "3e2c5e935f8c63ca", "term": 5, "ts": "2026-08-19T08:57:59Z"}
+{
+ "last_chain": "b9a3eb1f3c4ef271",
+ "term": 6,
+ "ts": "2026-08-25T16:26:29Z",
+ "resume_note": "D-076 weave复活:三连假HALT(K-001/002/003)归因闭环后首次正式RESUME;root令:直接执行并备案"
+}
