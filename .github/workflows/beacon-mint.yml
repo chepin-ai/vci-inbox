@@ -32,7 +32,8 @@ jobs:
           def getc(repo,path):
               r=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
               try:
-                  x=urllib.request.urlopen(r); return json.loads(base64.b64decode(json.loads(x.read().decode())['content']).decode()),json.loads(x.read().decode()) if False else (json.loads(base64.b64decode(json.loads(x.read().decode())['content']).decode()))
+                  x=urllib.request.urlopen(r); raw=x.read().decode()
+                  return json.loads(base64.b64decode(json.loads(raw)['content']).decode())
               except Exception: return None
           def putc(repo,path,obj,msg):
               rq0=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
