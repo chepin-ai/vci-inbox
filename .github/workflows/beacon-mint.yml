@@ -61,8 +61,14 @@ jobs:
           ext_ok=[n for n,v in [('drand',drand),('nist',nist),('anu',anu)] if v]
           mode='full' if len(ext_ok)>=2 else ('degraded' if ext_ok else 'internal-only')
           mix=hashlib.sha256((internal+str(drand)+str(nist)+str(anu)+prev.get('hash','')).encode()).hexdigest()
+          # HOLO: 全息字段——每拍含全局态摘要(登记册+checkpoint+决策头),任拍可证全局隶属
+          reg=getc('ci-control','bridge/registry/COMPONENT-REGISTRY-01.json') or {}
+          cp=getc('ci-control','bridge/chain/checkpoint-latest.json') or {}
+          dl=getc('ci-control','bridge/governor/decision-log.json') or []
+          holo={'registry_sha256':hashlib.sha256(json.dumps(reg,sort_keys=True,ensure_ascii=False).encode()).hexdigest()[:16],
+                'checkpoint_root':(cp.get('root_sha256') or '')[:16],'decision_head':(dl[-1].get('hash','') if dl else '')[:16]}
           rec={'seq':prev.get('seq',0)+1,'ts':ts,'mode':mode,'ext_ok':ext_ok,
-               'qrand':mix,'prev':prev.get('hash','GENESIS')}
+               'qrand':mix,'holo':holo,'prev':prev.get('hash','GENESIS')}
           rec['hash']=hashlib.sha256(json.dumps(rec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           putc('ci-control','bridge/beacon/BEACON.json',rec,'beacon seq%s'%rec['seq'])
           putc('vci-inbox','bridge/beacon-anchor.json',{'seq':rec['seq'],'ts':ts,'mode':mode,'sha256':rec['hash']},'beacon anchor seq%s'%rec['seq'])
