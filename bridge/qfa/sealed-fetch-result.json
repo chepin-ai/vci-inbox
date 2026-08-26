@@ -1,0 +1,18 @@
+{
+ "ts": "2026-08-26T03:35:28Z",
+ "sealed_status": 200,
+ "sealed_files": [
+  {
+   "name": "qfa-ack-20260826.cipher",
+   "size": null
+  },
+  {
+   "name": "qfa-ack-20260826.sealedbox",
+   "size": null
+  }
+ ],
+ "fetched": [
+  "qfa-ack-20260826.cipher",
+  "qfa-ack-20260826.sealedbox"
+ ]
+}
