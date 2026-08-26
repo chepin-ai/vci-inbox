@@ -1,0 +1,48 @@
+name: quantum-key-distributor
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  distribute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: line IT铸签→三钥注入vinf-market-kernel(值永不打印;用后即焚)
+        env:
+          LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
+          LINE_ID: ${{ vars.CI_OPS_LINE_ID }}
+          ORIGIN_KEY_A: ${{ secrets.VINF_ORIGIN_KEY_A }}
+          ORIGIN_KEY_B: ${{ secrets.VINF_ORIGIN_KEY_B }}
+          QUAFU_KEY_V: ${{ secrets.VINF_QUAFU_KEY }}
+        run: |
+          pip -q install pyjwt pynacl
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,urllib.request,base64
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['LINE_ID']},os.environ['LINE_KEY'],algorithm='RS256')
+          H={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'}
+          inst=json.load(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations',headers=H)))
+          iid=inst[0]['id']
+          rq=urllib.request.Request(f'https://api.github.com/app/installations/{iid}/access_tokens',method='POST',headers=H); rq.data=b'{}'
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          import nacl.public, nacl.encoding
+          def gh(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except Exception as e: return getattr(e,'code',0),{}
+          T='vinf-market-kernel'
+          s,pk=gh('GET',f'{B}/{T}/actions/secrets/public-key')
+          if s!=200: print('pk fail',s); raise SystemExit(1)
+          box=nacl.public.SealedBox(nacl.public.PublicKey(pk['key'].encode(),nacl.encoding.Base64Encoder))
+          out={}
+          for nm,envn in [('QUANTUM_ORIGIN_KEY_1','ORIGIN_KEY_A'),('QUANTUM_ORIGIN_KEY_2','ORIGIN_KEY_B'),('QUAFU_TOKEN','QUAFU_KEY_V')]:
+              v=os.environ.get(envn,'')
+              if not v: out[nm]='empty-skip'; continue
+              ct=box.encrypt(v.encode())
+              s1,_=gh('PUT',f'{B}/{T}/actions/secrets/{nm}',{'encrypted_value':base64.b64encode(ct).decode(),'key_id':pk['key_id']})
+              out[nm]=s1
+          print(json.dumps(out))
+          PYEOF
