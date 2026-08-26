@@ -1,0 +1,74 @@
+name: oblig-intake
+on:
+  schedule:
+    - cron: '9 */6 * * *'
+  repository_dispatch:
+    types: [oblig-intake]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: oblig-intake
+  cancel-in-progress: false
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip -q install pyjwt
+      - name: scan line outboxes → DIRECTIVES open items (根因:免root粘贴)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,datetime,urllib.request,urllib.error,base64,hashlib
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def gh(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          def getc(repo,path):
+              s,j=gh('GET',f'{B}/{repo}/contents/{path}')
+              return json.loads(base64.b64decode(j['content']).decode()) if s==200 else None
+          def putc(repo,path,obj,msg):
+              s,j=gh('GET',f'{B}/{repo}/contents/{path}')
+              bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if s==200: bd['sha']=j['sha']
+              gh('PUT',f'{B}/{repo}/contents/{path}',bd)
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          reg=getc('vci-inbox','bridge/outboxes.json') or {'sessions':{}}
+          state=getc('ci-control','bridge/oblig/intake-state.json') or {'seen':{}}
+          dj=getc('ci-control','bridge/DIRECTIVES.json') or {'items':[]}
+          existing={i.get('src_id') for i in dj.get('items',[]) if i.get('src_id')}
+          new_items=[]
+          for line,v in reg.get('sessions',{}).items():
+              url=v.get('url') if isinstance(v,dict) else None
+              if not url: continue
+              try:
+                  data=json.loads(urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'oblig-intake'}),timeout=20).read().decode())
+              except Exception: continue
+              for it in data.get('items',[]):
+                  iid=it.get('id') or it.get('dtag') or hashlib.sha256(json.dumps(it,sort_keys=True).encode()).hexdigest()[:12]
+                  if iid in state['seen'].get(line,[]) or iid in existing: continue
+                  new_items.append({'id':'OBL-'+line+'-'+str(iid)[:24],'d':'[%s]%s:%s'%(line,it.get('dtag') or it.get('type') or 'item',str(it.get('body',''))[:80]),'state':'open','lts':ts,'ev':'','src_id':iid,'src_line':line,'src_ts':it.get('ts')})
+                  state['seen'].setdefault(line,[]).append(iid)
+          if new_items:
+              dj['items'].extend(new_items)
+              dj['updated']=ts
+              putc('ci-control','bridge/DIRECTIVES.json',dj,'oblig-intake: +%d items'%len(new_items))
+              gh('POST',f'{B}/vci-inbox/issues/1/comments',{'body':'[oblig-intake] 新入栈 %d 件: %s'%(len(new_items),','.join(i['id'] for i in new_items[:10]))})
+          state['last_run']=ts
+          putc('ci-control','bridge/oblig/intake-state.json',state,'intake state')
+          print(json.dumps({'new':len(new_items),'lines':len(reg.get('sessions',{}))}))
+          PYEOF
+      - name: noop
+        run: echo done
