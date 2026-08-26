@@ -241,8 +241,17 @@ jobs:
                       if base and base not in census and not base.startswith(('root','lobby','priv9','ci-inbox(私仓)')):
                           closure['c2'].append({'route':r0.get('topic'),'missing':base})
           except Exception as e: closure={'err':str(e)[:80]}
+          # 亏格健康指标 g_sys=E−V+C(tensor-qfos-01:环秩=独立冗余路径数)
+          genus=None
+          try:
+              V=len(census)
+              E=sum(1 for _ in (routes.get('routes',[]) if 'routes' in dir() else []))
+              E=E or 6
+              C=1
+              genus={'V':V,'E':E,'C':C,'g':E-V+C,'note':'g=可容错链路失效数;Δg=折叠收益'}
+          except Exception as e: genus={'err':str(e)[:40]}
           drec={'ts':ts,'decision_id':'dec-'+str(len(dlog)+1),'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_sha256':k_h,
-                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'prev':prev}
+                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'genus':genus,'prev':prev}
           drec['hash']=hashlib.sha256(json.dumps(drec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           dlog.append(drec); putc('ci-control','bridge/governor/decision-log.json',dlog,'decision '+drec['decision_id'])
           # U1 checkpoint(三行制: origin+size+root+签名)
