@@ -1,0 +1,45 @@
+name: line-relay
+on:
+  workflow_dispatch:
+    inputs:
+      target_repo: {required: true}
+      path: {required: true}
+      msg: {required: true}
+permissions:
+  contents: write
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: line IT relay write (line面通道)
+        env:
+          LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
+          LINE_ID: ${{ vars.CI_OPS_LINE_ID }}
+          TARGET: ${{ inputs.target_repo }}
+          PATH_: ${{ inputs.path }}
+          MSG: ${{ inputs.msg }}
+        run: |
+          pip -q install pyjwt
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,urllib.request,base64
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['LINE_ID']},os.environ['LINE_KEY'],algorithm='RS256')
+          H={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'}
+          inst=json.load(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations',headers=H)))
+          iid=inst[0]['id']
+          rq=urllib.request.Request(f'https://api.github.com/app/installations/{iid}/access_tokens',method='POST',headers=H); rq.data=b'{}'
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          u=f"{B}/{os.environ['TARGET']}/contents/{os.environ['PATH_']}"
+          r=urllib.request.Request(u,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+          sha=None
+          try:
+              x=urllib.request.urlopen(r); sha=json.loads(x.read().decode()).get('sha')
+          except Exception: pass
+          bd={'message':'relay from cisvr','content':base64.b64encode(os.environ['MSG'].encode()).decode()}
+          if sha: bd['sha']=sha
+          rq=urllib.request.Request(u,method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+          try:
+              x=urllib.request.urlopen(rq); print('relay',x.status)
+          except Exception as e: print('relay fail',getattr(e,'code',0))
+          PYEOF
