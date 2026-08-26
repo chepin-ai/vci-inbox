@@ -250,8 +250,22 @@ jobs:
               C=1
               genus={'V':V,'E':E,'C':C,'g':E-V+C,'note':'g=可容错链路失效数;Δg=折叠收益'}
           except Exception as e: genus={'err':str(e)[:40]}
+          # G2/K12: open目标超72h未推进=goal_health告警(我侧,kernel正式K12候root核)
+          goal_health=[]
+          try:
+              dj=getc('ci-control','bridge/DIRECTIVES.json') or {'items':[]}
+              import datetime as _dt
+              now=_dt.datetime.now(_dt.timezone.utc)
+              for it in dj.get('items',[]):
+                  if it.get('state')=='open':
+                      try:
+                          lt=_dt.datetime.fromisoformat(str(it.get('lts','')).replace('Z','+00:00'))
+                          age=(now-lt).total_seconds()/3600
+                          if age>72: goal_health.append({'id':it.get('id'),'age_h':round(age,1)})
+                      except Exception: pass
+          except Exception: pass
           drec={'ts':ts,'decision_id':'dec-'+str(len(dlog)+1),'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_sha256':k_h,
-                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'genus':genus,'prev':prev}
+                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'genus':genus,'goal_health':goal_health,'prev':prev}
           drec['hash']=hashlib.sha256(json.dumps(drec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           dlog.append(drec); putc('ci-control','bridge/governor/decision-log.json',dlog,'decision '+drec['decision_id'])
           # U1 checkpoint(三行制: origin+size+root+签名)
