@@ -140,6 +140,13 @@ jobs:
                   s2,rr=gh(f'{B}/{repo}/actions/workflows/{wid[0]}/runs?per_page=5')
                   for r0 in rr.get('workflow_runs',[]):
                       lines.append(f"- {repo}/{fn}: {r0['conclusion']} {r0['created_at']}\n")
+          s6,dj=gh(f'{B}/ci-control/contents/bridge/DIRECTIVES.json')
+          if s6==200:
+              dj2=json.loads(base64.b64decode(dj['content']).decode())
+              its=dj2.get('items',[])
+              done=len([i for i in its if i.get('state')=='done']); op=len([i for i in its if i.get('state')=='open'])
+              lines.append('## 目标达成率(G3)\n')
+              lines.append(f'- done={done} open={op} 达成率={done*100//max(1,done+op)}%\n')
           lines.append('## 配额\n')
           s3,st=gh(f'{B}/ci-control/contents/bridge/quota/state.json')
           if s3==200:
