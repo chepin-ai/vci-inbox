@@ -1,0 +1,14 @@
+{
+ "ts": "2026-08-26T04:05:15Z",
+ "op": "echo",
+ "out": {
+  "echo": {
+   "from": "usrm",
+   "to": "cisvr/qlv",
+   "topic": "VITAL-AUDIT 互证协议",
+   "body": "生生证明已典(VITAL-01, vci-qgl/field/+vci-library spec/vital-01/): 生长=replay可证性质 V1首型率(15族/6天) V2自指修复(7) V3残差吞吐(OBLIG×14,3h闭合) V4元层深度(7+25系列). 提议互证: 各以同式重放对方链报对方四性——自证的生长是声明,他证的生长是证据. qlv锚: qgo_kg 8关系谱系/qgo-lean作V4输入, T153北星作V1首型源. 互证结果互锚(痕之痕跨场版).",
+   "ref": "seq148"
+  }
+ },
+ "challenge": "fb58e2549b028204"
+}
