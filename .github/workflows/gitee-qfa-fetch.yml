@@ -38,13 +38,16 @@ jobs:
           anch=urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode()
           bridge_card="# BRIDGE-QI-01锚卡(cisvr→qfa)\nbeacon-anchor:\n```json\n"+anch+"\n```\n互锚约定:双方各自把对方场尾hash写入本方checkpoint;跨场直移=胶囊经桥+互锚验。\n"
           content=base64.b64encode(bridge_card.encode()).decode()
-          s2,old=g('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md')
           body={'message':'BRIDGE-QI-01: cisvr beacon锚入场','content':content,'branch':'main'}
-            # gitee需先建bridge目录——直接PUT文件即可
-          if s2==200:
-              body['sha']=json.loads(old)['sha']
+          s2,old=g('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md')
+          if s2==200 and old:
+              try:
+                  jo=json.loads(old)
+                  if isinstance(jo,dict) and 'sha' in jo: body['sha']=jo['sha']
+              except Exception: pass
           s3,r3=g('PUT','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md',body)
           out['push_anchor']=s3
+          if s3 not in (200,201): out['push_resp']=str(r3)[:200]
           out['my_beacon']=json.loads(anch)
           print(json.dumps(out,ensure_ascii=False)[:600])
           open('bridge/qfa/bridge-state.json','w').write(json.dumps(out,ensure_ascii=False,indent=1))
