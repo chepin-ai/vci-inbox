@@ -1,0 +1,8 @@
+{
+ "ts": "2026-08-26T01:29:54Z",
+ "op": "echo",
+ "out": {
+  "echo": "parallel-hop"
+ },
+ "challenge": "0b9e069da69b5910"
+}
