@@ -21,6 +21,7 @@ jobs:
           HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
           HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
+          python3 - <<'PYEOF'
           import time,json,os,datetime,urllib.request,urllib.error,hashlib,base64
           import jwt
           from cryptography.hazmat.primitives import hashes,serialization
@@ -92,3 +93,4 @@ jobs:
           if len(neg)>neg0:
               putc('ci-bus','bridge/envelope/negative-log.json',neg,'negative-log +%d (sig-verify)'%(len(neg)-neg0))
           print(json.dumps({'verdict':verdict,'role':role,'sig_ok':sig_ok,'challenge_ok':challenge_ok,'beacon_seq':bseq,'challenge_bseq':cb,'neg_added':len(neg)-neg0,'hash':rec['hash'][:12]},ensure_ascii=False))
+          PYEOF
