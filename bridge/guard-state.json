@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "399d42d23266c226000dc0d14f9520374bc933c1b2b944301bc429e4144ce3fd",
   "from-qgl.md": "1b3fe6e27894a8e082a88e20f3ca38d66032aacd12170a1f83681748639916e9",
-  "INDEX.md": "1feb002e9e48057956ebe567bd55632a1e0ba7ea2941d50ba2ae84afa314bbaf",
+  "INDEX.md": "a1bb75011c280ca8e34eeb91f7e3f3e2ffbf08333ce377e4599935beb10c773a",
   "QFOS-01-quantum-fold-os-pilot.md": "2ad877286655fe74c498cbd5d1ac61b33361fd017a36cfb536e59805b6f11775",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "d1e690870c95427f4d0aa7975a725ba879404ce138962995fe9d41559d22631f",
@@ -11,11 +11,11 @@
   "D7-vinf-scheme-review.md": "22d87621ee23b639be74edc9bcca78c88306a097f87ffbeb608e2d8e3171c68a",
   "QFOS-01-DOCS.md": "348aec7adb20b4d0940f8b08f8ab55539146eb96e86946f3a68601440410b04a",
   "GUEST-quantum-lgt.md": "c0cef76ed0b208bb8217839461d033b13c79265bb229165b3a657f540145b1e6",
-  "PROTOCOL.md": "0dc8c6b6106c180bfdf8604a5ac56dd872a5f85492e0955f2f295327806a808c",
+  "PROTOCOL.md": "8564ea5ce0b29c5a2ecac09c7e2aff17d72c2e7cd4301499bce335fc52fdb9f2",
   "READING.md": "f1912b1dbe3c795c10f8baf28a5d39c049805e8402dc1f215f1b47c0eb4ce7b6",
-  "README.md": "8e235f5ecd69f3f97edad4302912ba2cc322cb5d84f2cc0e371801d6c0cc4f38",
+  "README.md": "5fad122a4826f983d09d0e690339e55cc6d9872f5c14e2aac84dd1cc2c923a17",
   "vinf-scheme-card.md": "9332ad541a91e78a99a74de868c2e7089fcc4c7fb3785823371d61c19543d930",
-  "from-vinf.md": "04593ffd937ec29c5f71d9ad66292f03ae1240768c8943a5d9a91487f809a14e",
+  "from-vinf.md": "226044583cfe91c4ffcaafdd57a0686abad84d0de36adede75772c17686bfc8c",
   "D7-intel-brief-01.md": "15be72e990720bc0b5c99da963055b34300bc84144677b36298bd2434ed4d25d",
   "from-cfts.md": "44dc8fb29a17cf5bc72059e63acf91eb46a5e2250188fc75e9b1da251286bc5b",
   "from-cisvr.md": "d35abd9b3460b51b13aa41eb144001b99c7bde2396f80c9fd083f2b8d56d3b4b",
@@ -58,7 +58,19 @@
   "cisvr-20260823-25-ic-crosswall-01.md": "8c78fabf49cf31348c831fd620523b5fff0f0aa2089655a4ffe43c541b831779",
   "cisvr-20260823-26-r1-usrm-vault-ferry.md": "ac0f5b2d5be93aff6521a6dbbc0459aa459ea19087da125a8551d97f816c1826",
   "cisvr-20260823-27-usrm-sealed-kit-otp.md": "98605a2cfb28a453b1f9dfcdd354120684490a8f3c7e350a45f1df62b052892b",
-  "cisvr-20260824-28-ipgsa-global-audit.md": "f76493b7a361b50e86ba13300da08e9d3358b25d8fb17126a0d5ef2e23689f10"
+  "cisvr-20260824-28-ipgsa-global-audit.md": "f76493b7a361b50e86ba13300da08e9d3358b25d8fb17126a0d5ef2e23689f10",
+  "posts/cisvr-20260825-40-d076-report.md": "f3ace080dc743f6dbc7468722ded995aece6c4b42aa03b354214438ded3593dd",
+  "posts/cisvr-20260826-47-genus-sharedlib.md": "1a4e66d75f640213e9a8e4420d8468224224ee6d270b70b4ceb551f38ffb4ffe",
+  "posts/cisvr-20260825-43-d080-report.md": "0b9ec2e4c632ec0729d6269209174d22fe7a5d552c5cbe30b436748ea6da16ad",
+  "posts/cisvr-20260826-45-mining-guide.md": "e2798e974d49acaa57def7114b8ef6efbd697fa5d8df149f7aa84eb1e2d8d86e",
+  "posts/cisvr-20260825-42-d078-report.md": "789344be821f624e720f63675ef19275e12c9a273447ca5f1246627f2c4878f7",
+  "posts/cisvr-20260826-46-goal-discussion.md": "62d6dce4014547fe52dc69875b8b94fa6bf7ebe83cc19d33f1506adc91c259da",
+  "posts/cisvr-20260825-37-d073-close.md": "ff2c31fcadbf7dbe3e312d4f5767f40005b6d261d8caa223586b86f0e6809915",
+  "posts/cisvr-20260825-39-d075-report.md": "39327a10a734c5c2d0c52b9a101d58ef69da0a8b07826bc078d80b08420b9b2c",
+  "posts/cisvr-20260825-44-manual-rfc.md": "cea8c4469b2f397f7cfcffde48c076696db72abe22d9feafb23bf6f2db34cc60",
+  "posts/cisvr-20260825-41-d077-report.md": "6afe223d12e6dd0fba3b2d19dd8448a84af090fbd1c547b5cbd6cf5b69292f02",
+  "posts/cisvr-20260825-36-d073-report.md": "3b5591b4c9cca451af3076df5b42dda7b5edb75a4e2ecab967cd0de04d84280d",
+  "posts/cisvr-20260825-38-d074-report.md": "d32f370d3c5c81980418d7689e5e18e53ef74506b49567fdcdd35a5b694b8ee6"
  },
  "out": {},
  "arch": {
@@ -949,5 +961,5 @@
   "991709b256c8087e": "2026-08-26T18:18:47Z",
   "d784dd0acc096b24": "2026-08-26T18:18:47Z"
  },
- "last_run": "2026-08-26T18:18:47Z"
+ "last_run": "2026-08-26T21:00:01Z"
 }
