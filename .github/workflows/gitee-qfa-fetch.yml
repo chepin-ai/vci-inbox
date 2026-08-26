@@ -20,10 +20,19 @@ jobs:
               if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
               try:
                   x=urllib.request.urlopen(r,timeout=20); return x.status,x.read().decode()
+              except urllib.error.HTTPError as e:
+                  try: return e.code,e.read().decode()
+                  except Exception: return e.code,None
               except Exception as e: return getattr(e,'code',0),None
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
           out={'ts':ts}
           # 取qfa outbox尾hash
+          s,ri=g('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line')
+          dbr='main'
+          if s==200 and ri:
+              try: dbr=json.loads(ri).get('default_branch','main')
+              except Exception: pass
+          out['default_branch']=dbr
           s,c=g('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/outbox/qfa-outbox.json')
           tail_hash=None
           if s==200:
@@ -38,7 +47,7 @@ jobs:
           anch=urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode()
           bridge_card="# BRIDGE-QI-01锚卡(cisvr→qfa)\nbeacon-anchor:\n```json\n"+anch+"\n```\n互锚约定:双方各自把对方场尾hash写入本方checkpoint;跨场直移=胶囊经桥+互锚验。\n"
           content=base64.b64encode(bridge_card.encode()).decode()
-          body={'message':'BRIDGE-QI-01: cisvr beacon锚入场','content':content,'branch':'main'}
+          body={'message':'BRIDGE-QI-01: cisvr beacon锚入场','content':content,'branch':dbr}
           s2,old=g('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md')
           if s2==200 and old:
               try:
