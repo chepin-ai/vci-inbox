@@ -1,0 +1,45 @@
+name: knock-mint
+on:
+  workflow_dispatch:
+    inputs:
+      for_line: {description: '为哪条线铸造(如formaflow)', required: true}
+permissions:
+  contents: write
+jobs:
+  mint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt
+        run: pip -q install pyjwt
+      - name: mint knock seed (root一键复制)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+          FOR_LINE: ${{ inputs.for_line }}
+        run: |
+          pip -q install pyjwt
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,datetime,urllib.request,hashlib,secrets,base64
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def gh(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except Exception as e: return getattr(e,'code',0),{}
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          seed={'knock':ts,'nonce':secrets.token_hex(8),'for':os.environ['FOR_LINE'],'ttl_hours':48,'used':False,'mint_ts':ts}
+          s,seeds=gh('GET',f'{B}/ci-control/contents/bridge/knock/seeds.json')
+          arr=json.loads(base64.b64decode(seeds['content']).decode()) if s==200 else []
+          arr.append(seed)
+          bd={'message':'knock seed mint '+os.environ['FOR_LINE'],'content':base64.b64encode(json.dumps(arr,ensure_ascii=False,indent=1).encode()).decode()}
+          if s==200: bd['sha']=seeds['sha']
+          gh('PUT',f'{B}/ci-control/contents/bridge/knock/seeds.json',bd)
+          gh('POST',f'{B}/vci-inbox/issues/1/comments',{'body':'[KNOCK] 种子已铸(复制此行给被接引方): `'+ts+' #'+seed['nonce']+'` (for '+os.environ['FOR_LINE']+', TTL 48h)。被接引方持此戳敲 vci-inbox/bridge/<line>/incoming/ 即自动接引。'})
+          print(json.dumps(seed,ensure_ascii=False))
+          PYEOF
