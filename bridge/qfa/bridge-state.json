@@ -1,0 +1,14 @@
+{
+ "ts": "2026-08-26T04:47:56Z",
+ "qfa_items": 5,
+ "qfa_tail_id": "qfa-20260826-5",
+ "qfa_tail_hash": "2ef42ec80cba2dfd",
+ "push_anchor": 400,
+ "push_resp": "None",
+ "my_beacon": {
+  "seq": 23,
+  "ts": "2026-08-26T04:36:06Z",
+  "mode": "full",
+  "sha256": "77453cdd9ef4df762e15048df031c678a6b5b269e32c2e413e1dc8b292e21a55"
+ }
+}
