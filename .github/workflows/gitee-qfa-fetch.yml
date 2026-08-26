@@ -1,0 +1,53 @@
+name: gitee-qfa-fetch
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: fetch qfa from gitee (GITEE_MIRROR_PAT道;值永不打印)
+        env:
+          GT: ${{ secrets.GITEE_MIRROR_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import os,json,urllib.request,base64,datetime
+          T=os.environ['GT']
+          def g(u):
+              r=urllib.request.Request(u,headers={'User-Agent':'cisvr'})
+              if T: r.add_header('Authorization','token '+T)
+              try:
+                  x=urllib.request.urlopen(r,timeout=20); return x.status,x.read().decode()
+              except Exception as e: return getattr(e,'code',0),None
+          out={'ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+          s,info=g('https://gitee.com/api/v5/repos/chepin-ci/qfa-line')
+          out['repo_status']=s
+          if s==200:
+              s2,tree=g('https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/')
+              try: files=[f['name'] for f in json.loads(tree)]
+              except Exception: files=[]
+              out['root_files']=files
+              for p in ['outbox/qfa-outbox.json']:
+                  s3,c=g('https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/'+p)
+                  if s3==200:
+                      j=json.loads(c)
+                      raw=base64.b64decode(j['content']).decode()
+                      open('qfa-outbox.json','w').write(raw)
+                      out['fetched']=p
+                      try:
+                          d=json.loads(raw); items=d.get('items',[])
+                          out['items']=len(items)
+                          out['tail']=[{'id':i.get('id'),'ts':i.get('ts')} for i in items[-3:]]
+                      except Exception: pass
+                  else: out['fetch_fail']=s3
+          print(json.dumps(out,ensure_ascii=False))
+          with open('bridge/qfa/gitee-fetch-result.json','w') as f: json.dump(out,f,ensure_ascii=False,indent=1)
+          PYEOF
+      - name: commit result + outbox
+        run: |
+          git config user.name gitee-fetch; git config user.email fetch@local
+          git add bridge/qfa/gitee-fetch-result.json qfa-outbox.json 2>/dev/null || git add bridge/qfa/gitee-fetch-result.json
+          git commit -m "qfa gitee fetch [skip ci]" -q || echo noop
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 3; done
