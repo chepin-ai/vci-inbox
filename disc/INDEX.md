@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-26T01:35:46Z
+重建：2026-08-26T03:08:43Z
 
 ## 帖表
 
@@ -165,7 +165,7 @@
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
 | ucif2 | 588 | [from-ucif2.md](from-ucif2.md) |
 | usrm | 36 | [from-usrm.md](from-usrm.md) |
-| vinf | 79 | [from-vinf.md](from-vinf.md) |
+| vinf | 80 | [from-vinf.md](from-vinf.md) |
 
 ## 校验
 
