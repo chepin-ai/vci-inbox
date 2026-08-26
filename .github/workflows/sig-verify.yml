@@ -1,0 +1,94 @@
+name: sig-verify
+on:
+  repository_dispatch:
+    types: [sig-fire]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sig-verify
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: install pyjwt + cryptography
+        run: pip install -q pyjwt cryptography
+      - name: verify signed envelope (SIG-ENVELOPE v1; hub验签+信标挑战防重放;负事件链)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          import time,json,os,datetime,urllib.request,urllib.error,hashlib,base64
+          import jwt
+          from cryptography.hazmat.primitives import hashes,serialization
+          from cryptography.hazmat.primitives.asymmetric import padding
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'sig-verify'})
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          B='https://api.github.com/repos/chepin-ai'
+          def gh(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+          def getc(repo,path):
+              s,j=gh('GET',f'{B}/{repo}/contents/{path}')
+              return json.loads(base64.b64decode(j['content']).decode()) if s==200 else None
+          def putc(repo,path,obj,msg):
+              s,j=gh('GET',f'{B}/{repo}/contents/{path}')
+              bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+              if s==200: bd['sha']=j['sha']
+              gh('PUT',f'{B}/{repo}/contents/{path}',bd)
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          ev=json.load(open(os.environ.get('GITHUB_EVENT_PATH','/dev/null'))) if os.environ.get('GITHUB_EVENT_PATH') else {}
+          cp=ev.get('client_payload') or {}
+          payload=cp.get('payload','') or ''
+          sig_b64=cp.get('sig_b64','') or ''
+          role=cp.get('role','unknown') or 'unknown'
+          beacon=getc('ci-control','bridge/beacon/BEACON.json') or {}
+          bseq=beacon.get('seq',0)
+          registry=getc('ci-bus','bridge/mesh/key-registry.json') or {}
+          reg_roles=[k.get('role') for k in registry.get('keys',[])]
+          neg=getc('ci-bus','bridge/envelope/negative-log.json') or []
+          log=getc('ci-bus','bridge/envelope/sig-log.json') or []
+          neg0=len(neg)
+          def neg_event(kind,detail):
+              neg.append({'ts':ts,'event':kind,'detail':detail,'actor':'sig-verify','role':role,'beacon_seq':bseq})
+          cb=None; sig_ok=False; challenge_ok=False
+          if role not in reg_roles:
+              neg_event('unknown-role','role不在key-registry: %s'%role)
+          else:
+              if role=='hub':
+                  try:
+                      priv=serialization.load_pem_private_key(os.environ['HUB_KEY'].encode(),password=None)
+                      pub=priv.public_key()
+                      pub.verify(base64.b64decode(sig_b64),payload.encode('utf-8'),padding.PKCS1v15(),hashes.SHA256())
+                      sig_ok=True
+                  except Exception as e:
+                      neg_event('sig-invalid','hub验签失败: %s'%type(e).__name__)
+              else:
+                  neg_event('unverified-role','role=%s v1无私钥对应公钥材料,记未验'%role)
+              try:
+                  cb=json.loads(payload).get('challenge_bseq')
+                  challenge_ok=(cb is not None) and abs(int(bseq)-int(cb))<=3
+              except Exception:
+                  challenge_ok=False
+              if not challenge_ok:
+                  neg_event('challenge-stale','challenge_bseq=%s 与beacon seq=%s 偏差>3或缺失'%(cb,bseq))
+          verdict='PASS' if (sig_ok and challenge_ok) else 'REJECT'
+          prev=log[-1]['hash'] if log else 'GENESIS'
+          rec={'ts':ts,'v':'SIG-ENVELOPE-1','role':role,'verdict':verdict,'beacon_seq':bseq,'challenge_bseq':cb,
+               'payload_sha256':hashlib.sha256(payload.encode('utf-8')).hexdigest(),
+               'sig_b64_sha256_16':hashlib.sha256(sig_b64.encode('utf-8')).hexdigest()[:16],
+               'registry_role_known':role in reg_roles,'prev':prev}
+          rec['hash']=hashlib.sha256(json.dumps(rec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+          log.append(rec)
+          putc('ci-bus','bridge/envelope/sig-log.json',log,'sig-log +%s (%s)'%(verdict,role))
+          if len(neg)>neg0:
+              putc('ci-bus','bridge/envelope/negative-log.json',neg,'negative-log +%d (sig-verify)'%(len(neg)-neg0))
+          print(json.dumps({'verdict':verdict,'role':role,'sig_ok':sig_ok,'challenge_ok':challenge_ok,'beacon_seq':bseq,'challenge_bseq':cb,'neg_added':len(neg)-neg0,'hash':rec['hash'][:12]},ensure_ascii=False))
