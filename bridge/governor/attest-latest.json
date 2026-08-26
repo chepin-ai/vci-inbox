@@ -1,13 +1,13 @@
 {
- "ts": "2026-08-26T07:30:58Z",
+ "ts": "2026-08-26T13:39:41Z",
  "matrix_sha256": "297d6110f7e89e64c187886f64f63833bcfe786be941835229f1e4d7b9fc4fed",
- "census_sha256": "67a3f292b5010b01e3489a5cd78b83d217ba92a4b74fca67e3387332732c7a9f",
+ "census_sha256": "86eee8cbb1c47ad5ce8889f7e813e927eafe318debf16c685093481646888c0e",
  "verdict": "ATTENTION",
  "diffs": {
-  "unknown": 5,
+  "unknown": 8,
   "excess": 0,
-  "unauth_active": 1,
-  "new_repos": 12
+  "unauth_active": 0,
+  "new_repos": 7
  },
  "self_check": {
   "GLOBAL-MATRIX-01": {
@@ -20,5 +20,5 @@
   }
  },
  "mode": "ratified-enforce",
- "chain_head": "2369fb05c59b100fe3a811e314a947a9d5b3f7cc19b6fb1b6c864d232bad6fd4"
+ "chain_head": "49b727c4e45524c050e8836526eabbc7738b35ced15aea0ce62f99b028112c6c"
 }
