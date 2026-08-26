@@ -8,36 +8,50 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: fetch sealed dir
+      - name: 纠缠桥:取qfa尾hash+推我方锚入其仓(GITEE_MIRROR_PAT道;值永不打印)
         env:
           GT: ${{ secrets.GITEE_MIRROR_PAT }}
         run: |
           python3 - <<'PYEOF'
-          import os,json,urllib.request,base64,datetime
+          import os,json,urllib.request,base64,datetime,hashlib
           T=os.environ['GT']
-          def g(u):
-              r=urllib.request.Request(u,headers={'User-Agent':'cisvr','Authorization':'token '+T})
+          def g(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'User-Agent':'cisvr','Authorization':'token '+T})
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
               try:
                   x=urllib.request.urlopen(r,timeout=20); return x.status,x.read().decode()
               except Exception as e: return getattr(e,'code',0),None
-          out={'ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
-          s,tree=g('https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/sealed')
-          out['sealed_status']=s
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          out={'ts':ts}
+          # 取qfa outbox尾hash
+          s,c=g('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/outbox/qfa-outbox.json')
+          tail_hash=None
           if s==200:
-              files=json.loads(tree)
-              out['sealed_files']=[{'name':f['name'],'size':f['size']} for f in files]
-              for f in files:
-                  s2,c=g(f['url'])
-                  if s2==200:
-                      raw=base64.b64decode(json.loads(c)['content'])
-                      open('sealed_'+f['name'],'wb').write(raw)
-                      out.setdefault('fetched',[]).append(f['name'])
-          print(json.dumps(out,ensure_ascii=False))
-          with open('bridge/qfa/sealed-fetch-result.json','w') as fp: json.dump(out,fp,ensure_ascii=False,indent=1)
+              raw=base64.b64decode(json.loads(c)['content'])
+              tail_hash=hashlib.sha256(raw).hexdigest()[:16]
+              try:
+                  items=json.loads(raw).get('items',[])
+                  out['qfa_items']=len(items); out['qfa_tail_id']=items[-1].get('id') if items else None
+              except Exception: pass
+          out['qfa_tail_hash']=tail_hash
+          # 推我方锚(公锚+桥卡)入其仓
+          anch=urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode()
+          bridge_card="# BRIDGE-QI-01锚卡(cisvr→qfa)\nbeacon-anchor:\n```json\n"+anch+"\n```\n互锚约定:双方各自把对方场尾hash写入本方checkpoint;跨场直移=胶囊经桥+互锚验。\n"
+          content=base64.b64encode(bridge_card.encode()).decode()
+          s2,old=g('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md')
+          body={'message':'BRIDGE-QI-01: cisvr beacon锚入场','content':content,'branch':'main'}
+            # gitee需先建bridge目录——直接PUT文件即可
+          if s2==200:
+              body['sha']=json.loads(old)['sha']
+          s3,r3=g('PUT','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md',body)
+          out['push_anchor']=s3
+          out['my_beacon']=json.loads(anch)
+          print(json.dumps(out,ensure_ascii=False)[:600])
+          open('bridge/qfa/bridge-state.json','w').write(json.dumps(out,ensure_ascii=False,indent=1))
           PYEOF
-      - name: commit
+      - name: commit bridge state
         run: |
           git config user.name gitee-fetch; git config user.email fetch@local
-          git add bridge/qfa/sealed-fetch-result.json sealed_* 2>/dev/null || git add bridge/qfa/sealed-fetch-result.json
-          git commit -m "qfa sealed fetch [skip ci]" -q || echo noop
+          git add bridge/qfa/bridge-state.json
+          git commit -m "BRIDGE-QI-01 state [skip ci]" -q || echo noop
           for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 3; done
