@@ -45,7 +45,8 @@ jobs:
                   jo=json.loads(old)
                   if isinstance(jo,dict) and 'sha' in jo: body['sha']=jo['sha']
               except Exception: pass
-          s3,r3=g('PUT','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md',body)
+          if 'sha' in body: s3,r3=g('PUT','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md',body)
+          else: s3,r3=g('POST','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/BEACON-ANCHOR.md',body)
           out['push_anchor']=s3
           if s3 not in (200,201): out['push_resp']=str(r3)[:200]
           out['my_beacon']=json.loads(anch)
