@@ -1,0 +1,56 @@
+name: pub-guard
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: R1先审后落门禁——检出违规即就地代号化修复commit(usrm-49②/D-127);rules表L2私存运行时拉取
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
+      - name: pub-lint (三特征类先审后落)
+        env:
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          pip -q install pyjwt
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,re,urllib.request,base64,subprocess
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          r=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json','User-Agent':'pub-guard'})
+          IT=json.load(urllib.request.urlopen(r))['token']
+          rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/PUB-LINT-RULES.json',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+          RU=json.loads(base64.b64decode(json.loads(urllib.request.urlopen(rq).read().decode())['content']).decode())
+          pats=sorted(RU['feat_classes']['repo_names']+RU['feat_classes']['cred_names']+RU['feat_classes']['internal_ids'],key=len,reverse=True)
+          cm=RU['codename']; allow=tuple(RU['allowlist_paths'])
+          changed=subprocess.run(['git','diff','--name-only','HEAD~1','HEAD'],capture_output=True,text=True).stdout.split()
+          if not changed: changed=subprocess.run(['git','ls-files'],capture_output=True,text=True).stdout.split()
+          fixed=[];skipped=0
+          for p in changed:
+              if p.startswith(allow) or not os.path.isfile(p): skipped+=1; continue
+              if p.endswith(('.png','.jpg','.lock','.enc','.qf','.woff','.woff2','.ttf')): skipped+=1; continue
+              try: txt=open(p,encoding='utf-8').read()
+              except Exception: skipped+=1; continue
+              out=txt
+              for pat in pats:
+                  rep=cm.get(pat,'〈RED〉')
+                  out=re.sub(r'(?<![\w/-])'+re.escape(pat)+r'(?![\w-])',rep,out)
+              if out!=txt:
+                  open(p,'w',encoding='utf-8').write(out); fixed.append(p)
+          if fixed:
+              subprocess.run(['git','config','user.name','pub-guard']); subprocess.run(['git','config','user.email','guard@local'])
+              subprocess.run(['git','add']+fixed)
+              subprocess.run(['git','commit','-m','pub-lint: R1代号化自动修复 '+str(len(fixed))+'件 [skip ci]','-q'])
+              for i in range(3):
+                  if subprocess.run(['git','pull','--rebase','-q'],capture_output=True).returncode==0 and subprocess.run(['git','push','-q'],capture_output=True).returncode==0: break
+                  time.sleep(3+i*3)
+              os.makedirs('bridge/guard',exist_ok=True)
+              lg={'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'fixed':fixed}
+              open('bridge/guard/pub-lint-latest.json','w').write(json.dumps(lg,ensure_ascii=False))
+          print(json.dumps({'scanned':len(changed)-skipped,'fixed':fixed},ensure_ascii=False))
+          PYEOF
