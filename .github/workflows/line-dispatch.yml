@@ -1,0 +1,40 @@
+name: line-dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      target_repo: {required: true}
+      event_type: {required: true}
+      payload_json: {required: true}
+permissions:
+  contents: write
+jobs:
+  fire:
+    runs-on: ubuntu-latest
+    steps:
+      - name: line IT repository_dispatch (line面事件通道)
+        env:
+          LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
+          LINE_ID: ${{ vars.CI_OPS_LINE_ID }}
+          TARGET: ${{ inputs.target_repo }}
+          ETYPE: ${{ inputs.event_type }}
+          PL: ${{ inputs.payload_json }}
+        run: |
+          pip -q install pyjwt
+          python3 - <<'PYEOF'
+          import jwt,time,json,os,urllib.request,urllib.error
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['LINE_ID']},os.environ['LINE_KEY'],algorithm='RS256')
+          H={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'}
+          inst=json.load(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations',headers=H)))
+          iid=inst[0]['id']
+          rq=urllib.request.Request(f'https://api.github.com/app/installations/{iid}/access_tokens',method='POST',headers=H); rq.data=b'{}'
+          IT=json.load(urllib.request.urlopen(rq))['token']
+          u=f"https://api.github.com/repos/chepin-ai/{os.environ['TARGET']}/dispatches"
+          pl=json.loads(os.environ['PL'])
+          body=json.dumps({'event_type':os.environ['ETYPE'],'client_payload':pl}).encode()
+          rq=urllib.request.Request(u,method='POST',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=body)
+          try:
+              x=urllib.request.urlopen(rq); print('dispatch',x.status)
+          except urllib.error.HTTPError as e:
+              print('dispatch fail',e.code,e.read().decode()[:200]); raise SystemExit(1)
+          PYEOF
