@@ -139,6 +139,28 @@ jobs:
                       else: log['dm']={'status':dj.get('status')}
               else: log['dm']={'missing':'line.json','dir':[f.get('name') for f in fl]}
           else: log['dm']={'dir_status':s}
+
+          # ---- 5) qlv-pub raw face (chepin-qi org, no auth) ----
+          import json as J2, hashlib as H2, urllib.request as U2, base64 as B2
+          def rawg(u):
+              try:
+                  rq=U2.Request(u,headers={'User-Agent':'field-router'})
+                  return 200,U2.urlopen(rq,timeout=20).read().decode()
+              except Exception as e: return 0,str(e)[:100]
+          s,qh=gget('bridge/intake/qlv/harvested.json')
+          qdone=J2.loads(qh)['ids'] if qh else []
+          s,listing=rawg('https://api.github.com/repos/chepin-qi/qlv-pub/git/trees/main?recursive=1')
+          if s==200:
+              for t in J2.loads(listing).get('tree',[]):
+                  p=t.get('path','')
+                  if t.get('type')=='blob' and (p.endswith('.json') or p.endswith('.md')) and p not in qdone:
+                      s2,c2=rawg('https://raw.githubusercontent.com/chepin-qi/qlv-pub/main/'+p)
+                      if s2==200:
+                          st7=gput('ci-control','bridge/intake/qlv/'+p.replace('/','__'),c2,'field-router: qlv-pub harvest '+p)
+                          qdone.append(p); log['ledger'] and None
+                          led('harvest.qlv-pub',{'path':p,'sink':st7,'sha16':H2.sha256(c2.encode()).hexdigest()[:16]})
+                          log.setdefault('qlv',[]).append(p)
+          gput('ci-control','bridge/intake/qlv/harvested.json',J2.dumps({'ts':ts,'ids':qdone},ensure_ascii=False,indent=1),'field-router: qlv-pub cursor '+str(len(qdone)))
           # ---- 4) bridge-state update + ledger commit ----
           ss,bs=gget('bridge/qfa/bridge-state.json')  # placeholder ci-control side
           bsj={'ts':ts,'qfa_items_seen':len(done) if s==200 else None,'last_run':ts}
