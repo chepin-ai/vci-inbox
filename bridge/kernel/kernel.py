@@ -52,7 +52,7 @@ CHANNELS = getc('HUB-CORE', 'bridge/CHANNELS-01.md') or ''
 
 # G-DIR 指令保鲜：open 且 lts 超 72h
 for i in items:
-    if i['state'] == 'open' and age_h(i.get('lts', D.get('updated', TS))) > 72:
+    if i.get('state') == 'open' and age_h(i.get('lts', D.get('updated', TS))) > 72:
         finding('G-DIR-stale-open', '%s open 超 72h：%s' % (i['id'], i['d'][:40]))
 
 # G-N6 迭代必验效：done/verified 必须带非空实证
