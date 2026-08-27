@@ -1,0 +1,98 @@
+name: qfa-outbox-push
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "notice | mint-otp"
+        required: true
+        default: notice
+      npath:
+        description: "notice target path in gitee repo (mode=notice)"
+        required: false
+        default: "bridge/NOTICE.md"
+      ntext:
+        description: "notice text (mode=notice; 公面可见,永不传密)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+  # rationale: no self-repo writes needed; permissions kept minimal for ledger via hub App
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "qfa 私仓道投递/铸码 (值永不打印)"
+        env:
+          GT: ${{ secrets.GITEE_MIRROR_PAT }}
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          MODE: ${{ inputs.mode }}
+          NPATH: ${{ inputs.npath }}
+          NTEXT: ${{ inputs.ntext }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,urllib.request,urllib.error,urllib.parse,base64,datetime,hashlib
+          GT=os.environ['GT']; HK=os.environ['HUBK']; HID=os.environ['HUBID']; MODE=os.environ['MODE']
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          import jwt as JW
+          now=int(datetime.datetime.now().timestamp())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'qfa-push'})
+          HIT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          def gg(m,u,d=None):
+              h={'User-Agent':'qfa-push','Authorization':'token '+GT}
+              r=urllib.request.Request(u,method=m,headers=h)
+              if d is not None: r.data=json.dumps(d).encode(); r.add_header('Content-Type','application/json')
+              try:
+                  x=urllib.request.urlopen(r,timeout=25); return x.status,x.read().decode()
+              except urllib.error.HTTPError as e: return e.code,(e.read().decode()[:200] if e.fp else '')
+          def gh_put(repo,path,content,msg):
+              u='https://api.github.com/repos/chepin-ai/'+repo+'/contents/'+urllib.parse.quote(path)
+              rq=urllib.request.Request(u,method='GET',headers={'Authorization':'token '+HIT,'Accept':'application/vnd.github+json','User-Agent':'qfa-push'})
+              sha=None
+              try: sha=json.loads(urllib.request.urlopen(rq,timeout=20).read()).get('sha')
+              except Exception: pass
+              body={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+              if sha: body['sha']=sha
+              rq=urllib.request.Request(u,method='PUT',data=json.dumps(body).encode(),headers={'Authorization':'token '+HIT,'Accept':'application/vnd.github+json','User-Agent':'qfa-push'})
+              try: return urllib.request.urlopen(rq,timeout=20).status
+              except urllib.error.HTTPError as e: return e.code
+          def gput(path,content,msg):
+              u='https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/'+urllib.parse.quote(path)
+              s,old=gg('GET',u)
+              body={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+              if s==200:
+                  o=json.loads(old)
+                  if isinstance(o,dict) and 'sha' in o: body['sha']=o['sha']
+              code='PUT' if (s==200 and 'sha' in body) else 'POST'
+              return gg(code,u,body)[0]
+          out={'ts':ts,'mode':MODE}
+          if MODE=='notice':
+              np=os.environ['NPATH']; nt=os.environ['NTEXT']
+              out['notice']=gput(np,nt,'qfa notice '+ts)
+          elif MODE=='mint-otp':
+              pad=os.urandom(65536)
+              fp=hashlib.sha256(pad).hexdigest()
+              st=gput('incoming/otp/QFA-OTP-PAD-01.b64',base64.b64encode(pad).decode(),'QFA-OTP-PAD-01 mint '+ts)
+              del pad
+              out['otp']={'push':st,'fp16':fp[:16]}
+              led={'ts':ts,'key_id':'QFA-OTP-PAD-01','fp16':fp[:16],'scope':'qfa线密封信封专用','issued':ts,'owner':'qfa','status':'active','note':'经gitee私仓道单副本分发;runner内机内即焚;值永不打印'}
+              s,old=None,None
+              u='https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/vault-ledger.jsonl'
+              rq=urllib.request.Request(u,headers={'Authorization':'token '+HIT,'Accept':'application/vnd.github+json','User-Agent':'qfa-push'})
+              try: old=urllib.request.urlopen(rq,timeout=20).read()
+              except Exception: old=b''
+              prev=''
+              try:
+                  txt=json.loads(old)['content']; cur=base64.b64decode(txt).decode()
+                  ls=[l for l in cur.split(chr(10)) if l.strip()]
+                  prev=json.loads(ls[-1]).get('hash','') if ls else ''
+                  base=cur
+              except Exception: base=''
+              led['prev']=prev
+              led['hash']=hashlib.sha256((prev+json.dumps({k:v for k,v in led.items() if k not in('hash',)},sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
+              gh_put('ci-control','bridge/vault-ledger.jsonl',base+('' if base.endswith(chr(10)) or not base else chr(10))+json.dumps(led,ensure_ascii=False)+chr(10),'vault-ledger: QFA-OTP-PAD-01 (fp only)')
+          print(json.dumps(out,ensure_ascii=False))
+
+          PYEOF
