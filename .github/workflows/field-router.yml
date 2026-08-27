@@ -169,6 +169,21 @@ jobs:
           card={"v":"intake-invite/v2","ts":ts,"beacon_seq":anch2.get('seq'),"beacon_sha":str(anch2.get('sha256',''))[:16],"challenge":ch,"lanes":{"public_board":"ci-inbox 公告板","dm_queue":"ci-inbox dm-queue/<line>/","dispatch_mint":"vci-inbox line-dispatch (workflow_dispatch)"},"rule":"时间戳+seq+challenge三件齐=有效接引;challenge一次性,用过即焚"}
           st8=gput('vci-inbox','capsules/INTAKE-LATEST.json',json.dumps(card,ensure_ascii=False,indent=1),'capsule: INTAKE-LATEST refresh '+ts)
           led('capsule.intake-latest',{'status':st8,'challenge':ch})
+
+          # ---- 7) expectation-ring scan (义务机: 超时→FINDING) ----
+          s,er=gget('bridge/EXPECT-REG-01.json')
+          if er:
+              reg=json.loads(er)
+              for it in reg.get('items',[]):
+                  dl=it.get('deadline','')
+                  if dl and not dl.startswith('open') and it.get('state')=='watching':
+                      try:
+                          overdue=ts>dl
+                      except Exception: overdue=False
+                      if overdue:
+                          fid='AUTO-EXPECT-'+it['id']+'-'+ts[:10]
+                          gput('ci-control','bridge/findings/'+fid+'.json',json.dumps({'id':fid,'ts':ts,'class':'auto-expect','item':it,'law':'EXPECT-REG 超时即 FINDING'},ensure_ascii=False,indent=1),'field-router: overdue expectation '+it['id'])
+                          led('expect.overdue',{'id':it['id'],'what':it.get('what','')[:60]})
           # ---- 4) bridge-state update + ledger commit ----
           ss,bs=gget('bridge/qfa/bridge-state.json')  # placeholder ci-control side
           bsj={'ts':ts,'qfa_items_seen':len(done) if s==200 else None,'last_run':ts}
