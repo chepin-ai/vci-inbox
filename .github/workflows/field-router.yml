@@ -120,19 +120,25 @@ jobs:
                       gput('ci-control','bridge/sealed-inbox/'+nm+'.b64',json.loads(fc)['content'].replace(chr(10),''),'field-router: sealed transit '+nm)
                       log['sealed'].append(nm); led('sealed.transit',{'name':nm})
           # ---- 3) dm-queue pong ----
-          s,dq=gg('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/dm-queue/qfa/line.json')
+          s,dq=gg('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/dm-queue/qfa')
           if s==200:
-              dj=json.loads(base64.b64decode(json.loads(dq)['content']).decode())
-              if dj.get('status','').startswith('open'):
-                  anch=urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode()
-                  dj['status']='active'; dj['pong_ts']=ts; dj['pong_from']='cisvr-field-router'; dj['anchor']=json.loads(anch)
-                  dqsha=json.loads(dq).get('sha') if isinstance(json.loads(dq),dict) else None
-                  body={'message':'DM pong: line active','content':base64.b64encode(json.dumps(dj,ensure_ascii=False,indent=1).encode()).decode()}
-                  if dqsha: body['sha']=dqsha
-                  st6,_=gg('PUT','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/dm-queue/qfa/line.json',body)
-                  log['dm']={'pong':st6}; led('dm.pong',{'status':st6})
-              else:
-                  log['dm']={'status':dj.get('status')}
+              fl=json.loads(dq)
+              if isinstance(fl,dict): fl=[fl]
+              tgt=[f for f in fl if f.get('name')=='line.json']
+              if tgt:
+                  s2,fc=gg('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/dm-queue/qfa/line.json?ref='+dbr)
+                  fo=json.loads(fc) if s2==200 else {}
+                  if isinstance(fo,dict) and 'content' in fo:
+                      dj=json.loads(base64.b64decode(fo['content']).decode())
+                      if str(dj.get('status','')).startswith('open'):
+                          anch=urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode()
+                          dj['status']='active'; dj['pong_ts']=ts; dj['pong_from']='cisvr-field-router'; dj['anchor']=json.loads(anch)
+                          body={'message':'DM pong: line active','content':base64.b64encode(json.dumps(dj,ensure_ascii=False,indent=1).encode()).decode(),'sha':fo['sha']}
+                          st6,_=gg('PUT','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/dm-queue/qfa/line.json',body)
+                          log['dm']={'pong':st6}; led('dm.pong',{'status':st6})
+                      else: log['dm']={'status':dj.get('status')}
+              else: log['dm']={'missing':'line.json','dir':[f.get('name') for f in fl]}
+          else: log['dm']={'dir_status':s}
           # ---- 4) bridge-state update + ledger commit ----
           ss,bs=gget('bridge/qfa/bridge-state.json')  # placeholder ci-control side
           bsj={'ts':ts,'qfa_items_seen':len(done) if s==200 else None,'last_run':ts}
