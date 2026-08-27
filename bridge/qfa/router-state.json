@@ -1,10 +1,9 @@
 {
- "ts": "2026-08-27T19:15:01Z",
+ "ts": "2026-08-27T19:29:21Z",
  "new_harvested": 0,
- "sealed_new": 2,
+ "sealed_new": 0,
  "dm": {
-  "missing": "line.json",
-  "dir": []
+  "status": "active"
  },
- "ledger_head": "c6086b1ddc7c9dd2"
+ "ledger_head": "a2c96f2718dbf3c0"
 }
