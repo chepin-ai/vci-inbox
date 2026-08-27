@@ -3,12 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       target:
-        description: "vci-inbox | vci-usrm"
+        description: "vci-inbox | vci-usrm | all"
         required: true
-        default: "vci-inbox"
+        default: "all"
+  schedule: [{ cron: '23 */4 * * *' }]  # [skip ci]绕行洞封堵: 4h全树巡(增量guard被skip ci绕过——usrm narrative 20260827实证)
 permissions:
   contents: write
-  # rationale: R1现行层全树代号化批处理——增量pub-guard只审push改动面,存量违规由此workflow分批清(D-127/D-134);rules表L2私存运行时拉取
+  # rationale: R1现行层全树代号化批处理——增量pub-guard只审push改动面且被[skip ci]绕过,存量/绕行违规由此4h巡清(D-127/D-134);rules表L2私存运行时拉取
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -17,13 +18,13 @@ jobs:
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
-          TGT: ${{ inputs.target }}
+          TGT: ${{ github.event.inputs.target || 'all' }}
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF'
-          import os,json,urllib.request,datetime,base64,subprocess,re
-          HK=os.environ['HUBK']; HID=os.environ['HUBID']; TGT=os.environ.get('TGT','vci-inbox')
-          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          import os,json,urllib.request,datetime,base64,subprocess,re,time
+          HK=os.environ['HUBK']; HID=os.environ['HUBID']
+          TARGETS=['vci-inbox','vci-usrm'] if os.environ.get('TGT','all')=='all' else [os.environ['TGT']]
           import jwt as JW
           now=int(datetime.datetime.now().timestamp())
           appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
@@ -35,33 +36,33 @@ jobs:
           cm=RU['codename']; allow=tuple(RU['allowlist_paths'])
           rx=[(p,re.compile(r'(?<![\w/-])'+re.escape(p)+r'(?![\w-])')) for p in pats]
           def run(c,**kw): return subprocess.run(c,capture_output=True,text=True,**kw)
-          run(['rm','-rf','/tmp/pgf'])
-          r=run(['git','clone',f'https://x-access-token:{IT}@github.com/chepin-ai/{TGT}.git','/tmp/pgf'])
-          assert r.returncode==0, r.stderr[-300:]
-          os.chdir('/tmp/pgf')
-          SKIP=('.png','.jpg','.lock','.enc','.qf','.woff','.woff2','.ttf','.ico','.map','.pdf')
-          files=[p for p in run(['git','ls-files']).stdout.split() if not p.startswith(allow) and not p.endswith(SKIP)]
-          fixed=[]; skipped=0
-          for p in files:
-              try: txt=open(p,encoding='utf-8').read()
-              except Exception: skipped+=1; continue
-              out=txt
-              for p0,r0 in rx:
-                  out=r0.sub(cm.get(p0,'〈RED〉'),out)
-              if out!=txt:
-                  open(p,'w',encoding='utf-8').write(out); fixed.append(p)
-          os.makedirs('bridge/guard',exist_ok=True)
-          rep={'ts':ts,'target':TGT,'mode':'full-tree','scanned':len(files)-skipped,'fixed_n':len(fixed),'fixed':fixed}
-          open('bridge/guard/pub-lint-full-latest.json','w').write(json.dumps(rep,ensure_ascii=False,indent=1))
-          run(['git','config','user.name','pub-guard']); run(['git','config','user.email','guard@local'])
-          run(['git','add','-A'])
-          if run(['git','diff','--cached','--quiet']).returncode!=0:
-              run(['git','commit','-q','-m',f'pub-guard-full: R1现行层代号化 {len(fixed)}件 + 报告 [skip ci]'])
-              ok=False
-              for i in range(3):
-                  if run(['git','pull','--rebase','-q']).returncode==0 and run(['git','push','-q']).returncode==0: ok=True; break
-                  import time; time.sleep(3+i*3)
-              print('pushed',ok)
-          else: print('no-change')
-          print(json.dumps({'scanned':len(files)-skipped,'fixed_n':len(fixed)},ensure_ascii=False))
+          for TGT in TARGETS:
+              ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+              run(['rm','-rf','/tmp/pgf'])
+              r=run(['git','clone',f'https://x-access-token:{IT}@github.com/chepin-ai/{TGT}.git','/tmp/pgf'])
+              if r.returncode!=0: print(TGT,'clone fail',r.stderr[-200:]); continue
+              os.chdir('/tmp/pgf')
+              SKIP=('.png','.jpg','.lock','.enc','.qf','.woff','.woff2','.ttf','.ico','.map','.pdf')
+              files=[p for p in run(['git','ls-files']).stdout.split() if not p.startswith(allow) and not p.endswith(SKIP)]
+              fixed=[]; skipped=0
+              for p in files:
+                  try: txt=open(p,encoding='utf-8').read()
+                  except Exception: skipped+=1; continue
+                  out=txt
+                  for p0,r0 in rx: out=r0.sub(cm.get(p0,'〈RED〉'),out)
+                  if out!=txt:
+                      open(p,'w',encoding='utf-8').write(out); fixed.append(p)
+              os.makedirs('bridge/guard',exist_ok=True)
+              rep={'ts':ts,'target':TGT,'mode':'full-tree','scanned':len(files)-skipped,'fixed_n':len(fixed),'fixed':fixed}
+              open('bridge/guard/pub-lint-full-latest.json','w').write(json.dumps(rep,ensure_ascii=False,indent=1))
+              run(['git','config','user.name','pub-guard']); run(['git','config','user.email','guard@local'])
+              run(['git','add','-A'])
+              if run(['git','diff','--cached','--quiet']).returncode!=0:
+                  run(['git','commit','-q','-m',f'pub-guard-full: R1现行层代号化 {len(fixed)}件 + 报告 [skip ci]'])
+                  ok=False
+                  for i in range(3):
+                      if run(['git','pull','--rebase','-q']).returncode==0 and run(['git','push','-q']).returncode==0: ok=True; break
+                      time.sleep(3+i*3)
+                  print(TGT,'pushed',ok,'fixed',len(fixed))
+              else: print(TGT,'clean')
           PYEOF
