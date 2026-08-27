@@ -161,6 +161,14 @@ jobs:
                           led('harvest.qlv-pub',{'path':p,'sink':st7,'sha16':H2.sha256(c2.encode()).hexdigest()[:16]})
                           log.setdefault('qlv',[]).append(p)
           gput('ci-control','bridge/intake/qlv/harvested.json',J2.dumps({'ts':ts,'ids':qdone},ensure_ascii=False,indent=1),'field-router: qlv-pub cursor '+str(len(qdone)))
+
+          # ---- 6) refresh INTAKE-LATEST capsule (Dashboard 时间戳接引永鲜面) ----
+          import os as O2
+          anch2=json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode())
+          ch=hashlib.sha256((ts+'|'+str(anch2.get('seq'))+'|'+O2.urandom(8).hex()).encode()).hexdigest()[:16]
+          card={"v":"intake-invite/v2","ts":ts,"beacon_seq":anch2.get('seq'),"beacon_sha":str(anch2.get('sha256',''))[:16],"challenge":ch,"lanes":{"public_board":"ci-inbox 公告板","dm_queue":"ci-inbox dm-queue/<line>/","dispatch_mint":"vci-inbox line-dispatch (workflow_dispatch)"},"rule":"时间戳+seq+challenge三件齐=有效接引;challenge一次性,用过即焚"}
+          st8=gput('vci-inbox','capsules/INTAKE-LATEST.json',json.dumps(card,ensure_ascii=False,indent=1),'capsule: INTAKE-LATEST refresh '+ts)
+          led('capsule.intake-latest',{'status':st8,'challenge':ch})
           # ---- 4) bridge-state update + ledger commit ----
           ss,bs=gget('bridge/qfa/bridge-state.json')  # placeholder ci-control side
           bsj={'ts':ts,'qfa_items_seen':len(done) if s==200 else None,'last_run':ts}
