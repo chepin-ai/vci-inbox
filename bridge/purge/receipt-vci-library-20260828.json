@@ -1,0 +1,10 @@
+{
+ "ts": "2026-08-27T20:25:00Z",
+ "target": "vci-library",
+ "purged_paths": [
+  "kit/ (usrm-01×7, usrm-02×2, INDEX, SHARED-LIB-01)"
+ ],
+ "backup": "ci-control-backup refs/vci-library-pre-purge-20260828/*",
+ "verify": "CLEAN",
+ "push": "see log"
+}
