@@ -7,7 +7,7 @@ permissions:
   contents: write
 concurrency:
   group: beacon-mint
-  cancel-in-progress: true
+  cancel-in-progress: false  # v2.1: 并行mint改排队(实证:取消竞态致anchor断拍)
 jobs:
   mint:
     runs-on: ubuntu-latest
@@ -36,15 +36,20 @@ jobs:
                   return json.loads(base64.b64decode(json.loads(raw)['content']).decode())
               except Exception: return None
           def putc(repo,path,obj,msg):
-              rq0=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
-              sha=None
-              try:
-                  x=urllib.request.urlopen(rq0); sha=json.loads(x.read().decode()).get('sha')
-              except Exception: pass
-              bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
-              if sha: bd['sha']=sha
-              rq=urllib.request.Request(f'{B}/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
-              urllib.request.urlopen(rq)
+              for _try in range(4):
+                  rq0=urllib.request.Request(f'{B}/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+                  sha=None
+                  try:
+                      x=urllib.request.urlopen(rq0); sha=json.loads(x.read().decode()).get('sha')
+                  except Exception: pass
+                  bd={'message':msg,'content':base64.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
+                  if sha: bd['sha']=sha
+                  rq=urllib.request.Request(f'{B}/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+                  try:
+                      urllib.request.urlopen(rq); return
+                  except urllib.error.HTTPError as e:
+                      if e.code in (409,422) and _try<3: time.sleep(2+_try*2); continue
+                      raise
           def fetch(u,tm=6):
               try:
                   x=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'beacon'}),timeout=tm)
