@@ -226,6 +226,14 @@ jobs:
           mat={'provenance':{'solver':'MATRIX-SOLVER-01 v1.1(tick内嵌)','ts':ts,'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_report_sha256':k_h},'desired':desired}
           putc('ci-control','bridge/MATRIX-SOLVED-01.json',mat,'[D] matrix tick '+ts)
           # U4 决策链
+          # CH-2修: 公域锚对齐探针(anchor==BEACON.hash 且 seq相等); 坍塌即入决策链
+          anchor_check=None
+          try:
+              _bea=getc('ci-control','bridge/beacon/BEACON.json') or {}
+              _anc=getc('vci-inbox','bridge/beacon-anchor.json') or {}
+              anchor_check={'beacon_seq':_bea.get('seq'),'anchor_seq':_anc.get('seq'),'aligned':bool(_bea) and bool(_anc) and _bea.get('hash')==_anc.get('sha256') and _bea.get('seq')==_anc.get('seq')}
+              if not anchor_check['aligned']: print('ALERT beacon-anchor MISMATCH',anchor_check)
+          except Exception as e: anchor_check={'err':str(e)[:60]}
           dlog=getc('ci-control','bridge/governor/decision-log.json') or []
           prev=dlog[-1]['hash'] if dlog else 'GENESIS'
           nrem=sum(len(v['remove']) for v in desired.values()); nwv=sum(len(v['wf_violations']) for v in desired.values())
@@ -273,7 +281,7 @@ jobs:
                       except Exception: pass
           except Exception: pass
           drec={'ts':ts,'decision_id':'dec-'+str(len(dlog)+1),'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_sha256':k_h,
-                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'genus':genus,'goal_health':goal_health,'prev':prev}
+                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'genus':genus,'goal_health':goal_health,'anchor_check':anchor_check,'prev':prev}
           drec['hash']=hashlib.sha256(json.dumps(drec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           dlog.append(drec); putc('ci-control','bridge/governor/decision-log.json',dlog,'decision '+drec['decision_id'])
           # U1 checkpoint(三行制: origin+size+root+签名)
