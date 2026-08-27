@@ -76,19 +76,19 @@
    "note": "cfts 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
    "directives": []
   },
-  "vinf-market-kernel": {
+  "VINF-VAULT": {
    "url": "https://stgdle5yj3o7s.ok.kimi.link/vinf-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "vinf 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/7件",
    "directives": []
   },
-  "quantum-go-ledger": {
+  "QGL-VAULT": {
    "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "qgl 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=404未发布",
    "directives": []
   },
-  "ucif2-formalization-kernel": {
+  "UCIF2-VAULT": {
    "url": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "ucif2 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
@@ -100,7 +100,7 @@
    "note": "usrm 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
    "directives": []
   },
-  "github-repo-cfts": {
+  "CFTS-VAULT": {
    "url": "https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "cfts 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
