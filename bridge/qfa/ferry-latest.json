@@ -1,0 +1,22 @@
+{
+ "ts": "2026-08-27T19:27:18Z",
+ "n_ferried": 14,
+ "sha16": {
+  "RESONANCE-01.md": "08ca0a8334648497",
+  "SIG-ENVELOPE-01--SUBSTITUTE-ENVELOPE-FMT-01.md": "98633693b031b980",
+  "SIG-ENVELOPE-01--SUBSTITUTE-QF-AUTH-01.md": "2901147e8486e505",
+  "FIELD-TIME-01-revised.md": "74141a3fa14f55f9",
+  "WAKE-01.md": "e3761c268560b197",
+  "QROUTER-01.md": "3efea485d9fd2493",
+  "FAILOVER-SOLVE-01.md": "bd5382e22e019c75",
+  "CODEC-FACE-02.md": "3ad6d72240b5e887",
+  "otp-loop-01/README.md": null,
+  "otp-loop-01/ROLLOUT.md": null,
+  "otp-loop-01/otp-loop-trigger.line.yml": null,
+  "otp-loop-01/otp_batch_drive.py": null,
+  "otp-loop-01/otp_qr_loop.py": null,
+  "otp-loop-01/scan_verify.py": null
+ },
+ "receipt": 200,
+ "dm": 201
+}
