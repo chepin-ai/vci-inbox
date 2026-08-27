@@ -1,0 +1,58 @@
+name: otp-loop-trigger
+on:
+  issues:
+    types: [opened]
+permissions:
+  issues: write
+  contents: write
+jobs:
+  loop:
+    if: startsWith(github.event.issue.title, '[SENDCODE]') || startsWith(github.event.issue.title, '[OTP-LOOP]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: secrets 预检（缺件 fail-fast + 评论缺件清单）
+        env:
+          OTP_PHONE: ${{ secrets.OTP_PHONE }}
+          OTP_EMAIL1: ${{ secrets.OTP_EMAIL1 }}
+          OTP_EMAIL2: ${{ secrets.OTP_EMAIL2 }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'EOF'
+          import os,json,urllib.request
+          miss=[k for k in ("OTP_PHONE","OTP_EMAIL1","OTP_EMAIL2") if not os.environ.get(k,"").strip()]
+          if miss:
+              body="OTP-LOOP 预检缺件: "+", ".join(miss)+" —— 请仓主补齐 secrets 后重开 [OTP-LOOP] issue。(KIT-OTP-LOOP-01)"
+              req=urllib.request.Request(f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/issues/{os.environ['ISSUE_NUMBER']}/comments",
+                  data=json.dumps({"body":body}).encode(),
+                  headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json"})
+              urllib.request.urlopen(req); raise SystemExit(1)
+          print("secrets 预检 PASS")
+          EOF
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+      - run: pip install playwright && playwright install --with-deps chromium
+      - name: OTP loop（发码→候评→验真→落态）
+        env:
+          OTP_PHONE: ${{ secrets.OTP_PHONE }}
+          OTP_EMAIL1: ${{ secrets.OTP_EMAIL1 }}
+          OTP_EMAIL2: ${{ secrets.OTP_EMAIL2 }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          mkdir -p inbox
+          python3 scripts/otp_gate_worker.py --loop || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: otp-session
+          path: inbox/
+          retention-days: 1
+          if-no-files-found: ignore
+      - name: 回写 state 锚（本仓 inbox/otp_gate_state.json）
+        if: always()
+        run: |
+          git config user.name "otp-loop-bot"; git config user.email "bot@field"
+          git add inbox/ || true
+          git commit -m "otp-loop state [skip ci]" || true
+          git push || true
