@@ -232,14 +232,22 @@ jobs:
           closure={'c2':[]}
           try:
               routes=getc('ci-bus','bridge/mesh/routes.json') or {'routes':[]}
+              _rc={}
+              def _is_repo(b):
+                  if b in _rc: return _rc[b]
+                  rq=urllib.request.Request(f'{B}/{b}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+                  try: urllib.request.urlopen(rq); _rc[b]=True
+                  except Exception: _rc[b]=False
+                  return _rc[b]
               for r0 in routes.get('routes',[]):
                   for rp in (r0.get('producer',''),r0.get('consumer','')):
                       if '@' in rp: base=rp.split('@')[1]
                       elif '(' in rp and ')' in rp: base=rp.split('(')[1].split(')')[0]
                       else: base=rp
                       base=base.strip()
-                      if base and base not in census and not base.startswith(('root','lobby','priv9','ci-inbox(私仓)')):
-                          closure['c2'].append({'route':r0.get('topic'),'missing':base})
+                      if not base or base in census or base.startswith(('root','lobby','priv9','ci-inbox(私仓)')): continue
+                      if not _is_repo(base): continue  # F6修: 非仓执行体(workflow/actor名)不计入闭包缺口
+                      closure['c2'].append({'route':r0.get('topic'),'missing':base})
           except Exception as e: closure={'err':str(e)[:80]}
           # 亏格健康指标 g_sys=E−V+C(tensor-qfos-01:环秩=独立冗余路径数)
           genus=None
