@@ -91,7 +91,7 @@ jobs:
           # ---- 4) DM line.json create/activate ----
           s,dq=gg('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/dm-queue/qfa/line.json')
           anch=json.loads(urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode())
-          if s==200:
+          if s==200 and isinstance(json.loads(dq),dict) and 'content' in json.loads(dq):
               o=json.loads(dq); dj=json.loads(base64.b64decode(o['content']).decode())
               dj['status']='active'; dj['pong_ts']=ts; dj['pong_from']='cisvr-spec-ferry'; dj['anchor']=anch
               st=gput('dm-queue/qfa/line.json',json.dumps(dj,ensure_ascii=False,indent=1),'DM pong: active')
