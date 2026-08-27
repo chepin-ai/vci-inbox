@@ -25,7 +25,7 @@ jobs:
         run: |
           pip -q install pyjwt
           python3 - <<'PYEOF'
-          import jwt,time,json,os,urllib.request,urllib.error,base64
+          import jwt,time,json,os,urllib.request,urllib.error,urllib.parse,base64
           def it_of(k,i,inst):
               now=int(time.time())
               t=jwt.encode({'iat':now-90,'exp':now+540,'iss':i},k,algorithm='RS256')
@@ -45,13 +45,13 @@ jobs:
           allow={x['name'] for x in repos.get('repositories',[])}
           tgt=os.environ['TGT_R']
           if tgt not in allow: raise SystemExit(f'ABORT: {tgt} 不在line installation覆盖({sorted(allow)})')
-          s,src=gh(HUB,'GET',f"{B}/{os.environ['SRC_R']}/contents/{os.environ['SRC_P']}")
+          s,src=gh(HUB,'GET',f"{B}/{os.environ['SRC_R']}/contents/{urllib.parse.quote(os.environ['SRC_P'])}")
           if s!=200: raise SystemExit(f'ABORT: 源读失败 {s}')
           body=base64.b64decode(src['content']).decode()
-          s,old=gh(LINE,'GET',f"{B}/{tgt}/contents/{os.environ['TGT_P']}")
+          s,old=gh(LINE,'GET',f"{B}/{tgt}/contents/{urllib.parse.quote(os.environ['TGT_P'])}")
           payload={'message':os.environ['MSG'],'content':base64.b64encode(body.encode()).decode()}
           if s==200: payload['sha']=old['sha']
-          s2,r2=gh(LINE,'PUT',f"{B}/{tgt}/contents/{os.environ['TGT_P']}",payload)
+          s2,r2=gh(LINE,'PUT',f"{B}/{tgt}/contents/{urllib.parse.quote(os.environ['TGT_P'])}",payload)
           print(json.dumps({'target':tgt,'path':os.environ['TGT_P'],'status':s2,'allow':sorted(allow)},ensure_ascii=False))
           if s2 not in (200,201): raise SystemExit(f'PUSH FAIL {s2}: {r2}')
           PYEOF
