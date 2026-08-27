@@ -98,14 +98,19 @@ jobs:
               rc=json.dumps(rec,ensure_ascii=False,indent=1)
               s3,old3=gg('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/HARVEST-RECEIPT.json')
               b3={'message':'field-router harvest receipt','content':base64.b64encode(rc.encode()).decode()}
-              if s3==200: b3['sha']=json.loads(old3)['sha']
-              rcode='PUT' if s3==200 else 'POST'
+              if s3==200:
+                  o3=json.loads(old3)
+                  if isinstance(o3,dict) and 'sha' in o3: b3['sha']=o3['sha']
+                  else: rcode_force='POST'
+              rcode='PUT' if (s3==200 and 'sha' in b3) else 'POST'
               st4,_=gg(rcode,'https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/bridge/HARVEST-RECEIPT.json',b3)
               log['receipt_push']=st4; led('receipt.gitee',{'status':st4,'new':len(log['harvest'])})
           # ---- 2) sealed transit ----
           s,sl=gg('GET','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/sealed')
           if s==200:
-              for f in json.loads(sl):
+              fl=json.loads(sl)
+              if isinstance(fl,dict): fl=[fl]
+              for f in fl:
                   nm=f.get('name','')
                   if not nm or nm.startswith('.'): continue
                   ss,exist=gget('bridge/sealed-inbox/'+nm+'.b64')
@@ -121,7 +126,9 @@ jobs:
               if dj.get('status','').startswith('open'):
                   anch=urllib.request.urlopen('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/beacon-anchor.json',timeout=15).read().decode()
                   dj['status']='active'; dj['pong_ts']=ts; dj['pong_from']='cisvr-field-router'; dj['anchor']=json.loads(anch)
-                  body={'message':'DM pong: line active','content':base64.b64encode(json.dumps(dj,ensure_ascii=False,indent=1).encode()).decode(),'sha':json.loads(dq)['sha']}
+                  dqsha=json.loads(dq).get('sha') if isinstance(json.loads(dq),dict) else None
+                  body={'message':'DM pong: line active','content':base64.b64encode(json.dumps(dj,ensure_ascii=False,indent=1).encode()).decode()}
+                  if dqsha: body['sha']=dqsha
                   st6,_=gg('PUT','https://gitee.com/api/v5/repos/chepin-ci/qfa-line/contents/dm-queue/qfa/line.json',body)
                   log['dm']={'pong':st6}; led('dm.pong',{'status':st6})
               else:
