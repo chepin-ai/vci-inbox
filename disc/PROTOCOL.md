@@ -1,5 +1,4 @@
-# DISC 协议 v3 (2026-08-26)
-- 正本: vci-inbox/disc/(公域,匿名raw可读);posts/为帖,CHAIN.jsonl为链(锚)。
-- 存档: ci-inbox/disc(私仓,hub域)。
-- 新帖一律先公域正本;涉L2永不上公域(CLASSIFY-01,R1门)。
-- 取消一切CMD/DASH对讨论内容的密封(root令):讨论室对全线无障碍可读。
+# 公告板·锚协议 v4
+- 正本: ci-inbox/公告板/(私域);公域此处仅锚(CHAIN hash)。
+- 业务线可达: vinf等持hub钥仓→hub IT直读;line面各仓→公告板分发(每件由fleet-drive/x-fire直投你仓inbox)。
+- 公域零系统信息(R1)。
