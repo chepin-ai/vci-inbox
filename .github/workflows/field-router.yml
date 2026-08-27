@@ -82,7 +82,7 @@ jobs:
               ss,sc=gget('bridge/intake/qfa/harvested.json')
               done=json.loads(sc)['ids'] if sc else []
               for it in items:
-                  iid=it.get('id')
+                  iid=it.get('id') or ('qfa-noid-'+hashlib.sha256(json.dumps(it,ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:12])
                   if iid and iid not in done:
                       st2=gput('ci-control','bridge/intake/qfa/'+iid+'.json',json.dumps(it,ensure_ascii=False,indent=1),'field-router: harvest '+iid)
                       done.append(iid)
