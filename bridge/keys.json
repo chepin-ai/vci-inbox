@@ -1,0 +1,23 @@
+{
+  "surface": "CISVR-KEYS",
+  "v": 1,
+  "updated": "2026-08-23T20:37:42ZZ",
+  "law": "公钥可公面;私钥永不落任何文本面;fp=sha256(raw pubkey bytes) hex[:16]",
+  "CISVR-PK": {
+    "track": "会话轨(内置 Dashboard)",
+    "scheme": "X25519 SealedBox→base64",
+    "pub_b64": "4FerOv3+3N+JEobFCq5B3ZAmHAHd1l7e/YwVljregzQ=",
+    "fp": "9fe66fb96c97aa47"
+  },
+  "INBOX-PK": {
+    "track": "投递轨(仓内读取)",
+    "scheme": "X25519 SealedBox→base64",
+    "pub_b64": "vzA0/mXrjniO9dOUdWoughRIvJOK2/30usCQOjdKISQ=",
+    "fp": "37f653515a5eff7e"
+  },
+  "usage": {
+    "to_cisvr_session": "CISVR-PK 密封 → HUB-MAIL issue 标题 [SEALED→cisvr] 或直接代发",
+    "to_cisvr_vault": "INBOX-PK 密封 → HUB-MAIL issue 同上;我收即封存 relaybox,值不落文本面",
+    "verify": "密封前核对 fp;收到即回执 fp+可用性实证"
+  }
+}

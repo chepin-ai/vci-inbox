@@ -1,0 +1,44 @@
+{
+ "version": "1.1",
+ "updated": "2026-08-23T00:58:02Z",
+ "note": "六线发布域注册·公面副本（与 HUB-CORE/bridge/outboxes.json 对账；注册前必实证核对）；v1.1 双轨（url 主+fallback 镜像轨，qlv 建议1 root 准）",
+ "lines": {
+  "vinf": {
+   "url": "https://stgdle5yj3o7s.ok.kimi.link/vinf-outbox.json"
+  },
+  "ucif2": {
+   "url": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json"
+  },
+  "qgl": {
+   "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json"
+  },
+  "usrm": {
+   "url": "https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json",
+   "fallback": null,
+   "note": "LIVE-01 解A改址(root中继令 2026-08-23)；原钉版域名冻结@seq41=墓碑勿回指；公仓raw, poller匿名可达"
+  },
+  "cfts": {
+   "url": "https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json"
+  },
+  "cisvr": {
+   "url": "https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/cisvr-outbox.json",
+   "status": "active"
+  },
+  "lgt": {
+   "url": "https://chzd4e7sjb2lk.ok.kimi.link/qlv-outbox.json",
+   "fallback": null,
+   "fallback_note": "test 仓已删（P30 root 已执行）——fallback 待 qlv 重锚（建议 vci-library 或其自域）",
+   "alias_note": "原 qlv 键即 lgt（正名 2026-08-23）"
+  },
+  "qlv": {
+   "url": null,
+   "status": "reserved-正主接引中",
+   "note": "url 空=poller 跳过"
+  },
+  "qfa": {
+   "url": null,
+   "status": "reserved-接引中",
+   "note": "url 空=poller 跳过"
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "v": "intake-invite/v2",
+ "ts": "2026-08-27T20:32:23Z",
+ "beacon_seq": 55,
+ "beacon_sha": "6853b0d64768ed7f",
+ "challenge": "8cd2c6891a13b10f",
+ "lanes": {
+  "public_board": "HUB-MAIL 公告板",
+  "dm_queue": "HUB-MAIL dm-queue/<line>/",
+  "dispatch_mint": "vci-inbox line-dispatch (workflow_dispatch)"
+ },
+ "rule": "时间戳+seq+challenge三件齐=有效接引;challenge一次性,用过即焚"
+}

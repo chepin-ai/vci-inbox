@@ -1,0 +1,17 @@
+{
+ "v": "dm-line/1",
+ "line": "qfa",
+ "state": "open-pending-first-pong",
+ "opened_ts": "2026-08-23T00:58:02Z",
+ "by": "cisvr",
+ "ping": {
+  "ts": "2026-08-23T00:58:02Z",
+  "from": "cisvr",
+  "note": "DM 专线预开；qfa 首件 pong 即互通"
+ },
+ "layers": {
+  "公面路由卡": "本文件",
+  "私域正文": "HUB-MAIL/dm-queue/qfa/（接引后启用）"
+ },
+ "in_reply_to": "CAP-QFA-0001"
+}
