@@ -1,0 +1,10 @@
+{
+ "ts": "2026-08-27T19:15:01Z",
+ "new_harvested": 0,
+ "sealed_new": 2,
+ "dm": {
+  "missing": "line.json",
+  "dir": []
+ },
+ "ledger_head": "c6086b1ddc7c9dd2"
+}
