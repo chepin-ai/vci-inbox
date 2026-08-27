@@ -42,15 +42,15 @@ jobs:
                   out=re.sub(r'(?<![\w/-])'+re.escape(pat)+r'(?![\w-])',rep,out)
               if out!=txt:
                   open(p,'w',encoding='utf-8').write(out); fixed.append(p)
-          if fixed:
-              subprocess.run(['git','config','user.name','pub-guard']); subprocess.run(['git','config','user.email','guard@local'])
-              subprocess.run(['git','add']+fixed)
-              subprocess.run(['git','commit','-m','pub-lint: R1代号化自动修复 '+str(len(fixed))+'件 [skip ci]','-q'])
+          os.makedirs('bridge/guard',exist_ok=True)
+          lg={'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'scanned':len(changed)-skipped,'fixed':fixed}
+          open('bridge/guard/pub-lint-latest.json','w').write(json.dumps(lg,ensure_ascii=False))
+          subprocess.run(['git','config','user.name','pub-guard']); subprocess.run(['git','config','user.email','guard@local'])
+          subprocess.run(['git','add']+fixed+['bridge/guard/pub-lint-latest.json'])
+          if subprocess.run(['git','diff','--cached','--quiet']).returncode!=0:
+              subprocess.run(['git','commit','-m','pub-lint: R1代号化 '+str(len(fixed))+'件 + 报告持久化 [skip ci]','-q'])
               for i in range(3):
                   if subprocess.run(['git','pull','--rebase','-q'],capture_output=True).returncode==0 and subprocess.run(['git','push','-q'],capture_output=True).returncode==0: break
                   time.sleep(3+i*3)
-              os.makedirs('bridge/guard',exist_ok=True)
-              lg={'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'fixed':fixed}
-              open('bridge/guard/pub-lint-latest.json','w').write(json.dumps(lg,ensure_ascii=False))
           print(json.dumps({'scanned':len(changed)-skipped,'fixed':fixed},ensure_ascii=False))
           PYEOF
