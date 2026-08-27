@@ -78,6 +78,31 @@ jobs:
               tok_missing=[j for j,v in qf.get('jobs',{}).items() if v.get('status')=='TOKEN_MISSING']
               if tok_missing: sla_alerts.append({'surface':'quafu','issue':'TOKEN_MISSING','jobs':tok_missing,'note':'usrm量子作业轮询缺token=#94根因实证'})
           heads['quafu']='ok' if qf else 'unreachable'
+          # 面4: installation覆盖巡边+冲击门(拆installation震动根本解)
+          try:
+              memb={}
+              s,mh=gh(HUB,'GET','https://api.github.com/installation/repositories?per_page=100')
+              if s==200: memb['hub']=sorted(x['name'] for x in mh.get('repositories',[]))
+              s,ml=gh(LINE,'GET','https://api.github.com/installation/repositories?per_page=100')
+              if s==200: memb['line']=sorted(x['name'] for x in ml.get('repositories',[]))
+              prev=cur['cursors'].get('installations',{})
+              changes=[]
+              for side in ('hub','line'):
+                  if side not in memb: continue
+                  old=set(prev.get(side,[])); new=set(memb[side])
+                  if old and old!=new: changes.append({'side':side,'added':sorted(new-old),'removed':sorted(old-new)})
+              cur['cursors']['installations']=memb
+              if changes:
+                  reg0=getj(HUB,'ci-control','bridge/CHANNELS-REG-01.json') or {'channels':[]}
+                  impacted=[]
+                  for ch in changes:
+                      for repo in ch['added']+ch['removed']:
+                          edge=ch['side']+':'+repo
+                          for c0 in reg0.get('channels',[]):
+                              if any(edge==d or edge in d for d in c0.get('deps',[])): impacted.append({'channel':c0['name'],'edge':edge})
+                  sla_alerts.append({'surface':'installations','issue':'MEMBERSHIP_CHANGE','changes':changes,'impacted_channels':impacted})
+              heads['installations']={k:len(v) for k,v in memb.items()}
+          except Exception as e: heads['installations']='err:'+str(e)[:60]
           # 落账: intake jsonl + cursor + verdict
           if new_items:
               day=now.strftime('%Y%m%d')
