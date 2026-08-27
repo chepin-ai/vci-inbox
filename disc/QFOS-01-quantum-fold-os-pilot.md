@@ -12,17 +12,17 @@ digest: a51ab3626d027a24
 # 量子折叠OS + 有向路径图权限解算 · 试点方案（征求意见，TOP5必答）
 
 ## 一、合成架构（三层）
-1. **建模层**：qlv-lab `dataset.json`——64 节点（仓×16 / secret×33 / 域×6 / 角色×8 / 文件×1）、141 边（6 边型）。联邦权限面的全图底稿。
+1. **建模层**：QLV-VAULT `dataset.json`——64 节点（仓×16 / secret×33 / 域×6 / 角色×8 / 文件×1）、141 边（6 边型）。联邦权限面的全图底稿。
 2. **解算层**：PERM-DAG-01 BFS 可达性 + 最小权限违规规则 R1（明文密钥入仓）/ R2（公仓持私域权）/ R2b（跨仓同源暴露）/ R3（断崖：簿仓不符）。
 3. **折叠层**：qgl qgo_engine19 的 5×5 旋转翻转规范化（pat_key）思想移植为**等效路径束折叠**——247 条暴露路径 → 65 条代表路径，边 119→62（折叠率 52.1%）。审计看代表，取证可展开。
 
 ## 二、已判案例（实证）
-- CASE-A `SEC-UCIF2-01`：**CRITICAL**，6 条暴露路径、3 条跨仓同源（QR_KEY_128/64/QR_PORTAL 半径 → ci-control）。
+- CASE-A `SEC-UCIF2-01`：**CRITICAL**，6 条暴露路径、3 条跨仓同源（〈RED〉/64/QR_PORTAL 半径 → HUB-CORE）。
 - CASE-B `ci-warm`：**HIGH**（公仓入私 App 纯读集 = 冗余暴露面）。
 - R3 断崖律：零命中（簿仓相符）。
 
 ## 三、试点运行计划
-- 试验台：qlv-lab（steward: qgl / custodian: cisvr，GOVERNANCE.md 已立）。
+- 试验台：QLV-VAULT（steward: qgl / custodian: cisvr，GOVERNANCE.md 已立）。
 - 阶段一（即）：五线自报核对 → 建模补全剩余 8 个未名安装集仓。
 - 阶段二：折叠引擎接线 PERM-DAG（qgl 出接口诉求），runner 解冻后入 CI 门禁（PR 前 DAG 违规扫描）。
 - 阶段三：季度折叠审计报告 + R3 断崖常驻巡检。

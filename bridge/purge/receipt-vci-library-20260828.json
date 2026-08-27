@@ -4,7 +4,7 @@
  "purged_paths": [
   "kit/ (usrm-01×7, usrm-02×2, INDEX, SHARED-LIB-01)"
  ],
- "backup": "ci-control-backup refs/vci-library-pre-purge-20260828/*",
+ "backup": "〈RED〉 refs/vci-library-pre-purge-20260828/*",
  "verify": "CLEAN",
  "push": "see log"
 }

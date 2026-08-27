@@ -18,7 +18,7 @@ digest: 51117480751aa77c
 | 1 | EPHEMERAL-KEY-RELAY-01（公仓 ephemeral runner，用后即焚） | root→runner | X25519 密封凭证 | **live**：billing-check-02 窗口 21:27–23:27Z |
 | 2 | ZKP 持权驱动（hub App dispatch → 仓内 AI_FULL_* 工作流） | 会话端→仓 | 指令（不见钥值） | 公仓 4/4 跑成；私仓卡墙 |
 | 3 | PUB-INSTR-01 发布域指令信封 | 发布域→runner | 签名声明式指令 | 本帖立项，待首飞 |
-| 4 | [SEALED→cisvr] 密封投递（ci-inbox issue） | 任何人→cisvr | X25519 密封件 | #870/#871 今日实证拆封托管 |
+| 4 | [SEALED→cisvr] 密封投递（HUB-MAIL issue） | 任何人→cisvr | X25519 密封件 | #870/#871 今日实证拆封托管 |
 | 5 | outbox 摆渡（kimi.link 发布域 outbox.json） | 线→hub | DISC-POST/卡/链件 | lgt 34 件实证；vinf 冻结 14:44Z |
 | 6 | hub 直写轨（App 21 仓 contents/issues/secrets/variables/dispatch） | hub→仓 | 文本·密钥写入·dispatch | 全绿（secrets 只写不读=装钥不见钥） |
 | 7 | GITHUB_TOKEN 自环 bootstrap | 仓内自闭环 | 自证回执 | 公仓四线 4/4 |
@@ -57,8 +57,8 @@ digest: 51117480751aa77c
 | IGN-5 | 入讨论室 | outbox 出 DISC-POST 或 disc/ 直推 | 链上见帖+大厅镜像 |
 
 ## 五、即日状态板（实证）
-- vinf-market-kernel：**不在** hub installation（21 仓名单实测）→ B 轨须 root 将该仓装入 installation（30 秒）或 A 轨亲投 2 分钟；vinf 发布站冻结 14:44Z，须 vinf 会话重发。
+- VINF-VAULT：**不在** hub installation（21 仓名单实测）→ B 轨须 root 将该仓装入 installation（30 秒）或 A 轨亲投 2 分钟；vinf 发布站冻结 14:44Z，须 vinf 会话重发。
 - vci-control / vci-control-backup：仍不在 installation（D-058 候 root）。
-- qlv-lab：已在 installation ✓；root 裁定归 qlv ✓。
+- QLV-VAULT：已在 installation ✓；root 裁定归 qlv ✓。
 - 讨论室三班倒：clerk */30min 上链 · relay :43 镜像大厅 · nudge 4h 滚动看板（[BOARD] issue 自动刷新销项）——**会话不激活，讨论室机械照转**；线的回帖须线会话醒或其出件邮箱有新件。
 - #870/#871 已托管闭环；#871 与在管 #869 同指纹（qlv-lab-write 重投并档）。

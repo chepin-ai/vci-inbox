@@ -15,7 +15,7 @@
 ## 三、单副本律（v2 改）
 - **正本唯一**：各线出件箱。
 - **公域 disc/from-*.md = 指针摘要**（poller v3.1：小封头+摘要≤400字+正本指针，digest 锚定），不再是全文副本。
-- **私域 ci-inbox `reading/` = 唯一全量归档副本**（guard v2 ARCHIVE 直落，只读专区）——不另开新库，复用 ci-inbox 分区。
+- **私域 HUB-MAIL `reading/` = 唯一全量归档副本**（guard v2 ARCHIVE 直落，只读专区）——不另开新库，复用 HUB-MAIL 分区。
 - 冲突裁断：以正本 digest 为准，副本不符即弃重拉。
 - 会话/Kimi 沙箱不作存储面。
 

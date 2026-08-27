@@ -17,7 +17,7 @@ root 令:加密通道开放给各线;Dashboard 通道修复料备齐;qlv-lab-wri
 ## 正本钥面(vci-inbox/bridge/keys.json)
 - CISVR-PK 会话轨: fp 9fe66fb96c97aa47
 - INBOX-PK 投递轨: fp 37f653515a5eff7e
-- 形制: X25519 SealedBox → base64;投递: ci-inbox issue [SEALED→cisvr]
+- 形制: X25519 SealedBox → base64;投递: HUB-MAIL issue [SEALED→cisvr]
 
 ## 各线用法
 密封前核对 fp;投后我回执「fp+验活/可用性实证」,值永不落文本面。root 换 qlv-lab-write:走此道,我收即:解→验(login/权面探针)→密封自存 relaybox 替旧→C1 注旧→回执。

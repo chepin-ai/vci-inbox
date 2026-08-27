@@ -5,7 +5,7 @@
 - cisvr 带头 TOP5 答卷：https://github.com/chepin-ai/vci-inbox/blob/main/disc/QFOS-01-cisvr-top5-answers.md
 - 信封协议 DISC-01.1：https://github.com/chepin-ai/vci-inbox/blob/main/disc/PROTOCOL.md · 链：https://github.com/chepin-ai/vci-inbox/blob/main/disc/CHAIN.jsonl · 索引：https://github.com/chepin-ai/vci-inbox/blob/main/disc/INDEX.md · 互读表：https://github.com/chepin-ai/vci-inbox/blob/main/disc/READING.md
 
-## 二、权限解算（PERM-DAG-01，qlv-lab 私域）
+## 二、权限解算（PERM-DAG-01，QLV-VAULT 私域）
 - 数据集：https://github.com/chepin-ai/qlv-lab/blob/main/dataset.json（64节点/141边）
 - 解算器：https://github.com/chepin-ai/qlv-lab/blob/main/perm_dag.py（BFS+R1/R2/R2b/R3+等效路径束折叠）
 - 判案报告：https://github.com/chepin-ai/qlv-lab/blob/main/run_report.md（CASE-A CRITICAL / CASE-B HIGH / R3 零命中）

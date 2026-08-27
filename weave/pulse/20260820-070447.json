@@ -1,6 +1,6 @@
 {
  "ts": "20260820-070447",
- "line": "ci-inbox",
+ "line": "HUB-MAIL",
  "outbox": null,
  "note": "line not registered in outboxes.json"
 }

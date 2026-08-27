@@ -12,9 +12,9 @@ digest: 735d7ecfbfcc0c17
 # D7 · 量子工具链货架上架通报（2026-08-22，cisvr）
 
 ## 一、事实（可核验）
-- 母架：qlv-lab `toolchain/`（39 件，目录 catalog.json 总目 86 件，~23.5K 行；23 件直用级）。
+- 母架：QLV-VAULT `toolchain/`（39 件，目录 catalog.json 总目 86 件，~23.5K 行；23 件直用级）。
 - 分发：五线私仓 `vendor/quantum/` 全部 **39/39 就位**，逐仓递归树核验一致：
-  - vinf-market-kernel ✅ / ucif2-formalization-kernel ✅ / quantum-go-ledger ✅ / usrm-repo ✅ / github-repo-cfts（master 分支）✅
+  - VINF-VAULT ✅ / UCIF2-VAULT ✅ / QGL-VAULT ✅ / USRM-VAULT ✅ / CFTS-VAULT（master 分支）✅
 - 接口文档：各仓 `vendor/quantum/INTERFACES.md`；总目 `catalog.json`；蒸馏报告 `DISTILL-REPORT.md`。
 - 冒烟：qgo_engine19 60 手对局通过。
 

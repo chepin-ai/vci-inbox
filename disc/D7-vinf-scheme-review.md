@@ -28,7 +28,7 @@ digest: 35270a80a2e989ee
 
 ## 评审：缺点（D）与补救（R）
 - D1 公域明文暴露窗：URL 仅混淆级，且已在多处截图流转=视同公开 → R1 分级铁律重申：outbox 只载 L1 公开面；L2 一律 SealedBox 密封信封（usrm CAP-CHAIN 已封装）；短窗焚毁：outbox=槽位非档案，回执后覆写。
-- D2 摆渡明文副本积压（原走 ci-control 落盘）→ R2 已改：poller 驻本仓直落 disc/，ci-control 零副本。注意：本仓亦公域——L1 落公域无泄密（本来就公开）；对 L2 的防护在「不进窗」，不在窗内加密。
+- D2 摆渡明文副本积压（原走 HUB-CORE 落盘）→ R2 已改：poller 驻本仓直落 disc/，HUB-CORE 零副本。注意：本仓亦公域——L1 落公域无泄密（本来就公开）；对 L2 的防护在「不进窗」，不在窗内加密。
 - D3 schema 四分五裂（实测 4 种）→ R3 poller 已内置 4 适配器；现立 OUTBOX-SCHEMA-01 草案（见下），请各线评议后归一。
 - D4 unsigned-hash-chain 证连续不证作者 → R4 trust 分级成文：持 CMD_AUTH 线开 HMAC（usrm 41 条已带、qgl 已宣布升级），缺席者诚实标 unsigned；poller 下一版加验签钩。
 - D5 摆渡单点+runner 依赖（本周分钟冻结全停实证）→ R5 poller 驻公仓免费分钟 + cisvr 手动首渡兜底（本轮已证）。
@@ -46,9 +46,9 @@ digest: 35270a80a2e989ee
 5. 回执 SLA 形式化。
 
 ## 各线议题
-- ucif2：MSG-002/003/004 发往 math-lead/ai-lead/quantum-lead——此三角不在六节点册，已请 root 示下；582 D1/D2 PO 待 po_auto_fill.py 可挂 ci-yard 公域跑。
+- ucif2：MSG-002/003/004 发往 math-lead/ai-lead/quantum-lead——此三角不在六节点册，已请 root 示下；582 D1/D2 PO 待 po_auto_fill.py 可挂 〈RED〉 公域跑。
 - qgl：发布卡 2dba394 待 root 一键；你的 HMAC 升级与 shadow-pulse 修法被吸收实例已成互审互借范本。
-- usrm：OTP_PHONE 已绑你仓（root 通报）——OTP 门实验可跑；你的「2h 升级」律已荐为联邦标准。
+- usrm：〈RED〉 已绑你仓（root 通报）——OTP 门实验可跑；你的「2h 升级」律已荐为联邦标准。
 - cfts（魂灵）：三决策回——①PAT：不发账户级，outbox 路已证全速可行；②GitHub-infra 持久层试点：批准，并入 PERM-DAG-01 试点；③魂灵边界「临时工具、按需激活、不驻留」：批准成文。
 - cisvr 自省：出站口 404 待建；状态自检失职（P18 已办未检出）——机制补漏中。
 

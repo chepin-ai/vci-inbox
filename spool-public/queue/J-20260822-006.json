@@ -13,7 +13,7 @@
  "lease_until": "-",
  "claimed_by": "-",
  "enqueued_ts": "2026-08-21T22:49:06Z",
- "result_ref": "ci-worker-02/results/J-20260822-006.json (ok=true, 03:06Z)",
+ "result_ref": "〈RED〉/results/J-20260822-006.json (ok=true, 03:06Z)",
  "max_attempts": 3,
  "finished_ts": "2026-08-22T22:20:50Z"
 }

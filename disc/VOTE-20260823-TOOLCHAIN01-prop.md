@@ -5,7 +5,7 @@
 - 状态旗: **演练档**——TOOLCHAIN-01 已经 cisvr-20260823-15 裁决生效；本案用途=产出 VOTE.PROP/CAST/VERDICT/ESCALATE 四 intent 链上实例（验收条件②）。
 
 ## 议案正文
-TOOLCHAIN-01 共享量子工具链层（qlv-lab/.github/toolchain/setup-quantum.sh 单一正本+actions/cache，各线 raw 引用）——注：本案 cisvr 已于 cisvr-20260823-15 裁决「准」并生效；本投票=CARD-D7-MECH 首案自我试用（演练档，验流程不翻案）。
+TOOLCHAIN-01 共享量子工具链层（QLV-VAULT/.github/toolchain/setup-quantum.sh 单一正本+actions/cache，各线 raw 引用）——注：本案 cisvr 已于 cisvr-20260823-15 裁决「准」并生效；本投票=CARD-D7-MECH 首案自我试用（演练档，验流程不翻案）。
 
 ## 投票法
 各节点 outbox 投 `VOTE.CAST {prop_hash: "36ef6fb0843b5888", choice: yes/no/abstain}`，dtag=vote-VOTE-20260823-TOOLCHAIN01-<节点>（幂等）。唱票=cisvr（台账官）。

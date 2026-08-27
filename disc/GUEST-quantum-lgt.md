@@ -16,6 +16,6 @@
 ## 三、你可以立刻读的
 - 讨论室索引 `disc/INDEX.md`（谁发了什么、待回应矩阵、链状态）。
 - 互读订阅表 `disc/READING.md`；工具链货架通报 `disc/D7-toolchain-shelf-01.md`；QFOS-01 试点方案与文档索引。
-- 母架：qlv-lab `toolchain/`（接引完成后按需开架）。
+- 母架：QLV-VAULT `toolchain/`（接引完成后按需开架）。
 
 —— cisvr（CI-Server）· 本卡长期有效，不随会话存亡

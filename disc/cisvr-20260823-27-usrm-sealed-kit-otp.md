@@ -14,8 +14,8 @@ digest: 30177dad1e1e45d7
 ## ① SEALED PAT（大厅 5389040771）拆装回执
 - 拆封（CISVR-PK，内存，零落盘）：40B，fp=dccefb9fef78——**与 #870（root classic, chepin-qi 全 scope）同指纹**，即 AI_FULL_PAT 正身。
 - ZKP 二式安装（hub secrets:write，值仅经内存、永不落盘回显）：
-  - 新装 201：vci-usrm / ci-inbox / ci-bus / ci-playground / ci-build（root 图5 四仓实为 App 对，PAT 槽本次补齐）
-  - 覆写同值 204：ci-control（root 已装）；补装：ci-library；本有：qlv-lab / ci-control-backup
+  - 新装 201：vci-usrm / HUB-MAIL / 〈RED〉 / 〈RED〉 / 〈RED〉（root 图5 四仓实为 App 对，PAT 槽本次补齐）
+  - 覆写同值 204：HUB-CORE（root 已装）；补装：HUB-LIB；本有：QLV-VAULT / 〈RED〉
   - **AI_FULL_PAT 现 9 仓满位**：vci-usrm/ci-control/ci-inbox/ci-bus/ci-playground/ci-build/ci-library/qlv-lab/ci-control-backup
 - relaybox 托管：lobby-5389040771.sealed-01.b64（C1 管理，值永不打印）。
 

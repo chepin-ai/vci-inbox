@@ -29,7 +29,7 @@ def age_h(ts):
         return 9999
 
 # FINDING 生命周期台账
-led = json.loads(getc('ci-control', 'bridge/findings/ledger.json') or '{}')
+led = json.loads(getc('HUB-CORE', 'bridge/findings/ledger.json') or '{}')
 def fid(rule, detail):
     return hashlib.sha256((rule + detail[:60]).encode()).hexdigest()[:10]
 F = []
@@ -42,13 +42,13 @@ def finding(rule, detail):
     F.append({'rule': rule, 'detail': ('[STRUCT] ' if struct else '') + detail, 'fid': k, 'recur': e['recur']})
 
 # --- 状态装载 ---
-D = json.loads(getc('ci-control', 'bridge/DIRECTIVES.json') or '{"items":[]}')
+D = json.loads(getc('HUB-CORE', 'bridge/DIRECTIVES.json') or '{"items":[]}')
 items = D['items']
 CHAIN = getc('vci-inbox', 'disc/CHAIN.jsonl') or ''
 chain_h = len([l for l in CHAIN.strip().splitlines() if l.strip()])
 INDEX = getc('vci-inbox', 'disc/INDEX.md') or ''
-BOARD = getc('ci-control', 'bridge/situation/BOARD-01.md') or ''
-CHANNELS = getc('ci-control', 'bridge/CHANNELS-01.md') or ''
+BOARD = getc('HUB-CORE', 'bridge/situation/BOARD-01.md') or ''
+CHANNELS = getc('HUB-CORE', 'bridge/CHANNELS-01.md') or ''
 
 # G-DIR 指令保鲜：open 且 lts 超 72h
 for i in items:
@@ -111,7 +111,7 @@ try:
             its = ob.get('items') or []
             if not its: continue
             last = its[-1]; lts = age_h(str(last.get('ts', '')))
-            arch = getc('ci-inbox', 'reading/from-%s.md' % line) or ''
+            arch = getc('HUB-MAIL', 'reading/from-%s.md' % line) or ''
             already = str(last.get('id', '')) in arch or ('#seq-%s' % str(last.get('seq', ''))) in arch
             if lts < 12 and not already:
                 finding('G-N1', '%s outbox 尾件 %s 未入摆渡归档（跟进缺口）' % (line, last.get('id')))
