@@ -78,6 +78,12 @@ jobs:
                     '应急授权方式:root 在 lobby #1 回 [CMD] 白名单(repo+workflow 名),cisvr 按白名单逐只启用并回证。\n'
                     '本守护本轮任务完成,自停;下周期由 root 或 cisvr 手动 workflow_dispatch 重启。')
               api('POST','https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments',{'body':body})
+              # 墙开即触发ci-control持administration-rw开Discussions(D-116)
+              s6,d6=api('GET','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows')
+              adid=[x['id'] for x in d6.get('workflows',[]) if x['path'].endswith('admin-discussions.yml')]
+              if adid:
+                  s7,_=api('POST','https://api.github.com/repos/chepin-ai/ci-control/actions/workflows/'+str(adid[0])+'/dispatches',{'ref':'main'})
+                  log['admin_dispatch']=s7
               api('PUT','https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/reset-sentinel.yml/disable')
               putc('ci-control','bridge/governor/wall-state.json',{'state':'OPEN-REPORTED','ts':ts,'restored':0,'policy':'report-only'},'wall OPEN-REPORTED')
           else:
