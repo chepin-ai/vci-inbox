@@ -234,6 +234,37 @@ jobs:
               anchor_check={'beacon_seq':_bea.get('seq'),'anchor_seq':_anc.get('seq'),'aligned':bool(_bea) and bool(_anc) and _bea.get('hash')==_anc.get('sha256') and _bea.get('seq')==_anc.get('seq')}
               if not anchor_check['aligned']: print('ALERT beacon-anchor MISMATCH',anchor_check)
           except Exception as e: anchor_check={'err':str(e)[:60]}
+          # R1-v2: 公域暴露扫描(数据/文档面零容忍;机械面操作性引用单列计数)
+          r1_scan=None
+          try:
+              import re as _re,base64 as _b64
+              _PRIV=['ci-control','ci-inbox','ci-library','ci-playground','ci-build','ci-code','ci-logs','ci-root','ci-bus','ci-worker','usrm-repo','qlv-lab','ci-yard']
+              _CRED=_re.compile(r'(CI_OPS_[A-Z_]+|CI_ROOT_[A-Z_]+|CI_APP_[A-Z]+|FORMAFLOW[A-Z_]*|GITEE_MIRROR_PAT|GUARD_APP_KEY|OTP_EMAIL\d?|OTP_PHONE|QR_KEY_\d+|QUAFU[A-Z_]*|QUANTUM_ORIGIN[A-Z_0-9]*|WARM_BI[A-Z_]*|INBOX_PRIVATE_KEY|FED_RELAY_SK|SHARED_KEYS|CODEC_KEY_\d+|DISPATCH_PAT)')
+              _IDS=_re.compile(r'(154355791|155768871|4621702|4685074|/mnt/)')
+              def _raw(p):
+                  r=urllib.request.Request(f'{B}/vci-inbox/contents/{p}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+                  x=urllib.request.urlopen(r); return _b64.b64decode(json.loads(x.read().decode())['content']).decode('utf-8','ignore')
+              _rq=urllib.request.Request(f'{B}/vci-inbox/git/trees/main?recursive=1',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              _tree=json.loads(urllib.request.urlopen(_rq).read().decode()).get('tree',[])
+              _viol=[];_mref=0;_scanned=0
+              for _t in _tree:
+                  if _t.get('type')!='blob': continue
+                  _p=_t['path']
+                  if _p.endswith(('.png','.jpg','.lock','.enc','.qf','.woff','.woff2','.ttf')): continue
+                  _mach=_p.startswith(('.github/workflows/','bridge/scripts/'))
+                  try: _c=_raw(_p)
+                  except Exception: continue
+                  if not _c: continue
+                  _scanned+=1
+                  _h=[x for x in _PRIV if _re.search(r'(?<![\w/-])'+x+r'(?![\w-])',_c)]
+                  _h+=[m if isinstance(m,str) else m[0] for m in set(_CRED.findall(_c))]
+                  _h+=list(set(_IDS.findall(_c)))
+                  if _h:
+                      if _mach: _mref+=1
+                      else: _viol.append({'path':_p,'hits':sorted(set(_h))[:5]})
+              r1_scan={'scanned':_scanned,'data_violations':len(_viol),'machine_ref_files':_mref,'top':_viol[:10]}
+              if _viol: print('R1-VIOLATIONS',len(_viol),json.dumps(_viol[:5],ensure_ascii=False))
+          except Exception as e: r1_scan={'err':str(e)[:80]}
           dlog=getc('ci-control','bridge/governor/decision-log.json') or []
           prev=dlog[-1]['hash'] if dlog else 'GENESIS'
           nrem=sum(len(v['remove']) for v in desired.values()); nwv=sum(len(v['wf_violations']) for v in desired.values())
@@ -281,7 +312,7 @@ jobs:
                       except Exception: pass
           except Exception: pass
           drec={'ts':ts,'decision_id':'dec-'+str(len(dlog)+1),'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_sha256':k_h,
-                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'genus':genus,'goal_health':goal_health,'anchor_check':anchor_check,'prev':prev}
+                'diff':{'remove':nrem,'wf_violations':nwv},'closure':closure,'genus':genus,'goal_health':goal_health,'anchor_check':anchor_check,'r1_scan':r1_scan,'prev':prev}
           drec['hash']=hashlib.sha256(json.dumps(drec,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           dlog.append(drec); putc('ci-control','bridge/governor/decision-log.json',dlog,'decision '+drec['decision_id'])
           # U1 checkpoint(三行制: origin+size+root+签名)
