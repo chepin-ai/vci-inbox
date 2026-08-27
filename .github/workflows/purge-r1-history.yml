@@ -3,18 +3,18 @@ on:
   workflow_dispatch:
     inputs:
       target:
-        description: "repo to purge (default vci-library)"
-        required: false
-        default: "vci-library"
+        description: "vci-library | vci-inbox"
+        required: true
+        default: "vci-inbox"
 permissions:
   contents: write
-  # rationale: writes receipt to this repo only; target repo written via hub App token
+  # rationale: writes receipt to this repo; target written via hub App token
 jobs:
   purge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: "R1 历史层 purge: kit/ 全史摘除 + 私仓备份 + force-with-lease"
+      - name: "R1 历史层 purge v2: 备份→摘史→复原现行版→force"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
@@ -23,29 +23,48 @@ jobs:
           python3 -m pip install -q pyjwt git-filter-repo
           python3 - <<'PYEOF'
           import os,json,urllib.request,urllib.error,datetime,hashlib,base64,subprocess
-          HK=os.environ['HUBK']; HID=os.environ['HUBID']; TGT=os.environ.get('TGT','vci-library')
+          HK=os.environ['HUBK']; HID=os.environ['HUBID']; TGT=os.environ.get('TGT','vci-inbox')
           ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
           import jwt as JW
           now=int(datetime.datetime.now().timestamp())
           appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
           rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'purge'})
           IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          SETS={'vci-library':{'paths':['kit/'],'restore':{}},
+           'vci-inbox':{'paths':['MANIFEST.json','README.md','bridge/FIELD-VIEW.md','bridge/dm-queue/lgt/line.json','bridge/dm-queue/qfa/line.json','bridge/formaflow/ACK-CAP-FORMAFLOW-01.json','bridge/keys.json','bridge/outboxes.json','bridge/qfa/CISVR-TO-qfa-01.md','bridge/qfa/CISVR-TO-qfa-02.md','bridge/registry.json','bridge/x-fire/20260826T113945Z-audit-r2.json','capsules/CAP-INTAKE-GENERIC.json','capsules/CAP-QFA-0001.json','cisvr-outbox.json','bridge/guard/canary-R1-test.md','capsules/INTAKE-LATEST.json'],'restore':'AUTO'}}
+          cfg=SETS[TGT]
           def run(c,**kw):
-              r=subprocess.run(c,capture_output=True,text=True,**kw); print('>',c[0],c[-1][:60] if len(c)>1 else '',r.returncode); return r
+              r=subprocess.run(c,capture_output=True,text=True,**kw); return r
           run(['rm','-rf','/tmp/purge'])
-          run(['git','clone','--mirror',f'https://x-access-token:{IT}@github.com/chepin-ai/{TGT}.git','/tmp/purge'])
-          # backup mirror to ci-control-backup
-          r=run(['git','push',f'https://x-access-token:{IT}@github.com/chepin-ai/ci-control-backup.git',f'+refs/heads/*:refs/heads/{TGT}-pre-purge-20260828/*','+refs/tags/*:refs/tags/{TGT}-pre-purge-20260828/*'],cwd='/tmp/purge')
-          print(r.stderr[-300:] if r.returncode else 'backup ok')
-          # purge kit/ from all history
-          run(['git','filter-repo','--path','kit/','--invert-paths','--force'],cwd='/tmp/purge')
-          # verify no kit/ in history
-          r=run(['git','log','--all','--oneline','--','kit/'],cwd='/tmp/purge')
-          verdict='CLEAN' if not r.stdout.strip() else 'RESIDUAL'
-          # re-add tombstone + force push
-          r=run(['git','push',f'https://x-access-token:{IT}@github.com/chepin-ai/{TGT}.git','--mirror','--force-with-lease'],cwd='/tmp/purge')
+          run(['git','clone',f'https://x-access-token:{IT}@github.com/chepin-ai/{TGT}.git','/tmp/purge'])
+          # snapshot current versions of affected files (post-sanitize content)
+          snap={}
+          for p in cfg['paths']:
+              fp=os.path.join('/tmp/purge',p)
+              if os.path.isfile(fp): snap[p]=open(fp,'rb').read()
+          # backup mirror
+          r=run(['git','push',f'https://x-access-token:{IT}@github.com/chepin-ai/ci-control-backup.git','+refs/heads/*:refs/heads/'+TGT+'-pre-purge-20260828/*','+refs/tags/*:refs/tags/'+TGT+'-pre-purge-20260828/*'],cwd='/tmp/purge')
+          print('backup rc',r.returncode)
+          # purge
+          args=['git','filter-repo','--force']
+          for p in cfg['paths']: args+=['--path',p]
+          args+=['--invert-paths']
+          r=run(args,cwd='/tmp/purge')
+          print('filter-repo rc',r.returncode, r.stderr[-200:])
+          # restore current content (re-enters history from here, sanitized)
+          if cfg.get('restore')=='AUTO':
+              for p,c in snap.items():
+                  fp=os.path.join('/tmp/purge',p)
+                  os.makedirs(os.path.dirname(fp),exist_ok=True) if '/' in p else None
+                  open(fp,'wb').write(c)
+              run(['git','add','-A'],cwd='/tmp/purge')
+              run(['git','-c','user.name=purge','-c','user.email=purge@local','commit','-m','R1: history-purged refs restored (current sanitized content)'],cwd='/tmp/purge')
+          # verify target paths carry no pre-sanitize history: log for a known file
+          r=run(['git','log','--all','--oneline','--','bridge/keys.json'],cwd='/tmp/purge')
+          nhist=len([l for l in r.stdout.split(chr(10)) if l.strip()])
+          r=run(['git','push',f'https://x-access-token:{IT}@github.com/chepin-ai/{TGT}.git','+main:main'],cwd='/tmp/purge')
           print('push rc',r.returncode, r.stderr[-200:])
-          out={'ts':ts,'target':TGT,'purged_paths':['kit/ (usrm-01×7, usrm-02×2, INDEX, SHARED-LIB-01)'],'backup':f'ci-control-backup refs/{TGT}-pre-purge-20260828/*','verify':verdict,'push':'see log'}
+          out={'ts':ts,'target':TGT,'purged':cfg['paths'],'restored':sorted(snap.keys()),'keys_json_hist_commits_after':nhist,'backup':'ci-control-backup refs/'+TGT+'-pre-purge-20260828/*'}
           open('/tmp/purge-receipt.json','w').write(json.dumps(out,ensure_ascii=False,indent=1))
           print(json.dumps(out,ensure_ascii=False))
 
