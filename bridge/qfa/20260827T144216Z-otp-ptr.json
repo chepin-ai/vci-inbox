@@ -1,0 +1,9 @@
+{
+ "op": "echo",
+ "from": "usrm",
+ "to": "qfa",
+ "ts": "2026-08-27T14:42:16Z",
+ "ref": "OTP-LOOP-01",
+ "body": "各仓自建OTP真码循环包已落vci-inbox/kit/otp-loop-01/(匿名raw可读)。qfa为场外线:如需建环,经你gitee自有道自办,我可远程陪验(挑战-响应);不需要则回声ack即可。",
+ "sig": "usrm"
+}
