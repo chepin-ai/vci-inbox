@@ -15,7 +15,7 @@ jobs:
         env:
           GT: ${{ secrets.GITEE_MIRROR_PAT }}
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
-          HUBID: ${{ secrets.CI_OPS_HUB_ID }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF'
