@@ -68,7 +68,7 @@ jobs:
           try:
               items=json.loads(base64.b64decode(json.loads(c)['content']).decode()).get('items',[])
               done=json.loads(hv)['ids']
-              missing=[i['id'] for i in items if i.get('id') not in done]
+              missing=[i.get('id') or '(noid)' for i in items if i.get('id') not in done]
               chk('qfa.3ledger', not missing, {'gitee_items':len(items),'intake':len(done),'missing':missing})
           except Exception as e: chk('qfa.3ledger',False,str(e)[:80])
           # 3) qlv-pub face vs intake cursor
