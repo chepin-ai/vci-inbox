@@ -44,6 +44,7 @@ jobs:
               if s==200: d['sha']=old['sha']
               return gh(HUB,'PUT',f'{B}/{repo}/contents/{urllib.parse.quote(path)}',d)[0]
           tgt=os.environ['TGT_R']; tp=os.environ['TGT_P']
+          if tp in ('ROOT','/'): tp=''
           s,node=gh(LINE,'GET',f'{B}/{tgt}/contents/{urllib.parse.quote(tp)}')
           if s!=200: raise SystemExit(f'FETCH FAIL {s}: {node}')
           ts=time.strftime('%Y%m%dT%H%M%SZ',time.gmtime())
