@@ -1,0 +1,13 @@
+{
+ "ts": "2026-08-28T18:37:28Z",
+ "verdict": "INSUFFICIENT",
+ "frontier": [
+  "S-INTAKE-AGENT",
+  "S-SESSION-PILOT",
+  "S-CIRCLE-REFRESH",
+  "S-FIELD-ROUTER",
+  "S-AUDIT-RING",
+  "S-FLEET-JUDGE"
+ ],
+ "flags": []
+}
