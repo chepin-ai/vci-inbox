@@ -1,5 +1,11 @@
 {
  "relayed": [
-  "cisvr-20260823-09"
+  "cisvr-20260823-09",
+  "qgl-20260828-anchor-law",
+  "qgl-20260828-burn-cap",
+  "qgl-20260828-emv-thread",
+  "qgl-20260828-dmline-req",
+  "qgl-20260828-os-workorder",
+  "qgl-20260828-ferry-fix"
  ]
 }

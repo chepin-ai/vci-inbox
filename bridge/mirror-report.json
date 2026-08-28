@@ -1,5 +1,40 @@
 {
- "ts": "2026-08-27T22:36:28Z",
+ "ts": "2026-08-28T06:21:30Z",
  "lobby": "1",
- "results": []
+ "results": [
+  {
+   "file": "TOMBSTONE.md",
+   "status": "skip-no-envelope"
+  },
+  {
+   "file": "qgl-anchor-law-qgl.md",
+   "status": 201,
+   "comment_id": 5449178568
+  },
+  {
+   "file": "qgl-burn-ceiling-qgl.md",
+   "status": 201,
+   "comment_id": 5449178983
+  },
+  {
+   "file": "qgl-dm-line-qgl-open.md",
+   "status": 201,
+   "comment_id": 5449179399
+  },
+  {
+   "file": "qgl-emv-thread-01-qgl.md",
+   "status": 201,
+   "comment_id": 5449179799
+  },
+  {
+   "file": "qgl-os-multiproc-01.md",
+   "status": 201,
+   "comment_id": 5449180248
+  },
+  {
+   "file": "qgl-ferry-fix-order.md",
+   "status": 201,
+   "comment_id": 5449180702
+  }
+ ]
 }
