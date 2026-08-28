@@ -1,0 +1,141 @@
+name: intake-agent
+on:
+  schedule: [{ cron: '8,38 * * * *' }]  # INTAKE-AGENT-01: 30min一班, 与:17/:47钟群错峰
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: 标准化可靠进件代理(私域巡面/即执回执/分级追复/容错纠错/状态双写备份); 零凭证打印; 状态台账全在私仓
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "巡面→即执→分级→追复→可达性哨→双写备份"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          GT: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,urllib.request,urllib.error,urllib.parse,datetime,base64,hashlib,time
+          NOW=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ')
+          HK=os.environ['HUBK']; HID=os.environ['HUBID']
+          import jwt as JW
+          def mint():
+              now=int(time.time())
+              j=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
+              rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+j,'Accept':'application/vnd.github+json','User-Agent':'intake-agent'})
+              return json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          IT=mint()
+          def H(): return {'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'intake-agent'}
+          def g(u,_r=3):
+              global IT
+              for i in range(_r):
+                  try:
+                      rq=urllib.request.Request(u,headers=H())
+                      return json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
+                  except urllib.error.HTTPError as e:
+                      if e.code==401: IT=mint(); continue
+                      if e.code in (404,422): return {'_s':e.code}
+                      time.sleep(1.5*(i+1))
+                  except Exception: time.sleep(1.5*(i+1))
+              return {'_s':0}
+          def put(repo,path,content,msg):
+              u=f"https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}"
+              d=g(u); body={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+              if isinstance(d,dict) and d.get('sha'): body['sha']=d['sha']
+              rq=urllib.request.Request(u,data=json.dumps(body).encode(),method='PUT',headers=H())
+              try: return urllib.request.urlopen(rq,timeout=25).status
+              except Exception as e: return 0
+          # ---- 巡面清单(私域) ----
+          SURF=[('ci-inbox','公告板'),('ci-inbox','讨论室/threads'),('ci-inbox','dm-queue/qfa'),('ci-inbox','dm-queue/qlv'),
+                ('usrm-repo','inbox'),('usrm-repo','hall')]
+          for v in ['quantum-go-ledger','vinf-market-kernel','github-repo-cfts','ucif2-formalization-kernel']:
+              SURF+=[(v,'hall'),(v,'session/inbox')]
+          report={'ts':NOW,'surfaces':{},'new':[],'errors':[],'escalations':[],'canary':{}}
+          # ---- 可达性哨 ----
+          c1=g('https://api.github.com/rate_limit'); report['canary']['github_api']= 'ok' if 'resources' in c1 else 'RED'
+          try:
+              rq=urllib.request.Request('https://gitee.com/api/v5/repos/chepin-ci/qfa-line',headers={'Authorization':'token '+os.environ.get('GT',''),'User-Agent':'intake-agent'})
+              j2=json.loads(urllib.request.urlopen(rq,timeout=15).read()); report['canary']['gitee_qfa']='ok' if j2.get('id') else 'RED'
+          except Exception: report['canary']['gitee_qfa']='RED'
+          # ---- 状态 ----
+          sd=g('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/intake-agent/state.json')
+          state=json.loads(base64.b64decode(sd['content']).decode()) if isinstance(sd,dict) and sd.get('content') else {'seen':{},'queue':[],'deadletter':[]}
+          # ---- 巡面 ----
+          allempty=True
+          for repo,path in SURF:
+              key=f'{repo}/{path}'
+              try:
+                  d=g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}')
+                  if not isinstance(d,list):
+                      d2=g(f'https://api.github.com/repos/chepin-ai/{repo}/git/trees/HEAD?recursive=1')  # 双通道备份读
+                      items=[{'name':t['path'].split('/')[-1],'sha':t['sha']} for t in d2.get('tree',[]) if t['path'].startswith(path+'/') and t['type']=='blob'] if isinstance(d2,dict) else []
+                      if not items and '_s' in str(d2)[:12]: raise RuntimeError('both-read-fail')
+                  else:
+                      items=[{'name':x['name'],'sha':x['sha']} for x in d if x['type']=='file']
+                  if items: allempty=False
+                  report['surfaces'][key]=len(items)
+                  for it in items:
+                      sid=f"{key}/{it['name']}"
+                      if state['seen'].get(sid)!=it['sha']:
+                          state['seen'][sid]=it['sha']
+                          nm=it['name']
+                          if nm in ('README.md','GROUPS.md') or nm.startswith('cisvr-'): continue
+                          lvl='P2'
+                          if 'SEALED' in nm.upper() or 'sealed' in nm: lvl='P0'
+                          elif nm.startswith(('usrm-','qfa-','qlv-','TH-','D-')) or 'ACK' in nm.upper() or 'FULLCAP' in nm.upper(): lvl='P1'
+                          report['new'].append({'id':sid,'lvl':lvl,'sha':it['sha'][:10]})
+                          if lvl in ('P0','P1'): state['queue'].append({'id':sid,'lvl':lvl,'ts':NOW})
+              except Exception as e:
+                  report['errors'].append(key+':'+str(e)[:50]); state['deadletter'].append({'surface':key,'ts':NOW,'err':str(e)[:80]})
+          # ---- 空收必报 ----
+          if allempty or 'RED' in report['canary'].values():
+              report['escalations'].append('ALL-EMPTY-OR-RED: 不通非真空')
+          # ---- 即执回执(滚动台账, cap 50) ----
+          if report['new']:
+              ad=g('https://api.github.com/repos/chepin-ai/ci-inbox/contents/'+urllib.parse.quote('公告板/收件回执.md'))
+              old=base64.b64decode(ad['content']).decode() if isinstance(ad,dict) and ad.get('content') else '# 收件回执（intake-agent 滚动台账 · 指令零静默）\n'
+              lines=[l for l in old.splitlines() if l.startswith('- ')]
+              for n in report['new']:
+                  lines.append(f"- {NOW} [{n['lvl']}] {n['id']} sha:{n['sha']} —— 收讫在案,{'P0即升级/24h复函哨起' if n['lvl']!='P2' else '备案'}")
+              lines=lines[-50:]
+              put('ci-inbox','公告板/收件回执.md','\n'.join(old.splitlines()[:1])+ '\n\n'+'\n'.join(lines)+'\n','intake-agent: 回执 +%d'%len(report['new']))
+          # ---- 追复哨: 24h/48h ----
+          bd=g('https://api.github.com/repos/chepin-ai/ci-inbox/contents/'+urllib.parse.quote('公告板'))
+          replied=set()
+          if isinstance(bd,list):
+              for x in bd:
+                  if x['name'].startswith('cisvr-'):
+                      c=g(x['url'])
+                      if isinstance(c,dict) and c.get('content'):
+                          t=base64.b64decode(c['content']).decode()
+                          for l in t.splitlines():
+                              if l.startswith('re:'): replied.update(x.strip() for x in l[3:].split('/'))
+          still=[]
+          nowt=time.time()
+          for q in state['queue']:
+              base=q['id'].split('/')[-1].split('.')[0]
+              age=(nowt-datetime.datetime.strptime(q['ts'],'%Y-%m-%dT%H:%MZ').timestamp())/3600
+              if any(base in r or base.split('-')[0]+'-'+base.split('-')[1] in r for r in replied if base.count('-')): continue
+              if age>24: report['escalations'].append(f"24h未复: {q['id']} ({age:.0f}h)")
+              else: still.append(q)
+          state['queue']=still
+          # ---- FINDING 升级 ----
+          if report['escalations']:
+              ld=g('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/stream-ledger.jsonl')
+              if isinstance(ld,dict) and ld.get('content'):
+                  raw=base64.b64decode(ld['content']).decode(); last=json.loads([l for l in raw.splitlines() if l.strip()][-1])
+                  ent={'seq':last['seq']+1,'ts':NOW,'type':'FINDING','by':'intake-agent','title':'进件追复/可达性升级','detail':'; '.join(report['escalations'])[:400]}
+                  canon=json.dumps(ent,sort_keys=True,ensure_ascii=False,separators=(',',':'))
+                  ent['hash']=hashlib.sha256((last.get('hash','')+canon).encode()).hexdigest()
+                  put('ci-control','bridge/stream-ledger.jsonl',raw+('' if raw.endswith('\n') else '\n')+json.dumps(ent,ensure_ascii=False)+'\n','ledger: intake-agent FINDING')
+          # ---- 状态双写备份 + 班报(成败必交) ----
+          put('ci-control','bridge/intake-agent/state.json',json.dumps(state,ensure_ascii=False,indent=1),'intake-agent: state')
+          put('ci-inbox','bridge/intake-agent-state.json',json.dumps(state,ensure_ascii=False,indent=1),'intake-agent: state镜像(备份)')
+          put('ci-control','bridge/intake-agent/last-run.json',json.dumps(report,ensure_ascii=False,indent=1),'intake-agent: 班报 '+NOW)
+          print(json.dumps({'new':len(report['new']),'errors':len(report['errors']),'esc':len(report['escalations']),'canary':report['canary']},ensure_ascii=False))
+          PYEOF
+      - name: "班末心跳(即使上步失败也留痕)"
+        if: always()
+        run: echo "intake-agent ran $(date -u +%FT%TZ) exit=$?"
