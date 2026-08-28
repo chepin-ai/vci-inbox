@@ -102,6 +102,23 @@ jobs:
               over=[i['id'] for i in json.loads(er)['items'] if i.get('state')=='watching' and i.get('deadline','') and not i['deadline'].startswith('open') and ts>i['deadline']]
               chk('expect.overdue', not over, {'overdue':over})
           except Exception as e: chk('expect.overdue',False,str(e)[:80])
+          # AUTH-CHAIN 回执闭环: 授权令发布后24h,各线须回执(讨论室/公告板/annex出现线名+AUTH-USRM-01)
+          try:
+              import re as _re
+              ack_need=['usrm','qgl','vinf','cfts','ucif2','qlv','qfa']
+              found=set()
+              for src in [('ci-inbox',urllib.parse.quote('公告板')),('ci-inbox',urllib.parse.quote('讨论室/threads'))]:
+                  dd=gget_dir(src[0],src[1])
+                  for f in (dd if isinstance(dd,list) else []):
+                      if f['name'].endswith(('.md','.json')) and 'AUTH-USRM-01' in (f['name']+''):
+                          pass
+              # 简化: 各线annex hall/出现AUTH-USRM-01-ACK即记回执
+              for v,ln in [('usrm-repo','usrm'),('quantum-go-ledger','qgl'),('vinf-market-kernel','vinf'),('github-repo-cfts','cfts'),('ucif2-formalization-kernel','ucif2')]:
+                  dd=gget_dir(v,'hall')
+                  if isinstance(dd,list) and any('AUTH-USRM-01-ACK' in f['name'] for f in dd): found.add(ln)
+              missing=[l for l in ack_need if l not in found and l not in ('qlv','qfa')]
+              chk('auth.ack', not missing, {'no_ack':missing,'note':'qlv/qfa经摆渡,回执面在gitee/qlv-lab,另账'})
+          except Exception as e: chk('auth.ack',False,str(e)[:80])
           A['verdict']='CLEAN' if not A['mismatches'] else 'FINDINGS'
           st=gput('ci-control','bridge/audit/AUDIT-'+day+'.json',json.dumps(A,ensure_ascii=False,indent=1),'audit-ring daily '+day+' verdict='+A['verdict'])
           for m in A['mismatches']:
