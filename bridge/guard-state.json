@@ -1,13 +1,13 @@
 {
  "in": {
   "from-ucif2.md": "399d42d23266c226000dc0d14f9520374bc933c1b2b944301bc429e4144ce3fd",
-  "from-qgl.md": "355f6d8d5e21cdb97e20d93c61ef9507443f689ba498cd4b157c434b84a5679d",
-  "INDEX.md": "3febc9a2ea21c15f07d6a8a05aa13cf427dc3f60b9a534d6bcfde3af80ab50ea",
+  "from-qgl.md": "48155b46a4c4568186f7f4dda00770498516faa6ba3818146a6340a9dc6df38e",
+  "INDEX.md": "9d05ecaeb10f892e778f03abf0daab2649c97f5f00e5ab8b16c5432f3ef367b0",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
   "QFOS-01-cisvr-top5-answers.md": "ead93bf955a97eb5bf3c57e9c862a65f40b4d816da0219255dfbde49323ff4fc",
-  "from-usrm.md": "2c7034d4a2f8dd51a4fb11ea8f5b20207bcc63b70336e0791bd0745114eeb98c",
+  "from-usrm.md": "3531de653f55f82bb2f4ab4f7a65669758bebecdb4b9b8723b138bcb96e04826",
   "D7-vinf-scheme-review.md": "fd75e04068c43f1197790f68999c0e6915c648b4a6c957fdfe2fc87f9fa6573f",
   "QFOS-01-DOCS.md": "0c4aa0de0492820be0ac3e09537c6e975ff1ee937d0b30bb8215614b33794ab5",
   "GUEST-quantum-lgt.md": "1d21af3801c43aa26c044b46e8b8557bc274253379d70dfed8b63f4c8105942c",
@@ -1012,7 +1012,9 @@
   "ff4c099f2f4de316": "2026-08-28T12:14:14Z",
   "d55b48b4b73b2cd3": "2026-08-28T12:14:14Z",
   "2b3e5f450aaf344a": "2026-08-28T12:14:14Z",
-  "38c0bd832eb627f1": "2026-08-28T12:14:14Z"
+  "38c0bd832eb627f1": "2026-08-28T12:14:14Z",
+  "b0b0ad49d2bd7bab": "2026-08-28T18:31:44Z",
+  "f3d0fca3546ce194": "2026-08-28T18:31:44Z"
  },
- "last_run": "2026-08-28T12:14:14Z"
+ "last_run": "2026-08-28T18:31:44Z"
 }
