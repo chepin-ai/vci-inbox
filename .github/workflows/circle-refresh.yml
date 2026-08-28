@@ -82,4 +82,9 @@ jobs:
           e['hash']=hashlib.sha256((prevh+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
           putc('ci-control','bridge/stream-ledger.jsonl',(old or '').rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
           print(json.dumps({'harvested':len(harvested),'items':harvested[:10]},ensure_ascii=False))
+          # 备份道(D-139): 每班末叩 intake-agent 一次——其30min cron自启滞后期间,保证≥2h一班兜底
+          try:
+              rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/intake-agent.yml/dispatches',data=json.dumps({'ref':'main'}).encode(),method='POST',headers=H())
+              print('intake-agent backup-knock:',urllib.request.urlopen(rq,timeout=15).status)
+          except Exception as _e: print('backup-knock fail(下一班再试):',str(_e)[:60])
           PYEOF
