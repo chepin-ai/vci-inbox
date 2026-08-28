@@ -1,0 +1,121 @@
+name: session-pilot
+on:
+  schedule: [{ cron: '3,18,33,48 * * * *' }]  # D-146: 会话接力引擎 15min班(错峰:08/38 intake,17/47 圈)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: session-end检测→下一步指令判断(P0>P1>P2>P3>P4)→OTP注入NEXT-INSTRUCTION胶囊(一次性nonce/链哈希/qrand锚)→消费即焚; 无FINDING门自检
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "SESSION-STATE检测→判断→OTP注入"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          AI_PAT: ${{ secrets.AI_FULL_PAT }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,urllib.request,urllib.error,urllib.parse,datetime,base64,hashlib,time
+          NOW=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ')
+          import jwt as JW
+          def mint():
+              now=int(time.time())
+              j=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
+              rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+j,'Accept':'application/vnd.github+json','User-Agent':'session-pilot'})
+              return json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          try: IT=mint(); AUTH='app'
+          except Exception: IT=os.environ.get('AI_PAT',''); AUTH='pat-fallback'
+          if not IT: raise SystemExit('NO-AUTH')
+          def H(): return {'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'session-pilot'}
+          def g(u):
+              for i in range(3):
+                  try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H()),timeout=20).read().decode())
+                  except urllib.error.HTTPError as e:
+                      if e.code in (404,422): return {'_s':e.code}
+                      time.sleep(1.5*(i+1))
+                  except Exception: time.sleep(1.5*(i+1))
+              return {'_s':0}
+          def getc(repo,path):
+              d=g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}')
+              return (base64.b64decode(d['content']).decode(),d) if isinstance(d,dict) and d.get('content') else (None,None)
+          def putc(repo,path,content,msg):
+              u=f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}'
+              _,cur=getc(repo,path)
+              body={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+              if cur: body['sha']=cur['sha']
+              rq=urllib.request.Request(u,data=json.dumps(body).encode(),method='PUT',headers=H())
+              try: return urllib.request.urlopen(rq,timeout=25).status
+              except Exception: return 0
+          rep={'ts':NOW,'auth':AUTH,'action':'noop'}
+          ss,_=getc('ci-control','bridge/session-pilot/SESSION-STATE.json')
+          state=json.loads(ss) if ss else {'status':'unknown'}
+          ni_raw,ni_meta=getc('ci-control','bridge/session-pilot/NEXT-INSTRUCTION.json')
+          ni=json.loads(ni_raw) if ni_raw else None
+          inflight = ni and not ni.get('consumed')
+          if state.get('status')=='ending' and not inflight:
+              # ---- 判断: P0→P4 ----
+              escs=[]; sealed=[]
+              lr,_=getc('ci-control','bridge/intake-agent/last-run.json')
+              if lr:
+                  lrj=json.loads(lr)
+                  if 'RED' in (lrj.get('canary') or {}).values(): escs.append('canary红:'+json.dumps(lrj['canary'],ensure_ascii=False))
+                  escs+=lrj.get('escalations',[])
+              # P1 sealed
+              iss=g('https://api.github.com/repos/chepin-ai/ci-inbox/issues?state=open&per_page=50')
+              if isinstance(iss,list):
+                  for it in iss:
+                      if '[SEALED→cisvr]' in (it.get('title') or ''): sealed.append('#%d'%it['number'])
+              # P2 EXP死线
+              er,_=getc('ci-control','bridge/EXPECT-REG-01.json')
+              due=[]; 
+              if er:
+                  nowt=time.time()
+                  for it2 in json.loads(er)['items']:
+                      if it2.get('state')=='watching' and it2.get('deadline'):
+                          try: rem=(datetime.datetime.strptime(it2['deadline'],'%Y-%m-%dT%H:%MZ').timestamp()-nowt)/3600
+                          except Exception: continue
+                          if rem<48: due.append((rem,it2['id'],it2['title'][:40]))
+                  due.sort()
+              # N机供锚: qrand@seq 第一顺位(cisvr-68定格)
+              qa=''
+              bm,_=getc('vci-inbox','bridge/beacon-mirror.json')
+              if bm: qa=json.loads(bm).get('qrand','')[:16]
+              # 裁决
+              if escs: instr,prio='先处置FINDING: '+('; '.join(escs))[:200],'P0'
+              elif sealed: instr,prio='收讫密封件并登账回递: '+','.join(sealed),'P1'
+              elif due: instr,prio=f"推进逼近死线EXP: {due[0][1]} {due[0][2]} (余{due[0][0]:.0f}h)",'P2'
+              else: instr,prio='主线研究续案(D-134/D-128): K13漂移哨标定/Q6续案/PROOF-EQ-COMP归纳步','P4'
+              prev=state.get('tip','0'*16)
+              nonce=hashlib.sha256((NOW+qa).encode()).hexdigest()[:12]
+              cap={'nonce':nonce,'ts':NOW,'prev':prev,'priority':prio,'instruction':instr,
+                   'basis_refs':['design/SESSION-HANDOFF-01.md','D-146'],'qrand_anchor':qa,'consumed':False,
+                   'auth_mode':AUTH}
+              canon=json.dumps(cap,sort_keys=True,ensure_ascii=False,separators=(',',':'))
+              cap['hash']=hashlib.sha256((prev+canon).encode()).hexdigest()
+              putc('ci-control','bridge/session-pilot/NEXT-INSTRUCTION.json',json.dumps(cap,ensure_ascii=False,indent=1),'session-pilot: OTP注入 '+prio)
+              rep['action']='injected'; rep['prio']=prio; rep['instr']=instr[:80]
+              # 注入指针投公告板(联邦可视面)
+              putc('ci-inbox','公告板/session-pilot-latest.md',
+                   '---\nts: '+NOW+'\nfrom: session-pilot(OS端递归引擎器官)\n---\n# 下一步指令已注入（OTP胶囊）\n\n- priority: '+prio+'\n- instruction: '+instr+'\n- nonce: '+nonce+' · qrand锚: '+qa+'\n- 正本: ci-control/bridge/session-pilot/NEXT-INSTRUCTION.json（一次性,消费即焚）\n','board: session-pilot 注入指针')
+              # HANDOFF 入链
+              ld,ldm=getc('ci-control','bridge/stream-ledger.jsonl')
+              if ld:
+                  _ls=[json.loads(x) for x in ld.splitlines() if x.strip()]
+                  _sq=max([x.get('seq',0) for x in _ls]+[0])+1; _ph2=''
+                  for _x in reversed(_ls):
+                      if _x.get('hash'): _ph2=_x['hash']; break
+                  e={'seq':_sq,'ts':NOW,'kind':'HANDOFF','actor':'session-pilot','nonce':nonce,'prio':prio,'instr':instr[:120]}
+                  e['hash']=hashlib.sha256((_ph2+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest() if False else hashlib.sha256((_ph2+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
+                  putc('ci-control','bridge/stream-ledger.jsonl',ld.rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'ledger: HANDOFF '+nonce)
+          elif inflight:
+              rep['action']='inflight-wait'; rep['nonce']=ni.get('nonce')
+          else:
+              rep['action']='session-running-or-unknown'; rep['status']=state.get('status')
+          putc('ci-control','bridge/session-pilot/last-run.json',json.dumps(rep,ensure_ascii=False,indent=1),'session-pilot: 班报 '+NOW)
+          print(json.dumps(rep,ensure_ascii=False))
+          PYEOF
+      - name: "班末心跳(成败留痕)"
+        if: always()
+        run: echo "session-pilot ran $(date -u +%FT%TZ)"
