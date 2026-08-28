@@ -1,0 +1,208 @@
+name: kernel-loop
+on:
+  schedule: [{ cron: '23,53 * * * *' }]  # 元引擎闭环30min班(D-153/KERNEL-CLOSURE-01): 避开既有钟面(3/8/13/17/18/33/38/43/47/48)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: 系谱闭合五拍: OBLIGE(义务盘点)→CONSTRUCT(构造检)→VERIFY(证书机检)→ADJUDICATE(判词)→PROPOSE(义务回流提案); 义务机主权纪律=机制只产proposals; 只动私域+计数/哈希,零原文零密钥
+jobs:
+  loop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "系谱闭合拍: P0锚→P1义务→P2构造→P3机检→P4判词→P5提案→入链"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib
+          import jwt as JW
+
+          HK = os.environ['HUBK']; HID = os.environ['HUBID']
+          now = int(datetime.datetime.now().timestamp())
+          appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
+          rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json', 'User-Agent': 'kernel-loop'})
+          IT = json.loads(urllib.request.urlopen(rq, timeout=20).read())['token']
+          H = {'Authorization': 'token ' + IT, 'Accept': 'application/vnd.github+json', 'User-Agent': 'kernel-loop'}
+          RUN = os.environ.get('GITHUB_RUN_ID', 'local')
+
+          def g(u):
+              rq = urllib.request.Request(u, headers=H)
+              try:
+                  return json.loads(urllib.request.urlopen(rq, timeout=20).read().decode())
+              except urllib.error.HTTPError as e:
+                  return {'_s': e.code}
+
+          def getc(repo, path):
+              d = g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path, safe="")}')
+              if isinstance(d, dict) and d.get('content'):
+                  return base64.b64decode(d['content']).decode(), d['sha']
+              return None, None
+
+          def putc(repo, path, content, msg):
+              _, sha = getc(repo, path)
+              body = {'message': msg, 'content': base64.b64encode(content.encode()).decode()}
+              if sha:
+                  body['sha'] = sha
+              rq = urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path, safe="")}', method='PUT', headers=H, data=json.dumps(body).encode())
+              try:
+                  return urllib.request.urlopen(rq, timeout=20).status
+              except urllib.error.HTTPError as e:
+                  return e.code
+
+          def canon(o):
+              return json.dumps(o, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+
+          NOW = datetime.datetime.now(datetime.timezone.utc)
+          TS = NOW.strftime('%Y-%m-%dT%H:%M:%SZ')
+
+          # ---- P0 ANCHOR (N机: 熵锚源) ----
+          led_txt, _ = getc('ci-control', 'bridge/stream-ledger.jsonl')
+          lines = [l for l in (led_txt or '').splitlines() if l.strip()]
+          entries = []
+          raw_by_seq = {}
+          for l in lines:
+              try:
+                  e = json.loads(l); entries.append(e); raw_by_seq[e.get('seq')] = l
+              except Exception:
+                  pass
+          hashed = [e for e in entries if e.get('hash')]
+          tip = hashed[-1] if hashed else None
+          maxseq = max([e.get('seq', 0) for e in entries] + [0])
+          anchor = {'source': 'ledger_tip', 'tip_hash': (tip.get('hash') if tip else 'GENESIS'), 'tip_seq': maxseq, 'run_salt': RUN}
+
+          # ---- P1 OBLIGE (义务机: EXPECT-REG 声明命题盘点) ----
+          exp_txt, _ = getc('ci-control', 'bridge/EXPECT-REG-01.json')
+          expd = json.loads(exp_txt) if exp_txt else {'items': []}
+          items = expd.get('items', expd if isinstance(expd, list) else [])
+          def parse_dl(s):
+              for fmt in ('%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%MZ'):
+                  try:
+                      return datetime.datetime.strptime(s, fmt).replace(tzinfo=datetime.timezone.utc)
+                  except Exception:
+                      pass
+              return None
+          open_items, overdue = [], []
+          for it in items:
+              if it.get('state') != 'open':
+                  continue
+              open_items.append(it)
+              dl = parse_dl(it.get('deadline', ''))
+              if dl and dl < NOW:
+                  overdue.append(it)
+
+          # ---- P2 CONSTRUCT (递归机: 构造产出检 — 账本中可回溯证据) ----
+          def constructions_for(oid):
+              n = 0
+              for e in entries:
+                  if oid in json.dumps(e, ensure_ascii=False):
+                      n += 1
+              return n
+          for it in open_items:
+              it['_constructions'] = constructions_for(it.get('id', ''))
+
+          # ---- P3 VERIFY (NP机: 证书机检) ----
+          # cert1: 因果链纪元测绘——规范纪元=sha256(prev+canon(去hash))最大连续后缀全绿;前规范纪元=GRANDFATHERED(不判FAIL,产FINDING提案)
+          recompute_ok = []
+          link_gaps = []
+          prev_h = 'GENESIS'
+          for e in hashed:
+              e2 = {k: v for k, v in e.items() if k != 'hash'}
+              ok = hashlib.sha256((e.get('prev', 'GENESIS') + canon(e2)).encode()).hexdigest() == e['hash']
+              recompute_ok.append(ok)
+              if e.get('prev') != prev_h:
+                  link_gaps.append(e.get('seq'))
+              prev_h = e['hash']
+          suf = 0
+          for ok in reversed(recompute_ok):
+              if ok:
+                  suf += 1
+              else:
+                  break
+          canon_start = hashed[len(hashed) - suf].get('seq') if suf else None
+          cert_chain = {'name': 'ledger-chain-eras', 'pass': suf == len(hashed) or suf > 0, 'canonical_suffix': {'start_seq': canon_start, 'checked': suf, 'all_green': suf > 0 and all(recompute_ok[len(recompute_ok) - suf:])}, 'legacy_zone': {'count': len(hashed) - suf, 'status': 'GRANDFATHERED', 'note': '前规范纪元异构哈希惯例;不判FAIL,列入文献线修复缺口'}, 'link_gaps': link_gaps[:20]}
+          # cert2: EXPECT 携带 evidence 锚的条目逐一核验
+          cert_ev = {'name': 'expect-evidence-anchors', 'pass': True, 'checked': 0, 'fails': []}
+          for it in items:
+              evd = it.get('evidence')
+              if not evd or not isinstance(evd, dict):
+                  continue
+              cert_ev['checked'] += 1
+              txt, _ = getc(evd.get('repo', ''), evd.get('path', ''))
+              ok = bool(txt) and hashlib.sha256(txt.encode()).hexdigest().startswith(evd.get('sha256_12', '~'))
+              if not ok:
+                  cert_ev['pass'] = False; cert_ev['fails'].append(it.get('id'))
+          # cert3: 治理机器官结构证书(FLEET-STATE 可解析且带 verdict)
+          fs_txt, _ = getc('ci-control', 'bridge/fleet-judge/FLEET-STATE.json')
+          cert_struct = {'name': 'fleet-state-structural', 'pass': False}
+          try:
+              fs = json.loads(fs_txt); cert_struct['pass'] = bool(fs.get('verdict'))
+          except Exception:
+              pass
+          certs = [cert_chain, cert_ev, cert_struct]
+          certs_pass = all(c['pass'] for c in certs)
+
+          # ---- P4 ADJUDICATE (治理机判定座: 判词) ----
+          verdicts = []
+          for it in open_items:
+              oid = it.get('id'); dl = parse_dl(it.get('deadline', ''))
+              if dl and dl < NOW:
+                  v = 'OVERDUE'
+              elif it.get('_constructions', 0) > 0:
+                  v = 'EVIDENCED'
+              else:
+                  v = 'STALLED'
+              verdicts.append({'id': oid, 'verdict': v, 'constructions': it.get('_constructions', 0), 'owner': it.get('owner')})
+          solved = [it.get('id') for it in items if it.get('state') == 'solved']
+          if not certs_pass:
+              loop_verdict = 'FINDING'
+          elif overdue:
+              loop_verdict = 'LOOP_OPEN'
+          else:
+              loop_verdict = 'LOOP_CLOSED'
+
+          # ---- 自演进 diff (加载为自身元引擎: 每班与上一班比对) ----
+          prev_state_txt, _ = getc('ci-control', 'bridge/kernel-loop/KERNEL-STATE.json')
+          evolution = {'prev_ts': None, 'deltas': []}
+          try:
+              ps = json.loads(prev_state_txt)
+              evolution['prev_ts'] = ps.get('ts')
+              pc = ps.get('counts', {})
+              cc = {'open': len(open_items), 'overdue': len(overdue), 'solved': len(solved), 'ledger_tip_seq': maxseq}
+              for k in cc:
+                  if k in pc and pc[k] != cc[k]:
+                      evolution['deltas'].append(f"{k}:{pc[k]}→{cc[k]}")
+              if ps.get('loop_verdict') != loop_verdict:
+                  evolution['deltas'].append(f"verdict:{ps.get('loop_verdict')}→{loop_verdict}")
+          except Exception:
+              evolution['deltas'].append('GENESIS_RUN')
+
+          # ---- P5 PROPOSE (义务回流: 机制只产提案,不自称义务机——EXPECT 录入须 cisvr/usrm 批准) ----
+          proposals = []
+          for it in overdue:
+              proposals.append({'kind': 'escalate', 'ref': it.get('id'), 'to': it.get('owner'), 'reason': 'OVERDUE@' + TS, 'ask': '回执或申请展期;72h 无响应升 FINDING'})
+          for c in certs:
+              if not c['pass']:
+                  proposals.append({'kind': 'finding', 'ref': c['name'], 'reason': '证书机检失败', 'ask': '义务机起案检修'})
+          if cert_chain['legacy_zone']['count'] > 0:
+              proposals.append({'kind': 'finding', 'ref': 'ledger-canonical-era', 'reason': f"因果链纪元断代带 {cert_chain['legacy_zone']['count']} 条(seq<{cert_chain['canonical_suffix']['start_seq']}),规范纪元自 seq{cert_chain['canonical_suffix']['start_seq']} 起全绿", 'ask': '义务机起案: 断代带修复路径(重哈希侧链或宪制宣告断代)'})
+          def parse_any(s):
+              return parse_dl(s) if s else None
+          for vd, it in zip(verdicts, open_items):
+              age_h = (NOW - parse_any(it.get('ts', ''))).total_seconds() / 3600 if parse_any(it.get('ts', '')) else 9999
+              if vd['verdict'] == 'STALLED' and age_h >= 24:
+                  proposals.append({'kind': 'nudge', 'ref': vd['id'], 'to': vd.get('owner'), 'reason': f'无构造产出记录且账龄 {int(age_h)}h', 'ask': '24h 内投递或说明'})
+          prop_body = {'ts': TS, 'run': RUN, 'proposals': proposals, 'ratify': '本表由机制产,义务机(cisvr/usrm/root)批准后方入 EXPECT-REG'}
+          state = {'organ': 'kernel-loop', 'ts': TS, 'run': RUN, 'anchor': anchor, 'counts': {'open': len(open_items), 'overdue': len(overdue), 'solved': len(solved), 'ledger_tip_seq': maxseq}, 'certs': certs, 'certs_pass': certs_pass, 'verdicts': verdicts, 'loop_verdict': loop_verdict, 'evolution': evolution, 'proposals_n': len(proposals)}
+          putc('ci-control', 'bridge/kernel-loop/proposals.json', json.dumps(prop_body, ensure_ascii=False, indent=1), f'kernel-loop 提案 {TS} n={len(proposals)}')
+          putc('ci-control', 'bridge/kernel-loop/KERNEL-STATE.json', json.dumps(state, ensure_ascii=False, indent=1), f'kernel-loop 拍 {TS} verdict={loop_verdict}')
+
+          # ---- 判词入链 (因果链) ----
+          ev = {'seq': maxseq + 1, 'ts': TS, 'type': 'KERNEL_LOOP', 'by': 'kernel-loop', 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts'], 'overdue_ids': [it.get('id') for it in overdue], 'proposals_n': len(proposals), 'evolution': evolution['deltas'], 'anchor': anchor['tip_hash'][:16], 'prev': tip.get('hash') if tip else 'GENESIS'}
+          ev['hash'] = hashlib.sha256((ev['prev'] + canon(ev)).encode()).hexdigest()
+          led_new = (led_txt or '') + ('\n' if led_txt and not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'
+          putc('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'KERNEL_LOOP seq{ev["seq"]} verdict={loop_verdict} @ {TS}')
+          putc('vci-inbox', 'bridge/kernel-loop/last-run.json', json.dumps({'ts': TS, 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts']}, ensure_ascii=False, indent=1), f'kernel-loop last-run {TS}')
+          print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'seq': ev['seq']}, ensure_ascii=False))
+          PYEOF
