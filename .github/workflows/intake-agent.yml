@@ -154,9 +154,9 @@ jobs:
                   _seq=max([x.get('seq',0) for x in _ls]+[0])+1; _ph=''
                   for _x in reversed(_ls):
                       if _x.get('hash'): _ph=_x['hash']; break
-                  ent={'seq':_seq,'ts':NOW,'type':'FINDING','by':'intake-agent','title':'进件追复/可达性升级','detail':'; '.join(report['escalations'])[:400]}
+                  ent={'seq':_seq,'ts':NOW,'type':'FINDING','by':'intake-agent','title':'进件追复/可达性升级','detail':'; '.join(report['escalations'])[:400],'prev':_ph or 'GENESIS'}  # D-153修复: prev入entry,规范链式
                   canon=json.dumps(ent,sort_keys=True,ensure_ascii=False,separators=(',',':'))
-                  ent['hash']=hashlib.sha256((_ph+canon).encode()).hexdigest()
+                  ent['hash']=hashlib.sha256((ent['prev']+canon).encode()).hexdigest()
                   put('ci-control','bridge/stream-ledger.jsonl',raw+('' if raw.endswith('\n') else '\n')+json.dumps(ent,ensure_ascii=False)+'\n','ledger: intake-agent FINDING')
           # ---- 状态双写备份 + 班报(成败必交) ----
           put('ci-control','bridge/intake-agent/state.json',json.dumps(state,ensure_ascii=False,indent=1),'intake-agent: state')
