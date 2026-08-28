@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       target:
-        description: "vci-inbox | vci-usrm | all"
+        description: "all | 任一公仓名"
         required: true
         default: "all"
   schedule: [{ cron: '23 */4 * * *' }]  # [skip ci]绕行洞封堵: 4h全树巡(增量guard被skip ci绕过——usrm narrative 20260827实证)
@@ -24,7 +24,8 @@ jobs:
           python3 - <<'PYEOF'
           import os,json,urllib.request,datetime,base64,subprocess,re,time
           HK=os.environ['HUBK']; HID=os.environ['HUBID']
-          TARGETS=['vci-inbox','vci-usrm'] if os.environ.get('TGT','all')=='all' else [os.environ['TGT']]
+          PUBS=['vci-inbox','vci-usrm','vci-library','vci-qgl','ci-worker-01-','ci-worker-02']
+          TARGETS=PUBS if os.environ.get('TGT','all')=='all' else [os.environ['TGT']]
           import jwt as JW
           now=int(datetime.datetime.now().timestamp())
           appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
