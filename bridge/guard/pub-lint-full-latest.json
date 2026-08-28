@@ -1,10 +1,8 @@
 {
- "ts": "2026-08-28T11:31:18Z",
+ "ts": "2026-08-28T22:27:51Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 185,
- "fixed_n": 1,
- "fixed": [
-  "disc/from-qgl.md"
- ]
+ "scanned": 193,
+ "fixed_n": 0,
+ "fixed": []
 }
