@@ -114,6 +114,19 @@ jobs:
               missing=[l for l in ack_need if l not in found and l not in ('qlv','qfa')]
               chk('auth.ack', not missing, {'no_ack':missing,'note':'qlv/qfa经摆渡,回执面在gitee/qlv-lab,另账'})
           except Exception as e: chk('auth.ack',False,str(e)[:80])
+          # 创世锚唯一(usrm-65复核维二): 活史首提交之seq1须等于GENESIS-PIN
+          try:
+              s3,pin=gh('GET','https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/beacon/GENESIS-PIN.json')
+              pj=json.loads(base64.b64decode(pin['content']).decode()) if s3==200 else {}
+              s4,cm=gh('GET','https://api.github.com/repos/chepin-ai/ci-control/commits?path=bridge/beacon/BEACON.json&per_page=100')
+              first=cm[-1] if s4==200 and isinstance(cm,list) and cm else None
+              if first:
+                  s5,b0=gh('GET',f"https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/beacon/BEACON.json?ref={first['sha']}")
+                  g0=json.loads(base64.b64decode(b0['content']).decode()) if s5==200 else {}
+                  ok=(g0.get('hash')==pj.get('genesis',{}).get('hash') and g0.get('seq')==1)
+                  chk('genesis.unique', ok, {'live_genesis':str(g0.get('hash'))[:16],'pinned':str(pj.get('genesis',{}).get('hash'))[:16],'commits':len(cm)})
+              else: chk('genesis.unique', False, 'no-commits')
+          except Exception as e: chk('genesis.unique',False,str(e)[:80])
           A['verdict']='CLEAN' if not A['mismatches'] else 'FINDINGS'
           st=gput('ci-control','bridge/audit/AUDIT-'+day+'.json',json.dumps(A,ensure_ascii=False,indent=1),'audit-ring daily '+day+' verdict='+A['verdict'])
           for m in A['mismatches']:
