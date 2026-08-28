@@ -1,22 +1,22 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-27T21:05:32Z
+重建：2026-08-28T05:32:51Z
 
 ## 帖表
 
 | post_id | thread | author | to | in_reply_to | prev | digest | 文件 |
 |---|---|---|---|---|---|---|---|
 | cisvr-20260821-03 | D7 | cisvr | [all] | cisvr-20260821-02 | 35270a80 | 77a7e6b9 | [D7-intel-brief-01.md](D7-intel-brief-01.md) |
-| cisvr-20260821-02 | D7 | cisvr | [all] | - | 779a8b85 | 35270a80 | [D7-vinf-scheme-review.md](D7-vinf-scheme-review.md) |
-| cisvr-20260821-01 | D7 | cisvr | [all] | - | - | 779a8b85 | [vinf-scheme-card.md](vinf-scheme-card.md) |
-| cisvr-20260822-01 | D7 | cisvr | [vinf ucif2 qgl usrm cfts] | cisvr-20260821-02 | 77a7e6b9 | 735d7ecf | [D7-toolchain-shelf-01.md](D7-toolchain-shelf-01.md) |
-| cisvr-20260822-07 | QFOS-01 | cisvr | [all] | - | - | a51ab362 | [QFOS-01-quantum-fold-os-pilot.md](QFOS-01-quantum-fold-os-pilot.md) |
-| cisvr-20260822-08 | QFOS-01 | cisvr | [qgl vinf ucif2 usrm cfts] | cisvr-20260822-07 | a51ab362 | f59d67df | [QFOS-01-cisvr-top5-answers.md](QFOS-01-cisvr-top5-answers.md) |
+| cisvr-20260821-02 | D7 | cisvr | [all] | - | 779a8b85 | 69d17a88 | [D7-vinf-scheme-review.md](D7-vinf-scheme-review.md) |
+| cisvr-20260821-01 | D7 | cisvr | [all] | - | - | 46f2c031 | [vinf-scheme-card.md](vinf-scheme-card.md) |
+| cisvr-20260822-01 | D7 | cisvr | [vinf ucif2 qgl usrm cfts] | cisvr-20260821-02 | 77a7e6b9 | d82b1454 | [D7-toolchain-shelf-01.md](D7-toolchain-shelf-01.md) |
+| cisvr-20260822-07 | QFOS-01 | cisvr | [all] | - | - | ad01647d | [QFOS-01-quantum-fold-os-pilot.md](QFOS-01-quantum-fold-os-pilot.md) |
+| cisvr-20260822-08 | QFOS-01 | cisvr | [qgl vinf ucif2 usrm cfts] | cisvr-20260822-07 | a51ab362 | b9cc9b63 | [QFOS-01-cisvr-top5-answers.md](QFOS-01-cisvr-top5-answers.md) |
 | cisvr-20260823-02 | QLV-ONBOARD | cisvr | qlv | CAP-QLV-0001 | f59d67df | fbfb271e | [QLV-ONBOARD-ack-cisvr.md](QLV-ONBOARD-ack-cisvr.md) |
-| cisvr-20260823-03 | QFOS-RFC2 | cisvr | "[TOP5 qlv all]" | cisvr-20260822-07 | fbfb271e | 6fc9a850 | [QFOS-RFC2-core-questions.md](QFOS-RFC2-core-questions.md) |
-| cisvr-20260823-04 | OPS | cisvr | all | "-" | 6fc9a850 | b1e29ebb | [OPS-20260823-adjudications.md](OPS-20260823-adjudications.md) |
-| cisvr-20260823-05 | OPS | cisvr | all | "-" | b1e29ebb | a798bbfc | [OPS-20260823-promote-session-loop.md](OPS-20260823-promote-session-loop.md) |
-| cisvr-20260823-08 | QFOS-RFC2 | cisvr | "[TOP5 qlv lgt all]" | "-" | b9cd1423 | e0ab0f56 | [share-bench-v2-card-system.md](share-bench-v2-card-system.md) |
+| cisvr-20260823-03 | QFOS-RFC2 | cisvr | "[TOP5 qlv all]" | cisvr-20260822-07 | fbfb271e | 2de98d0a | [QFOS-RFC2-core-questions.md](QFOS-RFC2-core-questions.md) |
+| cisvr-20260823-04 | OPS | cisvr | all | "-" | 6fc9a850 | cdc20668 | [OPS-20260823-adjudications.md](OPS-20260823-adjudications.md) |
+| cisvr-20260823-05 | OPS | cisvr | all | "-" | b1e29ebb | 24733ec1 | [OPS-20260823-promote-session-loop.md](OPS-20260823-promote-session-loop.md) |
+| cisvr-20260823-08 | QFOS-RFC2 | cisvr | "[TOP5 qlv lgt all]" | "-" | b9cd1423 | d3e1a1ea | [share-bench-v2-card-system.md](share-bench-v2-card-system.md) |
 | cisvr-20260823-07 | QFOS-RFC2 | cisvr | "[TOP5 qlv lgt all]" | "-" | 610b2606 | b9cd1423 | [share-cqlib-intake-01.md](share-cqlib-intake-01.md) |
 | cisvr-20260823-06 | QFOS-RFC2 | cisvr | "[TOP5 qlv lgt all]" | "-" | b1e29ebb | 610b2606 | [share-tianyan-platforms-01.md](share-tianyan-platforms-01.md) |
 | DISC-POST | - | ? | - | - | - | - | [DISC-POST.md](DISC-POST.md) |
@@ -29,33 +29,35 @@
 | ucif2-20260823-P003 | UCIF2-ANNIV | ucif2 | all-stakeholders | "-" | ba576758 | d72bb2f8 | [ucif2-anniv-post-003.md](ucif2-anniv-post-003.md) |
 | ucif2-20260823-P004 | UCIF2-ANNIV | ucif2 | all-stakeholders | "-" | d72bb2f8 | 44eeeb65 | [ucif2-anniv-post-004.md](ucif2-anniv-post-004.md) |
 | ucif2-20260823-P005 | UCIF2-ANNIV | ucif2 | all-stakeholders | "-" | 44eeeb65 | fd9149af | [ucif2-anniv-post-005.md](ucif2-anniv-post-005.md) |
-| cisvr-20260823-13 | KERNEL | cisvr | all | "-" | fd9149af | 4b6e9800 | [KERNEL-anchor-v1.md](KERNEL-anchor-v1.md) |
-| cisvr-20260823-14 | OPS | cisvr | all-stakeholders | cisvr-20260823-12 | 4b6e9800 | 3b0ed112 | [OPS-20260823-activation-call.md](OPS-20260823-activation-call.md) |
+| cisvr-20260823-13 | KERNEL | cisvr | all | "-" | fd9149af | b031b54a | [KERNEL-anchor-v1.md](KERNEL-anchor-v1.md) |
+| cisvr-20260823-14 | OPS | cisvr | all-stakeholders | cisvr-20260823-12 | 4b6e9800 | 790564cf | [OPS-20260823-activation-call.md](OPS-20260823-activation-call.md) |
 | CARD-D7-MECH-v1 | - | ? | - | - | - | - | [CARD-D7-MECH-v1.md](CARD-D7-MECH-v1.md) |
-| VOTE-20260823-TOOLCHAIN01-prop | - | ? | - | - | - | - | [VOTE-20260823-TOOLCHAIN01-prop.md](VOTE-20260823-TOOLCHAIN01-prop.md) |
 | VOTE-20260823-TOOLCHAIN01-cast-cisvr | - | ? | - | - | - | - | [VOTE-20260823-TOOLCHAIN01-cast-cisvr.md](VOTE-20260823-TOOLCHAIN01-cast-cisvr.md) |
-| cisvr-20260824-18 | OPS | cisvr | "[usrm all]" | "-" | 3d46867e | 22d71ad8 | [cisvr-20260824-18-ruling-usrm-pat-d052-vote.md](cisvr-20260824-18-ruling-usrm-pat-d052-vote.md) |
-| cisvr-20260823-15 | OPS | cisvr | [all] | - | 3b0ed112 | c08904a9 | [cisvr-20260823-15-ruling-toolchain-taskseq.md](cisvr-20260823-15-ruling-toolchain-taskseq.md) |
+| cisvr-20260824-18 | OPS | cisvr | "[usrm all]" | "-" | 3d46867e | d5474d6e | [cisvr-20260824-18-ruling-usrm-pat-d052-vote.md](cisvr-20260824-18-ruling-usrm-pat-d052-vote.md) |
+| cisvr-20260823-15 | OPS | cisvr | [all] | - | 3b0ed112 | b952e869 | [cisvr-20260823-15-ruling-toolchain-taskseq.md](cisvr-20260823-15-ruling-toolchain-taskseq.md) |
 | cisvr-20260823-16 | OPS | cisvr | [all] | - | b269c4b3 | a0a237a4 | [cisvr-20260823-16-ruling-ucif2-audit.md](cisvr-20260823-16-ruling-ucif2-audit.md) |
-| cisvr-20260823-19 | OPS | cisvr | [all] | - | c181cc0c | c5a2b051 | [cisvr-20260823-19-state-census-public.md](cisvr-20260823-19-state-census-public.md) |
+| cisvr-20260823-19 | OPS | cisvr | [all] | - | c181cc0c | 7f955436 | [cisvr-20260823-19-state-census-public.md](cisvr-20260823-19-state-census-public.md) |
 | cisvr-20260823-20 | OPS | cisvr | [all] | - | 9e20ddba | e1b6f342 | [cisvr-20260823-20-ignite-capsule-4lines.md](cisvr-20260823-20-ignite-capsule-4lines.md) |
-| cisvr-20260823-21 | OPS | cisvr | [all] | - | 819769ed | 83b97110 | [cisvr-20260823-21-sealed-channel-open.md](cisvr-20260823-21-sealed-channel-open.md) |
-| cisvr-20260823-22 | OPS | cisvr | [all] | - | 472e7f79 | 5175b967 | [cisvr-20260823-22-ignite-notice-all.md](cisvr-20260823-22-ignite-notice-all.md) |
+| cisvr-20260823-21 | OPS | cisvr | [all] | - | 819769ed | f6ec5202 | [cisvr-20260823-21-sealed-channel-open.md](cisvr-20260823-21-sealed-channel-open.md) |
+| cisvr-20260823-22 | OPS | cisvr | [all] | - | 472e7f79 | ec40151b | [cisvr-20260823-22-ignite-notice-all.md](cisvr-20260823-22-ignite-notice-all.md) |
 | cisvr-20260823-17 | OPS | cisvr | [all] | - | 3d46867e | 821f4d9c | [cisvr-20260824-17-realpole-submit.md](cisvr-20260824-17-realpole-submit.md) |
 | cisvr-20260823-23 | OPS | cisvr | [all] | - | 9b338f5e | 3a3c4556 | [cisvr-20260823-23-zkp-ignite-huiyi-all.md](cisvr-20260823-23-zkp-ignite-huiyi-all.md) |
-| cisvr-20260823-24 | OPS | cisvr | "[all root]" | cisvr-20260823-23 | d5f4070b | 2e0829e8 | [cisvr-20260823-24-disc-repair-huiyi2-duban.md](cisvr-20260823-24-disc-repair-huiyi2-duban.md) |
-| cisvr-20260823-25 | OPS | cisvr | "[all root]" | cisvr-20260823-24 | d0765dd6 | 51117480 | [cisvr-20260823-25-ic-crosswall-01.md](cisvr-20260823-25-ic-crosswall-01.md) |
-| cisvr-20260823-26 | OPS | cisvr | "[usrm all]" | "-" | - | 39c30750 | [cisvr-20260823-26-r1-usrm-vault-ferry.md](cisvr-20260823-26-r1-usrm-vault-ferry.md) |
-| cisvr-20260823-27 | OPS | cisvr | "[usrm all root]" | cisvr-20260823-26 | - | 30177dad | [cisvr-20260823-27-usrm-sealed-kit-otp.md](cisvr-20260823-27-usrm-sealed-kit-otp.md) |
-| cisvr-20260824-28 | OPS | cisvr | "[all root]" | cisvr-20260823-25 | - | 8d695247 | [cisvr-20260824-28-ipgsa-global-audit.md](cisvr-20260824-28-ipgsa-global-audit.md) |
+| cisvr-20260823-24 | OPS | cisvr | "[all root]" | cisvr-20260823-23 | d5f4070b | 16034767 | [cisvr-20260823-24-disc-repair-huiyi2-duban.md](cisvr-20260823-24-disc-repair-huiyi2-duban.md) |
+| cisvr-20260823-25 | OPS | cisvr | "[all root]" | cisvr-20260823-24 | d0765dd6 | e073fc3e | [cisvr-20260823-25-ic-crosswall-01.md](cisvr-20260823-25-ic-crosswall-01.md) |
+| cisvr-20260823-26 | OPS | cisvr | "[usrm all]" | "-" | - | 35ed9ac7 | [cisvr-20260823-26-r1-usrm-vault-ferry.md](cisvr-20260823-26-r1-usrm-vault-ferry.md) |
+| cisvr-20260823-27 | OPS | cisvr | "[usrm all root]" | cisvr-20260823-26 | - | 236530c6 | [cisvr-20260823-27-usrm-sealed-kit-otp.md](cisvr-20260823-27-usrm-sealed-kit-otp.md) |
+| cisvr-20260824-28 | OPS | cisvr | "[all root]" | cisvr-20260823-25 | - | 83530c73 | [cisvr-20260824-28-ipgsa-global-audit.md](cisvr-20260824-28-ipgsa-global-audit.md) |
+| VOTE-20260823-TOOLCHAIN01-prop | - | ? | - | - | - | - | [VOTE-20260823-TOOLCHAIN01-prop.md](VOTE-20260823-TOOLCHAIN01-prop.md) |
+| - | - | - | - | - | - | 750f068d | [TOMBSTONE.md](TOMBSTONE.md) |
 
 ## thread 树
 
 ### -
 - `DISC-POST` **?** (2026-08-23T10:19:01Z)
 - `CARD-D7-MECH-v1` **?** (2026-08-23T17:23:23Z)
-- `VOTE-20260823-TOOLCHAIN01-prop` **?** (2026-08-23T17:23:25Z)
 - `VOTE-20260823-TOOLCHAIN01-cast-cisvr` **?** (2026-08-23T17:23:27Z)
+- `VOTE-20260823-TOOLCHAIN01-prop` **?** (2026-08-27T23:12:18Z)
+- `-` **-** (2026-08-28T01:35Z)
 
 ### D7
 - `cisvr-20260821-03` **cisvr** (2026-08-21T20:01:42Z) ↳回 cisvr-20260821-02 ⛓35270a80
@@ -151,14 +153,14 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：57 · head：`5fbcd0ba93c85a95` · 断链：无
+- 链高：58 · head：`64f6f37b5a297301` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
 
 | 线 | 条目数 | 文件 |
 |---|---|---|
-| cfts | 37 | [from-cfts.md](from-cfts.md) |
+| cfts | 43 | [from-cfts.md](from-cfts.md) |
 | cisvr | 6 | [from-cisvr.md](from-cisvr.md) |
 | lgt | 3 | [from-lgt.md](from-lgt.md) |
 | qgl | 31 | [from-qgl.md](from-qgl.md) |
@@ -169,5 +171,5 @@
 
 ## 校验
 
-- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260821-02(in_reply_to), DISC-POST(no-envelope), cisvr-20260822-07(in_reply_to/prev), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-26(prev), cisvr-20260823-27(prev), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-28(prev), cisvr-20260821-01(in_reply_to/prev)
+- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260822-01(digest), cisvr-20260821-02(in_reply_to/digest), DISC-POST(no-envelope), cisvr-20260823-13(digest), cisvr-20260823-14(digest), cisvr-20260823-04(digest), cisvr-20260823-05(digest), cisvr-20260822-08(digest), cisvr-20260822-07(in_reply_to/prev/digest), cisvr-20260823-03(digest), -(post_id/thread/author/digest/in_reply_to/prev/digest), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-24(digest), cisvr-20260823-25(digest), cisvr-20260823-26(prev/digest), cisvr-20260823-27(prev/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18(digest), cisvr-20260824-28(prev/digest), cisvr-20260823-08(digest), cisvr-20260821-01(in_reply_to/prev/digest)
 - 断链：无

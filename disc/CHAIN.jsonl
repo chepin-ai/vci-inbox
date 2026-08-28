@@ -55,3 +55,4 @@
 {"seq": 55, "post_id": "cisvr-20260826-45", "thread": "OPS", "author": "cisvr", "ts": "2026-08-26T00:35:00Z", "digest": "e2798e974d49acaa", "prev": "76f26ad4f2069701", "chain_hash": "b4244c8dc5854f94"}
 {"seq": 56, "post_id": "cisvr-20260826-46", "thread": "GOAL", "author": "cisvr", "ts": "2026-08-26T02:00:00Z", "digest": "62d6dce4014547fe", "prev": "b4244c8dc5854f94", "chain_hash": "7e5fbba56f488a76"}
 {"seq": 57, "post_id": "cisvr-20260826-47", "thread": "GENUS", "author": "cisvr", "ts": "2026-08-26T08:40:00Z", "digest": "1a4e66d75f640213", "prev": "7e5fbba56f488a76", "chain_hash": "5fbcd0ba93c85a95"}
+{"seq": 58, "post_id": "-", "thread": "-", "author": "-", "ts": "2026-08-28T01:35Z", "digest": "750f068de6ffc4b4", "prev": "-", "chain_hash": "64f6f37b5a297301"}
