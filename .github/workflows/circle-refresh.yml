@@ -72,9 +72,13 @@ jobs:
           putc('ci-control','bridge/circle-state.json',json.dumps(state,ensure_ascii=False,indent=1),f'circle-refresh: 圈状态 {TS}')
           # (c) 账
           old,_=getc('ci-control','bridge/stream-ledger.jsonl') or ('',None)
-          prev=(old or '').strip().split(chr(10))[-1] if old else ''
-          prevh=hashlib.sha256(prev.encode()).hexdigest() if prev else '0'*64
-          e={'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','harvested':len(harvested),'items':harvested[:20]}
+          _ls=[json.loads(x) for x in (old or '').split(chr(10)) if x.strip()]
+          _seq=max([x.get('seq',0) for x in _ls]+[0])+1  # LEGISL-06自愈立法: CIRCLE-REFRESH须带seq
+          _ph='0'*64
+          for _x in reversed(_ls):
+              if _x.get('hash'): _ph=_x['hash']; break
+          e={'seq':_seq,'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','harvested':len(harvested),'items':harvested[:20]}
+          prevh=_ph
           e['hash']=hashlib.sha256((prevh+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
           putc('ci-control','bridge/stream-ledger.jsonl',(old or '').rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
           print(json.dumps({'harvested':len(harvested),'items':harvested[:10]},ensure_ascii=False))
