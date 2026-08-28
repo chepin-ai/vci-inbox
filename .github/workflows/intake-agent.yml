@@ -95,6 +95,16 @@ jobs:
                           if lvl in ('P0','P1'): state['queue'].append({'id':sid,'lvl':lvl,'ts':NOW})
               except Exception as e:
                   report['errors'].append(key+':'+str(e)[:50]); state['deadletter'].append({'surface':key,'ts':NOW,'err':str(e)[:80]})
+          # ---- 复核两维(usrm-65收编): 序号可复算性 + 创世锚唯一 ----
+          try:
+              ld2=g('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/stream-ledger.jsonl')
+              if isinstance(ld2,dict) and ld2.get('content'):
+                  _ls=[json.loads(x) for x in base64.b64decode(ld2['content']).decode().splitlines() if x.strip()]
+                  _sq=[x['seq'] for x in _ls if 'seq' in x]
+                  _dup=len(_sq)-len(set(_sq)); _gap=len(set(range(min(_sq or [0]),max(_sq or [0])+1))-set(_sq)) if _sq else 0
+                  report['canary']['ledger_seq']=f'dup{_dup}/gap{_gap}'
+                  if _dup or _gap: report['escalations'].append(f'序号维失守: dup={_dup} gap={_gap}')
+          except Exception as e: report['canary']['ledger_seq']='RED'
           # ---- 空收必报 ----
           if allempty or 'RED' in report['canary'].values():
               report['escalations'].append('ALL-EMPTY-OR-RED: 不通非真空')
