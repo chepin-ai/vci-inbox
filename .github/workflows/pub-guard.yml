@@ -39,7 +39,7 @@ jobs:
               out=txt
               for pat in pats:
                   rep=cm.get(pat,'〈RED〉')
-                  out=re.sub(r'(?<![\w/-])'+re.escape(pat)+r'(?![\w-])',rep,out)
+                  out=re.sub(r'(?<![\w/-])(?<!\.)'+re.escape(pat)+r'(?![\w-])(?!/)',rep,out)
               if out!=txt:
                   open(p,'w',encoding='utf-8').write(out); fixed.append(p)
           os.makedirs('bridge/guard',exist_ok=True)
