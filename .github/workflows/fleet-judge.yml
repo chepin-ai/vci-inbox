@@ -75,7 +75,7 @@ jobs:
           findings_open = [e for e in entries if e.get('type') == 'FINDING' and not e.get('resolved')]
           ia_txt, _ = getc('vci-inbox', 'bridge/intake-agent/last-run.json')
           ia = json.loads(ia_txt) if ia_txt else {}
-          ss_txt, _ = getc('vci-inbox', 'bridge/session-pilot/SESSION-STATE.json')
+          ss_txt, _ = getc('ci-control', 'bridge/session-pilot/SESSION-STATE.json')  # G1修复: 路径漂移(R2审计), 实存ci-control
           ss = json.loads(ss_txt) if ss_txt else {}
 
           # ---- 2. 心跳检 ----
