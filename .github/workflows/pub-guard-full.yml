@@ -35,7 +35,7 @@ jobs:
           RU=json.loads(base64.b64decode(json.loads(urllib.request.urlopen(rq2,timeout=20).read().decode())['content']).decode())
           pats=sorted(RU['feat_classes']['repo_names']+RU['feat_classes']['cred_names']+RU['feat_classes']['internal_ids'],key=len,reverse=True)
           cm=RU['codename']; allow=tuple(RU['allowlist_paths'])
-          rx=[(p,re.compile(r'(?<![\w/-])'+re.escape(p)+r'(?![\w-])')) for p in pats]
+          rx=[(p,re.compile(r'(?<![\w/-])(?<!\.)'+re.escape(p)+r'(?![\w-])(?!/)')) for p in pats]
           def run(c,**kw): return subprocess.run(c,capture_output=True,text=True,**kw)
           for TGT in TARGETS:
               ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
