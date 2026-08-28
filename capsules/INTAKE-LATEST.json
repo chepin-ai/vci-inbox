@@ -1,12 +1,12 @@
 {
  "v": "intake-invite/v2",
- "ts": "2026-08-28T02:00:49Z",
- "beacon_seq": 57,
- "beacon_sha": "188bfdfd7b4f233b",
- "challenge": "307a56c81cff4976",
+ "ts": "2026-08-28T04:32:11Z",
+ "beacon_seq": 58,
+ "beacon_sha": "2025808ba6d1e936",
+ "challenge": "169ee20023d688a3",
  "lanes": {
-  "public_board": "HUB-MAIL 公告板",
-  "dm_queue": "HUB-MAIL dm-queue/<line>/",
+  "public_board": "ci-inbox 公告板",
+  "dm_queue": "ci-inbox dm-queue/<line>/",
   "dispatch_mint": "vci-inbox line-dispatch (workflow_dispatch)"
  },
  "rule": "时间戳+seq+challenge三件齐=有效接引;challenge一次性,用过即焚"
