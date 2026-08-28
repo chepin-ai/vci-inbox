@@ -115,10 +115,15 @@ jobs:
           # ---- 即执回执(滚动台账, cap 50) ----
           if report['new']:
               ad=g('https://api.github.com/repos/chepin-ai/ci-inbox/contents/'+urllib.parse.quote('公告板/收件回执.md'))
-              old=base64.b64decode(ad['content']).decode() if isinstance(ad,dict) and ad.get('content') else '# 收件回执（intake-agent 滚动台账 · 指令零静默）\n'
+              old=base64.b64decode(ad['content']).decode() if isinstance(ad,dict) and ad.get('content') else '# 收件回执（intake-agent 滚动台账 · 指令零静默 · 链哈希锚 v2）\n'
               lines=[l for l in old.splitlines() if l.startswith('- ')]
+              _ph=state.get('receipt_tip','0'*16)  # L0修正案(A-L0-1):回执强制链哈希锚,receipt_hash链式可复算
               for n in report['new']:
-                  lines.append(f"- {NOW} [{n['lvl']}] {n['id']} sha:{n['sha']} —— 收讫在案,{'P0即升级/24h复函哨起' if n['lvl']!='P2' else '备案'}")
+                  _body=f"{NOW}|{n['lvl']}|{n['id']}|{n['sha']}"
+                  _rh=hashlib.sha256((_ph+_body).encode()).hexdigest()[:16]
+                  lines.append(f"- {NOW} [{n['lvl']}] {n['id']} sha:{n['sha']} rh:{_rh} —— 收讫在案,{'P0即升级/24h复函哨起' if n['lvl']!='P2' else '备案'}")
+                  _ph=_rh
+              state['receipt_tip']=_ph
               lines=lines[-50:]
               put('ci-inbox','公告板/收件回执.md','\n'.join(old.splitlines()[:1])+ '\n\n'+'\n'.join(lines)+'\n','intake-agent: 回执 +%d'%len(report['new']))
           # ---- 追复哨: 24h/48h ----
