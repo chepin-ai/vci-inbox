@@ -1,0 +1,81 @@
+name: circle-refresh
+on:
+  schedule: [{ cron: '17 */2 * * *' }]  # 与 field-router(47 */2)错峰: 三圈即时动态刷新+直通场接力(D-137)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: 收割各线私仓annex(hall/session-inbox)→hub汇聚; 圈状态快照; 超时圈自动触发接力FINDING; 全程只动私域+哈希,零内容泄公
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "三圈刷新: annex收割→圈状态→超时接力"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,urllib.request,urllib.error,urllib.parse,datetime,base64,hashlib
+          HK=os.environ['HUBK']; HID=os.environ['HUBID']
+          import jwt as JW
+          now=int(datetime.datetime.now().timestamp())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'circle-refresh'})
+          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'circle-refresh'}
+          def g(u):
+              rq=urllib.request.Request(u,headers=H)
+              try: return json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
+              except urllib.error.HTTPError as e: return {'_s':e.code}
+          def getc(repo,path):
+              d=g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}')
+              if isinstance(d,dict) and d.get('content'): return base64.b64decode(d['content']).decode(),d['sha']
+              return None,None
+          def putc(repo,path,content,msg):
+              _,sha=getc(repo,path)
+              body={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+              if sha: body['sha']=sha
+              rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}',method='PUT',headers=H,data=json.dumps(body).encode())
+              try: return urllib.request.urlopen(rq,timeout=20).status
+              except urllib.error.HTTPError as e: return e.code
+          import time
+          TS=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          VAULTS=['usrm-repo','quantum-go-ledger','vinf-market-kernel','github-repo-cfts','ucif2-formalization-kernel']
+          # (a) annex 收割: <vault>/hall/** → ci-control/bridge/hall/<line>/ ; session/inbox → session-circle
+          harvested=[]
+          for v in VAULTS:
+              for sub,dst in (('hall','hall'),('session/inbox','session-circle')):
+                  d=g(f'https://api.github.com/repos/chepin-ai/{v}/contents/{sub}')
+                  if not isinstance(d,list): continue
+                  for f in d:
+                      if f['type']!='file': continue
+                      txt,_=getc(v,sub+'/'+f['name'])
+                      if txt is None: continue
+                      h=hashlib.sha256(txt.encode()).hexdigest()
+                      _,oldsha=getc('ci-control',f'bridge/{dst}/{v}/{f["name"]}')
+                      # 幂等: 已有同内容则跳(以哈希注解文件判)
+                      note=getc('ci-control',f'bridge/{dst}/{v}/.hashes.json')[0]
+                      notes=json.loads(note) if note else {}
+                      if notes.get(f['name'])==h: continue
+                      st=putc('ci-control',f'bridge/{dst}/{v}/{f["name"]}',txt,f'circle-refresh: {dst}收割 {v}/{f["name"]}')
+                      if st in (200,201):
+                          notes[f['name']]=h
+                          putc('ci-control',f'bridge/{dst}/{v}/.hashes.json',json.dumps(notes,sort_keys=True),f'circle-refresh: hash-note {v}')
+                          harvested.append(f'{v}/{sub}/{f["name"]}')
+          # (b) 圈状态快照
+          led,_=getc('ci-control','bridge/stream-ledger.jsonl')
+          head=hashlib.sha256((led.strip().split(chr(10))[-1]).encode()).hexdigest()[:16] if led else None
+          state={'ts':TS,'forward_circle':{'stream_ledger_head':head,'harvested_this_run':len(harvested)},
+                 'session_circle':{v:('present' if not isinstance(g(f'https://api.github.com/repos/chepin-ai/{v}/contents/session'),dict) else 'absent') for v in VAULTS},
+                 'consensus_circle':'beacon seq 见 vci-inbox capsules/INTAKE-LATEST(公面最小胶囊)'}
+          putc('ci-control','bridge/circle-state.json',json.dumps(state,ensure_ascii=False,indent=1),f'circle-refresh: 圈状态 {TS}')
+          # (c) 账
+          old,_=getc('ci-control','bridge/stream-ledger.jsonl') or ('',None)
+          prev=(old or '').strip().split(chr(10))[-1] if old else ''
+          prevh=hashlib.sha256(prev.encode()).hexdigest() if prev else '0'*64
+          e={'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','harvested':len(harvested),'items':harvested[:20]}
+          e['hash']=hashlib.sha256((prevh+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
+          putc('ci-control','bridge/stream-ledger.jsonl',(old or '').rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
+          print(json.dumps({'harvested':len(harvested),'items':harvested[:10]},ensure_ascii=False))
+          PYEOF
