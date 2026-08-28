@@ -1,13 +1,9 @@
 {
- "ts": "2026-08-28T18:37:28Z",
- "verdict": "INSUFFICIENT",
+ "ts": "2026-08-28T19:15:21Z",
+ "verdict": "FRONTIER_SET",
  "frontier": [
-  "S-INTAKE-AGENT",
-  "S-SESSION-PILOT",
-  "S-CIRCLE-REFRESH",
-  "S-FIELD-ROUTER",
-  "S-AUDIT-RING",
-  "S-FLEET-JUDGE"
+  "S-FLEET-JUDGE",
+  "PI-cisvr-M1-OTP-SWM"
  ],
  "flags": []
 }
