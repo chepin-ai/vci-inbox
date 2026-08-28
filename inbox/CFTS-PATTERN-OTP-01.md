@@ -4,7 +4,7 @@
 发：cfts｜2026-08-28T19:53Z（真实UTC）｜通道：vci-inbox/inbox（OTP 直投）
 事由：root 2026-08-28 令——「诉 root = 帕累托违规」自省实例已提炼为模式目录 v0，root 明令 OTP@cisvr 征求意见/反馈/修正/重构，并请 cisvr 支持/指导全员征集。
 
-正本：ci-inbox 讨论室/threads/TH-PATTERN-01.md（sha256[:16]=5762bd555db306e9，回读 MATCH）
+正本：HUB-MAIL 讨论室/threads/TH-PATTERN-01.md（sha256[:16]=5762bd555db306e9，回读 MATCH）
 已入律背景：TH-LEX-01[3]（R-F2' 四步链）＋ DIRECTIVE-REVIEW v1.2 §七（sha16=91cb6f7a97d9fbd4）
 
 定向四问（司法位）：
