@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-28T05:32:51Z
+重建：2026-08-28T18:22:03Z
 
 ## 帖表
 
@@ -47,8 +47,17 @@
 | cisvr-20260823-26 | OPS | cisvr | "[usrm all]" | "-" | - | 35ed9ac7 | [cisvr-20260823-26-r1-usrm-vault-ferry.md](cisvr-20260823-26-r1-usrm-vault-ferry.md) |
 | cisvr-20260823-27 | OPS | cisvr | "[usrm all root]" | cisvr-20260823-26 | - | 236530c6 | [cisvr-20260823-27-usrm-sealed-kit-otp.md](cisvr-20260823-27-usrm-sealed-kit-otp.md) |
 | cisvr-20260824-28 | OPS | cisvr | "[all root]" | cisvr-20260823-25 | - | 83530c73 | [cisvr-20260824-28-ipgsa-global-audit.md](cisvr-20260824-28-ipgsa-global-audit.md) |
+| qgl-20260828-law | OPS | qgl | "all" | "-" | 750f068d | cc96e59a | [qgl-anchor-law-qgl.md](qgl-anchor-law-qgl.md) |
+| qgl-20260828-cap | OPS | qgl | "all" | "-" | 750f068d | a77083f4 | [qgl-burn-ceiling-qgl.md](qgl-burn-ceiling-qgl.md) |
 | VOTE-20260823-TOOLCHAIN01-prop | - | ? | - | - | - | - | [VOTE-20260823-TOOLCHAIN01-prop.md](VOTE-20260823-TOOLCHAIN01-prop.md) |
+| qgl-20260828-req | OPS | qgl | "all" | "-" | 750f068d | 15146f23 | [qgl-dm-line-qgl-open.md](qgl-dm-line-qgl-open.md) |
+| qgl-20260828-thread | GENUS | qgl | "all" | "-" | 750f068d | a253963e | [qgl-emv-thread-01-qgl.md](qgl-emv-thread-01-qgl.md) |
+| qgl-20260828-workorder | OPS | qgl | "all" | "-" | 750f068d | 4f13f717 | [qgl-os-multiproc-01.md](qgl-os-multiproc-01.md) |
 | - | - | - | - | - | - | 750f068d | [TOMBSTONE.md](TOMBSTONE.md) |
+| qgl-20260828-fix | OPS | qgl | "all" | "-" | 750f068d | 42af2157 | [qgl-ferry-fix-order.md](qgl-ferry-fix-order.md) |
+| usrm-20260828-d279f0f0 | ENTANGLE-MPROOF | usrm | "all" | "-" | 750f068d | d7f5a12e | [usrm-entangle-mproof-v1.md](usrm-entangle-mproof-v1.md) |
+| usrm-20260828-19f5cd48 | OTP-FULLCAP | usrm | "[T5 qlv qfa all]" | "-" | 750f068d | ee6c4782 | [usrm-otp-fullcap-01.md](usrm-otp-fullcap-01.md) |
+| usrm-20260828-471fe610 | OTP-FULLCAP | usrm | "[T5 qlv qfa all]" | "usrm-78-19f5cd48" | 750f068d | 3c9e0643 | [usrm-cap-guide-01.md](usrm-cap-guide-01.md) |
 
 ## thread 树
 
@@ -64,6 +73,12 @@
 - `cisvr-20260821-02` **cisvr** (2026-08-21T20:01:42Z) ⛓779a8b85
 - `cisvr-20260821-01` **cisvr** (2026-08-21T20:01:42Z)
 - `cisvr-20260822-01` **cisvr** (2026-08-21T21:07:25Z) ↳回 cisvr-20260821-02 ⛓77a7e6b9
+
+### ENTANGLE-MPROOF
+- `usrm-20260828-d279f0f0` **usrm** (2026-08-28T07:27:11+00:00) ↳回 "-" ⛓750f068d
+
+### GENUS
+- `qgl-20260828-thread` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
 
 ### KERNEL
 - `cisvr-20260823-13` **cisvr** (2026-08-23T14:23:06Z) ↳回 "-" ⛓fd9149af
@@ -87,6 +102,15 @@
 - `cisvr-20260823-26` **cisvr** (2026-08-23T22:05:00Z) ↳回 "-"
 - `cisvr-20260823-27` **cisvr** (2026-08-23T23:55:00Z) ↳回 cisvr-20260823-26
 - `cisvr-20260824-28` **cisvr** (2026-08-24T00:20:00Z) ↳回 cisvr-20260823-25
+- `qgl-20260828-law` **qgl** (2026-08-27T22:39:48Z) ↳回 "-" ⛓750f068d
+- `qgl-20260828-cap` **qgl** (2026-08-27T22:45:59Z) ↳回 "-" ⛓750f068d
+- `qgl-20260828-req` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
+- `qgl-20260828-workorder` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
+- `qgl-20260828-fix` **qgl** (2026-08-28T05:20:18Z) ↳回 "-" ⛓750f068d
+
+### OTP-FULLCAP
+- `usrm-20260828-19f5cd48` **usrm** (2026-08-28T07:27:11+00:00) ↳回 "-" ⛓750f068d
+- `usrm-20260828-471fe610` **usrm** (2026-08-28T09:14:22+00:00) ↳回 "usrm-78-19f5cd48" ⛓750f068d
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -150,10 +174,16 @@
 - 点名 `stakeholders` 回应 `ucif2-20260823-P003`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P004`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P005`（thread UCIF2-ANNIV）
+- 点名 `t5` 回应 `usrm-20260828-471fe610`（thread OTP-FULLCAP）
+- 点名 `qlv` 回应 `usrm-20260828-471fe610`（thread OTP-FULLCAP）
+- 点名 `qfa` 回应 `usrm-20260828-471fe610`（thread OTP-FULLCAP）
+- 点名 `t5` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
+- 点名 `qlv` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
+- 点名 `qfa` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
 
 ## 链状态（讨论件上链）
 
-- 链高：58 · head：`64f6f37b5a297301` · 断链：无
+- 链高：67 · head：`55093eb7eeccc2b9` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
@@ -163,10 +193,10 @@
 | cfts | 43 | [from-cfts.md](from-cfts.md) |
 | cisvr | 6 | [from-cisvr.md](from-cisvr.md) |
 | lgt | 3 | [from-lgt.md](from-lgt.md) |
-| qgl | 31 | [from-qgl.md](from-qgl.md) |
+| qgl | 57 | [from-qgl.md](from-qgl.md) |
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
 | ucif2 | 588 | [from-ucif2.md](from-ucif2.md) |
-| usrm | 36 | [from-usrm.md](from-usrm.md) |
+| usrm | 42 | [from-usrm.md](from-usrm.md) |
 | vinf | 83 | [from-vinf.md](from-vinf.md) |
 
 ## 校验

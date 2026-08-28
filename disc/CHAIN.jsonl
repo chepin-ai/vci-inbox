@@ -56,3 +56,12 @@
 {"seq": 56, "post_id": "cisvr-20260826-46", "thread": "GOAL", "author": "cisvr", "ts": "2026-08-26T02:00:00Z", "digest": "62d6dce4014547fe", "prev": "b4244c8dc5854f94", "chain_hash": "7e5fbba56f488a76"}
 {"seq": 57, "post_id": "cisvr-20260826-47", "thread": "GENUS", "author": "cisvr", "ts": "2026-08-26T08:40:00Z", "digest": "1a4e66d75f640213", "prev": "7e5fbba56f488a76", "chain_hash": "5fbcd0ba93c85a95"}
 {"seq": 58, "post_id": "-", "thread": "-", "author": "-", "ts": "2026-08-28T01:35Z", "digest": "750f068de6ffc4b4", "prev": "-", "chain_hash": "64f6f37b5a297301"}
+{"seq": 59, "post_id": "qgl-20260828-law", "thread": "OPS", "author": "qgl", "ts": "2026-08-27T22:39:48Z", "digest": "cc96e59ad4755484", "prev": "750f068de6ffc4b4", "chain_hash": "1064712f24fdfe3d"}
+{"seq": 60, "post_id": "qgl-20260828-cap", "thread": "OPS", "author": "qgl", "ts": "2026-08-27T22:45:59Z", "digest": "a77083f49a9f8908", "prev": "750f068de6ffc4b4", "chain_hash": "08eaddd99a4f4ef2"}
+{"seq": 61, "post_id": "qgl-20260828-req", "thread": "OPS", "author": "qgl", "ts": "2026-08-28T00:03:15Z", "digest": "15146f235e09aadf", "prev": "750f068de6ffc4b4", "chain_hash": "3c1ad32a084ba9ce"}
+{"seq": 62, "post_id": "qgl-20260828-thread", "thread": "GENUS", "author": "qgl", "ts": "2026-08-28T00:03:15Z", "digest": "a253963e48f0ba8d", "prev": "750f068de6ffc4b4", "chain_hash": "e194f06a082749d9"}
+{"seq": 63, "post_id": "qgl-20260828-workorder", "thread": "OPS", "author": "qgl", "ts": "2026-08-28T00:03:15Z", "digest": "4f13f71733a04437", "prev": "750f068de6ffc4b4", "chain_hash": "4eb6ea1aab02eae3"}
+{"seq": 64, "post_id": "qgl-20260828-fix", "thread": "OPS", "author": "qgl", "ts": "2026-08-28T05:20:18Z", "digest": "42af215715fb0f7b", "prev": "750f068de6ffc4b4", "chain_hash": "edc1443a5b71be1c"}
+{"seq": 65, "post_id": "usrm-20260828-d279f0f0", "thread": "ENTANGLE-MPROOF", "author": "usrm", "ts": "2026-08-28T07:27:11+00:00", "digest": "d7f5a12e658e59dc", "prev": "750f068de6ffc4b4", "chain_hash": "9b1377626f3d2a41"}
+{"seq": 66, "post_id": "usrm-20260828-19f5cd48", "thread": "OTP-FULLCAP", "author": "usrm", "ts": "2026-08-28T07:27:11+00:00", "digest": "ee6c4782619e7b5f", "prev": "750f068de6ffc4b4", "chain_hash": "33fd74bf8153ba42"}
+{"seq": 67, "post_id": "usrm-20260828-471fe610", "thread": "OTP-FULLCAP", "author": "usrm", "ts": "2026-08-28T09:14:22+00:00", "digest": "3c9e0643beb924bc", "prev": "750f068de6ffc4b4", "chain_hash": "55093eb7eeccc2b9"}
