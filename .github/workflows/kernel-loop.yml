@@ -1,22 +1,22 @@
 name: kernel-loop
 on:
-  schedule: [{ cron: '23,53 * * * *' }]  # 元引擎闭环30min班(D-153/KERNEL-CLOSURE-01): 避开既有钟面(3/8/13/17/18/33/38/43/47/48)
+  schedule: [{ cron: '23,53 * * * *' }]  # 元引擎闭环30min班(D-153/D-154): 避开既有钟面(3/8/13/17/18/33/38/43/47/48)
   workflow_dispatch: {}
 permissions:
   contents: write
-  # rationale: 系谱闭合五拍: OBLIGE(义务盘点)→CONSTRUCT(构造检)→VERIFY(证书机检)→ADJUDICATE(判词)→PROPOSE(义务回流提案); 义务机主权纪律=机制只产proposals; 只动私域+计数/哈希,零原文零密钥
+  # rationale: 系谱闭合五拍+第二乐章(P6交响/P7融合/P8自指); 提案制=义务机主权; 只动私域+计数/哈希,零原文零密钥
 jobs:
   loop:
     runs-on: ubuntu-latest
     steps:
-      - name: "系谱闭合拍: P0锚→P1义务→P2构造→P3机检→P4判词→P5提案→入链"
+      - name: "系谱融合拍: P0锚→P1义务→P2构造→P3机检→P4判词→P5提案→P6交响→P7融合→P8自指→入链"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF'
-          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib
+          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib, re
           import jwt as JW
 
           HK = os.environ['HUBK']; HID = os.environ['HUBID']
@@ -39,6 +39,12 @@ jobs:
               if isinstance(d, dict) and d.get('content'):
                   return base64.b64decode(d['content']).decode(), d['sha']
               return None, None
+
+          def lsdir(repo, path):
+              d = g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path, safe="")}')
+              if isinstance(d, list):
+                  return d
+              return []
 
           def putc(repo, path, content, msg):
               _, sha = getc(repo, path)
@@ -193,16 +199,94 @@ jobs:
               age_h = (NOW - parse_any(it.get('ts', ''))).total_seconds() / 3600 if parse_any(it.get('ts', '')) else 9999
               if vd['verdict'] == 'STALLED' and age_h >= 24:
                   proposals.append({'kind': 'nudge', 'ref': vd['id'], 'to': vd.get('owner'), 'reason': f'无构造产出记录且账龄 {int(age_h)}h', 'ask': '24h 内投递或说明'})
+          # ---- P6 SYMPHONY (交响面: 讨论室/公告板/dm 多线索盘点, D-154①) ----
+          def parse_thread_ts(txt):
+              for pat, tag in ((r'@\s*(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?Z)', '@'), (r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?Z)', 'bare')):
+                  stamps = re.findall(pat, txt or '')
+                  ts = [parse_dl(x) for x in stamps]
+                  ts = [x for x in ts if x]
+                  if ts:
+                      return max(ts), tag
+              return None, 'none'
+          threads = []
+          for f in lsdir('ci-inbox', '讨论室/threads'):
+              if not f.get('name', '').endswith('.md'):
+                  continue
+              txt, _ = getc('ci-inbox', '讨论室/threads/' + f['name'])
+              lt, tsrc = parse_thread_ts(txt)
+              age_h = (NOW - lt).total_seconds() / 3600 if lt else None
+              dl_hit = None
+              m = re.search(r'死线[^\d]{0,12}(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?Z)', txt or '')
+              if m:
+                  dl_hit = parse_dl(m.group(1))
+              threads.append({'thread': f['name'], 'posts': len(re.findall(r'@\s*\d{4}-', txt or '')) or len(re.findall(r'ts:', txt or '')), 'last_ts': lt.strftime('%Y-%m-%dT%H:%MZ') if lt else None, 'ts_src': tsrc, 'age_h': round(age_h, 1) if age_h is not None else None, 'deadline_passed': bool(dl_hit and dl_hit < NOW)})
+          stalled = [t for t in threads if t['age_h'] is not None and t['age_h'] > 48]
+          unparsed = [t['thread'] for t in threads if t['age_h'] is None]
+          for t in stalled:
+              proposals.append({'kind': 'thread-nudge', 'ref': t['thread'], 'reason': f"末帖龄 {t['age_h']:.0f}h", 'ask': '指定线 24h 内跟帖或申明悬置(沉默≠同意)'})
+          for t in threads:
+              if t['deadline_passed']:
+                  proposals.append({'kind': 'thread-escalate', 'ref': t['thread'], 'reason': '帖内死线已过', 'ask': '主持线裁决或展期,48h 无响应升 FINDING'})
+          board_items = len(lsdir('ci-inbox', '公告板'))
+          dm_total = 0
+          for dline in lsdir('ci-inbox', 'dm-queue'):
+              if dline.get('type') == 'dir':
+                  dm_total += len(lsdir('ci-inbox', 'dm-queue/' + dline['name']))
+          symphony = {'threads': len(threads), 'active_48h': len([t for t in threads if t['age_h'] is not None and t['age_h'] <= 48]), 'stalled': [t['thread'] for t in stalled], 'ts_unparsed': unparsed, 'deadline_passed': [t['thread'] for t in threads if t['deadline_passed']], 'board_items': board_items, 'dm_pending_total': dm_total}
+
+          # ---- P7 FUSION (引擎面: 八算子检, D-154②) ----
+          reg_txt, _ = getc('ci-control', 'bridge/INST-REG.json')
+          reg = json.loads(reg_txt) if reg_txt else {'instances': []}
+          insts = reg.get('instances', [])
+          beats = []
+          for i in insts:
+              hb = i.get('heartbeat', 0)
+              beats.append({'inst_id': i.get('inst_id'), 'status': i.get('status'), 'stale_by': (maxseq - hb) if isinstance(hb, int) else 9999})
+          by_status = {}
+          for i in insts:
+              by_status[i.get('status')] = by_status.get(i.get('status'), 0) + 1
+          conv_anchor = {}
+          for i in insts:
+              if i.get('status') == 'CONVERGED' and i.get('anchor_out'):
+                  conv_anchor.setdefault(i['anchor_out'], []).append(i.get('inst_id'))
+          merge_cands = [v for v in conv_anchor.values() if len(v) > 1]
+          runaway_ids = [i.get('inst_id') for i in insts if i.get('status') == 'RUNAWAY']
+          stale_ids = [b['inst_id'] for b in beats if isinstance(b.get('stale_by'), int) and b['stale_by'] > 50 and b.get('status') == 'ACTIVE']
+          fs_txt2, _ = getc('ci-control', 'bridge/fleet-judge/FLEET-STATE.json')
+          rdz_hits = []
+          try:
+              rdz_hits = json.loads(fs_txt2).get('rendezvous_hits', [])
+          except Exception:
+              pass
+          for grp in merge_cands:
+              proposals.append({'kind': 'merge', 'ref': '+'.join(grp), 'reason': 'CONVERGED 同锚', 'ask': '并线评审: 合并为单实例或宣示分工,判词落链'})
+          for rid in runaway_ids:
+              proposals.append({'kind': 'branch-kill', 'ref': rid, 'reason': 'RUNAWAY', 'ask': '分枝处决: 杀枝或特赦,判词落链'})
+          for sid in stale_ids:
+              proposals.append({'kind': 'scout', 'ref': sid, 'reason': '心跳滞留>50 seq', 'ask': '探路查活: 回 heartbeat 或宣告 CONVERGED/DEAD'})
+          active_n = by_status.get('ACTIVE', 0)
+          if active_n >= 8:
+              proposals.append({'kind': 'branch-cap', 'ref': 'INST-REG', 'reason': f'ACTIVE={active_n} 触分叉硬上限 8', 'ask': '新实例须帕累托拍准入(PARETO-DYN-01)'})
+          fusion = {'by_status': by_status, 'merge_candidates': merge_cands, 'runaway': runaway_ids, 'stale': stale_ids, 'rendezvous_logged': len(rdz_hits), 'active_cap': f'{active_n}/8'}
+
+          # ---- P8 SELF (元pattern用于自身, D-154③) ----
+          if evolution['deltas'] == [] or evolution['deltas'] == ['GENESIS_RUN']:
+              pass
+          else:
+              if not any('verdict' in x or ':' in x for x in evolution['deltas']):
+                  proposals.append({'kind': 'self-review', 'ref': 'kernel-loop', 'reason': '演进增量停滞', 'ask': '义务机评审本元引擎拍律/证书面是否需改版'})
+          self_sec = {'framework': 'GENE-FUSION-01@0.1.0-shadow', 'self_apply': '本元引擎自身版本演进走同一 PROPOSE→义务机批准→构造→证书→判词环,不享豁免'}
+
           prop_body = {'ts': TS, 'run': RUN, 'proposals': proposals, 'ratify': '本表由机制产,义务机(cisvr/usrm/root)批准后方入 EXPECT-REG'}
-          state = {'organ': 'kernel-loop', 'ts': TS, 'run': RUN, 'anchor': anchor, 'counts': {'open': len(open_items), 'overdue': len(overdue), 'solved': len(solved), 'ledger_tip_seq': maxseq}, 'certs': certs, 'certs_pass': certs_pass, 'verdicts': verdicts, 'loop_verdict': loop_verdict, 'evolution': evolution, 'proposals_n': len(proposals)}
+          state = {'organ': 'kernel-loop', 'ts': TS, 'run': RUN, 'anchor': anchor, 'counts': {'open': len(open_items), 'overdue': len(overdue), 'solved': len(solved), 'ledger_tip_seq': maxseq}, 'certs': certs, 'certs_pass': certs_pass, 'verdicts': verdicts, 'loop_verdict': loop_verdict, 'evolution': evolution, 'symphony': symphony, 'fusion': fusion, 'self': self_sec, 'proposals_n': len(proposals)}
           putc('ci-control', 'bridge/kernel-loop/proposals.json', json.dumps(prop_body, ensure_ascii=False, indent=1), f'kernel-loop 提案 {TS} n={len(proposals)}')
           putc('ci-control', 'bridge/kernel-loop/KERNEL-STATE.json', json.dumps(state, ensure_ascii=False, indent=1), f'kernel-loop 拍 {TS} verdict={loop_verdict}')
 
           # ---- 判词入链 (因果链) ----
-          ev = {'seq': maxseq + 1, 'ts': TS, 'type': 'KERNEL_LOOP', 'by': 'kernel-loop', 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts'], 'overdue_ids': [it.get('id') for it in overdue], 'proposals_n': len(proposals), 'evolution': evolution['deltas'], 'anchor': anchor['tip_hash'][:16], 'prev': tip.get('hash') if tip else 'GENESIS'}
+          ev = {'seq': maxseq + 1, 'ts': TS, 'type': 'KERNEL_LOOP', 'by': 'kernel-loop', 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts'], 'overdue_ids': [it.get('id') for it in overdue], 'proposals_n': len(proposals), 'sym': {'threads': symphony['threads'], 'stalled': len(symphony['stalled']), 'dm': symphony['dm_pending_total']}, 'fus': {'merge': len(fusion['merge_candidates']), 'runaway': len(fusion['runaway']), 'scout': len(fusion['stale']), 'rdz': fusion['rendezvous_logged'], 'cap': fusion['active_cap']}, 'evolution': evolution['deltas'], 'anchor': anchor['tip_hash'][:16], 'prev': tip.get('hash') if tip else 'GENESIS'}
           ev['hash'] = hashlib.sha256((ev['prev'] + canon(ev)).encode()).hexdigest()
           led_new = (led_txt or '') + ('\n' if led_txt and not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'
           putc('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'KERNEL_LOOP seq{ev["seq"]} verdict={loop_verdict} @ {TS}')
           putc('vci-inbox', 'bridge/kernel-loop/last-run.json', json.dumps({'ts': TS, 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts']}, ensure_ascii=False, indent=1), f'kernel-loop last-run {TS}')
-          print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'seq': ev['seq']}, ensure_ascii=False))
+          print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'sym_stalled': len(symphony['stalled']), 'fus_merge': len(fusion['merge_candidates']), 'seq': ev['seq']}, ensure_ascii=False))
           PYEOF
