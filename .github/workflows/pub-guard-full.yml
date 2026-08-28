@@ -39,6 +39,7 @@ jobs:
           def run(c,**kw): return subprocess.run(c,capture_output=True,text=True,**kw)
           for TGT in TARGETS:
               ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+              os.chdir('/tmp')
               run(['rm','-rf','/tmp/pgf'])
               r=run(['git','clone',f'https://x-access-token:{IT}@github.com/chepin-ai/{TGT}.git','/tmp/pgf'])
               if r.returncode!=0: print(TGT,'clone fail',r.stderr[-200:]); continue
