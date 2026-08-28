@@ -1,0 +1,165 @@
+name: fleet-judge
+on:
+  schedule: [{ cron: '13,43 * * * *' }]  # 元引擎30min班(D-147/ENGINE-FLEET-01): 不与既有钟面(3/8/17/18/33/38/47/48)冲突
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: 元引擎常转: INST-REG盘点/心跳/帕累托拍/相遇检/协同面→FLEET-STATE+链; 只动私域+计数/哈希,零原文零密钥
+jobs:
+  judge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "元引擎拍: 盘点→心跳→帕累托→相遇→协同→判词入链"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib
+          import jwt as JW
+
+          HK = os.environ['HUBK']; HID = os.environ['HUBID']
+          now = int(datetime.datetime.now().timestamp())
+          appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
+          rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json', 'User-Agent': 'fleet-judge'})
+          IT = json.loads(urllib.request.urlopen(rq, timeout=20).read())['token']
+          H = {'Authorization': 'token ' + IT, 'Accept': 'application/vnd.github+json', 'User-Agent': 'fleet-judge'}
+
+          def g(u):
+              rq = urllib.request.Request(u, headers=H)
+              try:
+                  return json.loads(urllib.request.urlopen(rq, timeout=20).read().decode())
+              except urllib.error.HTTPError as e:
+                  return {'_s': e.code}
+
+          def getc(repo, path):
+              d = g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}')
+              if isinstance(d, dict) and d.get('content'):
+                  return base64.b64decode(d['content']).decode(), d['sha']
+              return None, None
+
+          def putc(repo, path, content, msg):
+              _, sha = getc(repo, path)
+              body = {'message': msg, 'content': base64.b64encode(content.encode()).decode()}
+              if sha:
+                  body['sha'] = sha
+              rq = urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path)}', method='PUT', headers=H, data=json.dumps(body).encode())
+              try:
+                  return urllib.request.urlopen(rq, timeout=20).status
+              except urllib.error.HTTPError as e:
+                  return e.code
+
+          def canon(o):
+              return json.dumps(o, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+
+          TS = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+          # ---- 1. 盘点 ----
+          reg_txt, _ = getc('ci-control', 'bridge/INST-REG.json')
+          reg = json.loads(reg_txt) if reg_txt else {'v': 1, 'instances': []}
+          insts = reg.get('instances', [])
+          exp_txt, _ = getc('ci-control', 'bridge/EXPECT-REG-01.json')
+          exps = json.loads(exp_txt) if exp_txt else []
+          led_txt, _ = getc('ci-control', 'bridge/stream-ledger.jsonl')
+          lines = [l for l in (led_txt or '').splitlines() if l.strip()]
+          entries = []
+          for l in lines:
+              try:
+                  entries.append(json.loads(l))
+              except Exception:
+                  pass
+          hashed = [e for e in entries if e.get('hash')]
+          tip = hashed[-1] if hashed else None
+          maxseq = max([e.get('seq', 0) for e in entries] + [0])
+          findings_open = [e for e in entries if e.get('type') == 'FINDING' and not e.get('resolved')]
+          ia_txt, _ = getc('vci-inbox', 'bridge/intake-agent/last-run.json')
+          ia = json.loads(ia_txt) if ia_txt else {}
+          ss_txt, _ = getc('vci-inbox', 'bridge/session-pilot/SESSION-STATE.json')
+          ss = json.loads(ss_txt) if ss_txt else {}
+
+          # ---- 2. 心跳检 ----
+          beats = []
+          for i in insts:
+              hb = i.get('heartbeat', 0)
+              stale = (maxseq - hb) if isinstance(hb, int) else 9999
+              beats.append({'inst_id': i.get('inst_id'), 'status': i.get('status'), 'hb': hb, 'stale_by': stale})
+          runaway = [b for b in beats if b['status'] == 'RUNAWAY']
+
+          # ---- 3. 帕累托拍 ----
+          def dominates(a, b):
+              ga = a.get('goal_vec'); gb = b.get('goal_vec')
+              if not ga or not gb or len(ga) != 4 or len(gb) != 4:
+                  return None
+              return all(x >= y for x, y in zip(ga, gb)) and any(x > y for x, y in zip(ga, gb))
+
+          active = [i for i in insts if i.get('status') == 'ACTIVE']
+          frontier = []
+          for a in active:
+              if not any(dominates(b, a) for b in active if b is not a):
+                  frontier.append(a.get('inst_id'))
+          if any(i.get('goal_vec') is None for i in active):
+              verdict = 'INSUFFICIENT'
+          elif len(frontier) == 1:
+              verdict = 'UNIQUE_OPTIMAL'
+          elif len(frontier) >= 2:
+              verdict = 'FRONTIER_SET'
+          else:
+              verdict = 'FRONTIER_SET' if not active else 'INSUFFICIENT'
+          if not active:
+              verdict = 'INSUFFICIENT'
+
+          # ---- 4. 相遇检(判据1: 产出锚等价) ----
+          rdz = []
+          seen = {}
+          for i in active:
+              ao = i.get('anchor_out')
+              if not ao:
+                  continue
+              if ao in seen:
+                  rdz.append({'pair': [seen[ao], i.get('inst_id')], 'criterion': 1, 'anchor': ao})
+              else:
+                  seen[ao] = i.get('inst_id')
+
+          # ---- 5. 协同面 ----
+          canary = ia.get('canary', {})
+          ia_red = any(v == 'FAIL' for v in canary.values()) if isinstance(canary, dict) else False
+          synergy_flags = []
+          if ia_red:
+              synergy_flags.append('intake-canary-red')
+          if ss.get('status') == 'ending':
+              synergy_flags.append('session-ending-unconsumed')
+          if runaway:
+              synergy_flags.append('runaway:' + ','.join(r['inst_id'] for r in runaway))
+
+          # ---- 6/7. FLEET-STATE + 判词入链 ----
+          fstate = {
+              'organ': 'fleet-judge', 'ts': TS,
+              'counts': {'instances': len(insts), 'active': len(active), 'findings_open': len(findings_open), 'ledger_tip_seq': maxseq},
+              'frontier': frontier, 'verdict': verdict, 'rendezvous_hits': rdz,
+              'beats': beats, 'synergy_flags': synergy_flags,
+              'inputs_anchor': tip.get('hash') if tip else 'GENESIS'
+          }
+          putc('ci-control', 'bridge/fleet-judge/FLEET-STATE.json', json.dumps(fstate, ensure_ascii=False, indent=1), f'fleet-judge拍 {TS} verdict={verdict}')
+
+          ev = {
+              'seq': maxseq + 1, 'ts': TS, 'type': 'FLEET_EVAL', 'by': 'fleet-judge',
+              'verdict': verdict, 'frontier': frontier,
+              'counts': fstate['counts'], 'synergy_flags': synergy_flags,
+              'rdz': len(rdz),
+              'prev': tip.get('hash') if tip else 'GENESIS'
+          }
+          ev['hash'] = hashlib.sha256((ev['prev'] + canon(ev)).encode()).hexdigest()
+          led_new = (led_txt or '') + ('\n' if led_txt and not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'
+          putc('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'FLEET_EVAL seq{ev["seq"]} verdict={verdict} @ {TS}')
+
+          # 本拍报文(公告板只出计数/哈希,零原文零密钥)
+          report = f"""# fleet-judge 拍报 {TS}
+          - verdict: **{verdict}** ｜ frontier: {frontier}
+          - 实例: {len(insts)}(active {len(active)}) ｜ 未决FINDING: {len(findings_open)} ｜ 链尖: seq{maxseq}·{(tip.get('hash','')[:12] if tip else 'GENESIS')}
+          - 相遇命中: {len(rdz)} ｜ 协同旗: {synergy_flags or '无'}
+          - 锚: {fstate['inputs_anchor'][:16]}
+          """
+          putc('vci-inbox', 'bridge/fleet-judge/last-run.json', json.dumps({'ts': TS, 'verdict': verdict, 'frontier': frontier, 'flags': synergy_flags}, ensure_ascii=False, indent=1), f'fleet-judge last-run {TS}')
+          print(json.dumps({'verdict': verdict, 'frontier': frontier, 'flags': synergy_flags, 'seq': ev['seq']}, ensure_ascii=False))
+          PYEOF
