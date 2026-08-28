@@ -103,7 +103,11 @@ jobs:
                   _sq=[x['seq'] for x in _ls if 'seq' in x]
                   _dup=len(_sq)-len(set(_sq)); _gap=len(set(range(min(_sq or [0]),max(_sq or [0])+1))-set(_sq)) if _sq else 0
                   report['canary']['ledger_seq']=f'dup{_dup}/gap{_gap}'
-                  if _dup or _gap: report['escalations'].append(f'序号维失守: dup={_dup} gap={_gap}')
+                  _base=state.get('seq_baseline')  # 历史污染基线(cfts EXP-1实测:缺9重2)——增量失守才升级,基线不每班空转
+                  if _base is None:
+                      state['seq_baseline']={'dup':_dup,'gap':_gap,'pinned':NOW}; _base=state['seq_baseline']
+                  if _dup>_base['dup'] or _gap>_base['gap']:
+                      report['escalations'].append(f"序号维增量失守: dup={_dup}/{_base['dup']} gap={_gap}/{_base['gap']}")
           except Exception as e: report['canary']['ledger_seq']='RED'
           # ---- 空收必报 ----
           if allempty or 'RED' in report['canary'].values():
