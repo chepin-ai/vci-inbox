@@ -107,7 +107,7 @@ jobs:
                   for _x in reversed(_ls):
                       if _x.get('hash'): _ph2=_x['hash']; break
                   e={'seq':_sq,'ts':NOW,'kind':'HANDOFF','actor':'session-pilot','nonce':nonce,'prio':prio,'instr':instr[:120]}
-                  e['hash']=hashlib.sha256((_ph2+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest() if False else hashlib.sha256((_ph2+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
+                  e['hash']=hashlib.sha256((_ph2+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
                   putc('ci-control','bridge/stream-ledger.jsonl',ld.rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'ledger: HANDOFF '+nonce)
           elif inflight:
               rep['action']='inflight-wait'; rep['nonce']=ni.get('nonce')
