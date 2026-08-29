@@ -1,5 +1,17 @@
 {
- "ts": "2026-08-29T15:01:04Z",
+ "ts": "2026-08-29T15:02:31Z",
  "rid": 33258689499,
- "err_lines": []
+ "jobs": [
+  {
+   "name": "sendcode",
+   "conclusion": "failure",
+   "steps": []
+  },
+  {
+   "name": "verify",
+   "conclusion": "skipped",
+   "steps": []
+  }
+ ],
+ "log_tail": []
 }
