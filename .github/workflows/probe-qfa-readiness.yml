@@ -1,0 +1,39 @@
+name: probe-qfa-readiness（09-01前qfa OTP战备核查;值不出runner）
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 核查
+        env:
+          TK: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error, base64
+          H={'Authorization':'token '+os.environ['TK'],'Accept':'application/vnd.github+json'}
+          rec={'probe':'QFA-READINESS-01','checks':{}}
+          def gj(u):
+              try:
+                  r=urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=30)
+                  return r.status,json.loads(r.read())
+              except urllib.error.HTTPError as e: return e.code,None
+          for path,tag in [('scripts/otp_gate_worker.py','worker'),('.github/workflows/otp-issue-trigger.yml','trigger'),('.github/workflows/session-restore.yml','restore')]:
+              s,c=gj('https://api.github.com/repos/chepin-qi/qfa-quantum-lab/contents/'+path)
+              if s==200:
+                  t=base64.b64decode(c['content']).decode()
+                  rec['checks'][tag]={'present':True,'v26':'phone_candidates' in t,'OTPPH':'OTPPH' in t,'red_poison':'〈RED〉' in t}
+              else: rec['checks'][tag]={'present':False,'http':s}
+          s,c=gj('https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/secrets?per_page=50')
+          rec['secrets']=[x['name'] for x in c.get('secrets',[])] if s==200 else 'ERR%d'%s
+          os.makedirs('receipts',exist_ok=True)
+          json.dump(rec,open('receipts/QFA-READINESS-01.json','w'),ensure_ascii=False,indent=1)
+          print(json.dumps(rec['checks']))
+          PYEOF
+      - name: 回执落仓
+        run: |
+          git config user.name "probe"; git config user.email "probe@ci"
+          git add receipts/ && git commit -qm "QFA-READINESS-01 [skip ci]" && git push -q || echo nothing
