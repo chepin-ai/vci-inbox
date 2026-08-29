@@ -1,7 +1,9 @@
 name: rci-engine
 on:
+  repository_dispatch:
+    types: [qf-beat, rci-job]   # D-157事件驱动化 v2: 主道qf-beat扇出+rci-job专件
   schedule:
-    - cron: '*/17 * * * *'
+    - cron: '42 0 * * *'        # 死手兜底:每日1拍(原*/17遗物降级,信标主责=beacon-mint */31)
   workflow_dispatch:
 permissions:
   contents: write
@@ -92,7 +94,7 @@ jobs:
                       out={'error':'src-missing','src':p.get('src_repo')+'/'+p.get('src_path')}
               elif typ=='fleet-drive':
                   sI,dI=gh('GET','https://api.github.com/installation/repositories?per_page=100')
-                  reposI=[x['name'] for x in dI.get('repositories',[])] if sI==200 else []
+                  reposI=[x['name'] for x in dI.get('repositories',[]) if not x.get('private')] if sI==200 else []  # v2改向:只喂公仓新代,旧壳私仓断供(分裂脑收尾)
                   hit=[];miss=[]
                   for rp in reposI:
                       try:
