@@ -1,8 +1,12 @@
 {
- "ts": "2026-08-29T13:52:09Z",
+ "ts": "2026-08-29T19:26:15Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 202,
- "fixed_n": 0,
- "fixed": []
+ "scanned": 210,
+ "fixed_n": 3,
+ "fixed": [
+  "payloads/otp-dispatch-gate.yml",
+  "payloads/otp-issue-trigger_v21.yml",
+  "receipts/VINF-SECRETS-01.json"
+ ]
 }
