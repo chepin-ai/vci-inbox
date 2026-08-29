@@ -234,7 +234,8 @@ jobs:
                   if kf and any(t.lower() in kf.lower() for t in _toks):
                       _pfix.append({'id':_p['id'],'status':_p.get('status'),'impl':_p.get('impl',''),'what':_p.get('what','')[:80]})
               if _pfix: print('sense附修法:',[x['id'] for x in _pfix])
-              putc('ci-control','bridge/sense-pattern-attach.json',{'ts':ts,'finding_sha':k_h,'fixes':_pfix},'sense pattern-attach '+ts)
+              _r_att=putc('ci-control','bridge/sense-pattern-attach.json',{'ts':ts,'finding_sha':k_h,'fixes':_pfix},'sense pattern-attach '+ts)
+              print('attach putc ->',_r_att)
           except Exception as e: print('pattern-attach skip',e)
           mat={'provenance':{'solver':'MATRIX-SOLVER-01 v1.1(tick内嵌)','ts':ts,'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_report_sha256':k_h,'pattern_attach':_pfix},'desired':desired}
           putc('ci-control','bridge/MATRIX-SOLVED-01.json',mat,'[D] matrix tick '+ts)
