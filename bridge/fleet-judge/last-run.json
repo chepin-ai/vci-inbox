@@ -1,9 +1,10 @@
 {
- "ts": "2026-08-28T19:15:21Z",
+ "ts": "2026-08-29T00:52:49Z",
  "verdict": "FRONTIER_SET",
  "frontier": [
   "S-FLEET-JUDGE",
-  "PI-cisvr-M1-OTP-SWM"
+  "PI-cisvr-M1-OTP-SWM",
+  "S-KERNEL-LOOP"
  ],
  "flags": []
 }
