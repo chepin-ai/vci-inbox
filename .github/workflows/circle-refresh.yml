@@ -1,7 +1,11 @@
 name: circle-refresh
 on:
-  schedule: [{ cron: '17 */2 * * *' }]  # 与 field-router(47 */2)错峰: 三圈即时动态刷新+直通场接力(D-137)
-  workflow_dispatch: {}
+  schedule: [{ cron: '17 */2 * * *' }]  # 死手兜底+收割(D-157): 主驱动=事件beat-forward; 重建项EXP-038
+  workflow_dispatch:
+    inputs:
+      cause: { required: false, default: 'manual' }
+  repository_dispatch:
+    types: [qf-beat]
 permissions:
   contents: write
   # rationale: 收割各线私仓annex(hall/session-inbox)→hub汇聚; 圈状态快照; 超时圈自动触发接力FINDING; 全程只动私域+哈希,零内容泄公
@@ -13,6 +17,7 @@ jobs:
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          CAUSE: ${{ github.event.inputs.cause || github.event_name }}
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF'
@@ -85,7 +90,7 @@ jobs:
           # 备份道(D-139): 每班末叩 intake-agent+fleet-judge 各一次——30min cron自启滞后期间,保证≥2h一班兜底(ENGINE-FLEET-01§4)
           for _wf in ('intake-agent.yml','fleet-judge.yml','kernel-loop.yml'):
               try:
-                  rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{_wf}/dispatches',data=json.dumps({'ref':'main'}).encode(),method='POST',headers=H())
+                  rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{_wf}/dispatches',data=json.dumps({'ref':'main','inputs':{'cause':'beat-forward'}}).encode(),method='POST',headers=H())
                   print(f'{_wf} backup-knock:',urllib.request.urlopen(rq,timeout=15).status)
               except Exception as _e: print(f'{_wf} backup-knock fail(下一班再试):',str(_e)[:60])
           PYEOF
