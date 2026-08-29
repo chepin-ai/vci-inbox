@@ -1,0 +1,49 @@
+name: probe-qfa-sendcode3
+on: [workflow_dispatch]
+permissions:
+  contents: write
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          QI_PAT: ${{ secrets.QI_FULL_PAT }}
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import json,os,urllib.request,urllib.error,base64,time,datetime
+          def mk(t):
+              def api(m,u,d=None):
+                  r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+t,'Accept':'application/vnd.github+json'})
+                  if d is not None: r.data=json.dumps(d).encode()
+                  try:
+                      x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+                  except urllib.error.HTTPError as e: return e.code,{}
+              return api
+          qi=mk(os.environ['QI_PAT'])
+          T='https://api.github.com/repos/chepin-qi/qfa-quantum-lab'
+          out={'ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+          s,iss=qi('GET',T+'/issues?state=open&per_page=5')
+          sc=[i for i in (iss or []) if i['title'].startswith('[SENDCODE]')]
+          out['sendcode_issue']=sc[0]['number'] if sc else None
+          if sc:
+              s,cm=qi('GET',T+f"/issues/{sc[0]['number']}/comments")
+              out['last_comment']=(cm[-1]['body'][:200] if cm else None)
+              out['issue_state']=sc[0]['state']
+          s,runs=qi('GET',T+'/actions/workflows/otp-issue-trigger.yml/runs?per_page=3')
+          out['otp_runs']=[{'c':r['conclusion'],'t':r['created_at']} for r in runs.get('workflow_runs',[])[:3]]
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          IT=json.load(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})).read())['token']
+          hub=mk(IT)
+          path='bridge/qfa/QFA-SENDCODE-01.json'
+          s,old=hub('GET','https://api.github.com/repos/chepin-ai/vci-inbox/contents/'+path)
+          bd={'message':'QFA-SENDCODE-01回执','content':base64.b64encode(json.dumps(out,ensure_ascii=False,indent=1).encode()).decode()}
+          if s==200: bd['sha']=old['sha']
+          s,r=hub('PUT','https://api.github.com/repos/chepin-ai/vci-inbox/contents/'+path,bd)
+          print('bridge',s)
+          PYEOF
