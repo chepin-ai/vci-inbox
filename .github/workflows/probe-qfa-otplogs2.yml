@@ -1,0 +1,52 @@
+name: probe-qfa-otplogs2
+on: [workflow_dispatch]
+permissions:
+  contents: write
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          QI_PAT: ${{ secrets.QI_FULL_PAT }}
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import json,os,urllib.request,urllib.error,base64,time,datetime,io,zipfile
+          QI=os.environ['QI_PAT']
+          T='https://api.github.com/repos/chepin-qi/qfa-quantum-lab'
+          def raw(u):
+              r=urllib.request.Request(u,headers={'Authorization':'token '+QI,'Accept':'application/vnd.github+json'})
+              return urllib.request.urlopen(r).read()
+          rid=json.loads(raw(T+'/actions/workflows/otp-issue-trigger.yml/runs?per_page=1'))['workflow_runs'][0]['id']
+          jobs=json.loads(raw(T+f'/actions/runs/{rid}/jobs'))['jobs']
+          ji=[{'name':j['name'],'conclusion':j['conclusion'],'steps':[(s['name'],s['conclusion']) for s in j['steps']]} for j in jobs]
+          try:
+              zb=raw(T+f'/actions/runs/{rid}/logs')
+              z=zipfile.ZipFile(io.BytesIO(zb))
+              all_lines=[]
+              for nm in z.namelist():
+                  all_lines+=z.read(nm).decode('utf8','replace').splitlines()[-40:]
+              tail=[l[60:180] for l in all_lines if l.strip()][:30]
+          except Exception as e: tail=['logs-err '+str(e)[:80]]
+          out={'ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),'rid':rid,'jobs':ji,'log_tail':tail}
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          IT=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})).read().decode())['token']
+          def hub(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode()
+              x=urllib.request.urlopen(r); x.read(); return x.status
+          path='bridge/qfa/QFA-OTP-DIAG-01.json'
+          su='https://api.github.com/repos/chepin-ai/vci-inbox/contents/'+path
+          try:
+              r=urllib.request.Request(su,headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+              sha=json.loads(urllib.request.urlopen(r).read().decode())['sha']
+          except: sha=None
+          bd={'message':'QFA-OTP-DIAG-02','content':base64.b64encode(json.dumps(out,ensure_ascii=False,indent=1).encode()).decode()}
+          if sha: bd['sha']=sha
+          print('bridge',hub('PUT',su,bd))
+          PYEOF
