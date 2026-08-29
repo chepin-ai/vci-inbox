@@ -1,9 +1,9 @@
 name: oblig-intake
 on:
-  schedule:
-    - cron: '9 */6 * * *'
   repository_dispatch:
-    types: [oblig-intake]
+    types: [qf-beat, oblig-intake]   # QF-OS事件主道(root令⑥ fold-n清除)
+  schedule:
+    - cron: '9 3 * * *'       # 死手兜底:每日1拍
   workflow_dispatch: {}
 permissions:
   contents: write
