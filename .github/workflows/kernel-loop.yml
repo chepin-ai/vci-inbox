@@ -95,8 +95,10 @@ jobs:
                       pass
               return None
           open_items, overdue = [], []
+          # P0a 状态面修(cisvr PATTERN-OS-02波):watching/armed/waiting非终态,逾期扫不得漏(EXP-017逾期19h未被立为鉴)
+          _TERMINAL = {'solved','closed','closed-decision','closed-folded','closed-obe','solved-by-events','done','verified','cancelled','retired'}
           for it in items:
-              if it.get('state') != 'open':
+              if it.get('state') in _TERMINAL:
                   continue
               open_items.append(it)
               dl = parse_dl(it.get('deadline', ''))
