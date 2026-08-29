@@ -38,7 +38,7 @@ jobs:
           import jwt
           now=int(time.time())
           t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
-          IT=json.load(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})).read())['token']
+          IT=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})).read().decode())['token']
           hub=mk(IT)
           path='bridge/qfa/QFA-SENDCODE-01.json'
           s,old=hub('GET','https://api.github.com/repos/chepin-ai/vci-inbox/contents/'+path)
