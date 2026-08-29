@@ -1,0 +1,73 @@
+name: relay-session-qfa（vinf登录态工件→qfa secret密封+restore工作流;值不出runner）
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 下载 vinf kimi-session → 密封入 qfa secret → 推 restore 流
+        env:
+          TK1: ${{ secrets.AI_FULL_PAT }}
+          TK2: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          pip install -q pynacl
+          python3 - <<'PYEOF'
+          import os, json, base64, urllib.request, urllib.error, zipfile, io, datetime
+          from nacl.public import PublicKey, SealedBox
+          from nacl.encoding import Base64Encoder
+          H1={'Authorization':'token '+os.environ['TK1'],'Accept':'application/vnd.github+json'}
+          H2={'Authorization':'token '+os.environ['TK2'],'Accept':'application/vnd.github+json'}
+          rec={'relay':'SESSION-QFA-01','ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),'steps':{}}
+          def gj(u,H,tag):
+              try:
+                  r=urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=40)
+                  rec['steps'][tag]=r.status; return r.status,r.read()
+              except urllib.error.HTTPError as e:
+                  rec['steps'][tag]=e.code; return e.code,None
+          s,arts=gj('https://api.github.com/repos/chepin-ai/vci-vinf/actions/artifacts?per_page=10',H1,'list_arts')
+          sess=None
+          if s==200:
+              aa=json.loads(arts)['artifacts']
+              ks=[a for a in aa if a['name']=='kimi-session' and not a.get('expired')]
+              ks.sort(key=lambda a:a['created_at'])
+              if ks:
+                  rec['artifact_id']=ks[-1]['id']
+                  req=urllib.request.Request(ks[-1]['archive_download_url'],headers=H1)
+                  try:
+                      zb=urllib.request.urlopen(req,timeout=60).read()
+                      z=zipfile.ZipFile(io.BytesIO(zb))
+                      nm='kimi_session.json' if 'kimi_session.json' in z.namelist() else z.namelist()[0]
+                      sess=z.read(nm).decode()
+                      rec['steps']['download']=200; rec['session_len']=len(sess)
+                  except urllib.error.HTTPError as e: rec['steps']['download']=e.code
+          if sess:
+              s2,pk=gj('https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/secrets/public-key',H2,'qfa_pubkey')
+              if s2==200:
+                  sealed=SealedBox(PublicKey(json.loads(pk)['key'],Base64Encoder)).encrypt(sess.encode())
+                  try:
+                      req=urllib.request.Request('https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/secrets/KIMI_SESSION_JSON',
+                          data=json.dumps({'encrypted_value':base64.b64encode(sealed).decode(),'key_id':json.loads(pk)['key_id']}).encode(),
+                          headers=H2,method='PUT')
+                      rec['steps']['put_secret']=urllib.request.urlopen(req,timeout=40).status
+                  except urllib.error.HTTPError as e: rec['steps']['put_secret']=e.code
+                  del sealed
+              del sess
+          os.makedirs('receipts',exist_ok=True)
+          json.dump(rec,open('receipts/SESSION-QFA-01.json','w'),ensure_ascii=False,indent=1)
+          print('done', json.dumps(rec['steps']))
+          PYEOF
+      - name: 推 session-restore.yml 入 qfa
+        env:
+          TK2: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          B64=$(base64 -w0 payloads/session-restore-qfa.yml)
+          SHA=$(curl -s -H "Authorization: token $TK2" "https://api.github.com/repos/chepin-qi/qfa-quantum-lab/contents/.github/workflows/session-restore.yml" | python3 -c "import sys,json;print(json.load(sys.stdin).get('sha',''))" || true)
+          if [ -n "$SHA" ]; then BODY="{\"message\":\"session-restore(cisvr 令⑧②)\",\"content\":\"$B64\",\"sha\":\"$SHA\"}"; else BODY="{\"message\":\"session-restore(cisvr 令⑧②)\",\"content\":\"$B64\"}"; fi
+          curl -s -o /dev/null -w "push restore %{http_code}\n" -X PUT -H "Authorization: token $TK2" -d "$BODY" "https://api.github.com/repos/chepin-qi/qfa-quantum-lab/contents/.github/workflows/session-restore.yml"
+      - name: 回执落仓 [skip ci]
+        run: |
+          git config user.name "relay"; git config user.email "relay@ci"
+          git add receipts/ && git commit -qm "SESSION-QFA-01 [skip ci]" && git push -q || echo "nothing-to-commit"
