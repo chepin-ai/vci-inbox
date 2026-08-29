@@ -16,6 +16,7 @@ jobs:
           python3 - <<'PYEOF'
           import os, json, base64, urllib.request, urllib.error
           from nacl.public import PublicKey, SealedBox
+          from nacl.encoding import Base64Encoder
           H={'Authorization':'token '+os.environ['TK'],'Accept':'application/vnd.github+json'}
           rec={'probe':'OTPPHONE-SEAL-01','steps':{}}
           def gj(u,tag):
@@ -31,7 +32,7 @@ jobs:
               val=v['value']
               s2,pk=gj('https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/public-key','pubkey')
               if s2==200:
-                  sealed=SealedBox(PublicKey(pk['key'],base64.StdEncoding)).encrypt(val.encode())
+                  sealed=SealedBox(PublicKey(pk['key'],Base64Encoder)).encrypt(val.encode())
                   try:
                       req=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/OTP_PHONE',
                           data=json.dumps({'encrypted_value':base64.b64encode(sealed).decode(),'key_id':pk['key_id']}).encode(),
