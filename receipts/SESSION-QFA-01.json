@@ -1,0 +1,9 @@
+{
+ "relay": "SESSION-QFA-01",
+ "ts": "2026-08-29T19:55:51Z",
+ "steps": {
+  "list_arts": 200,
+  "download": 403
+ },
+ "artifact_id": 9720363694
+}
