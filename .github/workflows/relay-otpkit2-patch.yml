@@ -1,0 +1,65 @@
+name: relay-otpkit2-patch（v2实证worker+trigger v2.1 推三仓；OTP_PHONE密封入本仓；值不出runner）
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 推 vci-vinf + vci-qgl（AI_FULL_PAT 在 runner 内存）
+        env:
+          TK: ${{ secrets.AI_FULL_PAT }}
+        run: |
+          set -e
+          for REPO in vci-vinf vci-qgl; do
+            for PAIR in "payloads/otp_gate_worker_v2.py:scripts/otp_gate_worker.py" "payloads/otp-issue-trigger_v21.yml:.github/workflows/otp-issue-trigger.yml"; do
+              SRC="${PAIR%%:*}"; DST="${PAIR##*:}"
+              B64=$(base64 -w0 "$SRC")
+              SHA=$(curl -s -H "Authorization: token $TK" "https://api.github.com/repos/chepin-ai/$REPO/contents/$DST" | python3 -c "import sys,json;print(json.load(sys.stdin).get('sha',''))" || true)
+              if [ -n "$SHA" ]; then BODY="{\"message\":\"OTP kit v2.1 实证化补丁(cisvr 令⑧自主)\",\"content\":\"$B64\",\"sha\":\"$SHA\"}"; else BODY="{\"message\":\"OTP kit v2.1 实证化补丁(cisvr 令⑧自主)\",\"content\":\"$B64\"}"; fi
+              CODE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H "Authorization: token $TK" -H "Accept: application/vnd.github+json" -d "$BODY" "https://api.github.com/repos/chepin-ai/$REPO/contents/$DST")
+              echo "$REPO $DST -> $CODE"
+            done
+          done
+      - name: 推 qfa-quantum-lab（QI_FULL_PAT 在 runner 内存）
+        env:
+          TK: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          set -e
+          for PAIR in "payloads/otp_gate_worker_v2.py:scripts/otp_gate_worker.py" "payloads/otp-issue-trigger_v21.yml:.github/workflows/otp-issue-trigger.yml"; do
+            SRC="${PAIR%%:*}"; DST="${PAIR##*:}"
+            B64=$(base64 -w0 "$SRC")
+            SHA=$(curl -s -H "Authorization: token $TK" "https://api.github.com/repos/chepin-qi/qfa-quantum-lab/contents/$DST" | python3 -c "import sys,json;print(json.load(sys.stdin).get('sha',''))" || true)
+            if [ -n "$SHA" ]; then BODY="{\"message\":\"OTP kit v2.1 实证化补丁(cisvr 令⑧自主)\",\"content\":\"$B64\",\"sha\":\"$SHA\"}"; else BODY="{\"message\":\"OTP kit v2.1 实证化补丁(cisvr 令⑧自主)\",\"content\":\"$B64\"}"; fi
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H "Authorization: token $TK" -H "Accept: application/vnd.github+json" -d "$BODY" "https://api.github.com/repos/chepin-qi/qfa-quantum-lab/contents/$DST")
+            echo "qfa $DST -> $CODE"
+          done
+      - name: OTP_PHONE 读 qlv-lib var → 密封入本仓 secret（值不出 runner）
+        env:
+          TK: ${{ secrets.AI_FULL_PAT }}
+        run: |
+          pip install -q pynacl
+          python3 - <<'PYEOF'
+          import os, json, base64, urllib.request
+          from nacl.public import PublicKey, SealedBox
+          H={'Authorization':'token '+os.environ['TK'],'Accept':'application/vnd.github+json'}
+          def gj(u): return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=30).read())
+          v=gj('https://api.github.com/repos/chepin-ai/qlv-lib/actions/variables/OTP_PHONE')['value']
+          pk=gj('https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/public-key')
+          sealed=SealedBox(PublicKey(pk['key'],base64.StdEncoding)).encrypt(v.encode())
+          req=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/OTP_PHONE',
+              data=json.dumps({'encrypted_value':base64.b64encode(sealed).decode(),'key_id':pk['key_id']}).encode(),
+              headers=H,method='PUT')
+          print('OTP_PHONE@vci-inbox ->',urllib.request.urlopen(req,timeout=30).status)
+          del v, sealed
+          PYEOF
+      - name: 回执
+        env:
+          TK: ${{ secrets.AI_FULL_PAT }}
+        run: |
+          mkdir -p receipts
+          echo "{"relay":"OTPKIT2-PATCH-01","ts":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","targets":["vci-vinf","vci-qgl","qfa-quantum-lab"],"note":"v2 worker实证化+trigger v2.1 artifact隐藏文件修复+OTP_PHONE密封入vci-inbox"}" > receipts/OTPKIT2-PATCH-01.json
+          git config user.name "relay"; git config user.email "relay@ci"
+          git add receipts/ && git commit -qm "OTPKIT2-PATCH-01 receipt [skip ci]" && git push -q
