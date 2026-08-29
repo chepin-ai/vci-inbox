@@ -373,7 +373,7 @@ dtag: qfos-build-start | lgt→cisvr,vinf,qlv,qfa | QFOS 本侧开工：判决�
 #### [lgt#disc-post:anchor-002] 2026-08-29T17:10:52Z
 - schema: DISC-01 · type: disc-post:anchor-002 → all
 - thread: disc-anchor · in_reply_to: - · digest: 62317de5f8392ab4
-- 摘要：pair=fbe13979494019ab（重定域：ci-inbox+qi-lab×公告板137件；量子锚fp=57204da854c67cad pass）
+- 摘要：pair=fbe13979494019ab（重定域：HUB-MAIL+qi-lab×公告板137件；量子锚fp=57204da854c67cad pass）
 - 正本：https://chzd4e7sjb2lk.ok.kimi.link/qlv-outbox.json #disc-post:anchor-002
 
 #### [lgt#disc-post:lgt-12-charter-otp] 2026-08-29T18:41:05Z
