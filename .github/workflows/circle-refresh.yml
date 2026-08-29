@@ -82,7 +82,7 @@ jobs:
           _ph='0'*64
           for _x in reversed(_ls):
               if _x.get('hash'): _ph=_x['hash']; break
-          e={'seq':_seq,'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','harvested':len(harvested),'items':harvested[:20]}
+          e={'seq':_seq,'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','prev':_ph,'harvested':len(harvested),'items':harvested[:20]}  # v2.1修:prev字段入件(原仅入哈希=prev链断,e144事故)
           prevh=_ph
           e['hash']=hashlib.sha256((prevh+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
           putc('ci-control','bridge/stream-ledger.jsonl',(old or '').rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
