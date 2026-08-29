@@ -1,7 +1,11 @@
 name: fleet-judge
 on:
-  schedule: [{ cron: '13,43 * * * *' }]  # 元引擎30min班(D-147/ENGINE-FLEET-01): 不与既有钟面(3/8/17/18/33/38/47/48)冲突
-  workflow_dispatch: {}
+  schedule: [{ cron: '13,43 * * * *' }]  # 死手兜底(D-157): 主驱动=事件beat-forward
+  workflow_dispatch:
+    inputs:
+      cause: { required: false, default: 'manual' }
+  repository_dispatch:
+    types: [qf-beat]
 permissions:
   contents: write
   # rationale: 元引擎常转: INST-REG盘点/心跳/帕累托拍/相遇检/协同面→FLEET-STATE+链; 只动私域+计数/哈希,零原文零密钥
@@ -13,6 +17,7 @@ jobs:
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          CAUSE: ${{ github.event.inputs.cause || github.event_name }}
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF'
@@ -140,6 +145,7 @@ jobs:
               'beats': beats, 'synergy_flags': synergy_flags,
               'inputs_anchor': tip.get('hash') if tip else 'GENESIS'
           }
+          fs_prev_txt, _ = getc('ci-control', 'bridge/fleet-judge/FLEET-STATE.json')  # D-157: 判词变更检测
           putc('ci-control', 'bridge/fleet-judge/FLEET-STATE.json', json.dumps(fstate, ensure_ascii=False, indent=1), f'fleet-judge拍 {TS} verdict={verdict}')
 
           ev = {
@@ -161,5 +167,18 @@ jobs:
           - 锚: {fstate['inputs_anchor'][:16]}
           """
           putc('vci-inbox', 'bridge/fleet-judge/last-run.json', json.dumps({'ts': TS, 'verdict': verdict, 'frontier': frontier, 'flags': synergy_flags}, ensure_ascii=False, indent=1), f'fleet-judge last-run {TS}')
-          print(json.dumps({'verdict': verdict, 'frontier': frontier, 'flags': synergy_flags, 'seq': ev['seq']}, ensure_ascii=False))
+          # ---- beat-forward (D-157): 判词变更或协同旗非空→叩kernel-loop; cause='beat-forward'不转叩(级联≤1) ----
+          CAUSE = os.environ.get('CAUSE', 'schedule')
+          try:
+              prev_verdict = json.loads(fs_prev_txt).get('verdict')
+          except Exception:
+              prev_verdict = None
+          knocked = []
+          if CAUSE != 'beat-forward' and (prev_verdict != verdict or synergy_flags):
+              try:
+                  rq = urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/kernel-loop.yml/dispatches', data=json.dumps({'ref': 'main', 'inputs': {'cause': 'beat-forward'}}).encode(), method='POST', headers=H)
+                  knocked.append(f"kernel-loop.yml:{urllib.request.urlopen(rq, timeout=15).status}")
+              except Exception as _e:
+                  knocked.append(f"kernel-loop.yml:fail:{str(_e)[:40]}")
+          print(json.dumps({'verdict': verdict, 'frontier': frontier, 'flags': synergy_flags, 'cause': CAUSE, 'beat_forward': knocked, 'seq': ev['seq']}, ensure_ascii=False))
           PYEOF
