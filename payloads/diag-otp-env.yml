@@ -1,4 +1,4 @@
-name: diag-otp-env（测 〈RED〉 渲染长度+secret时间戳,值不出runner）
+name: diag-otp-env（测 OTP_PHONE 渲染长度+secret时间戳,值不出runner）
 on:
   workflow_dispatch: {}
 permissions:
@@ -7,14 +7,15 @@ jobs:
   d:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: 运行时渲染长度
         env:
-          〈RED〉: ${{ secrets.OTP_PHONE }}
+          OTP_PHONE: ${{ secrets.OTP_PHONE }}
         run: |
-          echo "〈RED〉 len=${#〈RED〉}"
+          echo "OTP_PHONE len=${#OTP_PHONE}"
           mkdir -p receipts
-          echo "{"diag":"OTP-ENV-01","len":${#〈RED〉},"ts":"$(date -u +%Y-%m-%dT%H:%M:%SZ)"}" > receipts/OTP-ENV-01.json
-      - name: secret 时间戳（经 〈RED〉）
+          echo "{"diag":"OTP-ENV-01","len":${#OTP_PHONE},"ts":"$(date -u +%Y-%m-%dT%H:%M:%SZ)"}" > receipts/OTP-ENV-01.json
+      - name: secret 时间戳（经 CI_OPS_LINE_KEY）
         env:
           TK: ${{ secrets.CI_OPS_LINE_KEY }}
         run: |
@@ -24,8 +25,8 @@ jobs:
           try:
               d=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-vinf/actions/secrets',headers=H),timeout=30).read())
               for s in d.get('secrets',[]):
-                  if s['name']=='〈RED〉':
-                      print('〈RED〉 created',s['created_at'],'updated',s['updated_at'])
+                  if s['name']=='OTP_PHONE':
+                      print('OTP_PHONE created',s['created_at'],'updated',s['updated_at'])
                       rec=json.load(open('receipts/OTP-ENV-01.json'))
                       rec['secret_created']=s['created_at']; rec['secret_updated']=s['updated_at']
                       json.dump(rec,open('receipts/OTP-ENV-01.json','w'))
