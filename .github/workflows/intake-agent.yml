@@ -1,7 +1,11 @@
 name: intake-agent
 on:
-  schedule: [{ cron: '8,38 * * * *' }]  # INTAKE-AGENT-01: 30min一班, 与:17/:47钟群错峰
-  workflow_dispatch: {}
+  schedule: [{ cron: '8,38 * * * *' }]  # 死手兜底(D-157): 主驱动=事件beat-forward
+  workflow_dispatch:
+    inputs:
+      cause: { required: false, default: 'manual' }
+  repository_dispatch:
+    types: [qf-beat]
 permissions:
   contents: write
   # rationale: 标准化可靠进件代理(私域巡面/即执回执/分级追复/容错纠错/状态双写备份); 零凭证打印; 状态台账全在私仓
@@ -14,6 +18,7 @@ jobs:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
           GT: ${{ secrets.GITEE_TOKEN }}
+          CAUSE: ${{ github.event.inputs.cause || github.event_name }}
           AI_PAT: ${{ secrets.AI_FULL_PAT }}  # 应急 fallback 道: installation 被拆/失效时直通场不停摆(root 2026-08-28 韧性令)
         run: |
           python3 -m pip install -q pyjwt
@@ -162,7 +167,17 @@ jobs:
           put('ci-control','bridge/intake-agent/state.json',json.dumps(state,ensure_ascii=False,indent=1),'intake-agent: state')
           put('ci-inbox','bridge/intake-agent-state.json',json.dumps(state,ensure_ascii=False,indent=1),'intake-agent: state镜像(备份)')
           put('ci-control','bridge/intake-agent/last-run.json',json.dumps(report,ensure_ascii=False,indent=1),'intake-agent: 班报 '+NOW)
-          print(json.dumps({'new':len(report['new']),'errors':len(report['errors']),'esc':len(report['escalations']),'canary':report['canary']},ensure_ascii=False))
+          # ---- beat-forward (D-157): 有新件或升级→叩 kernel-loop+fleet-judge; cause='beat-forward'不转叩(级联≤1) ----
+          CAUSE = os.environ.get('CAUSE', 'schedule')
+          knocked = []
+          if CAUSE != 'beat-forward' and (len(report['new']) > 0 or len(report['escalations']) > 0):
+              for _wf in ('kernel-loop.yml', 'fleet-judge.yml'):
+                  try:
+                      rq = urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{_wf}/dispatches', data=json.dumps({'ref': 'main', 'inputs': {'cause': 'beat-forward'}}).encode(), method='POST', headers=H())
+                      knocked.append(f"{_wf}:{urllib.request.urlopen(rq, timeout=15).status}")
+                  except Exception as _e:
+                      knocked.append(f"{_wf}:fail:{str(_e)[:40]}")
+          print(json.dumps({'new':len(report['new']),'errors':len(report['errors']),'esc':len(report['escalations']),'canary':report['canary'],'cause':CAUSE,'beat_forward':knocked},ensure_ascii=False))
           PYEOF
       - name: "班末心跳(即使上步失败也留痕)"
         if: always()
