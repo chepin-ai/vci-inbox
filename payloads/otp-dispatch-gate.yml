@@ -1,6 +1,4 @@
-# OTP dispatch 闸 v1(cisvr 2026-08-29T19Z root令⑧自主):
-#   issues 道本仓 secrets 不渲染(实证 OTP-ENV-01: dispatch len=15 vs issues len=0) → 主闸改 dispatch
-#   inputs: action=sendcode|verify, code=6位(verify 时)
+# OTP dispatch 闸 v1.1(cisvr 2026-08-29T19Z root令⑧自主): issues道secrets不渲染(实证OTP-ENV-01) → dispatch主闸
 name: otp-dispatch-gate
 on:
   workflow_dispatch:
@@ -27,12 +25,14 @@ jobs:
           playwright install --with-deps chromium
       - name: 闸行（发码/核码）
         env:
-          〈RED〉: ${{ secrets.OTP_PHONE }}
+          OTP_PHONE: ${{ secrets.OTP_PHONE }}
           ACT: ${{ github.event.inputs.action }}
           CODE_IN: ${{ github.event.inputs.code }}
         run: |
           mkdir -p inbox receipts
-          echo "PHONE len=${#〈RED〉} act=$ACT"
+          L=${#OTP_PHONE}
+          echo "PHONE len=$L act=$ACT"
+          echo "{"len":$L,"act":"$ACT"}" > receipts/OTP-DGATE-ENV.json
           echo "::add-mask::$CODE_IN"
           if [ "$ACT" = "verify" ] && [ -n "$CODE_IN" ]; then
             python3 scripts/otp_gate_worker.py --verify-only "$CODE_IN" || true
