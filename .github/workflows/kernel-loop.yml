@@ -282,6 +282,31 @@ jobs:
                   proposals.append({'kind': 'self-review', 'ref': 'kernel-loop', 'reason': '演进增量停滞', 'ask': '义务机评审本元引擎拍律/证书面是否需改版'})
           self_sec = {'framework': 'GENE-FUSION-01@0.1.0-shadow', 'self_apply': '本元引擎自身版本演进走同一 PROPOSE→义务机批准→构造→证书→判词环,不享豁免'}
 
+          # ---- P5b 判词回流抑制环(root令⑥ MIP-SWEEP-01):已判ref不重产;断代带仅在扩大时产;branch-cap>8方产 ----
+          try:
+              _sw = getc('ci-control', 'bridge/adjudications/MIP-SWEEP-01.json') or {}
+              _judged = {p.get('ref') for p in _sw.get('proposals_11', [])}
+              _prev_st = getc('ci-control', 'bridge/kernel-loop/KERNEL-STATE.json') or {}
+              _prev_lc = 0
+              for _c in _prev_st.get('certs', []):
+                  if _c.get('name') == 'ledger-chain-eras':
+                      _prev_lc = (_c.get('legacy_zone') or {}).get('count', 0)
+              _kept = []
+              for _p in proposals:
+                  _r = _p.get('ref')
+                  if _r in _judged:
+                      if _r == 'ledger-canonical-era' and cert_chain['legacy_zone']['count'] > _prev_lc:
+                          _kept.append(_p)
+                      continue
+                  if _p.get('kind') == 'branch-cap' and by_status.get('ACTIVE', 0) <= 8:
+                      continue
+                  _kept.append(_p)
+              if len(_kept) != len(proposals):
+                  print('判词回流抑制:', len(proposals), '->', len(_kept))
+              proposals = _kept
+          except Exception as _e:
+              print('判词回流抑制skip', _e)
+
           prop_body = {'ts': TS, 'run': RUN, 'proposals': proposals, 'ratify': '本表由机制产,义务机(cisvr/usrm/root)批准后方入 EXPECT-REG'}
           state = {'organ': 'kernel-loop', 'ts': TS, 'run': RUN, 'anchor': anchor, 'counts': {'open': len(open_items), 'overdue': len(overdue), 'solved': len(solved), 'ledger_tip_seq': maxseq}, 'certs': certs, 'certs_pass': certs_pass, 'verdicts': verdicts, 'loop_verdict': loop_verdict, 'evolution': evolution, 'symphony': symphony, 'fusion': fusion, 'self': self_sec, 'proposals_n': len(proposals)}
           putc('ci-control', 'bridge/kernel-loop/proposals.json', json.dumps(prop_body, ensure_ascii=False, indent=1), f'kernel-loop 提案 {TS} n={len(proposals)}')
