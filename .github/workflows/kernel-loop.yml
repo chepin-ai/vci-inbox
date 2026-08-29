@@ -284,9 +284,11 @@ jobs:
 
           # ---- P5b 判词回流抑制环(root令⑥ MIP-SWEEP-01):已判ref不重产;断代带仅在扩大时产;branch-cap>8方产 ----
           try:
-              _sw = getc('ci-control', 'bridge/adjudications/MIP-SWEEP-01.json') or {}
+              _sw_t = getc('ci-control', 'bridge/adjudications/MIP-SWEEP-01.json')[0]
+              _sw = json.loads(_sw_t) if _sw_t else {}
               _judged = {p.get('ref') for p in _sw.get('proposals_11', [])}
-              _prev_st = getc('ci-control', 'bridge/kernel-loop/KERNEL-STATE.json') or {}
+              _ps_t = getc('ci-control', 'bridge/kernel-loop/KERNEL-STATE.json')[0]
+              _prev_st = json.loads(_ps_t) if _ps_t else {}
               _prev_lc = 0
               for _c in _prev_st.get('certs', []):
                   if _c.get('name') == 'ledger-chain-eras':
