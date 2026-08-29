@@ -1,0 +1,24 @@
+name: probe-otpkit-qfa
+on: [workflow_dispatch]
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          QI_PAT: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import json,os,urllib.request,urllib.error
+          def api(m,u):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+os.environ['QI_PAT'],'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); return x.status,json.loads(x.read().decode())
+              except urllib.error.HTTPError as e: return e.code,{}
+          T='https://api.github.com/repos/chepin-qi/qfa-quantum-lab'
+          for p in ('.github/workflows/otp-issue-trigger.yml','scripts/otp_gate_worker.py'):
+              s,_=api('GET',T+'/contents/'+p); print('file',p,s)
+          s,sec=api('GET',T+'/actions/secrets?per_page=100')
+          print('OTP_PHONE in secrets:', 'OTP_PHONE' in [x['name'] for x in sec.get('secrets',[])] if s==200 else s)
+          s,var=api('GET',T+'/actions/variables?per_page=100')
+          print('vars:',sorted(x['name'] for x in var.get('variables',[])) if s==200 else s)
+          PYEOF
