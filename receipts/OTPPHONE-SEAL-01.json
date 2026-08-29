@@ -1,0 +1,8 @@
+{
+ "probe": "OTPPHONE-SEAL-01",
+ "steps": {
+  "read_var": 200,
+  "pubkey": 200,
+  "put": 201
+ }
+}
