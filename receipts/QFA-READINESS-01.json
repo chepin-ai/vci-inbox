@@ -1,0 +1,57 @@
+{
+ "probe": "QFA-READINESS-01",
+ "checks": {
+  "worker": {
+   "present": true,
+   "v26": true,
+   "OTPPH": true,
+   "red_poison": false
+  },
+  "trigger": {
+   "present": true,
+   "v26": false,
+   "OTPPH": true,
+   "red_poison": false
+  },
+  "restore": {
+   "present": true,
+   "v26": false,
+   "OTPPH": false,
+   "red_poison": false
+  }
+ },
+ "secrets": [
+  "AI_PAT",
+  "DEEPSEEK_API_KEY",
+  "GITEE_CI_CONTROL_MIRROR",
+  "IBMQ_EMAIL_1",
+  "IBMQ_EMAIL_2",
+  "IBMQ_PASS_1",
+  "IBMQ_PASS_2",
+  "KAGGLE_KEY",
+  "KAGGLE_KGAT",
+  "KAGGLE_USERNAME",
+  "KIMI_API_KEY",
+  "KIMI_SESSION_JSON",
+  "KIMI_SESSION_STATE",
+  "OPENQUANTUM_CLIENT_ID",
+  "OPENQUANTUM_SDK_KEY",
+  "ORIGINQC_API_KEY",
+  "ORIGINQC_EMAIL",
+  "ORIGINQC_FOXMAIL_KEY",
+  "ORIGINQC_PASSWORD",
+  "ORIGINQC_THAI68_KEY",
+  "ORIGINQC_UID",
+  "OTP_PHONE",
+  "QI_PAT",
+  "QUAFU_API_TOKEN",
+  "QUAFU_EMAIL",
+  "QUAFU_PASSWORD",
+  "QUANTUMRINGS_KEY_128",
+  "QUANTUMRINGS_KEY_64",
+  "QUANTUMRINGS_PASSWORD",
+  "TIANYAN_PASSWORD",
+  "TIANYAN_PHONE",
+  "TIANYAN_SECRET"
+ ]
+}
