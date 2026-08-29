@@ -23,7 +23,7 @@ jobs:
                   except urllib.error.HTTPError as e: return e.code,{}
               return api
           ai=mk(os.environ['AI_PAT']); qi=mk(os.environ['QI_PAT'])
-          SRC='https://api.github.com/repos/chepin-ai/vci-qgl/actions/variables/'
+          SRC='https://api.github.com/repos/chepin-ai/qlv-lib/actions/variables/'
           DST='https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/variables'
           for name in ('OTP_PHONE','OTP_EMAIL1','OTP_EMAIL2'):
               s,v=ai('GET',SRC+name)
