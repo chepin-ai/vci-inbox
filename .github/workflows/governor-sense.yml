@@ -225,7 +225,18 @@ jobs:
                   print('kernel finding file:',sorted(kn)[-1],'fetched:',bool(kf))
                   k_h=hashlib.sha256((kf or '').encode()).hexdigest()
           except Exception as e: print('ring-ref err:',e)
-          mat={'provenance':{'solver':'MATRIX-SOLVER-01 v1.1(tick内嵌)','ts':ts,'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_report_sha256':k_h},'desired':desired}
+          # ---- 消费点③ sense自动附修法(PATTERN-OS-01): finding命中在册pattern→附impl修法指针 ----
+          _pfix=[]
+          try:
+              _preg=getc('ci-control','bridge/PATTERN-REGISTRY-01.json') or {}
+              for _p in (_preg.get('patterns',[]) if isinstance(_preg,dict) else []):
+                  _toks=[t for t in RE.split(r'[-_]',(_p.get('id') or '')) if len(t)>=4]
+                  if kf and any(t.lower() in kf.lower() for t in _toks):
+                      _pfix.append({'id':_p['id'],'status':_p.get('status'),'impl':_p.get('impl',''),'what':_p.get('what','')[:80]})
+              if _pfix: print('sense附修法:',[x['id'] for x in _pfix])
+              putc('ci-control','bridge/sense-pattern-attach.json',{'ts':ts,'finding_sha':k_h,'fixes':_pfix},'sense pattern-attach '+ts)
+          except Exception as e: print('pattern-attach skip',e)
+          mat={'provenance':{'solver':'MATRIX-SOLVER-01 v1.1(tick内嵌)','ts':ts,'census_sha256':cen_h,'policies_sha256':pol_h,'kernel_report_sha256':k_h,'pattern_attach':_pfix},'desired':desired}
           putc('ci-control','bridge/MATRIX-SOLVED-01.json',mat,'[D] matrix tick '+ts)
           # U4 决策链
           # CH-2修: 公域锚对齐探针(anchor==BEACON.hash 且 seq相等); 坍塌即入决策链
