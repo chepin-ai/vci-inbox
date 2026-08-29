@@ -1,10 +1,8 @@
 {
- "ts": "2026-08-29T07:10:36Z",
+ "ts": "2026-08-29T13:52:09Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 200,
- "fixed_n": 1,
- "fixed": [
-  "disc/from-lgt.md"
- ]
+ "scanned": 202,
+ "fixed_n": 0,
+ "fixed": []
 }
