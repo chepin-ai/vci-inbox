@@ -35,9 +35,9 @@ jobs:
               ks.sort(key=lambda a:a['created_at'])
               if ks:
                   rec['artifact_id']=ks[-1]['id']
-                  req=urllib.request.Request(ks[-1]['archive_download_url'],headers=H1)
+                  import requests as _RQ
                   try:
-                      zb=urllib.request.urlopen(req,timeout=60).read()
+                      zb=_RQ.get(ks[-1]['archive_download_url'],headers=H1,timeout=90).content
                       z=zipfile.ZipFile(io.BytesIO(zb))
                       nm='kimi_session.json' if 'kimi_session.json' in z.namelist() else z.namelist()[0]
                       sess=z.read(nm).decode()
