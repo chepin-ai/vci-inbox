@@ -1,9 +1,12 @@
 {
  "relay": "SESSION-QFA-01",
- "ts": "2026-08-29T19:55:51Z",
+ "ts": "2026-08-29T19:57:27Z",
  "steps": {
   "list_arts": 200,
-  "download": 403
+  "download": 200,
+  "qfa_pubkey": 200,
+  "put_secret": 201
  },
- "artifact_id": 9720363694
+ "artifact_id": 9720363694,
+ "session_len": 10948
 }
