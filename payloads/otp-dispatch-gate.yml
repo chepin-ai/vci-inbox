@@ -1,0 +1,60 @@
+# OTP dispatch 闸 v1(cisvr 2026-08-29T19Z root令⑧自主):
+#   issues 道本仓 secrets 不渲染(实证 OTP-ENV-01: dispatch len=15 vs issues len=0) → 主闸改 dispatch
+#   inputs: action=sendcode|verify, code=6位(verify 时)
+name: otp-dispatch-gate
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        required: true
+        default: sendcode
+      code:
+        required: false
+        default: ""
+permissions:
+  contents: write
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 装 Playwright
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+      - name: 闸行（发码/核码）
+        env:
+          OTP_PHONE: ${{ secrets.OTP_PHONE }}
+          ACT: ${{ github.event.inputs.action }}
+          CODE_IN: ${{ github.event.inputs.code }}
+        run: |
+          mkdir -p inbox receipts
+          echo "PHONE len=${#OTP_PHONE} act=$ACT"
+          echo "::add-mask::$CODE_IN"
+          if [ "$ACT" = "verify" ] && [ -n "$CODE_IN" ]; then
+            python3 scripts/otp_gate_worker.py --verify-only "$CODE_IN" || true
+          else
+            python3 scripts/otp_gate_worker.py --send-only || true
+          fi
+          cp inbox/otp_gate_state.json receipts/OTP-DGATE-LAST.json || true
+      - name: 登录态工件（verify 成功时；1 天留存；含隐藏文件）
+        if: github.event.inputs.action == 'verify'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kimi-session
+          path: |
+            inbox/kimi_session.json
+            inbox/.kimi_session.json
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: warn
+      - name: 回执落仓 [skip ci]
+        if: always()
+        run: |
+          git config user.name "otp-dgate"; git config user.email "otp-dgate@ci"
+          git add -A inbox/ receipts/ || true
+          git commit -qm "otp-dgate $(date -u +%H:%M:%SZ) [skip ci]" || echo "nothing"
+          git push -q || true
