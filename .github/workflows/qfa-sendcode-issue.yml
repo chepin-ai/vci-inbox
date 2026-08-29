@@ -1,0 +1,20 @@
+name: qfa-sendcode-issue
+on: [workflow_dispatch]
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          QI_PAT: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import json,os,urllib.request,urllib.error
+          def api(m,u,d=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+os.environ['QI_PAT'],'Accept':'application/vnd.github+json'})
+              if d is not None: r.data=json.dumps(d).encode()
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,e.read().decode()[:200]
+          s,r=api('POST','https://api.github.com/repos/chepin-qi/qfa-quantum-lab/issues',{'title':'[SENDCODE] qfa会话续期 root令⑧','body':'cisvr奉root令发码(OTP@qfa);请root查手机开[OTP] <码> issue'})
+          print('qfa issue',s, r.get('number') if s==201 else str(r)[:150])
+          PYEOF
