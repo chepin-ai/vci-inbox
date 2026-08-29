@@ -1,0 +1,33 @@
+name: relay-vault-census
+on:
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "VAULT-CENSUS-01: 全仓secrets点名(名非值)"
+        env:
+          RELAY_PAT: ${{ secrets.AI_FULL_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error
+          PAT=os.environ['RELAY_PAT']
+          O='chepin-ai'; GH='https://api.github.com'
+          REPOS=['vci-inbox','vci-usrm','vci-qgl','vci-vinf','vci-ucif2','vci-cfts','vci-root','vci-bus','vci-code','vci-library','vci-logs','vci-control','vci-control-backup','vci-playground','ci-worker-01-','ci-worker-02','ci-yard','qlv-lib','ci-inbox','ci-control','ci-control-backup','ci-library','ci-logs','ci-bus','ci-playground','ci-root','ci-code','ci-build','usrm-repo','quantum-go-ledger','vinf-market-kernel','ucif2-formalization-kernel','github-repo-cfts']
+          def H(): return {'Authorization':'token '+PAT,'Accept':'application/vnd.github+json','User-Agent':'cisvr-census'}
+          def api(m,u,d=None):
+              rq=urllib.request.Request(u,method=m,headers=H())
+              if d is not None: rq.data=json.dumps(d).encode()
+              try:
+                  r=urllib.request.urlopen(rq,timeout=30); b=r.read().decode(); return r.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,e.read().decode()[:150]
+          matrix={}
+          for rp in REPOS:
+              s,c=api('GET',f'{GH}/repos/{O}/{rp}/actions/secrets?per_page=100')
+              matrix[rp]=sorted(x['name'] for x in c.get('secrets',[])) if s==200 else f'ERR{s}'
+          print('CENSUS-BEGIN')
+          for rp,v in matrix.items():
+              print(f'{rp} :: {len(v) if isinstance(v,list) else v} :: {",".join(v) if isinstance(v,list) else ""}')
+          print('CENSUS-END')
+          PYEOF
