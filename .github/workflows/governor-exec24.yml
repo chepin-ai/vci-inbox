@@ -1,8 +1,10 @@
 name: governor-exec24
 on:
+  repository_dispatch:
+    types: [qf-beat]   # QF-OS事件主道(root令⑥ fold-n清除)
   schedule:
-    - cron: '29 */6 * * *'
-  workflow_dispatch:
+    - cron: '29 3 * * *'       # 死手兜底:每日1拍
+  workflow_dispatch: {}
 permissions:
   contents: write
 concurrency:
