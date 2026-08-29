@@ -1,0 +1,12 @@
+{
+ "ts": "2026-08-29T14:59:44Z",
+ "sendcode_issue": 3,
+ "last_comment": null,
+ "issue_state": "open",
+ "otp_runs": [
+  {
+   "c": "failure",
+   "t": "2026-08-29T14:51:21Z"
+  }
+ ]
+}
