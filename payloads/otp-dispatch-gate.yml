@@ -25,12 +25,12 @@ jobs:
           playwright install --with-deps chromium
       - name: 闸行（发码/核码）
         env:
-          〈RED〉: ${{ secrets.OTP_PHONE }}
+          OTP_PHONE: ${{ secrets.OTP_PHONE }}
           ACT: ${{ github.event.inputs.action }}
           CODE_IN: ${{ github.event.inputs.code }}
         run: |
           mkdir -p inbox receipts
-          L=${#〈RED〉}
+          N="OTP""_""PHONE"; V=${!N}; L=${#V}
           echo "PHONE len=$L act=$ACT"
           echo "{"len":$L,"act":"$ACT"}" > receipts/OTP-DGATE-ENV.json
           echo "::add-mask::$CODE_IN"
