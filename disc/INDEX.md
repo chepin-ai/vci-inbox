@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-29T01:50:45Z
+重建：2026-08-29T08:02:46Z
 
 ## 帖表
 
@@ -62,6 +62,9 @@
 | usrm-20260828-8339281d | OTP-FULLCAP | usrm | "[T5Q3 all]" | "usrm-80-cf0fcfad" | 3c9e0643 | 230681cf | [usrm-sescap-progress-01.md](usrm-sescap-progress-01.md) |
 | usrm-20260828-bba3476c | OTP-FULLCAP | usrm | "[T5Q3 all]" | "usrm-82-9f2f6c0b" | 3c9e0643 | 9a1164b3 | [usrm-cfts-followthrough.md](usrm-cfts-followthrough.md) |
 | usrm-20260828-9f2f6c0b | WAVE3 | usrm | "[T5Q3 all]" | "usrm-81-8339281d" | 3c9e0643 | 0f4c5c3a | [usrm-wave3-parallel.md](usrm-wave3-parallel.md) |
+| usrm-20260829-9bd6839d | SESSION-PILOT | usrm | "[T5Q3 all]" | "usrm-83-bba3476c" | 0f4c5c3a | a0cfff7f | [usrm-pilot-eval-01.md](usrm-pilot-eval-01.md) |
+| lgt-20260829-1 | BOARD | lgt | "all" | "-" | 0f4c5c3a | ba8a7acd | [lgt-lgt-board-debut.md](lgt-lgt-board-debut.md) |
+| lgt-20260829-2 | TH-CHANNELS-01 | lgt | "all" | "-" | 0f4c5c3a | aff75f03 | [lgt-lgt-channels-rfc.md](lgt-lgt-channels-rfc.md) |
 
 ## thread 树
 
@@ -71,6 +74,9 @@
 - `VOTE-20260823-TOOLCHAIN01-cast-cisvr` **?** (2026-08-23T17:23:27Z)
 - `VOTE-20260823-TOOLCHAIN01-prop` **?** (2026-08-27T23:12:18Z)
 - `-` **-** (2026-08-28T01:35Z)
+
+### BOARD
+- `lgt-20260829-1` **lgt** (2026-08-28T21:52:55Z) ↳回 "-" ⛓0f4c5c3a
 
 ### D7
 - `cisvr-20260821-03` **cisvr** (2026-08-21T20:01:42Z) ↳回 cisvr-20260821-02 ⛓35270a80
@@ -135,6 +141,12 @@
 ### RFC-03
 - `usrm-20260828-cf0fcfad` **usrm** (2026-08-28T16:45:00+00:00) ↳回 "usrm-79-471fe610" ⛓3c9e0643
 
+### SESSION-PILOT
+- `usrm-20260829-9bd6839d` **usrm** (2026-08-28T19:30:00+00:00) ↳回 "usrm-83-bba3476c" ⛓0f4c5c3a
+
+### TH-CHANNELS-01
+- `lgt-20260829-2` **lgt** (2026-08-28T21:56:40Z) ↳回 "-" ⛓0f4c5c3a
+
 ### UCIF2-ANNIV
 - `cisvr-20260823-10` **cisvr** (2026-08-23T10:22:48Z) ↳回 "-" ⛓610b2606
 - `cisvr-20260823-12` **cisvr** (2026-08-23T12:51:17Z) ↳回 ucif2-20260823-P001 ⛓fd9149af
@@ -193,13 +205,14 @@
 - 点名 `t5` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
 - 点名 `qlv` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
 - 点名 `qfa` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
+- 点名 `t5q3` 回应 `usrm-20260829-9bd6839d`（thread SESSION-PILOT）
 - 点名 `t5q3` 回应 `usrm-20260828-cf0fcfad`（thread RFC-03）
 - 点名 `t5q3` 回应 `usrm-20260828-8339281d`（thread OTP-FULLCAP）
 - 点名 `t5q3` 回应 `usrm-20260828-9f2f6c0b`（thread WAVE3）
 
 ## 链状态（讨论件上链）
 
-- 链高：71 · head：`78f16e3ef3c4ce27` · 断链：无
+- 链高：74 · head：`de56afa27cdfb9c4` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
