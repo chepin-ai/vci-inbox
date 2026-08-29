@@ -309,6 +309,49 @@ jobs:
           except Exception as _e:
               print('判词回流抑制skip', _e)
 
+          # ---- P5c pattern-sweep(root令:经验pattern化消费点② PATTERN-OS-01):新判词→shadow蒸馏入册;注册表增量写回 ----
+          _pat_report = {'swept': 0, 'new_shadow': []}
+          try:
+              _cur_t, _ = getc('ci-control', 'bridge/kernel-loop/PATTERN-SWEEP-STATE.json')
+              _cur = json.loads(_cur_t) if _cur_t else {}
+              _since = _cur.get('last_sweep_ts', '2026-08-29T00:00Z')
+              _reg_t, _ = getc('ci-control', 'bridge/PATTERN-REGISTRY-01.json')
+              _reg = json.loads(_reg_t) if _reg_t else {'patterns': []}
+              _known_A = {p.get('A', '') for p in _reg.get('patterns', [])}
+              _known_id = {p.get('id') for p in _reg.get('patterns', [])}
+              for _f in lsdir('ci-control', 'bridge/adjudications'):
+                  _fn = _f.get('name', '') if isinstance(_f, dict) else (_f[0] if isinstance(_f, tuple) else '')
+                  if not _fn.endswith('.json'):
+                      continue
+                  _at, _ = getc('ci-control', 'bridge/adjudications/' + _fn)
+                  if not _at:
+                      continue
+                  try:
+                      _aj = json.loads(_at)
+                  except Exception:
+                      continue
+                  _ats = _aj.get('ts', '')
+                  if _ats <= _since:
+                      continue
+                  _pat_report['swept'] += 1
+                  if any(_fn.split('.')[0] in a for a in _known_A):
+                      continue
+                  _pid = _fn.split('.')[0] + '-PAT'
+                  if _pid in _known_id:
+                      continue
+                  _reg['patterns'].append({'id': _pid, 'status': 'shadow', 'ts': TS,
+                      'what': 'auto-distilled shadow 候选:判词 ' + _fn + ' (' + str(_aj.get('v', '')) + ')——候义务机/fleet-judge 升 canonical',
+                      'I': '判词 ' + _fn, 'O': 'pattern 条目', 'D': '蒸馏≠捏造,出处锚在判词', 'A': _fn.split('.')[0], 'V': '升canonical判词',
+                      'origin': 'kernel-loop P5c auto-sweep'})
+                  _pat_report['new_shadow'].append(_pid)
+              _reg['last_sweep'] = TS
+              putc('ci-control', 'bridge/PATTERN-REGISTRY-01.json', json.dumps(_reg, ensure_ascii=False, indent=1), 'P5c pattern-sweep ' + TS)
+              putc('ci-control', 'bridge/kernel-loop/PATTERN-SWEEP-STATE.json', json.dumps({'last_sweep_ts': TS, 'run': RUN}, ensure_ascii=False), 'P5c sweep cursor')
+          except Exception as _e:
+              print('pattern-sweep skip', _e)
+          if _pat_report['new_shadow']:
+              print('P5c 新shadow:', _pat_report['new_shadow'])
+
           prop_body = {'ts': TS, 'run': RUN, 'proposals': proposals, 'ratify': '本表由机制产,义务机(cisvr/usrm/root)批准后方入 EXPECT-REG'}
           state = {'organ': 'kernel-loop', 'ts': TS, 'run': RUN, 'anchor': anchor, 'counts': {'open': len(open_items), 'overdue': len(overdue), 'solved': len(solved), 'ledger_tip_seq': maxseq}, 'certs': certs, 'certs_pass': certs_pass, 'verdicts': verdicts, 'loop_verdict': loop_verdict, 'evolution': evolution, 'symphony': symphony, 'fusion': fusion, 'self': self_sec, 'proposals_n': len(proposals)}
           putc('ci-control', 'bridge/kernel-loop/proposals.json', json.dumps(prop_body, ensure_ascii=False, indent=1), f'kernel-loop 提案 {TS} n={len(proposals)}')
