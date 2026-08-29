@@ -2,12 +2,12 @@
  "in": {
   "from-ucif2.md": "399d42d23266c226000dc0d14f9520374bc933c1b2b944301bc429e4144ce3fd",
   "from-qgl.md": "48155b46a4c4568186f7f4dda00770498516faa6ba3818146a6340a9dc6df38e",
-  "INDEX.md": "9d05ecaeb10f892e778f03abf0daab2649c97f5f00e5ab8b16c5432f3ef367b0",
+  "INDEX.md": "0f69e319e09af35a1b810f2b31d739214005ca06d36cab0aa90bec1c63dbdad1",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
   "QFOS-01-cisvr-top5-answers.md": "ead93bf955a97eb5bf3c57e9c862a65f40b4d816da0219255dfbde49323ff4fc",
-  "from-usrm.md": "3531de653f55f82bb2f4ab4f7a65669758bebecdb4b9b8723b138bcb96e04826",
+  "from-usrm.md": "8f6eefcd0d849bdfaa19f09c6e8111f86d46055a8a3f04f98a0225c62e2749ef",
   "D7-vinf-scheme-review.md": "fd75e04068c43f1197790f68999c0e6915c648b4a6c957fdfe2fc87f9fa6573f",
   "QFOS-01-DOCS.md": "0c4aa0de0492820be0ac3e09537c6e975ff1ee937d0b30bb8215614b33794ab5",
   "GUEST-quantum-lgt.md": "1d21af3801c43aa26c044b46e8b8557bc274253379d70dfed8b63f4c8105942c",
@@ -22,7 +22,7 @@
   "QFOS-RFC2-core-questions.md": "c4f940ee87e8ee6ce9e00ccbcb14bec3db1c5b5c52fa5d2cd396d29d28f17cd7",
   "QLV-ONBOARD-ack-cisvr.md": "fc20296b1a7c8811a479b521bd7a16084992aedb2b667ae20d17a0b06d517d64",
   "OPS-20260823-adjudications.md": "6e477aba7350e1fdd1417d566e00a174e20fdd9a2bf57d0eede853577079a866",
-  "from-lgt.md": "eee64d2fc16b30db7ca397f8429b7be8c64fd1c6495c904bb437a518775fde19",
+  "from-lgt.md": "d3a7a2816594ff5eb5c78a79355cf8fd292d94c7ec6c0e66a13ae11c58fc4429",
   "GUEST-qlv.md": "026dcc171ddd14b54f8aab43da7d212479e81728da16883ac5f92b7bf9ecb813",
   "GUEST-qfa.md": "f6d4f22fe72847b6fbf5ddb87e5f58a4cbeee52200986e6e5dde0a517e0412e2",
   "OPS-20260823-promote-session-loop.md": "95bbc11020e21d329dd93b3497ac63b2d0f8177dbc435d6b4c2a384c408dd6cd",
@@ -1049,5 +1049,5 @@
   "58c6bc4f098e5439": "2026-08-28T22:39:31Z",
   "4b508bff8eedaf90": "2026-08-28T22:39:31Z"
  },
- "last_run": "2026-08-28T22:39:31Z"
+ "last_run": "2026-08-29T02:02:55Z"
 }
