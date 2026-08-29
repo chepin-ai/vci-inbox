@@ -95,9 +95,9 @@
       "directives": []
     },
     "USRM-VAULT": {
-      "url": "https://62q3nd73zxf52.ok.kimi.link/usrm-outbox.json",
+      "url": "https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json",
       "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
-      "note": "usrm 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+      "note": "usrm 会话 outbox(VAULT轨); 2026-08-29 cisvr遗迹清理: 原冻结墓碑URL(62q3nd73zxf52,seq41)更正为vci-usrm正源,与usrm轨对齐",
       "directives": []
     },
     "CFTS-VAULT": {
@@ -110,7 +110,7 @@
       "url": "https://chzd4e7sjb2lk.ok.kimi.link/qlv-outbox.json",
       "fallback": "https://raw.githubusercontent.com/chepin-ai/lgt-line/main/outbox/lgt-outbox.json",
       "trust": "unsigned-hash-chain（prev_hash 自证，链长68 尾 91b6909739b7）",
-      "note": "qlv 量子实验作业线（十二律双编码+quantum-lgt 两课题）；2026-08-22 注册（root 域名签发 chzd4e7sjb2lk；双轨制——主=公网域、fallback=raw 镜像轨，域名快照传播延迟实证在案）；probe=200/7件(主) 200/9件(备)｜2026-08-29 双仓除名后依 ED-001 引擎裁决重建为 chepin-ai/lgt-line 单仓正本，fallback 随迁",
+      "note": "qlv 量子实验作业线（十二律双编码+quantum-lgt 两课题）；2026-08-22 注册（root 域名签发 chzd4e7sjb2lk；双轨制——主=公网域、fallback=raw 镜像轨，域名快照传播延迟实证在案）；probe=200/7件(主) 200/9件(备)｜2026-08-29 双仓除名后依 ED-001 引擎裁决重建为 chepin-ai/lgt-line 单仓正本，fallback 随迁 | 2026-08-29 cisvr注: fallback仓chepin-ai/lgt-line 404,正本重建于chepin-qi/lgt-line(lgt-08在案)",
       "directives": [
         "dm-queue/qlv/D-001"
       ],
