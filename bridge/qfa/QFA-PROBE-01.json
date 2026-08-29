@@ -1,0 +1,106 @@
+{
+ "v": "QFA-PROBE-01",
+ "ts": "2026-08-29T04:31:30Z",
+ "auth_as": "chepin-qi",
+ "visible_repos": [
+  "chepin-qi/lgt-line",
+  "chepin-qi/qfa-quantum-lab",
+  "chepin-qi/qi-lab",
+  "chepin-qi/qlv-ci-line",
+  "chepin-qi/qlv-lib",
+  "chepin-qi/qlv-pub",
+  "chepin-qi/quantum-lgt-experiments"
+ ],
+ "targets": {
+  "chepin-qi/qfa-quantum-lab": {
+   "visibility": "private",
+   "default": "main",
+   "pushed_at": "2026-08-29T04:27:11Z",
+   "archived": false,
+   "secrets": [
+    "AI_PAT",
+    "DEEPSEEK_API_KEY",
+    "GITEE_CI_CONTROL_MIRROR",
+    "IBMQ_EMAIL_1",
+    "IBMQ_EMAIL_2",
+    "IBMQ_PASS_1",
+    "IBMQ_PASS_2",
+    "KAGGLE_KEY",
+    "KAGGLE_KGAT",
+    "KAGGLE_USERNAME",
+    "KIMI_API_KEY",
+    "KIMI_SESSION_STATE",
+    "OPENQUANTUM_CLIENT_ID",
+    "OPENQUANTUM_SDK_KEY",
+    "ORIGINQC_API_KEY",
+    "ORIGINQC_EMAIL",
+    "ORIGINQC_FOXMAIL_KEY",
+    "ORIGINQC_PASSWORD",
+    "ORIGINQC_THAI68_KEY",
+    "ORIGINQC_UID",
+    "QI_PAT",
+    "QUAFU_API_TOKEN",
+    "QUAFU_EMAIL",
+    "QUAFU_PASSWORD",
+    "QUANTUMRINGS_KEY_128",
+    "QUANTUMRINGS_KEY_64",
+    "QUANTUMRINGS_PASSWORD",
+    "TIANYAN_PASSWORD",
+    "TIANYAN_PHONE",
+    "TIANYAN_SECRET"
+   ],
+   "runs": [
+    {
+     "n": "meta-engine",
+     "c": "success",
+     "t": "2026-08-29T04:26:55Z"
+    },
+    {
+     "n": "qfa-ci-loop",
+     "c": null,
+     "t": "2026-08-29T04:26:55Z"
+    },
+    {
+     "n": "session-handoff",
+     "c": "success",
+     "t": "2026-08-29T04:26:55Z"
+    },
+    {
+     "n": "meta-engine",
+     "c": "success",
+     "t": "2026-08-29T04:26:35Z"
+    },
+    {
+     "n": "qfa-ci-loop",
+     "c": "success",
+     "t": "2026-08-29T04:07:45Z"
+    }
+   ],
+   "paths": [
+    ".github/scripts/session_handoff.py",
+    ".github/workflows",
+    ".github/workflows/meta_engine.yml",
+    ".github/workflows/qfa-ci.yml",
+    ".github/workflows/session_handoff.yml",
+    "fullcap/qfa-20260829/session-tensor-net.json",
+    "qfaos/meta_engine.py",
+    "session-raw",
+    "session-raw/qfa",
+    "session-raw/qfa/TRANSCRIPT-LINK-01.md",
+    "session-raw/qfa/file-content-tensor-net.json",
+    "session-raw/qfa/rounds.jsonl",
+    "session-raw/qfa/session-content-tensor-net.json",
+    "ure/session_probe.json"
+   ]
+  },
+  "chepin-qi/quantum-lgt-experiments": {
+   "visibility": "private",
+   "default": "main",
+   "pushed_at": "2026-08-28T22:28:28Z",
+   "archived": false,
+   "secrets": [],
+   "runs": [],
+   "paths": []
+  }
+ }
+}
