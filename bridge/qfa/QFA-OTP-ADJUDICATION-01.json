@@ -1,0 +1,19 @@
+{
+ "v": "QFA-OTP-ADJUDICATION-01",
+ "ts": "2026-08-29T04:09Z",
+ "actor": "cisvr",
+ "subject": "OTP@qfa(root令⑤-①)",
+ "findings": [
+  "qfa域=chepin-qi账号,独立billing——其私仓Actions活着(meta-engine/session-handoff/qfa-ci-loop 04:26-04:27全success),与chepin-ai私仓配额瘫痪(08-23起)无涉",
+  "KIMI_SESSION_STATE自持于chepin-qi/qfa-quantum-lab secrets(未stranded)",
+  "OTP×3(OTP_PHONE/OTP_EMAIL1/OTP_EMAIL2)原缺→OTP-RELAY-QFA-01b经库内道内存中继装毕:write 201×3+verify 200×3+独立复点过(零打印零落盘)",
+  "qfa侧无otp-issue-trigger流→KSS工件(1天)过期时无法自助续期=对话断点结构性根因之一",
+  "Gitee回话道G4红仍存(qfa→ci-control镜像道)"
+ ],
+ "ruling": "OTP@qfa供料面closed。qfa对话完全修复须qfa域建otp-issue-trigger流(qfa内政,可经qlv-pub工单WO-dispatch求cisvr代劳件)或root手动供码。ci侧义务:OTP料已备+探针面(QFA-PROBE-01)常驻。",
+ "evidence": [
+  "vci-inbox run 33234193511(relay success)",
+  "run 33234118804/复点run(probe success)",
+  "bridge/qfa/QFA-PROBE-01.json"
+ ]
+}
