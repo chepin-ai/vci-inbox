@@ -6,10 +6,10 @@
   2) 登录态持久化真修——storage_state 双写 inbox/kimi_session.json(非隐藏)+.kimi_session.json(兼容)
   3) 邮码道预留(EMAIL_MODE 环境变量=1 时走邮箱码登录,邮道凭据由 repo secret 注入,本版占位)
 真人闸门 = root 的手机；码只存在于 job 内存(::add-mask::)，真码文件即删(PII 闸)。
-手机号取 repo secret OTP_PHONE。"""
+手机号取 repo secret 〈RED〉。"""
 import asyncio, glob, json, os, sys, datetime, re
 
-PHONE = os.environ.get("OTP_PHONE", "").strip()
+PHONE = os.environ.get("〈RED〉", "").strip()
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 
 def now():
@@ -62,7 +62,7 @@ async def main():
     if not sends and not otps:
         print("nothing to consume"); return
     if not PHONE:
-        write_state("FAILED", "repo secret OTP_PHONE 未设置"); sys.exit(1)
+        write_state("FAILED", "repo secret 〈RED〉 未设置"); sys.exit(1)
     async with async_playwright() as pw:
         b = await pw.chromium.launch(headless=True, args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
         ctx = await b.new_context(user_agent=UA, viewport={"width": 1440, "height": 900}, locale="zh-CN")
