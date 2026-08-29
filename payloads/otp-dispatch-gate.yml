@@ -27,12 +27,12 @@ jobs:
           playwright install --with-deps chromium
       - name: 闸行（发码/核码）
         env:
-          OTP_PHONE: ${{ secrets.OTP_PHONE }}
+          〈RED〉: ${{ secrets.OTP_PHONE }}
           ACT: ${{ github.event.inputs.action }}
           CODE_IN: ${{ github.event.inputs.code }}
         run: |
           mkdir -p inbox receipts
-          echo "PHONE len=${#OTP_PHONE} act=$ACT"
+          echo "PHONE len=${#〈RED〉} act=$ACT"
           echo "::add-mask::$CODE_IN"
           if [ "$ACT" = "verify" ] && [ -n "$CODE_IN" ]; then
             python3 scripts/otp_gate_worker.py --verify-only "$CODE_IN" || true
