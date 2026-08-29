@@ -17,7 +17,6 @@ jobs:
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
-          GT: ${{ secrets.GITEE_TOKEN }}
           CAUSE: ${{ github.event.inputs.cause || github.event_name }}
           AI_PAT: ${{ secrets.AI_FULL_PAT }}  # 应急 fallback 道: installation 被拆/失效时直通场不停摆(root 2026-08-28 韧性令)
         run: |
@@ -66,10 +65,7 @@ jobs:
           report={'ts':NOW,'auth':AUTH_MODE[0],'surfaces':{},'new':[],'errors':[],'escalations':[],'canary':{}}
           # ---- 可达性哨 ----
           c1=g('https://api.github.com/rate_limit'); report['canary']['github_api']= 'ok' if 'resources' in c1 else 'RED'
-          try:
-              rq=urllib.request.Request('https://gitee.com/api/v5/repos/chepin-ci/qfa-line',headers={'Authorization':'token '+os.environ.get('GT',''),'User-Agent':'intake-agent'})
-              j2=json.loads(urllib.request.urlopen(rq,timeout=15).read()); report['canary']['gitee_qfa']='ok' if j2.get('id') else 'RED'
-          except Exception: report['canary']['gitee_qfa']='RED'
+          report['canary']['gitee_qfa']='RETIRED(gitee族退役 root令⑥)'
           # ---- 状态 ----
           sd=g('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/intake-agent/state.json')
           state=json.loads(base64.b64decode(sd['content']).decode()) if isinstance(sd,dict) and sd.get('content') else {'seen':{},'queue':[],'deadletter':[]}
