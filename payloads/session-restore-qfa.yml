@@ -1,0 +1,30 @@
+# qfa 登录态还原(cisvr 令⑧②备道): 配额复活后 dispatch 一次——secret KIMI_SESSION_JSON → 工件 kimi-session
+name: session-restore
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: secret → 文件
+        env:
+          KS: ${{ secrets.KIMI_SESSION_JSON }}
+        run: |
+          mkdir -p inbox
+          printf '%s' "$KS" > inbox/kimi_session.json
+          python3 -c "import json;d=json.load(open('inbox/kimi_session.json'));print('session json ok, keys:',len(d.get('cookies',[])))"
+      - name: 登录态工件（1 天留存）
+        uses: actions/upload-artifact@v4
+        with:
+          name: kimi-session
+          path: inbox/kimi_session.json
+          retention-days: 1
+          if-no-files-found: error
+      - name: 清文件 [skip ci]
+        run: |
+          rm -f inbox/kimi_session.json
+          git config user.name "restore"; git config user.email "restore@ci"
+          git add -A && git commit -qm "session restored, file purged [skip ci]" && git push -q || echo nothing
