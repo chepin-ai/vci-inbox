@@ -63,4 +63,4 @@ jobs:
           mkdir -p receipts
           echo "{"relay":"OTPKIT2-PATCH-01","ts":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","targets":["vci-vinf","vci-qgl","qfa-quantum-lab"],"note":"v2 worker实证化+trigger v2.1 artifact隐藏文件修复+OTP_PHONE密封入vci-inbox"}" > receipts/OTPKIT2-PATCH-01.json
           git config user.name "relay"; git config user.email "relay@ci"
-          git add receipts/ && git commit -qm "OTPKIT2-PATCH-01 receipt [skip ci]" && git push -q
+          git add receipts/ && git commit -qm "OTPKIT2-PATCH-01 receipt [skip ci]" && git push -q || echo nothing-to-commit
