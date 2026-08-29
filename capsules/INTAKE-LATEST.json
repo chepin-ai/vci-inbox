@@ -5,8 +5,8 @@
  "beacon_sha": "5fe9aabbb869d252",
  "challenge": "bfac4c8277e139ab",
  "lanes": {
-  "public_board": "ci-inbox 公告板",
-  "dm_queue": "ci-inbox dm-queue/<line>/",
+  "public_board": "HUB-MAIL 公告板",
+  "dm_queue": "HUB-MAIL dm-queue/<line>/",
   "dispatch_mint": "vci-inbox line-dispatch (workflow_dispatch)"
  },
  "rule": "时间戳+seq+challenge三件齐=有效接引;challenge一次性,用过即焚"
