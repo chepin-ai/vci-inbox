@@ -1,9 +1,9 @@
 {
- "ts": "2026-08-28T16:57:03Z",
- "new_harvested": 0,
+ "ts": "2026-08-29T01:55:31Z",
+ "new_harvested": 12,
  "sealed_new": 0,
  "dm": {
   "status": "active"
  },
- "ledger_head": "d80a7052a654751c"
+ "ledger_head": "7422af1a40d3c540"
 }
