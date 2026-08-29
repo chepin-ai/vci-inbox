@@ -1,6 +1,8 @@
 name: session-pilot
 on:
-  schedule: [{ cron: '3,18,33,48 * * * *' }]  # D-146: 会话接力引擎 15min班(错峰:08/38 intake,17/47 圈)
+  repository_dispatch:
+    types: [qf-beat, beat-forward]   # QF-OS事件主道(root令⑥ fold-n清除): 拍后级联接力
+  schedule: [{ cron: '13 */6 * * *' }]  # 死手兜底:6h班(接力类白名单;原D-146 15min遗物降级,时效由事件道补)
   workflow_dispatch: {}
 permissions:
   contents: write
