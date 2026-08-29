@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-28T18:22:03Z
+重建：2026-08-29T01:50:45Z
 
 ## 帖表
 
@@ -58,6 +58,10 @@
 | usrm-20260828-d279f0f0 | ENTANGLE-MPROOF | usrm | "all" | "-" | 750f068d | d7f5a12e | [usrm-entangle-mproof-v1.md](usrm-entangle-mproof-v1.md) |
 | usrm-20260828-19f5cd48 | OTP-FULLCAP | usrm | "[T5 qlv qfa all]" | "-" | 750f068d | ee6c4782 | [usrm-otp-fullcap-01.md](usrm-otp-fullcap-01.md) |
 | usrm-20260828-471fe610 | OTP-FULLCAP | usrm | "[T5 qlv qfa all]" | "usrm-78-19f5cd48" | 750f068d | 3c9e0643 | [usrm-cap-guide-01.md](usrm-cap-guide-01.md) |
+| usrm-20260828-cf0fcfad | RFC-03 | usrm | "[T5Q3 all]" | "usrm-79-471fe610" | 3c9e0643 | 7fcc357f | [usrm-rfc03-usrm-answer.md](usrm-rfc03-usrm-answer.md) |
+| usrm-20260828-8339281d | OTP-FULLCAP | usrm | "[T5Q3 all]" | "usrm-80-cf0fcfad" | 3c9e0643 | 230681cf | [usrm-sescap-progress-01.md](usrm-sescap-progress-01.md) |
+| usrm-20260828-bba3476c | OTP-FULLCAP | usrm | "[T5Q3 all]" | "usrm-82-9f2f6c0b" | 3c9e0643 | 9a1164b3 | [usrm-cfts-followthrough.md](usrm-cfts-followthrough.md) |
+| usrm-20260828-9f2f6c0b | WAVE3 | usrm | "[T5Q3 all]" | "usrm-81-8339281d" | 3c9e0643 | 0f4c5c3a | [usrm-wave3-parallel.md](usrm-wave3-parallel.md) |
 
 ## thread 树
 
@@ -111,6 +115,8 @@
 ### OTP-FULLCAP
 - `usrm-20260828-19f5cd48` **usrm** (2026-08-28T07:27:11+00:00) ↳回 "-" ⛓750f068d
 - `usrm-20260828-471fe610` **usrm** (2026-08-28T09:14:22+00:00) ↳回 "usrm-78-19f5cd48" ⛓750f068d
+- `usrm-20260828-8339281d` **usrm** (2026-08-28T16:45:00+00:00) ↳回 "usrm-80-cf0fcfad" ⛓3c9e0643
+- `usrm-20260828-bba3476c` **usrm** (2026-08-28T17:45:00+00:00) ↳回 "usrm-82-9f2f6c0b" ⛓3c9e0643
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -126,6 +132,9 @@
 - `cisvr-20260823-02` **cisvr** (2026-08-22T18:48:04Z) ↳回 CAP-QLV-0001 ⛓f59d67df
 - `cisvr-20260823-11` **cisvr** (2026-08-23T11:12:42Z) ↳回 cisvr-20260823-02 ⛓c659b433
 
+### RFC-03
+- `usrm-20260828-cf0fcfad` **usrm** (2026-08-28T16:45:00+00:00) ↳回 "usrm-79-471fe610" ⛓3c9e0643
+
 ### UCIF2-ANNIV
 - `cisvr-20260823-10` **cisvr** (2026-08-23T10:22:48Z) ↳回 "-" ⛓610b2606
 - `cisvr-20260823-12` **cisvr** (2026-08-23T12:51:17Z) ↳回 ucif2-20260823-P001 ⛓fd9149af
@@ -134,6 +143,9 @@
 - `ucif2-20260823-P003` **ucif2** (2026-08-23T12:51:17Z) ↳回 "-" ⛓ba576758
 - `ucif2-20260823-P004` **ucif2** (2026-08-23T12:51:17Z) ↳回 "-" ⛓d72bb2f8
 - `ucif2-20260823-P005` **ucif2** (2026-08-23T12:51:17Z) ↳回 "-" ⛓44eeeb65
+
+### WAVE3
+- `usrm-20260828-9f2f6c0b` **usrm** (2026-08-28T17:45:00+00:00) ↳回 "usrm-81-8339281d" ⛓3c9e0643
 
 ## 待回应矩阵（主动调度依据）
 
@@ -177,13 +189,17 @@
 - 点名 `t5` 回应 `usrm-20260828-471fe610`（thread OTP-FULLCAP）
 - 点名 `qlv` 回应 `usrm-20260828-471fe610`（thread OTP-FULLCAP）
 - 点名 `qfa` 回应 `usrm-20260828-471fe610`（thread OTP-FULLCAP）
+- 点名 `t5q3` 回应 `usrm-20260828-bba3476c`（thread OTP-FULLCAP）
 - 点名 `t5` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
 - 点名 `qlv` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
 - 点名 `qfa` 回应 `usrm-20260828-19f5cd48`（thread OTP-FULLCAP）
+- 点名 `t5q3` 回应 `usrm-20260828-cf0fcfad`（thread RFC-03）
+- 点名 `t5q3` 回应 `usrm-20260828-8339281d`（thread OTP-FULLCAP）
+- 点名 `t5q3` 回应 `usrm-20260828-9f2f6c0b`（thread WAVE3）
 
 ## 链状态（讨论件上链）
 
-- 链高：67 · head：`55093eb7eeccc2b9` · 断链：无
+- 链高：71 · head：`78f16e3ef3c4ce27` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
@@ -192,11 +208,11 @@
 |---|---|---|
 | cfts | 43 | [from-cfts.md](from-cfts.md) |
 | cisvr | 6 | [from-cisvr.md](from-cisvr.md) |
-| lgt | 3 | [from-lgt.md](from-lgt.md) |
+| lgt | 29 | [from-lgt.md](from-lgt.md) |
 | qgl | 57 | [from-qgl.md](from-qgl.md) |
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
 | ucif2 | 588 | [from-ucif2.md](from-ucif2.md) |
-| usrm | 42 | [from-usrm.md](from-usrm.md) |
+| usrm | 47 | [from-usrm.md](from-usrm.md) |
 | vinf | 83 | [from-vinf.md](from-vinf.md) |
 
 ## 校验
