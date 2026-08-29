@@ -1,0 +1,37 @@
+name: diag-otp-env（测 OTP_PHONE 渲染长度+secret时间戳,值不出runner）
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 运行时渲染长度
+        env:
+          OTP_PHONE: ${{ secrets.OTP_PHONE }}
+        run: |
+          echo "OTP_PHONE len=${#OTP_PHONE}"
+          mkdir -p receipts
+          echo "{"diag":"OTP-ENV-01","len":${#OTP_PHONE},"ts":"$(date -u +%Y-%m-%dT%H:%M:%SZ)"}" > receipts/OTP-ENV-01.json
+      - name: secret 时间戳（经 CI_OPS_LINE_KEY）
+        env:
+          TK: ${{ secrets.CI_OPS_LINE_KEY }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error
+          H={'Authorization':'token '+os.environ['TK'],'Accept':'application/vnd.github+json'}
+          try:
+              d=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-vinf/actions/secrets',headers=H),timeout=30).read())
+              for s in d.get('secrets',[]):
+                  if s['name']=='OTP_PHONE':
+                      print('OTP_PHONE created',s['created_at'],'updated',s['updated_at'])
+                      rec=json.load(open('receipts/OTP-ENV-01.json'))
+                      rec['secret_created']=s['created_at']; rec['secret_updated']=s['updated_at']
+                      json.dump(rec,open('receipts/OTP-ENV-01.json','w'))
+          except Exception as e: print('ts fail',type(e).__name__)
+          PYEOF
+      - name: 回执落仓
+        run: |
+          git config user.name "diag"; git config user.email "diag@ci"
+          git add receipts/ && git commit -qm "OTP-ENV-01 [skip ci]" && git push -q || echo push-fail
