@@ -36,4 +36,4 @@ jobs:
       - name: 回执落仓
         run: |
           git config user.name "probe"; git config user.email "probe@ci"
-          git add receipts/ && git commit -qm "QFA-READINESS-01 [skip ci]" && git push -q || echo nothing
+          git add receipts/ && git commit -qm "QFA-READINESS-01 [skip ci]" && (git pull -q --rebase && git push -q) || echo nothing
