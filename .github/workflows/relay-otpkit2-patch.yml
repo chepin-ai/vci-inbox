@@ -44,11 +44,12 @@ jobs:
           python3 - <<'PYEOF'
           import os, json, base64, urllib.request
           from nacl.public import PublicKey, SealedBox
+          from nacl.encoding import Base64Encoder
           H={'Authorization':'token '+os.environ['TK'],'Accept':'application/vnd.github+json'}
           def gj(u): return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=30).read())
           v=gj('https://api.github.com/repos/chepin-ai/qlv-lib/actions/variables/OTP_PHONE')['value']
           pk=gj('https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/public-key')
-          sealed=SealedBox(PublicKey(pk['key'],base64.StdEncoding)).encrypt(v.encode())
+          sealed=SealedBox(PublicKey(pk['key'],Base64Encoder)).encrypt(v.encode())
           req=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/OTP_PHONE',
               data=json.dumps({'encrypted_value':base64.b64encode(sealed).decode(),'key_id':pk['key_id']}).encode(),
               headers=H,method='PUT')
