@@ -1,18 +1,23 @@
 name: kernel-loop
 on:
-  schedule: [{ cron: '23,53 * * * *' }]  # 元引擎闭环30min班(D-153/D-154): 避开既有钟面(3/8/13/17/18/33/38/43/47/48)
-  workflow_dispatch: {}
+  schedule: [{ cron: '23,53 * * * *' }]  # 死手兜底(D-157): 主驱动=事件beat-forward,钟面仅dead-man
+  workflow_dispatch:
+    inputs:
+      cause: { required: false, default: 'manual' }
+  repository_dispatch:
+    types: [qf-beat]
 permissions:
   contents: write
-  # rationale: 系谱闭合五拍+第二乐章(P6交响/P7融合/P8自指); 提案制=义务机主权; 只动私域+计数/哈希,零原文零密钥
+  # rationale: D-157班次革命: 事件驱动接力扣门(级联≤1,cause='beat-forward'不转叩)+qf-beat直道+cron死手; 提案制=义务机主权; 零原文零密钥
 jobs:
   loop:
     runs-on: ubuntu-latest
     steps:
-      - name: "系谱融合拍: P0锚→P1义务→P2构造→P3机检→P4判词→P5提案→P6交响→P7融合→P8自指→入链"
+      - name: "系谱融合拍: P0-P8+beat-forward"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          CAUSE: ${{ github.event.inputs.cause || github.event_name }}
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF'
@@ -288,5 +293,16 @@ jobs:
           led_new = (led_txt or '') + ('\n' if led_txt and not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'
           putc('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'KERNEL_LOOP seq{ev["seq"]} verdict={loop_verdict} @ {TS}')
           putc('vci-inbox', 'bridge/kernel-loop/last-run.json', json.dumps({'ts': TS, 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts']}, ensure_ascii=False, indent=1), f'kernel-loop last-run {TS}')
-          print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'sym_stalled': len(symphony['stalled']), 'fus_merge': len(fusion['merge_candidates']), 'seq': ev['seq']}, ensure_ascii=False))
+          # ---- P9 BEAT-FORWARD (D-157: 事件驱动接力扣门,级联深度≤1——cause='beat-forward'者不转叩) ----
+          CAUSE = os.environ.get('CAUSE', 'schedule')
+          beat_changed = any(x != 'GENESIS_RUN' for x in evolution['deltas']) or len(overdue) > 0
+          knocked = []
+          if CAUSE != 'beat-forward' and beat_changed:
+              for wf in ('fleet-judge.yml',):
+                  try:
+                      rq = urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{wf}/dispatches', data=json.dumps({'ref': 'main', 'inputs': {'cause': 'beat-forward'}}).encode(), method='POST', headers=H)
+                      knocked.append(f"{wf}:{urllib.request.urlopen(rq, timeout=15).status}")
+                  except Exception as _e:
+                      knocked.append(f"{wf}:fail:{str(_e)[:40]}")
+          print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'sym_stalled': len(symphony['stalled']), 'fus_merge': len(fusion['merge_candidates']), 'cause': CAUSE, 'beat_forward': knocked, 'seq': ev['seq']}, ensure_ascii=False))
           PYEOF
