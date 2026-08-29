@@ -1,0 +1,28 @@
+name: probe-qfa-sendcode2
+on: [workflow_dispatch]
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          QI_PAT: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import json,os,urllib.request,urllib.error
+          def api(m,u):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+os.environ['QI_PAT'],'Accept':'application/vnd.github+json'})
+              try:
+                  x=urllib.request.urlopen(r); return x.status,json.loads(x.read().decode())
+              except urllib.error.HTTPError as e: return e.code,{}
+          T='https://api.github.com/repos/chepin-qi/qfa-quantum-lab'
+          s,iss=api('GET',T+'/issues?state=open&per_page=5')
+          n=None
+          for i in (iss or []):
+              if i['title'].startswith('[SENDCODE]'): n=i['number']
+          print('SENDCODE issue#',n)
+          if n:
+              s,cm=api('GET',T+f'/issues/{n}/comments')
+              for c in (cm or [])[-1:]: print('回执:',c['body'][:160])
+          s,runs=api('GET',T+'/actions/runs?per_page=4')
+          for r in runs.get('workflow_runs',[])[:4]: print('run:',r['name'],r['conclusion'] or r['status'],r['created_at'][11:19])
+          PYEOF
