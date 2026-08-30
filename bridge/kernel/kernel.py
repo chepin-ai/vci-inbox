@@ -135,7 +135,7 @@ if s == 200:
 verdict = 'GREEN' if not F else 'RED'
 out = {'kernel': 'KERNEL-01 v0.1', 'ts': TS, 'verdict': verdict, 'findings': F,
        'state_digest': hashlib.sha256(json.dumps({'chain': chain_h, 'directives': len(items)}, sort_keys=True).encode()).hexdigest()[:16],
-       'ledger_state': {stt: sum(1 for i in items if i['state'] == stt) for stt in ('open', 'in-progress', 'done', 'verified')}}
+       'ledger_state': {stt: sum(1 for i in items if i.get('state') == stt) for stt in ('open', 'in-progress', 'done', 'verified')}}
 print(json.dumps(out, ensure_ascii=False, indent=1))
 open('kernel-report.json', 'w').write(json.dumps(out, ensure_ascii=False, indent=1))
 open('findings-ledger.json', 'w').write(json.dumps(led, ensure_ascii=False, indent=1))
