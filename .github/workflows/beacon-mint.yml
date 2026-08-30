@@ -1,7 +1,5 @@
 name: beacon-mint
 on:
-  schedule:
-    - cron: '*/31 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
