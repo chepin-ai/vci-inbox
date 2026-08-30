@@ -57,7 +57,7 @@ for i in items:
 
 # G-N6 迭代必验效：done/verified 必须带非空实证
 for i in items:
-    if i['state'] in ('done', 'verified') and not str(i.get('ev', '')).strip('- '):
+    if i.get('state') in ('done', 'verified') and not str(i.get('ev', '')).strip('- '):
         finding('G-N6-bare-done', '%s 标 %s 无实证' % (i['id'], i['state']))
 
 # G-N8 岗报必呈
