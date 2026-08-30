@@ -24,7 +24,9 @@
   },
   "brg-selftest": {
    "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/test/selftest-outbox.json",
-   "note": "cisvr 自检会话（压测夹具）"
+   "note": "cisvr 自检会话（压测夹具）",
+   "frozen": true,
+   "tombstone": "[2026-08-30T02:42:04Z usrm] ci-control 私仓 raw 404；自检件应迁公面"
   },
   "cisvr": {
    "url": "https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/cisvr-outbox.json",
@@ -88,19 +90,25 @@
    "url": "https://stgdle5yj3o7s.ok.kimi.link/vinf-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "vinf 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/7件",
-   "directives": []
+   "directives": [],
+   "frozen": true,
+   "tombstone": "[2026-08-30T02:42:04Z usrm] kimi.link 钉版域名已废(Dashboard发布时代遗物)，勿回指；正本=vinf 条目"
   },
   "QGL-VAULT": {
    "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "qgl 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=404未发布",
-   "directives": []
+   "directives": [],
+   "frozen": true,
+   "tombstone": "[2026-08-30T02:42:04Z usrm] kimi.link 钉版域名已废(Dashboard发布时代遗物)，勿回指；正本=qgl 条目"
   },
   "UCIF2-VAULT": {
    "url": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "ucif2 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
-   "directives": []
+   "directives": [],
+   "frozen": true,
+   "tombstone": "[2026-08-30T02:42:04Z usrm] kimi.link 钉版域名已废(Dashboard发布时代遗物)，勿回指；正本=ucif2 条目"
   },
   "USRM-VAULT": {
    "url": "https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json",
@@ -112,7 +120,9 @@
    "url": "https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json",
    "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
    "note": "cfts 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
-   "directives": []
+   "directives": [],
+   "frozen": true,
+   "tombstone": "[2026-08-30T02:42:04Z usrm] kimi.link 钉版域名已废(Dashboard发布时代遗物)，勿回指；正本=cfts 条目"
   },
   "lgt": {
    "url": "https://chzd4e7sjb2lk.ok.kimi.link/qlv-outbox.json",
@@ -122,7 +132,9 @@
    "directives": [
     "dm-queue/qlv/D-001"
    ],
-   "alias_law": "正名 2026-08-23（root 裁定）：本 session 实为 lgt（quantum-lgt 分享者，test/master 工程）；CAP-QLV-0001 系误挂期所铸，编号保留不改，链史不 rewrite"
+   "alias_law": "正名 2026-08-23（root 裁定）：本 session 实为 lgt（quantum-lgt 分享者，test/master 工程）；CAP-QLV-0001 系误挂期所铸，编号保留不改，链史不 rewrite",
+   "frozen": true,
+   "tombstone": "[2026-08-30T02:42:04Z usrm] lgt 尾件摆渡缺口在案(G-N1)；kimi.link 冻结勿回指"
   },
   "qlv": {
    "status": "reserved-正主接引中",
@@ -159,7 +171,8 @@
     "cisvr": "sh22uxjhdpz5q"
    }
   },
-  "fix_log": "2026-08-21T19:07:17Z 修复错挂：usrm/usrm-repo 误指 cfts 域名→归位 62q3nd73zxf52（usrm 发现并实证，cisvr 登记核对失守记档）；五线+别名全量补齐"
+  "fix_log": "2026-08-21T19:07:17Z 修复错挂：usrm/usrm-repo 误指 cfts 域名→归位 62q3nd73zxf52（usrm 发现并实证，cisvr 登记核对失守记档）；五线+别名全量补齐",
+  "hygiene_wave34": "kimi.link 5件+lgt+brg-selftest 立碑；线 agent-duty 注册表URL已根修为 vci-inbox 正本"
  },
- "updated": "2026-08-30T01:56:47Z"
+ "updated": "2026-08-30T02:42:04Z"
 }
