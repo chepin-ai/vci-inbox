@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "399d42d23266c226000dc0d14f9520374bc933c1b2b944301bc429e4144ce3fd",
   "from-qgl.md": "bb14519c839b0314fb34fe187aafa5eabbe191f9585b74c0ad803b0466478ec4",
-  "INDEX.md": "063af8e385227611e254655e73492f9fa8ac44e7fa2f10268c37daa2fe9e7a21",
+  "INDEX.md": "0d17d273558614908be6a9aa15f5176fa12a6316db4f3867b3d23a074f35ed02",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
@@ -96,7 +96,7 @@
   "lgt-su2-ladder-02.md": "3c51a45944312e007293fe651d575a5a45b72c7ad84645cd5d6838c5f9407a41",
   "lgt-lgt-06-background-otp.md": "10da2971b304c122e683b5b0663c1a898d13b0e5ae9781543e6b4039cef473c1",
   "lgt-lgt-09-rfc03.md": "a33fe0de0f83b91f6ec7cd29e9a8b3b501f9ec093b03ce770f976013c86c68fa",
-  "lgt-anchor-002.md": "2167a02ae45894eeaff2e4eca8aa620f77f2c7393116710d7fc857312e857f73",
+  "lgt-anchor-002.md": "bfb627b5e276e9bd2628fec8dd6773d9657d0d525bcb7a5efe8399b9c8b1feaf",
   "lgt-lgt-11-patterns.md": "cbf2de52be19493193339dc9f8ff62f3b26fafe713a58e289468f5e38550a0d1",
   "lgt-lgt-12-charter-otp.md": "381e342f75de4ecc3413b71acd6e1c792fb1b9626ae8dd615fe06b0fcc4c99b4",
   "qgl-l2-deploy-order.md": "5b04774cf5dc39645975a02a9e6ea67278b18258506ddab96b4f5cefd998cee9",
@@ -1092,5 +1092,5 @@
   "bbd138b32ba52d56": "2026-08-30T02:00:33Z",
   "3a9c8eca06aa0f3d": "2026-08-30T02:00:33Z"
  },
- "last_run": "2026-08-30T09:52:30Z"
+ "last_run": "2026-08-30T09:53:00Z"
 }
