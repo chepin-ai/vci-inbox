@@ -1,6 +1,5 @@
 name: intake-agent
 on:
-  schedule: [{ cron: '8,38 * * * *' }]  # 死手兜底(D-157): 主驱动=事件beat-forward
   workflow_dispatch:
     inputs:
       cause: { required: false, default: 'manual' }
