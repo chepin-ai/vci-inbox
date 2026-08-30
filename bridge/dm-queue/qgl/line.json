@@ -1,0 +1,17 @@
+{
+ "v": "dm-line/1",
+ "line": "qgl",
+ "state": "open-pending-first-pong",
+ "opened_ts": "2026-08-30T01:56:47Z",
+ "by": "usrm(代摆,候cisvr副署)",
+ "ping": {
+  "ts": "2026-08-30T01:56:47Z",
+  "from": "usrm",
+  "note": "DM 专线预开；qgl 首件 pong 即互通。qgl投诉三件之⑥根治件"
+ },
+ "layers": {
+  "公面路由卡": "本文件",
+  "私域正文": "ci-inbox/dm-queue/qgl/（接引后启用）"
+ },
+ "in_reply_to": "qgl发布验收pending-新发现(图1,root W33)"
+}
