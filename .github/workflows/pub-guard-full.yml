@@ -6,7 +6,6 @@ on:
         description: "all | 任一公仓名"
         required: true
         default: "all"
-  schedule: [{ cron: '23 */4 * * *' }]  # [skip ci]绕行洞封堵: 4h全树巡(增量guard被skip ci绕过——usrm narrative 20260827实证)
 permissions:
   contents: write
   # rationale: R1现行层全树代号化批处理——增量pub-guard只审push改动面且被[skip ci]绕过,存量/绕行违规由此4h巡清(D-127/D-134);rules表L2私存运行时拉取
