@@ -53,12 +53,12 @@ CHANNELS = getc('ci-control', 'bridge/CHANNELS-01.md') or ''
 # G-DIR 指令保鲜：open 且 lts 超 72h
 for i in items:
     if i.get('state') == 'open' and age_h(i.get('lts', D.get('updated', TS))) > 72:
-        finding('G-DIR-stale-open', '%s open 超 72h：%s' % (i['id'], i['d'][:40]))
+        finding('G-DIR-stale-open', '%s open 超 72h：%s' % (i.get('id', '?'), str(i.get('d', ''))[:40]))
 
 # G-N6 迭代必验效：done/verified 必须带非空实证
 for i in items:
     if i.get('state') in ('done', 'verified') and not str(i.get('ev', '')).strip('- '):
-        finding('G-N6-bare-done', '%s 标 %s 无实证' % (i['id'], i['state']))
+        finding('G-N6-bare-done', '%s 标 %s 无实证' % (i.get('id', '?'), i.get('state')))
 
 # G-N8 岗报必呈
 mm = re.search(r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)', BOARD)
