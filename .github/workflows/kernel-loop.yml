@@ -1,5 +1,6 @@
 name: kernel-loop
 on:
+  schedule: [{ cron: '*/30 * * * *' }]   # M12/SENTINEL-01 合法死手: ≥30min 防沉睡兜底(事件驱动为主,W33事件饥饿实证后复原)
   workflow_dispatch:
     inputs:
       cause: { required: false, default: 'manual' }
