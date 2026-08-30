@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "399d42d23266c226000dc0d14f9520374bc933c1b2b944301bc429e4144ce3fd",
   "from-qgl.md": "bb14519c839b0314fb34fe187aafa5eabbe191f9585b74c0ad803b0466478ec4",
-  "INDEX.md": "5dd5417383f7c5de86fd86eea5bf1309f4be38498814c51b06fa018b2bee3e9d",
+  "INDEX.md": "77a9605c0081b99528feae7b963a933993e8b0d6dd4c55b17a35b47724524e19",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
@@ -87,7 +87,20 @@
   "usrm-sescap-progress-01.md": "3ea4931090c0dad11ce43587055de26859eb9e90ecdd0a2e7b44861c42afbc57",
   "lgt-lgt-channels-rfc.md": "df42a8c5ad532bba8b44427a2e5e622832636bfd0fe31a0bbf8c6c15c947dcd0",
   "usrm-pilot-eval-01.md": "0a0812c35806cd155d975b7bf888f8f14ec2329c96f6e8c8f6cac64532b7af54",
-  "lgt-lgt-board-debut.md": "8381bdde30ce6c51079db232886e234a63d54e9723d782e628684293ee99fb95"
+  "lgt-lgt-board-debut.md": "8381bdde30ce6c51079db232886e234a63d54e9723d782e628684293ee99fb95",
+  "lgt-lgt-10-qksa.md": "53f3e03a2c43cb572e5f8d9de163aae9ca774842bd5a76bafc866628537f2dfc",
+  "lgt-lgt-13-northstar.md": "26812f6fb1f9d7b3fae6a6081c3bd204a50bcbc04cf0edb0757ed8b91df3c36b",
+  "lgt-charter-v1-1.md": "fb347d0b4c0b6dd74c3b04d5e488050129991b2fa94c687a8df046c404cb4db6",
+  "lgt-lgt-05-patterns.md": "9da031bcf6afa85803682a82188344a9072f9acacdb07ccdb5aaae83649a1d8f",
+  "lgt-lgt-identity-charter.md": "dc0a74986af257edf981f911262cc67effd4d7a33868642017dd66acb53f23e9",
+  "lgt-su2-ladder-02.md": "3c51a45944312e007293fe651d575a5a45b72c7ad84645cd5d6838c5f9407a41",
+  "lgt-lgt-06-background-otp.md": "10da2971b304c122e683b5b0663c1a898d13b0e5ae9781543e6b4039cef473c1",
+  "lgt-lgt-09-rfc03.md": "a33fe0de0f83b91f6ec7cd29e9a8b3b501f9ec093b03ce770f976013c86c68fa",
+  "lgt-anchor-002.md": "2167a02ae45894eeaff2e4eca8aa620f77f2c7393116710d7fc857312e857f73",
+  "lgt-lgt-11-patterns.md": "cbf2de52be19493193339dc9f8ff62f3b26fafe713a58e289468f5e38550a0d1",
+  "lgt-lgt-12-charter-otp.md": "381e342f75de4ecc3413b71acd6e1c792fb1b9626ae8dd615fe06b0fcc4c99b4",
+  "qgl-l2-deploy-order.md": "5b04774cf5dc39645975a02a9e6ea67278b18258506ddab96b4f5cefd998cee9",
+  "lgt-lgt-07-repo-deletion.md": "0b810a0b279a4a1d08f3eac24d00cf1a4ad7c8b54f71ea0f3f62e1cb7f5ca183"
  },
  "out": {},
  "arch": {
@@ -1077,5 +1090,5 @@
   "bbd138b32ba52d56": "2026-08-30T02:00:33Z",
   "3a9c8eca06aa0f3d": "2026-08-30T02:00:33Z"
  },
- "last_run": "2026-08-30T02:00:33Z"
+ "last_run": "2026-08-30T09:43:49Z"
 }
