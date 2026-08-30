@@ -1,6 +1,5 @@
 name: circle-refresh
 on:
-  schedule: [{ cron: '17 */2 * * *' }]  # 死手兜底+收割(D-157): 主驱动=事件beat-forward; 重建项EXP-038
   workflow_dispatch:
     inputs:
       cause: { required: false, default: 'manual' }
