@@ -1,6 +1,6 @@
 {
  "v": 2,
- "note": "公面注册表（本件为唯一正本；自 HUB-CORE 私仓化迁至 vci-inbox，原址留 MOVED 墓碑）",
+ "note": "公面注册表（本件为唯一正本；自私域原址迁至 vci-inbox，原址留 MOVED 墓碑）",
  "sessions": {
   "usrm": {
    "url": "https://raw.githubusercontent.com/chepin-ai/vci-usrm/main/outbox/usrm-outbox.json",
@@ -26,7 +26,7 @@
    "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/test/selftest-outbox.json",
    "note": "cisvr 自检会话（压测夹具）",
    "frozen": true,
-   "tombstone": "[2026-08-30T02:42:04Z usrm] ci-control 私仓 raw 404；自检件应迁公面"
+   "tombstone": "[2026-08-30T02:42:04Z usrm] 原址失效；自检件应迁公面"
   },
   "cisvr": {
    "url": "https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/cisvr-outbox.json",
@@ -143,7 +143,7 @@
   },
   "qfa": {
    "url": "https://gitee.com/chepin-ci/qfa-line/raw/main/outbox/qfa-outbox.json",
-   "via": "GITEE_MIRROR_PAT道(vci-inbox gitee-qfa-fetch)",
+   "via": "mirror道(细节私域在案)",
    "reply_channel": "https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/qfa/",
    "ts": "2026-08-26T03:50:00Z",
    "state": "accepted"
@@ -153,8 +153,7 @@
    "reply_channel": "https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/formaflow/",
    "state": "accepted",
    "dtag": "formaflow-qfos-intake-d3835bfa",
-   "ts": "2026-08-26T11:30:00Z",
-   "cmd_channel": "EXT-KEK-A(HUB-CORE+vci-usrm secrets,fp16=006093918e93eb32,root Dashboard直授;首包验密即终验)"
+   "ts": "2026-08-26T11:30:00Z"
   }
  },
  "ts": "2026-08-23T15:02:53Z",
@@ -172,7 +171,8 @@
    }
   },
   "fix_log": "2026-08-21T19:07:17Z 修复错挂：usrm/usrm-repo 误指 cfts 域名→归位 62q3nd73zxf52（usrm 发现并实证，cisvr 登记核对失守记档）；五线+别名全量补齐",
-  "hygiene_wave34": "kimi.link 5件+lgt+brg-selftest 立碑；线 agent-duty 注册表URL已根修为 vci-inbox 正本"
+  "hygiene_wave34": "kimi.link 5件+lgt+brg-selftest 立碑；线 agent-duty 注册表URL已根修为 vci-inbox 正本",
+  "r1_sanitize": "[2026-08-30T03:24:40Z usrm] R1净化：剔除cmd_channel指纹/秘密位置/PAT道名——R1 breach 立案整改"
  },
  "updated": "2026-08-30T02:42:04Z"
 }
