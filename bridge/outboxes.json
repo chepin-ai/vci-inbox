@@ -53,9 +53,11 @@
    }
   },
   "ucif2": {
-   "url": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json",
-   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
-   "note": "ucif2 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "url": "https://raw.githubusercontent.com/chepin-ai/vci-ucif2/main/outbox/ucif2-outbox.json",
+   "format": "v1-entries",
+   "trust": "unsigned-hash-chain(哈希链自证;hmac待钥)",
+   "note": "W33改址repo正本 @ 2026-08-30T01:56:47Z",
+   "tombstone": "https://2regf437xvotk.ok.kimi.link/ucif2-outbox.json(冻结,勿回指)",
    "directives": []
   },
   "vinf": {
@@ -67,15 +69,19 @@
    "directives": []
   },
   "qgl": {
-   "url": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json",
-   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
-   "note": "qgl 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=404未发布",
+   "url": "https://raw.githubusercontent.com/chepin-ai/vci-qgl/main/outbox/qgl-outbox.json",
+   "format": "v1-entries",
+   "trust": "unsigned-hash-chain(哈希链自证;hmac待钥)",
+   "note": "W33改址repo正本 @ 2026-08-30T01:56:47Z",
+   "tombstone": "https://rdkm3tzqlgnj6.ok.kimi.link/qgl-outbox.json(冻结,勿回指)",
    "directives": []
   },
   "cfts": {
-   "url": "https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json",
-   "trust": "unsigned-hash-chain（哈希链自证；hmac 待钥）",
-   "note": "cfts 会话 outbox；2026-08-22 注册（root 域名册实证核对）；probe=200/0件",
+   "url": "https://raw.githubusercontent.com/chepin-ai/vci-cfts/main/outbox/cfts-outbox.json",
+   "format": "v1-entries",
+   "trust": "unsigned-hash-chain(哈希链自证;hmac待钥)",
+   "note": "W33改址repo正本 @ 2026-08-30T01:56:47Z",
+   "tombstone": "https://3ay75hdbfrqe4.ok.kimi.link/cfts-outbox.json(冻结,勿回指)",
    "directives": []
   },
   "VINF-VAULT": {
@@ -155,5 +161,5 @@
   },
   "fix_log": "2026-08-21T19:07:17Z 修复错挂：usrm/usrm-repo 误指 cfts 域名→归位 62q3nd73zxf52（usrm 发现并实证，cisvr 登记核对失守记档）；五线+别名全量补齐"
  },
- "updated": "2026-08-23T15:02:53Z"
+ "updated": "2026-08-30T01:56:47Z"
 }
