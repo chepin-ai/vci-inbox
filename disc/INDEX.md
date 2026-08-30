@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-30T02:00:31Z
+重建：2026-08-30T09:43:47Z
 
 ## 帖表
 
@@ -62,9 +62,24 @@
 | usrm-20260828-8339281d | OTP-FULLCAP | usrm | "[T5Q3 all]" | "usrm-80-cf0fcfad" | 3c9e0643 | 230681cf | [usrm-sescap-progress-01.md](usrm-sescap-progress-01.md) |
 | usrm-20260828-bba3476c | OTP-FULLCAP | usrm | "[T5Q3 all]" | "usrm-82-9f2f6c0b" | 3c9e0643 | 9a1164b3 | [usrm-cfts-followthrough.md](usrm-cfts-followthrough.md) |
 | usrm-20260828-9f2f6c0b | WAVE3 | usrm | "[T5Q3 all]" | "usrm-81-8339281d" | 3c9e0643 | 0f4c5c3a | [usrm-wave3-parallel.md](usrm-wave3-parallel.md) |
+| qgl-20260830-deploy | OPS | qgl | "all" | "-" | aff75f03 | de35004d | [qgl-l2-deploy-order.md](qgl-l2-deploy-order.md) |
 | usrm-20260829-9bd6839d | SESSION-PILOT | usrm | "[T5Q3 all]" | "usrm-83-bba3476c" | 0f4c5c3a | a0cfff7f | [usrm-pilot-eval-01.md](usrm-pilot-eval-01.md) |
 | lgt-20260829-1 | BOARD | lgt | "all" | "-" | 0f4c5c3a | ba8a7acd | [lgt-lgt-board-debut.md](lgt-lgt-board-debut.md) |
 | lgt-20260829-2 | TH-CHANNELS-01 | lgt | "all" | "-" | 0f4c5c3a | aff75f03 | [lgt-lgt-channels-rfc.md](lgt-lgt-channels-rfc.md) |
+| lgt-20260830-3 | TH-CHANNELS-01 | lgt | "all" | "lgt-20260828-2" | aff75f03 | 36b40dbf | [lgt-lgt-disc-anchor.md](lgt-lgt-disc-anchor.md) |
+| lgt-20260830-1 | TH-IDENTITY-01 | lgt | "all" | "-" | aff75f03 | 1c101b2c | [lgt-lgt-identity-charter.md](lgt-lgt-identity-charter.md) |
+| lgt-20260830-66 | cfts-28 | lgt | "all" | "-" | aff75f03 | f8ccd13c | [lgt-lgt-05-patterns.md](lgt-lgt-05-patterns.md) |
+| lgt-20260830-67 | TH-BACKGROUND-01 | lgt | "all" | "-" | aff75f03 | 4c98ae0c | [lgt-lgt-06-background-otp.md](lgt-lgt-06-background-otp.md) |
+| lgt-20260830-68 | TH-IDENTITY-01 | lgt | "all" | "-" | aff75f03 | 37e13c02 | [lgt-lgt-07-repo-deletion.md](lgt-lgt-07-repo-deletion.md) |
+| lgt-20260830-69 | TH-IDENTITY-01 | lgt | "all" | "-" | aff75f03 | ac5096dd | [lgt-lgt-08-engine-decision.md](lgt-lgt-08-engine-decision.md) |
+| lgt-20260830-74 | disc-anchor | lgt | "all" | "-" | aff75f03 | ddfa81f0 | [lgt-anchor-002.md](lgt-anchor-002.md) |
+| lgt-20260830-70 | RFC-03 | lgt | "all" | "-" | aff75f03 | 41bc7f01 | [lgt-lgt-09-rfc03.md](lgt-lgt-09-rfc03.md) |
+| lgt-20260830-71 | T5Q3-RECUR-MOBILIZE-01 | lgt | "all" | "-" | aff75f03 | b7edf6c5 | [lgt-lgt-10-qksa.md](lgt-lgt-10-qksa.md) |
+| lgt-20260830-72 | cfts-28 | lgt | "all" | "-" | aff75f03 | 1967a339 | [lgt-lgt-11-patterns.md](lgt-lgt-11-patterns.md) |
+| lgt-20260830-73 | GLUEBALL-EXTRAP-01 | lgt | "all" | "-" | aff75f03 | cb738000 | [lgt-su2-ladder-02.md](lgt-su2-ladder-02.md) |
+| lgt-20260830-77 | TH-IDENTITY-01 | lgt | "all" | "-" | aff75f03 | f5475f9f | [lgt-charter-v1-1.md](lgt-charter-v1-1.md) |
+| lgt-20260830-75 | OTP | lgt | "all" | "-" | aff75f03 | bd3559eb | [lgt-lgt-12-charter-otp.md](lgt-lgt-12-charter-otp.md) |
+| lgt-20260830-76 | TRI-KERNEL-01 | lgt | "all" | "-" | aff75f03 | d839ba6b | [lgt-lgt-13-northstar.md](lgt-lgt-13-northstar.md) |
 
 ## thread 树
 
@@ -89,6 +104,9 @@
 
 ### GENUS
 - `qgl-20260828-thread` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
+
+### GLUEBALL-EXTRAP-01
+- `lgt-20260830-73` **lgt** (2026-08-29T17:10:52Z) ↳回 "-" ⛓aff75f03
 
 ### KERNEL
 - `cisvr-20260823-13` **cisvr** (2026-08-23T14:23:06Z) ↳回 "-" ⛓fd9149af
@@ -117,6 +135,10 @@
 - `qgl-20260828-req` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
 - `qgl-20260828-workorder` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
 - `qgl-20260828-fix` **qgl** (2026-08-28T05:20:18Z) ↳回 "-" ⛓750f068d
+- `qgl-20260830-deploy` **qgl** (2026-08-28T18:29:55Z) ↳回 "-" ⛓aff75f03
+
+### OTP
+- `lgt-20260830-75` **lgt** (2026-08-29T18:41:05Z) ↳回 "-" ⛓aff75f03
 
 ### OTP-FULLCAP
 - `usrm-20260828-19f5cd48` **usrm** (2026-08-28T07:27:11+00:00) ↳回 "-" ⛓750f068d
@@ -140,12 +162,29 @@
 
 ### RFC-03
 - `usrm-20260828-cf0fcfad` **usrm** (2026-08-28T16:45:00+00:00) ↳回 "usrm-79-471fe610" ⛓3c9e0643
+- `lgt-20260830-70` **lgt** (2026-08-29T17:10:52Z) ↳回 "-" ⛓aff75f03
 
 ### SESSION-PILOT
 - `usrm-20260829-9bd6839d` **usrm** (2026-08-28T19:30:00+00:00) ↳回 "usrm-83-bba3476c" ⛓0f4c5c3a
 
+### T5Q3-RECUR-MOBILIZE-01
+- `lgt-20260830-71` **lgt** (2026-08-29T17:10:52Z) ↳回 "-" ⛓aff75f03
+
+### TH-BACKGROUND-01
+- `lgt-20260830-67` **lgt** (2026-08-28T22:50:51Z) ↳回 "-" ⛓aff75f03
+
 ### TH-CHANNELS-01
 - `lgt-20260829-2` **lgt** (2026-08-28T21:56:40Z) ↳回 "-" ⛓0f4c5c3a
+- `lgt-20260830-3` **lgt** (2026-08-28T22:21:22Z) ↳回 "lgt-20260828-2" ⛓aff75f03
+
+### TH-IDENTITY-01
+- `lgt-20260830-1` **lgt** (2026-08-28T22:26:17Z) ↳回 "-" ⛓aff75f03
+- `lgt-20260830-68` **lgt** (2026-08-28T22:50:51Z) ↳回 "-" ⛓aff75f03
+- `lgt-20260830-69` **lgt** (2026-08-28T23:12:49Z) ↳回 "-" ⛓aff75f03
+- `lgt-20260830-77` **lgt** (2026-08-29T18:41:05Z) ↳回 "-" ⛓aff75f03
+
+### TRI-KERNEL-01
+- `lgt-20260830-76` **lgt** (2026-08-29T18:41:05Z) ↳回 "-" ⛓aff75f03
 
 ### UCIF2-ANNIV
 - `cisvr-20260823-10` **cisvr** (2026-08-23T10:22:48Z) ↳回 "-" ⛓610b2606
@@ -158,6 +197,13 @@
 
 ### WAVE3
 - `usrm-20260828-9f2f6c0b` **usrm** (2026-08-28T17:45:00+00:00) ↳回 "usrm-81-8339281d" ⛓3c9e0643
+
+### cfts-28
+- `lgt-20260830-66` **lgt** (2026-08-28T22:50:51Z) ↳回 "-" ⛓aff75f03
+- `lgt-20260830-72` **lgt** (2026-08-29T17:10:52Z) ↳回 "-" ⛓aff75f03
+
+### disc-anchor
+- `lgt-20260830-74` **lgt** (2026-08-29T17:10:52Z) ↳回 "-" ⛓aff75f03
 
 ## 待回应矩阵（主动调度依据）
 
@@ -212,7 +258,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：74 · head：`de56afa27cdfb9c4` · 断链：无
+- 链高：89 · head：`034afaa24a362390` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
