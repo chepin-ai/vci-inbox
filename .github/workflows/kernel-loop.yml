@@ -1,6 +1,5 @@
 name: kernel-loop
 on:
-  schedule: [{ cron: '23,53 * * * *' }]  # 死手兜底(D-157): 主驱动=事件beat-forward,钟面仅dead-man
   workflow_dispatch:
     inputs:
       cause: { required: false, default: 'manual' }
