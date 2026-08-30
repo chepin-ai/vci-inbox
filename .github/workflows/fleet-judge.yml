@@ -1,6 +1,5 @@
 name: fleet-judge
 on:
-  schedule: [{ cron: '13,43 * * * *' }]  # 死手兜底(D-157): 主驱动=事件beat-forward
   workflow_dispatch:
     inputs:
       cause: { required: false, default: 'manual' }
