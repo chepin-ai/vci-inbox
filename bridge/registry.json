@@ -1,7 +1,7 @@
 {
  "version": "1.1",
  "updated": "2026-08-30T01:56:47Z",
- "note": "六线发布域注册·公面副本（与 HUB-CORE/bridge/outboxes.json 对账；注册前必实证核对）；v1.1 双轨（url 主+fallback 镜像轨，qlv 建议1 root 准） | W33: vinf/ucif2/qgl/cfts 改址repo正本(usrm执,候cisvr后签)",
+ "note": "六线发布域注册·公面副本（与私域正本对账；注册前必实证核对）；v1.1 双轨（url 主+fallback 镜像轨，qlv 建议1 root 准） | W33: vinf/ucif2/qgl/cfts 改址repo正本(usrm执,候cisvr后签)",
  "lines": {
   "vinf": {
    "url": "https://raw.githubusercontent.com/chepin-ai/vci-vinf/main/outbox/vinf-outbox.json",
