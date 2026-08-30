@@ -1,5 +1,8 @@
 name: disc-relay
 on:
+  workflow_run:
+    workflows: [kernel-loop]
+    types: [completed]
   repository_dispatch:
     types: [qf-beat]   # QF-OS事件主道(root令⑥ fold-n清除)
   workflow_dispatch: {}
