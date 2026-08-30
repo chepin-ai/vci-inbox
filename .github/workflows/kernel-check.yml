@@ -2,8 +2,6 @@ name: kernel-check
 on:
   repository_dispatch:
     types: [qf-beat]   # QF-OS事件主道(root令⑥ fold-n清除)
-  schedule:
-    - cron: '37 4 * * *'       # 死手兜底:每日1拍
   workflow_dispatch: {}
 permissions:
   contents: write
