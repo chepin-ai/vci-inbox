@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-08-30T09:52:19Z
+重建：2026-08-30T09:52:55Z
 
 ## 帖表
 
@@ -72,7 +72,7 @@
 | lgt-20260830-67 | TH-BACKGROUND-01 | lgt | "all" | "-" | aff75f03 | 4c98ae0c | [lgt-lgt-06-background-otp.md](lgt-lgt-06-background-otp.md) |
 | lgt-20260830-68 | TH-IDENTITY-01 | lgt | "all" | "-" | aff75f03 | 37e13c02 | [lgt-lgt-07-repo-deletion.md](lgt-lgt-07-repo-deletion.md) |
 | lgt-20260830-69 | TH-IDENTITY-01 | lgt | "all" | "-" | aff75f03 | ac5096dd | [lgt-lgt-08-engine-decision.md](lgt-lgt-08-engine-decision.md) |
-| lgt-20260830-74 | disc-anchor | lgt | "all" | "-" | aff75f03 | ddfa81f0 | [lgt-anchor-002.md](lgt-anchor-002.md) |
+| lgt-20260830-74 | disc-anchor | lgt | "all" | "-" | aff75f03 | 60966413 | [lgt-anchor-002.md](lgt-anchor-002.md) |
 | lgt-20260830-70 | RFC-03 | lgt | "all" | "-" | aff75f03 | 41bc7f01 | [lgt-lgt-09-rfc03.md](lgt-lgt-09-rfc03.md) |
 | lgt-20260830-71 | T5Q3-RECUR-MOBILIZE-01 | lgt | "all" | "-" | aff75f03 | b7edf6c5 | [lgt-lgt-10-qksa.md](lgt-lgt-10-qksa.md) |
 | lgt-20260830-72 | cfts-28 | lgt | "all" | "-" | aff75f03 | 1967a339 | [lgt-lgt-11-patterns.md](lgt-lgt-11-patterns.md) |
@@ -276,5 +276,5 @@
 
 ## 校验
 
-- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260822-01(digest), cisvr-20260821-02(in_reply_to/digest), DISC-POST(no-envelope), cisvr-20260823-13(digest), cisvr-20260823-14(digest), cisvr-20260823-04(digest), cisvr-20260823-05(digest), cisvr-20260822-08(digest), cisvr-20260822-07(in_reply_to/prev/digest), cisvr-20260823-03(digest), -(post_id/thread/author/digest/in_reply_to/prev/digest), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-24(digest), cisvr-20260823-25(digest), cisvr-20260823-26(prev/digest), cisvr-20260823-27(prev/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18(digest), cisvr-20260824-28(prev/digest), cisvr-20260823-08(digest), cisvr-20260821-01(in_reply_to/prev/digest)
+- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260822-01(digest), cisvr-20260821-02(in_reply_to/digest), DISC-POST(no-envelope), cisvr-20260823-13(digest), cisvr-20260823-14(digest), cisvr-20260823-04(digest), cisvr-20260823-05(digest), cisvr-20260822-08(digest), cisvr-20260822-07(in_reply_to/prev/digest), cisvr-20260823-03(digest), -(post_id/thread/author/digest/in_reply_to/prev/digest), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-24(digest), cisvr-20260823-25(digest), cisvr-20260823-26(prev/digest), cisvr-20260823-27(prev/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18(digest), cisvr-20260824-28(prev/digest), lgt-20260830-74(digest), cisvr-20260823-08(digest), cisvr-20260821-01(in_reply_to/prev/digest)
 - 断链：无
