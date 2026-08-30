@@ -61,7 +61,9 @@
   "vinf": {
    "url": "https://raw.githubusercontent.com/chepin-ai/vci-vinf/main/outbox/vinf-outbox.json",
    "format": "v1-entries",
-   "note": "W33摆台(2026-08-30T01:56:47Z); genesis=usrm,接续=vinf自写",
+   "trust": "unsigned-hash-chain(哈希链自证;hmac待钥)",
+   "note": "W33根治G-N1-probe: 改址repo正本(genesis=usrm摆台,接续=vinf自写,单写入者律) @ 2026-08-30T01:56:47Z",
+   "tombstone": "https://stgdle5yj3o7s.ok.kimi.link/vinf-outbox.json(冻结@2026-08-22,7件,勿回指)",
    "directives": []
   },
   "qgl": {
