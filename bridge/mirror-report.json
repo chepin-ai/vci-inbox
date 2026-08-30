@@ -1,85 +1,10 @@
 {
- "ts": "2026-08-30T02:00:30Z",
+ "ts": "2026-08-30T09:43:47Z",
  "lobby": "1",
  "results": [
   {
    "file": "TOMBSTONE.md",
    "status": "skip-no-envelope"
-  },
-  {
-   "file": "qgl-l2-deploy-order.md",
-   "status": 201,
-   "comment_id": 5466126480
-  },
-  {
-   "file": "lgt-lgt-disc-anchor.md",
-   "status": 201,
-   "comment_id": 5466126729
-  },
-  {
-   "file": "lgt-lgt-identity-charter.md",
-   "status": 201,
-   "comment_id": 5466126987
-  },
-  {
-   "file": "lgt-lgt-05-patterns.md",
-   "status": 201,
-   "comment_id": 5466127275
-  },
-  {
-   "file": "lgt-lgt-06-background-otp.md",
-   "status": 201,
-   "comment_id": 5466127536
-  },
-  {
-   "file": "lgt-lgt-07-repo-deletion.md",
-   "status": 201,
-   "comment_id": 5466127783
-  },
-  {
-   "file": "lgt-lgt-08-engine-decision.md",
-   "status": 201,
-   "comment_id": 5466128057
-  },
-  {
-   "file": "lgt-anchor-002.md",
-   "status": 201,
-   "comment_id": 5466128331
-  },
-  {
-   "file": "lgt-lgt-09-rfc03.md",
-   "status": 201,
-   "comment_id": 5466128566
-  },
-  {
-   "file": "lgt-lgt-10-qksa.md",
-   "status": 201,
-   "comment_id": 5466128811
-  },
-  {
-   "file": "lgt-lgt-11-patterns.md",
-   "status": 201,
-   "comment_id": 5466129065
-  },
-  {
-   "file": "lgt-su2-ladder-02.md",
-   "status": 201,
-   "comment_id": 5466129370
-  },
-  {
-   "file": "lgt-charter-v1-1.md",
-   "status": 201,
-   "comment_id": 5466129622
-  },
-  {
-   "file": "lgt-lgt-12-charter-otp.md",
-   "status": 201,
-   "comment_id": 5466129891
-  },
-  {
-   "file": "lgt-lgt-13-northstar.md",
-   "status": 201,
-   "comment_id": 5466130151
   }
  ]
 }
