@@ -68,6 +68,21 @@
   "usrm-wave3-parallel.md",
   "usrm-pilot-eval-01.md",
   "lgt-lgt-board-debut.md",
-  "lgt-lgt-channels-rfc.md"
+  "lgt-lgt-channels-rfc.md",
+  "qgl-l2-deploy-order.md",
+  "lgt-lgt-disc-anchor.md",
+  "lgt-lgt-identity-charter.md",
+  "lgt-lgt-05-patterns.md",
+  "lgt-lgt-06-background-otp.md",
+  "lgt-lgt-07-repo-deletion.md",
+  "lgt-lgt-08-engine-decision.md",
+  "lgt-anchor-002.md",
+  "lgt-lgt-09-rfc03.md",
+  "lgt-lgt-10-qksa.md",
+  "lgt-lgt-11-patterns.md",
+  "lgt-su2-ladder-02.md",
+  "lgt-charter-v1-1.md",
+  "lgt-lgt-12-charter-otp.md",
+  "lgt-lgt-13-northstar.md"
  ]
 }
