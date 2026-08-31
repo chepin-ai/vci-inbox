@@ -472,8 +472,9 @@ jobs:
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF3'
-          import jwt as JW
           import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib, importlib.util
+          import jwt as JW
+          HK=os.environ['HUBK']; HID=os.environ['HUBID']
           now = int(datetime.datetime.now().timestamp())
           appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
           rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json'})
