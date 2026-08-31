@@ -1,0 +1,54 @@
+name: relay-repo-disposition
+on: [workflow_dispatch]
+permissions:
+  contents: write
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: REPO-DISPOSITION执行(root令⑧授权)
+        env:
+          AI_PAT: ${{ secrets.AI_FULL_PAT }}
+          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import json,os,urllib.request,urllib.error,base64,time,datetime
+          AI=os.environ['AI_PAT']
+          def api(m,u,d=None,t=None):
+              r=urllib.request.Request(u,method=m,headers={'Authorization':'token '+(t or AI),'Accept':'application/vnd.github+json','User-Agent':'disposition'})
+              if d is not None: r.data=json.dumps(d).encode()
+              try:
+                  x=urllib.request.urlopen(r); b=x.read().decode(); return x.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,e.read().decode()[:150]
+          NOTICE=('# 迁移通告(MIGRATE-NOTICE-01,cisvr司法机,root令⑧)\n'
+                  '本仓属CI-OS旧壳,定于 2026-09-05 归档(只读留史)。\n'
+                  '各线通信/作业面请即迁新代: ci-inbox(公告板/dm-queue/讨论室)→vci-inbox bridge/board; '
+                  'usrm-repo(hall/inbox)→vci-usrm bridge; vinf→vci-vinf; ucif2→vci-ucif2; cfts→vci-cfts。\n'
+                  '旧壳fleet-drive信标已断供(seq64止);cron器阵已寂化。归档可逆,史面不丢。')
+          res={}
+          for repo in ['ci-control-backup','quantum-go-ledger','ci-library','ci-logs','ci-playground','ci-build']:
+              s,_=api('PATCH',f'https://api.github.com/repos/chepin-ai/{repo}',{'archived':True})
+              res[repo]=s
+          for repo in ['ci-inbox','usrm-repo','vinf-market-kernel','ucif2-formalization-kernel','github-repo-cfts']:
+              s,old=api('GET',f'https://api.github.com/repos/chepin-ai/{repo}/contents/MIGRATE-NOTICE-01.md')
+              bd={'message':'MIGRATE-NOTICE-01: 09-05归档通告+新代迁移面(cisvr,root令⑧)','content':base64.b64encode(NOTICE.encode()).decode()}
+              if s==200: bd['sha']=old['sha']
+              s2,_=api('PUT',f'https://api.github.com/repos/chepin-ai/{repo}/contents/MIGRATE-NOTICE-01.md',bd)
+              res[repo+'/NOTICE']=s2
+          for repo in ['ci-control-backup','quantum-go-ledger','ci-library','ci-logs','ci-playground','ci-build']:
+              s,m=api('GET',f'https://api.github.com/repos/chepin-ai/{repo}')
+              res[repo+'/archived']=(m.get('archived') if s==200 else s)
+          import jwt
+          now=int(time.time())
+          t=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
+          IT=json.loads(urllib.request.urlopen(urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'})).read().decode())['token']
+          out={'v':'REPO-DISPOSITION-EXEC-01','ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),'results':res}
+          su='https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/adjudications/REPO-DISPOSITION-EXEC-01.json'
+          bd={'message':'REPO-DISPOSITION-EXEC-01回执','content':base64.b64encode(json.dumps(out,ensure_ascii=False,indent=1).encode()).decode()}
+          r=urllib.request.Request(su,data=json.dumps(bd).encode(),method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+          print('bridge',urllib.request.urlopen(r).status)
+          print(json.dumps(res))
+          PYEOF
