@@ -444,7 +444,26 @@ jobs:
                       print("line-beat→"+_rp, urllib.request.urlopen(rq,timeout=15).status)
                   except Exception as _e:
                       print("ring fanout "+_rp+" skip:", str(_e)[:100])
-              print('FLIGHT-DECK shadow:', json.dumps(rep['engines'],ensure_ascii=False)[:400])
+          # 私域CI金丝雀（W42）：每拍先验上一班结果，未复通则再叩 miniprobe；复通即置位封存
+          try:
+              cs=g('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/private-ci-canary.json')
+              done=False
+              if isinstance(cs,dict) and cs.get('content'):
+                  done=json.loads(base64.b64decode(cs['content']).decode()).get('revived',False)
+              if not done:
+                  rr=g('https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/runs?per_page=1')
+                  runs=rr.get('workflow_runs',[]) if isinstance(rr,dict) else []
+                  cc=runs[0].get('conclusion') if runs else None
+                  if cc=='success':
+                      putc('ci-control','bridge/private-ci-canary.json', json.dumps({'revived':True,'ts':TS,'note':'私域CI通道实证复通（9/1额度重置）——ci-root-runner复役窗开'},ensure_ascii=False,indent=1), '私域CI金丝雀: 复通实证 '+TS)
+                      print('PRIVATE-CI REVIVED', TS)
+                  else:
+                      rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/dispatches',data=json.dumps({'ref':'main'}).encode(),method='POST',headers=H)
+                      print('canary re-knock:', urllib.request.urlopen(rq,timeout=15).status)
+              else:
+                  print('canary revived already')
+          except Exception as _e:
+              print('canary skip:', str(_e)[:100])              print('FLIGHT-DECK shadow:', json.dumps(rep['engines'],ensure_ascii=False)[:400])
           except Exception as e:
               print('FLIGHT-DECK shadow skip:', str(e)[:200])
           PYEOF2
