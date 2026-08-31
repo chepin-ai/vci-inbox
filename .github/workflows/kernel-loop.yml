@@ -472,6 +472,7 @@ jobs:
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF3'
+          import jwt as JW
           import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib, importlib.util
           now = int(datetime.datetime.now().timestamp())
           appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
