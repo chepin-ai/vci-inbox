@@ -379,7 +379,7 @@ jobs:
           print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'sym_stalled': len(symphony['stalled']), 'fus_merge': len(fusion['merge_candidates']), 'cause': CAUSE, 'beat_forward': knocked, 'seq': ev['seq']}, ensure_ascii=False))
           PYEOF
 
-      - name: "FLIGHT-DECK影子拍: KD引擎+CIRCLE-v2常任审计+C2 bus_root+RING毂扇出 (W41实飞 F3/F4/F11)"
+      - name: "FLIGHT-DECK影子拍: 常任审计+bus_root+毂扇出+私域金丝雀 (W41/W42)"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
@@ -387,6 +387,21 @@ jobs:
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF2'
           import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib, importlib.util
+          def g(u):
+              rq=urllib.request.Request(u,headers=H)
+              try: return json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
+              except urllib.error.HTTPError as e: return {"_s":e.code}
+          def getc(repo,path):
+              d=g("https://api.github.com/repos/chepin-ai/"+repo+"/contents/"+urllib.parse.quote(path,safe=""))
+              if isinstance(d,dict) and d.get("content"): return base64.b64decode(d["content"]).decode()
+              return None
+          def putc(repo,path,content,msg):
+              d=g("https://api.github.com/repos/chepin-ai/"+repo+"/contents/"+urllib.parse.quote(path,safe=""))
+              body={"message":msg,"content":base64.b64encode(content.encode()).decode()}
+              if isinstance(d,dict) and d.get("sha"): body["sha"]=d["sha"]
+              rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/"+repo+"/contents/"+urllib.parse.quote(path,safe=""),method="PUT",headers=H,data=json.dumps(body).encode())
+              try: return urllib.request.urlopen(rq,timeout=20).status
+              except urllib.error.HTTPError as e: return e.code
           try:
               import jwt as JW
               HK=os.environ['HUBK']; HID=os.environ['HUBID']
@@ -396,21 +411,6 @@ jobs:
               IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
               H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'}
               TS=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-              def g(u):
-                  rq=urllib.request.Request(u,headers=H)
-                  try: return json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
-                  except urllib.error.HTTPError as e: return {"_s":e.code}
-              def getc(repo,path):
-                  d=g("https://api.github.com/repos/chepin-ai/"+repo+"/contents/"+urllib.parse.quote(path,safe=""))
-                  if isinstance(d,dict) and d.get("content"): return base64.b64decode(d["content"]).decode()
-                  return None
-              def putc(repo,path,content,msg):
-                  d=g("https://api.github.com/repos/chepin-ai/"+repo+"/contents/"+urllib.parse.quote(path,safe=""))
-                  body={"message":msg,"content":base64.b64encode(content.encode()).decode()}
-                  if isinstance(d,dict) and d.get("sha"): body["sha"]=d["sha"]
-                  rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/"+repo+"/contents/"+urllib.parse.quote(path,safe=""),method="PUT",headers=H,data=json.dumps(body).encode())
-                  try: return urllib.request.urlopen(rq,timeout=20).status
-                  except urllib.error.HTTPError as e: return e.code
               for name,path in (('kd','ure/code/kernel-derive-engine-01.py'),('cv2','ure/code/circle-v2.py')):
                   src=getc("vci-usrm",path)
                   if src: open("/tmp/"+name+".py","w").write(src)
@@ -437,33 +437,30 @@ jobs:
                   putc("ci-control","bridge/c2-bus.jsonl", busl, "C2 bus_root "+TS+" root="+str(bus["bus_root"]))
               else:
                   rep['engines']={'error':'engine files unfetched'}
-              # F11: BEAT-RING 毂扇出（ops-hub 直道；候 ops-line 扩面后回切线际环）
               for _rp in ("vci-vinf","vci-ucif2","vci-cfts","vci-qgl"):
                   try:
                       rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/"+_rp+"/dispatches", data=json.dumps({"event_type":"line-beat","client_payload":{"cause":"beat-forward","from":"hub-kernel-loop","ts":TS}}).encode(), method="POST", headers=H)
                       print("line-beat→"+_rp, urllib.request.urlopen(rq,timeout=15).status)
                   except Exception as _e:
                       print("ring fanout "+_rp+" skip:", str(_e)[:100])
-          # 私域CI金丝雀（W42）：每拍先验上一班结果，未复通则再叩 miniprobe；复通即置位封存
-          try:
-              cs=g('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/private-ci-canary.json')
-              done=False
-              if isinstance(cs,dict) and cs.get('content'):
-                  done=json.loads(base64.b64decode(cs['content']).decode()).get('revived',False)
-              if not done:
-                  rr=g('https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/runs?per_page=1')
-                  runs=rr.get('workflow_runs',[]) if isinstance(rr,dict) else []
-                  cc=runs[0].get('conclusion') if runs else None
-                  if cc=='success':
-                      putc('ci-control','bridge/private-ci-canary.json', json.dumps({'revived':True,'ts':TS,'note':'私域CI通道实证复通（9/1额度重置）——ci-root-runner复役窗开'},ensure_ascii=False,indent=1), '私域CI金丝雀: 复通实证 '+TS)
-                      print('PRIVATE-CI REVIVED', TS)
+              try:
+                  cs=getc("ci-control","bridge/private-ci-canary.json")
+                  _done=json.loads(cs).get("revived",False) if cs else False
+                  if not _done:
+                      rr=g("https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/runs?per_page=1")
+                      runs=rr.get("workflow_runs",[]) if isinstance(rr,dict) else []
+                      cc=runs[0].get("conclusion") if runs else None
+                      if cc=="success":
+                          putc("ci-control","bridge/private-ci-canary.json", json.dumps({"revived":True,"ts":TS,"note":"私域CI通道实证复通（9/1额度重置）——ci-root-runner复役窗开"},ensure_ascii=False,indent=1), "私域CI金丝雀 复通实证 "+TS)
+                          print("PRIVATE-CI REVIVED", TS)
+                      else:
+                          rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/dispatches",data=json.dumps({"ref":"main"}).encode(),method="POST",headers=H)
+                          print("canary re-knock:", urllib.request.urlopen(rq,timeout=15).status)
                   else:
-                      rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/dispatches',data=json.dumps({'ref':'main'}).encode(),method='POST',headers=H)
-                      print('canary re-knock:', urllib.request.urlopen(rq,timeout=15).status)
-              else:
-                  print('canary revived already')
-          except Exception as _e:
-              print('canary skip:', str(_e)[:100])              print('FLIGHT-DECK shadow:', json.dumps(rep['engines'],ensure_ascii=False)[:400])
+                      print("canary revived already")
+              except Exception as _e:
+                  print("canary skip:", str(_e)[:100])
+              print('FLIGHT-DECK shadow:', json.dumps(rep['engines'],ensure_ascii=False)[:400])
           except Exception as e:
               print('FLIGHT-DECK shadow skip:', str(e)[:200])
           PYEOF2
