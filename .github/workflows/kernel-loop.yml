@@ -453,6 +453,15 @@ jobs:
                       if cc=="success":
                           putc("ci-control","bridge/private-ci-canary.json", json.dumps({"revived":True,"ts":TS,"note":"私域CI通道实证复通（9/1额度重置）——ci-root-runner复役窗开"},ensure_ascii=False,indent=1), "私域CI金丝雀 复通实证 "+TS)
                           print("PRIVATE-CI REVIVED", TS)
+                          # wave-61 复通接续链（root 令：系统内机制不借会话端 cron）
+                          try:
+                              rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/ci-root-runner.yml/dispatches",data=json.dumps({"ref":"main","inputs":{"task":"all"}}).encode(),method="POST",headers=H)
+                              print("ci-root-runner task=all dispatch:", urllib.request.urlopen(rq,timeout=15).status)
+                          except Exception as _e:
+                              print("ci-root-runner dispatch skip:", str(_e)[:100])
+                          _seq={"ts":TS,"revived":True,"done":["canary 置位","ci-root-runner task=all 已 dispatch"],
+                                "pending":["WC-4（复通后由 ci-root-runner all 内含）","P5 backfill（usrm 会话面轮询 8C650D1015ADCA17）","OTP@qfa gitee 面自证（FINDING-SESSION-RESTORE-GHOST-01，09-03 前无件→改判冲+我侧重建）"]}
+                          putc("ci-control","bridge/revival-sequence-0901.json", json.dumps(_seq,ensure_ascii=False,indent=1), "9/1 复通接续单 "+TS)
                       else:
                           rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/dispatches",data=json.dumps({"ref":"main"}).encode(),method="POST",headers=H)
                           print("canary re-knock:", urllib.request.urlopen(rq,timeout=15).status)
