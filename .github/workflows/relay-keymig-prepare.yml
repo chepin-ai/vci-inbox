@@ -1,0 +1,49 @@
+name: relay-keymig-prepare
+on:
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "KEYMIG-01 leg1: 铸钥+SK密封自存+pub投桥"
+        env:
+          RELAY_PAT: ${{ secrets.AI_FULL_PAT }}
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pynacl pyjwt
+          python3 - <<'PYEOF'
+          import os, json, base64, urllib.request, urllib.error, time
+          from nacl.public import PrivateKey, PublicKey, SealedBox
+          from nacl.encoding import Base64Encoder
+          PAT=os.environ['RELAY_PAT']; HUBK=os.environ['HUBK']; HID=os.environ['HUBID']
+          GH='https://api.github.com'; O='chepin-ai'
+          def HH(tok): return {'Authorization':'token '+tok,'Accept':'application/vnd.github+json','User-Agent':'cisvr-mig'}
+          def api2(tok,m,u,d=None):
+              rq=urllib.request.Request(u,method=m,headers=HH(tok))
+              if d is not None: rq.data=json.dumps(d).encode()
+              try:
+                  r=urllib.request.urlopen(rq,timeout=30); b=r.read().decode(); return r.status,(json.loads(b) if b else {})
+              except urllib.error.HTTPError as e: return e.code,e.read().decode()[:200]
+          # App安装token(推ci-control桥件用)
+          import jwt as JW
+          now=int(time.time())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HUBK,algorithm='RS256')
+          s,tok=api2('x','POST','https://api.github.com/app/installations/154355791/access_tokens') if False else (None,None)
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'cisvr-mig'})
+          IT2=json.loads(urllib.request.urlopen(rq,timeout=30).read().decode())['token']
+          # 铸钥
+          sk=PrivateKey.generate(); pub=sk.public_key
+          # SK密封→vci-inbox TEMP_MIG_SK
+          s,pk=api2(PAT,'GET',f'{GH}/repos/{O}/vci-inbox/actions/secrets/public-key')
+          sealed=SealedBox(PublicKey(pk['key'].encode(),Base64Encoder())).encrypt(bytes(sk))
+          s1,_=api2(PAT,'PUT',f'{GH}/repos/{O}/vci-inbox/actions/secrets/TEMP_MIG_SK',{'encrypted_value':base64.b64encode(sealed).decode(),'key_id':pk['key_id']})
+          # pub明文→ci-control桥
+          doc={'mig':'KEYMIG-01','ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'x25519_pub':base64.b64encode(bytes(pub)).decode(),'targets':['FED_RELAY_SK','INBOX_PRIVATE_KEY','QUAFU_TOKEN','SHARED_KEYS','DISPATCH_PAT','FORMAFLOW_CMD_AUTH'],'burn':'两程后即焚'}
+          body={'message':'KEYMIG-01 leg1: 一次性迁移pub','content':base64.b64encode(json.dumps(doc).encode()).decode()}
+          s0,c0=api2(IT2,'GET',f'{GH}/repos/{O}/ci-control/contents/bridge/sealed-inbox/MIG-PUB-01.json')
+          if s0==200: body['sha']=c0['sha']
+          s2,_=api2(IT2,'PUT',f'{GH}/repos/{O}/ci-control/contents/bridge/sealed-inbox/MIG-PUB-01.json',body)
+          print(json.dumps({'TEMP_MIG_SK':s1,'pub_posted':s2,'pub_fp':doc['x25519_pub'][:12]}))
+          PYEOF
