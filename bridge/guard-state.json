@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "399d42d23266c226000dc0d14f9520374bc933c1b2b944301bc429e4144ce3fd",
   "from-qgl.md": "bb14519c839b0314fb34fe187aafa5eabbe191f9585b74c0ad803b0466478ec4",
-  "INDEX.md": "a1fe90ce3fc6c2ae51d88cb452a0da29fbc23ab28418348781c9801e694b897f",
+  "INDEX.md": "761168cf818653b2dd470438daf07682c08057b0d419f42f7d7074d3ab9a8255",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
@@ -1092,5 +1092,5 @@
   "bbd138b32ba52d56": "2026-08-30T02:00:33Z",
   "3a9c8eca06aa0f3d": "2026-08-30T02:00:33Z"
  },
- "last_run": "2026-08-31T17:13:45Z"
+ "last_run": "2026-08-31T21:24:43Z"
 }
