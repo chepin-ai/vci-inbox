@@ -464,3 +464,57 @@ jobs:
           except Exception as e:
               print('FLIGHT-DECK shadow skip:', str(e)[:200])
           PYEOF2
+
+      - name: "KD-ENG并入拍: derive()活面复算+圈检器+M-CODE轨迹 (wave-60 接线, 候root批→异议窗自立)"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF3'
+          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib, importlib.util
+          now = int(datetime.datetime.now().timestamp())
+          appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
+          rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json'})
+          IT = json.loads(urllib.request.urlopen(rq, timeout=20).read())['token']
+          H = {'Authorization': 'token ' + IT, 'Accept': 'application/vnd.github+json'}
+          def g(u):
+              rq = urllib.request.Request(u, headers=H)
+              try: return json.loads(urllib.request.urlopen(rq, timeout=20).read().decode())
+              except urllib.error.HTTPError as e: return {"_s": e.code}
+          def getc(repo, path):
+              d = g("https://api.github.com/repos/chepin-ai/" + repo + "/contents/" + urllib.parse.quote(path, safe=""))
+              if isinstance(d, dict) and d.get("content"):
+                  return base64.b64decode(d["content"]).decode(), d["sha"]
+              return None, None
+          def putc(repo, path, text, msg):
+              cur, sha = getc(repo, path)
+              body = {"message": msg + " [skip ci]", "content": base64.b64encode(text.encode()).decode()}
+              if sha: body["sha"] = sha
+              rq = urllib.request.Request("https://api.github.com/repos/chepin-ai/" + repo + "/contents/" + urllib.parse.quote(path, safe=""), data=json.dumps(body).encode(), method="PUT", headers=H)
+              return urllib.request.urlopen(rq, timeout=20).status
+          TS = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+          try:
+              src, _ = getc("vci-usrm", "ure/code/kernel-derive-engine-01.py")
+              led_t, _ = getc("ci-control", "bridge/stream-ledger.jsonl")
+              hb_t, _ = getc("ci-control", "bridge/bridge-heartbeat.json")
+              nar_t, _ = getc("vci-usrm", "ure/narrative_outbox.json")
+              er_t, _ = getc("ci-control", "bridge/EXPECT-REG-01.json")
+              spec = importlib.util.spec_from_loader("kd", loader=None)
+              kd = importlib.util.module_from_spec(spec)
+              exec(src, kd.__dict__)
+              entries = [json.loads(l) for l in led_t.strip().splitlines() if l.strip()]
+              hb = json.loads(hb_t); nar = json.loads(nar_t); erd = json.loads(er_t)
+              beats = hb.get("beats", [])
+              faces = {"narrative_tip": nar.get("tip"), "beat_cross": beats[-1]["cross"] if beats else None,
+                       "ledger_hash": entries[-1]["hash"] if entries else None}
+              exp = erd.get("items", [])
+              rep = kd.derive(ledger_entries=entries, faces=faces, expect_items=exp, silent={"cisvr"}, wallclock_utc=datetime.datetime.now(datetime.timezone.utc))
+              rep["ts"] = TS; rep["by"] = "kernel-loop KD-ENG wiring wave-60"
+              tag = TS.replace(":", "").replace("-", "")[:13]
+              putc("ci-control", "bridge/findings/kernel-kd-" + tag + ".json", json.dumps(rep, ensure_ascii=False, indent=1), "KD-ENG beat " + TS)
+              print("KD-ENG beat:", json.dumps(rep.get("summary", {}), ensure_ascii=False))
+              print("mcode_trace tail:", rep.get("mcode_trace", [])[-3:])
+          except Exception as e:
+              print("KD-ENG skip:", str(e)[:200])
+          PYEOF3
