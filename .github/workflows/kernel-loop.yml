@@ -378,3 +378,68 @@ jobs:
                       knocked.append(f"{wf}:fail:{str(_e)[:40]}")
           print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'sym_stalled': len(symphony['stalled']), 'fus_merge': len(fusion['merge_candidates']), 'cause': CAUSE, 'beat_forward': knocked, 'seq': ev['seq']}, ensure_ascii=False))
           PYEOF
+
+      - name: "FLIGHT-DECK影子拍: KD引擎+CIRCLE-v2常任审计+C2 bus_root (W41实飞,F3/F4)"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF2'
+          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib, importlib.util
+          try:
+              import jwt as JW
+              HK=os.environ['HUBK']; HID=os.environ['HUBID']
+              now=int(datetime.datetime.now().timestamp())
+              aj=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
+              rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+aj,'Accept':'application/vnd.github+json'})
+              IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+              H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'}
+              TS=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+              def g(u):
+                  rq=urllib.request.Request(u,headers=H)
+                  try: return json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
+                  except urllib.error.HTTPError as e: return {'_s':e.code}
+              def getc(repo,path):
+                  d=g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/'+urllib.parse.quote(path,safe=''))
+                  if isinstance(d,dict) and d.get('content'): return base64.b64decode(d['content']).decode()
+                  return None
+              def putc(repo,path,content,msg):
+                  d=g(f'https://api.github.com/repos/chepin-ai/{repo}/contents/'+urllib.parse.quote(path,safe=''))
+                  body={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+                  if isinstance(d,dict) and d.get('sha'): body['sha']=d['sha']
+                  rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/'+urllib.parse.quote(path,safe=''),method='PUT',headers=H,data=json.dumps(body).encode())
+                  try: return urllib.request.urlopen(rq,timeout=20).status
+                  except urllib.error.HTTPError as e: return e.code
+              for name,path in (('kd','ure/code/kernel-derive-engine-01.py'),('cv2','ure/code/circle-v2.py')):
+                  src=getc('vci-usrm',path)
+                  if src:
+                      open(f'/tmp/{name}.py','w').write(src)
+              rep={'ts':TS,'organ':'FLIGHT-DECK-shadow','engines':{}}
+              if os.path.exists('/tmp/kd.py') and os.path.exists('/tmp/cv2.py'):
+                  sp=importlib.util.spec_from_file_location('kd','/tmp/kd.py'); kd=importlib.util.module_from_spec(sp); sp.loader.exec_module(kd)
+                  sp=importlib.util.spec_from_file_location('cv2','/tmp/cv2.py'); cv2m=importlib.util.module_from_spec(sp); sp.loader.exec_module(cv2m)
+                  faces={}
+                  nar=json.loads(getc('vci-usrm','ure/narrative_outbox.json') or '{}')
+                  if nar.get('entries'): faces['narrative']=nar['entries'][-1].get('hash')
+                  ob=json.loads(getc('vci-usrm','outbox/usrm-outbox.json') or '{}')
+                  if ob.get('entries'): faces['outbox']=ob['entries'][-1].get('tip')
+                  led=getc('ci-control','bridge/stream-ledger.jsonl') or ''
+                  es=[json.loads(l) for l in led.splitlines() if l.strip()]
+                  if es: faces['stream']=es[-1].get('hash')
+                  hb=json.loads(getc('ci-control','bridge/bridge-heartbeat.json') or '{}')
+                  if hb.get('beats'): faces['heartbeat_cross']=hb['beats'][-1].get('cross')
+                  import datetime as _dt
+                  r=kd.derive(faces=faces, registry_expect={}, ledger_entries=es[-60:] if es else None, wallclock_utc=_dt.datetime.now(_dt.timezone.utc))
+                  bus=cv2m.E4_cross_anchor({k:v for k,v in faces.items() if v})
+                  rep['engines']={'kd_summary':r['summary'],'bus_root':bus['bus_root'],'faces':faces}
+                  putc('ci-control','bridge/findings/flight-'+TS.replace(':','')+'.json', json.dumps({'ts':TS,'kd':r,'bus':bus},ensure_ascii=False,indent=1), 'FLIGHT-DECK 影子拍 findings '+TS)
+                  busl=getc('ci-control','bridge/c2-bus.jsonl') or ''
+                  busl+=json.dumps({'ts':TS,'bus_root':bus['bus_root'],'pairs':bus['pairs']},ensure_ascii=False)+'\n'
+                  putc('ci-control','bridge/c2-bus.jsonl', busl, 'C2 bus_root '+TS+' root='+str(bus['bus_root']))
+              else:
+                  rep['engines']={'error':'engine files unfetched'}
+              print('FLIGHT-DECK shadow:', json.dumps(rep['engines'],ensure_ascii=False)[:400])
+          except Exception as e:
+              print('FLIGHT-DECK shadow skip:', str(e)[:200])
+          PYEOF2
