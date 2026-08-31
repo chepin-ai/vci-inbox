@@ -1,0 +1,20 @@
+name: relay-diag-otp-env
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 推 diag 入 vci-vinf + 触发
+        env:
+          TK: ${{ secrets.AI_FULL_PAT }}
+        run: |
+          B64=$(base64 -w0 payloads/diag-otp-env.yml)
+          SHA=$(curl -s -H "Authorization: token $TK" "https://api.github.com/repos/chepin-ai/vci-vinf/contents/.github/workflows/diag-otp-env.yml" | python3 -c "import sys,json;print(json.load(sys.stdin).get('sha',''))" || true)
+          if [ -n "$SHA" ]; then BODY="{\"message\":\"diag-otp-env\",\"content\":\"$B64\",\"sha\":\"$SHA\"}"; else BODY="{\"message\":\"diag-otp-env\",\"content\":\"$B64\"}"; fi
+          curl -s -o /dev/null -w "push %{http_code}\n" -X PUT -H "Authorization: token $TK" -d "$BODY" "https://api.github.com/repos/chepin-ai/vci-vinf/contents/.github/workflows/diag-otp-env.yml"
+          sleep 5
+          curl -s -o /dev/null -w "dispatch %{http_code}\n" -X POST -H "Authorization: token $TK" -H "Accept: application/vnd.github+json" -d "{\"ref\":\"main\"}" "https://api.github.com/repos/chepin-ai/vci-vinf/actions/workflows/diag-otp-env.yml/dispatches"
