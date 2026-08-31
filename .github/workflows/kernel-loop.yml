@@ -439,6 +439,16 @@ jobs:
                   putc('ci-control','bridge/c2-bus.jsonl', busl, 'C2 bus_root '+TS+' root='+str(bus['bus_root']))
               else:
                   rep['engines']={'error':'engine files unfetched'}
+
+          # ---- F11: BEAT-RING 毂扇出（ops-hub 直道；候 ops-line 扩面后回切线际环）----
+          try:
+              for _rp in ('vci-vinf','vci-ucif2','vci-cfts','vci-qgl'):
+                  rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{_rp}/dispatches',
+                      data=json.dumps({'event_type':'line-beat','client_payload':{'cause':'beat-forward','from':'hub-kernel-loop','ts':TS}}).encode(),
+                      method='POST',headers=H)
+                  print('line-beat→',_rp,urllib.request.urlopen(rq,timeout=15).status)
+          except Exception as _e:
+              print('ring fanout skip:', str(_e)[:120])
               print('FLIGHT-DECK shadow:', json.dumps(rep['engines'],ensure_ascii=False)[:400])
           except Exception as e:
               print('FLIGHT-DECK shadow skip:', str(e)[:200])
