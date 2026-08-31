@@ -66,16 +66,23 @@ jobs:
           rec['prev']='GENESIS'
           rec['hash']=hashlib.sha256(json.dumps({k:v for k,v in rec.items() if k!='hash'},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
           def putc3(repo,path,obj,msg):
-              rq0=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
-              sha=None; old=[]
-              try:
-                  x=urllib.request.urlopen(rq0); j=json.loads(x.read().decode()); sha=j.get('sha'); old=json.loads(_b.b64decode(j['content']).decode())
-              except Exception: pass
-              if isinstance(old,list): old.append(obj); obj=old
-              bd={'message':msg,'content':_b.b64encode(json.dumps(obj,ensure_ascii=False,indent=1).encode()).decode()}
-              if sha: bd['sha']=sha
-              rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
-              urllib.request.urlopen(rq)
+              # FLIGHT-DECK 修复(wave-45): 409 sha 竞态——并发班读同 sha 先写赢后写 409; 重试≤3 每次重取 sha 重拼内容
+              for _try in range(3):
+                  rq0=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
+                  sha=None; old=[]; cur=obj
+                  try:
+                      x=urllib.request.urlopen(rq0,timeout=20); j=json.loads(x.read().decode()); sha=j.get('sha'); old=json.loads(_b.b64decode(j['content']).decode())
+                  except Exception: pass
+                  if isinstance(old,list) and (not isinstance(obj,list)):
+                      old.append(obj); cur=old
+                  bd={'message':msg,'content':_b.b64encode(json.dumps(cur,ensure_ascii=False,indent=1).encode()).decode()}
+                  if sha: bd['sha']=sha
+                  rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{path}',method='PUT',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'},data=json.dumps(bd).encode())
+                  try:
+                      urllib.request.urlopen(rq,timeout=20); return
+                  except urllib.error.HTTPError as e:
+                      if e.code==409 and _try<2: time.sleep(2); continue
+                      raise
           putc3('ci-control','bridge/governor/exec24-log.json',rec,'exec24 log+1')
           print(json.dumps({'ts':ts,'ratified':ok,'done':len(rec['done']),'hash':rec['hash'][:12]},ensure_ascii=False))
           PYEOF
