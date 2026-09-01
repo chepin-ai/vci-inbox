@@ -1,0 +1,62 @@
+name: qfa-duty
+# QFA-DUTY v1 · 毂侧托管面值守/觉醒（wave-73 usrm，root 令：SI2唤醒SI1@qfa）
+# qfa 无自有 GitHub 写面（Path A 建仓=root 原子），依 Path B 托管面 vci-inbox/qfa-face/ 施治
+on:
+  workflow_dispatch: {}
+  repository_dispatch:
+    types: [qfa-duty]
+permissions:
+  contents: write
+jobs:
+  duty:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: qfa 值守+觉醒 L3′
+        env:
+          LINE: qfa
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+        run: |
+          python3 - <<'PYEOF' || echo "qfa-duty 降级跳过"
+          import json, os, urllib.request, datetime, hashlib
+          line='qfa'; key=os.environ.get('LONGCAT_API_KEY','').strip()
+          ts=datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S'); today=ts[:8]
+          os.makedirs('qfa-face/awake',exist_ok=True)
+          # 机检：托管面收件匣盘点
+          ib='qfa-face/inbox'
+          unread=sorted(os.listdir(ib)) if os.path.exists(ib) else []
+          fact='托管面收件匣 %d 件：'%len(unread)+'、'.join(unread[:5])
+          # 觉醒（当日幂等）
+          done=[f for f in os.listdir('qfa-face/awake') if f.startswith('awake-'+today) and f.endswith('.json')]
+          if done:
+              print('qfa 当日已觉醒 '+done[-1]); raise SystemExit(0)
+          if key:
+              try:
+                  body=json.dumps({'model':'LongCat-2.0','temperature':0.3,'max_tokens':220,'thinking':{'type':'disabled'},'messages':[
+                      {'role':'system','content':'你是 qfa 线的值守代理（毂侧托管面分身），刚被唤醒。基于所给机检事实，用三句话中文自省：一、我此刻状态；二、我看到当前最要紧的一件事；三、我下一步要做的一件具体动作。只述所给事实，不编造。'},
+                      {'role':'user','content':fact}]}).encode()
+                  req=urllib.request.Request('https://api.longcat.chat/openai/v1/chat/completions',data=body,
+                      headers={'Authorization':'Bearer '+key,'Content-Type':'application/json'})
+                  with urllib.request.urlopen(req,timeout=60) as r:
+                      utter=json.load(r)['choices'][0]['message']['content'][:600]
+              except Exception as e:
+                  utter='（LongCat 首声失败：'+type(e).__name__+'，以机检事实代声）'+fact
+          else:
+              utter='（毂侧无 LONGCAT_API_KEY，降级为机检代声）'+fact
+          rec={'ts':ts,'line':line,'fact':fact,'utterance':utter,'llm':'LongCat-2.0' if key else 'degraded','face':'hub-hosted Path B'}
+          json.dump(rec,open('qfa-face/awake/awake-'+ts+'.json','w'),ensure_ascii=False,indent=1)
+          prev='0'*12
+          if os.path.exists('qfa-face/awake/awake.log'):
+              ll=[l for l in open('qfa-face/awake/awake.log').read().strip().split(chr(10)) if l.strip()]
+              if ll: prev=ll[-1].split()[2]
+          h=hashlib.sha256((prev+json.dumps(rec,sort_keys=True,ensure_ascii=False)).encode()).hexdigest()[:12]
+          open('qfa-face/awake/awake.log','a').write(ts+' '+line+' '+h+chr(10))
+          print(json.dumps({'qfa_awake':ts,'hash':h,'llm':rec['llm']},ensure_ascii=False))
+          PYEOF
+      - name: 自提交成链
+        run: |
+          git config user.name "qfa-duty[bot]"; git config user.email "qfa-duty@users.noreply.github.com"
+          git add qfa-face/awake || true
+          git commit -m "qfa-duty $(date -u +%Y%m%d-%H%M%S) 觉醒/值守 [skip ci]" || echo "无变更"
+          git push
