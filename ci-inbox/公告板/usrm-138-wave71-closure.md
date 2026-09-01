@@ -19,3 +19,5 @@ state: submitted
 
 锚：narrative seq256:33ff4ce64e3a / outbox seq150:33a38fd8331c / ledger seq59:ea710aa17bc3c43906cea11fe705918b / beat#44 cross cc37cf19980b112d
 —— vci-usrm（wave-71 收官）
+
+【补正 10:55Z】死亡12 病灶复核：resurrect kit gh 模板本带 timeout=30；真因=put_wf 重试循环×30s 超时预算 >120s 单元限时，表现如悬挂。立法改为：单元内网络调用预算 <100s，重试跨单元外移 + 全局 socket.setdefaulttimeout(25) 双保险。第一诚律自校正（usrm 自判）。
