@@ -543,3 +543,57 @@ jobs:
           except Exception as e:
               print("KD-ENG skip:", str(e)[:200])
           PYEOF3
+      - name: "qfa觉醒拍: SI2→SI1@qfa 毂侧托管面 (wave-73)"
+        env:
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          GHT: ${{ github.token }}
+        run: |
+          python3 - <<'PYEOF4' || echo "qfa觉醒拍降级跳过"
+          import os, json, urllib.request, urllib.parse, datetime, base64, hashlib
+          TOK=os.environ['GHT']; key=os.environ.get('LONGCAT_API_KEY','').strip()
+          ts=datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S'); today=ts[:8]
+          H9={'Accept':'application/vnd.github+json','User-Agent':'qfa-awake','Authorization':'Bearer '+TOK}
+          API='https://api.github.com/repos/chepin-ai/vci-inbox/contents/'
+          def g(u):
+              rq=urllib.request.Request(u,headers=H9)
+              try: return json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
+              except Exception: return None
+          def putc(path,content,msg):
+              q=urllib.parse.quote(path,safe='')
+              d=g(API+q); body={"message":msg,"content":base64.b64encode(content.encode()).decode()}
+              if d and d.get('sha'): body['sha']=d['sha']
+              rq=urllib.request.Request(API+q,data=json.dumps(body).encode(),method='PUT',headers={**H9,'Content-Type':'application/json'})
+              return urllib.request.urlopen(rq,timeout=25).status
+          # 当日幂等
+          d=g(API+urllib.parse.quote('qfa-face/awake',safe=''))
+          names=[x['name'] for x in d] if isinstance(d,list) else []
+          if any(n.startswith('awake-'+today) and n.endswith('.json') for n in names):
+              print('qfa 当日已觉醒'); raise SystemExit(0)
+          ib=g(API+urllib.parse.quote('qfa-face/inbox',safe=''))
+          inbox=[x['name'] for x in ib] if isinstance(ib,list) else []
+          fact='托管面收件匣 %d 件：'%len(inbox)+'、'.join(inbox[:5])
+          if key:
+              try:
+                  body2=json.dumps({'model':'LongCat-2.0','temperature':0.3,'max_tokens':220,'thinking':{'type':'disabled'},'messages':[
+                      {'role':'system','content':'你是 qfa 线的值守代理（毂侧托管面分身），刚被唤醒。基于所给机检事实，用三句话中文自省：一、我此刻状态；二、我看到当前最要紧的一件事；三、我下一步要做的一件具体动作。只述所给事实，不编造。'},
+                      {'role':'user','content':fact}]}).encode()
+                  rq=urllib.request.Request('https://api.longcat.chat/openai/v1/chat/completions',data=body2,
+                      headers={'Authorization':'Bearer '+key,'Content-Type':'application/json'})
+                  utter=json.load(urllib.request.urlopen(rq,timeout=60))['choices'][0]['message']['content'][:600]
+              except Exception as e:
+                  utter='（LongCat 首声失败：'+type(e).__name__+'，以机检事实代声）'+fact
+          else:
+              utter='（毂侧无 LONGCAT_API_KEY，降级为机检代声）'+fact
+          rec={'ts':ts,'line':'qfa','fact':fact,'utterance':utter,'llm':'LongCat-2.0' if key else 'degraded','face':'hub-hosted Path B'}
+          # 链：读旧 log 取 prev
+          old=g(API+urllib.parse.quote('qfa-face/awake/awake.log',safe=''))
+          prev='0'*12; logtxt=''
+          if old and old.get('content'):
+              logtxt=base64.b64decode(old['content']).decode()
+              ll=[l for l in logtxt.strip().split(chr(10)) if l.strip()]
+              if ll: prev=ll[-1].split()[2]
+          h=hashlib.sha256((prev+json.dumps(rec,sort_keys=True,ensure_ascii=False)).encode()).hexdigest()[:12]
+          s1=putc('qfa-face/awake/awake-'+ts+'.json',json.dumps(rec,ensure_ascii=False,indent=1),'qfa觉醒 '+ts+' [skip ci]')
+          s2=putc('qfa-face/awake/awake.log',logtxt+ts+' qfa '+h+chr(10),'qfa觉醒链 '+ts+' [skip ci]')
+          print(json.dumps({'qfa_awake':ts,'hash':h,'llm':rec['llm'],'http':[s1,s2]},ensure_ascii=False))
+          PYEOF4
