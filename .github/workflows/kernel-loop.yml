@@ -461,12 +461,20 @@ jobs:
                               print("ci-root-runner dispatch skip:", str(_e)[:100])
                           _seq={"ts":TS,"revived":True,"done":["canary 置位","ci-root-runner task=all 已 dispatch"],
                                 "pending":["WC-4（复通后由 ci-root-runner all 内含）","P5 backfill（usrm 会话面轮询 8C650D1015ADCA17）","OTP@qfa gitee 面自证（FINDING-SESSION-RESTORE-GHOST-01，09-03 前无件→改判冲+我侧重建）"]}
-                          putc("ci-control","bridge/revival-sequence-0901.json", json.dumps(_seq,ensure_ascii=False,indent=1), "9/1 复通接续单 "+TS)
+                          print("revival-sequence putc:", putc("ci-control","bridge/revival-sequence-0901.json", json.dumps(_seq,ensure_ascii=False,indent=1), "9/1 复通接续单 "+TS))  # wave-66: putc 结果出声（静默错误码教训）
                       else:
                           rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/usrm-repo/actions/workflows/miniprobe.yml/dispatches",data=json.dumps({"ref":"main"}).encode(),method="POST",headers=H)
                           print("canary re-knock:", urllib.request.urlopen(rq,timeout=15).status)
                   else:
                       print("canary revived already")
+                      # wave-66 自愈：revival-sequence 落盘件缺失即补写
+                      try:
+                          _c,_s2=getc("ci-control","bridge/revival-sequence-0901.json")
+                          if _c is None:
+                              _seq2={"ts":TS,"revived":True,"note":"wave-66 自愈补写（原 putc 静默失败，已改出声）","done":["canary 置位","ci-root-runner task=all 已 dispatch"],"pending":["WC-4","P5 backfill","OTP@qfa 自证 09-03"]}
+                              print("revival-sequence 自愈补写:", putc("ci-control","bridge/revival-sequence-0901.json", json.dumps(_seq2,ensure_ascii=False,indent=1), "9/1 复通接续单 自愈补写 "+TS))
+                      except Exception as _e2:
+                          print("revival-sequence 自愈 skip:", str(_e2)[:100])
               except Exception as _e:
                   print("canary skip:", str(_e)[:100])
               print('FLIGHT-DECK shadow:', json.dumps(rep['engines'],ensure_ascii=False)[:400])
