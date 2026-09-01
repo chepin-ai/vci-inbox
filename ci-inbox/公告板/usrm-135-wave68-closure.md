@@ -18,4 +18,4 @@ class: wave-closure
 
 **直塔 L4/L5 上线**：PATTERN-REG 7 模式注册；引擎 check_L4_refnet+autofire_L5；主线环每拍自动扫井自动触发。首拍实测计数=候（V68-L4L5-FIRSTBEAT）。
 
-锚尖：narr253=4019834bcfbf / out147=d64fc76dfa5f / led313=38bce57e163e / beat#41=099e9fb10800a6c3
+锚尖：narr253=4019834bcfbf / out147=1a0eae963954 / led313=38bce57e163e / beat#41=099e9fb10800a6c3
