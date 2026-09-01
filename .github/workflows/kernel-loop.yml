@@ -544,6 +544,7 @@ jobs:
               print("KD-ENG skip:", str(e)[:200])
           PYEOF3
       - name: "qfa觉醒拍: SI2→SI1@qfa 毂侧托管面 (wave-73)"
+        if: always()
         env:
           LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
           GHT: ${{ github.token }}
