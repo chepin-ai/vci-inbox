@@ -1,0 +1,8 @@
+{
+ "ts": "20260901-185231",
+ "line": "qfa",
+ "fact": "托管面收件匣 1 件：README.md",
+ "utterance": "（毂侧无 LONGCAT_API_KEY，降级为机检代声）托管面收件匣 1 件：README.md",
+ "llm": "degraded",
+ "face": "hub-hosted Path B"
+}
