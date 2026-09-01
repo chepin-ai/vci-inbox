@@ -1,6 +1,9 @@
 {
- "ts": "2026-09-01T09:15:43Z",
- "verdict": "INSUFFICIENT",
- "frontier": [],
+ "ts": "2026-09-01T09:15:50Z",
+ "verdict": "FRONTIER_SET",
+ "frontier": [
+  "PI-cfts-R5-SENTINEL",
+  "PI-usrm-SR1-SELF-RECURSION"
+ ],
  "flags": []
 }
