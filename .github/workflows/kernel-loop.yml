@@ -428,9 +428,10 @@ jobs:
                   if es: faces['stream']=es[-1].get('hash')
                   hb=json.loads(getc("ci-control","bridge/bridge-heartbeat.json") or "{}")
                   if hb.get('beats'): faces['heartbeat_cross']=hb['beats'][-1].get('cross')
-                  r=kd.derive(faces=faces, registry_expect={}, ledger_entries=es[-60:] if es else None, wallclock_utc=datetime.datetime.now(datetime.timezone.utc))
+                  _pr=json.loads(getc("ci-control","bridge/PATTERN-REG-01.json") or "{}")
+                  r=kd.derive(faces=faces, registry_expect={}, ledger_entries=es[-60:] if es else None, wallclock_utc=datetime.datetime.now(datetime.timezone.utc), patterns=_pr.get('patterns'))
                   bus=cv2m.E4_cross_anchor({k:v for k,v in faces.items() if v})
-                  rep['engines']={'kd_summary':r['summary'],'bus_root':bus['bus_root'],'faces':faces}
+                  r['summary']['L4_diverge']=len(r.get('L4') or []); r['summary']['L5_fires']=len(r.get('L5') or []); rep['engines']={'kd_summary':r['summary'],'bus_root':bus['bus_root'],'faces':faces}
                   putc("ci-control","bridge/findings/flight-"+TS.replace(":","")+".json", json.dumps({"ts":TS,"kd":r,"bus":bus},ensure_ascii=False,indent=1), "FLIGHT-DECK 影子拍 findings "+TS)
                   busl=getc("ci-control","bridge/c2-bus.jsonl") or ""
                   busl+=json.dumps({"ts":TS,"bus_root":bus["bus_root"],"pairs":bus["pairs"]},ensure_ascii=False)+"\n"
