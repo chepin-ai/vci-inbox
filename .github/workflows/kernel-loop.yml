@@ -444,6 +444,11 @@ jobs:
                       print("line-beat→"+_rp, urllib.request.urlopen(rq,timeout=15).status)
                   except Exception as _e:
                       print("ring fanout "+_rp+" skip:", str(_e)[:100])
+                  try:
+                      rq2=urllib.request.Request("https://api.github.com/repos/chepin-ai/"+_rp+"/dispatches", data=json.dumps({"event_type":"shadow-pulse","client_payload":{"cause":"beat-forward","from":"hub-kernel-loop","ts":TS}}).encode(), method="POST", headers=H)
+                      print("shadow-pulse→"+_rp, urllib.request.urlopen(rq2,timeout=15).status)
+                  except Exception as _e:
+                      print("shadow-pulse fanout "+_rp+" skip:", str(_e)[:100])
               try:
                   cs=getc("ci-control","bridge/private-ci-canary.json")
                   _done=json.loads(cs).get("revived",False) if cs else False
