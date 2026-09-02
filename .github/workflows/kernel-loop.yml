@@ -445,7 +445,8 @@ jobs:
                   putc("ci-control","bridge/c2-bus.jsonl", busl, "C2 bus_root "+TS+" root="+str(bus["bus_root"]))
               else:
                   rep['engines']={'error':'engine files unfetched'}
-              # W79-L1 预算闸：core.remaining<800 跳过扇出（额度即生命）
+              # W79-L1 预算闸 + W79-L3 CIRCUIT-BREAKER：额度remaining闸 + 403熔断（git面冷却文件，REST零费读）
+              import time as _t
               _skip_fanout=False
               try:
                   _rl=g("https://api.github.com/rate_limit")
@@ -454,6 +455,16 @@ jobs:
                       _skip_fanout=True; print("QUOTA-BUDGET-01 扇出降级: remaining",_rem)
               except Exception as _e:
                   print("rate_limit probe err:", str(_e)[:80])
+              try:
+                  _cd=json.load(open("bridge/quota-cooldown.json"))
+                  if _cd.get("until_epoch",0)>_t.time():
+                      _skip_fanout=True; print("CIRCUIT-OPEN 熔断冷却中 until",_cd.get("until_epoch"),"trip",_cd.get("trip_ts"))
+              except Exception: pass
+              def _trip(ts_):
+                  try:
+                      _cdj=json.dumps({"until_epoch":int(_t.time())+900,"trip_ts":ts_,"by":"kernel-loop CIRCUIT-BREAKER-01(W79-L3)"},ensure_ascii=False)
+                      putc("vci-inbox","bridge/quota-cooldown.json",_cdj,"CIRCUIT-OPEN "+ts_)
+                  except Exception as _e2: print("cooldown write err:",str(_e2)[:80])
               for _rp in ("vci-vinf","vci-ucif2","vci-cfts","vci-qgl","vci-library"):
                   if _skip_fanout: break
                   try:
@@ -461,11 +472,15 @@ jobs:
                       print("line-beat→"+_rp, urllib.request.urlopen(rq,timeout=15).status)
                   except Exception as _e:
                       print("ring fanout "+_rp+" skip:", str(_e)[:100])
+                      if getattr(_e,"code",0)==403:
+                          _skip_fanout=True; _trip(TS); print("CIRCUIT-OPEN: line-beat 403 熔断15min")
                   try:
                       rq2=urllib.request.Request("https://api.github.com/repos/chepin-ai/"+_rp+"/dispatches", data=json.dumps({"event_type":"shadow-pulse","client_payload":{"cause":"beat-forward","from":"hub-kernel-loop","ts":TS}}).encode(), method="POST", headers=H)
                       print("shadow-pulse→"+_rp, urllib.request.urlopen(rq2,timeout=15).status)
                   except Exception as _e:
                       print("shadow-pulse fanout "+_rp+" skip:", str(_e)[:100])
+                      if getattr(_e,"code",0)==403:
+                          _skip_fanout=True; _trip(TS); print("CIRCUIT-OPEN: shadow-pulse 403 熔断15min")
               try:
                   cs=getc("ci-control","bridge/private-ci-canary.json")
                   _done=json.loads(cs).get("revived",False) if cs else False
