@@ -1,0 +1,13 @@
+{
+  "ts": "2026-09-02T23:13Z",
+  "actor": "usrm(manual-sweep)",
+  "file": "bridge-drop/incoming/xanchor/M3/halfsign-qgl.json",
+  "action": "moved→relayed(原relay未含移档步,手工补sweep;同wave-80先例)",
+  "correction": "【勘误·第一诚律】此前播报\"relay未自动触发\"系误报:unauth REST盲症下查actions列表未见run即下断。实证:relay工作流于22:54:01Z正常触发并落正本(ci-control 6ea437d chepin-ci-ops-hub[bot]),仅比cfts(21:23Z)慢~16s同级。本log原文错误结论作废,留此勘误为据。",
+  "evidence": {
+    "relay_commit": "6ea437d",
+    "relay_ts": "2026-09-02T22:54:01Z",
+    "drop_ts": "2026-09-02T22:53:45Z",
+    "mirror": "ci-control:bridge/xanchor/M3/halfsign-qgl.json(sha256两岸一致)"
+  }
+}
