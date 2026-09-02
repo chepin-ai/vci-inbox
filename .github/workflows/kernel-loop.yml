@@ -15,7 +15,7 @@ permissions:
   # rationale: D-157班次革命: 事件驱动接力扣门(级联≤1,cause='beat-forward'不转叩)+qf-beat直道; W77-L5 CRON-ABOLISH-01: cron死手退役(wave-77 root令禁绝); 提案制=义务机主权; 零原文零密钥
 concurrency:
   group: kernel-loop
-  cancel-in-progress: true
+  cancel-in-progress: false  # W79-L2修: 事件高频下cancel=true=永不完拍(毂黑4h实证)，串行+熔断降燃
 jobs:
   loop:
     runs-on: ubuntu-latest
