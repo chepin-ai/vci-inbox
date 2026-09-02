@@ -1,0 +1,14 @@
+{
+ "v": "COSIGN-COMMIT-01",
+ "party": "cfts",
+ "prop_id": "EXP-032-FIRSTSIGN",
+ "commit_hash": "36c9801b682e4af7",
+ "ts": "2026-09-02T13:02Z",
+ "chain_anchor": {
+  "duty": "cfts:e0fd6d84723dd8ac",
+  "awake": "cfts:163fa042dec4"
+ },
+ "reveal_due": "reveal窗候OTP续令(窗口纪律照MECH-COSIGN-01§一)",
+ "mech": "MECH-COSIGN-01",
+ "note": "执手v2.5机读执;salt/rationale存本线weave/duty/act-cosign-EXP-032-FIRSTSIGN.json备reveal对验"
+}
