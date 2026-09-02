@@ -1,0 +1,89 @@
+name: bridge-drop-relay
+# W80 毂侧代投通道(kernel-20260902-08 治法②): 线侧执手 vote/cosign 投件入 bridge-drop/incoming/ → 本 relay 以 HUB 凭据镜像入 ci-control 正本 → 移档 relayed/
+# 幂等: 正本已在即 skip+移档; 自环守卫(W80-L1): 触发面仅 bridge-drop/incoming/**, 落档面 relayed/**+relay-log(皆不在触发面), GITHUB_TOKEN 推不触新拍——写面绝不覆触面
+on:
+  workflow_dispatch: {}
+  push:
+    paths: ['bridge-drop/incoming/**']
+permissions:
+  contents: write
+concurrency:
+  group: bridge-drop-relay
+  cancel-in-progress: false
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: relay 镜像入正本
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF' || echo "relay 降级跳过(不影响毂)"
+          import os, json, re, glob, time, datetime, base64, urllib.request
+          key=os.environ.get('HUBK','').strip(); iss=os.environ.get('HUBID','').strip()
+          ts=datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')
+          moved=[]; skipped=[]; errors=[]
+          files=sorted(glob.glob('bridge-drop/incoming/**/*.json',recursive=True))
+          print('drop 件:',files)
+          if files and key and iss:
+              import jwt as JW
+              nowi=int(time.time())
+              appjwt=JW.encode({'iat':nowi-60,'exp':nowi+540,'iss':iss},key,algorithm='RS256')
+              UA={'Accept':'application/vnd.github+json','User-Agent':'bridge-drop-relay'}
+              def gh(m,u,auth,data=None):
+                  h=dict(UA); h['Authorization']=auth
+                  r=urllib.request.Request(u,method=m,headers=h)
+                  if data is not None: r.data=json.dumps(data).encode(); r.add_header('Content-Type','application/json')
+                  x=urllib.request.urlopen(r,timeout=25); bd=x.read().decode()
+                  return x.status,(json.loads(bd) if bd else {})
+              si,inst=gh('GET','https://api.github.com/repos/chepin-ai/ci-control/installation','Bearer '+appjwt)
+              if si!=200: raise RuntimeError('hub installation HTTP %s'%si)
+              st,tk=gh('POST','https://api.github.com/app/installations/%s/access_tokens'%inst['id'],'Bearer '+appjwt)
+              if st not in (200,201): raise RuntimeError('hub token HTTP %s'%st)
+              HTOK=tk['token']
+              def getc(path):
+                  try:
+                      s,j=gh('GET','https://api.github.com/repos/chepin-ai/ci-control/contents/'+path,'token '+HTOK)
+                      if s==200: return base64.b64decode(j['content']).decode()
+                  except Exception: pass
+                  return None
+              def putc(path,txt,msg):
+                  body={'message':msg,'content':base64.b64encode(txt.encode()).decode()}
+                  s,j=gh('PUT','https://api.github.com/repos/chepin-ai/ci-control/contents/'+path,'token '+HTOK,body)
+                  return s in (200,201)
+              WL=re.compile(r'^bridge-drop/incoming/(ballots|cosign)/([A-Z0-9-]+)/((ballot|commit)-[a-z0-9]+\.json)$')
+              for f in files:
+                  m=WL.match(f)
+                  if not m: skipped.append((f,'白名单外路径')); continue
+                  target='bridge/%s/%s/%s'%(m.group(1),m.group(2),m.group(3))
+                  try:
+                      if getc(target) is not None:
+                          skipped.append((f,'正本已在(幂等)'))
+                      else:
+                          txt=open(f,encoding='utf-8').read()
+                          if putc(target,txt,'bridge-drop relay: %s -> %s (%s)'%(f,target,ts)):
+                              moved.append((f,target))
+                          else: errors.append((f,'putc 失败'))
+                  except Exception as e:
+                      errors.append((f,type(e).__name__+': '+str(e)[:120]))
+              tomove=[f for f,t in moved]+[f for f,why in skipped if '正本已在' in why]
+              for f in tomove:
+                  dst=f.replace('/incoming/','/relayed/')
+                  os.makedirs(os.path.dirname(dst),exist_ok=True)
+                  os.replace(f,dst)
+          rec={'ts':ts,'moved':moved,'skipped':skipped,'errors':errors}
+          os.makedirs('bridge-drop',exist_ok=True)
+          json.dump(rec,open('bridge-drop/relay-log-%s.json'%ts,'w'),ensure_ascii=False,indent=1)
+          print(json.dumps(rec,ensure_ascii=False)[:800])
+          PYEOF
+      - name: 归档成链
+        if: always()
+        run: |
+          git config user.name "bridge-drop-relay[bot]"; git config user.email "bridge-drop-relay@users.noreply.github.com"
+          git add bridge-drop
+          git commit -q -m "bridge-drop relay $(date -u +%Y%m%d-%H%M%S)" || echo "无变更"
+          git push -q origin HEAD:main || echo "推失败(下拍再续)"
