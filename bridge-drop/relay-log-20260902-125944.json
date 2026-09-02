@@ -1,0 +1,11 @@
+{
+ "ts": "20260902-125944",
+ "moved": [],
+ "skipped": [],
+ "errors": [
+  [
+   "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-vinf.json",
+   "HTTPError: HTTP Error 403: Forbidden"
+  ]
+ ]
+}
