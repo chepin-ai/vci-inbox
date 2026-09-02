@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
   # rationale: 收割各线私仓annex(hall/session-inbox)→hub汇聚; 圈状态快照; 超时圈自动触发接力FINDING; 全程只动私域+哈希,零内容泄公
+concurrency:
+  group: circle-refresh
+  cancel-in-progress: true
 jobs:
   refresh:
     runs-on: ubuntu-latest

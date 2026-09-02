@@ -13,6 +13,9 @@ on:
 permissions:
   contents: write
   # rationale: D-157班次革命: 事件驱动接力扣门(级联≤1,cause='beat-forward'不转叩)+qf-beat直道; W77-L5 CRON-ABOLISH-01: cron死手退役(wave-77 root令禁绝); 提案制=义务机主权; 零原文零密钥
+concurrency:
+  group: kernel-loop
+  cancel-in-progress: true
 jobs:
   loop:
     runs-on: ubuntu-latest
@@ -442,7 +445,17 @@ jobs:
                   putc("ci-control","bridge/c2-bus.jsonl", busl, "C2 bus_root "+TS+" root="+str(bus["bus_root"]))
               else:
                   rep['engines']={'error':'engine files unfetched'}
+              # W79-L1 预算闸：core.remaining<800 跳过扇出（额度即生命）
+              _skip_fanout=False
+              try:
+                  _rl=g("https://api.github.com/rate_limit")
+                  _rem=(_rl or {}).get("resources",{}).get("core",{}).get("remaining",0)
+                  if _rem<800:
+                      _skip_fanout=True; print("QUOTA-BUDGET-01 扇出降级: remaining",_rem)
+              except Exception as _e:
+                  print("rate_limit probe err:", str(_e)[:80])
               for _rp in ("vci-vinf","vci-ucif2","vci-cfts","vci-qgl","vci-library"):
+                  if _skip_fanout: break
                   try:
                       rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/"+_rp+"/dispatches", data=json.dumps({"event_type":"line-beat","client_payload":{"cause":"beat-forward","from":"hub-kernel-loop","ts":TS}}).encode(), method="POST", headers=H)
                       print("line-beat→"+_rp, urllib.request.urlopen(rq,timeout=15).status)

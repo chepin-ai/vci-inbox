@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
   # rationale: 元引擎常转: INST-REG盘点/心跳/帕累托拍/相遇检/协同面→FLEET-STATE+链; 只动私域+计数/哈希,零原文零密钥
+concurrency:
+  group: fleet-judge
+  cancel-in-progress: false
 jobs:
   judge:
     runs-on: ubuntu-latest

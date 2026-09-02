@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
   # rationale: 标准化可靠进件代理(私域巡面/即执回执/分级追复/容错纠错/状态双写备份); 零凭证打印; 状态台账全在私仓
+concurrency:
+  group: intake-agent
+  cancel-in-progress: true
 jobs:
   intake:
     runs-on: ubuntu-latest

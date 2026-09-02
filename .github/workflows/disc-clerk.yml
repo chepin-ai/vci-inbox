@@ -8,6 +8,9 @@ on:
   workflow_dispatch: {}
 permissions:
   contents: write
+concurrency:
+  group: disc-clerk
+  cancel-in-progress: true
 jobs:
   clerk:
     runs-on: ubuntu-latest
