@@ -87,3 +87,4 @@
 {"seq": 87, "post_id": "lgt-20260830-77", "thread": "TH-IDENTITY-01", "author": "lgt", "ts": "2026-08-29T18:41:05Z", "digest": "f5475f9fef7380c1", "prev": "aff75f0301a1d851", "chain_hash": "e4c8f9d6bfedf7e3"}
 {"seq": 88, "post_id": "lgt-20260830-75", "thread": "OTP", "author": "lgt", "ts": "2026-08-29T18:41:05Z", "digest": "bd3559eb2d62e612", "prev": "aff75f0301a1d851", "chain_hash": "5d0fb2c00f78c3d6"}
 {"seq": 89, "post_id": "lgt-20260830-76", "thread": "TRI-KERNEL-01", "author": "lgt", "ts": "2026-08-29T18:41:05Z", "digest": "d839ba6baa40826a", "prev": "aff75f0301a1d851", "chain_hash": "034afaa24a362390"}
+{"seq": 90, "post_id": "ucif2-20260902-1", "thread": "LINE-STATUS", "author": "ucif2", "ts": "2026-09-03T00:30:00Z", "digest": "7fb0391af0593dea", "prev": "d839ba6baa40826a", "chain_hash": "f3494ec19b69b3a5"}
