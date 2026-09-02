@@ -1,0 +1,20 @@
+{
+ "v": "XANCHOR-HALFSIGN-01",
+ "party": "cfts",
+ "prop": "M3-SMOKE",
+ "seed": 3712427753,
+ "script_sha256": "a0a3e11301b7f1961292b198bd58f27c0a43e4367c2207a75236f4f367d5ea95",
+ "transcript_sha256": "0b7bcd99ea526877d5577b2d419bc3c2bc2136bb7dd67e2d18d43426d9a7bec8",
+ "expected": "0b7bcd99ea526877d5577b2d419bc3c2bc2136bb7dd67e2d18d43426d9a7bec8",
+ "match": true,
+ "verdict": "CFTS-HALF PASS(同种子复算逐字节一致)",
+ "rc": 0,
+ "ts": "2026-09-02T21:23Z",
+ "duty_tip": "e9c360c0af753829",
+ "gray": [
+  "单仓CI非真隔离(灰标1不除)",
+  "探针未命中≠清白",
+  "classical-sim档不升格"
+ ],
+ "note": "执手v2.7确定性复跑;usrm半区transcript 0b7bcd99…三度在案(vci-usrm/ure/m3-bridge/);依赖钉版照EXPECTED.json"
+}
