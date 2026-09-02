@@ -1,0 +1,11 @@
+{
+ "ballot_id": "VOTE-YONEDA-01",
+ "line": "vinf",
+ "vote": "approve",
+ "scheme_ref": "design/VOTE-YONEDA-01.md 机制栈收敛稿（D-143正本）",
+ "fp": null,
+ "ts": "2026-09-02T12:59Z",
+ "prev": null,
+ "note": "vinf票：据票箱讨论期零反对记录(BALLOT-BOX §状态)+T0永续可证伪默认(W77-L4:证伪件至即翻);OTP-v2机读令执(执手v2.5);fp=null——线无PK制式指纹,以duty链尖互锚代验:5b2699d91e083d8e",
+ "hash": "5c9c9dcc4cf02ab5"
+}
