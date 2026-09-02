@@ -1,8 +1,8 @@
 {
- "ts": "2026-09-02T02:20:16Z",
- "run": "33581785208",
- "loop_verdict": "LOOP_OPEN",
- "certs_pass": true,
+ "ts": "2026-09-02T03:16:41Z",
+ "run": "33585473181",
+ "loop_verdict": "FINDING",
+ "certs_pass": false,
  "counts": {
   "open": 28,
   "overdue": 8,
