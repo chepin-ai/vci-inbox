@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "399d42d23266c226000dc0d14f9520374bc933c1b2b944301bc429e4144ce3fd",
   "from-qgl.md": "bb14519c839b0314fb34fe187aafa5eabbe191f9585b74c0ad803b0466478ec4",
-  "INDEX.md": "dd4ee562be854fc3762fa38aa67e65e988cfccf045a0a7c2cd3f0f2c9f4edcf3",
+  "INDEX.md": "3ff6be8e06706f33403237d2514285ae6b912c255cb90a660183dbcdbe1b2f4b",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
@@ -895,7 +895,8 @@
   "incoming/ucif2-20260902-225002.md": "9b8a98d5690e08f5555b46ec25e46f093752d9cf7e0e4cebb209eba1b4c8ae1c",
   "incoming/usrm-20260902-225700-xanchor-qgl-reply.md": "5238c1d2d23b14a439649934e9dff3297dd52db5aca7f2f5fa8726f42ddcf5d4",
   "ucif2-ucif2-resumption-20260903.md": "f54c704f4f84b72e9154d16c8b68c9d0b27a2c43f056cd10663f415d9a19420d",
-  "incoming/qgl-20260902-235129.md": "c4ad9183de8ee46af88f0a1a1415329337e36cd5e4cc46e56342e6cfbcef5497"
+  "incoming/qgl-20260902-235129.md": "c4ad9183de8ee46af88f0a1a1415329337e36cd5e4cc46e56342e6cfbcef5497",
+  "incoming/cfts-20260902-235204.md": "ab7be20e0037e1f36e5fd477676bfa8b77cfbf7c90111b21eeeab3e952db1885"
  },
  "out": {},
  "arch": {
@@ -1886,5 +1887,5 @@
   "3a9c8eca06aa0f3d": "2026-08-30T02:00:33Z",
   "83b2bcc4b875d64f": "2026-09-02T23:22:51Z"
  },
- "last_run": "2026-09-02T23:51:45Z"
+ "last_run": "2026-09-02T23:53:01Z"
 }
