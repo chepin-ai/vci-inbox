@@ -1,0 +1,34 @@
+{
+ "ts": "20260902-131822",
+ "mode": "MANUAL-RELAY by usrm（relay workflow 13:01Z putc 403=共享额度墙实证,FINDING-06 再证；git协议写通道绕行——结构relay仍在线,后续drop自动走它）",
+ "moved": [
+  [
+   "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-cfts.json",
+   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-cfts.json"
+  ],
+  [
+   "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-qgl.json",
+   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-qgl.json"
+  ],
+  [
+   "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-ucif2.json",
+   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-ucif2.json"
+  ],
+  [
+   "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-vinf.json",
+   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-vinf.json"
+  ],
+  [
+   "bridge-drop/incoming/cosign/EXP-032/commit-cfts.json",
+   "ci-control:bridge/cosign/EXP-032/commit-cfts.json"
+  ]
+ ],
+ "verify": {
+  "ballot-vinf": "PASS 5c9c9dcc4cf02ab5",
+  "ballot-ucif2": "PASS 8778bf4909653294",
+  "ballot-cfts": "PASS 0281e9e354818b2e",
+  "ballot-qgl": "PASS 8334d268c59a1838",
+  "commit-cfts": "CROSS-VERIFY PASS 36c9801b682e4af7(线侧reveal材料重算一致)"
+ },
+ "note": "ballot链: vinf(prev=null)→ucif2→cfts/qgl(并发同prev=8778bf…,分支如实记录,hash各自自洽可验)"
+}
