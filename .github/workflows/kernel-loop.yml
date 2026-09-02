@@ -1,14 +1,18 @@
 name: kernel-loop
 on:
-  schedule: [{ cron: '*/30 * * * *' }]   # M12/SENTINEL-01 合法死手: ≥30min 防沉睡兜底(事件驱动为主,W33事件饥饿实证后复原)
+  # CRON-ABOLISH-01 (W77-L5, wave-77 root令): cron 死手永久退役——静默即合法态,事件即拍
+  # 拍源: 毂仓push + qf-beat扣门(D-157) + workflow_dispatch手拍; M12/SENTINEL-01 由本法替代并归档
   workflow_dispatch:
     inputs:
       cause: { required: false, default: 'manual' }
   repository_dispatch:
     types: [qf-beat]
+  push:
+    branches: [main]
+    paths: ['ci-inbox/**','inbox/**','qfa-face/**']   # W77-L5 事件拍源: 板/匣/面入件即毂拍(毂自提交落bridge//disc/,不在此面,无自环)
 permissions:
   contents: write
-  # rationale: D-157班次革命: 事件驱动接力扣门(级联≤1,cause='beat-forward'不转叩)+qf-beat直道+cron死手; 提案制=义务机主权; 零原文零密钥
+  # rationale: D-157班次革命: 事件驱动接力扣门(级联≤1,cause='beat-forward'不转叩)+qf-beat直道; W77-L5 CRON-ABOLISH-01: cron死手退役(wave-77 root令禁绝); 提案制=义务机主权; 零原文零密钥
 jobs:
   loop:
     runs-on: ubuntu-latest
