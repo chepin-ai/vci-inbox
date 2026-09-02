@@ -4,23 +4,23 @@
  "moved": [
   [
    "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-cfts.json",
-   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-cfts.json"
+   "HUB-CORE:bridge/ballots/VOTE-YONEDA-01/ballot-cfts.json"
   ],
   [
    "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-qgl.json",
-   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-qgl.json"
+   "HUB-CORE:bridge/ballots/VOTE-YONEDA-01/ballot-qgl.json"
   ],
   [
    "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-ucif2.json",
-   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-ucif2.json"
+   "HUB-CORE:bridge/ballots/VOTE-YONEDA-01/ballot-ucif2.json"
   ],
   [
    "bridge-drop/incoming/ballots/VOTE-YONEDA-01/ballot-vinf.json",
-   "ci-control:bridge/ballots/VOTE-YONEDA-01/ballot-vinf.json"
+   "HUB-CORE:bridge/ballots/VOTE-YONEDA-01/ballot-vinf.json"
   ],
   [
    "bridge-drop/incoming/cosign/EXP-032/commit-cfts.json",
-   "ci-control:bridge/cosign/EXP-032/commit-cfts.json"
+   "HUB-CORE:bridge/cosign/EXP-032/commit-cfts.json"
   ]
  ],
  "verify": {
