@@ -481,6 +481,10 @@ jobs:
                       print("shadow-pulse fanout "+_rp+" skip:", str(_e)[:100])
                       if getattr(_e,"code",0)==403:
                           _skip_fanout=True; _trip(TS); print("CIRCUIT-OPEN: shadow-pulse 403 熔断15min")
+              # W79-L3b 熔断扩面: 冷却/低额时 actions-API 全静默(金丝雀段休——限流器需全静方愈;本段在拍尾,SystemExit 仅跳过金丝雀与尾印)
+              if _skip_fanout:
+                  print("CIRCUIT-OPEN: canary 段全休(冷却/低额)")
+                  raise SystemExit(0)
               try:
                   cs=getc("ci-control","bridge/private-ci-canary.json")
                   _done=json.loads(cs).get("revived",False) if cs else False
