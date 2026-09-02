@@ -1,4 +1,5 @@
 name: bridge-drop-relay
+# wave-81 扩面: xanchor/M3 halfsign + reveal 预置(W81-D1/v2.7)
 # W80 毂侧代投通道(kernel-20260902-08 治法②): 线侧执手 vote/cosign 投件入 bridge-drop/incoming/ → 本 relay 以 HUB 凭据镜像入 ci-control 正本 → 移档 relayed/
 # 幂等: 正本已在即 skip+移档; 自环守卫(W80-L1): 触发面仅 bridge-drop/incoming/**, 落档面 relayed/**+relay-log(皆不在触发面), GITHUB_TOKEN 推不触新拍——写面绝不覆触面
 on:
@@ -55,7 +56,7 @@ jobs:
                   body={'message':msg,'content':base64.b64encode(txt.encode()).decode()}
                   s,j=gh('PUT','https://api.github.com/repos/chepin-ai/ci-control/contents/'+path,'token '+HTOK,body)
                   return s in (200,201)
-              WL=re.compile(r'^bridge-drop/incoming/(ballots|cosign)/([A-Z0-9-]+)/((ballot|commit)-[a-z0-9]+\.json)$')
+              WL=re.compile(r'^bridge-drop/incoming/(ballots|cosign|xanchor)/([A-Z0-9-]+)/((ballot|commit|reveal|halfsign)-[a-z0-9]+\.json)$')  # wave-81: +xanchor/halfsign(cfts M3半签) +reveal(v2.6候装检预置)
               for f in files:
                   m=WL.match(f)
                   if not m: skipped.append((f,'白名单外路径')); continue
