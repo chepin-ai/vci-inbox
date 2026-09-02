@@ -438,7 +438,7 @@ jobs:
                   putc("ci-control","bridge/c2-bus.jsonl", busl, "C2 bus_root "+TS+" root="+str(bus["bus_root"]))
               else:
                   rep['engines']={'error':'engine files unfetched'}
-              for _rp in ("vci-vinf","vci-ucif2","vci-cfts","vci-qgl"):
+              for _rp in ("vci-vinf","vci-ucif2","vci-cfts","vci-qgl","vci-library"):
                   try:
                       rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/"+_rp+"/dispatches", data=json.dumps({"event_type":"line-beat","client_payload":{"cause":"beat-forward","from":"hub-kernel-loop","ts":TS}}).encode(), method="POST", headers=H)
                       print("line-beat→"+_rp, urllib.request.urlopen(rq,timeout=15).status)
