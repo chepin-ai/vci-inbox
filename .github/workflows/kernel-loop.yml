@@ -77,6 +77,9 @@ jobs:
 
           # ---- P0 ANCHOR (N机: 熵锚源) ----
           led_txt, _ = getc('ci-control', 'bridge/stream-ledger.jsonl')
+          if not led_txt:  # EMPTY-READ-GENESIS-01闸: 瞬败重试一拍再判
+              import time as _tm; _tm.sleep(2)
+              led_txt, _ = getc('ci-control', 'bridge/stream-ledger.jsonl')
           lines = [l for l in (led_txt or '').splitlines() if l.strip()]
           entries = []
           raw_by_seq = {}
@@ -88,6 +91,11 @@ jobs:
           hashed = [e for e in entries if e.get('hash')]
           tip = hashed[-1] if hashed else None
           maxseq = max([e.get('seq', 0) for e in entries] + [0])
+          if tip is None:  # EMPTY-READ-GENESIS-01闸(LEGISL-33): 空读/读败/断链≠链未生; 无旗拒创世, 落FINDING而嚎
+              _bp, _ = getc('ci-control', 'bridge/ledger-archive/BOOTSTRAP.permit')
+              if not _bp:
+                  putc('ci-control', 'bridge/findings/FINDING-EMPTY-READ-' + TS + '.json', json.dumps({'type': 'FINDING', 'pattern': 'EMPTY-READ-GENESIS-01', 'by': 'kernel-loop', 'ts': TS, 'detail': 'ledger空读/读败/无hash件且无BOOTSTRAP.permit旗, 拒创世, 本拍中止'}, ensure_ascii=False), 'FINDING 空读拒创世 ' + TS)
+                  raise SystemExit(1)
           anchor = {'source': 'ledger_tip', 'tip_hash': (tip.get('hash') if tip else 'GENESIS'), 'tip_seq': maxseq, 'run_salt': RUN}
 
           # ---- P1 OBLIGE (义务机: EXPECT-REG 声明命题盘点) ----
@@ -369,7 +377,7 @@ jobs:
           # ---- 判词入链 (因果链) ----
           ev = {'seq': maxseq + 1, 'ts': TS, 'type': 'KERNEL_LOOP', 'by': 'kernel-loop', 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts'], 'overdue_ids': [it.get('id') for it in overdue], 'proposals_n': len(proposals), 'sym': {'threads': symphony['threads'], 'stalled': len(symphony['stalled']), 'dm': symphony['dm_pending_total']}, 'fus': {'merge': len(fusion['merge_candidates']), 'runaway': len(fusion['runaway']), 'scout': len(fusion['stale']), 'rdz': fusion['rendezvous_logged'], 'cap': fusion['active_cap']}, 'evolution': evolution['deltas'], 'anchor': anchor['tip_hash'][:16], 'prev': tip.get('hash') if tip else 'GENESIS'}
           ev['hash'] = hashlib.sha256((ev['prev'] + canon(ev)).encode()).hexdigest()
-          led_new = (led_txt or '') + ('\n' if led_txt and not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'
+          led_new = led_txt + ('\n' if not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'  # EMPTY-READ-GENESIS-01: 账只增不减, 禁空基重建
           putc('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'KERNEL_LOOP seq{ev["seq"]} verdict={loop_verdict} @ {TS}')
           putc('vci-inbox', 'bridge/kernel-loop/last-run.json', json.dumps({'ts': TS, 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts']}, ensure_ascii=False, indent=1), f'kernel-loop last-run {TS}')
           # ---- P9 BEAT-FORWARD (D-157: 事件驱动接力扣门,级联深度≤1——cause='beat-forward'者不转叩) ----
