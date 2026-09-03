@@ -26,13 +26,6 @@ jobs:
           python3 - <<'PYEOF'
           import os,json,urllib.request,datetime,base64,subprocess,re,time
           HK=os.environ['HUBK']; HID=os.environ['HUBID']
-          _st=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/contents/bridge/guard/last-sweep.json',headers={'Authorization':'token '+os.environ.get('GHB','') or HK,'Accept':'application/vnd.github+json','User-Agent':'pgf'})
-          try:
-              _d=json.loads(urllib.request.urlopen(_st,timeout=15).read().decode())
-              _age=time.time()-datetime.datetime.fromisoformat(json.loads(base64.b64decode(_d['content']).decode())['ts'].replace('Z','+00:00')).timestamp()
-              if _age<6*3600 and os.environ.get('TGT','all')=='all': print('sweep throttled, age %.0fs'%_age); raise SystemExit(0)
-          except SystemExit: raise
-          except Exception as _e: print('throttle check skip',_e)
           PUBS=['vci-inbox','vci-usrm','vci-library','vci-qgl','vci-cfts','vci-vinf','vci-ucif2','ci-worker-01-','ci-worker-02']
           TARGETS=PUBS if os.environ.get('TGT','all')=='all' else [os.environ['TGT']]
           import jwt as JW
@@ -40,6 +33,15 @@ jobs:
           appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
           rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'pub-guard-full'})
           IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          # 内闸: ≥6h一拍(事件拍时评估,合法)
+          try:
+              _rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/contents/bridge/guard/last-sweep.json',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'pgf'})
+              _d=json.loads(urllib.request.urlopen(_rq,timeout=15).read().decode())
+              _age=time.time()-datetime.datetime.fromisoformat(json.loads(base64.b64decode(_d['content']).decode())['ts'].replace('Z','+00:00')).timestamp()
+              if _age<6*3600 and os.environ.get('TGT','all')=='all':
+                  print('sweep throttled, age %.0fs'%_age); raise SystemExit(0)
+          except SystemExit: raise
+          except Exception as _e: print('throttle check skip',_e)
           rq2=urllib.request.Request('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/PUB-LINT-RULES.json',headers={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'})
           RU=json.loads(base64.b64decode(json.loads(urllib.request.urlopen(rq2,timeout=20).read().decode())['content']).decode())
           pats=sorted(RU['feat_classes']['repo_names']+RU['feat_classes']['cred_names']+RU['feat_classes']['internal_ids'],key=len,reverse=True)
@@ -76,8 +78,6 @@ jobs:
                       time.sleep(3+i*3)
                   print(TGT,'pushed',ok,'fixed',len(fixed))
               else: print(TGT,'clean')
-          open('bridge/guard/last-sweep.json','w') if False else None
-          os.chdir('/tmp/pgf') if False else None
           # 巡毕落戳(借末仓树)
           try:
               import urllib.request as _u, base64 as _b
