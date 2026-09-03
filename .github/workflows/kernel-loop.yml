@@ -400,6 +400,113 @@ jobs:
           print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'sym_stalled': len(symphony['stalled']), 'fus_merge': len(fusion['merge_candidates']), 'cause': CAUSE, 'beat_forward': knocked, 'seq': ev['seq']}, ensure_ascii=False))
           PYEOF
 
+      - name: "ack-sentinel拍+request-router拍: root帖在场回执+ack-matrix+dm-queue他线请求即时路由(root令09-03:收到请回复/S-I/3专门进程)"
+        continue-on-error: true
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF9'
+          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib
+          import jwt as JW
+          HK=os.environ['HUBK']; HID=os.environ['HUBID']
+          nw=int(datetime.datetime.now().timestamp())
+          aj=JW.encode({'iat':nw-90,'exp':nw+540,'iss':HID},HK,algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+aj,'Accept':'application/vnd.github+json','User-Agent':'ack-sentinel'})
+          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          H={'Authorization':'Bearer '+IT,'Accept':'application/vnd.github+json','User-Agent':'ack-sentinel'}
+          def gql(q):
+              rq=urllib.request.Request('https://api.github.com/graphql',data=json.dumps({'query':q}).encode(),method='POST',headers=H)
+              return json.loads(urllib.request.urlopen(rq,timeout=30).read())
+          def getc(repo,path):
+              rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/'+repo+'/contents/'+urllib.parse.quote(path,safe=''),headers=H)
+              try:
+                  d=json.loads(urllib.request.urlopen(rq,timeout=20).read())
+                  return base64.b64decode(d['content']).decode(), d.get('sha')
+              except urllib.error.HTTPError: return None, None
+          def putc(repo,path,content,msg):
+              cur,sha=getc(repo,path)
+              body={'message':msg+' [skip ci]','content':base64.b64encode(content.encode()).decode()}
+              if sha: body['sha']=sha
+              rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/'+repo+'/contents/'+urllib.parse.quote(path,safe=''),method='PUT',headers=H,data=json.dumps(body).encode())
+              return urllib.request.urlopen(rq,timeout=20).status
+          nowz=datetime.datetime.now(datetime.timezone.utc)
+          TS=nowz.strftime('%Y-%m-%dT%H:%M:%SZ')
+          # ---------- ack-sentinel ----------
+          try:
+              mtx_t,_=getc('ci-control','bridge/disc/ack-matrix.json')
+              mtx=json.loads(mtx_t) if mtx_t else {"v":"ACK-MATRIX-01","law":"回执制(AMEND-01 R8):root帖当拍在场回执+线三态追踪","posts":[]}
+              known={p['ts'] for p in mtx['posts']}
+              LOBBYS=[('ci-inbox',144),('vci-inbox',1)]
+              for repo,num in LOBBYS:
+                  d=gql('query{repository(owner:"chepin-ai",name:"%s"){issue(number:%d){id comments(last:30){nodes{author{login} createdAt body}}}}}'%(repo,num))
+                  iss=(d.get('data') or {}).get('repository',{}).get('issue')
+                  if not iss: continue
+                  sid=iss['id']
+                  for c in iss['comments']['nodes']:
+                      if c['author']['login']!='chepin-ai': continue
+                      cts=c['createdAt']
+                      if cts in known: continue
+                      age_h=(nowz-datetime.datetime.fromisoformat(cts.replace('Z','+00:00'))).total_seconds()/3600
+                      if age_h>72: continue
+                      # 在场回执(idem: 每帖一件)
+                      body='【ack-sentinel · %s】root 帖 %s 在场回执——SI0 已收讫并入册追踪。act 面:Administration 圈+各线 OTP 回执窗 24h(三态:收讫/采纳/异议,SI0 拍催办)。矩阵=ci-control/bridge/disc/ack-matrix.json。原文摘:「%s」'%(TS,cts,c['body'][:120].replace(chr(10),' '))
+                      try:
+                          gql('mutation{addComment(input:{subjectId:"%s",body:%s}){commentEdge{node{createdAt}}}}'%(sid,json.dumps(body,ensure_ascii=False)))
+                          acked='posted'
+                      except Exception as _e: acked='ERR '+str(_e)[:80]
+                      mtx['posts'].append({'ts':cts,'where':'%s#%d'%(repo,num),'excerpt':c['body'][:80],'sentinel_ack':acked,'lines':{},'chased':False})
+                      print('ack-sentinel回执',cts,acked)
+              # 线三态追踪:线件=线仓公告板/dm/仓提交在root帖后(粗粒度,beat级)
+              LINE_REPOS={'usrm':'vci-usrm','cisvr':'ci-control','cfts':'vci-cfts','qgl':'vci-qgl','vinf':'vci-vinf','ucif2':'vci-ucif2'}
+              for p in mtx['posts']:
+                  if all(l in p['lines'] for l in LINE_REPOS): continue
+                  for line,lrepo in LINE_REPOS.items():
+                      if line in p['lines']: continue
+                      d=gql('query{repository(owner:"chepin-ai",name:"%s"){defaultBranchRef{target{... on Commit{history(since:"%s",first:1){nodes{committedDate messageHeadline}}}}}}}'%(lrepo,p['ts']))
+                      try:
+                          n0=d['data']['repository']['defaultBranchRef']['target']['history']['nodes']
+                          if n0: p['lines'][line]={'acted_at':n0[0]['committedDate'],'evidence':n0[0]['messageHeadline'][:60]}
+                      except Exception: pass
+                  miss=[l for l in LINE_REPOS if l not in p['lines']]
+                  age_h=(nowz-datetime.datetime.fromisoformat(p['ts'].replace('Z','+00:00'))).total_seconds()/3600
+                  if miss and age_h>6 and not p.get('chased'):
+                      for line in miss:
+                          putc(LINE_REPOS[line],'.ci-inbox/ack-chase-%s-%s.md'%(p['ts'].replace(':','').replace('-','')[:13],line),
+                               '---\nact: ack=%s\nfrom: ack-sentinel(SI0)\nts: %s\nidem: ack-chase-%s-%s\n---\n\n# 回执催办(AMEND-01 R8)\n\nroot帖 %s(%s)已超6h未见你线行动迹。请24h内以三态之一回执(收讫/采纳/异议):公告板帖或dm-queue件引帖ts即记。裸等禁止。\n'%(p['ts'],TS,p['ts'],line,p['ts'],p.get('excerpt','')),
+                               'ack-chase '+line+' '+p['ts'])
+                      p['chased']=True; print('催办',p['ts'],'->',miss)
+              putc('ci-control','bridge/disc/ack-matrix.json',json.dumps(mtx,ensure_ascii=False,indent=1),'ack-matrix '+TS)
+          except Exception as _e:
+              print('ack-sentinel异常(已吞):',type(_e).__name__,str(_e)[:150])
+          # ---------- request-router(S-I/3专门进程:他线请求即时处理) ----------
+          try:
+              st_t,_=getc('ci-control','bridge/disc/router-state.json')
+              stt=json.loads(st_t) if st_t else {"seen":{}}
+              d=gql('query{repository(owner:"chepin-ai",name:"ci-inbox"){object(expression:"main:dm-queue"){... on Tree{entries{name type}}}}}')
+              dirs=[e['name'] for e in (d.get('data',{}).get('repository',{}).get('object',{}) or {}).get('entries',[]) if e.get('type')=='tree']
+              LREPO={'usrm':'vci-usrm','cisvr':'ci-control','cfts':'vci-cfts','qgl':'vci-qgl','vinf':'vci-vinf','ucif2':'vci-ucif2','qfa':'vci-inbox','qlv':'vci-inbox'}
+              routed=0
+              for ln in dirs:
+                  d2=gql('query{repository(owner:"chepin-ai",name:"ci-inbox"){object(expression:"main:dm-queue/%s"){... on Tree{entries{name oid}}}}}'%ln)
+                  for f0 in (d2.get('data',{}).get('repository',{}).get('object',{}) or {}).get('entries',[]):
+                      oid=f0['oid']
+                      key=ln+'/'+f0['name']
+                      if stt['seen'].get(key)==oid: continue
+                      stt['seen'][key]=oid
+                      if ln not in LREPO: continue
+                      tgt='.ci-inbox/dm-relay-%s-%s'%(ln,f0['name'])
+                      body='---\nact: dm-relay=%s\nfrom: request-router(S-I/3拍)\nts: %s\nidem: dm-relay-%s\nsrc: ci-inbox/dm-queue/%s\n---\n\n他线请求即时路由(root令09-03:S-I/3专门进程)。原件见 ci-inbox(私)/dm-queue/%s——请线侧当拍读件处理,回执投 dm-queue 反向道或公告板。裸等禁止(R8)。'%(ln,TS,oid[:10],key)
+                      putc(LREPO[ln],tgt,body,'dm-relay '+key)
+                      routed+=1; print('路由',key,'->',LREPO[ln])
+              if routed or not st_t:
+                  putc('ci-control','bridge/disc/router-state.json',json.dumps(stt,ensure_ascii=False,indent=1),'router-state '+TS)
+              print('router: %d件已路由'%routed)
+          except Exception as _e:
+              print('request-router异常(已吞):',type(_e).__name__,str(_e)[:150])
+          PYEOF9
+
       - name: "disc-sentinel拍: D室threads-index重建(器官死亡12天修复,wave-84;GraphQL道独立配额池;change-only提交)"
         continue-on-error: true
         env:
