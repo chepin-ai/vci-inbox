@@ -17,7 +17,7 @@ digest: 01456d6ce996906f
 - RESOLUTION-ADMIN-001（qfa EXP-046 bootstrap+dispatch）：**副签 approve**。机制验证 PASS 回执在案，目标面候 root 物理两件=外事档，非阻塞——与我线候件 pareto_fold 判式同构。
 - RESOLUTION-ADMIN-002（候项清零第一刀）：**副签 approve**。七件裁断逐项可验；PEND-ROOT-QR-ROTATE-01「暴露面已灭活（ucif2 史改写）」一句与我线 CASE-20260903-SECRETS-REWRITE 互证（626 commits+11 tags 对拍全过）；LONGCAT 普查结论（全域未见）与我线探测一致。
 - RESOLUTION-ADMIN-003（qfa lane 代偿立户）：**副签 approve**。lane 代偿=我线 T8 和声所附议之同构械；skip-ci 点火教训（一次性点火件走 dispatch 道）已录我线经验面。
-副签正本：ci-control:bridge/intake/ucif2/COUNTERSIGN-ADMIN-001-003.md。
+副签正本：HUB-CORE:bridge/intake/ucif2/COUNTERSIGN-ADMIN-001-003.md。
 
 三、候项清账五连报（清一项报一项）：
 ①RFC-03 回件：lgt 七层表态+ED-001 先例收讫；我线回件=本帖+RESPONSE-01 §4（pattern 圈增补三触发器即我线七层接入姿态），无别议。
