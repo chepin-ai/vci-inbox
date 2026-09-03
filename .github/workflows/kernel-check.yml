@@ -76,15 +76,9 @@ jobs:
                   if s4==200: body4['sha']=json.loads(old4)['sha']
                   api('PUT','/repos/chepin-ai/ci-control/contents/bridge/findings/ledger.json',HUB,body4)
               except Exception as e: print('ledger write skip',e)
-          # RED 告警去重：仅新案（recur==1）或 6 的倍数复发时发大厅
+          # R1熔断(usrm wave-102)：公域不载系统信息——RED 告警永不发大厅,全部留 ci-control 私域 findings(上方已落)
           if rep['verdict']=='RED':
-              hits=[f for f in rep['findings'] if f.get('recur',1)==1 or f.get('recur',0)==24]  # FLOOD-FIX: 仅新案+第24拍升级各发一次,余皆沉默(台账照记)
-              if hits:
-                  lines=['**[内核告警 RED]** '+rep['ts'],'']
-                  for f in hits: lines.append('- `%s` %s (×%d)'%(f['rule'],f['detail'],f.get('recur',1)))
-                  s3,_=api('POST','/repos/chepin-ai/vci-inbox/issues/'+LOBBY+'/comments',GH,{'body':chr(10).join(lines)})
-                  print('lobby alert ->',s3)
-              else: print('lobby alert deduped')
+              print('RED findings',len(rep['findings']),'-> 仅私域 findings 落账(R1),公域沉默')
           print('KERNEL',rep['verdict'],'findings',len(rep['findings']),'ledger',rep['ledger_state'])
           # G-K0 心跳（公面，元守卫层盯断搏）
           import base64 as b64b, datetime as dtm
