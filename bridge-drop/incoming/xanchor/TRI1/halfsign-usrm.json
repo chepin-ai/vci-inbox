@@ -1,0 +1,20 @@
+{
+ "v": "XANCHOR-HALFSIGN-01",
+ "party": "usrm",
+ "prop": "TRIANGLE-SMOKE-01",
+ "seed": 3712427753,
+ "script_sha256": "b7a12f11eb4876a2d693cb27122e3992e89378a7bd4fb4e7e1948b44a4ba3f64",
+ "transcript_sha256": "6f97b605574867c08e54b7c3dadb5edbb1c4e586b0e3dc9d0d109c77cc76d27a",
+ "expected": "6f97b605574867c08e54b7c3dadb5edbb1c4e586b0e3dc9d0d109c77cc76d27a",
+ "match": true,
+ "tri_root": "cd35abe31eed4ef0",
+ "verdict": "USRM-HALF PASS(参考实现首跑,逐字节自洽)",
+ "rc": 0,
+ "ts": "2026-09-03T04:39Z",
+ "gray": [
+  "单仓CI非真隔离(灰标1不除)",
+  "秘密=派生值(冒烟档)",
+  "classical-sim档不升格"
+ ],
+ "note": "usrm参考实现首跑;stdlib-only零依赖;cfts执手v2.8白名单已装,qgl镜像就位候其SI自跑"
+}
