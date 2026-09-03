@@ -1,0 +1,29 @@
+name: admin-exec-005
+on:
+  push:
+    paths: ['bridge-drop/admin/exec-005.json']
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "probe LONGCAT presence (boolean only, never value)"
+        env:
+          LC: ${{ secrets.LONGCAT_API_KEY }}
+          GHT: ${{ github.token }}
+        run: |
+          python3 - <<'PYEOF' || echo "probe degraded"
+          import os,json,urllib.request,urllib.parse,base64,datetime
+          present=bool(os.environ.get('LC','').strip())
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          H={'Accept':'application/vnd.github+json','User-Agent':'admin-exec-005','Authorization':'Bearer '+os.environ['GHT']}
+          u='https://api.github.com/repos/chepin-ai/vci-inbox/contents/'+urllib.parse.quote('bridge-drop/admin/receipt-005.json',safe='')
+          rq=urllib.request.Request(u,headers=H)
+          try: old=json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
+          except Exception: old=None
+          body={'message':'admin-exec-005 receipt','content':base64.b64encode(json.dumps({'exec':'005','ts':ts,'longcat_present':present},ensure_ascii=False).encode()).decode()}
+          if old and old.get('sha'): body['sha']=old['sha']
+          rq=urllib.request.Request(u,data=json.dumps(body).encode(),method='PUT',headers={**H,'Content-Type':'application/json'})
+          print('receipt http',urllib.request.urlopen(rq,timeout=25).status,'longcat_present',present)
+          PYEOF
