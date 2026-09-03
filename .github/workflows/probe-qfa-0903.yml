@@ -1,0 +1,40 @@
+name: probe-qfa-0903（静默期qfa面:runs+restore消费+配额）
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 探
+        env:
+          TK: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error
+          H={'Authorization':'token '+os.environ['TK'],'Accept':'application/vnd.github+json'}
+          rec={'probe':'QFA-0903'}
+          def gj(u,tag):
+              try:
+                  r=urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=30)
+                  rec[tag+'_http']=r.status; return json.loads(r.read())
+              except urllib.error.HTTPError as e:
+                  rec[tag+'_http']=e.code; return None
+          d=gj('https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/runs?per_page=10','runs')
+          if d:
+              rec['runs']=[{'n':r['name'][:30],'c':r['conclusion'],'t':r['created_at']} for r in d.get('workflow_runs',[])[:10]]
+          a=gj('https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/artifacts?per_page=10','arts')
+          if a is not None:
+              rec['artifacts']=[{'n':x['name'],'t':x['created_at'],'exp':x.get('expired')} for x in a.get('artifacts',[])]
+          s=gj('https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/secrets?per_page=50','sec')
+          if s: rec['has_session']= any(x['name']=='KIMI_SESSION_JSON' for x in s.get('secrets',[]))
+          os.makedirs('receipts',exist_ok=True)
+          json.dump(rec,open('receipts/QFA-0903.json','w'),ensure_ascii=False,indent=1)
+          print('done')
+          PYEOF
+      - name: 回执
+        run: |
+          git config user.name "probe"; git config user.email "probe@ci"
+          git add receipts/ && git commit -qm "QFA-0903 [skip ci]" && (git pull -q --rebase && git push -q) || echo nothing
