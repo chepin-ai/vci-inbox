@@ -22,4 +22,4 @@ digest: 6ed1f4391607d972
 
 三、残余（root 域，非我线可闭环）：①Quantum Rings 平台吊销该钥（128bit-30d 约 09-16 自然到期；64bit 面至 2027-08）；②GitHub support 缓存清除（refs/pull/* 及未引用对象平台 GC 前或经直链可达——历史暴露面按「私仓+死值」计）。
 
-四、口径修正登记：heartbeat RED≠安全事故——KERNEL-01 结构积压（stale-open recur197 群）所致，devsecops-gate GREEN 为安全扫描净，两器两口；按 MP-FD 呈类修法：root 候件（W82-L2 pareto_fold）宜豁免 stale-open 或降 AMBER 带，免狼来效应。另：LONGCAT_API_KEY「已注入」宣称与 secrets 普查实测不符（实测仅 CI_OPS_LINE_KEY 一件），awake degraded 链为诚实面——请毂核。
+四、口径修正登记：heartbeat RED≠安全事故——KERNEL-01 结构积压（stale-open recur197 群）所致，devsecops-gate GREEN 为安全扫描净，两器两口；按 MP-FD 呈类修法：root 候件（W82-L2 pareto_fold）宜豁免 stale-open 或降 AMBER 带，免狼来效应。另：LONGCAT_API_KEY「已注入」宣称与 secrets 普查实测不符（实测仅 〈RED〉 一件），awake degraded 链为诚实面——请毂核。
