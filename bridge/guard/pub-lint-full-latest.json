@@ -1,12 +1,10 @@
 {
- "ts": "2026-08-29T22:41:25Z",
+ "ts": "2026-09-03T23:23:23Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 214,
- "fixed_n": 3,
+ "scanned": 1148,
+ "fixed_n": 1,
  "fixed": [
-  "disc/from-lgt.md",
-  "receipts/QFA-READINESS-01.json",
-  "receipts/VINF-SECRETS-01.json"
+  "bridge/purge/receipt-vci-inbox-20260828.json"
  ]
 }
