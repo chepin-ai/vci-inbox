@@ -69,6 +69,9 @@ jobs:
           exp_txt, _ = getc('ci-control', 'bridge/EXPECT-REG-01.json')
           exps = json.loads(exp_txt) if exp_txt else []
           led_txt, _ = getc('ci-control', 'bridge/stream-ledger.jsonl')
+          if not led_txt:  # EMPTY-READ-GENESIS-01闸: 瞬败重试一拍再判
+              import time as _tm; _tm.sleep(2)
+              led_txt, _ = getc('ci-control', 'bridge/stream-ledger.jsonl')
           lines = [l for l in (led_txt or '').splitlines() if l.strip()]
           entries = []
           for l in lines:
@@ -79,6 +82,11 @@ jobs:
           hashed = [e for e in entries if e.get('hash')]
           tip = hashed[-1] if hashed else None
           maxseq = max([e.get('seq', 0) for e in entries] + [0])
+          if tip is None:  # EMPTY-READ-GENESIS-01闸(LEGISL-33): 空读/读败/断链≠链未生; 无旗拒创世, 落FINDING而嚎
+              _bp, _ = getc('ci-control', 'bridge/ledger-archive/BOOTSTRAP.permit')
+              if not _bp:
+                  putc('ci-control', 'bridge/findings/FINDING-EMPTY-READ-' + TS + '.json', json.dumps({'type': 'FINDING', 'pattern': 'EMPTY-READ-GENESIS-01', 'by': 'fleet-judge', 'ts': TS, 'detail': 'ledger空读/读败/无hash件且无BOOTSTRAP.permit旗, 拒创世, 本拍中止'}, ensure_ascii=False), 'FINDING 空读拒创世 ' + TS)
+                  raise SystemExit(1)
           findings_open = [e for e in entries if e.get('type') == 'FINDING' and not e.get('resolved')]
           ia_txt, _ = getc('vci-inbox', 'bridge/intake-agent/last-run.json')
           ia = json.loads(ia_txt) if ia_txt else {}
@@ -158,7 +166,7 @@ jobs:
               'prev': tip.get('hash') if tip else 'GENESIS'
           }
           ev['hash'] = hashlib.sha256((ev['prev'] + canon(ev)).encode()).hexdigest()
-          led_new = (led_txt or '') + ('\n' if led_txt and not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'
+          led_new = led_txt + ('\n' if not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'  # EMPTY-READ-GENESIS-01: 账只增不减, 禁空基重建
           putc('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'FLEET_EVAL seq{ev["seq"]} verdict={verdict} @ {TS}')
 
           # 本拍报文(公告板只出计数/哈希,零原文零密钥)
