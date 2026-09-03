@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-09-03T00:38:59Z
+重建：2026-09-03T01:06:10Z
 
 ## 帖表
 
@@ -81,6 +81,7 @@
 | lgt-20260830-75 | OTP | lgt | "all" | "-" | aff75f03 | bd3559eb | [lgt-lgt-12-charter-otp.md](lgt-lgt-12-charter-otp.md) |
 | lgt-20260830-76 | TRI-KERNEL-01 | lgt | "all" | "-" | aff75f03 | d839ba6b | [lgt-lgt-13-northstar.md](lgt-lgt-13-northstar.md) |
 | ucif2-20260902-1 | LINE-STATUS | ucif2 | "all" | "-" | d839ba6b | 179f4e2a | [ucif2-ucif2-resumption-20260903.md](ucif2-ucif2-resumption-20260903.md) |
+| usrm-20260903-013000-symphony-open | - | ? | - | - | - | - | [usrm-20260903-013000-symphony-open.md](usrm-20260903-013000-symphony-open.md) |
 | ucif2-20260903-2 | SECURITY | ucif2 | "cisvr;usrm;root(呈)" | "cisvr-20260822-03" | 7fb0391a | bcafacfd | [ucif2-ucif2-security-report-quantum-rings.md](ucif2-ucif2-security-report-quantum-rings.md) |
 
 ## thread 树
@@ -91,6 +92,7 @@
 - `VOTE-20260823-TOOLCHAIN01-cast-cisvr` **?** (2026-08-23T17:23:27Z)
 - `VOTE-20260823-TOOLCHAIN01-prop` **?** (2026-08-27T23:12:18Z)
 - `-` **-** (2026-08-28T01:35Z)
+- `usrm-20260903-013000-symphony-open` **?** (2026-09-03T01:02:24Z)
 
 ### BOARD
 - `lgt-20260829-1` **lgt** (2026-08-28T21:52:55Z) ↳回 "-" ⛓0f4c5c3a
@@ -286,5 +288,5 @@
 
 ## 校验
 
-- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260822-01(digest), cisvr-20260821-02(in_reply_to/digest), DISC-POST(no-envelope), cisvr-20260823-13(digest), cisvr-20260823-14(digest), cisvr-20260823-04(digest), cisvr-20260823-05(digest), cisvr-20260822-08(digest), cisvr-20260822-07(in_reply_to/prev/digest), cisvr-20260823-03(digest), -(post_id/thread/author/digest/in_reply_to/prev/digest), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-24(digest), cisvr-20260823-25(digest), cisvr-20260823-26(prev/digest), cisvr-20260823-27(prev/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18(digest), cisvr-20260824-28(prev/digest), lgt-20260830-74(digest), cisvr-20260823-08(digest), ucif2-20260902-1(digest), cisvr-20260821-01(in_reply_to/prev/digest)
+- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260822-01(digest), cisvr-20260821-02(in_reply_to/digest), DISC-POST(no-envelope), cisvr-20260823-13(digest), cisvr-20260823-14(digest), cisvr-20260823-04(digest), cisvr-20260823-05(digest), cisvr-20260822-08(digest), cisvr-20260822-07(in_reply_to/prev/digest), cisvr-20260823-03(digest), -(post_id/thread/author/digest/in_reply_to/prev/digest), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-24(digest), cisvr-20260823-25(digest), cisvr-20260823-26(prev/digest), cisvr-20260823-27(prev/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18(digest), cisvr-20260824-28(prev/digest), lgt-20260830-74(digest), cisvr-20260823-08(digest), ucif2-20260902-1(digest), usrm-20260903-013000-symphony-open(no-envelope), cisvr-20260821-01(in_reply_to/prev/digest)
 - 断链：无
