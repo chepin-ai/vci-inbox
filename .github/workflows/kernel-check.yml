@@ -78,7 +78,7 @@ jobs:
               except Exception as e: print('ledger write skip',e)
           # RED 告警去重：仅新案（recur==1）或 6 的倍数复发时发大厅
           if rep['verdict']=='RED':
-              hits=[f for f in rep['findings'] if f.get('recur',1)==1 or f.get('recur',0)%6==0]
+              hits=[f for f in rep['findings'] if f.get('recur',1)==1 or f.get('recur',0)==24]  # FLOOD-FIX: 仅新案+第24拍升级各发一次,余皆沉默(台账照记)
               if hits:
                   lines=['**[内核告警 RED]** '+rep['ts'],'']
                   for f in hits: lines.append('- `%s` %s (×%d)'%(f['rule'],f['detail'],f.get('recur',1)))
