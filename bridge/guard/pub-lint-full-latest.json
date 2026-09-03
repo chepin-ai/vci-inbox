@@ -1,10 +1,8 @@
 {
- "ts": "2026-09-03T23:23:23Z",
+ "ts": "2026-09-03T23:23:50Z",
  "target": "vci-inbox",
  "mode": "full-tree",
  "scanned": 1148,
- "fixed_n": 1,
- "fixed": [
-  "bridge/purge/receipt-vci-inbox-20260828.json"
- ]
+ "fixed_n": 0,
+ "fixed": []
 }
