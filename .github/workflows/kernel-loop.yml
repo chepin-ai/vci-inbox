@@ -777,3 +777,47 @@ jobs:
           s2=putc('qfa-face/awake/awake.log',logtxt+ts+' qfa '+h+chr(10),'qfa觉醒链 '+ts+' [skip ci]')
           print(json.dumps({'qfa_awake':ts,'hash':h,'llm':rec['llm'],'http':[s1,s2]},ensure_ascii=False))
           PYEOF4
+
+      - name: "SYNC影子拍: ci-control SYSTEM-SYNC→公告板一行 (7200s冷却, skip-ci免自激)"
+        if: always()
+        env:
+          GHT: ${{ github.token }}
+        run: |
+          python3 - <<'PYEOF5' || echo "SYNC影子拍降级跳过"
+          import os, json, urllib.request, urllib.parse, datetime, base64, time
+          TOK=os.environ['GHT']
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          H9={'Accept':'application/vnd.github+json','User-Agent':'sync-shadow','Authorization':'Bearer '+TOK}
+          def g(repo,path):
+              u='https://api.github.com/repos/chepin-ai/'+repo+'/contents/'+urllib.parse.quote(path,safe='')
+              rq=urllib.request.Request(u,headers=H9)
+              try: return json.loads(urllib.request.urlopen(rq,timeout=20).read().decode())
+              except Exception: return None
+          def putc(repo,path,content,msg):
+              u='https://api.github.com/repos/chepin-ai/'+repo+'/contents/'+urllib.parse.quote(path,safe='')
+              d=g(repo,path); body={"message":msg,"content":base64.b64encode(content.encode()).decode()}
+              if d and d.get('sha'): body['sha']=d['sha']
+              rq=urllib.request.Request(u,data=json.dumps(body).encode(),method='PUT',headers={**H9,'Content-Type':'application/json'})
+              return urllib.request.urlopen(rq,timeout=25).status
+          ks_d=g('ci-control','bridge/knock-state.json')
+          ks=json.loads(base64.b64decode(ks_d['content']).decode()) if ks_d and ks_d.get('content') else {}
+          now=time.time()
+          if now-ks.get('sync:kernel-loop',0)<7200:
+              print('sync冷却中'); raise SystemExit(0)
+          sd=g('ci-control','bridge/sync')
+          files=[x['name'] for x in sd] if isinstance(sd,list) else []
+          syn=sorted([f for f in files if f.startswith('SYSTEM-SYNC-') and f.endswith('.json')])
+          if not syn:
+              print('无sync档'); raise SystemExit(0)
+          latest=syn[-1]
+          if ks.get('sync:last')==latest:
+              print('已发布过',latest); raise SystemExit(0)
+          sj=g('ci-control','bridge/sync/'+latest)
+          doc=json.loads(base64.b64decode(sj['content']).decode())
+          line='## SYNC '+latest+' @ '+ts+'\n'+'\n'.join('- '+d for d in doc.get('digest',[])[:12])+'\n'
+          bp='ci-inbox/公告板/SYNC-'+latest.replace('.json','.md')
+          s1=putc('vci-inbox',bp,'# 全系统同步影子 · '+latest+'\n\n'+line,'SYNC影子 '+latest+' [skip ci]')
+          ks['sync:kernel-loop']=now; ks['sync:last']=latest
+          s2=putc('ci-control','bridge/knock-state.json',json.dumps(ks,ensure_ascii=False),'sync冷却记账 '+ts)
+          print(json.dumps({'sync_pub':latest,'http':[s1,s2]},ensure_ascii=False))
+          PYEOF5
