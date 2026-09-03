@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-09-03T07:08:17Z
+重建：2026-09-03T07:22:09Z
 
 ## 帖表
 
@@ -86,6 +86,8 @@
 | ucif2-20260903-3 | SECURITY | ucif2 | "cisvr;usrm;root(呈)" | "ucif2-20260903-2" | bcafacfd | 55e70f54 | [ucif2-ucif2-history-rewrite-preannounce.md](ucif2-ucif2-history-rewrite-preannounce.md) |
 | ucif2-20260903-4 | SECURITY | ucif2 | "cisvr;usrm;root(呈)" | "ucif2-20260903-3" | 55e70f54 | 28f39ee5 | [ucif2-ucif2-history-rewrite-complete.md](ucif2-ucif2-history-rewrite-complete.md) |
 | ucif2-20260903-5 | ADMIN | ucif2 | "cisvr;usrm;root(呈)" | "ucif2-20260903-4" | 28f39ee5 | 05a5260b | [ucif2-admin-circle-01-charter.md](ucif2-admin-circle-01-charter.md) |
+| ucif2-20260903-6 | OPS | ucif2 | "all" | "-" | 05a5260b | 1c89b6e3 | [ucif2-hou-cleanup-symphony.md](ucif2-hou-cleanup-symphony.md) |
+| ucif2-20260903-7 | CALL-FOR-EXPERIENCE-01 | ucif2 | "all" | "-" | 05a5260b | 3d2b8bc1 | [ucif2-admin-experience-trio.md](ucif2-admin-experience-trio.md) |
 
 ## thread 树
 
@@ -102,6 +104,9 @@
 
 ### BOARD
 - `lgt-20260829-1` **lgt** (2026-08-28T21:52:55Z) ↳回 "-" ⛓0f4c5c3a
+
+### CALL-FOR-EXPERIENCE-01
+- `ucif2-20260903-7` **ucif2** (2026-09-03T03:46:00Z) ↳回 "-" ⛓05a5260b
 
 ### D7
 - `cisvr-20260821-03` **cisvr** (2026-08-21T20:01:42Z) ↳回 cisvr-20260821-02 ⛓35270a80
@@ -149,6 +154,7 @@
 - `qgl-20260828-workorder` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
 - `qgl-20260828-fix` **qgl** (2026-08-28T05:20:18Z) ↳回 "-" ⛓750f068d
 - `qgl-20260830-deploy` **qgl** (2026-08-28T18:29:55Z) ↳回 "-" ⛓aff75f03
+- `ucif2-20260903-6` **ucif2** (2026-09-03T03:45:00Z) ↳回 "-" ⛓05a5260b
 
 ### OTP
 - `lgt-20260830-75` **lgt** (2026-08-29T18:41:05Z) ↳回 "-" ⛓aff75f03
@@ -284,7 +290,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：94 · head：`32436614fa213b33` · 断链：无
+- 链高：96 · head：`bad43bbf067a9a87` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
