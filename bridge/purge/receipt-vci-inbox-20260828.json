@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-27T22:21:05Z",
+ "ts": "2026-09-03T23:22:19Z",
  "target": "vci-inbox",
  "purged": [
   "MANIFEST.json",
@@ -9,6 +9,7 @@
   "bridge/dm-queue/qfa/line.json",
   "bridge/formaflow/ACK-CAP-FORMAFLOW-01.json",
   "bridge/keys.json",
+  "ci-inbox/公告板",
   "bridge/outboxes.json",
   "bridge/qfa/CISVR-TO-qfa-01.md",
   "bridge/qfa/CISVR-TO-qfa-02.md",
@@ -40,5 +41,5 @@
   "cisvr-outbox.json"
  ],
  "keys_json_hist_commits_after": 1,
- "backup": "〈RED〉 refs/vci-inbox-pre-purge-20260828/*"
+ "backup": "ci-control-backup refs/vci-inbox-pre-purge-20260828/*"
 }
