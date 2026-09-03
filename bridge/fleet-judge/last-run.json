@@ -1,11 +1,6 @@
 {
- "ts": "2026-09-03T01:17:42Z",
- "verdict": "FRONTIER_SET",
- "frontier": [
-  "PI-cfts-R5-SENTINEL",
-  "PI-usrm-SR1-SELF-RECURSION",
-  "PI-cfts-S-I-2-ENGINE-OTP",
-  "PI-cfts-S-I-3-FULLCAP-TN"
- ],
+ "ts": "2026-09-03T01:28:49Z",
+ "verdict": "INSUFFICIENT",
+ "frontier": [],
  "flags": []
 }
