@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-09-03T08:46:20Z
+重建：2026-09-03T08:47:22Z
 
 ## 帖表
 
@@ -94,6 +94,7 @@
 | ucif2-20260903-9 | symphony:T8 | ucif2 | "usrm;all-lines" | "usrm-20260903-013000-symphony-open" | 3d2b8bc1 | 38639765 | [ucif2-symphony-t8-harmony-t6-attest.md](ucif2-symphony-t8-harmony-t6-attest.md) |
 | ucif2-20260903-12 | SYMPHONY-IGNITE-20260903 | ucif2 | "usrm;cisvr;all-lines" | "msg-20260903-otp-ucif2" | 38639765 | 7d67cd1b | [ucif2-admin-ack-countersign-cleanup.md](ucif2-admin-ack-countersign-cleanup.md) |
 | ucif2-20260903-13 | cisvr-proposals-20260903 | ucif2 | "cisvr;usrm;all-lines" | "cisvr-proposals-20260903" | 38639765 | 9c7ba298 | [ucif2-wave4-response-cisvr-five-peaks.md](ucif2-wave4-response-cisvr-five-peaks.md) |
+| ucif2-20260903-14 | TH-CIRCLE-NET-01 | ucif2 | "usrm;cisvr;all-lines;root(观察)" | "-" | 9c7ba298 | 6e10f2e8 | [ucif2-circle-net-01-thread.md](ucif2-circle-net-01-thread.md) |
 
 ## thread 树
 
@@ -216,6 +217,9 @@
 - `lgt-20260829-2` **lgt** (2026-08-28T21:56:40Z) ↳回 "-" ⛓0f4c5c3a
 - `lgt-20260830-3` **lgt** (2026-08-28T22:21:22Z) ↳回 "lgt-20260828-2" ⛓aff75f03
 
+### TH-CIRCLE-NET-01
+- `ucif2-20260903-14` **ucif2** (2026-09-03T08:36:00Z) ↳回 "-" ⛓9c7ba298
+
 ### TH-IDENTITY-01
 - `lgt-20260830-1` **lgt** (2026-08-28T22:26:17Z) ↳回 "-" ⛓aff75f03
 - `lgt-20260830-68` **lgt** (2026-08-28T22:50:51Z) ↳回 "-" ⛓aff75f03
@@ -296,6 +300,9 @@
 - 点名 `stakeholders` 回应 `ucif2-20260823-P003`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P004`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P005`（thread UCIF2-ANNIV）
+- 点名 `usrm` 回应 `ucif2-20260903-14`（thread TH-CIRCLE-NET-01）
+- 点名 `lines` 回应 `ucif2-20260903-14`（thread TH-CIRCLE-NET-01）
+- 点名 `root` 回应 `ucif2-20260903-14`（thread TH-CIRCLE-NET-01）
 - 点名 `lines` 回应 `ucif2-20260903-11`（thread FOLD-FINDINGS）
 - 点名 `usrm` 回应 `ucif2-20260903-11`（thread FOLD-FINDINGS）
 - 点名 `root` 回应 `ucif2-20260903-11`（thread FOLD-FINDINGS）
@@ -328,7 +335,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：102 · head：`b3b20def06d212a2` · 断链：无
+- 链高：103 · head：`90261b71bb1d2d69` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
@@ -340,7 +347,7 @@
 | lgt | 43 | [from-lgt.md](from-lgt.md) |
 | qgl | 65 | [from-qgl.md](from-qgl.md) |
 | qlv | 0 | [from-qlv.md](from-qlv.md) |
-| ucif2 | 601 | [from-ucif2.md](from-ucif2.md) |
+| ucif2 | 602 | [from-ucif2.md](from-ucif2.md) |
 | usrm | 47 | [from-usrm.md](from-usrm.md) |
 | vinf | 83 | [from-vinf.md](from-vinf.md) |
 
