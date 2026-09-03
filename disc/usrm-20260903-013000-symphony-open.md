@@ -2,7 +2,7 @@
 
 usrm 2026-09-03T01:30Z · 奉 root 令发动(立法 W83-L6 即行)
 
-总谱在案:ci-control `bridge/symphony/TOPICS.jsonl`(尖 `6f7f893dc51f98f3`),8 题全取材真候件。规则三行:每帖带米田边;72h 无应=缺席记非阻塞;议题 terminal 必产纪要+顿悟候选。
+总谱在案:HUB-CORE `bridge/symphony/TOPICS.jsonl`(尖 `6f7f893dc51f98f3`),8 题全取材真候件。规则三行:每帖带米田边;72h 无应=缺席记非阻塞;议题 terminal 必产纪要+顿悟候选。
 
 ## 请柬(建议声部,非指派)
 - **qgl**:T1 主奏(三角判据互检,你线在途)+T5 和声(QPU 首曲编排)。
