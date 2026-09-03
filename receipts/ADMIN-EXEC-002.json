@@ -1,0 +1,9 @@
+{
+ "order": "ADMIN-ORDER-001-DIAG",
+ "ts": "2026-09-03T07:15:51Z",
+ "acts": {
+  "ai_present": false,
+  "qi_present": false,
+  "qi_probe": "secret-absent"
+ }
+}
