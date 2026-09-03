@@ -1,0 +1,12 @@
+{
+ "order": "ADMIN-ORDER-001",
+ "idem": "admin-exec-001-20260903",
+ "ts": "2026-09-03T07:05:00Z",
+ "acts": [
+  "qfa-probe",
+  "exp046-dispatch-if-alive",
+  "qi-purge-if-dead",
+  "ai-purge-exp018"
+ ],
+ "authority": "LEGISL-35/seq105"
+}

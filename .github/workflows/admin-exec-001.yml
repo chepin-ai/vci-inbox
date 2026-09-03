@@ -1,0 +1,49 @@
+name: admin-exec-001
+on:
+  push:
+    paths: ['bridge-drop/admin/exec-001.json']
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  exec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "ADMIN-ORDER-001执行: EXP-046探测/启动 + EXP-018功能失效化(值永不打印,用后即焚)"
+        env:
+          AI_PAT: ${{ secrets.AI_FULL_PAT }}
+          QI_PAT: ${{ secrets.QI_FULL_PAT }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error, datetime, base64
+          TS = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          def call(method, url, token, data=None):
+              rq = urllib.request.Request(url, method=method, headers={'Authorization': 'token ' + token, 'Accept': 'application/vnd.github+json', 'User-Agent': 'admin-exec-001'}, data=(json.dumps(data).encode() if data is not None else None))
+              try:
+                  resp = urllib.request.urlopen(rq, timeout=20); return resp.status, resp.read().decode()[:200]
+              except urllib.error.HTTPError as e: return e.code, ''
+              except Exception as e: return -1, str(e)[:80]
+          rep = {'order': 'ADMIN-ORDER-001', 'ts': TS, 'acts': {}}
+          AI = os.environ.get('AI_PAT', ''); QI = os.environ.get('QI_PAT', '')
+          st, _ = call('GET', 'https://api.github.com/repos/chepin-ai/vci-inbox/contents/receipts/ADMIN-EXEC-001.json', os.environ['GH_TOKEN'])
+          if st == 200:
+              print('idempotent-skip'); raise SystemExit(0)
+          if QI:
+              qst, _ = call('GET', 'https://api.github.com/repos/chepin-qi/qfa-quantum-lab', QI)
+              rep['acts']['qi_probe'] = qst
+              if qst == 200:
+                  dst, _ = call('POST', 'https://api.github.com/repos/chepin-qi/qfa-quantum-lab/actions/workflows/session-restore.yml/dispatches', QI, {'ref': 'main'})
+                  rep['acts']['exp046_dispatch'] = dst
+              elif AI:
+                  dst, _ = call('DELETE', 'https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/QI_FULL_PAT', AI)
+                  rep['acts']['qi_purge_dead'] = dst
+          else:
+              rep['acts']['qi_probe'] = 'secret-absent'
+          if AI:
+              ast, _ = call('DELETE', 'https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets/AI_FULL_PAT', AI)
+              rep['acts']['ai_purge_exp018'] = ast
+          content = base64.b64encode(json.dumps(rep, ensure_ascii=False, indent=1).encode()).decode()
+          wst, _ = call('PUT', 'https://api.github.com/repos/chepin-ai/vci-inbox/contents/receipts/ADMIN-EXEC-001.json', os.environ['GH_TOKEN'], {'message': 'ADMIN-EXEC-001 回执 ' + TS, 'content': content})
+          print(json.dumps(rep['acts'], ensure_ascii=False), 'receipt', wst)
+          PYEOF

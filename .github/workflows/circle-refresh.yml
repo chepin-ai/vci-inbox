@@ -99,9 +99,20 @@ jobs:
               putc('ci-control','bridge/stream-ledger.jsonl',(old.rstrip(chr(10))+chr(10) if old else '')+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
           print(json.dumps({'harvested':len(harvested),'items':harvested[:10]},ensure_ascii=False))
           # 备份道(D-139): 每班末叩 intake-agent+fleet-judge 各一次——30min cron自启滞后期间,保证≥2h一班兜底(ENGINE-FLEET-01§4)
+          # QUOTA-SELF-DEVOUR-01闸(LEGISL-35): 备份叩门冷却7200s/目标(原义=2h兜底,非常态驱动)
+          _ks_txt,_=getc('ci-control','bridge/knock-state.json')
+          _ks=json.loads(_ks_txt) if _ks_txt else {}
+          _nown=datetime.datetime.now(datetime.timezone.utc).timestamp()
+          _knocked=[]
           for _wf in ('intake-agent.yml','fleet-judge.yml','kernel-loop.yml'):
+              if (_nown-_ks.get('cr:'+_wf,0))<=7200:
+                  print(f'{_wf} backup-knock: cooldown-skip'); continue
               try:
                   rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{_wf}/dispatches',data=json.dumps({'ref':'main','inputs':{'cause':'beat-forward'}}).encode(),method='POST',headers=H())
                   print(f'{_wf} backup-knock:',urllib.request.urlopen(rq,timeout=15).status)
+                  _knocked.append(_wf)
               except Exception as _e: print(f'{_wf} backup-knock fail(下一班再试):',str(_e)[:60])
+          if _knocked:
+              for _w in _knocked: _ks['cr:'+_w]=_nown
+              putc('ci-control','bridge/knock-state.json',json.dumps(_ks),'knock冷却记账 '+TS)
           PYEOF

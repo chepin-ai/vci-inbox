@@ -384,7 +384,13 @@ jobs:
           CAUSE = os.environ.get('CAUSE', 'schedule')
           beat_changed = any(x != 'GENESIS_RUN' for x in evolution['deltas']) or len(overdue) > 0
           knocked = []
-          if CAUSE != 'beat-forward' and beat_changed:
+          # QUOTA-SELF-DEVOUR-01闸(LEGISL-35): 叩门冷却600s/目标,断自激环路(fj写板→push→kl→叩→fj)
+          _ks_txt, _ = getc('ci-control', 'bridge/knock-state.json')
+          _ks = json.loads(_ks_txt) if _ks_txt else {}
+          _nown = datetime.datetime.now(datetime.timezone.utc).timestamp()
+          if CAUSE != 'beat-forward' and beat_changed and (_nown - _ks.get('fleet-judge.yml', 0)) > 600:
+              _ks['fleet-judge.yml'] = _nown
+              putc('ci-control', 'bridge/knock-state.json', json.dumps(_ks), 'knock冷却记账 ' + TS)
               for wf in ('fleet-judge.yml',):
                   try:
                       rq = urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{wf}/dispatches', data=json.dumps({'ref': 'main', 'inputs': {'cause': 'beat-forward'}}).encode(), method='POST', headers=H)
