@@ -1,0 +1,18 @@
+{
+ "order": "ADMIN-ORDER-001-DIAG3",
+ "ts": "2026-09-03T07:19:29Z",
+ "list_status": 403,
+ "secrets_count": 0,
+ "presence": {
+  "4f7084090e": false,
+  "e23004809f": false,
+  "8b3475041a": false,
+  "e6eb840c85": false
+ },
+ "legend": {
+  "4f7084090e": "AI***AT",
+  "e23004809f": "QI***AT",
+  "8b3475041a": "CI***EY",
+  "e6eb840c85": "OT***NE"
+ }
+}
