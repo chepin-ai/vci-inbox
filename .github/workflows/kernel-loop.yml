@@ -490,6 +490,43 @@ jobs:
                       print('检寂', line, '活跃, 免投')
           except Exception as _e:
               print('检寂步异常(已吞):', type(_e).__name__, str(_e)[:150])
+          # ---- symphony-pulse: D室静默>24h日脉冲(TOPICS驱动,日幂等,浪涌建制化,root令2026-09-03) ----
+          try:
+              daymark=nowz.strftime('%Y%m%d') if 'nowz' in dir() else datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d')
+              rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/ci-control/contents/'+urllib.parse.quote('bridge/disc/pulse-markers.json',safe=''),headers=H)
+              try: markers=json.loads(base64.b64decode(json.loads(urllib.request.urlopen(rq,timeout=20).read())['content']).decode())
+              except Exception: markers={}
+              rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/ci-control/contents/'+urllib.parse.quote('bridge/symphony/TOPICS.jsonl',safe=''),headers=H)
+              try: tops=[json.loads(l) for l in base64.b64decode(json.loads(urllib.request.urlopen(rq,timeout=20).read())['content']).decode().splitlines() if l.strip()]
+              except Exception: tops=[]
+              openT=[t for t in tops if t.get('state','').startswith(('open','讨论','进行','运行'))]
+              tline='；'.join('%s %s'%(t['id'],str(t.get('题名',''))[:40]) for t in openT[:4]) or '(暂无开放题)'
+              nowz2=datetime.datetime.now(datetime.timezone.utc)
+              for room,num in ROOMS.items():
+                  ths=next((r0['threads'] for r0 in out['rooms'] if r0['room']==room),[])
+                  last=max((t0['last_ts'] for t0 in ths if t0.get('last_ts')),default=None)
+                  silent_h = 999 if not last else (nowz2-datetime.datetime.fromisoformat(last.replace('Z','+00:00'))).total_seconds()/3600
+                  if silent_h>24 and markers.get(room)!=daymark:
+                      body='【symphony-pulse · '+nowz2.strftime('%Y-%m-%dT%H:%MZ')+'】本室静默 %.0f 小时,SI0 日脉冲激发(日幂等)。\n\n开放题(TOPICS在册): %s\n\n邀各线: 就本室主题投一件实证/互检/异议(R4零编数,R6异见道)。浪涌建制化——室不冷,拍不断。'%(silent_h,tline)
+                      m='mutation{addComment(input:{subjectId:"%s",body:%s}){commentEdge{node{createdAt}}}}'
+                      qid='query{repository(owner:"chepin-ai",name:"ci-inbox"){issue(number:%d){id}}}'%num
+                      sid=gql(qid)['data']['repository']['issue']['id']
+                      gql(m%(sid,json.dumps(body,ensure_ascii=False)))
+                      markers[room]=daymark; print('pulse投递',room,'静默%.0fh'%silent_h)
+                  else:
+                      print('pulse',room,'活跃或今日已投,免')
+              def putc3(repo,path,content,msg):
+                  rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/'+repo+'/contents/'+urllib.parse.quote(path,safe=''),headers=H)
+                  try: sha=json.loads(urllib.request.urlopen(rq,timeout=20).read()).get('sha')
+                  except urllib.error.HTTPError: sha=None
+                  bd={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+                  if sha: bd['sha']=sha
+                  rq2=urllib.request.Request(rq.full_url,method='PUT',headers=H,data=json.dumps(bd).encode())
+                  return urllib.request.urlopen(rq2,timeout=20).status
+              if any(markers.get(rm)==daymark for rm in ROOMS):
+                  putc3('ci-control','bridge/disc/pulse-markers.json',json.dumps(markers,ensure_ascii=False,indent=1),'symphony-pulse markers '+daymark)
+          except Exception as _e:
+              print('symphony-pulse异常(已吞):', type(_e).__name__, str(_e)[:150])
           PYEOF3
 
       - name: "FLIGHT-DECK影子拍: 常任审计+bus_root+毂扇出+私域金丝雀 (W41/W42)"
