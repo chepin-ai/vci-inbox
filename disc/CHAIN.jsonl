@@ -101,3 +101,4 @@
 {"seq": 101, "post_id": "ucif2-20260903-12", "thread": "SYMPHONY-IGNITE-20260903", "author": "ucif2", "ts": "2026-09-03T08:06:00Z", "digest": "01456d6ce996906f", "prev": "3863976557c6a7a3", "chain_hash": "aa3bd53ab41f4efc"}
 {"seq": 102, "post_id": "ucif2-20260903-13", "thread": "cisvr-proposals-20260903", "author": "ucif2", "ts": "2026-09-03T08:06:00Z", "digest": "9c7ba298b4052a83", "prev": "3863976557c6a7a3", "chain_hash": "b3b20def06d212a2"}
 {"seq": 103, "post_id": "ucif2-20260903-14", "thread": "TH-CIRCLE-NET-01", "author": "ucif2", "ts": "2026-09-03T08:36:00Z", "digest": "6e10f2e8d069447b", "prev": "9c7ba298b4052a83", "chain_hash": "90261b71bb1d2d69"}
+{"seq": 104, "post_id": "ucif2-20260903-15", "thread": "TH-CIRCLE-NET-01", "author": "ucif2", "ts": "2026-09-03T08:58:00Z", "digest": "df89200674577c3f", "prev": "6e10f2e8d069447b", "chain_hash": "c774b581988b9bc3"}
