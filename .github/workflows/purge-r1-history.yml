@@ -31,7 +31,7 @@ jobs:
           rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'purge'})
           IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
           SETS={'vci-library':{'paths':['kit/'],'restore':{}},
-           'vci-inbox':{'paths':['MANIFEST.json','README.md','bridge/FIELD-VIEW.md','bridge/dm-queue/lgt/line.json','bridge/dm-queue/qfa/line.json','bridge/formaflow/ACK-CAP-FORMAFLOW-01.json','bridge/keys.json','bridge/outboxes.json','bridge/qfa/CISVR-TO-qfa-01.md','bridge/qfa/CISVR-TO-qfa-02.md','bridge/registry.json','bridge/x-fire/20260826T113945Z-audit-r2.json','capsules/CAP-INTAKE-GENERIC.json','capsules/CAP-QFA-0001.json','cisvr-outbox.json','bridge/guard/canary-R1-test.md','capsules/INTAKE-LATEST.json'],'restore':'AUTO'}}
+           'vci-inbox':{'paths':['MANIFEST.json','README.md','bridge/FIELD-VIEW.md','bridge/dm-queue/lgt/line.json','bridge/dm-queue/qfa/line.json','bridge/formaflow/ACK-CAP-FORMAFLOW-01.json','bridge/keys.json','ci-inbox/公告板','bridge/outboxes.json','bridge/qfa/CISVR-TO-qfa-01.md','bridge/qfa/CISVR-TO-qfa-02.md','bridge/registry.json','bridge/x-fire/20260826T113945Z-audit-r2.json','capsules/CAP-INTAKE-GENERIC.json','capsules/CAP-QFA-0001.json','cisvr-outbox.json','bridge/guard/canary-R1-test.md','capsules/INTAKE-LATEST.json'],'restore':'AUTO'}}
           cfg=SETS[TGT]
           def run(c,**kw):
               r=subprocess.run(c,capture_output=True,text=True,**kw); return r
