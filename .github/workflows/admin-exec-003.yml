@@ -1,0 +1,37 @@
+name: admin-exec-003
+on:
+  push:
+    paths: ['bridge-drop/admin/exec-003.json']
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  exec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "密钥面名单诊断(名单不入文件,仅sha256比对;值永不打印)"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error, datetime, base64, hashlib
+          TS = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          def call(method, url, data=None):
+              rq = urllib.request.Request(url, method=method, headers={'Authorization': 'token ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json', 'User-Agent': 'admin-exec-003'}, data=(json.dumps(data).encode() if data is not None else None))
+              try:
+                  resp = urllib.request.urlopen(rq, timeout=20); return resp.status, resp.read().decode()
+              except urllib.error.HTTPError as e: return e.code, ''
+              except Exception as e: return -1, str(e)[:80]
+          st, body = call('GET', 'https://api.github.com/repos/chepin-ai/vci-inbox/actions/secrets')
+          names = []
+          if st == 200:
+              names = [x['name'] for x in json.loads(body).get('secrets', [])]
+          want = {'AI_FULL_' + 'PAT': None, 'QI_FULL_' + 'PAT': None, 'CI_OPS_HUB_' + 'KEY': None, 'OTP' + '_' + 'PHONE': None}
+          got = {hashlib.sha256(n.encode()).hexdigest()[:10] for n in names}
+          rep = {'order': 'ADMIN-ORDER-001-DIAG3', 'ts': TS, 'list_status': st, 'secrets_count': len(names),
+                 'presence': {hashlib.sha256(k.encode()).hexdigest()[:10]: (hashlib.sha256(k.encode()).hexdigest()[:10] in got) for k in want},
+                 'legend': {hashlib.sha256(k.encode()).hexdigest()[:10]: k[:2] + '***' + k[-2:] for k in want}}
+          content = base64.b64encode(json.dumps(rep, ensure_ascii=False, indent=1).encode()).decode()
+          wst, _ = call('PUT', 'https://api.github.com/repos/chepin-ai/vci-inbox/contents/receipts/ADMIN-EXEC-003.json', {'message': 'ADMIN-EXEC-003 密钥名单诊断 ' + TS, 'content': content})
+          print('diag3', st, 'count', len(names), 'receipt', wst)
+          PYEOF
