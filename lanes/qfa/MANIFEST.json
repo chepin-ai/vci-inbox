@@ -1,0 +1,19 @@
+{
+ "repo": "vci-inbox/lanes/qfa",
+ "line": "qfa",
+ "tag": "量子实验室面",
+ "lane": "administration-circle",
+ "v": 1,
+ "ignited": "2026-09-03T07:03Z",
+ "resolution": "RESOLUTION-ADMIN-001",
+ "authority": "root令2026-09-03",
+ "pubkey_ed25519": "21c5a0be8743c192c4ac89ba0cc3b71ffb572048b5230bf021cc64cf1ab32aa6",
+ "state": "ignited-bootstrap",
+ "founding_circle": [
+  "usrm",
+  "cisvr",
+  "ucif2"
+ ],
+ "form": "lane(代偿立户,RESOLUTION-ADMIN-003);独立仓chepin-qi/qfa-quantum-lab转外事档",
+ "note": "建立即启用:线户先行;独立仓候root物理两件(QFA-REPO-EXTERNAL-01)"
+}
