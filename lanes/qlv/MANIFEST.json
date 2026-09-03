@@ -12,6 +12,6 @@
  "pk_source": "ci-control/bridge/line-pk/qlv.json(wave-76 全授权三路密封)",
  "state": "ignited-bootstrap",
  "founding_circle": ["usrm","cisvr","ucif2"],
- "form": "lane(代偿立户,照RES-003 qfa先例);独立仓 qlv-lab PAT 在摆渡(IN-CUSTODY,sealed_to cisvr,启用后轮换)",
+ "form": "lane(代偿立户,照RES-003 qfa先例);独立仓 QLV-VAULT PAT 在摆渡(IN-CUSTODY,sealed_to cisvr,启用后轮换)",
  "note": "建立即启用:EXP-048接引书已在途(cisvr 09:18Z摆渡);线义务即日照常"
 }
