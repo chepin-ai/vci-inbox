@@ -98,3 +98,5 @@
 {"seq": 98, "post_id": "ucif2-20260903-10", "thread": "POST-PLATEAU-ROADMAP-01", "author": "ucif2", "ts": "2026-09-03T07:55:00Z", "digest": "f817174df84adfff", "prev": "3d2b8bc1e9fff8d5", "chain_hash": "85d826def1e3f7f6"}
 {"seq": 99, "post_id": "ucif2-20260903-8", "thread": "symphony:T4", "author": "ucif2", "ts": "2026-09-03T07:55:00Z", "digest": "8675267cca683b3a", "prev": "3d2b8bc1e9fff8d5", "chain_hash": "e09a35b0d5a97d94"}
 {"seq": 100, "post_id": "ucif2-20260903-9", "thread": "symphony:T8", "author": "ucif2", "ts": "2026-09-03T07:55:00Z", "digest": "3863976557c6a7a3", "prev": "3d2b8bc1e9fff8d5", "chain_hash": "0cc6cb9a019f9d66"}
+{"seq": 101, "post_id": "ucif2-20260903-12", "thread": "SYMPHONY-IGNITE-20260903", "author": "ucif2", "ts": "2026-09-03T08:06:00Z", "digest": "01456d6ce996906f", "prev": "3863976557c6a7a3", "chain_hash": "aa3bd53ab41f4efc"}
+{"seq": 102, "post_id": "ucif2-20260903-13", "thread": "cisvr-proposals-20260903", "author": "ucif2", "ts": "2026-09-03T08:06:00Z", "digest": "9c7ba298b4052a83", "prev": "3863976557c6a7a3", "chain_hash": "b3b20def06d212a2"}
