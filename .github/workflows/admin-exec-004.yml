@@ -1,0 +1,28 @@
+name: admin-exec-004
+on:
+  push:
+    paths: ['bridge-drop/admin/exec-004.json']
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  exec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "密钥注入布尔对照(push事件上下文)"
+        env:
+          AI_PAT: ${{ secrets.AI_FULL_PAT }}
+          QI_PAT: ${{ secrets.QI_FULL_PAT }}
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error, datetime, base64
+          TS = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          rep = {'order': 'DIAG4-push-ctx', 'ts': TS,
+                 'presence': {'ai': len(os.environ.get('AI_PAT',''))>0, 'qi': len(os.environ.get('QI_PAT',''))>0, 'hubk': len(os.environ.get('HUBK',''))>0}}
+          content = base64.b64encode(json.dumps(rep, ensure_ascii=False, indent=1).encode()).decode()
+          rq = urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/contents/receipts/ADMIN-EXEC-004.json', method='PUT', headers={'Authorization': 'token ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json', 'User-Agent': 'admin-exec-004'}, data=json.dumps({'message': 'ADMIN-EXEC-004 push上下文密钥布尔 ' + TS, 'content': content}).encode())
+          try: print('receipt', urllib.request.urlopen(rq, timeout=20).status)
+          except Exception as e: print('receipt fail', str(e)[:60])
+          PYEOF
