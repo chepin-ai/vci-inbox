@@ -1,12 +1,12 @@
 {
- "ts": "2026-09-03T09:41:05Z",
+ "ts": "2026-09-03T12:07:11Z",
  "matrix_sha256": "f47cad186b7a3de63669366c499d5f7ead69a79462f6245564d6cc54e8835e50",
- "census_sha256": "bb3aa8b9e21ddced56ed1498cff8771e7d17524cd884f8977eec8a3ef620ab8c",
+ "census_sha256": "4040112cdd3209b4c771808d0e569f885f6805c2669eff90018c5f6358423f52",
  "verdict": "ATTENTION",
  "diffs": {
   "unknown": 22,
   "excess": 0,
-  "unauth_active": 0,
+  "unauth_active": 7,
   "new_repos": 14
  },
  "self_check": {
@@ -20,5 +20,5 @@
   }
  },
  "mode": "ratified-enforce",
- "chain_head": "8cc4fd2dab40a1edac5c756b79efc2af1f5d71bac888e5749c065d061d7c5f5c"
+ "chain_head": "a1639c32091948dd3495d42c4c6837b4cc5c23690415251de8a16fbb1abff096"
 }
