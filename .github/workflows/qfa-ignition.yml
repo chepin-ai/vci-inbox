@@ -1,0 +1,69 @@
+name: qfa-ignition（EXP-046/RESOLUTION-ADMIN-001：建仓+bootstrap+session-restore点火，一次性自解除）
+on:
+  workflow_dispatch: {}
+  push:
+    paths: ['payloads/triggers/qfa-ignition-20260903.trigger']
+permissions:
+  contents: write
+jobs:
+  ignite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: qfa 点火（QI_FULL_PAT 道）
+        env:
+          TK: ${{ secrets.QI_FULL_PAT }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, urllib.error, subprocess, shutil
+          rec={'receipt':'QFA-IGNITION-01','ts':subprocess.run(['date','-u','+%Y-%m-%dT%H:%MZ'],capture_output=True,text=True).stdout.strip(),'steps':{}}
+          tk=os.environ.get('TK','').strip()
+          if not tk:
+              rec['steps']['auth']='FAIL: secrets.QI_FULL_PAT 缺席——PAT道不通,候圈裁代偿(qfa面迁vci-inbox/lanes/qfa)'
+              os.makedirs('receipts',exist_ok=True)
+              json.dump(rec,open('receipts/QFA-IGNITION-01.json','w'),ensure_ascii=False,indent=1)
+              print('NO QI_FULL_PAT'); raise SystemExit(0)
+          H={'Authorization':'token '+tk,'Accept':'application/vnd.github+json'}
+          def gj(method,path,body=None):
+              req=urllib.request.Request('https://api.github.com'+path,method=method,
+                  data=json.dumps(body).encode() if body is not None else None,headers=H)
+              try:
+                  r=urllib.request.urlopen(req,timeout=30); return r.status,json.loads(r.read() or b'{}')
+              except urllib.error.HTTPError as e:
+                  try: return e.code,json.loads(e.read() or b'{}')
+                  except Exception: return e.code,{}
+          s,me=gj('GET','/user'); rec['steps']['whoami']=me.get('login') if s==200 else 'ERR%d'%s
+          s,_=gj('GET','/repos/chepin-qi/qfa-quantum-lab')
+          if s==404:
+              s2,c2=gj('POST','/orgs/chepin-qi/repos',{'name':'qfa-quantum-lab','private':True,'description':'qfa线·量子实验室面(Administration圈辖)','auto_init':False})
+              rec['steps']['create']='created' if s2==201 else 'ERR%d:%s'%(s2,str(c2)[:150])
+          elif s==200: rec['steps']['create']='exists-skip'
+          else: rec['steps']['create']='ERR%d'%s
+          # bootstrap push
+          if rec['steps']['create'] in ('created','exists-skip'):
+              os.makedirs('/tmp/qfapush',exist_ok=True)
+              shutil.copytree('payloads/qfa-bootstrap','/tmp/qfapush/repo',dirs_exist_ok=True)
+              os.makedirs('/tmp/qfapush/repo/.github/workflows',exist_ok=True)
+              shutil.copy('payloads/session-restore-qfa.yml','/tmp/qfapush/repo/.github/workflows/session-restore.yml')
+              genv=dict(os.environ,GIT_TERMINAL_PROMPT='0')
+              def g(cmd,ok=True):
+                  p=subprocess.run(cmd,cwd='/tmp/qfapush/repo',env=genv,capture_output=True,text=True,timeout=60,shell=True)
+                  if ok and p.returncode!=0: raise RuntimeError(cmd+' => '+p.stderr[:200])
+                  return p
+              g('git init -q -b main'); g('git config user.name "qfa-line"'); g('git config user.email "qfa@ci"')
+              g('git add -A'); g('git commit -qm "qfa线点火:bootstrap(RESOLUTION-ADMIN-001)"',ok=False)
+              g('git remote add origin https://x-access-token:%s@github.com/chepin-qi/qfa-quantum-lab.git'%tk)
+              p=g('git push -q -u origin main',ok=False)
+              rec['steps']['push']='OK' if p.returncode==0 else 'ERR:'+p.stderr[:150]
+              if p.returncode==0:
+                  s3,_=gj('POST','/repos/chepin-qi/qfa-quantum-lab/actions/workflows/session-restore.yml/dispatches',{'ref':'main'})
+                  rec['steps']['dispatch_session_restore']='dispatched' if s3==204 else 'ERR%d'%s3
+          os.makedirs('receipts',exist_ok=True)
+          json.dump(rec,open('receipts/QFA-IGNITION-01.json','w'),ensure_ascii=False,indent=1)
+          print(json.dumps(rec['steps'],ensure_ascii=False))
+          PYEOF
+      - name: 回执落仓+自解除 [skip ci]
+        run: |
+          git config user.name "ignition"; git config user.email "ignition@ci"
+          rm -f payloads/triggers/qfa-ignition-20260903.trigger
+          git add -A && git commit -qm "QFA-IGNITION-01 回执+触发器自解除 [skip ci]" && (git pull -q --rebase && git push -q) || echo nothing
