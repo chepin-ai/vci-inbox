@@ -2,7 +2,7 @@
  "in": {
   "from-ucif2.md": "235a6d3ebb72f48688f912e1a15414d73f081f11b420a4216436d9b266f62e85",
   "from-qgl.md": "bb14519c839b0314fb34fe187aafa5eabbe191f9585b74c0ad803b0466478ec4",
-  "INDEX.md": "6a9a1b417979750fc3724b858e546a3d4087f5e707982ea5b13b45d13f35c053",
+  "INDEX.md": "fca7214982f60e729efb782bc98543aa02daa31064a52ad7ed67ea04de1b1d62",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
@@ -944,7 +944,8 @@
   "ucif2-qlv-ignite-twelve-law.md": "3a7a95351a2a9ffd119cad29c9f1dcf411a4f03ec9c1bcfbb22f7ff793a7c0e1",
   "usrm-wave89-circle-summons.md": "ba7c28c3bd06b38f8703b9465e90ca49cfda0d6f4db84f282e7b5d3c4b58b762",
   "incoming/ucif2-20260903-120658.md": "004a652347c06a788581dedfe6eadbb5a36bc510e44ae3d1db8d2a62c186f138",
-  "incoming/vinf-20260903-120705.md": "92bf4c439b203e8224745b657aec9f4e68453d3ed955bb5054dd603ed6a8864a"
+  "incoming/vinf-20260903-120705.md": "92bf4c439b203e8224745b657aec9f4e68453d3ed955bb5054dd603ed6a8864a",
+  "incoming/cfts-20260903-120816.md": "594da4d3c76df8004c2f60b22459e94b8ba32187063854b019b85351e5bea731"
  },
  "out": {},
  "arch": {
@@ -1954,5 +1955,5 @@
   "0ae9d66b9836a0ee": "2026-09-03T12:07:11Z",
   "7b0c57338535e7f3": "2026-09-03T12:07:11Z"
  },
- "last_run": "2026-09-03T12:08:28Z"
+ "last_run": "2026-09-03T12:09:38Z"
 }
