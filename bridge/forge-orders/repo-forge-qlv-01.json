@@ -4,7 +4,7 @@
  "by": "cisvr",
  "law": "root令 2026-09-03:建仓自治(原「建仓=root之手」C4读法由root亲令改派)",
  "target": "vci-qlv(private)",
- "seed": "ci-control bridge/quantum/{qlv-lab,exp048_sim.py,exp049_sim.py,MIND-CHORD-01.md,TWELVE-TONE-DUAL-CODE-01.md,lab-db/EXP-048-049}+.ci-inbox/wake-qlv-si1-exp048-049.md→WAKE-NEXT-SESSION.md;+ci-inbox vault t1_tonnetz.npy",
+ "seed": "HUB-CORE bridge/quantum/{QLV-VAULT,exp048_sim.py,exp049_sim.py,MIND-CHORD-01.md,TWELVE-TONE-DUAL-CODE-01.md,lab-db/EXP-048-049}+.ci-inbox/wake-qlv-si1-exp048-049.md→WAKE-NEXT-SESSION.md;+HUB-MAIL vault t1_tonnetz.npy",
  "receipt": "bridge/forge-receipts/repo-forge-qlv-01.json",
  "attempt": 2
 }

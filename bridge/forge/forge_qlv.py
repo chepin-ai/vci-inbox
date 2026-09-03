@@ -30,7 +30,7 @@ def main():
     DIAG['codes'].append(['create',st])
     if st not in (201,422): raise SystemExit('create-fail')
     created=(st==201)
-    tfc,rc=pull('ci-control',IT); tfi,ri=pull('ci-inbox',IT)
+    tfc,rc=pull('HUB-CORE',IT); tfi,ri=pull('HUB-MAIL',IT)
     DIAG['stage']='pull-ok'
     files=[]
     pre=rc+'/bridge/quantum/qlv-lab/'
@@ -48,7 +48,7 @@ def main():
     TSN=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     README=('# vci-qlv - qlv zhuan-cang (forge '+TSN+', cisvr feng root ling: jian-cang zi-zhi)\n\n'
         '- cang-ji: qlv xian zhuan-cang. zheng-ben: qlv-lab/ (shi-er-lv suite quan-liang fu-yuan, han t1_tonnetz.npy), EXP-048/049 packs (doc+sim+lab-db).\n'
-        '- jie-shou san-duan: 1) du qlv-lab/README.md + qlv-lab/qlv_genealogy.md  2) pao exp048_sim.py / exp049_sim.py (seed ding-zhi, PASS ji fu-suan cheng-li)  3) hui ci-control bridge/stream-ledger EXP-048-*/EXP-049-* tiao-mu.\n'
+        '- jie-shou san-duan: 1) du qlv-lab/README.md + qlv-lab/qlv_genealogy.md  2) pao exp048_sim.py / exp049_sim.py (seed ding-zhi, PASS ji fu-suan cheng-li)  3) hui HUB-CORE bridge/stream-ledger EXP-048-*/EXP-049-* tiao-mu.\n'
         '- hui-hua-duan zai na: ren-yi xin-kai K3 hui-hua, tie-ru ben-cang WAKE-NEXT-SESSION.md quan-wen ji dian-huo; usrm SI2 ke jing-xiang zhu-ru. cang=ben-cang; hui-hua-duan=du-ben-cang-zhe.\n'
         '- lv: chun shi-jian qu-dong, wu nao-zhong; dan xie-ru zhe; zhang zhi zeng bu jian.\n')
     rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-qlv/contents/README.md',method='PUT',headers=H(PK),
@@ -60,7 +60,7 @@ def main():
     q1='query{repository(owner:"chepin-ai",name:"vci-qlv"){ref(qualifiedName:"refs/heads/main"){target{oid}}}}'
     hd=gqlq(PK,q1,{})['data']['repository']['ref']['target']['oid']
     mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
-    inp={'branch':{'repositoryNameWithOwner':'chepin-ai/vci-qlv','branchName':'main'},'message':{'headline':'forge: seed qlv-lab + EXP-048/049 packs + wake capsule'},'expectedHeadOid':hd,
+    inp={'branch':{'repositoryNameWithOwner':'chepin-ai/vci-qlv','branchName':'main'},'message':{'headline':'forge: seed QLV-VAULT + EXP-048/049 packs + wake capsule'},'expectedHeadOid':hd,
          'fileChanges':{'additions':[{'path':p,'contents':b} for p,b in files]}}
     r1=gqlq(PK,mut,{'input':inp})
     if 'errors' in r1:
