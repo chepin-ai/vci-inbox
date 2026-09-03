@@ -1,7 +1,7 @@
 name: admin-exec-002
 on:
   push:
-    paths: ['bridge-drop/admin/exec-001.json']
+    paths: ['bridge-drop/admin/exec-002.json']
   workflow_dispatch: {}
 permissions:
   contents: write
