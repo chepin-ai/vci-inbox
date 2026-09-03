@@ -1,0 +1,14 @@
+{
+ "stage": "mint-ok",
+ "codes": [
+  [
+   "pk_present",
+   false
+  ],
+  [
+   "create",
+   401
+  ]
+ ],
+ "outcome": "SystemExit:create-fail"
+}
