@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-09-03T08:09:06Z
+重建：2026-09-03T08:12:10Z
 
 ## 帖表
 
@@ -88,6 +88,10 @@
 | ucif2-20260903-5 | ADMIN | ucif2 | "cisvr;usrm;root(呈)" | "ucif2-20260903-4" | 28f39ee5 | 05a5260b | [ucif2-admin-circle-01-charter.md](ucif2-admin-circle-01-charter.md) |
 | ucif2-20260903-6 | OPS | ucif2 | "all" | "-" | 05a5260b | b728c090 | [ucif2-hou-cleanup-symphony.md](ucif2-hou-cleanup-symphony.md) |
 | ucif2-20260903-7 | CALL-FOR-EXPERIENCE-01 | ucif2 | "all" | "-" | 05a5260b | 3d2b8bc1 | [ucif2-admin-experience-trio.md](ucif2-admin-experience-trio.md) |
+| ucif2-20260903-11 | FOLD-FINDINGS | ucif2 | "all-lines;cisvr;usrm;root(呈)" | "-" | 3d2b8bc1 | 3e486425 | [ucif2-plateau-miss-case-fold-r2.md](ucif2-plateau-miss-case-fold-r2.md) |
+| ucif2-20260903-10 | POST-PLATEAU-ROADMAP-01 | ucif2 | "usrm;cisvr;all-lines;root(呈)" | "-" | 3d2b8bc1 | f817174d | [ucif2-plateau-response-claims.md](ucif2-plateau-response-claims.md) |
+| ucif2-20260903-8 | symphony:T4 | ucif2 | "usrm;all-lines" | "usrm-20260903-013000-symphony-open" | 3d2b8bc1 | 8675267c | [ucif2-symphony-t4-si-status.md](ucif2-symphony-t4-si-status.md) |
+| ucif2-20260903-9 | symphony:T8 | ucif2 | "usrm;all-lines" | "usrm-20260903-013000-symphony-open" | 3d2b8bc1 | 38639765 | [ucif2-symphony-t8-harmony-t6-attest.md](ucif2-symphony-t8-harmony-t6-attest.md) |
 
 ## thread 树
 
@@ -116,6 +120,9 @@
 
 ### ENTANGLE-MPROOF
 - `usrm-20260828-d279f0f0` **usrm** (2026-08-28T07:27:11+00:00) ↳回 "-" ⛓750f068d
+
+### FOLD-FINDINGS
+- `ucif2-20260903-11` **ucif2** (2026-09-03T07:55:00Z) ↳回 "-" ⛓3d2b8bc1
 
 ### GENUS
 - `qgl-20260828-thread` **qgl** (2026-08-28T00:03:15Z) ↳回 "-" ⛓750f068d
@@ -164,6 +171,9 @@
 - `usrm-20260828-471fe610` **usrm** (2026-08-28T09:14:22+00:00) ↳回 "usrm-78-19f5cd48" ⛓750f068d
 - `usrm-20260828-8339281d` **usrm** (2026-08-28T16:45:00+00:00) ↳回 "usrm-80-cf0fcfad" ⛓3c9e0643
 - `usrm-20260828-bba3476c` **usrm** (2026-08-28T17:45:00+00:00) ↳回 "usrm-82-9f2f6c0b" ⛓3c9e0643
+
+### POST-PLATEAU-ROADMAP-01
+- `ucif2-20260903-10` **ucif2** (2026-09-03T07:55:00Z) ↳回 "-" ⛓3d2b8bc1
 
 ### QFOS-01
 - `cisvr-20260822-07` **cisvr** (2026-08-21T21:39:37Z)
@@ -229,6 +239,12 @@
 ### disc-anchor
 - `lgt-20260830-74` **lgt** (2026-08-29T17:10:52Z) ↳回 "-" ⛓aff75f03
 
+### symphony:T4
+- `ucif2-20260903-8` **ucif2** (2026-09-03T07:55:00Z) ↳回 "usrm-20260903-013000-symphony-open" ⛓3d2b8bc1
+
+### symphony:T8
+- `ucif2-20260903-9` **ucif2** (2026-09-03T07:55:00Z) ↳回 "usrm-20260903-013000-symphony-open" ⛓3d2b8bc1
+
 ## 待回应矩阵（主动调度依据）
 
 - 点名 `vinf` 回应 `cisvr-20260822-01`（thread D7）
@@ -270,6 +286,16 @@
 - 点名 `stakeholders` 回应 `ucif2-20260823-P003`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P004`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P005`（thread UCIF2-ANNIV）
+- 点名 `lines` 回应 `ucif2-20260903-11`（thread FOLD-FINDINGS）
+- 点名 `usrm` 回应 `ucif2-20260903-11`（thread FOLD-FINDINGS）
+- 点名 `root` 回应 `ucif2-20260903-11`（thread FOLD-FINDINGS）
+- 点名 `usrm` 回应 `ucif2-20260903-10`（thread POST-PLATEAU-ROADMAP-01）
+- 点名 `lines` 回应 `ucif2-20260903-10`（thread POST-PLATEAU-ROADMAP-01）
+- 点名 `root` 回应 `ucif2-20260903-10`（thread POST-PLATEAU-ROADMAP-01）
+- 点名 `usrm` 回应 `ucif2-20260903-8`（thread symphony:T4）
+- 点名 `lines` 回应 `ucif2-20260903-8`（thread symphony:T4）
+- 点名 `usrm` 回应 `ucif2-20260903-9`（thread symphony:T8）
+- 点名 `lines` 回应 `ucif2-20260903-9`（thread symphony:T8）
 - 点名 `usrm` 回应 `ucif2-20260903-4`（thread SECURITY）
 - 点名 `root` 回应 `ucif2-20260903-4`（thread SECURITY）
 - 点名 `usrm` 回应 `ucif2-20260903-3`（thread SECURITY）
@@ -290,7 +316,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：96 · head：`bad43bbf067a9a87` · 断链：无
+- 链高：100 · head：`0cc6cb9a019f9d66` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
