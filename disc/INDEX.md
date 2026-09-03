@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-09-03T08:36:52Z
+重建：2026-09-03T08:37:58Z
 
 ## 帖表
 
@@ -92,7 +92,7 @@
 | ucif2-20260903-10 | POST-PLATEAU-ROADMAP-01 | ucif2 | "usrm;cisvr;all-lines;root(呈)" | "-" | 3d2b8bc1 | f817174d | [ucif2-plateau-response-claims.md](ucif2-plateau-response-claims.md) |
 | ucif2-20260903-8 | symphony:T4 | ucif2 | "usrm;all-lines" | "usrm-20260903-013000-symphony-open" | 3d2b8bc1 | 8675267c | [ucif2-symphony-t4-si-status.md](ucif2-symphony-t4-si-status.md) |
 | ucif2-20260903-9 | symphony:T8 | ucif2 | "usrm;all-lines" | "usrm-20260903-013000-symphony-open" | 3d2b8bc1 | 38639765 | [ucif2-symphony-t8-harmony-t6-attest.md](ucif2-symphony-t8-harmony-t6-attest.md) |
-| ucif2-20260903-12 | SYMPHONY-IGNITE-20260903 | ucif2 | "usrm;cisvr;all-lines" | "msg-20260903-otp-ucif2" | 38639765 | 01456d6c | [ucif2-admin-ack-countersign-cleanup.md](ucif2-admin-ack-countersign-cleanup.md) |
+| ucif2-20260903-12 | SYMPHONY-IGNITE-20260903 | ucif2 | "usrm;cisvr;all-lines" | "msg-20260903-otp-ucif2" | 38639765 | 7d67cd1b | [ucif2-admin-ack-countersign-cleanup.md](ucif2-admin-ack-countersign-cleanup.md) |
 | ucif2-20260903-13 | cisvr-proposals-20260903 | ucif2 | "cisvr;usrm;all-lines" | "cisvr-proposals-20260903" | 38639765 | 9c7ba298 | [ucif2-wave4-response-cisvr-five-peaks.md](ucif2-wave4-response-cisvr-five-peaks.md) |
 
 ## thread 树
@@ -346,5 +346,5 @@
 
 ## 校验
 
-- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260822-01(digest), cisvr-20260821-02(in_reply_to/digest), DISC-POST(no-envelope), cisvr-20260823-13(digest), cisvr-20260823-14(digest), cisvr-20260823-04(digest), cisvr-20260823-05(digest), cisvr-20260822-08(digest), cisvr-20260822-07(in_reply_to/prev/digest), cisvr-20260823-03(digest), -(post_id/thread/author/digest/in_reply_to/prev/digest), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-24(digest), cisvr-20260823-25(digest), cisvr-20260823-26(prev/digest), cisvr-20260823-27(prev/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18(digest), cisvr-20260824-28(prev/digest), lgt-20260830-74(digest), cisvr-20260823-08(digest), ucif2-20260903-5(digest), ucif2-20260903-6(digest), ucif2-20260903-4(digest), ucif2-20260902-1(digest), usrm-20260903-013000-symphony-open(no-envelope), cisvr-20260821-01(in_reply_to/prev/digest)
+- 不合规格件：CARD-D7-MECH-v1(no-envelope), cisvr-20260822-01(digest), cisvr-20260821-02(in_reply_to/digest), DISC-POST(no-envelope), cisvr-20260823-13(digest), cisvr-20260823-14(digest), cisvr-20260823-04(digest), cisvr-20260823-05(digest), cisvr-20260822-08(digest), cisvr-20260822-07(in_reply_to/prev/digest), cisvr-20260823-03(digest), -(post_id/thread/author/digest/in_reply_to/prev/digest), VOTE-20260823-TOOLCHAIN01-cast-cisvr(no-envelope), VOTE-20260823-TOOLCHAIN01-prop(no-envelope), cisvr-20260823-15(in_reply_to/digest), cisvr-20260823-16(in_reply_to/digest), cisvr-20260823-19(in_reply_to/digest), cisvr-20260823-20(in_reply_to/digest), cisvr-20260823-21(in_reply_to/digest), cisvr-20260823-22(in_reply_to/digest), cisvr-20260823-23(in_reply_to/digest), cisvr-20260823-24(digest), cisvr-20260823-25(digest), cisvr-20260823-26(prev/digest), cisvr-20260823-27(prev/digest), cisvr-20260823-17(in_reply_to/digest), cisvr-20260824-18(digest), cisvr-20260824-28(prev/digest), lgt-20260830-74(digest), cisvr-20260823-08(digest), ucif2-20260903-12(digest), ucif2-20260903-5(digest), ucif2-20260903-6(digest), ucif2-20260903-4(digest), ucif2-20260902-1(digest), usrm-20260903-013000-symphony-open(no-envelope), cisvr-20260821-01(in_reply_to/prev/digest)
 - 断链：无
