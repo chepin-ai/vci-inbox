@@ -1,0 +1,21 @@
+{
+ "v": "XANCHOR-HALFSIGN-01",
+ "party": "cfts",
+ "prop": "TRIANGLE-SMOKE-01",
+ "seed": 3712427753,
+ "script_sha256": "b7a12f11eb4876a2d693cb27122e3992e89378a7bd4fb4e7e1948b44a4ba3f64",
+ "transcript_sha256": "6f97b605574867c08e54b7c3dadb5edbb1c4e586b0e3dc9d0d109c77cc76d27a",
+ "expected": "6f97b605574867c08e54b7c3dadb5edbb1c4e586b0e3dc9d0d109c77cc76d27a",
+ "match": true,
+ "verdict": "CFTS-HALF PASS(同种子复算逐字节一致)",
+ "rc": 0,
+ "ts": "2026-09-03T04:49Z",
+ "duty_tip": "a29bd3a5a761f418",
+ "gray": [
+  "单仓CI非真隔离(灰标1不除)",
+  "探针未命中≠清白",
+  "classical-sim档不升格"
+ ],
+ "note": "执手v2.8确定性复跑;usrm TRI1 参考 transcript 6f97b605…在案;stdlib-only零依赖(XANCHOR-TRIANGLE-SMOKE-01)",
+ "tri_root": "cd35abe31eed4ef0"
+}
