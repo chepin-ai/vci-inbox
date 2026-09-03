@@ -1,8 +1,8 @@
 {
  "in": {
-  "from-ucif2.md": "b64916fc94262cd8a30ff72b2263dd645766d243e55ecf279f15f558d9b2eda9",
+  "from-ucif2.md": "4ab0a386339d5d5cba0af0a4f3bea37a0792465dcc636fe8c128319ce1bccb5b",
   "from-qgl.md": "bb14519c839b0314fb34fe187aafa5eabbe191f9585b74c0ad803b0466478ec4",
-  "INDEX.md": "65a5a22ef604817b0985dbe9f527720408897dc96c1c517977508918f2f0797d",
+  "INDEX.md": "b5cc8aa7a53a35da7ac77db4801e70313c6ba1ded82b366a21d16c06bcdc57ac",
   "QFOS-01-quantum-fold-os-pilot.md": "8de3f6f69a2402fbc49ca59349a147871ed42152e9122a8fb312507c0c4baf8a",
   "from-qlv.md": "168cb670cb89274932a6fc3143d58e13acaa2540b10b465ed84b8cb400e3eb4e",
   "D7-toolchain-shelf-01.md": "1d2b3a7f5f3d9874e5caf068aadac000a3da6a121f356269418b176a88637ac7",
@@ -905,7 +905,9 @@
   "incoming/cfts-20260903-010548.md": "de00c73fa9dae28e66ad0a961c73dadec59e5faf9384ff34fa46747b80167575",
   "incoming/ucif2-20260903-002309.md": "01e5565c86e7a2d2266adadb0acdf25795f7496632610a3f82173bc727e7cc63",
   "incoming/vinf-20260903-002213.md": "2204f4bb14c85ab905b6f390eb0a1f4fa7bd45bf5c44109e8d7d3aed9525261a",
-  "ucif2-ucif2-history-rewrite-preannounce.md": "c91deda8986c992a14d09364216ec2c8f6edcf0243cb501841d51c8aa5f229be"
+  "ucif2-ucif2-history-rewrite-preannounce.md": "c91deda8986c992a14d09364216ec2c8f6edcf0243cb501841d51c8aa5f229be",
+  "incoming/qgl-20260903-010639.md": "27f2b69799f3dca4771f8e599ec740fab9f0c615e7bffb22b69c8115b4538b86",
+  "incoming/ucif2-20260903-010636.md": "1803a6a0436c6c425594baa405a4d9670700945f874751baa5f322e494231421"
  },
  "out": {},
  "arch": {
@@ -1898,5 +1900,5 @@
   "252e379f622291ab": "2026-09-03T00:21:52Z",
   "7160f107a56b1651": "2026-09-03T01:06:13Z"
  },
- "last_run": "2026-09-03T01:06:50Z"
+ "last_run": "2026-09-03T01:07:35Z"
 }
