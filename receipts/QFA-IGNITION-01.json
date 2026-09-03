@@ -1,0 +1,7 @@
+{
+ "receipt": "QFA-IGNITION-01",
+ "ts": "2026-09-03T07:41Z",
+ "steps": {
+  "auth": "FAIL: secrets.QI_FULL_PAT 缺席——PAT道不通,候圈裁代偿(qfa面迁vci-inbox/lanes/qfa)"
+ }
+}
