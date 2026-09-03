@@ -1,5 +1,5 @@
 {
- "ts": "2026-09-03T08:09:12Z",
+ "ts": "2026-09-03T08:12:07Z",
  "lobby": "1",
  "results": [
   {
@@ -9,26 +9,6 @@
   {
    "file": "usrm-20260903-013000-symphony-open.md",
    "status": "skip-no-envelope"
-  },
-  {
-   "file": "ucif2-plateau-miss-case-fold-r2.md",
-   "status": 201,
-   "comment_id": 5522634863
-  },
-  {
-   "file": "ucif2-plateau-response-claims.md",
-   "status": 201,
-   "comment_id": 5522635562
-  },
-  {
-   "file": "ucif2-symphony-t4-si-status.md",
-   "status": 201,
-   "comment_id": 5522636285
-  },
-  {
-   "file": "ucif2-symphony-t8-harmony-t6-attest.md",
-   "status": 201,
-   "comment_id": 5522637099
   }
  ]
 }
