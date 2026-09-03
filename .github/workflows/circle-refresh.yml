@@ -78,16 +78,25 @@ jobs:
                  'consensus_circle':'beacon seq 见 vci-inbox capsules/INTAKE-LATEST(公面最小胶囊)'}
           putc('ci-control','bridge/circle-state.json',json.dumps(state,ensure_ascii=False,indent=1),f'circle-refresh: 圈状态 {TS}')
           # (c) 账
-          old,_=getc('ci-control','bridge/stream-ledger.jsonl') or ('',None)
+          old,_=getc('ci-control','bridge/stream-ledger.jsonl')
+          if not old:  # EMPTY-READ-GENESIS-01闸: 瞬败重试一拍再判
+              import time as _tm; _tm.sleep(2)
+              old,_=getc('ci-control','bridge/stream-ledger.jsonl')
           _ls=[json.loads(x) for x in (old or '').split(chr(10)) if x.strip()]
           _seq=max([x.get('seq',0) for x in _ls]+[0])+1  # LEGISL-06自愈立法: CIRCLE-REFRESH须带seq
           _ph='0'*64
           for _x in reversed(_ls):
               if _x.get('hash'): _ph=_x['hash']; break
-          e={'seq':_seq,'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','prev':_ph,'harvested':len(harvested),'items':harvested[:20]}  # v2.1修:prev字段入件(原仅入哈希=prev链断,e144事故)
-          prevh=_ph
-          e['hash']=hashlib.sha256((prevh+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
-          putc('ci-control','bridge/stream-ledger.jsonl',(old or '').rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
+          _bp=None
+          if _ph=='0'*64:  # EMPTY-READ-GENESIS-01闸(LEGISL-33): 空读/断链≠零哈希接龙; 无旗拒入链, 落FINDING而嚎
+              _bp,_=getc('ci-control','bridge/ledger-archive/BOOTSTRAP.permit')
+              if not _bp:
+                  putc('ci-control','bridge/findings/FINDING-EMPTY-READ-'+TS+'.json',json.dumps({'type':'FINDING','pattern':'EMPTY-READ-GENESIS-01','by':'circle-refresh','ts':TS,'detail':'ledger空读/读败/无hash件且无BOOTSTRAP.permit旗, 拒入链, 账段中止(快照段已行)'},ensure_ascii=False),'FINDING 空读拒入链 '+TS)
+          if _ph!='0'*64 or _bp:
+              e={'seq':_seq,'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','prev':_ph,'harvested':len(harvested),'items':harvested[:20]}  # v2.1修:prev字段入件(原仅入哈希=prev链断,e144事故)
+              prevh=_ph
+              e['hash']=hashlib.sha256((prevh+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
+              putc('ci-control','bridge/stream-ledger.jsonl',(old.rstrip(chr(10))+chr(10) if old else '')+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
           print(json.dumps({'harvested':len(harvested),'items':harvested[:10]},ensure_ascii=False))
           # 备份道(D-139): 每班末叩 intake-agent+fleet-judge 各一次——30min cron自启滞后期间,保证≥2h一班兜底(ENGINE-FLEET-01§4)
           for _wf in ('intake-agent.yml','fleet-judge.yml','kernel-loop.yml'):
