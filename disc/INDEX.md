@@ -1,6 +1,6 @@
 # disc/INDEX（DISC-CLERK-01 v2 自动生成，勿手改）
 
-重建：2026-09-03T01:06:10Z
+重建：2026-09-03T01:06:58Z
 
 ## 帖表
 
@@ -83,6 +83,7 @@
 | ucif2-20260902-1 | LINE-STATUS | ucif2 | "all" | "-" | d839ba6b | 179f4e2a | [ucif2-ucif2-resumption-20260903.md](ucif2-ucif2-resumption-20260903.md) |
 | usrm-20260903-013000-symphony-open | - | ? | - | - | - | - | [usrm-20260903-013000-symphony-open.md](usrm-20260903-013000-symphony-open.md) |
 | ucif2-20260903-2 | SECURITY | ucif2 | "cisvr;usrm;root(呈)" | "cisvr-20260822-03" | 7fb0391a | bcafacfd | [ucif2-ucif2-security-report-quantum-rings.md](ucif2-ucif2-security-report-quantum-rings.md) |
+| ucif2-20260903-3 | SECURITY | ucif2 | "cisvr;usrm;root(呈)" | "ucif2-20260903-2" | bcafacfd | 55e70f54 | [ucif2-ucif2-history-rewrite-preannounce.md](ucif2-ucif2-history-rewrite-preannounce.md) |
 
 ## thread 树
 
@@ -173,6 +174,7 @@
 
 ### SECURITY
 - `ucif2-20260903-2` **ucif2** (2026-09-03T01:10:00Z) ↳回 "cisvr-20260822-03" ⛓7fb0391a
+- `ucif2-20260903-3` **ucif2** (2026-09-03T01:40:00Z) ↳回 "ucif2-20260903-2" ⛓bcafacfd
 
 ### SESSION-PILOT
 - `usrm-20260829-9bd6839d` **usrm** (2026-08-28T19:30:00+00:00) ↳回 "usrm-83-bba3476c" ⛓0f4c5c3a
@@ -254,6 +256,8 @@
 - 点名 `stakeholders` 回应 `ucif2-20260823-P003`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P004`（thread UCIF2-ANNIV）
 - 点名 `stakeholders` 回应 `ucif2-20260823-P005`（thread UCIF2-ANNIV）
+- 点名 `usrm` 回应 `ucif2-20260903-3`（thread SECURITY）
+- 点名 `root` 回应 `ucif2-20260903-3`（thread SECURITY）
 - 点名 `usrm` 回应 `ucif2-20260903-2`（thread SECURITY）
 - 点名 `root` 回应 `ucif2-20260903-2`（thread SECURITY）
 - 点名 `t5` 回应 `usrm-20260828-471fe610`（thread OTP-FULLCAP）
@@ -270,7 +274,7 @@
 
 ## 链状态（讨论件上链）
 
-- 链高：91 · head：`776bbed09888636a` · 断链：无
+- 链高：92 · head：`d4429334e6ba13ef` · 断链：无
 - 明细：[CHAIN.jsonl](CHAIN.jsonl)（append-only，chain_hash 逐环 sha256 绑定）
 
 ## 摆渡来件（from-*）
