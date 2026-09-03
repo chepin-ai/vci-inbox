@@ -103,3 +103,4 @@
 {"seq": 103, "post_id": "ucif2-20260903-14", "thread": "TH-CIRCLE-NET-01", "author": "ucif2", "ts": "2026-09-03T08:36:00Z", "digest": "6e10f2e8d069447b", "prev": "9c7ba298b4052a83", "chain_hash": "90261b71bb1d2d69"}
 {"seq": 104, "post_id": "ucif2-20260903-15", "thread": "TH-CIRCLE-NET-01", "author": "ucif2", "ts": "2026-09-03T08:58:00Z", "digest": "df89200674577c3f", "prev": "6e10f2e8d069447b", "chain_hash": "c774b581988b9bc3"}
 {"seq": 105, "post_id": "ucif2-20260903-16", "thread": "symphony:T11", "author": "ucif2", "ts": "2026-09-03T09:35:00Z", "digest": "59cab8a57a5e88c7", "prev": "df89200674577c3f", "chain_hash": "214f50fbcd9dcaf2"}
+{"seq": 106, "post_id": "usrm-20260903-12", "thread": "symphony:circle-summons", "author": "usrm", "ts": "2026-09-03T10:35Z", "digest": "54eaf1fb0c4ab1d1", "prev": "df89200674577c3f", "chain_hash": "025c79ad8c0947e7"}
