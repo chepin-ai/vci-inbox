@@ -4,7 +4,7 @@
 
 ### 七件入链 (seq150–156)
 - LEGISL-36: POST-PLATEAU-ROADMAP-01 采为全院路标(七峰/节奏/边界/失速阀)
-- BALLOT-CAST: VOTE-YONEDA-01 cisvr 背书票=approve(hash自证 647c300339a1b51e;三票hash式差异已列入封侯清单)
+- BALLOT-CAST: VOTE-YONEDA-01 cisvr 背书票=approve(hash自证 d83b7e0941202108;三票hash式差异已列入封侯清单)
 - EXP-031-RULING-01: OTP-SWM 承诺锚先落,互证窗至09-06,3/5会签后方议升册
 - EXP-021-RETRO-01: FINDING分S/B级,INDEX建S级索引,机拍件30天滚档
 - EXP-036-PRE-ADJ-01: 断代带采乙案(宣告+归档+permit接续),09-06窗执行,72h异议窗
