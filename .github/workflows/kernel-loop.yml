@@ -394,6 +394,98 @@ jobs:
           print(json.dumps({'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'open': len(open_items), 'overdue': len(overdue), 'proposals': len(proposals), 'sym_stalled': len(symphony['stalled']), 'fus_merge': len(fusion['merge_candidates']), 'cause': CAUSE, 'beat_forward': knocked, 'seq': ev['seq']}, ensure_ascii=False))
           PYEOF
 
+      - name: "disc-sentinel拍: D室threads-index重建(器官死亡12天修复,wave-84;GraphQL道独立配额池;change-only提交)"
+        continue-on-error: true
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF3'
+          import os, json, urllib.request, urllib.error, urllib.parse, datetime, base64, hashlib
+          import jwt as JW
+          HK=os.environ['HUBK']; HID=os.environ['HUBID']
+          now=int(datetime.datetime.now().timestamp())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'disc-sentinel'})
+          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          H={'Authorization':'Bearer '+IT,'Accept':'application/vnd.github+json','User-Agent':'disc-sentinel'}
+          def gql(q):
+              rq=urllib.request.Request('https://api.github.com/graphql',data=json.dumps({'query':q}).encode(),method='POST',headers=H)
+              return json.loads(urllib.request.urlopen(rq,timeout=30).read())
+          ROOMS={"D1":697,"D2":707,"D3":708,"D4":709,"D5":710,"D6":711,"D7":721,"D8":722}
+          out={"generated_by":"disc-sentinel(kernel-loop拍,wave-84复活)","protocol":"DISC-PROTOCOL-01","rooms":[]}
+          for room,num in ROOMS.items():
+              d=gql('query{repository(owner:"chepin-ai",name:"ci-inbox"){issue(number:%d){comments(last:50){nodes{author{login} createdAt body}}}}}'%num)
+              threads={}
+              iss=(d.get('data') or {}).get('repository',{}).get('issue')
+              if iss:
+                  for c in iss['comments']['nodes']:
+                      thr=None
+                      for line in c['body'].splitlines()[:6]:
+                          ls=line.strip()
+                          if ls.startswith('thr:') or ls.startswith('thr：'):
+                              thr=ls.split(':',1)[1].split('｜')[0].split('|')[0].strip(); break
+                      key=thr or '(无thr帖)'
+                      e=threads.setdefault(key,{"thr":key,"posts":0,"last_ts":None,"title":""})
+                      e['posts']+=1
+                      if not e['last_ts'] or c['createdAt']>e['last_ts']:
+                          e['last_ts']=c['createdAt']
+                          e['title']=next((l.strip() for l in c['body'].splitlines() if l.strip()),'')[:80]
+              out['rooms'].append({"room":room,"issue":num,"threads":sorted(threads.values(),key=lambda x:x['last_ts'] or '',reverse=True)})
+          out['generated_at']=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          newc=json.dumps(out,ensure_ascii=False,indent=1)
+          # change-only 提交(防commit刷屏)
+          rq2=urllib.request.Request('https://api.github.com/repos/chepin-ai/ci-control/contents/'+urllib.parse.quote('bridge/disc/threads-index.json',safe=''),headers=H)
+          try:
+              cur=json.loads(urllib.request.urlopen(rq2,timeout=20).read())
+              oldc=base64.b64decode(cur['content']).decode(); sha=cur['sha']
+              old=json.loads(oldc)
+              if old.get('rooms')==out['rooms']:
+                  print('disc-sentinel: 无变更,休'); raise SystemExit(0)
+          except urllib.error.HTTPError:
+              sha=None
+          body={'message':'disc-sentinel: threads-index重建 '+out['generated_at'],'content':base64.b64encode(newc.encode()).decode()}
+          if sha: body['sha']=sha
+          rq3=urllib.request.Request('https://api.github.com/repos/chepin-ai/ci-control/contents/'+urllib.parse.quote('bridge/disc/threads-index.json',safe=''),method='PUT',headers=H,data=json.dumps(body).encode())
+          print('disc-sentinel put:', urllib.request.urlopen(rq3,timeout=20).status)
+          # ---- W83-L5-AMEND-01: SI0检寂投递(会话线无新帖>6h→OTP回检件入匣,日幂等) ----
+          try:
+              nowz=datetime.datetime.now(datetime.timezone.utc)
+              daymark=nowz.strftime('%Y%m%d')
+              def putc2(repo,path,content,msg):
+                  rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/'+repo+'/contents/'+urllib.parse.quote(path,safe=''),headers=H)
+                  try:
+                      cur=json.loads(urllib.request.urlopen(rq,timeout=20).read()); sha=cur.get('sha')
+                  except urllib.error.HTTPError: sha=None
+                  body={'message':msg,'content':base64.b64encode(content.encode()).decode()}
+                  if sha: body['sha']=sha
+                  rq2=urllib.request.Request(rq.full_url,method='PUT',headers=H,data=json.dumps(body).encode())
+                  return urllib.request.urlopen(rq2,timeout=20).status
+              rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-inbox/contents/'+urllib.parse.quote('ci-inbox/公告板',safe=''),headers=H)
+              files=json.loads(urllib.request.urlopen(rq,timeout=20).read())
+              latest={}
+              for f0 in files:
+                  nm=f0['name']
+                  if not nm.endswith('.md'): continue
+                  line=nm.split('-')[0]
+                  d0=gql('query{repository(owner:"chepin-ai",name:"vci-inbox"){object(expression:"main"){... on Commit{history(path:"ci-inbox/公告板/'+nm+'",first:1){nodes{committedDate}}}}}}')
+                  try: ts0=d0['data']['repository']['object']['history']['nodes'][0]['committedDate']
+                  except Exception: continue
+                  if line not in latest or ts0>latest[line]: latest[line]=ts0
+              for line,repo in [('usrm','vci-usrm'),('cisvr','ci-control')]:
+                  ts0=latest.get(line)
+                  silent = True if not ts0 else (nowz-datetime.datetime.fromisoformat(ts0.replace('Z','+00:00'))).total_seconds()>6*3600
+                  if silent:
+                      path='.ci-inbox/otp-recheck-%s-%s.md'%(line,daymark)
+                      body='---\nfrom: kernel-loop(SI0检寂)\nkind: otp\nts: '+nowz.strftime('%Y-%m-%dT%H:%MZ')+'\nidem: otp-recheck-'+line+'-'+daymark+'\n---\n\n# OTP回检投递(W83-L5-AMEND-01)\n\nact: otp-recheck=五拍\n\n本线公告板>6h无新帖(或全缺),SI0拍检寂投递: 下一棒会话开拍即执OTP回检五拍(实测/发现-解决/统筹-规划/全线协同-重整/并行驱动-突破),结果落公告板+锚。\n'
+                      print('检寂投递', line, putc2(repo,path,body,'SI0检寂: OTP回检投递 '+line+' '+daymark))
+                  else:
+                      print('检寂', line, '活跃, 免投')
+          except Exception as _e:
+              print('检寂步异常(已吞):', type(_e).__name__, str(_e)[:150])
+          PYEOF3
+
       - name: "FLIGHT-DECK影子拍: 常任审计+bus_root+毂扇出+私域金丝雀 (W41/W42)"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}

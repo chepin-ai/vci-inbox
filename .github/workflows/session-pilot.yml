@@ -97,8 +97,8 @@ jobs:
               cap['hash']=hashlib.sha256((prev+canon).encode()).hexdigest()
               putc('ci-control','bridge/session-pilot/NEXT-INSTRUCTION.json',json.dumps(cap,ensure_ascii=False,indent=1),'session-pilot: OTP注入 '+prio)
               rep['action']='injected'; rep['prio']=prio; rep['instr']=instr[:80]
-              # 注入指针投公告板(联邦可视面)
-              putc('ci-inbox','公告板/session-pilot-latest.md',
+              # 注入指针投公告板(联邦可视面) — wave-84 板面统一: 正典板=vci-inbox/ci-inbox/公告板/(公域R1净), 私仓旧板退役
+              putc('vci-inbox','ci-inbox/公告板/session-pilot-latest.md',
                    '---\nts: '+NOW+'\nfrom: session-pilot(OS端递归引擎器官)\n---\n# 下一步指令已注入（OTP胶囊）\n\n- priority: '+prio+'\n- instruction: '+instr+'\n- nonce: '+nonce+' · qrand锚: '+qa+'\n- 正本: ci-control/bridge/session-pilot/NEXT-INSTRUCTION.json（一次性,消费即焚）\n','board: session-pilot 注入指针')
               # HANDOFF 入链
               ld,ldm=getc('ci-control','bridge/stream-ledger.jsonl')
