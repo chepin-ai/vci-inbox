@@ -42,11 +42,22 @@ jobs:
                   out=re.sub(r'(?<![\w/-])(?<!\.)'+re.escape(pat)+r'(?![\w-])(?!/)',rep,out)
               if out!=txt:
                   open(p,'w',encoding='utf-8').write(out); fixed.append(p)
+          quar=[]
+          for p in list(changed):
+              if not p.endswith('.md') or not os.path.isfile(p): continue
+              if p.startswith(('bridge/guard/','guard/quarantine/','weave/pulse/','weave/duty/','session/inbox/','.ci-inbox/')): continue
+              if p in ('README.md','INDEX.md','MANIFEST.md'): continue
+              try: htxt=open(p,encoding='utf-8').read()[:2000]
+              except Exception: continue
+              if 'CLASSIFY: L1' not in htxt:
+                  qp='guard/quarantine/'+p
+                  os.makedirs(os.path.dirname(qp),exist_ok=True)
+                  os.replace(p,qp); quar.append(p)
           os.makedirs('bridge/guard',exist_ok=True)
-          lg={'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'scanned':len(changed)-skipped,'fixed':fixed}
+          lg={'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'scanned':len(changed)-skipped,'fixed':fixed,'quarantined':quar}
           open('bridge/guard/pub-lint-latest.json','w').write(json.dumps(lg,ensure_ascii=False))
           subprocess.run(['git','config','user.name','pub-guard']); subprocess.run(['git','config','user.email','guard@local'])
-          subprocess.run(['git','add']+fixed+['bridge/guard/pub-lint-latest.json'])
+          subprocess.run(['git','add','-A'])
           if subprocess.run(['git','diff','--cached','--quiet']).returncode!=0:
               subprocess.run(['git','commit','-m','pub-lint: R1代号化 '+str(len(fixed))+'件 + 报告持久化 [skip ci]','-q'])
               for i in range(3):
