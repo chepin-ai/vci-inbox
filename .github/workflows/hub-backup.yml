@@ -1,0 +1,74 @@
+name: hub-backup
+on:
+  workflow_run:
+    workflows: [kernel-loop]
+    types: [completed]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: ADMIN-BACKUP-ALT-01 — ci-control-backup授权物理不可穿(root手)期间的自治替代: hub三仓快照入ci-inbox/archive/hub-backup, 事件驱动(kernel-loop链)+20h节流, 滚动留7; 铸钥即焚
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "hub三仓快照→ci-inbox (b64 tar.gz, 滚动7)"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,time,datetime,urllib.request,base64
+          import jwt as JW
+          OWNER='chepin-ai'; GH='https://api.github.com'
+          REPOS=['ci-control','vci-inbox','ci-inbox']
+          now=int(time.time())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
+          rq=urllib.request.Request(GH+'/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'hub-backup'})
+          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'hub-backup'}
+          def api(path,method='GET',body=None):
+              data=json.dumps(body).encode() if body is not None else None
+              r=urllib.request.Request(GH+path,data=data,method=method,headers=H)
+              return json.loads(urllib.request.urlopen(r,timeout=30).read())
+          def gql(q,v):
+              r=urllib.request.Request(GH+'/graphql',data=json.dumps({'query':q,'variables':v}).encode(),method='POST',headers=H)
+              return json.loads(urllib.request.urlopen(r,timeout=60).read())
+          def head(repo):
+              return gql('query($n:String!){repository(owner:"'+OWNER+'",name:$n){ref(qualifiedName:"refs/heads/main"){target{oid}}}}',{'n':repo})['data']['repository']['ref']['target']['oid']
+          def commit(repo,adds,dels,headline,tries=12):
+              mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
+              for _ in range(tries):
+                  fc={}
+                  if adds: fc['additions']=[{'path':p,'contents':c} for p,c in adds]
+                  if dels: fc['deletions']=[{'path':d} for d in dels]
+                  inp={'branch':{'repositoryNameWithOwner':OWNER+'/'+repo,'branchName':'main'},'message':{'headline':headline},'expectedHeadOid':head(repo),'fileChanges':fc}
+                  r=gql(mut,{'input':inp})
+                  if 'errors' not in r and r.get('data',{}).get('createCommitOnBranch'): return r['data']['createCommitOnBranch']['commit']['oid']
+                  time.sleep(1.2)
+              raise RuntimeError('commit fail')
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+          # 20h throttle (event拍评估, JUDIC-TIMEPRED-01)
+          try:
+              st=api('/repos/'+OWNER+'/vci-inbox/contents/bridge/guard/hub-backup-stamp.json')
+              last=json.loads(base64.b64decode(st['content']).decode())['ts']
+              age=(time.time()-datetime.datetime.strptime(last,'%Y%m%dT%H%M%SZ').replace(tzinfo=datetime.timezone.utc).timestamp())
+              if age<72000:
+                  print('throttle: age',int(age),'s — skip'); raise SystemExit(0)
+          except SystemExit: raise
+          except Exception: pass
+          done=[]
+          for repo in REPOS:
+              tb=urllib.request.urlopen(urllib.request.Request('https://codeload.github.com/'+OWNER+'/'+repo+'/tar.gz/refs/heads/main',headers=H),timeout=90).read()
+              commit('ci-inbox',[('archive/hub-backup/'+repo+'-'+ts+'.tar.gz.b64',base64.b64encode(tb).decode())],[],'hub-backup '+repo+' '+ts)
+              done.append(repo+' '+str(len(tb))+'B')
+              print('snapshot',repo,len(tb))
+              # rolling keep 7 per repo: list + delete oldest
+              lst=api('/repos/'+OWNER+'/ci-inbox/contents/archive/hub-backup')
+              mine=sorted(x['name'] for x in lst if x['name'].startswith(repo+'-') and x['name'].endswith('.b64'))
+              while len(mine)>7:
+                  commit('ci-inbox',[],['archive/hub-backup/'+mine[0]],'hub-backup滚动: 弃 oldest '+mine[0])
+                  mine.pop(0)
+          commit('vci-inbox',[('bridge/guard/hub-backup-stamp.json',base64.b64encode(json.dumps({'ts':ts,'done':done}).encode()).decode())],[],'hub-backup stamp '+ts)
+          print('DONE',ts,done)
+          PYEOF
