@@ -1,0 +1,91 @@
+name: beat-mesh
+on:
+  workflow_run:
+    workflows: [kernel-loop]
+    types: [completed]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: LEGISL-BEAT-MESH-01 逆向米田律——心跳纠缠快照: 诸拍源tip hash ‖ kernel拍head → cross锚; 源断=告警非死; 链kernel-loop, 15min节流; 钥即铸焚
+jobs:
+  mesh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "纠缠快照: 诸源tip⊗心拍head"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          EVNAME: ${{ github.event_name }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,time,datetime,urllib.request,urllib.error,base64,hashlib
+          import jwt as JW
+          OWNER='chepin-ai'; GH='https://api.github.com'
+          now=int(time.time())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
+          IT=json.loads(urllib.request.urlopen(urllib.request.Request(GH+'/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'beat-mesh'}),timeout=20).read())['token']
+          H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'beat-mesh'}
+          def api(p):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(GH+p,headers=H),timeout=30).read())
+          def gql(q,v):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(GH+'/graphql',data=json.dumps({'query':q,'variables':v}).encode(),method='POST',headers=H),timeout=60).read())
+          def head(repo):
+              r=gql('query($n:String!){repository(owner:"'+OWNER+'",name:$n){ref(qualifiedName:"refs/heads/main"){target{oid}}}}',{'n':repo})
+              return r['data']['repository']['ref']['target']['oid']
+          def commit(repo,adds,headline,tries=10):
+              mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
+              for _ in range(tries):
+                  fc={'additions':[{'path':p,'contents':base64.b64encode(c.encode()).decode()} for p,c in adds]}
+                  inp={'branch':{'repositoryNameWithOwner':OWNER+'/'+repo,'branchName':'main'},'message':{'headline':headline},'expectedHeadOid':head(repo),'fileChanges':fc}
+                  r=gql(mut,{'input':inp})
+                  if 'errors' not in r and r.get('data',{}).get('createCommitOnBranch'): return r['data']['createCommitOnBranch']['commit']['oid']
+                  time.sleep(1.0)
+              return None
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          if os.environ.get('EVNAME')!='workflow_dispatch':
+              try:
+                  st=api('/repos/'+OWNER+'/vci-inbox/contents/bridge/guard/beat-mesh-stamp.json')
+                  last=json.loads(base64.b64decode(st['content']).decode())['ts']
+                  if (time.time()-datetime.datetime.strptime(last,'%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc).timestamp())<900:
+                      print('throttle skip'); raise SystemExit(0)
+              except SystemExit: raise
+              except Exception: pass
+          tips={}
+          # 源1 pulse隔离区
+          try:
+              lst=api('/repos/'+OWNER+'/vci-inbox/contents/guard/quarantine/pulses')
+              pl=sorted(x['name'] for x in lst if x['name'].endswith('.md'))
+              tips['pulses']={'n':len(pl),'newest':pl[-1] if pl else None}
+          except Exception: tips['pulses']={'n':0,'newest':None}
+          # 源2 beat-inbox
+          try:
+              lst=api('/repos/'+OWNER+'/vci-inbox/contents/beat-inbox')
+              bl=sorted(x['name'] for x in lst)
+              tips['beat-inbox']={'n':len(bl),'newest':bl[-1] if bl else None}
+          except Exception: tips['beat-inbox']={'n':0,'newest':None}
+          # 源3 私仓公告板index
+          try:
+              d=api('/repos/'+OWNER+'/ci-inbox/contents/%E5%85%AC%E5%91%8A%E6%9D%BF/_INDEX.json')
+              tips['board']={'bytes':d.get('size')}
+          except Exception: tips['board']=None
+          # 源4 账链head
+          try:
+              d=api('/repos/'+OWNER+'/ci-control/contents/bridge/stream-ledger.jsonl')
+              raw=base64.b64decode(d['content']).decode()
+              last_line=[l for l in raw.splitlines() if l.strip()][-1]
+              le=json.loads(last_line)
+              tips['ledger']={'seq':le.get('seq'),'hash':le.get('hash','')[:16],'ts':le.get('ts')}
+          except Exception: tips['ledger']=None
+          # 源5-7 线仓私宅head
+          for repo in ['usrm-repo','vinf-market-kernel','ucif2-formalization-kernel']:
+              try: tips['home:'+repo]=head(repo)[:12]
+              except Exception: tips['home:'+repo]=None
+          # 心拍head
+          try: khead=head('vci-inbox')[:16]
+          except Exception: khead=None
+          cross=hashlib.sha256((json.dumps(tips,sort_keys=True,ensure_ascii=False)+'‖'+str(khead)).encode()).hexdigest()
+          snap={'ts':ts,'cross':cross[:24],'kernel_head':khead,'tips':tips}
+          commit('vci-inbox',[('bridge/guard/beat-mesh-latest.json',json.dumps(snap,ensure_ascii=False,indent=1)),('bridge/guard/beat-mesh-stamp.json',json.dumps({'ts':ts}))],'beat-mesh 纠缠快照 '+ts)
+          print(json.dumps(snap,ensure_ascii=False)[:500])
+          PYEOF
