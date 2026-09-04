@@ -1,0 +1,122 @@
+name: root-click-watch
+on:
+  workflow_run:
+    workflows: [kernel-loop]
+    types: [completed]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: root令"网页手你全权处理"——网页物理域不可穿(双App皆无admin,实证JUDIC-CRED-SCOPE-01); 立此看守: root 7击任一落即被检知→下游自动收口(解封→归位/镜像正道; 盲仓入册→执法+退役); kernel-loop链+30min节流; 钥即铸焚
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "检知root点击→自动收口"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          EVNAME: ${{ github.event_name }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,time,datetime,urllib.request,urllib.error,base64,subprocess,tarfile,io
+          import jwt as JW
+          OWNER='chepin-ai'; GH='https://api.github.com'
+          SEALED=['ci-build','ci-control-backup','ci-library','ci-logs','ci-playground','quantum-go-ledger']
+          BLIND=['qlv-lib','vci-code','vci-bus','vci-control','vci-logs','vci-playground','vci-root','vci-control-backup','ci-yard']
+          now=int(time.time())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
+          IT=json.loads(urllib.request.urlopen(urllib.request.Request(GH+'/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'rcw'}),timeout=20).read())['token']
+          H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'rcw'}
+          def api(p,method='GET',body=None):
+              data=json.dumps(body).encode() if body is not None else None
+              return json.loads(urllib.request.urlopen(urllib.request.Request(GH+p,data=data,method=method,headers=H),timeout=30).read())
+          def gql(q,v):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(GH+'/graphql',data=json.dumps({'query':q,'variables':v}).encode(),method='POST',headers=H),timeout=60).read())
+          def head(repo,br='main'):
+              r=gql('query($n:String!){repository(owner:"'+OWNER+'",name:$n){ref(qualifiedName:"refs/heads/'+br+'"){target{oid}}}}',{'n':repo})
+              return r['data']['repository']['ref']['target']['oid']
+          def commit(repo,adds,dels,headline,br='main',tries=10):
+              mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
+              for _ in range(tries):
+                  fc={}
+                  if adds: fc['additions']=[{'path':p,'contents':base64.b64encode(c.encode()).decode()} for p,c in adds]
+                  if dels: fc['deletions']=[{'path':d} for d in dels]
+                  inp={'branch':{'repositoryNameWithOwner':OWNER+'/'+repo,'branchName':br},'message':{'headline':headline},'expectedHeadOid':head(repo,br),'fileChanges':fc}
+                  r=gql(mut,{'input':inp})
+                  if 'errors' not in r and r.get('data',{}).get('createCommitOnBranch'): return r['data']['createCommitOnBranch']['commit']['oid']
+                  time.sleep(1.0)
+              return None
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          # 30min throttle
+          try:
+              st=api('/repos/'+OWNER+'/vci-inbox/contents/bridge/guard/root-click-watch-stamp.json')
+              last=json.loads(base64.b64decode(st['content']).decode())['ts']
+              if (time.time()-datetime.datetime.strptime(last,'%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc).timestamp())<1800 and os.environ.get('EVNAME')!='workflow_dispatch':
+                  print('throttle skip'); raise SystemExit(0)
+          except SystemExit: raise
+          except Exception: pass
+          # state read
+          try:
+              st=api('/repos/'+OWNER+'/vci-inbox/contents/bridge/guard/root-click-state.json')
+              state=json.loads(base64.b64decode(st['content']).decode())
+          except Exception:
+              state={'sealed':{},'granted_n':0}
+          events=[]
+          # ① 封存仓解封检知
+          for repo in SEALED:
+              try:
+                  d=api('/repos/'+OWNER+'/'+repo)
+                  arch=d.get('archived')
+                  prev=state['sealed'].get(repo)
+                  if prev!=arch:
+                      events.append(('unarchived' if arch==False else 'archived',repo))
+                      state['sealed'][repo]=arch
+              except urllib.error.HTTPError as e:
+                  state['sealed'][repo]='HTTP'+str(e.code)
+          # ② 盲仓入册检知
+          granted=sorted(x['name'] for x in api('/installation/repositories?per_page=100')['repositories'])
+          newgrants=[b for b in BLIND if b in granted and b not in state.get('blind_done',[])]
+          for b in newgrants: events.append(('blind-granted',b))
+          state['granted']=granted
+          # ③ 下游收口
+          done=[]
+          env=dict(os.environ); env['GIT_ASKPASS']='/tmp/.ga.sh'; env['GIT_TERMINAL_PROMPT']='0'
+          open('/tmp/.ga.sh','w').write('#!/bin/sh\ncase "$1" in *sername*) echo x-access-token;; *) echo '+IT+';; esac\n'); os.chmod('/tmp/.ga.sh',0o700)
+          for ev,repo in events:
+              try:
+                  if ev=='unarchived' and repo=='ci-control-backup':
+                      g=lambda c: subprocess.run(c,shell=True,capture_output=True,text=True,timeout=180,env=env)
+                      g('rm -rf /tmp/mc && git clone -q --mirror https://github.com/'+OWNER+'/ci-control.git /tmp/mc')
+                      p=g('cd /tmp/mc && git push -q --mirror https://github.com/'+OWNER+'/ci-control-backup.git')
+                      g('rm -rf /tmp/mc')
+                      done.append('mirror ci-control→ci-control-backup: '+('OK' if p.returncode==0 else 'FAIL'))
+                  if ev=='unarchived' and repo=='quantum-go-ledger':
+                      tb=urllib.request.urlopen(urllib.request.Request('https://codeload.github.com/'+OWNER+'/ci-inbox/tar.gz/refs/heads/main',headers=H),timeout=90).read()
+                      tf=tarfile.open(fileobj=io.BytesIO(tb),mode='r:gz'); root=tf.getnames()[0].split('/')[0]
+                      cs=[n[len(root)+1:] for n in tf.getnames() if n.startswith(root+'/cold-storage/') and n.endswith('.b64')]
+                      for p in cs:
+                          f=tf.extractfile(root+'/'+p)
+                          if f: commit('quantum-go-ledger',[('archive-migration/'+p.split('/')[-1],f.read().decode())],[],'冷库归位 '+p.split('/')[-1])
+                      done.append('qgl冷库归位: '+str(len(cs))+'件')
+                  if ev=='unarchived' and repo=='ci-library':
+                      tb=urllib.request.urlopen(urllib.request.Request('https://codeload.github.com/'+OWNER+'/ci-inbox/tar.gz/refs/heads/main',headers=H),timeout=90).read()
+                      tf=tarfile.open(fileobj=io.BytesIO(tb),mode='r:gz'); root=tf.getnames()[0].split('/')[0]
+                      mig=[n[len(root)+1:] for n in tf.getnames() if n.startswith(root+'/library-migration/')]
+                      adds=[]
+                      for p in mig:
+                          f=tf.extractfile(root+'/'+p)
+                          if f and p.endswith('.md'): adds.append((p.replace('library-migration/',''),f.read().decode('utf-8','replace')))
+                      for i in range(0,len(adds),30):
+                          commit('ci-library',adds[i:i+30],[],'私侧归位 '+str(min(i+30,len(adds)))+'/'+str(len(adds)))
+                      done.append('ci-library归位: '+str(len(adds))+'件')
+                  if ev=='blind-granted':
+                      done.append('盲仓入册检知: '+repo+' → 执法/退役序列待发(cisvr拍)')
+              except Exception as e:
+                  done.append(repo+'收口ERR: '+str(e)[:100])
+          if events or done:
+              commit('vci-inbox',[('bridge/guard/root-click-event-'+ts.replace(':','').replace('-','')+'.json',json.dumps({'ts':ts,'events':events,'done':done},ensure_ascii=False,indent=1))],[],'root-click events '+ts)
+          commit('vci-inbox',[('bridge/guard/root-click-state.json',json.dumps(state,ensure_ascii=False)),('bridge/guard/root-click-watch-stamp.json',json.dumps({'ts':ts}))],[],'root-click state '+ts)
+          print(json.dumps({'events':events,'done':done},ensure_ascii=False))
+          PYEOF
