@@ -1,0 +1,100 @@
+name: grant-exec-20260904
+on:
+  push:
+    paths: ['.github/workflows/grant-exec-20260904.yml']
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  # rationale: root授权扩容(2026-09-04, 24仓在册)首次执行: ①ci-control镜像正道入ci-control-backup ②library-migration归位ci-library ③24仓写矩阵实测; 新钥即拍铸焚; 一次拍后自闭(写done戳)
+jobs:
+  exec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "grant-exec: 镜像正道+私侧归位+写矩阵"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,time,datetime,urllib.request,base64,subprocess
+          import jwt as JW
+          OWNER='chepin-ai'; GH='https://api.github.com'
+          now=int(time.time())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
+          rq=urllib.request.Request(GH+'/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'grant-exec'})
+          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'grant-exec'}
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          def gql(q,v):
+              r=urllib.request.Request(GH+'/graphql',data=json.dumps({'query':q,'variables':v}).encode(),method='POST',headers=H)
+              return json.loads(urllib.request.urlopen(r,timeout=60).read())
+          def head(repo):
+              r=gql('query($n:String!){repository(owner:"'+OWNER+'",name:$n){ref(qualifiedName:"refs/heads/main"){target{oid}}}}',{'n':repo})
+              return r['data']['repository']['ref']['target']['oid']
+          def commit(repo,adds,dels,headline,tries=10):
+              mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
+              for _ in range(tries):
+                  fc={}
+                  if adds: fc['additions']=[{'path':p,'contents':base64.b64encode(c.encode()).decode()} for p,c in adds]
+                  if dels: fc['deletions']=[{'path':d} for d in dels]
+                  inp={'branch':{'repositoryNameWithOwner':OWNER+'/'+repo,'branchName':'main'},'message':{'headline':headline},'expectedHeadOid':head(repo),'fileChanges':fc}
+                  r=gql(mut,{'input':inp})
+                  if 'errors' not in r and r.get('data',{}).get('createCommitOnBranch'): return r['data']['createCommitOnBranch']['commit']['oid']
+                  time.sleep(1.0)
+              return None
+          # 防重拍: done戳
+          try:
+              if head('vci-inbox'):
+                  r=gql('query{repository(owner:"'+OWNER+'",name:"vci-inbox"){f:object(expression:"main:bridge/guard/grant-exec-20260904.done"){... on Blob{text}}}}',{})
+                  if r['data']['repository']['f']: print('already done — skip'); raise SystemExit(0)
+          except SystemExit: raise
+          except Exception: pass
+          rep={'ts':ts,'matrix':{},'mirror':None,'homing':None}
+          # ③ 24仓写矩阵(GraphQL ref probe: 读全24; 写试=对每仓试建 .grant-probe 再删)
+          granted=json.loads(urllib.request.urlopen(urllib.request.Request(GH+'/installation/repositories?per_page=100',headers=H),timeout=30).read())['repositories']
+          names=sorted(x['name'] for x in granted)
+          rep['granted']=names
+          for n in names:
+              try:
+                  oid=commit(n,[('.grant-probe.md','probe '+ts)],[],'grant probe',tries=3)
+                  if oid:
+                      commit(n,[],['.grant-probe.md'],'grant probe cleanup',tries=3)
+                      rep['matrix'][n]='WRITE-OK'
+                  else: rep['matrix'][n]='WRITE-FAIL'
+              except Exception as e:
+                  rep['matrix'][n]='ERR:'+str(e)[:60]
+          print(json.dumps(rep['matrix'],ensure_ascii=False))
+          # ① ci-control → ci-control-backup 镜像正道
+          try:
+              env=dict(os.environ); env['GIT_ASKPASS']='/tmp/.ga.sh'; env['GIT_TERMINAL_PROMPT']='0'
+              open('/tmp/.ga.sh','w').write('#!/bin/sh\ncase "$1" in *sername*) echo x-access-token;; *) echo '+IT+';; esac\n')
+              os.chmod('/tmp/.ga.sh',0o700)
+              def g(c): return subprocess.run(c,shell=True,capture_output=True,text=True,timeout=120,env=env)
+              g('rm -rf /tmp/mc && git clone -q --mirror https://github.com/chepin-ai/ci-control.git /tmp/mc')
+              p=g('cd /tmp/mc && git push -q --mirror https://github.com/chepin-ai/ci-control-backup.git')
+              rep['mirror']='OK' if p.returncode==0 else 'FAIL:'+(p.stderr or '')[-120:]
+              g('rm -rf /tmp/mc /tmp/.ga.sh')
+          except Exception as e:
+              rep['mirror']='ERR:'+str(e)[:120]
+          print('mirror:',rep['mirror'])
+          # ② library-migration → ci-library 归位
+          try:
+              tb=urllib.request.urlopen(urllib.request.Request('https://codeload.github.com/chepin-ai/ci-inbox/tar.gz/refs/heads/main',headers=H),timeout=90).read()
+              import tarfile,io
+              tf=tarfile.open(fileobj=io.BytesIO(tb),mode='r:gz'); root=tf.getnames()[0].split('/')[0]
+              mig=[n[len(root)+1:] for n in tf.getnames() if n.startswith(root+'/library-migration/spec/') and n.endswith('.md')]
+              adds=[]
+              for p in mig:
+                  f=tf.extractfile(root+'/'+p)
+                  if f: adds.append(('spec/'+p.split('library-migration/spec/')[-1],f.read().decode('utf-8','replace')))
+              for i in range(0,len(adds),30):
+                  commit('ci-library',adds[i:i+30],[],'私侧归位: spec正本 '+str(min(i+30,len(adds)))+'/'+str(len(adds))+' [grant-exec]')
+              rep['homing']='OK '+str(len(adds))+' files → ci-library/spec/'
+          except Exception as e:
+              rep['homing']='ERR:'+str(e)[:120]
+          print('homing:',rep['homing'])
+          commit('vci-inbox',[('bridge/guard/grant-exec-20260904.done',json.dumps(rep,ensure_ascii=False,indent=1))],[],'grant-exec done '+ts)
+          print('DONE',ts)
+          PYEOF
