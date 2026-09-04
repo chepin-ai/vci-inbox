@@ -9,7 +9,7 @@ on:
     types: [qf-beat]
   push:
     branches: [main]
-    paths: ['ci-inbox/**','inbox/**','qfa-face/**','disc/incoming/**']  # W78-L1: 论坛incoming亦毂拍源   # W77-L5 事件拍源: 板/匣/面入件即毂拍(毂自提交落bridge//disc/,不在此面,无自环)
+    paths: ['ci-inbox/**','inbox/**','qfa-face/**','disc/incoming/**','guard/quarantine/pulses/**']  # ADMIN-KERNEL-REIGNITE-01: pulse隔离区入拍源(收敛改道后新心跳); 幂等判词防环  # W78-L1: 论坛incoming亦毂拍源   # W77-L5 事件拍源: 板/匣/面入件即毂拍(毂自提交落bridge//disc/,不在此面,无自环)
 permissions:
   contents: write
   # rationale: D-157班次革命: 事件驱动接力扣门(级联≤1,cause='beat-forward'不转叩)+qf-beat直道; W77-L5 CRON-ABOLISH-01: cron死手退役(wave-77 root令禁绝); 提案制=义务机主权; 零原文零密钥
