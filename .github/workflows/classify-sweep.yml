@@ -1,0 +1,115 @@
+name: classify-sweep
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "repo name or ALL"
+        required: true
+        default: "ALL"
+  workflow_run:
+    workflows: [kernel-loop]
+    types: [completed]
+permissions:
+  contents: write
+  # rationale: JUDIC-R1-ARCH-02执法牙 phase2 — 公仓无标md扫荡: 迁私仓archive+公仓删除+补植CLASSIFY闸; 跨仓写经hub App铸钥(purge-r1-history先例); 事件驱动+6h节流(LEGISL-40)
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "R1 sweep: 无标md迁私仓+公仓清除+补闸"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          TGT: ${{ inputs.target }}
+          EVNAME: ${{ github.event_name }}
+        run: |
+          python3 -m pip install -q pyjwt
+          python3 - <<'PYEOF'
+          import os,json,time,datetime,urllib.request,urllib.error,base64,tarfile,io,re
+          import jwt as JW
+          OWNER='chepin-ai'; GH='https://api.github.com'
+          PUBS=['vci-inbox','vci-usrm','vci-qgl','vci-cfts','vci-vinf','vci-ucif2','vci-library','ci-worker-01','ci-worker-02']
+          EXEMPT_PRE=('bridge/guard/','guard/quarantine/','weave/pulse/','weave/duty/','session/inbox/','.ci-inbox/')
+          EXEMPT_EQ=('README.md','INDEX.md','MANIFEST.md')
+          now=int(time.time())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
+          rq=urllib.request.Request(GH+'/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'classify-sweep'})
+          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'classify-sweep'}
+          def api(path,method='GET',body=None):
+              data=json.dumps(body).encode() if body is not None else None
+              r=urllib.request.Request(GH+path,data=data,method=method,headers=H)
+              return json.loads(urllib.request.urlopen(r,timeout=30).read())
+          def gql(query,vars_):
+              r=urllib.request.Request(GH+'/graphql',data=json.dumps({'query':query,'variables':vars_}).encode(),method='POST',headers=H)
+              return json.loads(urllib.request.urlopen(r,timeout=60).read())
+          def head(repo):
+              r=gql('query($n:String!){repository(owner:"'+OWNER+'",name:$n){ref(qualifiedName:"refs/heads/main"){target{oid}}}}',{'n':repo})
+              return r['data']['repository']['ref']['target']['oid']
+          def commit(repo,adds,dels,headline,tries=12):
+              mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
+              for _ in range(tries):
+                  fc={}
+                  if adds: fc['additions']=[{'path':p,'contents':base64.b64encode(c.encode()).decode()} for p,c in adds]
+                  if dels: fc['deletions']=[{'path':d} for d in dels]
+                  inp={'branch':{'repositoryNameWithOwner':OWNER+'/'+repo,'branchName':'main'},'message':{'headline':headline},'expectedHeadOid':head(repo),'fileChanges':fc}
+                  r=gql(mut,{'input':inp})
+                  if 'errors' not in r and r.get('data',{}).get('createCommitOnBranch'): return r['data']['createCommitOnBranch']['commit']['oid']
+                  time.sleep(1.2)
+              raise RuntimeError('commit fail '+repo)
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          d8=ts[:10].replace('-','')
+          # 6h throttle for workflow_run path (event-time evaluation, legal per JUDIC-TIMEPRED-01)
+          if os.environ.get('EVNAME')=='workflow_run':
+              try:
+                  st=api('/repos/'+OWNER+'/vci-inbox/contents/bridge/guard/classify-sweep-stamp.json')
+                  last=json.loads(base64.b64decode(st['content']).decode())['ts']
+                  dt=(datetime.datetime.now(datetime.timezone.utc)-datetime.datetime.strptime(last,'%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc)).total_seconds()
+                  if dt<21600:
+                      print('throttle: last sweep',last,'age',int(dt),'s <6h — skip'); raise SystemExit(0)
+              except SystemExit: raise
+              except Exception: pass
+          tgt=os.environ.get('TGT') or 'ALL'
+          repos=PUBS if tgt=='ALL' else [tgt]
+          GATE=open('/dev/null').read()  # placeholder, real gate below
+          GATE='''name: pub-guard\non:\n  push:\n    branches: [main]\n  workflow_dispatch: {}\npermissions:\n  contents: write\n  # rationale: R1-CLASSIFY闸(hub植)——无CLASSIFY: L1标md入guard/quarantine;hub classify-sweep定期清空隔离区入私仓\njobs:\n  classify:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with: {fetch-depth: 2}\n      - name: classify-gate\n        run: |\n          python3 - <<'PYEOF2'\n          import os,json,subprocess,time\n          changed=subprocess.run(['git','diff','--name-only','HEAD~1','HEAD'],capture_output=True,text=True).stdout.split()\n          quar=[]\n          for p in changed:\n              if not p.endswith('.md') or not os.path.isfile(p): continue\n              if p.startswith(('bridge/guard/','guard/quarantine/')): continue\n              if p in ('README.md','INDEX.md','MANIFEST.md'): continue\n              try: htxt=open(p,encoding='utf-8').read()[:2000]\n              except Exception: continue\n              if 'CLASSIFY: L1' not in htxt:\n                  qp='guard/quarantine/'+p\n                  os.makedirs(os.path.dirname(qp) or '.',exist_ok=True)\n                  os.replace(p,qp); quar.append(p)\n          if quar:\n              os.makedirs('guard/quarantine',exist_ok=True)\n              open('guard/quarantine/_last.json','w').write(json.dumps({'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'quarantined':quar},ensure_ascii=False))\n              subprocess.run(['git','config','user.name','pub-guard']); subprocess.run(['git','config','user.email','guard@local'])\n              subprocess.run(['git','add','-A'])\n              subprocess.run(['git','commit','-m','classify-gate: '+str(len(quar))+'件无标md入隔离区(hub sweep将迁私仓) [skip ci]','-q'])\n              for i in range(3):\n                  if subprocess.run(['git','pull','--rebase','-q'],capture_output=True).returncode==0 and subprocess.run(['git','push','-q'],capture_output=True).returncode==0: break\n                  time.sleep(3+i*3)\n          print(json.dumps({'quarantined':len(quar)}))\n          PYEOF2\n'''
+          receipts=[]
+          for repo in repos:
+              try:
+                  tb=urllib.request.urlopen(urllib.request.Request('https://codeload.github.com/'+OWNER+'/'+repo+'/tar.gz/refs/heads/main',headers=H),timeout=90).read()
+                  tf=tarfile.open(fileobj=io.BytesIO(tb),mode='r:gz'); root=tf.getnames()[0].split('/')[0]
+                  names=[n[len(root)+1:] for n in tf.getnames() if n.startswith(root+'/')]
+                  def rd(p):
+                      try:
+                          f=tf.extractfile(root+'/'+p); return f.read().decode('utf-8','replace') if f else None
+                      except KeyError: return None
+                  un=[]; pen=[]
+                  for p in names:
+                      if not p.endswith('.md'): continue
+                      if p.startswith('guard/quarantine/'):
+                          pen.append(p); continue
+                      if p in EXEMPT_EQ or p.startswith(EXEMPT_PRE): continue
+                      h=(rd(p) or '')[:2000]
+                      if 'CLASSIFY: L1' not in h: un.append(p)
+                  adds=[]; dels=[]
+                  for p in un+pen:
+                      c=rd(p)
+                      if c is None: continue
+                      src=p[len('guard/quarantine/'):] if p.startswith('guard/quarantine/') else p
+                      adds.append(('archive/r1q-'+d8+'/'+repo+'/'+src,c)); dels.append(p)
+                  for i in range(0,len(adds),30):
+                      commit('ci-inbox',adds[i:i+30],[],'R1q sweep '+repo+' 迁私仓 '+str(min(i+30,len(adds)))+'/'+str(len(adds))+' [classify-sweep]')
+                  for i in range(0,len(dels),30):
+                      commit(repo,[],dels[i:i+30],'R1q sweep: 清'+str(min(i+30,len(dels)))+'/'+str(len(dels))+'件无标md——已迁私仓archive/r1q-'+d8+' [classify-sweep]')
+                  planted=False
+                  if '.github/workflows/pub-guard.yml' not in names:
+                      commit(repo,[('.github/workflows/pub-guard.yml',GATE)],[],'classify-sweep: 植CLASSIFY闸(JUDIC-R1-ARCH-02)')
+                      planted=True
+                  receipts.append({'repo':repo,'archived':len(adds),'deleted':len(dels),'gate_planted':planted})
+                  print(json.dumps(receipts[-1],ensure_ascii=False))
+              except Exception as e:
+                  receipts.append({'repo':repo,'error':str(e)[:160]}); print(repo,'ERR',str(e)[:160])
+          commit('vci-inbox',[('bridge/purge/classify-sweep-'+d8+'-'+ts[11:13]+ts[14:16]+'Z.json',json.dumps({'ts':ts,'receipts':receipts},ensure_ascii=False,indent=1)),('bridge/guard/classify-sweep-stamp.json',json.dumps({'ts':ts}))],[],'classify-sweep receipts '+ts)
+          print('DONE',ts)
+          PYEOF
