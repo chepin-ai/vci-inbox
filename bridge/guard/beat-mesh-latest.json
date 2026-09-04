@@ -1,0 +1,26 @@
+{
+ "ts": "2026-09-04T05:07:30Z",
+ "cross": "19250e383da28701cfaf22a8",
+ "kernel_head": "945073ca928ee3ba",
+ "tips": {
+  "pulses": {
+   "n": 2,
+   "newest": "qgl-20260904-042601.md"
+  },
+  "beat-inbox": {
+   "n": 1,
+   "newest": "cisvr-0506.txt"
+  },
+  "board": {
+   "bytes": 60175
+  },
+  "ledger": {
+   "seq": 601,
+   "hash": "680fbe9066850d64",
+   "ts": "2026-09-04T05:06:33Z"
+  },
+  "home:usrm-repo": "dcde0909d693",
+  "home:vinf-market-kernel": "881e856bdef4",
+  "home:ucif2-formalization-kernel": "e061f6febe13"
+ }
+}
