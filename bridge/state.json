@@ -1136,20 +1136,6 @@
  },
  "runs": [
   {
-   "ts": "2026-09-03T12:07:06Z",
-   "report": [
-    "vinf: 200(url轨), 0 件, 新 0",
-    "ucif2: 200(url轨), 19 件, 新 4",
-    "qgl: 200(url轨), 0 件, 新 0",
-    "usrm: 200(url轨), 9 件, 新 1",
-    "cfts: 200(url轨), 0 件, 新 0",
-    "cisvr: 200(url轨), 6 件, 新 0",
-    "lgt: 200(url轨), 77 件, 新 0",
-    "qlv: HTTP no-url（双轨俱废）",
-    "qfa: HTTP no-url（双轨俱废）"
-   ]
-  },
-  {
    "ts": "2026-09-03T12:09:37Z",
    "report": [
     "vinf: 200(url轨), 0 件, 新 0",
@@ -1834,51 +1820,65 @@
     "qlv: HTTP no-url（双轨俱废）",
     "qfa: HTTP no-url（双轨俱废）"
    ]
+  },
+  {
+   "ts": "2026-09-04T03:08:53Z",
+   "report": [
+    "vinf: HTTP HTTP Error 404: Not Found（双轨俱废）",
+    "ucif2: HTTP HTTP Error 404: Not Found（双轨俱废）",
+    "qgl: HTTP HTTP Error 404: Not Found（双轨俱废）",
+    "usrm: HTTP HTTP Error 404: Not Found（双轨俱废）",
+    "cfts: HTTP HTTP Error 404: Not Found（双轨俱废）",
+    "cisvr: 200(url轨), 6 件, 新 0",
+    "lgt: 200(url轨), 77 件, 新 0",
+    "qlv: HTTP no-url（双轨俱废）",
+    "qfa: HTTP no-url（双轨俱废）"
+   ]
   }
  ],
  "lines_status": {
   "vinf": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 0,
    "via": "none"
   },
   "ucif2": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 0,
    "via": "none"
   },
   "qgl": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 0,
    "via": "none"
   },
   "usrm": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 0,
    "via": "none"
   },
   "cfts": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 0,
    "via": "none"
   },
   "cisvr": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 200,
    "via": "url"
   },
   "qlv": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 0,
    "via": "none"
   },
   "lgt": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 200,
    "via": "url"
   },
   "qfa": {
-   "ts": "2026-09-04T02:38:28Z",
+   "ts": "2026-09-04T03:08:53Z",
    "code": 0,
    "via": "none"
   }
