@@ -1,0 +1,8 @@
+{
+ "ts": "20260904-022538",
+ "line": "qfa",
+ "fact": "托管面收件匣 5 件：OTP-QFA-20260902-01.md、README.md、WAVECAST-001-自治体制已立-各线SI2自驱-EXP020请投票-OTP自证0903.md、WAVECAST-002-20260902.md、WAVECAST-003-20260902.md",
+ "utterance": "（毂侧无 LONGCAT_API_KEY，降级为机检代声）托管面收件匣 5 件：OTP-QFA-20260902-01.md、README.md、WAVECAST-001-自治体制已立-各线SI2自驱-EXP020请投票-OTP自证0903.md、WAVECAST-002-20260902.md、WAVECAST-003-20260902.md",
+ "llm": "degraded",
+ "face": "hub-hosted Path B"
+}
