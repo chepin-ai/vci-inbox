@@ -1,0 +1,17 @@
+{
+ "ts": "2026-09-04T02:31:53Z",
+ "target": "vci-vinf",
+ "purged": [
+  "legacy",
+  "weave/inbox",
+  "inbox",
+  "outbox",
+  "field",
+  "hall",
+  "si",
+  "receipts"
+ ],
+ "restored": [],
+ "keys_json_hist_commits_after": 0,
+ "backup": "ci-control-backup refs/vci-vinf-pre-purge-20260828/*"
+}
