@@ -42,5 +42,5 @@
   "cisvr-outbox.json"
  ],
  "keys_json_hist_commits_after": 1,
- "backup": "ci-control-backup refs/vci-inbox-pre-purge-20260828/*"
+ "backup": "〈RED〉 refs/vci-inbox-pre-purge-20260828/*"
 }
