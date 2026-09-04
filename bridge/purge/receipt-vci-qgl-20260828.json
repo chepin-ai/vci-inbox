@@ -1,0 +1,17 @@
+{
+ "ts": "2026-09-04T02:30:48Z",
+ "target": "vci-qgl",
+ "purged": [
+  "legacy",
+  "weave/inbox",
+  "inbox",
+  "outbox",
+  "field",
+  "hall",
+  "si",
+  "receipts"
+ ],
+ "restored": [],
+ "keys_json_hist_commits_after": 0,
+ "backup": "ci-control-backup refs/vci-qgl-pre-purge-20260828/*"
+}
