@@ -1,13 +1,13 @@
 {
  "v": "BEAT-MESH-02",
- "ts": "2026-09-05T17:37:50Z",
+ "ts": "2026-09-05T17:46:48Z",
  "sources": {
-  "ci-inbox:board-beat": "827bedc313663ae8ecb06d6ddbc54dc7e6ae20fe",
-  "vci-inbox:kernel": "fb8e0a59a535083edbb27ebcdc4cf2ba0e91642d",
-  "ci-control:ledger": "047c178c8a25c42b6fbde3d8bbbef1d793e624a3",
+  "ci-inbox:board-beat": "17f2f7cd33c3f88b7f80839bdfacab5952f451aa",
+  "vci-inbox:kernel": "dcb1e5f57b1cde584fbf26615c6c0138671a8d4c",
+  "ci-control:ledger": "c12a8389a8f827e47bdec6868c8404bf4052f72f",
   "cfts:master": "fcd0057e679f1a66fe31627d5a2d1627db7622bc"
  },
- "kernel_head": "fb8e0a59a535083edbb27ebcdc4cf2ba0e91642d",
- "cross": "c840c649ee8bf3a2d32379e4d27cbd33a4651bfff85c2794657783a2f02cfd7d",
+ "kernel_head": "dcb1e5f57b1cde584fbf26615c6c0138671a8d4c",
+ "cross": "647213dcd27ecc5e6b5e158c223c55d06955b38cf3c551d397165ece2f33e8fd",
  "note": "逆向米田纠缠锚; 源断=告警非死; 由 ci-inbox kernel-loop-board 事件驱动"
 }
