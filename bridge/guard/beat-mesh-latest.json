@@ -1,26 +1,13 @@
 {
- "ts": "2026-09-04T05:07:30Z",
- "cross": "19250e383da28701cfaf22a8",
- "kernel_head": "945073ca928ee3ba",
- "tips": {
-  "pulses": {
-   "n": 2,
-   "newest": "qgl-20260904-042601.md"
-  },
-  "beat-inbox": {
-   "n": 1,
-   "newest": "cisvr-0506.txt"
-  },
-  "board": {
-   "bytes": 60175
-  },
-  "ledger": {
-   "seq": 601,
-   "hash": "680fbe9066850d64",
-   "ts": "2026-09-04T05:06:33Z"
-  },
-  "home:usrm-repo": "dcde0909d693",
-  "home:vinf-market-kernel": "881e856bdef4",
-  "home:ucif2-formalization-kernel": "e061f6febe13"
- }
+ "v": "BEAT-MESH-02",
+ "ts": "2026-09-05T15:15:10Z",
+ "sources": {
+  "ci-inbox:board-beat": "892ff540993e816937a0cc2b01bc8401074c217e",
+  "vci-inbox:kernel": "0a4e0c919520efc80fdd39ff6f0be99f75936937",
+  "ci-control:ledger": "3a397682510959f43a949e4ad47c310bc4615ec2",
+  "cfts:master": "cb14d88e03481a53010b308e6ce1bfb791cbe2d6"
+ },
+ "kernel_head": "0a4e0c919520efc80fdd39ff6f0be99f75936937",
+ "cross": "9f6156cfe87cb7aa0a308176b8c88d9a196726c9b75859e2704a31346e7d2aa5",
+ "note": "逆向米田纠缠锚; 源断=告警非死; 由 ci-inbox kernel-loop-board 事件驱动"
 }
