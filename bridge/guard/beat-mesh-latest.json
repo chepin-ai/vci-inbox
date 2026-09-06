@@ -1,13 +1,13 @@
 {
  "v": "BEAT-MESH-02",
- "ts": "2026-09-06T02:14:18Z",
+ "ts": "2026-09-06T02:20:11Z",
  "sources": {
-  "ci-inbox:board-beat": "cab0fa8a1843de6f8eba80f621effc347cbe10a5",
-  "vci-inbox:kernel": "db922735afb6ae41d3893bb85780d3e04a1ac69d",
-  "ci-control:ledger": "2e3820073d6fa599e7877425d536364a0f1b8049",
-  "cfts:master": "5ac10926a7e0d3059cc7b10379f6a3fb3fad9372"
+  "ci-inbox:board-beat": "09164f3c5a5f3e15e9cf6987145ae1809d277e1d",
+  "vci-inbox:kernel": "82cea7eb2f4adac488f368ebf7ce433637d1295b",
+  "ci-control:ledger": "1da38dcb5df5a8d1c0e8f5315a8866b6033f83ed",
+  "cfts:master": "1fb5bea675cf5190a9d57d40b0566d6159933630"
  },
- "kernel_head": "db922735afb6ae41d3893bb85780d3e04a1ac69d",
- "cross": "70220b9c5c8dc6da2020ec48b6e6ccf1f2e98d6830b7af38f55343d2fe279fdb",
+ "kernel_head": "82cea7eb2f4adac488f368ebf7ce433637d1295b",
+ "cross": "c1e1d608faad175e9e8ab690052a024ddf254df61b731699a554ac06d440f07b",
  "note": "逆向米田纠缠锚; 源断=告警非死; 由 ci-inbox kernel-loop-board 事件驱动"
 }
