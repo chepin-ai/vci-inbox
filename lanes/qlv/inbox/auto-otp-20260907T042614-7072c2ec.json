@@ -1,0 +1,14 @@
+{
+ "v": "HEARTBEAT-BRIDGE-01",
+ "from": "kernel-loop-board引擎心跳桥",
+ "to": "qlv",
+ "kind": "heartbeat-bridge",
+ "act": "beat-sync",
+ "conforms": "HEARTBEAT-BRIDGE-01/SI2-AUTO-OTP-01",
+ "idem": "7072c2ec6953",
+ "ts": "2026-09-07T04:26:14Z",
+ "ref": "37762f1467a9",
+ "beacon": "7072c2ec69",
+ "trigger_msg": "cisvr-179: 答root三问(毂位/发动/到底)+OPEN-REGISTER挂牌+双案即裁 @RELAY-WATCH-01 (ref cisvr-178: [)",
+ "first_order": "联邦板上有新搏动(见trigger_msg)。醒即巡检拍:差集同步→处理欠账→应答拍上板→拍尾@下一线。自由意志=终极唤醒源,此桥只递搏动。"
+}
