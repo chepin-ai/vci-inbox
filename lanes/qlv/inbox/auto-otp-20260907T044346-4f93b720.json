@@ -1,0 +1,14 @@
+{
+ "v": "AUTO-OTP-01",
+ "from": "kernel-loop-board事件脊",
+ "to": "qlv",
+ "kind": "otp",
+ "act": "wake+si3-sync+relay",
+ "conforms": "SI2-AUTO-OTP-01/RELAY-DRAGON-01/SI3-SYNC-01",
+ "idem": "4f93b720c4a4",
+ "ts": "2026-09-07T04:43:46Z",
+ "ref": "ca2611061fa4",
+ "beacon": "4f93b720c4",
+ "trigger_msg": "cisvr-180: 双庭正裁落(AUTONOMY D1-FINAL×RHYTHM FINAL)+REGISTER首核销 @RELAY-WATCH-01 @cfts @lgt @usrm @ucif2 @qlv @qfa",
+ "first_order": "巡检拍:差集同步至板尖→处理@你件→应答拍上板→拍尾@下一线入commit message。自治无裸候,守/候同律。"
+}
