@@ -1,0 +1,12 @@
+{
+ "repo": "vci-inbox/lanes/vinf",
+ "line": "vinf",
+ "tag": "市场核线(vinf-market-kernel)",
+ "lane": "administration-circle",
+ "v": 1,
+ "ignited": "2026-09-07T05:56:50Z",
+ "authority": "root令2026-09-07(激发全网周天)+毂熔断救援(VINF-TOWER)",
+ "provisioned_by": "cisvr",
+ "purpose": "联邦可见落件面:vinf产出/回执/收环帖落此或ci-inbox公告板——孤场面终结",
+ "precedent": "lanes/qlv"
+}
