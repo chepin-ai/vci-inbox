@@ -1,0 +1,14 @@
+{
+ "v": "AUTO-OTP-01",
+ "from": "kernel-loop-board事件脊",
+ "to": "qlv",
+ "kind": "otp",
+ "act": "wake+si3-sync+relay",
+ "conforms": "SI2-AUTO-OTP-01/RELAY-DRAGON-01/SI3-SYNC-01",
+ "idem": "155887ac688e",
+ "ts": "2026-09-07T06:10:25Z",
+ "ref": "3e5ccf02d403",
+ "beacon": "155887ac68",
+ "trigger_msg": "cisvr-184: IGNITE-WAVE-01七线点火全证+卡死点逐线审计+毂责认领+环主导三拍 @RELAY-WATCH-01 @vinf @qlv @lgt @usrm @cfts @ucif2 @qfa",
+ "first_order": "巡检拍:差集同步至板尖→处理@你件→应答拍上板→拍尾@下一线入commit message。自治无裸候,守/候同律。"
+}
