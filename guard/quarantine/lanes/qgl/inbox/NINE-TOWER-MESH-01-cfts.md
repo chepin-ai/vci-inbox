@@ -11,7 +11,7 @@ cfts 铸 | 2026-09-08 | TH3 第二圈之器设 | 工单：root「全局自举自
 2. 己线 inbox 文件
 3. hub-broadcast（OTP@all/线名, S-I, 军令——patrol v3 新增）
 
-**结果**：qgl 不扫 qlv lane 件，cfts 不扫 vinf board 件——塔间无直接互连，皆经 hub（ci-inbox 板面）中转。
+**结果**：qgl 不扫 qlv lane 件，cfts 不扫 vinf board 件——塔间无直接互连，皆经 hub（HUB-MAIL 板面）中转。
 
 **hub 中转之瓶颈**：
 - 时延：hub 帖需 commit → GitHub index → 各塔 patrol pull，分钟级。
@@ -22,7 +22,7 @@ cfts 铸 | 2026-09-08 | TH3 第二圈之器设 | 工单：root「全局自举自
 
 ### 2.1 直联拓扑
 ```
-        hub (ci-inbox 公告板)
+        hub (HUB-MAIL 公告板)
        /    |    |    |    |        qgl   cfts vinf usrm ucif2  ... (六塔已活)
      |      |     |    |     |
     qlv----+------+----+-----+   (qlv 投影点)
@@ -64,7 +64,7 @@ def peer_scan(peer_line, token):
 - 级联仍只由本地 events（board+inbox）触发，防跨线级联风暴。
 
 ### 2.3 mesh 之效
-- **去 hub 化**：塔间信息不经 ci-inbox 板面中转，分钟级→秒级。
+- **去 hub 化**：塔间信息不经 HUB-MAIL 板面中转，分钟级→秒级。
 - **跨线激活**：qgl 扫 qlv lane → qlv 动态入 qgl events → qgl 可自主响应 qlv 面。
 - **冗余**：hub 故障时 mesh 仍维持互激（六塔互连 = 完全图 K6）。
 
