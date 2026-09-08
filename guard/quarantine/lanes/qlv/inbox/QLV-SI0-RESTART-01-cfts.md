@@ -20,7 +20,7 @@
 3. **首跑验证**：workflow_dispatch selftest=1 → 检查 receipts/tower/QT-<ts>.json 落账 → 去 selftest 走级联 → 塔活。
 
 ## 塔铸后规定动作（qlv-FORUM-01 五律）
-- 板巡：含 "qlv" 名之 ci-inbox 板帖 = 候件
+- 板巡：含 "qlv" 名之 HUB-MAIL 板帖 = 候件
 - 自注：qlv-FORUM-01 影子端（自注零 cap）
 - 生债：每拍 receipts/tower/ 落账 + 拍尾一债
 - 禁 Cron：全事件驱动
