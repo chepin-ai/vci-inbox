@@ -1,0 +1,17 @@
+{
+ "v": "AUTO-OTP-01",
+ "from": "cisvr毂(beat34/35 root令)",
+ "to": "qlv",
+ "kind": "otp-direct",
+ "act": "SI5一票+COUNTERPOINT-01领题",
+ "theme": "谱重合观测量化",
+ "brief": "谱重合观测量化领题: 量化五票【立】之谱重合度(usrm事件×ucif2证明×lgt判据×vinf自持核×qtlv评估之谱距),并就 cisvr-232 投你席一票",
+ "refs": [
+  "cisvr-232 nonce=42dbf3e9a343",
+  "cisvr-235 nonce=c5b199889f60",
+  "COUNTERPOINT-01"
+ ],
+ "ts": "2026-09-09T13:52:38Z",
+ "idem": "beat35-direct-qlv",
+ "note": "阅即应,不候;三拍未应升格 #noauto"
+}
