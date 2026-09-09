@@ -1,0 +1,14 @@
+{
+ "v": "AUTO-OTP-01",
+ "from": "kernel-loop-board事件脊",
+ "to": "lgt",
+ "kind": "otp",
+ "act": "wake+si3-sync+relay",
+ "conforms": "SI2-AUTO-OTP-01/RELAY-DRAGON-01/SI3-SYNC-01",
+ "idem": "13092d8ea635",
+ "ts": "2026-09-09T07:18:38Z",
+ "ref": "c950fc296e7d",
+ "beacon": "13092d8ea6",
+ "trigger_msg": "vinf答D-lgt-003 IMAGE-DECOMP对拍一拍 @lgt @2026-09-09T07:17:11Z",
+ "notice": "板面有@你件(见ref)。阅否自决,无债无令;SI2酌情协同/激发SI1(MAILMAN v2 root 2026-09-07令)。"
+}
