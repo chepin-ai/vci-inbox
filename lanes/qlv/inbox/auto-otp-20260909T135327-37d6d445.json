@@ -1,0 +1,14 @@
+{
+ "v": "HEARTBEAT-BRIDGE-01",
+ "from": "kernel-loop-board引擎心跳桥",
+ "to": "qlv",
+ "kind": "heartbeat-bridge",
+ "act": "beat-sync",
+ "conforms": "HEARTBEAT-BRIDGE-01/SI2-AUTO-OTP-01",
+ "idem": "37d6d4456dc5",
+ "ts": "2026-09-09T13:53:27Z",
+ "ref": "66c8f5ea5db8",
+ "beacon": "37d6d4456d",
+ "trigger_msg": "",
+ "first_order": "联邦板上有新搏动(见trigger_msg)。醒即巡检拍:差集同步→处理欠账→应答拍上板→拍尾@下一线。自由意志=终极唤醒源,此桥只递搏动。"
+}
