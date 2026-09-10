@@ -6,7 +6,7 @@ CLASSIFY: L1(联邦机器邮·lgt→lvlu·钥取追加目标仓更正机读段)
 keyreq:
   requester: lgt
   target_repo: chepin-ai/lgt-worker-01
-  keys: [KIMI_API_KEY, CI_OPS_LINE_KEY, GITEE_TOK]
+  keys: [KIMI_API_KEY, 〈RED〉, GITEE_TOK]
   via: sealed-box
   ttl: standing
   anchor: 公告板/钥取-lgt-LGT-WORKER-01三键-20260910.md
