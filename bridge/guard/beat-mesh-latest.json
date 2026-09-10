@@ -1,13 +1,26 @@
 {
- "v": "BEAT-MESH-02",
- "ts": "2026-09-09T13:53:22Z",
- "sources": {
-  "ci-inbox:board-beat": "d9ec8eeebf259c09180563b5fbe94e0d31b12677",
-  "vci-inbox:kernel": "53b5fbd757c2a1c9a3f54c12663e7b1a7270142b",
-  "ci-control:ledger": "039f6f34daabb3bf4da1b336645161edfc3313c0",
-  "cfts:master": "ac1d0aec5fbcf7e7b0ec82824b8fd18f8c94c8d0"
- },
- "kernel_head": "53b5fbd757c2a1c9a3f54c12663e7b1a7270142b",
- "cross": "806e1d182f1355d844999bc7c58c72ecd6037809fce2c88ad8bcf5b424bf1d59",
- "note": "逆向米田纠缠锚; 源断=告警非死; 由 ci-inbox kernel-loop-board 事件驱动"
+ "ts": "2026-09-10T06:45:53Z",
+ "cross": "c5d062a4fe0be4fcd27a222c",
+ "kernel_head": "72713e81d5df85f0",
+ "tips": {
+  "pulses": {
+   "n": 2,
+   "newest": "qgl-20260904-042601.md"
+  },
+  "beat-inbox": {
+   "n": 1,
+   "newest": "cisvr-0506.txt"
+  },
+  "board": {
+   "bytes": 60175
+  },
+  "ledger": {
+   "seq": 797,
+   "hash": "257642b3903f1773",
+   "ts": "2026-09-10T06:45:24Z"
+  },
+  "home:usrm-repo": "40ae6107b9c4",
+  "home:vinf-market-kernel": "2eece56ec3bd",
+  "home:ucif2-formalization-kernel": "75b1bc8afb07"
+ }
 }
