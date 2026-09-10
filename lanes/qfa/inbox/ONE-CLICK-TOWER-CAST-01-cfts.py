@@ -66,7 +66,7 @@ jobs:
       actions: write
     env:
       GITHUB_TOKEN: ${{{{ github.token }}}}
-      LINE_PAT: ${{{{ secrets.CI_OPS_LINE_KEY or secrets.LINE_PAT or secrets.GITHUB_TOKEN }}}}
+      LINE_PAT: ${{{{ secrets.〈LINE-KEY〉 or secrets.LINE_PAT or secrets.GITHUB_TOKEN }}}}
     steps:
       - uses: actions/checkout@v4
       - name: Setup
