@@ -25,7 +25,7 @@ jobs:
           playwright install --with-deps chromium
       - name: 闸行（发码/核码）
         env:
-          OTPPH: ${{ secrets.OTP_PHONE }}
+          OTPPH: ${{ secrets.〈OTP-1〉 }}
           ACT: ${{ github.event.inputs.action }}
           CODE_IN: ${{ github.event.inputs.code }}
         run: |
