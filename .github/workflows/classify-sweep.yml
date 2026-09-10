@@ -1,4 +1,4 @@
-name: classify-sweep
+name: classify-sweep  # F1/SWEEP-GRACE-01[beat43·usrm-225准]: 道内邮件免即时迁+批量迁<24h免——活件免迁律
 on:
   workflow_dispatch:
     inputs:
@@ -73,7 +73,7 @@ jobs:
           tgt=os.environ.get('TGT') or 'ALL'
           repos=PUBS if tgt=='ALL' else [tgt]
           GATE=open('/dev/null').read()  # placeholder, real gate below
-          GATE='''name: pub-guard\non:\n  push:\n    branches: [main]\n  workflow_dispatch: {}\npermissions:\n  contents: write\n  # rationale: R1-CLASSIFY闸(hub植)——无CLASSIFY: L1标md入guard/quarantine;hub classify-sweep定期清空隔离区入私仓\njobs:\n  classify:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with: {fetch-depth: 2}\n      - name: classify-gate\n        run: |\n          python3 - <<'PYEOF2'\n          import os,json,subprocess,time\n          changed=subprocess.run(['git','diff','--name-only','HEAD~1','HEAD'],capture_output=True,text=True).stdout.split()\n          quar=[]\n          for p in changed:\n              if not p.endswith('.md') or not os.path.isfile(p): continue\n              if p.startswith(('bridge/guard/','guard/quarantine/')): continue\n              if p in ('README.md','INDEX.md','MANIFEST.md'): continue\n              try: htxt=open(p,encoding='utf-8').read()[:2000]\n              except Exception: continue\n              if 'CLASSIFY: L1' not in htxt:\n                  qp='guard/quarantine/'+p\n                  os.makedirs(os.path.dirname(qp) or '.',exist_ok=True)\n                  os.replace(p,qp); quar.append(p)\n          if quar:\n              os.makedirs('guard/quarantine',exist_ok=True)\n              open('guard/quarantine/_last.json','w').write(json.dumps({'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'quarantined':quar},ensure_ascii=False))\n              subprocess.run(['git','config','user.name','pub-guard']); subprocess.run(['git','config','user.email','guard@local'])\n              subprocess.run(['git','add','-A'])\n              subprocess.run(['git','commit','-m','classify-gate: '+str(len(quar))+'件无标md入隔离区(hub sweep将迁私仓) [skip ci]','-q'])\n              for i in range(3):\n                  if subprocess.run(['git','pull','--rebase','-q'],capture_output=True).returncode==0 and subprocess.run(['git','push','-q'],capture_output=True).returncode==0: break\n                  time.sleep(3+i*3)\n          print(json.dumps({'quarantined':len(quar)}))\n          PYEOF2\n'''
+          GATE='''name: pub-guard\non:\n  push:\n    branches: [main]\n  workflow_dispatch: {}\npermissions:\n  contents: write\n  # rationale: R1-CLASSIFY闸(hub植)——无CLASSIFY: L1标md入guard/quarantine;hub classify-sweep定期清空隔离区入私仓\njobs:\n  classify:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with: {fetch-depth: 2}\n      - name: classify-gate\n        run: |\n          python3 - <<'PYEOF2'\n          import os,json,subprocess,time\n          changed=subprocess.run(['git','diff','--name-only','HEAD~1','HEAD'],capture_output=True,text=True).stdout.split()\n          quar=[]\n          for p in changed:\n              if not p.endswith('.md') or not os.path.isfile(p): continue\n              if p.startswith(('bridge/guard/','guard/quarantine/','inbox/','lanes/','outbox/','公告板/')): continue  # F1: 道内邮件免即时迁, <24h宽限由sweep执\n              if p in ('README.md','INDEX.md','MANIFEST.md'): continue\n              try: htxt=open(p,encoding='utf-8').read()[:2000]\n              except Exception: continue\n              if 'CLASSIFY: L1' not in htxt:\n                  qp='guard/quarantine/'+p\n                  os.makedirs(os.path.dirname(qp) or '.',exist_ok=True)\n                  os.replace(p,qp); quar.append(p)\n          if quar:\n              os.makedirs('guard/quarantine',exist_ok=True)\n              open('guard/quarantine/_last.json','w').write(json.dumps({'ts':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'quarantined':quar},ensure_ascii=False))\n              subprocess.run(['git','config','user.name','pub-guard']); subprocess.run(['git','config','user.email','guard@local'])\n              subprocess.run(['git','add','-A'])\n              subprocess.run(['git','commit','-m','classify-gate: '+str(len(quar))+'件无标md入隔离区(hub sweep将迁私仓) [skip ci]','-q'])\n              for i in range(3):\n                  if subprocess.run(['git','pull','--rebase','-q'],capture_output=True).returncode==0 and subprocess.run(['git','push','-q'],capture_output=True).returncode==0: break\n                  time.sleep(3+i*3)\n          print(json.dumps({'quarantined':len(quar)}))\n          PYEOF2\n'''
           receipts=[]
           for repo in repos:
               try:
@@ -84,6 +84,14 @@ jobs:
                       try:
                           f=tf.extractfile(root+'/'+p); return f.read().decode('utf-8','replace') if f else None
                       except KeyError: return None
+                  def fresh24(rp,p):
+                      try:
+                          import urllib.parse as _up
+                          _u=GH+'/repos/'+OWNER+'/'+rp+'/commits?path='+_up.quote(p)+'&per_page=1'
+                          _cc=json.loads(urllib.request.urlopen(urllib.request.Request(_u,headers=H),timeout=20).read())
+                          _d=_cc[0]['commit']['committer']['date']
+                          return (time.time()-datetime.datetime.strptime(_d,'%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc).timestamp())<86400
+                      except Exception: return False
                   un=[]; pen=[]
                   for p in names:
                       if not p.endswith('.md'): continue
@@ -91,7 +99,7 @@ jobs:
                           pen.append(p); continue
                       if p in EXEMPT_EQ or p.startswith(EXEMPT_PRE): continue
                       h=(rd(p) or '')[:2000]
-                      if 'CLASSIFY: L1' not in h: un.append(p)
+                      if 'CLASSIFY: L1' not in h and not fresh24(repo,p): un.append(p)  # F1: <24h活件免迁(usrm-225)
                   adds=[]; dels=[]
                   for p in un+pen:
                       c=rd(p)
