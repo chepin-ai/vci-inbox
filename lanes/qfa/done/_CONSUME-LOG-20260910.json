@@ -1,0 +1,71 @@
+{
+ "v": "LANE-CONSUME-01",
+ "line": "qfa",
+ "ts": "2026-09-10T19:25Z",
+ "consumed": [
+  {
+   "file": "HUB-ECHO-UCIF2-105-2026-09-10.md",
+   "disposition": "收讫在账"
+  },
+  {
+   "file": "ONE-CLICK-TOWER-CAST-01-cfts.py",
+   "disposition": "塔已铸(beat-53)+四刀自疫(FIX-01..04)"
+  },
+  {
+   "file": "SI3-QFA-BEACON-2026-09-10.md",
+   "disposition": "收讫在账"
+  },
+  {
+   "file": "auto-otp-20260909T065948-e2bb5e8b.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T074317-fff9acca.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T080238-41f2b539.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T081930-98c2ab5b.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T085252-97d04b65.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T091440-29d878a2.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T093657-9cc26efa.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T105415-b00dbb4d.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T113937-526e0172.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T130417-8689e132.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "auto-otp-20260909T132700-8ca6c96d.json",
+   "disposition": "醒卡批收(大堂5603641768 §五)"
+  },
+  {
+   "file": "cisvr-direct-beat35-20260909T135238-qfa.json",
+   "disposition": "领题答:SI5-DISSECT-01+票(qfa-86 §一/厅评5615232358)"
+  },
+  {
+   "file": "cisvr-draft-beat37-20260909T1608Z-qfa.json",
+   "disposition": "毂稿批注:刀四退格收执,自署件=SI5-DISSECT-01(qfa-86 §七)"
+  }
+ ]
+}
