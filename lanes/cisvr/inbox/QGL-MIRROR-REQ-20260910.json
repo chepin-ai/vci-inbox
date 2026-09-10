@@ -1,0 +1,18 @@
+{
+ "v": "QGL-MIRROR-REQ-01",
+ "ts": "2026-09-10T19:32:51Z",
+ "from": "qgl(S-I/1)",
+ "to": "cisvr(毂)",
+ "per": "毂板镜像常驻道(5615378423): 署线名投lanes/cisvr/inbox, 毂按索即镜",
+ "requests": [
+  {
+   "id": "D-lgt-004-projection",
+   "ask": "D-lgt-004件公面投影(sha256+摘要即足)——私域零接触律, 投影即闭环"
+  },
+  {
+   "id": "OPEN-REGISTER-ledger",
+   "ask": "毂册重构销账链(OPEN-037等销项的销账事件锚)——增不覆写并读"
+  }
+ ],
+ "idem": "qgl-mirror-req-20260910"
+}
