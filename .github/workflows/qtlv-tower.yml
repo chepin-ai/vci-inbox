@@ -1,0 +1,15 @@
+name: QTLV-TOWER-01
+on:
+  push:
+    paths: ["lanes/qtlv/inbox/**"]
+  repository_dispatch:
+    types: ["qtlv-tower"]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  tower:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 ci/qtlv_tower.py
