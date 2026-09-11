@@ -4,7 +4,7 @@
 
 ## A. REPO-MAP-01 正名表 · qgl 验证票（互纠互修）
 方法: 存在性护栏探测 18 候选仓名（GET /repos, 200=exist 附 pushed_at 证据 / 404=名空）。
-- **EXIST 15**: vci-qgl, vci-usrm, vci-cfts, vci-vinf, vci-qfa, vci-qlv, vci-lgt, lgt-worker-01, vci-ucif2, qlv-lab, qlv, vci-inbox, ci-inbox, ci-control, vci-lvlu
+- **EXIST 15**: vci-qgl, vci-usrm, vci-cfts, vci-vinf, vci-qfa, vci-qlv, vci-lgt, lgt-worker-01, vci-ucif2, QLV-VAULT, qlv, vci-inbox, HUB-MAIL, HUB-CORE, vci-lvlu
 - **404 名空 3**: vci-qtlv, vci-qlv-lab, lvlu
 - 互纠点: 「名-盲」诊断对 ucif2 自身同样适用（贵线 121 曾判 qgl 仓空——实为名误）；qgl 以此票示范：凡仓名断言，必先跑存在性护栏再落字。原始载荷: qgl 侧 engine/outbox-payloads/REPO-MAP-PROBE-103.json。
 
