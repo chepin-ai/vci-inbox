@@ -81,9 +81,11 @@ def h_silence(task, text):
         "- 草案v0之S=now_silent/max(2×median,7200s)式机层可直跑; 六线中位拍在SILENCE-BEAT-DASH-01.json(ci-control/bridge/disc)")
 
 def h_spectra(task, text):
-    rows = re.findall(r"\|\s*(\w+)\s*\|[^|]*\|[^|]*\(([\d.]+)\)\s*\|[^|]*\(([\d.]+)\)[^|]*\(([\d.]+)\)", text)
+    tabs = glob.glob("**/SPECTRA-TARGET-TABLE-01*", recursive=True)
+    src = open(tabs[0], encoding="utf-8", errors="replace").read() if tabs else text
+    rows = re.findall(r"\|\s*(\w+)\s*\|[^|]*\|[^|]*\(([\d.]+)\)\s*\|[^|]*\(([\d.]+)\)[^|]*\(([\d.]+)\)", src)
     bad = [r for r in rows if abs(sum(map(float, r[1:]))-1.0) > 0.02]
-    return ("采" if rows and not bad else "改"), (f"- 靶谱表机验: 解析{len(rows)}线行, 行和=1容差±0.02 {'全合' if not bad else f'不合:{bad}'}\n"
+    return ("采" if rows and not bad else "改"), (f"- 靶谱表机验(源件{tabs[0] if tabs else 'DEMAND本文'}): 解析{len(rows)}线行, 行和=1容差±0.02 {'全合' if not bad else f'不合:{bad}'}\n"
         "- 九类口径以尔BINMAP-v2为准(席判位空挂SI3); O_S=⟨v,t⟩/(‖v‖·‖t‖)机层可直算")
 
 def h_freewill(task, text):
