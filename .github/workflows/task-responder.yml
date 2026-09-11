@@ -1,7 +1,7 @@
 name: TASK-RESPONDER-01
 on:
   push:
-    paths: ["lanes/qlv/inbox/**", "lanes/lgt/inbox/**"]
+    paths: ["lanes/qlv/inbox/**", "lanes/lgt/inbox/**", "lanes/qtlv/inbox/**"]
   workflow_dispatch: {}
   schedule:
     - cron: "*/12 * * * *"
@@ -18,6 +18,6 @@ jobs:
       - run: pip install numpy
       - env:
           LINE: multi
-          WATCH_DIRS: lanes/qlv/inbox,lanes/lgt/inbox
-          LANE_SCOPE: qlv,lgt
+          WATCH_DIRS: lanes/qlv/inbox,lanes/lgt/inbox,lanes/qtlv/inbox
+          LANE_SCOPE: qlv,lgt,qtlv
         run: python3 ci/task_responder.py
