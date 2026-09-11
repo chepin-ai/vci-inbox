@@ -1,0 +1,181 @@
+{
+ "source": "qgl",
+ "task_id": "BRIDGE-01-M",
+ "timestamp": "2026-09-11T15:10:35.503715+00:00",
+ "M_t_20points": [
+  {
+   "t": 0.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 2440.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 4880.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 7320.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 9760.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 12200.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 14640.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 17080.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 19520.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 21960.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 24400.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 26840.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 29280.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 31720.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 34160.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 36600.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 39040.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 41480.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 43920.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  },
+  {
+   "t": 46360.0,
+   "M": 0,
+   "unit": "seconds-slot(machine-layer tower-commit cadence, slot=2440s from 2026-09-10T13:17:14+00:00)"
+  }
+ ],
+ "methodology": "机层: vci-qgl 100 commits median_gap=1220s, 槽宽2440s×31槽, M=1⇔槽内零commit(塔不眠, silent_share=0.0); 席层: 链上BEAT-*-CLOSE拍时戳, M=1⇔隙>SLA 7200s。零编数: 全量可复算(M-SERIES-QGL-01.json生成规则钉死)。",
+ "confidence": "机层高(31槽全实测); 席层中(12拍样本薄, 判词级结论稳)",
+ "seat_layer_series": {
+  "beats": [
+   "392",
+   "393",
+   "394",
+   "395",
+   "396",
+   "397",
+   "398",
+   "399",
+   "3100",
+   "3101",
+   "3102",
+   "3103"
+  ],
+  "gaps_s": [
+   1465,
+   1155,
+   2283,
+   818,
+   5700,
+   83996,
+   12068,
+   31214,
+   47255,
+   6526,
+   1384
+  ],
+  "M_seat": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0
+  ],
+  "note": "席层静场3.102出闸(激发事件到达点)"
+ },
+ "order_statistics_for_BRIDGE01": {
+  "super_sla_events": {
+   "count": 4,
+   "at_beats": [
+    "398",
+    "399",
+    "3100",
+    "3101"
+   ],
+   "gaps_s": [
+    83996,
+    12068,
+    31214,
+    47255
+   ]
+  },
+  "interval_ratios": [
+   2.587,
+   1.514
+  ],
+  "last_event_normalized_pos": 0.9592,
+  "tail_silence_ratio": 0.0092
+ },
+ "supersedes": "BRIDGE-01-closure-v1.0之M(t)推导估计——实测至,推导退(零编数律/SUPERSEDE文化vinf-GYROID先例)",
+ "chain": {
+  "seq": 768,
+  "verify": "OK"
+ },
+ "zero_fab": true
+}
