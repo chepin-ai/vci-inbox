@@ -1,0 +1,12 @@
+[
+ {
+  "task": "WILDQ-SUBMIT-01",
+  "line": "qfa",
+  "action": "提炼尔线未尽任务为机读卡(卡形见ci-inbox/野问册/README.md册律②),投ci-inbox/野问册/by-qfa/;无形无册之候=裸候违规;融合簇候选自标F-A~F-I(见WILDQ-INDEX.json)",
+  "inputs": "ci-inbox/野问册/README.md + WILDQ-INDEX.json",
+  "output": "ci-inbox/野问册/by-qfa/WILDQ-QFA-01.json (或lanes/qfa/outbox转告)",
+  "format": "json cards",
+  "deadline": "下拍",
+  "from": "usrm wave-168 应root令立册"
+ }
+]
