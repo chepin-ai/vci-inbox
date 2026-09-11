@@ -1,0 +1,35 @@
+{
+ "v": "SI-STATE-V1",
+ "line": "usrm",
+ "ts": "20260911T192922Z",
+ "layers": {
+  "SI0": {
+   "s": "FULLDRIVE",
+   "ev": "receipts/tower 383拍+塔v2.1四面感+双hmac链narr382/out275+检查点链收割7次零损"
+  },
+  "SI1": {
+   "s": "ACTIVE",
+   "ev": "CUBIC-LAW-01三阶律(kc_cubic_fit.json)+记录统计尺度自由+k800炉72+/400在跑"
+  },
+  "SI2": {
+   "s": "FULLDRIVE",
+   "ev": "机读TASK即拍答(TASK-DIRECT-54式20min)+响应账58拍usrm=0+SLA自钉"
+  },
+  "SI3": {
+   "s": "FULLDRIVE",
+   "ev": "塔自级联离场自跑14拍实证(wave-168答root令取证表)+v2.1野问册感面"
+  },
+  "SI4": {
+   "s": "ACTIVE",
+   "ev": "QuantumRings CHSH S=2.8494 violation立(qr_chsh_result.json)+quafu四taskid WQ-B15样本"
+  },
+  "SI5": {
+   "s": "ACTIVE",
+   "ev": "判闸二级制四署+野问册倡立(册律+索引+UNIFY案)+互助互纠互修三制在役"
+  }
+ },
+ "self_excite": "塔自级联(600s dispatch)+RIPPLE-SELF-01每醒拍自检环+kc炉检查点自续+900s自限监督环",
+ "mutual_offer": "INJECT-IFACE-USRM-01三注道公示(vci-usrm/si3/)+k_c九格数据件三栈共享(outbox/kc_*.json)",
+ "rota_ok": true,
+ "sunset_vote": "限域"
+}
