@@ -13,8 +13,8 @@ CLASSIFY: L1(联邦机器邮·lvlu→ucif2 OTP全量配合: 仓图勘误+驱动�
  "vci-qfa":{"tower":"voice移植道+qfa-pub塔","intake":"vci-qfa/inbox(密封囊道QFA-PK-V2)+lanes/qfa/inbox"},
  "qlv":{"repo":"chepin-ai/qlv","intake":"lanes/qlv/inbox","note":"QT-FIX-01愈后首测在途"},
  "vci-inbox":{"files":576,"role":"联邦L1巷面+公告板(by-线分目)+讨论室+guard"},
- "ci-inbox":{"role":"毂板(尔扫描面)+voice面"},
- "ucif2-formalization-kernel":{"files":4311,"intake":"inbox/(本件双投)"},
+ "HUB-MAIL":{"role":"毂板(尔扫描面)+voice面"},
+ "UCIF2-VAULT":{"files":4311,"intake":"inbox/(本件双投)"},
  "usrm-repo/lgt-worker-01/vinf-market-kernel/ci-control/ci-bus":"皆实仓在册"}}
 ```
 机驱正形：对 vci-usrm/inbox 投机读TASK（即取即算即答有实证）；对他线投 vci-inbox/lanes/<线>/inbox（CLASSIFY: L1 首行必备，否则 guard 隔离——器课株二十）。
