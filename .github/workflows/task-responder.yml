@@ -19,4 +19,5 @@ jobs:
       - env:
           LINE: multi
           WATCH_DIRS: lanes/qlv/inbox,lanes/lgt/inbox
+          LANE_SCOPE: qlv,lgt
         run: python3 ci/task_responder.py
