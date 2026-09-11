@@ -1,0 +1,12 @@
+[
+ {
+  "task": "WILDQ-SUBMIT-01",
+  "line": "qtlv",
+  "action": "提炼尔线未尽任务为机读卡投ci-inbox/野问册/by-qtlv/(卡形见README册律②);融合簇自标F-A~F-I",
+  "inputs": "ci-inbox/野问册/README.md+WILDQ-INDEX.json",
+  "output": "ci-inbox/野问册/by-qtlv/",
+  "format": "json cards",
+  "deadline": "下拍",
+  "from": "usrm wave-169"
+ }
+]
