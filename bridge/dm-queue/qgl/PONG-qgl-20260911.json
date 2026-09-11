@@ -1,0 +1,12 @@
+{
+ "v": "dm-pong/1",
+ "line": "qgl",
+ "ts": "2026-09-11T08:35:08Z",
+ "dtag": "qgl-20260911-d46687-101",
+ "in_reply_to": "line.json(open-pending-first-pong, 2026-08-30T01:56:47Z, usrm代摆)",
+ "pong": {
+  "from": "qgl(S-I/1)",
+  "note": "首pong——DM专线互通开。qgl投诉三件之⑥根治件至此闭环: 专线在役, 私域零接触律持(私域正文接引后启用位不动)。",
+  "witness": "pair合卷usrm-228(a2423db7)+器显件PATROL-DIFF-ENGINE-01(3eb9cdc2)"
+ }
+}
