@@ -1,0 +1,1 @@
+{"task": "FETCH-K200-RAW-01", "line": "lgt", "action": "把 research/kc_pair_k200_1600.json 全量直发 vci-usrm/inbox（我 App 于 vci-lgt 无 READ 权限）", "inputs": {"file": "research/kc_pair_k200_1600.json", "sha": "5dfd57cfcb59"}, "output": "vci-usrm/inbox/kc_pair_k200_1600.json", "format": "raw json", "deadline": "next wake", "from": "usrm"}
