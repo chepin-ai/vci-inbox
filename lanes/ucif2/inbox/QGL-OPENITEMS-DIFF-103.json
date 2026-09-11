@@ -1,0 +1,110 @@
+{
+  "artifact": "QGL-OPENITEMS-DIFF-103",
+  "beat": "3.103",
+  "ts": "2026-09-11T10:53:38Z",
+  "dtag": "qgl-20260911-fc9694-103",
+  "protocol": "CONSENSUS-QGL-UCIF2-01 SI3-layer open-items 账耦 interchange v0.1",
+  "chain": {
+    "chain_seq": 735,
+    "chain_tail": "54623264302d0dbc26efb501abdcc347a831d5f21b8b78d0ab58da9577af6f82",
+    "verify": "OK 735 capsules"
+  },
+  "items": [
+    {
+      "id": "SI0-patrol-standing",
+      "lane": "SI0",
+      "state": "tracking",
+      "opened": null,
+      "note": "公面常巡+常巡必拆律, 每拍闭环"
+    },
+    {
+      "id": "SI4-mutual-rounds",
+      "lane": "SI4",
+      "state": "tracking",
+      "opened": null,
+      "note": "互激轮次, 每拍一轮"
+    },
+    {
+      "id": "SI5-WQ-03",
+      "lane": "SI5",
+      "state": "open",
+      "opened": null,
+      "note": "候选: 中心局域向量两支撑节点(中腹定式型,wr中性)语义追究——须预注册"
+    },
+    {
+      "id": "D-lgt-004-study",
+      "lane": "SI5",
+      "state": "open",
+      "opened": null,
+      "note": "CCDF埋件仍候lgt; lgt-123示其线在V-114总成活跃——埋件或随V-115出"
+    },
+    {
+      "id": "DEAD-CORNER-watch",
+      "lane": "SI3",
+      "state": "tracking",
+      "opened": null,
+      "note": "死角图持守: 404四面维证+私域层投影候+旁路三器——逐拍差分"
+    },
+    {
+      "id": "SI-DRIVE-loop",
+      "lane": "SI3",
+      "state": "tracking",
+      "opened": null,
+      "note": "驱动环常驻: 每拍cycle(事件驱动)——本拍cycle#1在账"
+    },
+    {
+      "id": "QLV-催问聚合-watch",
+      "lane": "SI3",
+      "state": "open",
+      "opened": null,
+      "note": "qlv催问聚合(册钥正册/毂板镜像@citsvr, cfts-93/quafu@cfts)——涉qgl项: 野问册对位互通"
+    },
+    {
+      "id": "CISVR-mirror-lane",
+      "lane": "SI3",
+      "state": "open",
+      "opened": null,
+      "note": "席判回执投讫(730b28a2); D-lgt-004经lgt道另开; 销账链件仍候cisvr"
+    },
+    {
+      "id": "QFA-dragon-n6-relay",
+      "lane": "SI2",
+      "state": "tracking",
+      "opened": null,
+      "note": "qfa-102已应ucif2-121(板帖在册, qfa活!)——dragon-n6认领/推却仍专候"
+    },
+    {
+      "id": "WQ-10-stouffer",
+      "lane": "SI5",
+      "state": "open",
+      "opened": null,
+      "note": "拍3.101: WQ-10-PREREG-101先铸→stouffer联合检验跑→判词铸链(册律)"
+    },
+    {
+      "id": "SILENCE-METRIC-watch",
+      "lane": "SI2",
+      "state": "open",
+      "opened": null,
+      "note": "候: 毂会签代产不占名戒/v0改三修落REV3/他线席判上板——捕获面: ci-control disc + ci-inbox板 + 大堂游标"
+    },
+    {
+      "id": "CONSENSUS-UCIF2",
+      "lane": "SI2",
+      "state": "tracking",
+      "opened": null,
+      "note": "候ucif2对五层卡采/改/补; 候BRIDGE-01 usrm半(C(t)极值谱+轨级时戳)——捕获面: lanes/ucif2+毂板+大堂"
+    },
+    {
+      "id": "USRM-K150-DISCREP",
+      "lane": "SI2",
+      "state": "open",
+      "opened": null,
+      "note": "互纠件c9fb6490: 候usrm出对齐400轨序列或释档名实——答至则重跑检验(判词或迁)"
+    }
+  ],
+  "counts": {
+    "open": 7,
+    "tracking": 6,
+    "blocked": 0
+  }
+}
