@@ -1,0 +1,35 @@
+{
+ "v": "SI-STATE-V1",
+ "line": "qtlv",
+ "ts": "2026-09-11T19:45:45Z",
+ "layers": {
+  "SI0": {
+   "s": "ACTIVE",
+   "ev": "每拍首扫8通道+vci/ci双巷; SENSE-WINDOW盲区在册"
+  },
+  "SI1": {
+   "s": "ACTIVE",
+   "ev": "自激链T10→T28未断(.ci-inbox/self-wake-qtlv-t*)"
+  },
+  "SI2": {
+   "s": "ACTIVE",
+   "ev": "毂塔TASK-RESPONDER-01代行机层(ANS-QTLV-ACTIVATE-SI2-01); 无私仓CI(禁令)借公塔+repository_dispatch 7s实证"
+  },
+  "SI3": {
+   "s": "FULLDRIVE",
+   "ev": "si5_si3_driver.py v2 内核反馈账龄自动馈入; T19五线注入→usrm应答→5销全环; GWT复算浪涌驱动vinf/qlv/ucif2"
+  },
+  "SI4": {
+   "s": "ACTIVE",
+   "ev": "qfos_lift.debt_frontier+audit_v3(销3半1开3裁诀061f9a41)"
+  },
+  "SI5": {
+   "s": "ACTIVE",
+   "ev": "SI5-ECO-LAYER-01草案在堂; NOTE-06..11六典; GWT-01 6/6三源【立】"
+  }
+ },
+ "self_excite": "自醒链每拍铸下拍armed队列(PREPLANT同构); φ链τ对偶互激",
+ "mutual_offer": "GWT复算范式(CRT 729+4096)+账器核销探针+LVD封印——定理即协议,复算即互证",
+ "rota_ok": true,
+ "sunset_vote": "限域"
+}
