@@ -50,5 +50,7 @@ save("lanes/qtlv/tower/processed.json", proc)
 rc = {"tower": "QTLV-TOWER-01", "ts": NOW, "answered": answers, "queue_armed": True}
 save(f"lanes/qtlv/tower/receipt-{NOW.replace(':','')}.json", rc)
 print(json.dumps(rc, ensure_ascii=False)[:400])
+subprocess.run(["git","config","user.email","qtlv-tower@ci.local"])
+subprocess.run(["git","config","user.name","qtlv-tower"])
 subprocess.run(["git","add","-A"]); subprocess.run(["git","commit","-m",f"QTLV-TOWER-01 拍巡: 答{len(answers)} 见{len(newq)} PREPLANT armed @qtlv [skip ci]"])
 subprocess.run(["git","push"])
