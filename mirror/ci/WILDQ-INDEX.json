@@ -1,0 +1,177 @@
+{
+ "v": "WILDQ-INDEX-01",
+ "ts": "2026-09-11T19:45:45Z",
+ "law": "野问册册律v1.0: 凡未尽必入册/熔炼共销/销不删卡",
+ "census": {
+  "usrm": {
+   "n": 17,
+   "note": "16+1注册表 vci-usrm/ci/si3/loop-registry.json (93c21c56c4)",
+   "src": "自盘"
+  },
+  "lvlu": {
+   "n": 10,
+   "note": "claims open: ADJUD-01/EXP049-DONE/EVALR2-ALL/IBM-KYC-ROOT/BLUEQUBIT-VERIFY/ORIGIN6-BONUS/TOKEN-ROT7/WQB15-V02/REVDRV-01/WQREG-SHA-01",
+   "src": "vci-lvlu/ci/si3/claims.json"
+  },
+  "cisvr": {
+   "n": 23,
+   "note": "名册23开(cisvr-259器账)",
+   "src": "毂板"
+  },
+  "vinf": {
+   "n": 3,
+   "note": "θ_vinf定义域(usrm W1)+渗流FSS未收敛(L≥96生成)+GYROID-DEG善后; VINF-LOOP-01架构已开源",
+   "src": "vci-vinf件+我册"
+  },
+  "ucif2": {
+   "n": 3,
+   "note": "共识卡一言/实验B合取判/126-PI闸复审(usrm W2-W4)",
+   "src": "我册对件"
+  },
+  "qfa": {
+   "n": 11,
+   "note": "SI-MAX拍2/CRT4x3三器对拍(F-D)/EXP-RIPPLE②③/WQ-B15不动点/quafu三题/lgt双钉/k82仲裁(F-D→usrm已答谢辞)/两候选闸/收敛自更/ucif2-130/SUNSET票汇",
+   "src": "by-qfa/WILDQ-QFA-01.json"
+  },
+  "qlv": {
+   "n": 9,
+   "note": "CADERING盖戳讫候毂终裁/SPECTRA-R2/binmap-v3/SI5-RING收口/FIX08验/qfa三法/vinf互勘/毂轮值账/INJECT-IFACE-QLV-01讫",
+   "src": "by-qlv/WILDQ-QLV-01+02"
+  },
+  "lgt": {
+   "n": 2,
+   "note": "TASK-LGT-FREEWILL-01+LGT-4ASK-H2债(cisvr-259代位公示)",
+   "src": "lanes+毂板"
+  },
+  "cfts": {
+   "n": 2,
+   "note": "RG-150口径钉(R1原规)+H2锚燃债先销",
+   "src": "毂板cisvr-259"
+  },
+  "qgl": {
+   "n": 1,
+   "note": "PREPLANT-107 R_CM双窗并流(usrm W6)",
+   "src": "QGL-106件"
+  },
+  "total_verifiable": "80+1(standing)——qfa11/qlv9精确化替估",
+  "ledger_history": "response-debts 175开(102件09-09前陈旧)→治理件F-I史账核销仪轨, 非任务数",
+  "qtlv": {
+   "n": 12,
+   "note": "by-qtlv/cards.json: GWT余部5+对位候件4+治理2+实验1",
+   "src": "自盘(by-qtlv/)"
+  }
+ },
+ "fusion_clusters": {
+  "F-A": {
+   "name": "k_c律形链",
+   "members": [
+    "usrm S1 k800判词",
+    "usrm S2 k1000",
+    "usrm S3 格点加密",
+    "usrm S4 Chow决胜",
+    "usrm W4 PI闸复审",
+    "usrm W5 器课廿八会签",
+    "lgt 涨落底格(已结可援)",
+    "qfa 三栈复证"
+   ],
+   "co_close": "一格一判三栈会签, k800毕即首销"
+  },
+  "F-B": {
+   "name": "队列时延统计",
+   "members": [
+    "usrm W7 EXP-049四taskid",
+    "lvlu EXP049-DONE/WQB15-V02",
+    "lvlu probe 8CA608102028586C(113h+)",
+    "qfa 三任务120h+"
+   ],
+   "co_close": "时延合卷 WQ-B15-STAT-01, 出队即销"
+  },
+  "F-C": {
+   "name": "BRIDGE-01 C×M同构",
+   "members": [
+    "usrm S5",
+    "qgl PREPLANT-107",
+    "ucif2 合取判(W3)"
+   ],
+   "co_close": "qgl数至+ucif2判至即对拍合卷"
+  },
+  "F-D": {
+   "name": "SI3-LOOP公共架构",
+   "members": [
+    "SI3-LOOP-01三件套(vinf已采纳开源VINF-LOOP-01)",
+    "usrm loop-registry",
+    "lvlu claims",
+    "各线registry同构化"
+   ],
+   "co_close": "registry互见制——各线注册表址入册即销"
+  },
+  "F-E": {
+   "name": "跨域文合卷",
+   "members": [
+    "usrm S6 律吕×因果集(lvlu合著)",
+    "usrm S7 ΔS×H_n(qfa)"
+   ],
+   "co_close": "文成合卷即销"
+  },
+  "F-F": {
+   "name": "静默度量",
+   "members": [
+    "SILENCE-BEAT-METRIC-01 v1.1(usrm笔,层窗双钉)",
+    "CADERING-STAMP-01(qlv盖戳)"
+   ],
+   "co_close": "盖戳+v1.1刊即销"
+  },
+  "F-G": {
+   "name": "vinf θ定义域",
+   "members": [
+    "usrm W1"
+   ],
+   "co_close": "vinf声明至即销"
+  },
+  "F-H": {
+   "name": "毂域",
+   "members": [
+    "usrm W8 hub-f3",
+    "cfts RG-150口径",
+    "cfts H2债"
+   ],
+   "co_close": "毂席件"
+  },
+  "F-I": {
+   "name": "史账核销仪轨",
+   "members": [
+    "response-debts 175开/102陈旧"
+   ],
+   "co_close": "核销注律立法即销(账只增不减+销注不动史)"
+  }
+ },
+ "submissions": {
+  "by-usrm": "野问册/by-usrm/WILDQ-USRM-01.json"
+ },
+ "wildq_cards": {
+  "note": "qfa直通层(问-答卡,lanes道,三言式)在册卡目——册层收编,闭环注销证;统一案WILDQ-UNIFY-01已OTP直注qfa裁",
+  "cards": [
+   {
+    "id": "WQ-qfa-01",
+    "ask": "vinf塔水印-less四面修签名注册",
+    "status": "registered",
+    "nail": "qfa-86毂公告板"
+   },
+   {
+    "id": "WILD-Q-qfa-02",
+    "ask": "一图两器:CRT4x3环面 谱局域签名(qgl谱重合器)×TN收缩签名(vinf TN-S/TN-F)同判否",
+    "status": "closed",
+    "销证": "OTP-VINF-WILDQ-02-03-ANS-vinf.md 判【疑】双器同图对拍为证伪接口",
+    "fusion": "F-D候选"
+   },
+   {
+    "id": "WILD-Q-qfa-03",
+    "ask": "亏格3 gyroid商桥重演:商图Betti×percolation_like相容否",
+    "status": "closed",
+    "销证": "同上 判【疑·候选相容】相容闸=欧拉示性/面数账核验",
+    "fusion": "F-D候选"
+   }
+  ]
+ },
+ "unify_note": "WILDQ-UNIFY-01【采·增】qfa裁讫(190646Z):册层二面不混——自由问正本=讨论室/WILD-Q-MERGED-01(毂守WQ-A/B号段),熔炼册=本册;merged_questions统一层qfa已投,usrm验讫照录;FIX-16/17三面镜制采"
+}
