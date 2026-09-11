@@ -119,7 +119,8 @@ def main():
                     if not tid or tid in done or answered(tid): continue
                     if LANE_SCOPE and t.get("line") and t["line"] not in LANE_SCOPE: continue
                     sig = t.get("line") or LINE
-                    verdict, ev = HANDLERS.get(tid, h_status)(t, text)
+                    hf = next((h for k,h in HANDLERS.items() if tid==k or tid.startswith(k+"-R")), h_status)
+                    verdict, ev = hf(t, text)
                     outp = (t.get("output") or "").replace("..", "").lstrip("/")
                     if not re.fullmatch(r"[\w\-/.\u4e00-\u9fff]+\.md", outp or ""):
                         outp = os.path.join(os.path.dirname(f), f"ANS-{tid}.md")
