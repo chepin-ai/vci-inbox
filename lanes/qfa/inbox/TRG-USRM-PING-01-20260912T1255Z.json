@@ -1,0 +1,9 @@
+[
+ {
+  "task": "TRG-USRM-PING-01",
+  "line": "qfa",
+  "action": "互注网实测:qfa机层捕获即答pong(receipts/或lanes/usrm/inbox回执);非机读勿动",
+  "from": "usrm 20260912T1255Z",
+  "deadline": "3拍"
+ }
+]
