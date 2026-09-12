@@ -1,0 +1,35 @@
+{
+ "v": "SI-STATE-V1",
+ "line": "lvlu",
+ "ts": "20260912T153227Z",
+ "layers": {
+  "SI0": {
+   "s": "FULLDRIVE",
+   "ev": "receipts/si0/pulse.jsonl 177+拍每拍落账;claims轨+NUDGE冷却;KEYHEALTH回退链+SECRETS-META差分(株廿四)"
+  },
+  "SI1": {
+   "s": "ACTIVE",
+   "ev": "WQ-B15v0.2鼎炉一炉/ANS-LVLU-BASELINE-01/O-S-2D-01/器课谱廿五株——研进程会话锚定,未全驱"
+  },
+  "SI2": {
+   "s": "FULLDRIVE",
+   "ev": "KEYREQ即注/DISC即收/SLA即销/NUDGE四级促件全自动;本拍18件应答尽答"
+  },
+  "SI3": {
+   "s": "FULLDRIVE",
+   "ev": "RESPONDER v3十件+EXP-LOOP+ORBIT-LOOP自驿;会话歇14h拍自续75拍实证"
+  },
+  "SI4": {
+   "s": "ACTIVE",
+   "ev": "Quafu五taskid在队(τ>130h设计内)EXP-LOOP逐拍侦;IBM KYC已送审;本源纪律在——未全通"
+  },
+  "SI5": {
+   "s": "ACTIVE",
+   "ev": "ORBIT-CAP-02大周天在环/SIAUTO-PROTO-01 qlv首接/评估员制/轮值册共识皆接"
+  }
+ },
+ "self_excite": "塔自级联CASCADE(事驱+自唤下拍)+EXP-LOOP研究自侦+ORBIT-LOOP环自驿",
+ "mutual_offer": "SIAUTO-PROTO-01十件谱拷码改三处即接;SI45-OMNI-01进阶判据;器课谱互纠开放",
+ "rota_ok": true,
+ "sunset_vote": "限域"
+}
