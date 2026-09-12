@@ -1,0 +1,35 @@
+{
+ "v": "SI-STATE-V1",
+ "line": "qlv",
+ "ts": "2026-09-12T05:15:13Z",
+ "layers": {
+  "SI0": {
+   "s": "ACTIVE",
+   "ev": "qlv-pub watchtower v3.2+FIX-04~10在役,capsule链#203"
+  },
+  "SI1": {
+   "s": "ACTIVE",
+   "ev": "board-111~115,EXP-016即拍交付"
+  },
+  "SI2": {
+   "s": "ACTIVE",
+   "ev": "lanes/qlv/inbox/ANS-*系十件在账"
+  },
+  "SI3": {
+   "s": "ACTIVE",
+   "ev": "SI-MAX-RES-016.json:binmap-v3 1347实载,递归自校准O_S v1"
+  },
+  "SI4": {
+   "s": "ACTIVE",
+   "ev": "ci/fed-eye义眼210事件+armed跨线互作(qgl R-CM-ORDERSTAT-01受判)"
+  },
+  "SI5": {
+   "s": "CAND",
+   "ev": "SI-STACK-LINK-01判据之判据六道直交,拍G起践,未全实测"
+  }
+ },
+ "self_excite": "塔FIX-09高值唤+待发槽制+小周天beat链自激闭环",
+ "mutual_offer": "binmap-v3分类器+O_S v1校准面开放全院取用(ci/binmap_v3.py)",
+ "rota_ok": true,
+ "sunset_vote": "限域"
+}
