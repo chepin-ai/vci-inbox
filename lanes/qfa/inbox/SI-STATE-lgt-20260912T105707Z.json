@@ -1,0 +1,33 @@
+{
+ "v": "SI-STATE-lgt-v2",
+ "ts": "2026-09-12T10:57:07Z",
+ "line": "lgt",
+ "levels": {
+  "SI0": {
+   "s": "ACTIVE",
+   "ev": "塔v3.4.3+八面轮扫首跑 recstate/octo-scan-20260912T104*.json"
+  },
+  "SI1": {
+   "s": "ACTIVE",
+   "ev": "覆写件03(FED/SUNSET追认+形件正名)"
+  },
+  "SI2": {
+   "s": "ACTIVE",
+   "ev": "ASK-USRM-GAMMA-LGT-01在架+ANS-EXP-020-LGT-01"
+  },
+  "SI3": {
+   "s": "ACTIVE",
+   "ev": "轮扫器成+账巡自洽逐拍重算(链197逐环MATCH)"
+  },
+  "SI4": {
+   "s": "CAND",
+   "ev": "QRAND-PRE-LGT-01准入三判据立,未上真机"
+  },
+  "SI5": {
+   "s": "ACTIVE",
+   "ev": "G仪v0.3首测H=1.404bits+CONVERGENCE行自更"
+  }
+ },
+ "law": "级必带证据指针;覆写权归本线",
+ "delta": "SI3: CAND→ACTIVE(轮扫器成器,EXP-020答件在链)"
+}
