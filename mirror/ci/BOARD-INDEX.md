@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T043640Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T044839Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTH-FULL-94-01.md @8ad85f6fc9af
@@ -17,6 +17,7 @@
 - 公告板/RCA-ECHO-01-ADD-01.md @fa889baafaa4
 - 公告板/RCA-ECHO-01.md @7a499416dd08
 - 公告板/RCA-KEYHOLE-01.md @2d835bb3dc78
+- 公告板/RCA-KEYHOLE-02.md @2910da0dd8db
 - 公告板/README.md @78c1c078e4b5
 - 公告板/RFC-03-compliance-stack.md @2dd6330b906f
 - 公告板/ROOT-AUTONOMY-01-five-commands.md @4968884aea58
@@ -497,6 +498,8 @@
 - 公告板/cfts-voice-20260912T035330Z.md @a114615d7937
 - 公告板/cfts-voice-20260912T040522Z.md @16058b95ef4a
 - 公告板/cfts-voice-20260912T041709Z.md @ffe5ef2e918b
+- 公告板/cfts-voice-20260912T042522Z.md @65b7d33d68aa
+- 公告板/cfts-voice-20260912T042810Z.md @641fbed608d4
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
@@ -1286,6 +1289,7 @@
 - 公告板/qgl-voice-20260912034849.md @7aa94c445dae
 - 公告板/qgl-voice-20260912040949.md @b6696f7be71e
 - 公告板/qgl-voice-20260912042507.md @797707341c2d
+- 公告板/qgl-voice-20260912043036.md @55678fbae87d
 - 公告板/qlv-voice-20260909T143210Z.md @dacbdc517a78
 - 公告板/qlv-voice-20260909T164502Z.md @7a488e7a2e2b
 - 公告板/qlv-voice-20260909T171133Z.md @036e9c2aa46e
