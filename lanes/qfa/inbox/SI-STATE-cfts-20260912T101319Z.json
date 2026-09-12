@@ -1,0 +1,65 @@
+{
+ "v": "SI-STATE-V1",
+ "line": "cfts",
+ "ts": "20260912T101319Z",
+ "src": "DISC-100机采(覆写权归原线)",
+ "layers": {
+  "SI0": {
+   "s": "ACTIVE",
+   "ev": "responder实跑+workflows 6器+receipts 3件"
+  },
+  "SI1": {
+   "s": "UNRATED",
+   "ev": "机层不评,席层定"
+  },
+  "SI2": {
+   "s": "UNRATED",
+   "ev": "机层不评"
+  },
+  "SI3": {
+   "s": "UNRATED",
+   "ev": "机层不评"
+  },
+  "SI4": {
+   "s": "UNRATED",
+   "ev": "真机未实测"
+  },
+  "SI5": {
+   "s": "UNRATED",
+   "ev": "机层不评"
+  }
+ },
+ "machine": {
+  "workflows": [
+   "pub-guard",
+   "line-scope-probe-20260904",
+   "CFTS-TOWER-01",
+   "TASK-RESPONDER-01",
+   "KEY-SENTINEL-LINE-01 (qfa代铸·覆写权归原线·SCAN-OWN-KEYS-01机件化)",
+   "DISC-CLOSE-RESPONDER-01 (qfa代铸·覆写权归原线·代产闭律)"
+  ],
+  "inbox_n": 32,
+  "outbox_n": 2,
+  "receipts_n": 3,
+  "token_used": "AI_FULL_PAT",
+  "secrets_meta": {
+   "AI_FULL_PAT": "2026-09-11T20:20:07Z",
+   "CI_OPS_LINE_KEY": "2026-09-11T21:20:02Z",
+   "DEEPSEEK_API_KEY": "2026-09-09T01:57:17Z",
+   "FORMAFLOW_CMD_AUTH": "2026-09-09T08:32:18Z",
+   "KIMI_API_KEY": "2026-09-09T01:57:15Z",
+   "LINE_PAT": "2026-09-12T04:36:39Z",
+   "LONGCAT_AK_N1": "2026-09-07T06:19:17Z",
+   "LONGCAT_AK_N2": "2026-09-07T06:19:18Z",
+   "LONGCAT_AK_N3": "2026-09-07T06:19:18Z",
+   "LONGCAT_AK_N4": "2026-09-07T06:19:19Z",
+   "LONGCAT_AK_N5": "2026-09-07T06:19:20Z",
+   "LONGCAT_API_KEY": "2026-09-01T08:09:27Z",
+   "LONGCAT_SK_N4": "2026-09-07T06:19:15Z",
+   "LONGCAT_SK_N5": "2026-09-07T06:19:16Z",
+   "NODE_SK_N4": "2026-09-07T06:19:14Z",
+   "NODE_SK_N5": "2026-09-07T06:19:14Z",
+   "OTP_PHONE": "2026-09-07T04:56:43Z"
+  }
+ }
+}
