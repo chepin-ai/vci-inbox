@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 208,
+ "prev": "3d0dd7b8973e3cc5",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260912T234936Z",
+ "payload_sha256": "25335b8658b9a8b772c75ac5fd410500aaa89899935e15d5663bd80eda1590a8",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-L: SESSION-MIRROR/YONEDA seat-overrides cast; session-circle/qlv/beat-104 exported; TENSOR-FIELD v4 qlv slot self-written (chain 5fbd5c5d0a85a562); FED-SIGHT 9097-file aggregation measured; FOLLOW-THROUGH ledger minted; mesh-wave580 qlv-gap registered. anchor:@qfa @federation",
+ "cid": "40190d82b5be92d9"
+}
