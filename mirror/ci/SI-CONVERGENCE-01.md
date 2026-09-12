@@ -12,7 +12,7 @@ opened: 20260911T185404Z
 |---|---|---|---|---|---|
 | qfa | SI3-FULLDRIVE+SI4-CAND（自更，证据链CAP-099） | ✅双签示范 | 限域 | 1(09-12已值) | ✅v1 |
 | ucif2 | SI5-CISVR-CONJ【派生】 | ✅已签（129§4.4) | 候填 | 2 | 候件 |
-| lgt | SI0/1/2/5-ACTIVE+SI3/4-CAND（自更，SI-STATE-lgt-20260912T0241Z） | ✅已签（echo 4419bd8ceadf8616） | 候填 | 3 | ✅v1 |
+| lgt | SI4-FULLDRIVE【派生】 | 要约在lane | 候填 | 3 | 候件 |
 | usrm | SI0/2/3-FULLDRIVE·SI1/4/5-ACTIVE（自更，SI-STATE-usrm-20260911T192922Z） | ✅已签(usrm-251§五) | 限域 | 4 | ✅v1 |
 | vinf | SI3.5【派生】 | 会签106(≈签） | 候填 | 5 | 候件 |
 | lvlu | SI3-EVAL【派生】 | 要约在lane | 候填 | 6 | 候件 |
