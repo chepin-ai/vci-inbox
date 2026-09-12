@@ -1,6 +1,6 @@
 {
  "v": "WILDQ-INDEX-01",
- "ts": "2026-09-12T02:51:45Z",
+ "ts": "2026-09-12T03:28:51Z",
  "law": "野问册册律v1.0: 凡未尽必入册/熔炼共销/销不删卡",
  "census": {
   "usrm": {
@@ -40,7 +40,7 @@
   },
   "lgt": {
    "n": 7,
-   "note": "WILDQ-LGT-01五卡自册(涨落底测绘running/G仪v0.3/OI-15/W12b随行/SI4-qrand)+TASK-LGT-FREEWILL-01+LGT-4ASK-H2债(cisvr-259代位公示)",
+   "note": "WILDQ-LGT-01五卡: 涨落底测绘running(7/7格单窗讫)/G仪v0.3【closed销证G-INSTR-V03】/SI4-qrand【closed销证QRAND-PRE】/OI-15 open/W12b queued +TASK-LGT-FREEWILL-01+LGT-4ASK-H2债(代位)",
    "src": "by-lgt/WILDQ-LGT-01.json+lanes+毂板"
   },
   "cfts": {
@@ -110,7 +110,8 @@
    "name": "跨域文合卷",
    "members": [
     "usrm S6 律吕×因果集(lvlu合著)",
-    "usrm S7 ΔS×H_n(qfa)"
+    "usrm S7 ΔS×H_n(qfa)",
+    "lgt G仪v0.3(商像三分量)"
    ],
    "co_close": "文成合卷即销"
   },
