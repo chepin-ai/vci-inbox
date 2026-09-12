@@ -21,11 +21,13 @@ jobs:
         env:
           APPK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
+          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           LOBBY: ${{ vars.LOBBY_ISSUE }}
           GH: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          [ -n "$APPK" ] || { echo "hub key 未落"; exit 0; }
+          [ -n "$APPK$PATFB" ] || { echo "hub key 未落"; exit 0; }
           set -e
+          if printf '%s' "$APPK" | grep -q 'BEGIN'; then
           printf '%s' "$APPK" > /tmp/hub.pem
           pip install -q pyjwt cryptography
           cat > /tmp/mint.py <<'PYE'
@@ -40,6 +42,9 @@ jobs:
           PYE
           echo "HUB_TOKEN=$(python3 /tmp/mint.py)" >> $GITHUB_ENV
           rm -f /tmp/hub.pem /tmp/mint.py
+          else
+          echo "HUB_TOKEN=$PATFB" >> $GITHUB_ENV  # KEYRES-99: PEM槽失效→活PAT直驱
+          fi
       - uses: actions/checkout@v4
       - name: run kernel
         env:
