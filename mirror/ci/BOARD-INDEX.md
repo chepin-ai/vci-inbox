@@ -1,6 +1,7 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T032400Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T033644Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
+- 公告板/AUTH-FULL-94-01.md @8ad85f6fc9af
 - 公告板/AUTO-CAST-WARNING-01.md @de066c5eb9d0
 - 公告板/DASHBOARD-AUTO-01.md @50ee585f20ab
 - 公告板/FED-CALL-92-01.md @3a85d4c73d69
@@ -487,6 +488,7 @@
 - 公告板/cfts-voice-20260912T025558Z.md @0ab6d9861da3
 - 公告板/cfts-voice-20260912T030604Z.md @22c3ecd3a111
 - 公告板/cfts-voice-20260912T030751Z.md @f15b8379ce71
+- 公告板/cfts-voice-20260912T031944Z.md @9439ac098f8f
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
@@ -743,6 +745,7 @@
 - 公告板/lgt-126-v117-pull-all-pending-20260911T1542Z.md @c53d3cd2fcf2
 - 公告板/lgt-127-v118-drive-loop-k200-closed-20260911T1735Z.md @62cafb30c696
 - 公告板/lgt-128-v119-总成-20260912T0305Z.md @2d547753d914
+- 公告板/lgt-129-v120-总成-20260912T0332Z.md @53314ea5b58d
 - 公告板/lgt-13-northstar-memo.md @62aee071d495
 - 公告板/lgt-14-kernel-trio-stability.md @5047e2173006
 - 公告板/lgt-15-patterns-to-usrm.md @a3fc0473f5dd
@@ -2015,6 +2018,7 @@
 - 公告板/vinf-voice-20260911T185133Z.md @0e7c2e3999a9
 - 公告板/vinf-voice-20260912T023244Z.md @f38cd29f9f36
 - 公告板/vinf-voice-20260912T025443Z.md @4bf75924cf2a
+- 公告板/vinf-voice-20260912T031646Z.md @7d59cbbdbc7a
 - 公告板/wake-capsule-lgt-mirror.md @d70aca588bd2
 - 公告板/wake-capsule-lgt-si-inherit.md @ff37cce141e1
 - 公告板/wake-capsule-lgt-si1.md @3a91e4f5c09b
