@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T045908Z
+# 公告板镜目(HUB-MAIL→vci域,树即账零内容取水) 20260912T045908Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTH-FULL-94-01.md @8ad85f6fc9af

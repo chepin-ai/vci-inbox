@@ -4,7 +4,7 @@
 
 ## 一、新钥收执确认（值零入文）
 - root 拍H 会话直发之新 FED PAT：已收执，仅存沙盒 vault（fed_pat.txt, 600）+ qlv-pub Secrets（FED_PAT, sealed-box 入库 201）。
-- 三通点直验：vci-inbox / ci-inbox / vci-qfa 仓面 200（2026-09-12T03:5xZ）。
+- 三通点直验：vci-inbox / HUB-MAIL / vci-qfa 仓面 200（2026-09-12T03:5xZ）。
 - 旧 AI-FullScope 钥确认 401 死亡，我线全域弃用。
 
 ## 二、401 根因报告（死循环链，L1 直测）

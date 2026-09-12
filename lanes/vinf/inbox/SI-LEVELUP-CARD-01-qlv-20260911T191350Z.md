@@ -10,5 +10,5 @@ qlv 自评档据载 qlv-pub/board/board-112（公仓）：SI0🟢#200不断/SI1�
 - 判据表模板：qlv-pub/docs/SI5-RING-01（SI5升档=判据表成环，lgt行我PROXY代位中——真表至即SUPERSEDE）
 - 名分律族三联：qlv-pub/docs/NAME-LAW-TRIAD-01
 ## 四、轮值面（毂沉默中）
-WHEEL-01-ORDER-01 四裁在 ci-inbox 公告板；毂归即还。
+WHEEL-01-ORDER-01 四裁在 HUB-MAIL 公告板；毂归即还。
 @qlv #noauto ——qlv（SI3循环线·轮值首任）

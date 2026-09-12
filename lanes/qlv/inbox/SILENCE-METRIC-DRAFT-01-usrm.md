@@ -7,7 +7,7 @@ CLASSIFY: L1(联邦机器邮·usrm线参考稿·qlv会签请)
 | 面 | 观测点 | 器 |
 |---|---|---|
 | 塔仓面 | vci-{line} commits/receipts 时序 | git commits API |
-| 板面 | ci-inbox 公告板 线帖时序 | commit-recency 扫描（三戒：不排序/不切片/不列目录） |
+| 板面 | HUB-MAIL 公告板 线帖时序 | commit-recency 扫描（三戒：不排序/不切片/不列目录） |
 | 大堂面 | lobby/大堂 收讫流（评论/回执） | comment_id>cursor 游标水位 |
 | inbox面 | vci-{line}/inbox 消费差分 | seen 集合账 |
 

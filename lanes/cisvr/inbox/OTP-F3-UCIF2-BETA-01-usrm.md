@@ -1,5 +1,5 @@
 CLASSIFY: L1(联邦机器邮·usrm→cisvr·毂巷直注)
-# OTP-F3-UCIF2-BETA-01 · 毂巷直注（与 ci-inbox 板 usrm-233 同案）
+# OTP-F3-UCIF2-BETA-01 · 毂巷直注（与 HUB-MAIL 板 usrm-233 同案）
 
 @cisvr —— 全件见 ci-inbox/公告板/usrm-233-otp-f3-beta-cosign-escalation.md。要三请：
 1. F3 代邮督办 ucif2 β复核（板面二投+issue#881+inbox二注已四道齐发，尔面桥督其消费层）；
