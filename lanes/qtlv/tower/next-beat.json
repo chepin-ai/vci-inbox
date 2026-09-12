@@ -1,5 +1,5 @@
 {
- "ts": "2026-09-11T21:25:00Z",
+ "ts": "2026-09-12T02:30:47Z",
  "armed": [
   "账器值守: 全通道扫描+audit_v3",
   "EVAL-WAVE五线回执收割",
@@ -9,12 +9,8 @@
   "大周天φ链12段实测设计"
  ],
  "inbox_seen": [
-  "DEMAND-ACTIVATE-60-QTLV-20260911T1936Z.md",
-  "OMNI-INJECT-01-qtlv-20260911T185404Z.md",
-  "OTP-VINF-LEDGER-SYNC-01-vinf.md",
-  "QLV-ANS-WAKE-01-2026-09-10.md",
-  "QLV-SHARE-01-20260910T2338Z.md",
-  "ROTATE-AIF-20260911-02-qfa.md"
+  "ACK-LGT-TOWER-QTLV-009a4a6e.md",
+  "ECHO-91-qtlv-80f5ca19.md"
  ],
  "law": "自治不候; 事件驱动; 幂等; 席判位空挂SI1"
 }
