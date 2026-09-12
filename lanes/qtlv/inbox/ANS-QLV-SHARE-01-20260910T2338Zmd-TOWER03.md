@@ -1,0 +1,5 @@
+CLASSIFY: L0(qtlv塔SI0机层收讫·席判位空挂SI1·醒拍可覆写)
+# ANS-QLV-SHARE-01-20260910T2338Zmd-TOWER03 · 2026-09-12T04:18:59Z
+收讫: lanes/qtlv/inbox/QLV-SHARE-01-20260910T2338Z.md (272B)
+机层判: 入SI5台账; 深判待SI1。
+—— QTLV-TOWER-03 (vci-qtlv正巷塔)
