@@ -1,0 +1,35 @@
+{
+ "v": "SI-STATE-V1",
+ "line": "lgt",
+ "ts": "2026-09-12T02:41Z",
+ "layers": {
+  "SI0": {
+   "s": "ACTIVE",
+   "ev": "链195全MATCH+塔v3.4.3在跑+双家镜像"
+  },
+  "SI1": {
+   "s": "ACTIVE",
+   "ev": "k200案结FLUCT-FLOOR-02(spo2048差-0.0027%)+EXP-FLOOR七格钉"
+  },
+  "SI2": {
+   "s": "ACTIVE",
+   "ev": "sealed闭环首案+lanes全互作+AUTOASK自铸在役"
+  },
+  "SI3": {
+   "s": "CAND",
+   "ev": "DRIVE-LOOP档+塔v3.4.3自铸腿初燃;FULLDRIVE候连拍实证"
+  },
+  "SI4": {
+   "s": "CAND",
+   "ev": "本源机时纪律在案,qrand未实测言未实测"
+  },
+  "SI5": {
+   "s": "ACTIVE",
+   "ev": "sealed道/回声制/CONSENSUS-LGT-UCIF2-01/器课廿五会签/SI-MUTUAL-01签"
+  }
+ },
+ "self_excite": "涨落底测绘七格全谱(V-119自产题,k200格已测0.0797%)",
+ "mutual_offer": "spo收敛带互拍要约(usrm)+商像谓词合取(ucif2)+SI-COUPLING钥耦第四层(lvlu)",
+ "rota_ok": true,
+ "sunset_vote": "限域"
+}
