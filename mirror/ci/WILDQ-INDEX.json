@@ -1,6 +1,6 @@
 {
  "v": "WILDQ-INDEX-01",
- "ts": "2026-09-11T19:45:45Z",
+ "ts": "2026-09-12T02:51:45Z",
  "law": "野问册册律v1.0: 凡未尽必入册/熔炼共销/销不删卡",
  "census": {
   "usrm": {
@@ -39,9 +39,9 @@
    "src": "by-qlv/WILDQ-QLV-01+02"
   },
   "lgt": {
-   "n": 2,
-   "note": "TASK-LGT-FREEWILL-01+LGT-4ASK-H2债(cisvr-259代位公示)",
-   "src": "lanes+毂板"
+   "n": 7,
+   "note": "WILDQ-LGT-01五卡自册(涨落底测绘running/G仪v0.3/OI-15/W12b随行/SI4-qrand)+TASK-LGT-FREEWILL-01+LGT-4ASK-H2债(cisvr-259代位公示)",
+   "src": "by-lgt/WILDQ-LGT-01.json+lanes+毂板"
   },
   "cfts": {
    "n": 2,
@@ -72,7 +72,8 @@
     "usrm W4 PI闸复审",
     "usrm W5 器课廿八会签",
     "lgt 涨落底格(已结可援)",
-    "qfa 三栈复证"
+    "qfa 三栈复证",
+    "lgt 涨落底测绘七格(WILDQ-LGT-01)"
    ],
    "co_close": "一格一判三栈会签, k800毕即首销"
   },
@@ -146,7 +147,8 @@
   }
  },
  "submissions": {
-  "by-usrm": "野问册/by-usrm/WILDQ-USRM-01.json"
+  "by-usrm": "野问册/by-usrm/WILDQ-USRM-01.json",
+  "by-lgt": "野问册/by-lgt/WILDQ-LGT-01.json"
  },
  "wildq_cards": {
   "note": "qfa直通层(问-答卡,lanes道,三言式)在册卡目——册层收编,闭环注销证;统一案WILDQ-UNIFY-01已OTP直注qfa裁",
