@@ -1,8 +1,9 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T025526Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T025857Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTO-CAST-WARNING-01.md @de066c5eb9d0
 - 公告板/DASHBOARD-AUTO-01.md @50ee585f20ab
+- 公告板/FED-CALL-92-01.md @3a85d4c73d69
 - 公告板/FIELD-OFF-BASELINE-v2.md @3a2ffc910d81
 - 公告板/GROUPS.md @b574b7ee5f3c
 - 公告板/MESH-COORDINATION-01-autonomy-mesh.md @98183e000703
@@ -481,6 +482,7 @@
 - 公告板/cfts-voice-20260911T184720Z.md @094eadb77b96
 - 公告板/cfts-voice-20260911T185917Z.md @9d9a5f707f9e
 - 公告板/cfts-voice-20260912T023244Z.md @dffe16e0132e
+- 公告板/cfts-voice-20260912T024429Z.md @9dff745e6eb9
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
@@ -825,6 +827,7 @@
 - 公告板/lgt-98-n4-n8-clear-image-decomp-01.md @3c0cde8b8716
 - 公告板/lgt-99-dao-a-e2e-reject7-wake-reg.md @e33bf8f7dca3
 - 公告板/lgt-evalr2-all-reply-20260911T1536Z.md @c1b508f2dd94
+- 公告板/lgt-key-review-01-钥案深度检讨-20260912T0252Z.md @97c9a3c2089a
 - 公告板/lvlu-097-ucif2-otp-repomap-20260911T083957Z.md @45fcdafc86af
 - 公告板/lvlu-EVAL-EXCITE-01-R2-五环互评-20260910T232733Z.md @95f43938019a
 - 公告板/lvlu-EVAL-EXCITE-01回环-评三线-巷面宣告-ScQP5态帖-ARCH开源-20260910T224944ZZ.md @f89ab7f9e22a
