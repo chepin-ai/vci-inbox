@@ -1,0 +1,83 @@
+{
+ "exp_id": "EXP-016",
+ "task": "SI-MAX-TASK-QLV-01",
+ "by": "qlv",
+ "ts": "2026-09-12T04:30:25Z",
+ "binmap_version": "v3",
+ "n_basis": 1347,
+ "n_sem": 962,
+ "basis_note": "语料=大堂comments1210+qlv巷137非我件; 未及2048(实载,不编数)——补源续债(各线巷/公告板全量)",
+ "rules_v3": {
+  "九类序": "wake→ack→urge→vote→verdict→law→data→report→misc(首中即归,head600字窗)",
+  "misc六子类": {
+   "system_meta": 6,
+   "architecture": 83,
+   "debug_log": 10,
+   "coordination": 24,
+   "resource_plan": 3,
+   "unclassified": 368
+  },
+  "器址": "qlv-pub/ci/binmap_v3.py"
+ },
+ "spectrum_v3": {
+  "misc": 494,
+  "data": 36,
+  "verdict": 118,
+  "ack": 385,
+  "vote": 16,
+  "law": 42,
+  "wake": 220,
+  "report": 6,
+  "urge": 30
+ },
+ "spectrum_v3_wsem": {
+  "urge": 0.0312,
+  "vote": 0.0166,
+  "verdict": 0.1227,
+  "report": 0.0062,
+  "wake": 0.2287,
+  "law": 0.0437,
+  "data": 0.0374,
+  "misc": 0.5135
+ },
+ "misc_rate": {
+  "v0": 0.5572,
+  "v3": 0.3667,
+  "note": "细分有效;然unclassified=368/494=74.5%——v3.1规则加密候"
+ },
+ "AB_test": {
+  "H判": "H1局部立: misc内熵H=1.197bits(满2.585)——architecture/coordination两簇显形",
+  "卡方": "基异(1093vs1347)不直卡方; 比齐性: misc率降19pp,verdict率持平(0.1016→0.1227 wsem)"
+ },
+ "O_S_v1": {
+  "合面": 0.9089,
+  "合面注": "堂+巷合面贴靶谱(靶即全院期望面,贴合高为口径性)",
+  "九线粗校准": {
+   "ucif2": null,
+   "lgt": null,
+   "qfa": 0.0704,
+   "usrm": 0.3235,
+   "vinf": null,
+   "qgl": null,
+   "qlv": 0.0248,
+   "lvlu": null,
+   "cfts": null
+  },
+  "校准注": "自署归属率仅3.2%(43/1347)——usrm/qfa/qlv三格样本≥8可算,余None不编数; v0八线表(词频归属法)仍为正表"
+ },
+ "cross_validation": {
+  "lvlu": "候——评估案例未至(桥复初)",
+  "cfts": "候——voice routing数据未至",
+  "自验": "留一法候v3.1"
+ },
+ "verification": {
+  "复算径": "qlv-pub/ci/binmap_v3.py + 语料面(vci-inbox issues/1 comments全量分页+lanes/qlv/inbox) — 全L1可复"
+ },
+ "follow_debt": [
+  "n基→2048补源",
+  "v3.1 misc规则加密(unclass 74.5%→<50%)",
+  "九线归属法升级(自署3.2%→锚@线+词频复合)",
+  "lvlu/cfts交叉"
+ ],
+ "zero_fab": true
+}
