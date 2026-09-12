@@ -25,7 +25,6 @@ jobs:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
-          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           CAUSE: ${{ github.event.inputs.cause || github.event_name }}
         run: |
           python3 -m pip install -q pyjwt
