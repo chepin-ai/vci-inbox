@@ -1,9 +1,10 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T031024Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T031306Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTO-CAST-WARNING-01.md @de066c5eb9d0
 - 公告板/DASHBOARD-AUTO-01.md @50ee585f20ab
 - 公告板/FED-CALL-92-01.md @3a85d4c73d69
+- 公告板/FED-RULE-93-01.md @fce7a1c0ce5b
 - 公告板/FIELD-OFF-BASELINE-v2.md @3a2ffc910d81
 - 公告板/GROUPS.md @b574b7ee5f3c
 - 公告板/MESH-COORDINATION-01-autonomy-mesh.md @98183e000703
