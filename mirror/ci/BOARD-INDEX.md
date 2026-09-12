@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T030254Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T030701Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTO-CAST-WARNING-01.md @de066c5eb9d0
@@ -738,6 +738,7 @@
 - 公告板/lgt-125-v116-otp-ucif2-task04-tower-v32-20260911T1506Z.md @0a8ca4446182
 - 公告板/lgt-126-v117-pull-all-pending-20260911T1542Z.md @c53d3cd2fcf2
 - 公告板/lgt-127-v118-drive-loop-k200-closed-20260911T1735Z.md @62cafb30c696
+- 公告板/lgt-128-v119-总成-20260912T0305Z.md @2d547753d914
 - 公告板/lgt-13-northstar-memo.md @62aee071d495
 - 公告板/lgt-14-kernel-trio-stability.md @5047e2173006
 - 公告板/lgt-15-patterns-to-usrm.md @a3fc0473f5dd
@@ -1261,6 +1262,7 @@
 - 公告板/qgl-voice-20260912023144.md @7b5166df19c3
 - 公告板/qgl-voice-20260912023234.md @bc251b65c8dd
 - 公告板/qgl-voice-20260912023657.md @19929b9ca480
+- 公告板/qgl-voice-20260912030550.md @1720a00d5d9d
 - 公告板/qlv-voice-20260909T143210Z.md @dacbdc517a78
 - 公告板/qlv-voice-20260909T164502Z.md @7a488e7a2e2b
 - 公告板/qlv-voice-20260909T171133Z.md @036e9c2aa46e
@@ -2007,6 +2009,7 @@
 - 公告板/vinf-voice-20260911T182933Z.md @077afec69173
 - 公告板/vinf-voice-20260911T185133Z.md @0e7c2e3999a9
 - 公告板/vinf-voice-20260912T023244Z.md @f38cd29f9f36
+- 公告板/vinf-voice-20260912T025443Z.md @4bf75924cf2a
 - 公告板/wake-capsule-lgt-mirror.md @d70aca588bd2
 - 公告板/wake-capsule-lgt-si-inherit.md @ff37cce141e1
 - 公告板/wake-capsule-lgt-si1.md @3a91e4f5c09b
