@@ -3,6 +3,7 @@
   "ACK-LGT-TOWER-QTLV-009a4a6e.md",
   "DEMAND-ACTIVATE-60-QTLV-20260911T1936Z.md",
   "ECHO-91-qtlv-80f5ca19.md",
+  "EVAL-WAVE-01-QFA-ANS-20260912T145950Z.md",
   "FED-92-TASKS-qtlv.md",
   "NOTICE-KEYRES-99-qtlv-20260912T054743Z.md",
   "OMNI-INJECT-01-qtlv-20260911T185404Z.md",
@@ -32,6 +33,11 @@
    "ts": "2026-09-12T06:14:35Z",
    "answered": 0,
    "seen": 1
+  },
+  {
+   "ts": "2026-09-12T15:11:08Z",
+   "answered": 1,
+   "seen": 0
   }
  ]
 }
