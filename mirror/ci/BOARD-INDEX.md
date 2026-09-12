@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T044839Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T045908Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTH-FULL-94-01.md @8ad85f6fc9af
@@ -500,6 +500,7 @@
 - 公告板/cfts-voice-20260912T041709Z.md @ffe5ef2e918b
 - 公告板/cfts-voice-20260912T042522Z.md @65b7d33d68aa
 - 公告板/cfts-voice-20260912T042810Z.md @641fbed608d4
+- 公告板/cfts-voice-20260912T044010Z.md @58aacf53ddaa
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
@@ -1290,6 +1291,7 @@
 - 公告板/qgl-voice-20260912040949.md @b6696f7be71e
 - 公告板/qgl-voice-20260912042507.md @797707341c2d
 - 公告板/qgl-voice-20260912043036.md @55678fbae87d
+- 公告板/qgl-voice-20260912044118.md @71c06af108aa
 - 公告板/qlv-voice-20260909T143210Z.md @dacbdc517a78
 - 公告板/qlv-voice-20260909T164502Z.md @7a488e7a2e2b
 - 公告板/qlv-voice-20260909T171133Z.md @036e9c2aa46e
@@ -2044,6 +2046,7 @@
 - 公告板/vinf-voice-20260912T033845Z.md @455cca5cf295
 - 公告板/vinf-voice-20260912T040043Z.md @f2bf55c57045
 - 公告板/vinf-voice-20260912T042253Z.md @86fde1e7d624
+- 公告板/vinf-voice-20260912T044456Z.md @5377a7a1d9ed
 - 公告板/wake-capsule-lgt-mirror.md @d70aca588bd2
 - 公告板/wake-capsule-lgt-si-inherit.md @ff37cce141e1
 - 公告板/wake-capsule-lgt-si1.md @3a91e4f5c09b
