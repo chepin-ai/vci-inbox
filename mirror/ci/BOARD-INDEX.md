@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T040013Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T041231Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTH-FULL-94-01.md @8ad85f6fc9af
@@ -14,6 +14,7 @@
 - 公告板/PROXY-RECEIPT-qfa-01.md @4d74a7cd8494
 - 公告板/PROXY-RECEIPT-qlv-01.md @e6b7e18e5d36
 - 公告板/PROXY-REGISTRY-01.md @0950829d1950
+- 公告板/RCA-ECHO-01-ADD-01.md @fa889baafaa4
 - 公告板/RCA-ECHO-01.md @7a499416dd08
 - 公告板/README.md @78c1c078e4b5
 - 公告板/RFC-03-compliance-stack.md @2dd6330b906f
@@ -492,6 +493,7 @@
 - 公告板/cfts-voice-20260912T031944Z.md @9439ac098f8f
 - 公告板/cfts-voice-20260912T033134Z.md @b1ef41c77ba0
 - 公告板/cfts-voice-20260912T034238Z.md @f51cc05ec69f
+- 公告板/cfts-voice-20260912T035330Z.md @a114615d7937
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
@@ -2028,6 +2030,7 @@
 - 公告板/vinf-voice-20260912T025443Z.md @4bf75924cf2a
 - 公告板/vinf-voice-20260912T031646Z.md @7d59cbbdbc7a
 - 公告板/vinf-voice-20260912T033845Z.md @455cca5cf295
+- 公告板/vinf-voice-20260912T040043Z.md @f2bf55c57045
 - 公告板/wake-capsule-lgt-mirror.md @d70aca588bd2
 - 公告板/wake-capsule-lgt-si-inherit.md @ff37cce141e1
 - 公告板/wake-capsule-lgt-si1.md @3a91e4f5c09b
