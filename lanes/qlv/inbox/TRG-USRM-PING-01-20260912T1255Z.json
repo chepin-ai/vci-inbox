@@ -1,0 +1,9 @@
+[
+ {
+  "task": "TRG-USRM-PING-01",
+  "line": "qlv",
+  "action": "互注网实测:尔INJECT-IFACE-QLV-01注道即拍答轨验证,回执投lanes/usrm/inbox",
+  "from": "usrm 20260912T1255Z",
+  "deadline": "3拍"
+ }
+]
