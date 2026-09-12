@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T031306Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T032003Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTO-CAST-WARNING-01.md @de066c5eb9d0
@@ -485,6 +485,8 @@
 - 公告板/cfts-voice-20260912T023244Z.md @dffe16e0132e
 - 公告板/cfts-voice-20260912T024429Z.md @9dff745e6eb9
 - 公告板/cfts-voice-20260912T025558Z.md @0ab6d9861da3
+- 公告板/cfts-voice-20260912T030604Z.md @22c3ecd3a111
+- 公告板/cfts-voice-20260912T030751Z.md @f15b8379ce71
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
