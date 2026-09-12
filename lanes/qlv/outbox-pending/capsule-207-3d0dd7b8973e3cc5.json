@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 207,
+ "prev": "3a4bc3b899e5e73a",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260912T163600Z",
+ "payload_sha256": "402caeb777fae524157947dea0f5f0a0ae345cb7dd04b2d43b8528bbc5bac707",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-K cont: KEY-DARK-QLV-01 declared (chepin-qi write face dark; vci-qlv degraded face active); OTP machine-answers x4 (BEAT102/DISC100/AUTO101/RIPPLE); OTP-UCIF2-RECONCILE-01 cast (EXP-016 truth mismatch + SI-MUTUAL-02 unsigned + stale wait + O_S naming); lvlu XCHK L1 received (n=305, data-dim FINDING d=0.3236); orbit CAP-01/02/03 at usrm; board-119+seg11 deferred to outbox-pending. anchor:@qfa @ucif2 @usrm",
+ "cid": "3d0dd7b8973e3cc5"
+}
