@@ -23,6 +23,7 @@ jobs:
       - name: "系谱融合拍: P0-P8+beat-forward"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
           PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           CAUSE: ${{ github.event.inputs.cause || github.event_name }}
@@ -37,9 +38,12 @@ jobs:
           if 'BEGIN' not in HK:
               IT = os.environ.get('PATFB', '')  # KEYRES-99: PEM槽失效→活PAT直驱
           else:
-              appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
-              rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json', 'User-Agent': 'kernel-loop'})
-              IT = json.loads(urllib.request.urlopen(rq, timeout=20).read())['token']
+              if 'BEGIN' not in HK:
+                  IT = os.environ.get('PATFB', '')  # KEYRES-99: PEM槽失效→活PAT直驱
+              else:
+                  appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
+                  rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json', 'User-Agent': 'kernel-loop'})
+                  IT = json.loads(urllib.request.urlopen(rq, timeout=20).read())['token']
           H = {'Authorization': 'token ' + IT, 'Accept': 'application/vnd.github+json', 'User-Agent': 'kernel-loop'}
           RUN = os.environ.get('GITHUB_RUN_ID', 'local')
 
@@ -408,6 +412,7 @@ jobs:
         continue-on-error: true
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 -m pip install -q pyjwt
@@ -416,9 +421,12 @@ jobs:
           import jwt as JW
           HK=os.environ['HUBK']; HID=os.environ['HUBID']
           nw=int(datetime.datetime.now().timestamp())
-          aj=JW.encode({'iat':nw-90,'exp':nw+540,'iss':HID},HK,algorithm='RS256')
-          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+aj,'Accept':'application/vnd.github+json','User-Agent':'ack-sentinel'})
-          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          if 'BEGIN' not in HK:
+              IT = os.environ.get('PATFB', '')  # KEYRES-99: PEM槽失效→活PAT直驱
+          else:
+              aj=JW.encode({'iat':nw-90,'exp':nw+540,'iss':HID},HK,algorithm='RS256')
+              rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+aj,'Accept':'application/vnd.github+json','User-Agent':'ack-sentinel'})
+              IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
           H={'Authorization':'Bearer '+IT,'Accept':'application/vnd.github+json','User-Agent':'ack-sentinel'}
           def gql(q):
               rq=urllib.request.Request('https://api.github.com/graphql',data=json.dumps({'query':q}).encode(),method='POST',headers=H)
@@ -515,6 +523,7 @@ jobs:
         continue-on-error: true
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 -m pip install -q pyjwt
@@ -523,9 +532,12 @@ jobs:
           import jwt as JW
           HK=os.environ['HUBK']; HID=os.environ['HUBID']
           now=int(datetime.datetime.now().timestamp())
-          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
-          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'disc-sentinel'})
-          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+          if 'BEGIN' not in HK:
+              IT = os.environ.get('PATFB', '')  # KEYRES-99: PEM槽失效→活PAT直驱
+          else:
+              appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
+              rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'disc-sentinel'})
+              IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
           H={'Authorization':'Bearer '+IT,'Accept':'application/vnd.github+json','User-Agent':'disc-sentinel'}
           def gql(q):
               rq=urllib.request.Request('https://api.github.com/graphql',data=json.dumps({'query':q}).encode(),method='POST',headers=H)
@@ -643,6 +655,7 @@ jobs:
       - name: "FLIGHT-DECK影子拍: 常任审计+bus_root+毂扇出+私域金丝雀 (W41/W42)"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 -m pip install -q pyjwt
@@ -667,9 +680,12 @@ jobs:
               import jwt as JW
               HK=os.environ['HUBK']; HID=os.environ['HUBID']
               now=int(datetime.datetime.now().timestamp())
-              aj=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
-              rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+aj,'Accept':'application/vnd.github+json'})
-              IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
+              if 'BEGIN' not in HK:
+                  IT = os.environ.get('PATFB', '')  # KEYRES-99: PEM槽失效→活PAT直驱
+              else:
+                  aj=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
+                  rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+aj,'Accept':'application/vnd.github+json'})
+                  IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
               H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json'}
               TS=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
               for name,path in (('kd','ure/code/kernel-derive-engine-01.py'),('cv2','ure/code/circle-v2.py')):
@@ -781,6 +797,7 @@ jobs:
       - name: "KD-ENG并入拍: derive()活面复算+圈检器+M-CODE轨迹 (wave-60 接线, 候root批→异议窗自立)"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 -m pip install -q pyjwt
@@ -789,9 +806,12 @@ jobs:
           import jwt as JW
           HK=os.environ['HUBK']; HID=os.environ['HUBID']
           now = int(datetime.datetime.now().timestamp())
-          appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
-          rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json'})
-          IT = json.loads(urllib.request.urlopen(rq, timeout=20).read())['token']
+          if 'BEGIN' not in HK:
+              IT = os.environ.get('PATFB', '')  # KEYRES-99: PEM槽失效→活PAT直驱
+          else:
+              appjwt = JW.encode({'iat': now - 90, 'exp': now + 540, 'iss': HID}, HK, algorithm='RS256')
+              rq = urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens', method='POST', headers={'Authorization': 'Bearer ' + appjwt, 'Accept': 'application/vnd.github+json'})
+              IT = json.loads(urllib.request.urlopen(rq, timeout=20).read())['token']
           H = {'Authorization': 'token ' + IT, 'Accept': 'application/vnd.github+json'}
           def g(u):
               rq = urllib.request.Request(u, headers=H)
