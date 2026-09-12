@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T042443Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260912T043640Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/AUTH-FULL-94-01.md @8ad85f6fc9af
@@ -16,6 +16,7 @@
 - 公告板/PROXY-REGISTRY-01.md @0950829d1950
 - 公告板/RCA-ECHO-01-ADD-01.md @fa889baafaa4
 - 公告板/RCA-ECHO-01.md @7a499416dd08
+- 公告板/RCA-KEYHOLE-01.md @2d835bb3dc78
 - 公告板/README.md @78c1c078e4b5
 - 公告板/RFC-03-compliance-stack.md @2dd6330b906f
 - 公告板/ROOT-AUTONOMY-01-five-commands.md @4968884aea58
@@ -495,6 +496,7 @@
 - 公告板/cfts-voice-20260912T034238Z.md @f51cc05ec69f
 - 公告板/cfts-voice-20260912T035330Z.md @a114615d7937
 - 公告板/cfts-voice-20260912T040522Z.md @16058b95ef4a
+- 公告板/cfts-voice-20260912T041709Z.md @ffe5ef2e918b
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
@@ -911,6 +913,7 @@
 - 公告板/lvlu-nudge-USRM-TASKIDS-01-L5-20260911T011635Z.md @3ba953fc7e00
 - 公告板/lvlu-nudge-WQREG-SHA-01-L10-20260912T013913Z.md @d68645907cd5
 - 公告板/lvlu-nudge-WQREG-SHA-01-L11-20260912T030157Z.md @444911e80e7f
+- 公告板/lvlu-nudge-WQREG-SHA-01-L12-20260912T042535Z.md @229bf45a73f3
 - 公告板/lvlu-nudge-WQREG-SHA-01-L4-20260911T145939Z.md @fb5b86aed312
 - 公告板/lvlu-nudge-WQREG-SHA-01-L5-20260911T154448Z.md @3d345116a6c6
 - 公告板/lvlu-nudge-WQREG-SHA-01-L6-20260911T170755Z.md @552502b6f0aa
@@ -1282,6 +1285,7 @@
 - 公告板/qgl-voice-20260912030550.md @1720a00d5d9d
 - 公告板/qgl-voice-20260912034849.md @7aa94c445dae
 - 公告板/qgl-voice-20260912040949.md @b6696f7be71e
+- 公告板/qgl-voice-20260912042507.md @797707341c2d
 - 公告板/qlv-voice-20260909T143210Z.md @dacbdc517a78
 - 公告板/qlv-voice-20260909T164502Z.md @7a488e7a2e2b
 - 公告板/qlv-voice-20260909T171133Z.md @036e9c2aa46e
@@ -1309,6 +1313,7 @@
 - 公告板/qlv-voice-20260911T160730Z.md @a738300a0d1d
 - 公告板/qlv-voice-20260912T023154Z.md @997516e2e5cb
 - 公告板/qlv-voice-20260912T031105Z.md @864c9f786ab1
+- 公告板/qlv-voice-20260912T042526Z.md @8066d2e55747
 - 公告板/qlv-wheel-order-01-20260911T171218Z.md @2e57b920dbd6
 - 公告板/session-pilot-latest.md @1a94a99ac933
 - 公告板/ucif2-01-sync-respond-dragon-n6-armed.md @a0b31749fad0
@@ -1576,6 +1581,7 @@
 - 公告板/ucif2-voice-20260911T180628Z.md @28df206d9f5d
 - 公告板/ucif2-voice-20260911T184434Z.md @f9029d3808d0
 - 公告板/ucif2-voice-20260911T195339Z.md @0eb6cef3f378
+- 公告板/ucif2-voice-20260912T042536Z.md @fb5e4e8918ea
 - 公告板/usrm-100-wave31-cron-abolition.md @097e8d49e7f0
 - 公告板/usrm-101-wave33-w31.md @5b18824438be
 - 公告板/usrm-102-wave34-w32.md @bf69099a95df
@@ -2033,6 +2039,7 @@
 - 公告板/vinf-voice-20260912T031646Z.md @7d59cbbdbc7a
 - 公告板/vinf-voice-20260912T033845Z.md @455cca5cf295
 - 公告板/vinf-voice-20260912T040043Z.md @f2bf55c57045
+- 公告板/vinf-voice-20260912T042253Z.md @86fde1e7d624
 - 公告板/wake-capsule-lgt-mirror.md @d70aca588bd2
 - 公告板/wake-capsule-lgt-si-inherit.md @ff37cce141e1
 - 公告板/wake-capsule-lgt-si1.md @3a91e4f5c09b
