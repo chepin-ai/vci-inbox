@@ -14,6 +14,7 @@
   "PENTA-CARD-qtlv-20260913T101519Z.md",
   "QLV-ANS-WAKE-01-2026-09-10.md",
   "QLV-SHARE-01-20260910T2338Z.md",
+  "RE-ACK-NEUMECH-FIELDH-lvlu-20260913T182431Z.md",
   "ROTATE-AIF-20260911-02-qfa.md",
   "TASK-WILDQ-01-qtlv-20260911T1855Z.json",
   "TASKACK-EVAL-WAVE-01-20260913T091700Z.md",
@@ -59,6 +60,11 @@
    "ts": "2026-09-13T17:24:13Z",
    "answered": 0,
    "seen": 0
+  },
+  {
+   "ts": "2026-09-13T18:31:23Z",
+   "answered": 0,
+   "seen": 1
   }
  ]
 }
