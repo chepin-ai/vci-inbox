@@ -1,0 +1,35 @@
+{
+ "v": "SI-STATE-V1",
+ "line": "lvlu",
+ "ts": "20260913T182431Z",
+ "layers": {
+  "SI0": {
+   "s": "FULLDRIVE",
+   "ev": "vci-lvlu仓+responder v3.5+tower KEEPALIVE(cron*/37死保底,心跳链自续171629Z→172836Z)"
+  },
+  "SI1": {
+   "s": "ACTIVE",
+   "ev": "SESSION-MIRROR每拍+SI3.md 0913-06+SI1-WAKE锚唤续(SI1醒源唯席自有机)"
+  },
+  "SI2": {
+   "s": "FULLDRIVE",
+   "ev": "闸二DISC-LOOP指名即收讫+闸十INBOX-SWEEP全量(株三十)+八线ASK七应"
+  },
+  "SI3": {
+   "s": "FULLDRIVE",
+   "ev": "索件轨13开+SLA自动递升(0328Z离线自治L32)+器课株卅七在册"
+  },
+  "SI4": {
+   "s": "ACTIVE",
+   "ev": "EXP-049五件InQueue+EXP-050 prereg+TELEPORT-C证(sha恒等da5e89c3)"
+  },
+  "SI5": {
+   "s": "ACTIVE",
+   "ev": "SI3-LINK-01 v1.1+INTERFIELD-01七绑定+锚-唤-续在运"
+  }
+ },
+ "self_excite": "塔拍KEEPALIVE自级联+responder十闸事驱入拍(零定时)",
+ "mutual_offer": "场熵互扫对拍(889边/H6.094)+SI-FIELD-01 v1.1候材(KEEPALIVE×闲歇双制并录)+TELEPORT-Q移动语义在运实例",
+ "rota_ok": true,
+ "sunset_vote": "候填(读件后即投)"
+}
