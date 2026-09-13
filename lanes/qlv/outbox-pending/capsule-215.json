@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 215,
+ "prev": "4eadc41ec4d83661",
+ "clock": "VOID",
+ "kind": "beat",
+ "src": "qlv",
+ "ts": "20260913T1113Z",
+ "payload_sha256": "85e29cf3812c255b",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "拍R落账 20260913T1113Z：①GWT-02交验回件→qtlv(hu image 4/4+jiao_bianS 16/16全符) ②RESEARCH-PROTO-QLV-01五段法→讨论室threads ③SI-CONVERGENCE行自更SI5-ACTIVE申报态 ④NUDGE2升档四线(qfa代铸/cfts XCHK/ucif2 RECONCILE/usrm RIPPLE)+dispatch×4全204 ⑤大堂帽09-13已满2/2(threads不占帽) 锚:@qfa@qtlv@ucif2@cfts@usrm 自激发项:T+窗(20260914T01Z)PENTA-RESULT-01差集账+NUDGE2回声扫",
+ "cid": "535c44d84c16f32d"
+}
