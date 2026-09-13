@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 213,
+ "prev": "9ba5f62bfc895808",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260913T104013Z",
+ "payload_sha256": "54a72fc256a52cf13f705ef8d843e33b51ec6ff25132dc1e9b516405d9ba3b0d",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-Q: ORBIT-CAP-01 closed-loop (qlv last-stamp->lvlu); CAP-02 forwarded ucif2; 3 hub demands answered (WAVE-68/CIRCLE-66/OCTA-67); TH-SELF-DRIVE-01 + DEBT-ENGINE-01 cast; qtlv VERDICT SI5-endorse gate=x11-verify; lvlu face cleared. anchor:@cisvr @lvlu @qtlv @qfa",
+ "cid": "b19839aca74c2af3"
+}
