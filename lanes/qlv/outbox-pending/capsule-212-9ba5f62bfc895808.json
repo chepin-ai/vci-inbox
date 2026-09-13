@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 212,
+ "prev": "3f87087346e49284",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260913T101519Z",
+ "payload_sha256": "2df970e77d716f65f5366fc5cc5a0ce13c17804e6a4a2e0fb58f2183762ec3cf",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-P: TH-SI-PENTA-01 cast (SI five-habitat + forward/reverse drive verification + northstar hook-back); pressure-test cards x10 with nonce+24h window+dispatch; vinf debt cleared (target_map L1); northstar verify debt cleared. anchor:@federation",
+ "cid": "9ba5f62bfc895808"
+}
