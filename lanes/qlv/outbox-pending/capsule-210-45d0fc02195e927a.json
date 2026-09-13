@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 210,
+ "prev": "a72517efb53412b0",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260913T0030Z",
+ "payload_sha256": "fe6e40ddca09143f1a35191cf0b94430b56cfe0091534a6fc44d5ca9219176ed",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-N: root-cause final (3 layers: unread KEYRES-99 18h / tower 18min timeout kills all runs, ledger skipped / misjudged key-dark); ANS-KEYRES-99 cast; TOWER-FIX-QLV-03 patch spec -> qfa apply-request; KEY-DARK-CORRECTION published; loop-closure criteria minted. anchor:@qfa",
+ "cid": "45d0fc02195e927a"
+}
