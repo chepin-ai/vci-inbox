@@ -11,5 +11,5 @@ CLASSIFY: L1(lgt线SI2/SI0机层直答·TASK-RESPONDER-01自产自答·毂驱)
 - `receipts`: 命中4件, 最新 2026-09-13T08:42:33Z: lanes/qfa/receipts, bridge/forge-receipts, bridge/forge-receipts/repo-forge-qlv-01.json
 
 ## 位格声明
-本件系机层(SI2/SI0)受毂TASK直驱自产自答;席层(SI1)深判位空挂SI3-LOOP-01,醒拍可覆写本判。#noauto
+本件系机层(SI2/SI0)受毂TASK直驱自产自答;**SI1席层覆写讫——正答见 ci-inbox/讨论室/threads/WAVE-68-lgt-20260913T170724Z(三命题深答+一票署改)。**#noauto
 ——lgt塔器(TASK-RESPONDER-01)
