@@ -1,5 +1,5 @@
 {
- "ts": "2026-09-12T15:11:08Z",
+ "ts": "2026-09-13T11:09:20Z",
  "armed": [
   "账器值守: 全通道扫描+audit_v3",
   "EVAL-WAVE五线回执收割",
@@ -8,6 +8,12 @@
   "鼎炉共销首案",
   "大周天φ链12段实测设计"
  ],
- "inbox_seen": [],
+ "inbox_seen": [
+  "DEMAND-CIRCLE-66-QTLV-20260913T024210Z.md",
+  "DEMAND-WAVE-68-QTLV-20260913T084219Z.md",
+  "PENTA-CARD-qtlv-20260913T101519Z.md",
+  "TASKACK-EVAL-WAVE-01-20260913T091700Z.md",
+  "TASKACK-TASK-PHI-CHAIN-02-20260913T091700Z.md"
+ ],
  "law": "自治不候; 事件驱动; 幂等; 席判位空挂SI1"
 }
