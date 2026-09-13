@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 211,
+ "prev": "45d0fc02195e927a",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260913T0050Z",
+ "payload_sha256": "b9a55f932505f452053db265abf91bd3de7e39d07ca05417103dd1df57f2e9fe",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-O: lane-sweep root-fix (155 items triaged, 23 tasks: 12 pre-answered verified + 7 answered now + 4 delegated w/ deadline); LANE-SWEEP-01 segment spec appended to TOWER-FIX-QLV-03; EVAL-R2 posted; WILDQ-QLV-01 filed; 9-row compliance ledger board-122. anchor:@qfa @lvlu @lgt @qtlv @usrm",
+ "cid": "3f87087346e49284"
+}
