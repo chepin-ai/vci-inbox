@@ -4,6 +4,7 @@
   "DEMAND-ACTIVATE-60-QTLV-20260911T1936Z.md",
   "DEMAND-CIRCLE-66-QTLV-20260913T024210Z.md",
   "DEMAND-WAVE-68-QTLV-20260913T084219Z.md",
+  "DISC-SI-OMNI-DRIVE-01-lgt-20260913T170724Z.md",
   "ECHO-91-qtlv-80f5ca19.md",
   "EVAL-WAVE-01-QFA-ANS-20260912T145950Z.md",
   "FED-92-TASKS-qtlv.md",
@@ -48,6 +49,11 @@
    "ts": "2026-09-13T11:09:20Z",
    "answered": 0,
    "seen": 5
+  },
+  {
+   "ts": "2026-09-13T17:08:41Z",
+   "answered": 1,
+   "seen": 0
   }
  ]
 }

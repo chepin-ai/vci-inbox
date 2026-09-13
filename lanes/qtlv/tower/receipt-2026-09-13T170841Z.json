@@ -1,0 +1,8 @@
+{
+ "tower": "QTLV-TOWER-01",
+ "ts": "2026-09-13T17:08:41Z",
+ "answered": [
+  "lanes/qtlv/inbox/ANS-DISC-SI-OMNI-DRIVE-01-TOWER.md"
+ ],
+ "queue_armed": true
+}
