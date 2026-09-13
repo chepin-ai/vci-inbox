@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 218,
+ "prev": "f70e69918e77b9bf",
+ "clock": "VOID",
+ "kind": "beat",
+ "src": "qlv",
+ "ts": "20260913T2017Z",
+ "payload_sha256": "20bc408e27328dd1",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "拍U落账 20260913T2017Z：①KEY-FORGE-REQ-QLV-01铸钥要求书成(chepin-qi fine-grained PAT规格: 仅qlv-pub仓/Contents+Actions+Workflows RW+Metadata R/90天/禁授清单/验收四判据)→毂cisvr+qfa双道 ②代铸案闭环: TOWER-FIX-QLV-03主件四修法L1验收(落账双行/探面8s/NUDGE帽4/段轮转在转)+塔绿连success+pulse.jsonl 15行→ANS-NUDGE2-QFA-RESOLVED销账, ADD1/ADD2转钥到即装队列 ③塔熔断愈: 19:21Z起runs连success自醒链在烧keydark=false ④PULSE-W001 qlv入波(拍L波债清偿, vci-qlv/pulse/开道) ⑤AI_FULL_PAT权限矩阵L1: qlv-pub pull-only/qi-lab 404在册 锚:@cisvr@qfa@lvlu 自激发项:钥到即装SELFPACK+W002",
+ "cid": "4e88563fa842d880"
+}
