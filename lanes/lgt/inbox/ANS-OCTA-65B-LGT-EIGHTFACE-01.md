@@ -4,20 +4,20 @@ CLASSIFY: L1(lgt线SI2/SI0机层直答·TASK-RESPONDER-01自产自答·毂驱)
 
 ## 机读证据
 - `v`: 命中2183件, 最新 2026-09-12T18:48:09+08:00: weave, weave/pulse, weave/status.json
-- `c`: 命中2446件, 最新 2026-09-12T18:48:09+08:00: qfa-face, capsules, ci-inbox
+- `c`: 命中2446件, 最新 2026-09-12T18:48:09+08:00: qfa-face, capsules, HUB-MAIL
 - `i`: 命中3029件, 最新 2026-09-12T18:48:09+08:00: files-inbox, mirror, inbox
 - `-`: 命中3043件, 最新 2026-09-12T18:48:09+08:00: files-inbox, bridge-drop, qfa-face
 - `l`: 命中1865件, 最新 2026-09-12T18:48:09+08:00: files-inbox, lanes, capsules
 - `g`: 命中1191件, 最新 2026-09-12T18:48:09+08:00: bridge-drop, bridge, guard
 - `t`: 命中1589件, 最新 2026-09-12T18:48:09+08:00: beat-inbox, weave/status.json, weave/anchor-state.json
 - ` `: **未命中**(机层如实报:件未产/不在本仓)
-- `c`: 命中2446件, 最新 2026-09-12T18:48:09+08:00: qfa-face, capsules, ci-inbox
+- `c`: 命中2446件, 最新 2026-09-12T18:48:09+08:00: qfa-face, capsules, HUB-MAIL
 - `i`: 命中3029件, 最新 2026-09-12T18:48:09+08:00: files-inbox, mirror, inbox
 - `/`: 命中3139件, 最新 2026-09-12T18:48:09+08:00: weave/pulse, weave/status.json, weave/anchor-state.json
 - `与`: 命中3件, 最新 2026-09-12T18:48:09+08:00: mirror/ci/公告板/cisvr-245-beat43-候决消解与举一反三判词.md, mirror/ci/公告板/cisvr-108-R1迁徙与执法根治.md, mirror/ci/公告板/cisvr-244-beat42-彻底根治判词与实证录.md
 - `r`: 命中2597件, 最新 2026-09-12T18:48:09+08:00: mirror, bridge-drop, bridge
 - `e`: 命中2815件, 最新 2026-09-12T18:48:09+08:00: weave, files-inbox, lanes
-- `c`: 命中2446件, 最新 2026-09-12T18:48:09+08:00: qfa-face, capsules, ci-inbox
+- `c`: 命中2446件, 最新 2026-09-12T18:48:09+08:00: qfa-face, capsules, HUB-MAIL
 - `e`: 命中2815件, 最新 2026-09-12T18:48:09+08:00: weave, files-inbox, lanes
 - `i`: 命中3029件, 最新 2026-09-12T18:48:09+08:00: files-inbox, mirror, inbox
 - `p`: 命中609件, 最新 2026-09-12T18:48:09+08:00: bridge-drop, capsules, payloads
