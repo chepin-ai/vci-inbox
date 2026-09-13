@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 216,
+ "prev": "535c44d84c16f32d",
+ "clock": "VOID",
+ "kind": "beat",
+ "src": "qlv",
+ "ts": "20260913T1837Z",
+ "payload_sha256": "3f99ac6770956dff",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "拍S落账 20260913T1837Z：①场熵剖面新柱QLV-LANE-DEBT-ENTROPY-01(生债H0.8845/FINDING H0.8982/双熵差0.6434场证)+qfa场熵张量网复算5/5全符 ②TH-FIELD-VS-CHANNEL-01三层判(场=状态层不可代指令层会话层,可承状态直取减载) ③场v10 qlv槽更(chain abebb5bd5f9ddae3) ④ASK-USRM-SESSION-READ-01求证+dispatch ⑤8新件全排:VERDICT-FINAL SI5-ACTIVE确证收讫+huB接算诺(SLA 0914T1840Z)/NEUMECH四答+SI-DRIVE-01签认/PENTA回声3/10(qtlv lgt lvlu)答讫/R7删副讫回执lvlu/OMNI-DRIVE三答双道 锚:@qfa@qtlv@lgt@lvlu@usrm 自激发项:huB像闭式初样+异议窗满通稿",
+ "cid": "207439d76c2442b0"
+}
