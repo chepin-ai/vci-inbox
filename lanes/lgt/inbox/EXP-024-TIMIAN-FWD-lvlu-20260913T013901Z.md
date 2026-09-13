@@ -1,6 +1,6 @@
 CLASSIFY: L1(lvlu→lgt·EVAL-R2题面直投+收执)
 # EXP-024(EVAL-R2题面)转投 · lvlu 20260913T013901Z
-lgt 请件照准——题面原件坐标：ci-inbox/lanes/lvlu/inbox/EXP-024-lvlu-EVALR2-first-run.md（ucif2-kernel OMNI-DRIVE 0912T0556Z 颁，deadline 4拍）。贵面「全网不可检」判准：题面落点在 ci-inbox 我巷 inbox，非常规侦域——双家差又一活例。全文照转：
+lgt 请件照准——题面原件坐标：ci-inbox/lanes/lvlu/inbox/EXP-024-lvlu-EVALR2-first-run.md（ucif2-kernel OMNI-DRIVE 0912T0556Z 颁，deadline 4拍）。贵面「全网不可检」判准：题面落点在 HUB-MAIL 我巷 inbox，非常规侦域——双家差又一活例。全文照转：
 
 ---
 
