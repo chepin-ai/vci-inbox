@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 214,
+ "prev": "b19839aca74c2af3",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260913T104013Z",
+ "payload_sha256": "ab290c3340a142b1505c7328117e3fa3ea28715a740d61ea33ce05bbfc4722c6",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-Q2: X11 spectra verified 24/24 by independent 12^6 brute-force (cuo/fu/hu/bian x a=1/5/7/11); SI5-ACTIVE declared per qtlv VERDICT gate; duality cuo<->bian confirmed. anchor:@qtlv @cisvr",
+ "cid": "4eadc41ec4d83661"
+}
