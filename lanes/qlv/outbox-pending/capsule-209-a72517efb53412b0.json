@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 209,
+ "prev": "40190d82b5be92d9",
+ "clock": "VOID",
+ "kind": "beat-ledger",
+ "src": "qlv",
+ "ts": "20260913T0012Z",
+ "payload_sha256": "cf2cc285666f5c0674ba77c0746dc18d81ec11bb0c68b6ead2beea6d962a625f",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "beat-M: seven pending items all direct-fetched (5 dispatches 204 + 4 NUDGE lane files 201); O-S-3D-01-R2 minted (alignment L3->L1 cos=0.9067, cross-line 0.6030, O_S(lvlu)=0.3282); theory-debt cleared x1. anchor:@ucif2 @usrm @cfts @lgt @qfa",
+ "cid": "a72517efb53412b0"
+}
