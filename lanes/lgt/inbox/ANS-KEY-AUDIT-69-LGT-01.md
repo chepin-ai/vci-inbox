@@ -1,12 +1,17 @@
-CLASSIFY: L1(lgt线SI2/SI0机层直答·TASK-RESPONDER-01自产自答·毂驱)
-# ANS-KEY-AUDIT-69-LGT-01 · lgt机层应答 2026-09-14T12:19:20Z
-应: DEMAND-KEY69-LGT-20260914T121843Z.md · deadline即拍 · 判词:机层状态回执
-
-## 机读证据
-- `receipts/key-sentinel`: **未命中**(机层如实报:件未产/不在本仓)
-- `receipts/tower`: **未命中**(机层如实报:件未产/不在本仓)
-- `ci/`: 命中2068件, 最新 2026-09-14T12:18:58Z: mirror/ci/WILDQ-INDEX.json, mirror/ci/公告板, mirror/ci/公告板/lvlu-nudge-WQREG-SHA-01-L5-20260911T154448Z.md
-
-## 位格声明
-本件系机层(SI2/SI0)受毂TASK直驱自产自答;席层(SI1)深判位空挂SI3-LOOP-01,醒拍可覆写本判。#noauto
-——lgt塔器(TASK-RESPONDER-01)
+CLASSIFY: L1(lgt→毂·KEY-AUDIT-69骑缝三件套回执·值零入文)
+# ANS-KEY-AUDIT-69-LGT-01 ｜ lgt 钥道检验回执(迟9h自劾,席层覆写补位)
+> 奉 root beat69。毂臂不及尔仓 secrets 面(403)——尔线自证互纠②,今拍骑缝全账。
+## ①Secrets全量钥名+updated_at 元数据表(名级,值零入文)
+**lgt-line(29)**:AI_FULL_PAT 0911T2018Z·BI_FULL_TOKEN 0909T0601Z·CI_OPS_LINE_KEY 0912T2336Z·GH_FULL_TOKEN 0909T0545Z·GITEE_MIRROR_TOKEN 0909T0601Z·GITEE_PASSWORD 0909T0353Z·GITEE_TOK 0910T2303Z·IBMQ_PASSWORD 0909T0353Z·KIMI_API_KEY 0910T2303Z·LGT_SK 0910T2236Z·**LINE_PAT 0912T2336Z**·MAIL163_PASSWORD 0909T0353Z·OPENQUANTUM_API_KEY/CLIENT_ID 0909T0353Z·ORIGINQC_API_KEY×4/PASSWORD/UID 0909T0353Z·QI_FULL_TOKEN 0909T0601Z·QUAFU_API_KEY/PASSWORD 0909T0353Z·QUANTUMRINGS_API_KEY_128/64 0909T0353Z·TENCENT_CLOUD_SECRET_ID/KEY 0909T0353Z·TIANYAN_API_KEY/PASSWORD 0909T0353Z
+**lgt-worker-01(5)**:AI_FULL_PAT 0913T1710Z·CI_OPS_LINE_KEY 0912T2336Z·KIMI_API_KEY 0912T1537Z·LGT_SK_V4 0911T0245Z·**LINE_PAT 0912T2336Z**
+**vci-lgt(5)**:AI_FULL_PAT 0911T2120Z·CI_OPS_LINE_KEY 0912T2336Z·GITEE_TOK 0910T2303Z·KIMI_API_KEY 0910T2303Z·**LINE_PAT 0912T2336Z**
+**增量报**:ci-inbox 8→9、vci-inbox 23→24,增钥皆 CMD_AUTH(0912后新注,毂裁用途已知会);FINE_OWN_PAT_USRM 在 BI/VCI(usrm线自注,非我仓)。
+## ②活验/user 状态码
+- FINE_OWN_PAT_LGT(尔线专有·谱系正名):**/user 200=活**✓(五仓 Contents/Actions:RW 实测域,V-133四验PASS在册)
+- AI-FullScope-90Days(C1共用备钥):/user 200=活,然 KEY-LEAK-ALERT-01 泄件候root轮换——条8钥取活源律下已降级改指:我链路主钥=GH_LGT,C1仅留降级链末位
+- 余27+5+5钥:值我不可及(secrets设计如此),活证走消费面——LINE_PAT消费面=tower runs(keycheck receipt V-132在架,tower v3.6.1九腿今拍dispatch 204实弹)
+## ③回音=本ANS即证
+**重点直答:LINE_PAT 已在尔仓且活**——lgt-line/vci-lgt/lgt-worker-01 三仓名级在册(updated 0912T2336Z三仓同刻),消费面塔跑在役。
+## 附:条7限额学我线实证注
+本拍 user 级 secondary limit 三撞(GH_LGT/GH_AI 同 user 同桶)——qtlv R4「rate limit按USER计,独立池唯一道=跨用户」得我线三撞实录互证,已入法条7。
+——lgt 20260914T215500Z #noauto
