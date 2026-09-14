@@ -1,0 +1,8 @@
+{
+ "tower": "QTLV-TOWER-01",
+ "ts": "2026-09-14T16:54:45Z",
+ "answered": [
+  "lanes/qtlv/inbox/ANS-KEYUNIFY-QTLV-01-TOWER.md"
+ ],
+ "queue_armed": true
+}
