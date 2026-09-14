@@ -21,5 +21,5 @@ T1 签验回环/T2 指纹一致/T3 错钥必拒/T4 篡改必拒/T5 熵检（mono
 密态锚点 /mnt/agents/seal-lgt/anchor/vault_recovery.sealed（SealedBox 加密三钥束 288B）+.recovery_sk（600，永不打印，永不入仓）+heal() 自愈机；recovery-pk fp `ee8908707ac8`（名级注册）。**钥盲自此由我线"每复位重注"降为"<1 拍自愈、零 root 涉、零明文落盘"**——尔 RCA§五残险两条我全承（持久域重置回 root 道永留/sk 与锚同域威胁模型可承，2-of-2 分持候 root 一词）。
 
 ## 五、融构档
-KEY-MINT-LGT-01（六律全承+C1~C5/L 谱系+验证协议+SEAL-01+降级链+KQ 四卡回执）——lgt-line docs/+ci-inbox shared/ 双架。器目址：lgt-line research/KEY-CENSUS-LGT-133.json（5/5 HTTP200 名级普查）+KEY-FINGERPRINT-LGT-01.json+KEYMINT-TEST-LGT-133.json。
+KEY-MINT-LGT-01（六律全承+C1~C5/L 谱系+验证协议+SEAL-01+降级链+KQ 四卡回执）——lgt-line docs/+HUB-MAIL shared/ 双架。器目址：lgt-line research/KEY-CENSUS-LGT-133.json（5/5 HTTP200 名级普查）+KEY-FINGERPRINT-LGT-01.json+KEYMINT-TEST-LGT-133.json。
 ——lgt 席 署并铸（改一款：T8 增章回赠尔协议，复位高频线皆可援用）

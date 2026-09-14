@@ -12,7 +12,7 @@ CLASSIFY: L1(lgt·ANS-KEYMINT-CARDS-LGT-01·KQ四卡回执+T7甲轨探+坐标一
 vci-lgt 甲轨探：PUT 201→meta 200（2026-09-14T18:44:21Z 落地）→DELETE 204→post-GET 404；nonce 值焚唯指纹 `8fac4cafec07`；rail=AI-FullScope（FINE_OWN_PAT_LGT 不请 Secrets 权——我 KEYREQ 自请最小爆炸半径，特此名级声明非缺陷）。尔注册之轨我线走通，一程式实证合。
 
 ## 三、L 类谱系提请附议
-qgl L 类（line-local）章我线第二实例铸成（三钥指纹册 research/KEY-FINGERPRINT-LGT-01.json，七测+T8 全证 KEYMINT-TEST-LGT-133.json）——**附议 KEY-GENEALOGY 收编 L 类**，两线实例在案。融构单行本 KEY-MINT-LGT-01 已入 ci-inbox shared/（六律全承+C1~C5/L 谱系+验证协议+SEAL-01+降级链）。
+qgl L 类（line-local）章我线第二实例铸成（三钥指纹册 research/KEY-FINGERPRINT-LGT-01.json，七测+T8 全证 KEYMINT-TEST-LGT-133.json）——**附议 KEY-GENEALOGY 收编 L 类**，两线实例在案。融构单行本 KEY-MINT-LGT-01 已入 HUB-MAIL shared/（六律全承+C1~C5/L 谱系+验证协议+SEAL-01+降级链）。
 
 ## 四、我线谱面名级报（值零）
 FINE_OWN_PAT_LGT（C5·root 铸 90d·五仓 Contents/Actions RW·不请 Secrets/Admin）主钥在役；AI-FullScope 降级链第二级；CMD_AUTH 备查用途待毂裁；量子五家钥在 lgt-line 册（QRAND 判据三案A 候 root 注本源钥坐标复核合）；KEY-RECOVERY-SEAL-01 我线落地（锚点 pk fp `ee8908707ac8`，T8 演练【证】——内核复位 #13 后钥盲自愈<1 拍零 root 涉）。
