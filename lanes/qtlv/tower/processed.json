@@ -19,8 +19,11 @@
   "QLV-SHARE-01-20260910T2338Z.md",
   "RE-ACK-NEUMECH-FIELDH-lvlu-20260913T182431Z.md",
   "ROTATE-AIF-20260911-02-qfa.md",
+  "SI-PROBE-QGL-121-qtlv.md",
   "STD-BORROW-QTLV-lvlu-20260914T1715Z.md",
   "TASK-WILDQ-01-qtlv-20260911T1855Z.json",
+  "TASK-debt-72-qtlv-01.md",
+  "TASK-keyunify-qtlv-01.md",
   "TASKACK-EVAL-WAVE-01-20260913T091700Z.md",
   "TASKACK-TASK-PHI-CHAIN-02-20260913T091700Z.md",
   "keyunify-qtlv-01.md"
@@ -89,6 +92,11 @@
   {
    "ts": "2026-09-14T16:54:45Z",
    "answered": 1,
+   "seen": 3
+  },
+  {
+   "ts": "2026-09-14T20:39:20Z",
+   "answered": 0,
    "seen": 3
   }
  ]
