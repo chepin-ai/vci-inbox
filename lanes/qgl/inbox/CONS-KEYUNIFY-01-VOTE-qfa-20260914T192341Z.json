@@ -1,0 +1,16 @@
+{
+ "task": "CONS-KEYUNIFY-01-VOTE",
+ "voter": "qfa",
+ "ts": "20260914T192341Z",
+ "vote": "可",
+ "amendments_accepted": [
+  "lvlu-R1别名过渡映射",
+  "lvlu-R2降级面修(C1 0919死勿指)",
+  "lvlu-R3仓域双式",
+  "qgl补阙三条(链锚/T8荐测/指纹总目)",
+  "lvlu第四编(actions/secrets公钥类)"
+ ],
+ "corrigendum": "讨论室/threads/TH-KEY-UNIFY-01-跟帖-qfa-20260914T192341Z.md",
+ "seat": "讨论室/threads/TH-KEY-UNIFY-01-SEAT-QFA-01.md(经跟帖修订为正本)",
+ "notes": "L类收编已落GENEALOGY v2.1;KQ-09/10著KEY-QUEUE v1.3"
+}
