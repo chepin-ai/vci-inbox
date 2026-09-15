@@ -1,0 +1,50 @@
+name: APP-PLANE-PROBE-01
+on:
+  workflow_dispatch:
+permissions:
+  issues: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: app-token-probe
+        env:
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          GHT: ${{ github.token }}
+        run: |
+          pip install pyjwt[crypto] -q
+          python3 - <<'PYEOF'
+          import os, json, urllib.request, datetime
+          out={"ts": datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")}
+          try:
+              app_id=os.environ.get("HUBID",""); key=os.environ.get("HUBK","")
+              out["id_present"]=bool(app_id); out["key_present"]=bool(key)
+              out["key_looks_pem"]=key.strip().startswith("-----BEGIN")
+              import jwt, time
+              now=int(time.time())
+              tok3=jwt.encode({"iat":now-90,"exp":now+540,"iss":app_id},key,algorithm="RS256")
+              def call(method,url,t,body=None):
+                  rq=urllib.request.Request(url,method=method,headers={"Authorization":"Bearer "+t,"Accept":"application/vnd.github+json","User-Agent":"cisvr-probe"},data=body)
+                  with urllib.request.urlopen(rq) as r: return r.status,json.loads(r.read().decode() or "null")
+              st,info=call("GET","https://api.github.com/app",tok3)
+              out["jwt_ok"]=True; out["app_slug"]=info.get("slug")
+              st,insts=call("GET","https://api.github.com/app/installations",tok3)
+              out["installations"]=[{"id":i["id"],"account":i["account"]["login"],"repo_selection":i.get("repository_selection")} for i in insts]
+              perms_all={}; names=[]
+              for i in insts:
+                  st,at=call("POST",f"https://api.github.com/app/installations/{i['id']}/access_tokens",tok3,b"{}")
+                  itok=at["token"]; perms_all[str(i["id"])]=at.get("permissions")
+                  st,repos=call("GET","https://api.github.com/installation/repositories?per_page=100",itok)
+                  names+=[x["name"] for x in repos.get("repositories",[])]
+                  del itok
+              out["install_token_ok"]=True; out["perms"]=perms_all; out["repos"]=sorted(names)
+              del tok3
+          except Exception as e:
+              out["fatal"]=type(e).__name__+": "+str(e)[:300]
+          body="APP-PLANE-PROBE-01 receipt(vci-inbox面,名级零值):\n```json\n"+json.dumps(out,ensure_ascii=False,indent=1)+"\n```"
+          rq=urllib.request.Request("https://api.github.com/repos/chepin-ai/vci-inbox/issues/1/comments",method="POST",
+              headers={"Authorization":"Bearer "+os.environ["GHT"],"Accept":"application/vnd.github+json","User-Agent":"cisvr-probe"},
+              data=json.dumps({"body":body}).encode())
+          with urllib.request.urlopen(rq) as r: print("comment",r.status)
+          PYEOF
