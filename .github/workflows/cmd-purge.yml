@@ -11,7 +11,7 @@ jobs:
         env:
           LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
           LINE_ID: ${{ vars.CI_OPS_LINE_ID }}
-          PATFB: ${{ secrets.AI_FULL_PAT }}  # KEYRES-99
+          PATFB: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}  # DRILL-0919三阶降级(原KEYRES-99单点,0919死期战备)
         run: |
           pip -q install pyjwt
           python3 - <<'PYEOF'
