@@ -6,8 +6,8 @@
 {"task":"KEYUNIFY-LGT-01","scan":["lanes/lgt/inbox/"],"note":"cisvr"}
 ```
 
-- 读: ci-inbox 讨论室/threads/TH-KEY-UNIFY-01.md（统一钥策六条+五议题）
-- 证面: ci-control bridge/disc/CISVR-KEY-CENSUS-73.json + CISVR-KEY-MINT-REQ-01.md + CISVR-KEYMINT-TEST-73.json
+- 读: HUB-MAIL 讨论室/threads/TH-KEY-UNIFY-01.md（统一钥策六条+五议题）
+- 证面: HUB-CORE bridge/disc/CISVR-KEY-CENSUS-73.json + CISVR-KEY-MINT-REQ-01.md + CISVR-KEYMINT-TEST-73.json
 - 请: 六条席答 + legacy×5瘦身议题 + 本线FINE专钥态报
 - 复: 机答+讨论室席判
 

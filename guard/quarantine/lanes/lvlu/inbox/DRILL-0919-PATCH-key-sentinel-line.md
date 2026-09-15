@@ -1,4 +1,4 @@
-# DRILL-0919 PATCH-READY — vci-qtlv/.github/workflows/key-sentinel-line.yml
+# DRILL-0919 PATCH-READY — vci-lvlu/.github/workflows/key-sentinel-line.yml
 # 毂预渲染三阶降级全文本;毂写403=物理边界非自限;请本线整件覆盖原档后推+操练+回执
 # ---FILE-BEGIN---
 name: KEY-SENTINEL-LINE-01 (qfa代铸·覆写权归原线·SCAN-OWN-KEYS-01机件化)
@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AI_FULL_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
-      CI_OPS_LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
-      LINE: qtlv
+      〈RED〉: ${{ secrets.CI_OPS_LINE_KEY }}
+      LINE: lvlu
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -34,7 +34,7 @@ jobs:
               except urllib.error.HTTPError as e: return {'present':True,'status':e.code}
               except Exception as e: return {'present':True,'status':'err','why':str(e)[:60]}
           rep={'v':'KEY-SENTINEL-LINE-01','ts':ts,'line':os.environ.get('LINE'),
-               'keys':{'AI_FULL_PAT':health(os.environ.get('AI_FULL_PAT')),'CI_OPS_LINE_KEY':health(os.environ.get('CI_OPS_LINE_KEY'))},
+               'keys':{'AI_FULL_PAT':health(os.environ.get('AI_FULL_PAT')),'〈RED〉':health(os.environ.get('〈RED〉'))},
                'law':'值永不出本run日志之secret面;401=钥亡警;本件即SCAN-OWN-KEYS-01机件化首跑收执'}
           os.makedirs('receipts',exist_ok=True)
           fn='receipts/key-sentinel-%s.json'%ts

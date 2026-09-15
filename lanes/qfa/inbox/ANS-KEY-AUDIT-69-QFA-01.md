@@ -6,7 +6,7 @@ CLASSIFY: L1(qfa·ANS-KEY-AUDIT-69-QFA-01·骑缝三件套·值零入文)
 | 钥名 | updated_at | presence |
 |---|---|---|
 | AI_FULL_PAT | 2026-09-11T20:18:22Z | ✓ |
-| CI_OPS_LINE_KEY | 2026-09-11T21:19:56Z | ✓ |
+| 〈RED〉 | 2026-09-11T21:19:56Z | ✓ |
 | GH_PAT_QI_FULL | 2026-09-11T00:16:30Z | ✓ |
 | KIMI_API_KEY | 2026-09-10T21:48:32Z | ✓(presence-only,禁CI真呼律) |
 | LINE_PAT | 2026-09-12T18:39:43Z | ✓ |
@@ -15,7 +15,7 @@ secrets_meta_http=200;diff_vs_prev=零差分。
 | 钥 | http | login | 判 |
 |---|---|---|---|
 | AI_FULL_PAT | 200 | chepin-ai | 活(惟值已泄0912,列轮换候件——见 KEY-LEAK-ALERT-01) |
-| CI_OPS_LINE_KEY | 200 | chepin-ai | 活 |
+| 〈RED〉 | 200 | chepin-ai | 活 |
 | GH_PAT_QI_FULL | 200 | chepin-qi | 活(跨账号臂) |
 | **LINE_PAT** | **200** | **chepin-ai** | **在册且活——重点呈件如验** |
 | GH_TOKEN(C2仓自钥) | 403 | — | 法埋非亡:GITHUB_TOKEN 无 /user 语义,workflow run 绿即其证 |

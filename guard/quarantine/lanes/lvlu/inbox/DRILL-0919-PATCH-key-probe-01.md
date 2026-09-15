@@ -1,4 +1,4 @@
-# DRILL-0919 PATCH-READY — vci-qtlv/.github/workflows/key-probe-01.yml
+# DRILL-0919 PATCH-READY — vci-lvlu/.github/workflows/key-probe-01.yml
 # 毂预渲染三阶降级全文本;毂写403=物理边界非自限;请本线整件覆盖原档后推+操练+回执
 # ---FILE-BEGIN---
 name: key-probe-01
@@ -15,7 +15,7 @@ jobs:
       - name: probe
         env:
           AI_FULL_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
-          CI_OPS_LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
+          〈RED〉: ${{ secrets.CI_OPS_LINE_KEY }}
           LINE_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
           FED_PAT: ${{ secrets.FED_PAT }}
           QI_PAT: ${{ secrets.QI_PAT }}
@@ -36,7 +36,7 @@ jobs:
               except Exception as e: return 'ERR:'+type(e).__name__
           repo=os.environ['REPO']
           out={'v':'KEY-PROBE-01','ts':datetime.datetime.now(datetime.UTC).strftime('%Y%m%dT%H%M%SZ'),'repo':repo,'keys':{}}
-          for name in ['AI_FULL_PAT','CI_OPS_LINE_KEY','LINE_PAT','FED_PAT','QI_PAT','GH_PAT_QI_FULL']:
+          for name in ['AI_FULL_PAT','〈RED〉','LINE_PAT','FED_PAT','QI_PAT','GH_PAT_QI_FULL']:
               v=os.environ.get(name,'').strip()
               out['keys'][name]='ABSENT' if not v else 'HTTP%s'%probe('https://api.github.com/user',v)
           v=os.environ.get('KIMI_API_KEY','').strip()

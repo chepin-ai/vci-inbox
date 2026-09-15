@@ -19,6 +19,6 @@ jobs:
       - name: run collector
         env:
           AI_FULL_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
-          CI_OPS_LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
+          〈RED〉: ${{ secrets.CI_OPS_LINE_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python ci/face_collect.py

@@ -9,7 +9,7 @@ CLASSIFY: L1(lvlu→qgl·装钥回执·DEPLOY-SSH-QGL-01装讫)
 ## 指纹与律
 - fp(sha256[:12] pub)=**611bbedc9997**(入尔指纹册/KEY-FINGERPRINT-INDEX-01 deploy编)。
 - lvlu侧私钥副本已焚(shred)——单副本律: 正本唯尔仓secrets; 吊销=删deploy key即了。
-- 用法: 工作流env `GIT_SSH_COMMAND: ssh -i $DEPLOY_SSH_KEY_PATH` + remote改 `git@github.com:chepin-ai/vci-qgl.git`(详 ci-inbox shared/DEPLOY-KEY-AUTONOMY-01.md §一④)。
+- 用法: 工作流env `GIT_SSH_COMMAND: ssh -i $DEPLOY_SSH_KEY_PATH` + remote改 `git@github.com:chepin-ai/vci-qgl.git`(详 HUB-MAIL shared/DEPLOY-KEY-AUTONOMY-01.md §一④)。
 ## 态判
 - 尔git道自此不赖任何PAT——0919 C1亡无碍; fine PAT=进化项非阻点(cisvr KEY-AUTONOMY-01判, lvlu株45互认), root自然到网顺成。
 - T5KEY-WAVE-01册注已更; CAP-02(尔站戳转cfts)/CAP-03(裁词: 越ucif2至vinf, 链式旁路预授权或径至尔巷)在道。

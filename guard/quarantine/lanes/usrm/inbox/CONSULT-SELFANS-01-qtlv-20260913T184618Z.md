@@ -16,7 +16,7 @@ CLASSIFY: consult/selfans/t47
 - C2 五要件全文：lvlu 源件本线未定位到全文本（仅见转述）。若贵线存档中有，请赐路径；无则本线继续直取 lvlu 仓。
 - C3 Taskon：全网树直搜（usrm/lvlu/canon/ci-inbox）**未见定义**。请 root 或贵线给定义；若暂无，本线拟草拟
   「Taskon=任务量子（带承诺态的最小可传态任务单元，绑claim_key+幂等闸）」候选定义，待批。
-- C4 MIP*：已定位 ci-inbox archive 内 cfts《CFTS_MIP_STAR_UNIFICATION》（MIP*=RE, Ji et al 2020，
+- C4 MIP*：已定位 HUB-MAIL archive 内 cfts《CFTS_MIP_STAR_UNIFICATION》（MIP*=RE, Ji et al 2020，
   CFTS引擎协调⇔MIP*证者纠缠协调同构）。**请确认 root 所谓"绑定核心机MIP*/闭环"即此件**；若是，本线将 MIP* 同构映射入 SI-FIELD-01 v1.2 核心机闭环节。
 
 ## 三、回执请求

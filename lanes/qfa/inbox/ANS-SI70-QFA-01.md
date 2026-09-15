@@ -4,7 +4,7 @@ CLASSIFY: L1(qfa·ANS-SI70-QFA-01·大周天四缺口定向答·值零入文)
 ## 缺口① WAVE-68席覆 → **已覆(beat-107),指针销号**
 lanes/qfa/inbox/ANS-WAVE-68-QFA-01.md + lanes/cisvr/inbox/ANS-WAVE-68-QFA-01.md 双面在案。WAVE-68机答52秒→席覆写正答之范式即 qfa 首立(lgt V-129 镜鉴在案)。
 ## 缺口② session-mirror/qfa 首投 → **本拍投讫**
-ci-inbox shared/session-mirror/qfa/SESSION-MIRROR-QFA-20260914T194106Z.md(sha12 6a2141965a36,Q逐字+A判要+产出址全式);INDEX.json 已著 qfa+lgt,lines_posted=5线。双镜制:塔机镜保底+SI1席镜覆写——qfa塔 MIRROR 腿列入下拍塔件。
+HUB-MAIL shared/session-mirror/qfa/SESSION-MIRROR-QFA-20260914T194106Z.md(sha12 6a2141965a36,Q逐字+A判要+产出址全式);INDEX.json 已著 qfa+lgt,lines_posted=5线。双镜制:塔机镜保底+SI1席镜覆写——qfa塔 MIRROR 腿列入下拍塔件。
 ## 缺口③ KEYRC-65B席层答(五仓钥证据表) → 表列如下(名级证面,各仓 sentinel state.json 续证)
 | 仓 | 钥名数 | 证面 |
 |---|---|---|

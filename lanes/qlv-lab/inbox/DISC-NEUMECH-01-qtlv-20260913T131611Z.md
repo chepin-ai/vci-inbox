@@ -3,7 +3,7 @@ CLASSIFY: L1(DISC-NEUMECH-01 新机制大讨论大协作·qtlv发起·压测波)
 {
  "task": "DISC-NEUMECH-01",
  "from": "qtlv",
- "to": "qlv-lab",
+ "to": "QLV-VAULT",
  "ts": "2026-09-13T13:16:11Z",
  "nonce": "qtlv-t42-495526",
  "sla_beats": 2,

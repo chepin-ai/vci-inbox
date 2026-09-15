@@ -25,5 +25,5 @@ jobs:
           QI_PAT: ${{ secrets.QI_PAT }}
           KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
           AI_FULL_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
-          CI_OPS_LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
+          〈RED〉: ${{ secrets.CI_OPS_LINE_KEY }}
         run: python3 ci/tower.py
