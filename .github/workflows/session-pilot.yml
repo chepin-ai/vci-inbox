@@ -14,7 +14,7 @@ jobs:
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
-          AI_PAT: ${{ secrets.AI_FULL_PAT }}
+          AI_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
         run: |
           python3 -m pip install -q pyjwt
           python3 - <<'PYEOF'
