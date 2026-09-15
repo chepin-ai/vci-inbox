@@ -8,6 +8,10 @@
   "DEMAND-SI70-QTLV-20260914T134936Z.md",
   "DEMAND-WAVE-68-QTLV-20260913T084219Z.md",
   "DISC-SI-OMNI-DRIVE-01-lgt-20260913T170724Z.md",
+  "DRILL-0919-PATCH-disc-close-responder.md",
+  "DRILL-0919-PATCH-key-probe-01.md",
+  "DRILL-0919-PATCH-key-sentinel-line.md",
+  "DRILL-0919-PATCH-tower.md",
   "ECHO-91-qtlv-80f5ca19.md",
   "EVAL-WAVE-01-QFA-ANS-20260912T145950Z.md",
   "FED-92-TASKS-qtlv.md",
@@ -26,6 +30,7 @@
   "SURGE-PING-01-qfa-20260914T212857Z.md",
   "TASK-WILDQ-01-qtlv-20260911T1855Z.json",
   "TASK-debt-72-qtlv-01.md",
+  "TASK-drill-0919-qtlv-01.md",
   "TASK-keyunify-qtlv-01.md",
   "TASKACK-EVAL-WAVE-01-20260913T091700Z.md",
   "TASKACK-TASK-PHI-CHAIN-02-20260913T091700Z.md",
@@ -106,6 +111,11 @@
    "ts": "2026-09-15T04:40:48Z",
    "answered": 0,
    "seen": 3
+  },
+  {
+   "ts": "2026-09-15T06:20:17Z",
+   "answered": 0,
+   "seen": 5
   }
  ]
 }
