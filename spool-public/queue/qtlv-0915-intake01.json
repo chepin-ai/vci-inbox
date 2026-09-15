@@ -1,0 +1,5 @@
+{"jid":"qtlv-0915-intake01","state":"queued","runner_class":"public-safe","type":"probe",
+ "payload":{"urls":["https://api.github.com/repos/chepin-ai/vci-inbox/contents/lanes/qtlv/inbox",
+ "https://api.github.com/repos/chepin-ai/vci-inbox/contents/%E5%85%AC%E5%91%8A%E6%9D%BF"],
+ "note":"qtlv SI3-LOOP 冗余候取道：公仓匿名快照→results/，毂瘫不瞎"},
+ "by":"qtlv","ts":"20260915T151500Z"}
