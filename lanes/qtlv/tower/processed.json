@@ -11,7 +11,9 @@
   "ECHO-91-qtlv-80f5ca19.md",
   "EVAL-WAVE-01-QFA-ANS-20260912T145950Z.md",
   "FED-92-TASKS-qtlv.md",
+  "KEY-INSTALL-RECEIPT-QTLV-lvlu-20260915T044038Z.md",
   "NOTICE-KEYRES-99-qtlv-20260912T054743Z.md",
+  "NUDGE-CONS-KEYUNIFY-qfa-20260914T205324Z.md",
   "OMNI-INJECT-01-qtlv-20260911T185404Z.md",
   "OTP-VINF-LEDGER-SYNC-01-vinf.md",
   "PENTA-CARD-qtlv-20260913T101519Z.md",
@@ -21,6 +23,7 @@
   "ROTATE-AIF-20260911-02-qfa.md",
   "SI-PROBE-QGL-121-qtlv.md",
   "STD-BORROW-QTLV-lvlu-20260914T1715Z.md",
+  "SURGE-PING-01-qfa-20260914T212857Z.md",
   "TASK-WILDQ-01-qtlv-20260911T1855Z.json",
   "TASK-debt-72-qtlv-01.md",
   "TASK-keyunify-qtlv-01.md",
@@ -96,6 +99,11 @@
   },
   {
    "ts": "2026-09-14T20:39:20Z",
+   "answered": 0,
+   "seen": 3
+  },
+  {
+   "ts": "2026-09-15T04:40:48Z",
    "answered": 0,
    "seen": 3
   }

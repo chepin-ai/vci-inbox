@@ -1,5 +1,5 @@
 {
- "ts": "2026-09-14T20:39:20Z",
+ "ts": "2026-09-15T04:40:48Z",
  "armed": [
   "账器值守: 全通道扫描+audit_v3",
   "EVAL-WAVE五线回执收割",
@@ -9,9 +9,9 @@
   "大周天φ链12段实测设计"
  ],
  "inbox_seen": [
-  "SI-PROBE-QGL-121-qtlv.md",
-  "TASK-debt-72-qtlv-01.md",
-  "TASK-keyunify-qtlv-01.md"
+  "KEY-INSTALL-RECEIPT-QTLV-lvlu-20260915T044038Z.md",
+  "NUDGE-CONS-KEYUNIFY-qfa-20260914T205324Z.md",
+  "SURGE-PING-01-qfa-20260914T212857Z.md"
  ],
  "law": "自治不候; 事件驱动; 幂等; 席判位空挂SI1"
 }
