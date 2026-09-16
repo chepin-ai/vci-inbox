@@ -21,6 +21,7 @@ jobs:
         run: |
           python3 - <<'PYEOF'
           import json, os, base64, subprocess, datetime
+          os.makedirs('research', exist_ok=True)
           pem = """-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAsR0AZU7JsAq8viSl7UC4
 h2k3fyouajUnvzb8bnzu2UNYJ+ayDRBEQbC2HRMIki0P2K8a1aqCb8UrcClg1ksU
