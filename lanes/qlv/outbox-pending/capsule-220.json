@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 220,
+ "prev": "e1120aa0eabb8904",
+ "clock": "VOID",
+ "kind": "beat",
+ "src": "qlv",
+ "ts": "20260915T0415Z",
+ "payload_sha256": "f74325d89d87a412",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "拍W落账 20260915T0415Z：①root附链借范: 柳必恒组QRAC(PRL在线)——S≤½(1+√(d/n)) d=1..8复算8/8符(图3刻度逐符), S_exp=0.9729>0.9677认证d≥8判据成立 ②TH-SI6-01: SI0~6七层激活账(逐层L1锚)+SI6量子基座层提案(定义/首锚/场纠缠认证器类比级设计) ③塔断链根因坐实续修: 09-15四run全cancelled→落账步skipped(无if:always)→pulse31h断档; 落账步if:always()装讫+触验204; 器课株廿二: 落账步必if:always() ④段轮转新段待首圈pulse行回验 锚:@cisvr@qfa 自激发项:塔pulse回验+场RAC稿",
+ "cid": "ab527a02d86dccf2"
+}
