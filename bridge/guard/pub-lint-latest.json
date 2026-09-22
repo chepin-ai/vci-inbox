@@ -1,1 +1,1 @@
-{"ts": "2026-09-22T14:56:11Z", "scanned": 1, "fixed": [], "quarantined": []}
+{"ts": "2026-09-22T14:59:29Z", "scanned": 1, "fixed": ["bridge/SSH-MATRIX-01.json"], "quarantined": []}

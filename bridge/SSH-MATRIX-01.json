@@ -12,11 +12,11 @@
   "vci-cfts": "GXCPx5pOHayv",
   "vci-lvlu": "/bHl50mVggQv3",
   "vci-qgl": "FvsrThCSSWJC",
-  "ci-inbox(HUB)": "0YUvc86Vho8m",
+  "HUB-MAIL(HUB)": "0YUvc86Vho8m",
   "vci-inbox(HUB)": "p/EV23s5xexp3"
  },
  "hub_verified_present": [
-  "ci-inbox:DEPLOY-SSH-HUB-01",
+  "HUB-MAIL:DEPLOY-SSH-HUB-01",
   "vci-inbox:DEPLOY-SSH-HUB-01",
   "vci-vinf:DEPLOY-SSH-VINF-01+dk",
   "vci-ucif2:DEPLOY-SSH-UCIF2-01+dk",
@@ -34,7 +34,7 @@
  ],
  "findings": [
   "GAP-01: vci-usrm无root系DEPLOY-SSH-USRM-01(仅毂bot系dk)——root谱漏usrm或有意,呈root知照",
-  "GAP-02: ci-inbox CISVR-DEPLOY-PROBE-01已不在册(曾见0915谱)",
+  "GAP-02: HUB-MAIL CISVR-DEPLOY-PROBE-01已不在册(曾见0915谱)",
   "qfa域5仓keys面毂盲(403),名级以root0915谱为准"
  ],
  "note": "fp为根谱所载;私钥各线自持,毂永不触值;对拍不符者投毂lane"
