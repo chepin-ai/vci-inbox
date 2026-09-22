@@ -1,0 +1,41 @@
+{
+ "doc": "SSH-MATRIX-01 全线deploy-key名级谱",
+ "ts": "20260922T145911Z",
+ "by": "cisvr毂(root令:检测各线SSH并分发)",
+ "root_added_DEPLOY_SSH": {
+  "vci-qtlv": "fdOWMEHq1wTD",
+  "vci-qfa": "ImWHi82GUkqP",
+  "vci-lgt": "iUAN5UdFroIg",
+  "vci-qlv": "A62J1CwUFuRx",
+  "vci-vinf": "ktSCkujoF0Im",
+  "vci-ucif2": "SHCqwUDVTFS6",
+  "vci-cfts": "GXCPx5pOHayv",
+  "vci-lvlu": "/bHl50mVggQv3",
+  "vci-qgl": "FvsrThCSSWJC",
+  "ci-inbox(HUB)": "0YUvc86Vho8m",
+  "vci-inbox(HUB)": "p/EV23s5xexp3"
+ },
+ "hub_verified_present": [
+  "ci-inbox:DEPLOY-SSH-HUB-01",
+  "vci-inbox:DEPLOY-SSH-HUB-01",
+  "vci-vinf:DEPLOY-SSH-VINF-01+dk",
+  "vci-ucif2:DEPLOY-SSH-UCIF2-01+dk",
+  "vci-cfts:DEPLOY-SSH-CFTS-01+dk",
+  "vci-qgl:DEPLOY-SSH-QGL-01+dk",
+  "vci-usrm:dk-usrm-vci-usrm-01(仅dk,无DEPLOY-SSH-USRM-01)",
+  "github-repo-cfts/ucif2-fk/vinf-mk/qglk/usrm-repo:dk各一"
+ ],
+ "hub_blind_403": [
+  "vci-qfa",
+  "vci-qlv",
+  "vci-lgt",
+  "vci-lvlu",
+  "vci-qtlv"
+ ],
+ "findings": [
+  "GAP-01: vci-usrm无root系DEPLOY-SSH-USRM-01(仅毂bot系dk)——root谱漏usrm或有意,呈root知照",
+  "GAP-02: ci-inbox CISVR-DEPLOY-PROBE-01已不在册(曾见0915谱)",
+  "qfa域5仓keys面毂盲(403),名级以root0915谱为准"
+ ],
+ "note": "fp为根谱所载;私钥各线自持,毂永不触值;对拍不符者投毂lane"
+}
