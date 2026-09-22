@@ -33,7 +33,7 @@ jobs:
           def nowz(): return datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
           LINES=['qfa','qlv','lgt','lvlu','qtlv','cfts','ucif2','usrm','vinf','cisvr']
           pat=re.compile(r'(?:lanes/([a-z0-9]+)/|公告板/(?:by-)?([a-z0-9]+)-)')
-          out=subprocess.run('git log --since=72.hours --pretty=format:%%cI --name-only -- lanes 公告板',shell=True,capture_output=True,text=True).stdout
+          out=subprocess.run('git log --since=72.hours --pretty=format:%cI --name-only -- lanes 公告板',shell=True,capture_output=True,text=True).stdout
           ev=[]
           cur_ts=None
           seen=set()
