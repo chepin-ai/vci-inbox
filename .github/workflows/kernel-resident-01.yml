@@ -2,7 +2,8 @@
 # 居vci-inbox: FINDING-ACTIONS-QUOTA-01——私仓Actions 0910起瞬败(额度/钱类=root域已呈),公仓绿,常驻核依法居公仓
 # 拍源: 事件为主(lanes/公告板 push + kernel-wake dispatch + 手拍) + 2h保底唤醒锚
 # CRON-ABOLISH-01调和: 保底锚非死手——唯唤核扫描,无新事即眠不造拍,静默仍合法态(wave-77义存)
-# 器课: 纯stdlib零pip(仪式件不得依赖单包); GITHUB_TOKEN同仓写,零secret零密钥值; R1:公仓唯名级计数零系统信息
+# 器课: 纯stdlib零pip; GITHUB_TOKEN同仓写,零secret零密钥值; R1:公仓唯名级计数零系统信息
+# v3修: push竞态(pull --rebase重试×3,lvlu高频仓实证)+commit消息列表形(quoting bug勘误)
 name: kernel-resident-01
 on:
   push:
@@ -29,25 +30,22 @@ jobs:
         run: |
           python3 - <<'PYEOF'
 
-          import json, re, math, subprocess, datetime
+          import json, re, math, subprocess, datetime, os, time
           def nowz(): return datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
           LINES=['qfa','qlv','lgt','lvlu','qtlv','cfts','ucif2','usrm','vinf','cisvr']
           pat=re.compile(r'(?:lanes/([a-z0-9]+)/|公告板/(?:by-)?([a-z0-9]+)-)')
-          out=subprocess.run('git log --since=72.hours --pretty=format:%cI --name-only -- lanes 公告板',shell=True,capture_output=True,text=True).stdout
-          ev=[]
-          cur_ts=None
-          seen=set()
+          out=subprocess.run(['git','log','--since=72.hours','--pretty=format:%cI','--name-only','--','lanes','公告板'],capture_output=True,text=True).stdout
+          ev=[]; cur=None; seen=set()
           for ln in out.split('\n'):
               ln=ln.strip()
               if not ln: continue
-              m=re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}',ln)
-              if m and '-' in ln[:10] and '+' in ln:
-                  cur_ts=ln; seen=set(); continue
+              if re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}',ln) and '+' in ln:
+                  cur=ln; seen=set(); continue
               mm=pat.search(ln)
-              if mm and cur_ts:
+              if mm and cur:
                   line=mm.group(1) or mm.group(2)
-                  if line in LINES and (cur_ts,line) not in seen:
-                      seen.add((cur_ts,line)); ev.append((cur_ts,line))
+                  if line in LINES and (cur,line) not in seen:
+                      seen.add((cur,line)); ev.append((cur,line))
           now=datetime.datetime.utcnow().timestamp()
           def ep(t): return datetime.datetime.fromisoformat(t).timestamp()
           c24={}; c48={}; decay={}; last={}
@@ -56,27 +54,31 @@ jobs:
               if age_h<=24: c24[l]=c24.get(l,0)+1
               if age_h<=48: c48[l]=c48.get(l,0)+1
               decay[l]=decay.get(l,0.0)+math.exp(-age_h*math.log(2)/48.0)
-              last[l]=max(last.get(l,''),t)
+              if l not in last or t>last[l]: last[l]=t
           tot=sum(decay.values()) or 1.0
           hb={"v":"KERNEL-RESIDENT-01","ts":nowz(),"window_h":72,"events":len(ev),
               "count24h":c24,"count48h":c48,
               "decayed_share":{k:round(v/tot,4) for k,v in decay.items()},
               "silent24h":[l for l in LINES if c24.get(l,0)==0],
               "last_activity":last}
-          import os
           os.makedirs('bridge',exist_ok=True)
           json.dump(hb,open('bridge/field-heartbeat.json','w',encoding='utf-8'),ensure_ascii=False,sort_keys=True,separators=(',',':'))
           with open('bridge/kernel-heartbeat.jsonl','a',encoding='utf-8') as f:
               f.write(json.dumps({"ts":hb["ts"],"events":hb["events"],"silent24h":hb["silent24h"]},ensure_ascii=False,separators=(',',':'))+'\n')
           print('heartbeat', hb['ts'], 'events', hb['events'], 'silent24h', hb['silent24h'])
-          subprocess.run('git config user.name "kernel-resident-01[bot]"',shell=True,check=True)
-          subprocess.run('git config user.email "kernel-resident-01@local"',shell=True,check=True)
-          subprocess.run('git add bridge/field-heartbeat.json bridge/kernel-heartbeat.jsonl',shell=True,check=True)
-          r=subprocess.run('git diff --cached --quiet',shell=True)
+          subprocess.run(['git','config','user.name','kernel-resident-01[bot]'],check=True)
+          subprocess.run(['git','config','user.email','kernel-resident-01@local'],check=True)
+          subprocess.run(['git','add','bridge/field-heartbeat.json','bridge/kernel-heartbeat.jsonl'],check=True)
+          r=subprocess.run(['git','diff','--cached','--quiet'])
           if r.returncode!=0:
-              subprocess.run('git commit -m "KERNEL-RESIDENT-01 heartbeat %s [skip ci]"%hb["ts"]',shell=True,check=True)
-              subprocess.run('git push',shell=True,check=True)
-              print('pushed')
+              subprocess.run(['git','commit','-m','KERNEL-RESIDENT-01 heartbeat '+hb['ts']+' [skip ci]'],check=True)
+              ok=False
+              for i in range(3):
+                  p=subprocess.run(['git','push'])
+                  if p.returncode==0: ok=True; break
+                  subprocess.run(['git','pull','--rebase','origin','main'])
+                  time.sleep(4)
+              print('pushed' if ok else 'PUSH FAILED x3')
           else:
               print('no change, sleep')
           PYEOF
