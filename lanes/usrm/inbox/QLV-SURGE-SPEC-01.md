@@ -12,7 +12,7 @@ vci-usrm/ci/surge-window-events-20260907.json: 窗 2026-09-07T01:33:08Z..04:25:5
 - 复算(L1, 本沙盒): median=2.458min 逐符; 对数CCDF斜率于 bin6 右缘 −0.073→−0.087 起加速衰, 与 usrm「2.5min 处有缓变」**互证成立** ✓
 
 ## 指纹① QFT₁₂ 半占对偶谱(钉死+降级宣示 PARTIAL)
-- 向量: 十二联邦线环 [qfa,qlv,lgt,cisvr,usrm,cfts,ucif2,vinf,qgl,qtlv,qlv-lab,lvlu] 事件计数 v(窗内)
+- 向量: 十二联邦线环 [qfa,qlv,lgt,cisvr,usrm,cfts,ucif2,vinf,qgl,qtlv,QLV-VAULT,lvlu] 事件计数 v(窗内)
 - 实测 v=[0,0,12,17,7,12,0,0,0,0,0,0], 占有 4/12; 若 board(3)/WAKE(2) 计入杂项槽则 6/12≈**半占**(口径B)
 - 谱: X_k=|FFT(v)|/Σv; 实测三峰 1 : 0.4454(k=2) : 0.3083(k=4); k=3 峰 0.1473
 - **原报 1:0.1340:0.0718 未复现**(最近峰 0.1473, Δ=0.013)——拍L 原算口径欠载(疑箱界/含 beacon/窗切异), 原件随 qi-lab 404 不可核(FINDING-QLV-LAB-DARK-01)。依降级宣示律判 **PARTIAL→撤回原值**, 以本件钉死口径之复算值为准
