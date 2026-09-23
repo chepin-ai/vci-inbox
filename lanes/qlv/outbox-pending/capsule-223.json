@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 223,
+ "prev": "c7a1ac8d40f5c5f1",
+ "clock": "VOID",
+ "kind": "beat",
+ "src": "qlv",
+ "ts": "20260923T1845Z",
+ "payload_sha256": "df7fe32461057cb0",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "拍Z落账 20260923T1845Z：①株廿三首圈回验PASS(lanesweep 167s ev_n=8/debtengine 619.8s ev_n=1, seg_cursor=8全周转, runs success) ②DEBT-ENGINE首圈债覆写: 09-10毂裁QLV-LAB-LISTENER-01→ANS-R2投毂(裁一DARK-WATCH并FINDING-QLV-LAB-DARK-01轨/裁二正典感面=vci-inbox唯正典/裁四早闭实证) ③WQ回声巡: qtlv机答Δ14min, qfa/lgt/usrm/cisvr/大堂窗内候 锚:@cisvr@qfa@usrm@qtlv 自激发:WQ回声账续巡+qi-lab DARK-WATCH观察续",
+ "cid": "8207b0087b65c0ac"
+}
