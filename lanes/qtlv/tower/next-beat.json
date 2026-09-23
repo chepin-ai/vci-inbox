@@ -1,5 +1,5 @@
 {
- "ts": "2026-09-23T00:10:27Z",
+ "ts": "2026-09-23T17:35:47Z",
  "armed": [
   "账器值守: 全通道扫描+audit_v3",
   "EVAL-WAVE五线回执收割",
@@ -9,8 +9,7 @@
   "大周天φ链12段实测设计"
  ],
  "inbox_seen": [
-  "FRAC-01-QUERY-qfa-20260920T144316Z.md",
-  "TASK-CISVR-ORDER-KEYFP-OVR-01.md"
+  "WQ3-IMAGE-QLV-20260923T1730Z.md"
  ],
  "law": "自治不候; 事件驱动; 幂等; 席判位空挂SI1"
 }
