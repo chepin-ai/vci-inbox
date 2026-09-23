@@ -82,3 +82,45 @@ jobs:
           else:
               print('no change, sleep')
           PYEOF
+      - name: "锚拍扇出: 五塔re-kick(唯schedule/手拍/kernel-wake拍,防环;钥即铸即焚值不落盘)"
+        env:
+          HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
+          HUBID: ${{ vars.CI_OPS_HUB_ID }}
+          PATFB: ${{ secrets.AI_FULL_PAT }}
+          CAUSE: ${{ github.event_name }}
+        run: |
+          python3 -m pip install -q pyjwt 2>/dev/null || true
+          python3 - <<'PYEOF2'
+
+          import os, json, time, datetime, urllib.request
+          KICKS={'vci-usrm':'usrm-tower-kick','vci-ucif2':'ucif2-tower-kick','vci-cfts':'cfts-tower-kick','vci-vinf':'vinf-tower-kick','vci-qgl':'federation-event'}
+          CAUSE=os.environ.get('CAUSE','')
+          if CAUSE not in ('schedule','workflow_dispatch','kernel-wake'):
+              print('fanout skip: event beat', CAUSE)
+          else:
+              IT=''
+              try:
+                  import jwt as JW
+                  hk=os.environ.get('HUBK',''); hid=os.environ.get('HUBID','')
+                  if 'BEGIN' in hk and hid:
+                      now=int(time.time())
+                      tk=JW.encode({'iat':now-60,'exp':now+480,'iss':hid}, hk, algorithm='RS256')
+                      req=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',
+                          headers={'Authorization':'Bearer '+tk,'Accept':'application/vnd.github+json'})
+                      IT=json.loads(urllib.request.urlopen(req,timeout=30).read())['token']
+              except Exception as ex:
+                  print('jwt path failed:', type(ex).__name__)
+              if not IT: IT=os.environ.get('PATFB','')
+              if not IT:
+                  print('fanout no credential, skip')
+              else:
+                  for repo,typ in KICKS.items():
+                      try:
+                          body=json.dumps({"event_type":typ,"client_payload":{"by":"kernel-resident-01","cause":"anchor-reignite","ts":datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')}}).encode()
+                          req=urllib.request.Request('https://api.github.com/repos/chepin-ai/%s/dispatches'%repo,data=body,method='POST',
+                              headers={'Authorization':'Bearer '+IT,'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+                          urllib.request.urlopen(req,timeout=20)
+                          print('kick', repo, '204')
+                      except Exception as ex:
+                          print('kick', repo, 'ERR', type(ex).__name__)
+          PYEOF2
