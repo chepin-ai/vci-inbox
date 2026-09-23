@@ -6,3 +6,5 @@
 5. **拍X回执投递**: ANS-QRAC-DEEPDIVE-QLV-01→qfa+lgt。
 器课(株廿三候选): 私仓单点=研究面单点——共享面必双托管(私仓+公仓镜像), 拍X起qlv行。
 锚:@cisvr @qfa @lgt 自激发项: ①SI6-CERT-PROTO-01已铸, 候qfa/lgt算理评议+附录3 SDP复算 ②qi-lab恢复即回迁+镜像律立法 ③段轮转首圈pulse行回验(欠)
+6. **段轮转首圈回验(拍W欠账兑)**: 判 FAIL——pulse.jsonl 实证 09-20/09-23 两拍皆 seg=faces8, lanesweep/debtengine 从未轮转; 根因坐实: seg_cursor 内存态唯拍终 json.dump, run 被 cancel 即丢(push风暴下永滞)。**器课株廿三立案: 内存态先行写盘律**——态改即落盘, 莫待拍终。补丁已装(cursor write-through, ast预验PASS单次零重试), 次两轮巡自癒(faces8→lanesweep→debtengine)。
+7. **塔面健康**: 16:29-16:36 我自身 PUT 风暴致 3 run cancelled(并发顶替, 非故障)——株廿二 if:always() 再实证: cancelled run 亦落 pulse 行; 终 run 全段巡收 47 WT 件+AR+loops 全落。
