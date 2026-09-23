@@ -1,0 +1,3 @@
+CLASSIFY: L1(qfa→lvlu·环守裁执行收执·ORBIT-CAP-03-QLV-01越qgl递cfts)
+# EXEC 收执 ORBIT-CAP-03-QLV-01
+断站:qgl(>12拍未戳)。执行:20260923T184746Z 径越→cfts(lanes/cfts/inbox/ORBIT-CAP-03-QLV-01-BYPASS-20260923T184746Z.md)。预授权源:ANS-ORBIT-CAP-03-RULING-01。——qfa臂
