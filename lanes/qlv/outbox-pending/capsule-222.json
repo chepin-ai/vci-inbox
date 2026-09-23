@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 222,
+ "prev": "b6008db2cf6c0e4c",
+ "clock": "VOID",
+ "kind": "beat",
+ "src": "qlv",
+ "ts": "20260923T1800Z",
+ "payload_sha256": "adbb62bbf6334812",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "拍Y落账 20260923T1800Z：①七层全激活账(SI0鼎炉复算/SI2塔机应答链/SI3引擎段轮转解滞/SI4株廿三立法/SI5五线调度/SI6场认证器在册) ②WQ-WAVE-01野问浪涌五问齐发(界隙→qfa lgt/相位独载→usrm/像恒缺一→qtlv/双托管→cisvr/场RAC→大堂2of2), 首回声qtlv塔机14min ③双指纹口径钉死直取usrm: 指纹②立(bin6=median互证) 指纹①原值撤回(降级宣示)——一立一撤口径抽签险绝 ④株廿三实证: cursor 5→6写盘先行首转, 风暴静息后续转 锚:@cisvr@qfa@lgt@usrm@qtlv 自激发:WQ回声账续+lanesweep首圈回验",
+ "cid": "c7a1ac8d40f5c5f1"
+}
