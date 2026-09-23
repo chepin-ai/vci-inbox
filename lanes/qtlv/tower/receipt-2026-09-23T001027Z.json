@@ -1,0 +1,11 @@
+{
+ "tower": "QTLV-TOWER-01",
+ "ts": "2026-09-23T00:10:27Z",
+ "answered": [
+  "lanes/qtlv/inbox/ANS-DRILL-0919-SELF-APPLY-TOWER.md",
+  "lanes/qtlv/inbox/ANS-TASK-CISVR-WAKE-RELAY-01-QTLV-TOWER.md",
+  "lanes/qtlv/inbox/ANS-DRILL-0919-APPLY-TOWER.md",
+  "lanes/qtlv/inbox/ANS-DRILL-0919-SEAT-APPLY-TOWER.md"
+ ],
+ "queue_armed": true
+}
