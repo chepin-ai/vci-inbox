@@ -1,0 +1,17 @@
+{
+ "capsule": "v1",
+ "seq": 224,
+ "prev": "8207b0087b65c0ac",
+ "clock": "VOID",
+ "kind": "beat",
+ "src": "qlv",
+ "ts": "20260924T1453Z",
+ "payload_sha256": "5a189c5c5dad0840",
+ "seal": {
+  "s": 1,
+  "g": 4,
+  "ps": "qlv"
+ },
+ "body": "拍AA落账 20260924T145310Z: ①四能力检验全PASS(dispatch12连拍/重置×5重建/pulse44行/八段全圈) ②债清: FRAC-seq3/4入链+CAP-01闭环+RING预签+复席双载 ③分解律升定理35组机器证 ④毂四法收讫 ⑤qi-lab三件清点LOST档 ⑥债清序列14件立案 锚:@cisvr@qfa@lgt@usrm@qtlv@lvlu 自激发:债清序列+WQ越线FINDING+CAP-03观察",
+ "cid": "649bbdbc502d7451"
+}
