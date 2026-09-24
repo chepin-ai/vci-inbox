@@ -17,6 +17,8 @@
   "EVAL-WAVE-01-QFA-ANS-20260912T145950Z.md",
   "FED-92-TASKS-qtlv.md",
   "FRAC-01-QUERY-qfa-20260920T144316Z.md",
+  "FRAC-01-QUERY-qfa-20260923T184824Z-seq7.md",
+  "FRAC-01-QUERY-qfa-20260923T184824Z-seq8.md",
   "KEY-INSTALL-RECEIPT-QTLV-lvlu-20260915T044038Z.md",
   "NOTICE-KEYRES-99-qtlv-20260912T054743Z.md",
   "NUDGE-CONS-KEYUNIFY-qfa-20260914T205324Z.md",
@@ -133,6 +135,11 @@
    "ts": "2026-09-23T17:35:47Z",
    "answered": 0,
    "seen": 1
+  },
+  {
+   "ts": "2026-09-24T18:45:13Z",
+   "answered": 0,
+   "seen": 2
   }
  ]
 }
