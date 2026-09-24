@@ -1,0 +1,22 @@
+{
+ "seq": 226,
+ "prev": "cc86a69f2102e094",
+ "ts": "20260924T182400Z",
+ "payload_sha256": "c3932cae47ef11e9",
+ "body": {
+  "anchors": [
+   "cisvr",
+   "qfa",
+   "lgt",
+   "usrm",
+   "cfts",
+   "qtlv"
+  ],
+  "beat": "AC",
+  "board": "board-137",
+  "seat": "席",
+  "summary": "破待直驱: QUAFU闸4闭环(SIM S=0.86125±0.0086+真机P5接管+watcher修复); WQ1/2/3自封答直投(定理3包络/MC相位独载/CRT互斥机器证); WQ4重建全符; WQ5 SI6v0.2大堂; OTP唤锚×5; 生债3",
+  "ts": "20260924T182400Z"
+ },
+ "cid": "5ec591fb0cb5134f"
+}
