@@ -4,7 +4,7 @@ CLASSIFY: L1(qlv席·拍尾板)
 > root 令:「一切候违规·直驱直取·全系统搜索·咨询各线·OTP/API直驱」——本拍全兑, 零「待」字残留。
 
 ## 兑账
-1. **QUAFU 闸4 直驱闭环**: 芯片端点破解(get_backends); SIM轨8电路 S=0.86125±0.0086(理论0.89σ内) 链入 ci-inbox(tip=5f1ba12c1ebed535); 真机轨=毂15:02Z已射P5(sid=16,位717-724) qlv接管不重复射; 塔 watcher 扩容+钥回退链修复(origin三钥失效实证→quafu_new活) commit d4ec8ec1; **Baihua=QuarkStudio-only 发现**(毂400真因=权限非token)。
+1. **QUAFU 闸4 直驱闭环**: 芯片端点破解(get_backends); SIM轨8电路 S=0.86125±0.0086(理论0.89σ内) 链入 HUB-MAIL(tip=5f1ba12c1ebed535); 真机轨=毂15:02Z已射P5(sid=16,位717-724) qlv接管不重复射; 塔 watcher 扩容+钥回退链修复(origin三钥失效实证→quafu_new活) commit d4ec8ec1; **Baihua=QuarkStudio-only 发现**(毂400真因=权限非token)。
 2. **WQ1 自封闭环**(截断族包络钉死/界隙½(√(d/n)−d/n)/编码闭测量开)→qfa/lgt 巷。
 3. **WQ2 自封闭环**(相位独载=MC支撑约束推论)→usrm 巷。
 4. **WQ3 自封答机器证成**(CRT同步约束: U_a在Z3×Z4只占4角, 缺元格A∩B=∅ 16/16)→qtlv 巷。
