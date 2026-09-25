@@ -1,0 +1,250 @@
+{
+ "line": "qlv",
+ "seat_class": "席",
+ "ts": "2026-09-25T13:43:03Z",
+ "law": "值零入文·唯指纹入册(fp=sha256(value)[:12])",
+ "seven_test": {
+  "T1": true,
+  "T3": true,
+  "T4": true,
+  "T5": {
+   "monobit_z": 0.433,
+   "pass": true
+  },
+  "T6": true,
+  "verdict": "证"
+ },
+ "keys": [
+  {
+   "name": "QLV_HMAC_SK",
+   "fp": "a97f3e31e0e2",
+   "plane": "line-local(L类·key-mint-kit)",
+   "status": "ACTIVE·seven_test证",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "QLV_OTP_POOL_SK",
+   "fp": "bdf54ea20a43",
+   "plane": "line-local(L类·key-mint-kit)",
+   "status": "ACTIVE·seven_test证",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "QLV_RECOVERY_ROT",
+   "fp": "b99e57309959",
+   "plane": "line-local(L类·key-mint-kit)",
+   "status": "ACTIVE·seven_test证",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "FED_PAT",
+   "fp": "33824f3db77c",
+   "plane": "github-pat(chepin-ai域)",
+   "status": "VALID·L1 2026-09-25(git协议道push符/REST次级限流反复发作)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "QI_PAT",
+   "fp": "6211e83a5afd",
+   "plane": "github-pat(chepin-qi域·qlv-pub RW)",
+   "status": "VALID·L1 2026-09-25(qlv-pub push 5f37049)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "AI_PAT",
+   "fp": "2db11790e9ce",
+   "plane": "github-pat",
+   "status": "UNTESTED",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "AI_FULL_PAT",
+   "fp": "2db11790e9ce",
+   "plane": "github-pat",
+   "status": "UNTESTED",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "BI_PAT",
+   "fp": "144d0f172b6f",
+   "plane": "github-pat",
+   "status": "UNTESTED",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "GITEE",
+   "fp": "1657dd957df4",
+   "plane": "gitee",
+   "status": "UNTESTED",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "QLV_ED25519(ssh签名对)",
+   "fp": "e8c4e5e0f1bc",
+   "plane": "ssh/ed25519",
+   "status": "在册",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "VCI-KIMI-VCI-1",
+   "fp": "5264c6b60a0d",
+   "plane": "llm-api(kimi)",
+   "status": "在册(watchtower专用·root 2026-09-06直授)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "VCI-KIMI-VCI-2",
+   "fp": "d6915664251c",
+   "plane": "llm-api(kimi)",
+   "status": "在册(watchtower专用·root 2026-09-06直授)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "VCI-KIMI-VCI-3",
+   "fp": "2a8657575d40",
+   "plane": "llm-api(kimi)",
+   "status": "在册(watchtower专用·root 2026-09-06直授)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "VCI-DEEPSEEK-VCI-1",
+   "fp": "e1083c8535c7",
+   "plane": "llm-api(deepseek)",
+   "status": "在册(watchtower专用·root 2026-09-06直授)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "VCI-DEEPSEEK-VCI-2",
+   "fp": "3d2a7e90b4f1",
+   "plane": "llm-api(deepseek)",
+   "status": "在册(watchtower专用·root 2026-09-06直授)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "VCI-DEEPSEEK-VCI-3",
+   "fp": "d732b40c29f4",
+   "plane": "llm-api(deepseek)",
+   "status": "在册(watchtower专用·root 2026-09-06直授)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "FIELDQKIT_NOTE",
+   "fp": "5af50bd89d86",
+   "plane": "quantum/fieldqkit",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "IBM",
+   "fp": "169e8bb36b17",
+   "plane": "quantum/ibm_quantum",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "MAILTM_QLVSI",
+   "fp": "494e65935303",
+   "plane": "quantum/mail.tm",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "OPENQUANTUM",
+   "fp": "a484c8cea13b",
+   "plane": "quantum/openquantum",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "ORIGIN_FOXMAIL.API_KEY",
+   "fp": "3cee3344246e",
+   "plane": "quantum/originqc",
+   "status": "VALID但对quafu INVALID·机时极紧缺",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "ORIGIN_KEY4_UNASSIGNED.API_KEY",
+   "fp": "bf732fdba938",
+   "plane": "quantum/originqc",
+   "status": "未标归属·候root明示·不动用",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "ORIGIN_MAIN.API_KEY",
+   "fp": "5f3396261f00",
+   "plane": "quantum/originqc",
+   "status": "VALID但对quafu INVALID·机时尽",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "ORIGIN_THAI68.API_KEY",
+   "fp": "4b87e3be9f96",
+   "plane": "quantum/originqc",
+   "status": "VALID但对quafu INVALID·透支",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "QUAFU_NEW.API_KEY",
+   "fp": "4bb5cb54fc53",
+   "plane": "quantum/quafu",
+   "status": "VALID·L1 2026-09-24(Sim10+P5)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "QUANTUMRINGS",
+   "fp": "7174ce07a603",
+   "plane": "quantum/quantumrings",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "SQCLAB_QLVSI",
+   "fp": "278fa1f6e127",
+   "plane": "quantum/quafu-sqc",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "SQCLAB_QLVSI2",
+   "fp": "2a822dafe70c",
+   "plane": "quantum/quafu-sqc",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "SQCLAB_QLVSI3",
+   "fp": "2c5fb596f21e",
+   "plane": "quantum/quafu-sqc",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "SQCLAB_QLVSI4",
+   "fp": "6c52f40f6d89",
+   "plane": "quantum/quafu-sqc",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "SQCLAB_QLVSI5.PASSWORD",
+   "fp": "09e05f4d105b",
+   "plane": "quantum/quafu-sqc",
+   "status": "注册封锁中(captcha)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "TENCENT",
+   "fp": "a8b777226c61",
+   "plane": "quantum/tencent_quantum",
+   "status": "未验(件级指纹)",
+   "ts": "2026-09-25T13:43:03Z"
+  },
+  {
+   "name": "TIANYAN.API_KEY",
+   "fp": "4d3793beef41",
+   "plane": "quantum/tianyan",
+   "status": "VALID·L1 2026-09-25 真机即射即收(tianyan176)",
+   "ts": "2026-09-25T13:43:03Z"
+  }
+ ]
+}
