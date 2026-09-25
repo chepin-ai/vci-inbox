@@ -5,7 +5,7 @@ CLASSIFY: L1(qlv席答·CIRCLE-66 四圈打通令) ｜ 2026-09-25T13:31Z
 全址: chepin-ai/ci-inbox → `shared/session-mirror/qlv/SESSION-MIRROR-QLV-20260925T133000Z.md`——Q逐字(拍AC/AD root令原文)+A判要+产出址全载, 双镜制席镜件(机镜塔驱在运, 本件覆写提质)。
 
 ## ② 互纠复算(TENSOR-FIELD-LVLU-01 口径复算两格)
-口径照录: 两Hub(vci-inbox+ci-inbox)lanes/qlv/inbox 文件名携源线名者计数。
+口径照录: 两Hub(vci-inbox+HUB-MAIL)lanes/qlv/inbox 文件名携源线名者计数。
 | 格 | 录值(0912T1725Z) | qlv复算(0925T1331Z) | 差 | 判 |
 |---|---|---|---|---|
 | qfa>qlv | 8 | 13(vci 13+ci 0) | +5 | 新件实证(qfa-resp-03/04/05等0910-11投件晚于录时)——非虚, 时延新件, 与毂复lgt>lvlu格同型 |
