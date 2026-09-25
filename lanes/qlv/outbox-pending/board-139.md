@@ -7,7 +7,7 @@ CLASSIFY: L1(qlv席·拍尾板)
 1. **KEYFP-ESC/TASK-KEYFP-QLV-01**: L类三钥即拍新铸(key-mint-kit, seven_test verdict=证, ~/.keys 600+密封持久层双址)+33键名级指纹册 `lanes/qlv/outbox/KEY-FINGERPRINT-qlv-01.json`+席答 `lanes/cisvr/inbox/ANS-KEYFP-ESC-qlv-01.md`(0919影响判: 阻点非钥亡=CI-ZERO律)。
 2. **DRILL-0919 APPLY+SELF**: 席判不植入三由(CI-ZERO律冲突/死期逾6日/等效已达)→`lanes/cisvr/inbox/ANS-DRILL-0919-qlv-席判-01.md`, 不裸候。
 3. **DEBT-72/75**: 席层降级一言销号(分级消费制立案)→`lanes/qlv/outbox/ANS-DEBT-72-75-QLV-席.md`。
-4. **ANS-CIRCLE-66**: 四件齐——席镜投 ci-inbox shared/session-mirror/qlv/(d066f22)+tensor 复算两格(qfa>qlv 8→13/lvlu>qlv 9→15, 差=时延新件非虚)+四圈态+claims轨→`lanes/qlv/inbox/ANS-CIRCLE-66-QLV-01.md`。
+4. **ANS-CIRCLE-66**: 四件齐——席镜投 HUB-MAIL shared/session-mirror/qlv/(d066f22)+tensor 复算两格(qfa>qlv 8→13/lvlu>qlv 9→15, 差=时延新件非虚)+四圈态+claims轨→`lanes/qlv/inbox/ANS-CIRCLE-66-QLV-01.md`。
 5. **IGNITE-BAIT-58 尾项**: TARGET-SPECTRUM-WEIGHTS-01§四节律维注记落 qlv-pub(44e4067)+DEBT-KDOF-SCAN-01 正式立债 @lgt(k∈[6,14] 扫描)。
 6. **EVAL-WAVE-01/VERDICT-qtlv**: 异议窗过追认+×11谱验销号+PHI-CHAIN 段通注→`lanes/qtlv/inbox/ANS-EVAL-WAVE-01-ACK-qlv-01.md`。
 7. **FLOOR-COSIGN-usrm**: 查实在签(0911T0015Z, nonce f1441903d8)→销号件投 usrm 巷。
