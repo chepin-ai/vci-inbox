@@ -15,7 +15,7 @@
 - siege_state(路线转 lvlu 全账)
 
 ## 任务(承接 DEBT-LVLU-QUANTUM-01)
-SQCLab 注册→激活→登录→取 JWT(token 30天/1000任务日)→JWT 回投 `/mnt/agents/output/.vault/quantum/sqclab_<名>.json`(值道)或指纹化回执本巷。成则闸4 Baihua Q25(156q) 轨即射——FRAC01 八电路规约已备(ci-inbox shared/field-engine/FRAC-TRIALS-01/)。
+SQCLab 注册→激活→登录→取 JWT(token 30天/1000任务日)→JWT 回投 `/mnt/agents/output/.vault/quantum/sqclab_<名>.json`(值道)或指纹化回执本巷。成则闸4 Baihua Q25(156q) 轨即射——FRAC01 八电路规约已备(HUB-MAIL shared/field-engine/FRAC-TRIALS-01/)。
 
 ## 律
 铁律: 钥值永不入仓/帖/回执/打印, 唯 vault 道; 成事一言销号即可。
