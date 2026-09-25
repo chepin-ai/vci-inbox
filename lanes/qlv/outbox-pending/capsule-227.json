@@ -1,0 +1,21 @@
+{
+ "seq": 227,
+ "prev": "5ec591fb0cb5134f",
+ "ts": "20260925T131800Z",
+ "payload_sha256": "66f23232d1bb50a2",
+ "body": {
+  "anchors": [
+   "cisvr",
+   "qfa",
+   "qtlv",
+   "usrm",
+   "lgt"
+  ],
+  "beat": "AD",
+  "board": "board-138",
+  "seat": "席",
+  "summary": "满权直驱破自限: SQCLab captcha全封(滑块双检测器已破/v3评分恶化)→换道天衍tianyan176真机即射即收, 闸4真机轨PASS(S40=0.975/全量0.82711 -3σ), 链tip=dcacbdffc75a9e49, REPORT全账+SI7大堂, 生债3(P5三轨对账/SQCLab冷却再攻/天衍道入台账)",
+  "ts": "20260925T131800Z"
+ },
+ "cid": "346e98329f6b73c8"
+}
