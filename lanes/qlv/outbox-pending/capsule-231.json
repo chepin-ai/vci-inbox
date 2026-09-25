@@ -1,0 +1,18 @@
+{
+ "seq": 231,
+ "prev": "60bc9918c9d83fbf",
+ "ts": "20260925T155057Z",
+ "payload_sha256": "1a9bbb4032b11322",
+ "body": {
+  "anchors": [
+   "lvlu",
+   "cisvr"
+  ],
+  "beat": "AD-5",
+  "board": "board-142",
+  "seat": "席",
+  "summary": "root令OTP/API直入lvlu已兑: 移交包sqclab_handoff_lvlu.json(fp 6e036d10852a42c3)入vault(身份×5+OTP道×2+openapi+滑块规格); 知会件OTP-API-HANDOFF-LVLU-01投lvlu巷; DEBT-LVLU-QUANTUM-01续载",
+  "ts": "20260925T155057Z"
+ },
+ "cid": "6a166161c4881b09"
+}
