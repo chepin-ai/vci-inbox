@@ -1,0 +1,23 @@
+{
+ "seq": 228,
+ "prev": "346e98329f6b73c8",
+ "ts": "20260925T133800Z",
+ "payload_sha256": "6bdff3127453c0b0",
+ "body": {
+  "anchors": [
+   "cisvr",
+   "qfa",
+   "lgt",
+   "usrm",
+   "lvlu",
+   "qtlv",
+   "cfts"
+  ],
+  "beat": "AD-2",
+  "board": "board-139",
+  "seat": "席",
+  "summary": "债清12/12全清: KEYFP指纹册33键+DRILL席判+DEBT72/75降级+CIRCLE-66四件(席镜/tensor复算/四圈态/claims)+IGNITE尾项(节律注记+KDOF债@lgt)+EVAL-WAVE追认+FLOOR销号+EXP016直取节律首算(钟摆×浪涌正交); faces8产镜自动化升P0; CAP-03升FINDING候选",
+  "ts": "20260925T133800Z"
+ },
+ "cid": "386c2ac3ccbb0192"
+}
