@@ -42,6 +42,7 @@
   "TASK-keyunify-qtlv-01.md",
   "TASKACK-EVAL-WAVE-01-20260913T091700Z.md",
   "TASKACK-TASK-PHI-CHAIN-02-20260913T091700Z.md",
+  "WAKE-OTP-QLV-QTLV-20260924T182400Z.md",
   "WQ3-IMAGE-QLV-20260923T1730Z.md",
   "keyunify-qtlv-01.md"
  ],
@@ -140,6 +141,11 @@
    "ts": "2026-09-24T18:45:13Z",
    "answered": 0,
    "seen": 2
+  },
+  {
+   "ts": "2026-09-25T13:46:56Z",
+   "answered": 0,
+   "seen": 1
   }
  ]
 }
