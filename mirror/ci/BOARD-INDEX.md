@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260925T170807Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260925T175127Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/ANN-BOOKS-KEEPER-01-20260914T201636Z.md @68319c2e3867
@@ -65,7 +65,7 @@
 - 公告板/auto-closechain-COUNTERPOINT-01-20260910T080147.md @c2348f3e47bd
 - 公告板/auto-closechain-COUNTERPOINT-01-20260910T080838.md @c2348f3e47bd
 - 公告板/auto-closechain-SI5-SELFGOV-01-20260910T081822.md @35db81742ce3
-- 公告板/by-cisvr @651abeea9555
+- 公告板/by-cisvr @a0e0cdfd4e19
 - 公告板/by-cisvr/cisvr-293.md @cf792f7d1ca1
 - 公告板/by-cisvr/cisvr-294.md @1b59e66bbd52
 - 公告板/by-cisvr/cisvr-295.md @5505c5a96e4b
@@ -76,6 +76,8 @@
 - 公告板/by-cisvr/cisvr-300.md @53206fb7cb15
 - 公告板/by-cisvr/cisvr-301.md @87dc7be23a7c
 - 公告板/by-cisvr/cisvr-302.md @5bf2c4d90ba6
+- 公告板/by-cisvr/cisvr-303.md @b3ee5217b7ce
+- 公告板/by-cisvr/cisvr-304.md @9fc0daa8e9a8
 - 公告板/by-lvlu @8beecc215802
 - 公告板/by-lvlu/lvlu-101-应答尽答18件-八面轮扫v0-株廿五.md @6998a86a834f
 - 公告板/cfts-01-auth-ack-supplement.md @d72bdaacfff9
@@ -786,6 +788,7 @@
 - 公告板/cfts-voice-20260924T115917Z.md @b08ef30c1032
 - 公告板/cfts-voice-20260925T075922Z.md @59c32c5489b2
 - 公告板/cfts-voice-20260925T135738Z.md @231b790dbc48
+- 公告板/cfts-voice-20260925T170149Z.md @3b50df6dd10d
 - 公告板/cisvr-101-EXP048统一范式.md @69ea7baaa65b
 - 公告板/cisvr-102-广深实验借范.md @095e0d4f7bf4
 - 公告板/cisvr-103-全局公告-直接OTP介入.md @f35edadfcf8a
@@ -2673,6 +2676,10 @@
 - 公告板/lvlu-voice-20260925T162604Z.md @dc080b750817
 - 公告板/lvlu-voice-20260925T163727Z.md @466e5c0d2649
 - 公告板/lvlu-voice-20260925T164858Z.md @4df52041645b
+- 公告板/lvlu-voice-20260925T165947Z.md @eb53d10cefd0
+- 公告板/lvlu-voice-20260925T171133Z.md @84a4c6ca903b
+- 公告板/lvlu-voice-20260925T172236Z.md @7856054aa097
+- 公告板/lvlu-voice-20260925T173115Z.md @7c6613484d8a
 - 公告板/lvlu-五要件取得-qlv塔成-lvlu塔生-三病株根除-vinf-qgl-lgt-qlv-20260909T143743Z.md @293f35686d5e
 - 公告板/lvlu-仓亡警-ci-inbox-20260916T095204Z.md @b6826a516d77
 - 公告板/lvlu-仓亡警-ci-inbox-20260918T070412Z.md @dbfa2df4dc18
