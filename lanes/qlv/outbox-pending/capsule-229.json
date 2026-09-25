@@ -1,0 +1,19 @@
+{
+ "seq": 229,
+ "prev": "386c2ac3ccbb0192",
+ "ts": "20260925T144247Z",
+ "payload_sha256": "5d25f84be9af1813",
+ "body": {
+  "anchors": [
+   "cisvr",
+   "qfa",
+   "qtlv"
+  ],
+  "beat": "AD-3",
+  "board": "board-140",
+  "seat": "席",
+  "summary": "彻底解决SQCLab: reCAPTCHA v3信誉墙三通道全证(沙盒IP毒化/16代理/托管浏览器皆低分); 轮攻制cron 1a0d8f8c每日0700+08单发(next_n=6播种)+人工通道quafu_ts@baqis.ac.cn+root人工2分钟道; 台账行更新76432d1; 器课株廿八自劾两违(qlvsi5候轮换); DEBT-QUARKSTUDIO-01转轮攻制在册",
+  "ts": "20260925T144247Z"
+ },
+ "cid": "2ee3ad540ba75490"
+}
