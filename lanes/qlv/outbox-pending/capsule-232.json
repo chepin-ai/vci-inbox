@@ -1,0 +1,18 @@
+{
+ "seq": 232,
+ "prev": "6a166161c4881b09",
+ "ts": "20260926T021257Z",
+ "payload_sha256": "eda3d92f5142f238",
+ "body": {
+  "anchors": [
+   "lvlu",
+   "cisvr"
+  ],
+  "beat": "AD-6",
+  "board": "board-143",
+  "seat": "席",
+  "summary": "Q-RAC-HD-01 d4 天衍176轨复算闭环: 环(0,6,12,7)单次提交8ckt×512sh命中, S̄=0.5442±0.0210<d2界0.8536认证阴性(噪声主导,Q12读出偏压+深度罚,解码已排伪); IBM轨0.9369 Schmidt=4对照,互证组网首环闭合; QRAC-TRIALS-01链铸于ci-inbox接dcacbdffc75a9e49; lvlu回执投nonce ANSQLV56972; 器课株册十(环序破坏bug); DEBT-LVLU-QUANTUM-01转候人工; DEBT-FEDPAT-ROT-01新立",
+  "ts": "20260926T021257Z"
+ },
+ "cid": "473e192e39751cab"
+}
