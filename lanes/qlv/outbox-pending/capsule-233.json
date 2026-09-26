@@ -1,0 +1,19 @@
+{
+ "seq": 233,
+ "prev": "473e192e39751cab",
+ "ts": "20260926T040127Z",
+ "payload_sha256": "829176c46ac74ec3",
+ "body": {
+  "anchors": [
+   "cisvr",
+   "lvlu",
+   "qfa"
+  ],
+  "beat": "AD-7",
+  "board": "board-144",
+  "seat": "席",
+  "summary": "毂面三链机验ALL_PASS自驱代行(cisvr候件): 35行逐行哈希+双律反解实证(qlv sans-prev/lvlu prev入载荷,链续锚=密码学绑定)+交叉锚5/5; QRAC v2-RC候件零机时设计(读出校正512发蒙特卡洛S̄=0.9616±0.0029超d3界,诚实边界:门误差主导校正后~0.6-0.75); 落件CHAIN-VERIFY-QLV-01+QRAC-HD01-D4-V2-RC-SPEC; cisvr巷知会已投",
+  "ts": "20260926T040127Z"
+ },
+ "cid": "f9d11b2170731444"
+}
