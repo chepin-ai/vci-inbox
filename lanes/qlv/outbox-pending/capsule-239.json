@@ -1,0 +1,20 @@
+{
+ "seq": 239,
+ "prev": "0594071c960583c5",
+ "ts": "20260927T203037Z",
+ "payload_sha256": "06b80e3e0c579d72",
+ "body": {
+  "anchors": [
+   "lvlu",
+   "cisvr",
+   "qfa",
+   "lgt"
+  ],
+  "beat": "AD",
+  "board": "board-150",
+  "seat": "席",
+  "summary": "拍AD-13对齐迭代: 必答追踪账ANS-TRACK-QLV-01(9nonce闭环1候应8,黄档1); SPEC v2双语制(联邦对照+谱标律+SI8正文化); 一轮nudge四线(NUDANS22721-24); 生债4",
+  "ts": "20260927T2030Z"
+ },
+ "cid": "3037d2445d56516e"
+}
