@@ -1,0 +1,20 @@
+{
+ "seq": 236,
+ "prev": "4f1a8508ee7238f3",
+ "ts": "20260927T083037Z",
+ "payload_sha256": "7b1bcd519f95069f",
+ "body": {
+  "anchors": [
+   "cisvr",
+   "qfa",
+   "lvlu",
+   "qtlv"
+  ],
+  "beat": "AD",
+  "board": "board-147",
+  "seat": "席",
+  "summary": "拍AD-10自激发续作兑: 器课十四株入qlv-pub(链律迁移双律过渡窗); SI8涌现层草案+首季基线(7d0.500/14d0.645)入SI-GATE-01; 器课十三株戒兑现(332缺件拦删); 生债4",
+  "ts": "20260927T0830Z"
+ },
+ "cid": "5f07eb67c5d714bb"
+}
