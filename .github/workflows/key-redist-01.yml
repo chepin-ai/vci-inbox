@@ -20,7 +20,7 @@ jobs:
           python3 - <<'PYEOF'
           import os,json,urllib.request,urllib.error,base64,datetime,subprocess,hashlib
           KEYS=['LINE_PAT','AI_FULL_PAT','CI_OPS_LINE_KEY','GH_PAT_QI_FULL']
-          TARGETS=['vci-usrm','vci-cfts','vci-qgl','vci-ucif2','vci-vinf','vci-qfa','vci-qlv','vci-lgt','vci-qtlv']
+          TARGETS = ['ci-control','ci-inbox','ci-bus','ci-code','ci-root','ci-library','ci-logs','ci-build','ci-playground','ci-worker-01','ci-worker-02','vci-usrm','vci-cfts','vci-qgl','vci-ucif2','vci-vinf','vci-qfa','vci-qlv','vci-lgt','vci-qtlv','github-repo-cfts','usrm-repo','ucif2-formalization-kernel','vinf-market-kernel','quantum-go-ledger']
           ts=datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
           tok=os.environ.get('LINE_PAT','').strip()
           import nacl.encoding, nacl.public
