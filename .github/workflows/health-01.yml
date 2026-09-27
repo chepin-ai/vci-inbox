@@ -1,0 +1,78 @@
+name: health-01
+# HEALTH-01 · 全联邦每日健康扫描（beat99 EVOLVE-制度化自找403）
+# 28仓:24h失败轨/陈腐仓/零轨仓/归档仓/线inbox积压/ci-control runner死签探针 → receipts/health/
+on:
+  schedule:
+    - cron: '37 5 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: health-01
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: federation health scan
+        env:
+          LINE_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          python3 - <<'PYEOF'
+          import os,json,urllib.request,datetime,collections,subprocess,base64
+          TOK=os.environ['LINE_PAT']; ORG='chepin-ai'
+          def gh(u):
+              r=urllib.request.Request('https://api.github.com'+u,headers={'Authorization':'token '+TOK,'Accept':'application/vnd.github+json','User-Agent':'health-01'})
+              return json.loads(urllib.request.urlopen(r,timeout=30).read().decode())
+          repos=[r['name'] for r in gh('/installation/repositories?per_page=100')['repositories']] if False else ['ci-build','ci-bus','ci-code','ci-control','ci-control-backup','ci-inbox','ci-library','ci-logs','ci-playground','ci-root','ci-worker-01','ci-worker-02','github-repo-cfts','quantum-go-ledger','ucif2-formalization-kernel','usrm-repo','vci-cfts','vci-inbox','vci-lgt','vci-library','vci-qfa','vci-qgl','vci-qlv','vci-qtlv','vci-ucif2','vci-usrm','vci-vinf','vinf-market-kernel']
+          now=datetime.datetime.now(datetime.timezone.utc)
+          day_ago=(now-datetime.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
+          LINES=['usrm','cfts','qgl','ucif2','vinf','qfa','qlv','lgt','qtlv']
+          rep={'ts':now.strftime('%Y-%m-%dT%H:%M:%SZ'),'repos':{},'fail24':{},'stale':[],'zero_wf':[],'archived':[],'line_backlog':{},'ci_control_runner':'unknown'}
+          for n in repos:
+              try: ri=gh(f'/repos/{ORG}/{n}')
+              except Exception as e: rep['repos'][n]='unreachable'; continue
+              d={'pushed_at':ri['pushed_at'],'archived':ri['archived']}
+              try: wf=gh(f"/repos/{ORG}/{n}/actions/workflows?per_page=100"); d['wf']=wf['total_count']
+              except Exception: d['wf']=-1
+              try:
+                  runs=gh(f"/repos/{ORG}/{n}/actions/runs?per_page=30&created=>{day_ago}")
+                  fails=collections.Counter(x['name'] for x in runs.get('workflow_runs',[]) if x['conclusion']=='failure')
+                  if fails: rep['fail24'][n]=dict(fails)
+                  if n=='ci-control' and runs.get('workflow_runs'):
+                      x=runs['workflow_runs'][0]
+                      jj=gh(f"/repos/{ORG}/{n}/actions/runs/{x['id']}/jobs?per_page=5")
+                      rid=jj['jobs'][0].get('runner_id') if jj.get('jobs') else None
+                      rep['ci_control_runner']='ALIVE' if rid else 'DEAD(zero-runner)'
+              except Exception: pass
+              pd=datetime.datetime.fromisoformat(ri['pushed_at'].replace('Z','+00:00'))
+              if (now-pd).days>14: rep['stale'].append(n)
+              if d['wf']==0: rep['zero_wf'].append(n)
+              if ri['archived']: rep['archived'].append(n)
+              rep['repos'][n]=d
+          for L in LINES:
+              try:
+                  tree=gh(f"/repos/{ORG}/vci-{L}/git/trees/main?recursive=1")
+                  cards=[t['path'] for t in tree.get('tree',[]) if t['path'].startswith('inbox/') and ('card' in t['path'].lower() or t['path'].endswith('.md'))]
+                  ans=set(t['path'] for t in tree.get('tree',[]) if '/ans-' in t['path'] or t['path'].startswith('outbox/'))
+                  rep['line_backlog'][L]={'inbox_files':len(cards)}
+              except Exception as e: rep['line_backlog'][L]='unreachable'
+          sev=[]
+          if rep['fail24']: sev.append('fail24:'+','.join(rep['fail24'].keys()))
+          if rep['ci_control_runner'].startswith('DEAD'): sev.append('ci-control-runner-dead')
+          rep['severity']=sev or ['clean']
+          os.makedirs('receipts/health',exist_ok=True)
+          fn='receipts/health/HEALTH-'+now.strftime('%Y%m%d')+'.json'
+          open(fn,'w').write(json.dumps(rep,ensure_ascii=False,indent=1))
+          open('receipts/health/HEALTH-LATEST.json','w').write(json.dumps(rep,ensure_ascii=False,indent=1))
+          subprocess.run(['git','config','user.email','cisvr-hub@ci.local']); subprocess.run(['git','config','user.name','cisvr-hub'])
+          subprocess.run(['git','add','receipts/health'])
+          subprocess.run(['git','commit','-m','HEALTH-01 '+rep['ts']+' sev='+str(len(sev))])
+          r=subprocess.run(['git','push','origin','HEAD:main'],capture_output=True,text=True)
+          print('push:',(r.stdout+r.stderr)[-200:])
+          print(json.dumps({'sev':rep['severity'],'fail24':rep['fail24'],'stale':rep['stale'],'zero_wf':rep['zero_wf'],'archived':rep['archived'],'runner':rep['ci_control_runner']},ensure_ascii=False))
+          PYEOF
