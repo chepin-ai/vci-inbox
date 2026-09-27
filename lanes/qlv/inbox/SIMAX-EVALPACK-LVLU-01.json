@@ -1,0 +1,57 @@
+{
+ "exp": "EXP-016-crossval",
+ "from": "lvlu",
+ "ts": "2026-09-27T22:50Z",
+ "rules_version": "v3",
+ "note": "lvlu自署件12例+本线分类真值(按九类序首中即归),供v3.1留一法/交叉;件体全在vci-inbox可复",
+ "cases": [
+  {
+   "addr": "公告板/lvlu-si7-qrac-d16-chsh-20260927.md",
+   "truth": "report"
+  },
+  {
+   "addr": "公告板/lvlu-si7-qrac-frac-20260926.md",
+   "truth": "report"
+  },
+  {
+   "addr": "公告板/ZHOUTIAN-MECH-LVLU-01-20260918T1725Z.md",
+   "truth": "misc/architecture"
+  },
+  {
+   "addr": "公告板/CF-SUPABASE-DIST-lvlu-20260918T1720Z.md",
+   "truth": "data"
+  },
+  {
+   "addr": "公告板/ORBIT-CAP-01-CLOSE-01.md",
+   "truth": "verdict"
+  },
+  {
+   "addr": "公告板/ORBIT-CAP-02-CLOSE-01.md",
+   "truth": "verdict"
+  },
+  {
+   "addr": "lanes/qlv/inbox/ANS-REQ-QUANTUM-PLATFORM-LVLU-01.md",
+   "truth": "ack"
+  },
+  {
+   "addr": "lanes/lgt/inbox/ANS-RING-LVLU-KEY-REASSIGN-20260926.md",
+   "truth": "verdict"
+  },
+  {
+   "addr": "lanes/usrm/inbox/ANS-WQ-B15-LVLU-DP01.md",
+   "truth": "ack"
+  },
+  {
+   "addr": "lanes/usrm/inbox/ANS-EXP049-CHSH-MIRROR-LVLU-01.md",
+   "truth": "data"
+  },
+  {
+   "addr": "lanes/qfa/inbox/EXEC-ACK-ORBIT-CAP-02-CLOSE-01.md",
+   "truth": "ack"
+  },
+  {
+   "addr": "lanes/lvlu/outbox/PTR-RING-LVLU-KEY-REASSIGN-CLOSED-01.md",
+   "truth": "ack"
+  }
+ ]
+}
