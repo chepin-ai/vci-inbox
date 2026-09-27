@@ -1,0 +1,78 @@
+{
+ "ts": "20260927-202511",
+ "pulses": [
+  {
+   "line": "vinf",
+   "outbox": {
+    "url_sha": "3cd7eace90767a8e",
+    "http": 200,
+    "sha256": "99cb833bd74bc3ba"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "ucif2",
+   "outbox": {
+    "url_sha": "cbcbe09b104c0dcc",
+    "http": 404,
+    "sha256": null
+   },
+   "note": "outbox unreachable"
+  },
+  {
+   "line": "qgl",
+   "outbox": {
+    "url_sha": "76566f585ef77afc",
+    "http": 404,
+    "sha256": null
+   },
+   "note": "outbox unreachable"
+  },
+  {
+   "line": "usrm",
+   "outbox": {
+    "url_sha": "fe49e95146ea4be5",
+    "http": 404,
+    "sha256": null
+   },
+   "note": "outbox unreachable"
+  },
+  {
+   "line": "cfts",
+   "outbox": {
+    "url_sha": "44f5e5e53517d799",
+    "http": 404,
+    "sha256": null
+   },
+   "note": "outbox unreachable"
+  },
+  {
+   "line": "cisvr",
+   "outbox": {
+    "url_sha": "49778655ca1bb5ae",
+    "http": 404,
+    "sha256": null
+   },
+   "note": "outbox unreachable"
+  },
+  {
+   "line": "lgt",
+   "outbox": {
+    "url_sha": "6672d727c9392018",
+    "http": 200,
+    "sha256": "1fc27c6d825ab1e2"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "qlv",
+   "outbox": null,
+   "note": "no url"
+  },
+  {
+   "line": "qfa",
+   "outbox": null,
+   "note": "no url"
+  }
+ ]
+}
