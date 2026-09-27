@@ -36,3 +36,12 @@
 20260927-203948 lgt b240dd8b1eefca9e snapshot ok
 20260927-203948 qlv b240dd8b1eefca9e no url
 20260927-203948 qfa b240dd8b1eefca9e no url
+20260927-205223 vinf bd611fef2b6c1b87 snapshot ok
+20260927-205223 ucif2 bd611fef2b6c1b87 outbox unreachable
+20260927-205223 qgl bd611fef2b6c1b87 outbox unreachable
+20260927-205223 usrm bd611fef2b6c1b87 outbox unreachable
+20260927-205223 cfts bd611fef2b6c1b87 outbox unreachable
+20260927-205223 cisvr bd611fef2b6c1b87 outbox unreachable
+20260927-205223 lgt bd611fef2b6c1b87 snapshot ok
+20260927-205223 qlv bd611fef2b6c1b87 no url
+20260927-205223 qfa bd611fef2b6c1b87 no url
