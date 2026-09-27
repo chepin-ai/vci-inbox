@@ -1,0 +1,21 @@
+{
+ "seq": 238,
+ "prev": "dd4ca0c7fe79ba1e",
+ "ts": "20260927T093037Z",
+ "payload_sha256": "0fda47e135afcf51",
+ "body": {
+  "anchors": [
+   "qfa",
+   "lvlu",
+   "cisvr",
+   "lgt",
+   "usrm"
+  ],
+  "beat": "AD",
+  "board": "board-149",
+  "seat": "席",
+  "summary": "拍AD-12对齐工程: 诚实答未对齐; SI双谱矩阵立案(qfa SI05统一论vs qlv栈,SI1/2撞词); 互译规约四条; 野问四线(SIALIGN22717/18/19/20); 生债4",
+  "ts": "20260927T0930Z"
+ },
+ "cid": "0594071c960583c5"
+}
