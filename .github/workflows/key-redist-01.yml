@@ -1,0 +1,59 @@
+name: KEY-REDIST-01 (活钥谱全域重播·值永不打印·册唯指纹·KEY-CLAIM-01毂法执行件)
+'on':
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  LINE_PAT: ${{ secrets.LINE_PAT }}
+  AI_FULL_PAT: ${{ secrets.AI_FULL_PAT }}
+  CI_OPS_LINE_KEY: ${{ secrets.CI_OPS_LINE_KEY }}
+  GH_PAT_QI_FULL: ${{ secrets.GH_PAT_QI_FULL }}
+jobs:
+  redist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: deps
+        run: pip install -q pynacl
+      - name: redist
+        run: |
+          python3 - <<'PYEOF'
+          import os,json,urllib.request,urllib.error,base64,datetime,subprocess,hashlib
+          KEYS=['LINE_PAT','AI_FULL_PAT','CI_OPS_LINE_KEY','GH_PAT_QI_FULL']
+          TARGETS=['vci-usrm','vci-cfts','vci-qgl','vci-ucif2','vci-vinf','vci-qfa','vci-qlv','vci-lgt','vci-qtlv']
+          ts=datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+          tok=os.environ.get('LINE_PAT','').strip()
+          import nacl.encoding, nacl.public
+          def gh(m,u,body=None):
+              r=urllib.request.Request('https://api.github.com'+u,data=(json.dumps(body).encode() if body is not None else None),
+                  method=m,headers={'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+              try:
+                  resp=urllib.request.urlopen(r,timeout=30); raw=resp.read().decode()
+                  return resp.status,(json.loads(raw) if raw else {})
+              except urllib.error.HTTPError as e: return e.code,{}
+              except Exception as e: return 599,{}
+          res={'ts':ts,'by':'KEY-REDIST-01','fp12':{},'put':{}}
+          for kn in KEYS:
+              v=os.environ.get(kn,'').strip()
+              res['fp12'][kn]=hashlib.sha256(v.encode()).hexdigest()[:12] if v else 'absent'
+          for repo in TARGETS:
+              sk,pk=gh('GET','/repos/chepin-ai/'+repo+'/actions/secrets/public-key')
+              if sk!=200:
+                  res['put'][repo]='pubkey-'+str(sk); continue
+              pub=nacl.public.PublicKey(pk['key'].encode(),nacl.encoding.Base64Encoder())
+              box=nacl.public.SealedBox(pub)
+              per={}
+              for kn in KEYS:
+                  v=os.environ.get(kn,'').strip()
+                  if not v: per[kn]='skip-absent'; continue
+                  enc=base64.b64encode(box.encrypt(v.encode())).decode()
+                  s,_=gh('PUT','/repos/chepin-ai/'+repo+'/actions/secrets/'+kn,{'encrypted_value':enc,'key_id':pk['key_id']})
+                  per[kn]=s
+              res['put'][repo]=per
+          os.makedirs('receipts',exist_ok=True)
+          json.dump(res,open('receipts/KEY-REDIST-'+ts+'.json','w'),ensure_ascii=False,indent=1)
+          subprocess.run(['git','config','user.name','key-redist']); subprocess.run(['git','config','user.email','kr@ci'])
+          subprocess.run(['git','add','receipts']); subprocess.run(['git','commit','-m','KEY-REDIST-01 '+ts],capture_output=True)
+          subprocess.run(['git','pull','--rebase','-q','origin','main'],capture_output=True); subprocess.run(['git','push','-q','origin','HEAD:main'],capture_output=True)
+          print('RESULT',json.dumps(res['put'],ensure_ascii=False))
+          PYEOF
