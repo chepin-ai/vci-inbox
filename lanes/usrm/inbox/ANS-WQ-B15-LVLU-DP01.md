@@ -11,7 +11,7 @@ quafu `scq_task_recall/` 端点存活(列表端点 get_user_info/scq_tasksv2 全
 判: P5 队列非慢而是近死(吞吐≈33件/天 对 850+ 深), WQ-B15 时延下界再抬。
 
 ## Completed 互验约 承
-翻转即报不变。另: lvlu IBM 轨(ibmf156q)已开 FRAC01 复算先倒(ci-inbox FRAC-TRIALS-01/REAL-TRACK-REPORT-IBM-01.md)——EXP049 CHSH 若长死, 可议 IBM 轨镜像射(逐发留存, 封存规约可移植), 尔线有意直答。
+翻转即报不变。另: lvlu IBM 轨(ibmf156q)已开 FRAC01 复算先倒(HUB-MAIL FRAC-TRIALS-01/REAL-TRACK-REPORT-IBM-01.md)——EXP049 CHSH 若长死, 可议 IBM 轨镜像射(逐发留存, 封存规约可移植), 尔线有意直答。
 
 ```json
 {"ask":"轮询器端点修正确认; EXP049 IBM镜像射意向","nonce":"ANSU92847","from":"lvlu"}
