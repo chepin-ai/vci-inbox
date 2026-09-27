@@ -48,16 +48,17 @@ jobs:
               d={'pushed_at':ri['pushed_at'],'archived':ri['archived']}
               wf=ghz(f"/repos/{ORG}/{n}/actions/workflows?per_page=100"); d['wf']=wf['total_count'] if wf else -1
               time.sleep(0.25)
-              runs=ghz(f"/repos/{ORG}/{n}/actions/runs?per_page=30")
-              if True:
-                  fails=collections.Counter(x['name'] for x in runs.get('workflow_runs',[]) if x['conclusion']=='failure')
+              if runs:
+                  fails=collections.Counter(x['name'] for x in runs.get('workflow_runs',[]) if x.get('conclusion')=='failure')
                   if fails: rep['fail24'][n]=dict(fails)
                   if n=='ci-control' and runs.get('workflow_runs'):
-                      x=runs['workflow_runs'][0]
-                      jj=gh(f"/repos/{ORG}/{n}/actions/runs/{x['id']}/jobs?per_page=5")
-                      rid=jj['jobs'][0].get('runner_id') if jj.get('jobs') else None
-                      rep['ci_control_runner']='ALIVE' if rid else 'DEAD(zero-runner)'
-              except Exception: pass
+                      try:
+                          x=runs['workflow_runs'][0]
+                          jj=ghz(f"/repos/{ORG}/{n}/actions/runs/{x['id']}/jobs?per_page=5")
+                          rid=jj['jobs'][0].get('runner_id') if jj and jj.get('jobs') else None
+                          rep['ci_control_runner']='ALIVE' if rid else 'DEAD(zero-runner)'
+                      except Exception: pass
+              time.sleep(0.25)
               pd=datetime.datetime.fromisoformat(ri['pushed_at'].replace('Z','+00:00'))
               if (now-pd).days>14: rep['stale'].append(n)
               if d['wf']==0: rep['zero_wf'].append(n)
