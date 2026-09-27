@@ -23,24 +23,33 @@ jobs:
         run: |
           set -e
           python3 - <<'PYEOF'
-          import os,json,urllib.request,datetime,collections,subprocess,base64
+          import os,json,urllib.request,datetime,collections,subprocess,base64,time
           TOK=os.environ['LINE_PAT']; ORG='chepin-ai'
-          def gh(u):
-              r=urllib.request.Request('https://api.github.com'+u,headers={'Authorization':'token '+TOK,'Accept':'application/vnd.github+json','User-Agent':'health-01'})
-              return json.loads(urllib.request.urlopen(r,timeout=30).read().decode())
+          def gh(u,tries=5):
+              for i in range(tries):
+                  try:
+                      r=urllib.request.Request('https://api.github.com'+u,headers={'Authorization':'token '+TOK,'Accept':'application/vnd.github+json','User-Agent':'health-01'})
+                      return json.loads(urllib.request.urlopen(r,timeout=30).read().decode())
+                  except Exception as e:
+                      time.sleep(0.8*(i+1))
+              raise RuntimeError('gh fail '+u)
+          def ghz(u):
+              try: return gh(u)
+              except Exception: return None
           repos=[r['name'] for r in gh('/installation/repositories?per_page=100')['repositories']] if False else ['ci-build','ci-bus','ci-code','ci-control','ci-control-backup','ci-inbox','ci-library','ci-logs','ci-playground','ci-root','ci-worker-01','ci-worker-02','github-repo-cfts','quantum-go-ledger','ucif2-formalization-kernel','usrm-repo','vci-cfts','vci-inbox','vci-lgt','vci-library','vci-qfa','vci-qgl','vci-qlv','vci-qtlv','vci-ucif2','vci-usrm','vci-vinf','vinf-market-kernel']
           now=datetime.datetime.now(datetime.timezone.utc)
           day_ago=(now-datetime.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
           LINES=['usrm','cfts','qgl','ucif2','vinf','qfa','qlv','lgt','qtlv']
           rep={'ts':now.strftime('%Y-%m-%dT%H:%M:%SZ'),'repos':{},'fail24':{},'stale':[],'zero_wf':[],'archived':[],'line_backlog':{},'ci_control_runner':'unknown'}
           for n in repos:
-              try: ri=gh(f'/repos/{ORG}/{n}')
-              except Exception as e: rep['repos'][n]='unreachable'; continue
+              ri=ghz(f'/repos/{ORG}/{n}')
+              if ri is None: rep['repos'][n]='unreachable'; continue
+              time.sleep(0.25)
               d={'pushed_at':ri['pushed_at'],'archived':ri['archived']}
-              try: wf=gh(f"/repos/{ORG}/{n}/actions/workflows?per_page=100"); d['wf']=wf['total_count']
-              except Exception: d['wf']=-1
-              try:
-                  runs=gh(f"/repos/{ORG}/{n}/actions/runs?per_page=30&created=>{day_ago}")
+              wf=ghz(f"/repos/{ORG}/{n}/actions/workflows?per_page=100"); d['wf']=wf['total_count'] if wf else -1
+              time.sleep(0.25)
+              runs=ghz(f"/repos/{ORG}/{n}/actions/runs?per_page=30")
+              if True:
                   fails=collections.Counter(x['name'] for x in runs.get('workflow_runs',[]) if x['conclusion']=='failure')
                   if fails: rep['fail24'][n]=dict(fails)
                   if n=='ci-control' and runs.get('workflow_runs'):
@@ -56,7 +65,7 @@ jobs:
               rep['repos'][n]=d
           for L in LINES:
               try:
-                  tree=gh(f"/repos/{ORG}/vci-{L}/git/trees/main?recursive=1")
+                  tree=gh(f"/repos/{ORG}/vci-{L}/git/trees/main?recursive=1"); time.sleep(0.3)
                   cards=[t['path'] for t in tree.get('tree',[]) if t['path'].startswith('inbox/') and ('card' in t['path'].lower() or t['path'].endswith('.md'))]
                   ans=set(t['path'] for t in tree.get('tree',[]) if '/ans-' in t['path'] or t['path'].startswith('outbox/'))
                   rep['line_backlog'][L]={'inbox_files':len(cards)}
