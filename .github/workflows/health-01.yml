@@ -48,6 +48,7 @@ jobs:
               d={'pushed_at':ri['pushed_at'],'archived':ri['archived']}
               wf=ghz(f"/repos/{ORG}/{n}/actions/workflows?per_page=100"); d['wf']=wf['total_count'] if wf else -1
               time.sleep(0.25)
+              runs=ghz(f"/repos/{ORG}/{n}/actions/runs?per_page=30")
               if runs:
                   fails=collections.Counter(x['name'] for x in runs.get('workflow_runs',[]) if x.get('conclusion')=='failure')
                   if fails: rep['fail24'][n]=dict(fails)
