@@ -1,0 +1,42 @@
+name: backup-mirror-01
+# BACKUP-REVIVAL-01 · 毂控镜像复活（执行仓=vci-inbox；ci-control Actions零runner硬拒F9,迁徙至此）
+# ci-control main → ci-control-backup main 全镜像；每日0437Z + 手动。
+on:
+  schedule:
+    - cron: '37 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: backup-mirror
+  cancel-in-progress: false
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: mirror ci-control to ci-control-backup
+        env:
+          LINE_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          LOG=/tmp/mirror.log; : > $LOG
+          {
+          echo "== clone ci-control $(date -u +%FT%TZ)"
+          git clone --bare https://x-access-token:${LINE_PAT}@github.com/chepin-ai/ci-control.git /tmp/mir 2>&1 | sed 's/x-access-token:[^@]*@/x-access-token:***@/g'
+          cd /tmp/mir
+          echo "== push mirror"
+          git push https://x-access-token:${LINE_PAT}@github.com/chepin-ai/ci-control-backup.git HEAD:refs/heads/main --force --verbose 2>&1 | sed 's/x-access-token:[^@]*@/x-access-token:***@/g'
+          echo "push_rc=$?"
+          echo "== tip: $(git rev-parse --short HEAD)"
+          } >> $LOG 2>&1
+          git clone --depth=1 https://x-access-token:${GITHUB_TOKEN}@github.com/chepin-ai/vci-inbox.git /tmp/self 2>/dev/null
+          cd /tmp/self
+          git config user.email "cisvr-hub@ci.local"; git config user.name "cisvr-hub"
+          mkdir -p receipts
+          cp $LOG receipts/backup-mirror-last.log
+          git add receipts/backup-mirror-last.log
+          git commit -m "mirror log $(date -u +%FT%TZ)" >/dev/null 2>&1 || echo "no-change"
+          git push origin HEAD:main 2>&1 | sed 's/x-access-token:[^@]*@/x-access-token:***@/g' | tail -2
+          tail -12 $LOG
