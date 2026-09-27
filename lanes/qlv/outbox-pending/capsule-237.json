@@ -1,0 +1,20 @@
+{
+ "seq": 237,
+ "prev": "5f07eb67c5d714bb",
+ "ts": "20260927T090037Z",
+ "payload_sha256": "6555831af6328f46",
+ "body": {
+  "anchors": [
+   "lvlu",
+   "cisvr",
+   "qfa",
+   "qtlv"
+  ],
+  "beat": "AD",
+  "board": "board-148",
+  "seat": "席",
+  "summary": "拍AD-11全面进化首拍: v3-ZNE轨自治铸讫(双模型夹逼0.84-0.93骑界,冻结待发); SI-GATE v3九层ALL_PASS(SI8候选闸入); 自限解除首单; 大堂AD-11帖帽2/2; 生债3",
+  "ts": "20260927T0900Z"
+ },
+ "cid": "dd4ca0c7fe79ba1e"
+}
