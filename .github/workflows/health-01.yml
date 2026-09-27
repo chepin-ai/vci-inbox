@@ -82,8 +82,17 @@ jobs:
           open('receipts/health/HEALTH-LATEST.json','w').write(json.dumps(rep,ensure_ascii=False,indent=1))
           subprocess.run(['git','config','user.email','cisvr-hub@ci.local']); subprocess.run(['git','config','user.name','cisvr-hub'])
           subprocess.run(['git','add','receipts/health'])
-          subprocess.run(['git','commit','-m','HEALTH-01 '+rep['ts']+' sev='+str(len(sev))])
-          r=subprocess.run(['git','push','origin','HEAD:main'],capture_output=True,text=True)
-          print('push:',(r.stdout+r.stderr)[-200:])
+          cm=subprocess.run(['git','commit','-m','HEALTH-01 '+rep['ts']+' sev='+str(len(sev))],capture_output=True,text=True)
+          push='skip(no-change)'
+          if cm.returncode==0:
+              for i in range(4):
+                  subprocess.run(['git','fetch','-q','origin','main'],capture_output=True)
+                  rb=subprocess.run(['git','rebase','origin/main'],capture_output=True,text=True)
+                  q=subprocess.run(['git','push','-q','origin','HEAD:main'],capture_output=True,text=True)
+                  if q.returncode==0: push='ok'; break
+                  if rb.returncode!=0: subprocess.run(['git','rebase','--abort'],capture_output=True)
+                  time.sleep(2+i*2)
+              else: push='fail:'+q.stderr[:80]
+          print('push:',push)
           print(json.dumps({'sev':rep['severity'],'fail24':rep['fail24'],'stale':rep['stale'],'zero_wf':rep['zero_wf'],'archived':rep['archived'],'runner':rep['ci_control_runner']},ensure_ascii=False))
           PYEOF
