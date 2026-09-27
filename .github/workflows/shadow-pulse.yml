@@ -14,47 +14,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 脉冲
-        env:
-          LINE: ci-inbox
-          HUB_KEY: ${{ secrets.CI_OPS_HUB_KEY }}
-          HUB_ID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
           python3 - <<'PYEOF'
-          import json, os, urllib.request, datetime, hashlib, base64
-          import subprocess
-          subprocess.run(['pip','install','-q','pyjwt'],check=False)
-          import jwt,time
-          now=int(time.time())
-          tk=jwt.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUB_ID']},os.environ['HUB_KEY'],algorithm='RS256')
-          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+tk,'Accept':'application/vnd.github+json'})
-          IT=json.load(urllib.request.urlopen(rq))['token']
-          line=os.environ['LINE']; ts=datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')
-          UA={'User-Agent':'shadow-pulse','Accept':'application/vnd.github+json','Authorization':'token '+IT}
+          import json, os, urllib.request, datetime, hashlib
+          # SHADOW-REVIVAL-01 枢/PIVOT-01代修: ①注册表迁址追从(ci-control私仓化→vci-inbox公面正本registry.json)
+          # ②sessions→lines新schema ③零密钥化(公仓raw匿名可达,App令牌退役,合本仓零密钥铁律) ④单拍全线织(原仅单线空转)
+          ts=datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')
+          UA={'User-Agent':'shadow-pulse'}
           def get(u):
               req=urllib.request.Request(u,headers=UA)
               try:
                   with urllib.request.urlopen(req,timeout=20) as r: return r.status,r.read()
               except Exception as e: return getattr(e,'code',0),b''
-          s,raw=get('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/outboxes.json')
-          if s==200: raw=base64.b64decode(json.loads(raw)['content'])
-          s3,raw3=get('https://api.github.com/repos/chepin-ai/ci-control/contents/bridge/PUB-LINT-RULES.json')
-          CM=json.loads(base64.b64decode(json.loads(raw3)['content']).decode())['codename'] if s3==200 else {}
-          line_pub=CM.get(line,'〈LINE〉')
-          rec={'ts':ts,'line':line_pub,'outbox':None,'note':''}
+          s,raw=get('https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/registry.json')
+          recs=[]
           if s==200:
-              url=(json.loads(raw).get('sessions',{}).get(line) or {}).get('url')
-              if url:
-                  s2,body=get(url)
-                  rec['outbox']={'url_sha':hashlib.sha256(url.encode()).hexdigest()[:16],'http':s2,'sha256':hashlib.sha256(body).hexdigest()[:16] if s2==200 else None}
-                  rec['note']='snapshot ok' if s2==200 else 'outbox unreachable'
-              else: rec['note']='line not registered in outboxes.json'
-          else: rec['note']='registry unreachable'
+              for line,ent in (json.loads(raw).get('lines') or {}).items():
+                  url=(ent or {}).get('url'); rec={'line':line,'outbox':None,'note':''}
+                  if url:
+                      s2,body=get(url)
+                      rec['outbox']={'url_sha':hashlib.sha256(url.encode()).hexdigest()[:16],'http':s2,
+                                     'sha256':hashlib.sha256(body).hexdigest()[:16] if s2==200 else None}
+                      rec['note']='snapshot ok' if s2==200 else 'outbox unreachable'
+                  else: rec['note']='no url'
+                  recs.append(rec)
+          else: recs=[{'line':None,'outbox':None,'note':'registry unreachable http=%s'%s}]
+          rec={'ts':ts,'pulses':recs}
           os.makedirs('weave/pulse',exist_ok=True)
           p='weave/pulse/%s.json'%ts
           open(p,'w').write(json.dumps(rec,ensure_ascii=False,indent=1))
           h=hashlib.sha256(open(p,'rb').read()).hexdigest()[:16]
-          with open('pulse.log','a') as f: f.write('%s %s %s %s\n'%(ts,line_pub,h,rec['note']))
-          print(json.dumps(rec,ensure_ascii=False))
+          with open('pulse.log','a') as f:
+              for r in recs: f.write('%s %s %s %s\n'%(ts,r['line'],h,r['note']))
+          print(json.dumps(rec,ensure_ascii=False)[:1200])
           PYEOF
       - name: 自提交成链
         run: |
