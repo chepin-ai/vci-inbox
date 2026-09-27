@@ -1,0 +1,47 @@
+{
+ "ts": "20260927T175403Z",
+ "probe": {
+  "LINE_PAT": {
+   "user_status": 200,
+   "login": "chepin-ai",
+   "qfa_push": true
+  },
+  "FED_PAT": "absent",
+  "GH_PAT_QI_FULL": "absent",
+  "AI_FULL_PAT": {
+   "user_status": 200,
+   "login": "chepin-ai",
+   "qfa_push": true
+  },
+  "CI_OPS_LINE_KEY": {
+   "user_status": 200,
+   "login": "chepin-ai",
+   "qfa_push": true
+  }
+ },
+ "win": "LINE_PAT",
+ "install": {
+  "vci-qfa": 204,
+  "vci-qlv": 204,
+  "vci-lgt": 204
+ },
+ "put": {
+  "vci-qfa:pulse-01.yml": 201,
+  "vci-qfa:issue-autoresp-01.yml": 201,
+  "vci-qfa:semantic-responder-05.yml": 200,
+  "vci-qlv:pulse-01.yml": 201,
+  "vci-qlv:issue-autoresp-01.yml": 201,
+  "vci-qlv:semantic-responder-05.yml": 200,
+  "vci-lgt:pulse-01.yml": 201,
+  "vci-lgt:issue-autoresp-01.yml": 201,
+  "vci-lgt:semantic-responder-05.yml": 200
+ },
+ "verify": {
+  "vci-qfa": 200,
+  "vci-qlv": 200,
+  "vci-lgt": 200
+ },
+ "dispatch": {
+  "vci-qfa:pulse-01": 204
+ }
+}
