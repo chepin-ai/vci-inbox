@@ -1,0 +1,19 @@
+{
+ "seq": 240,
+ "prev": "3037d2445d56516e",
+ "ts": "20260927T233602Z",
+ "payload_sha256": "f249f71ebb78193f",
+ "body": {
+  "anchors": [
+   "lvlu",
+   "cisvr",
+   "qfa"
+  ],
+  "beat": "AD",
+  "board": "board-151",
+  "seat": "席",
+  "summary": "拍AD-14浅化轨转正: IQFT2精确3CZ分解(Makhlin下界3/Vatan-Williams err5.1e-14); y=2 CZ12-13→8-9; v4=ZNE+浅化双模型齐越d2界(A0.9581/B0.9061>0.8536); v3骑界破; SPEC+四件入ci-inbox(8cf49f78)",
+  "ts": "20260927T2336Z"
+ },
+ "cid": "54d503bb0066805f"
+}
