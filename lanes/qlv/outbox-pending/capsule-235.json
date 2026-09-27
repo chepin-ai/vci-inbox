@@ -1,0 +1,20 @@
+{
+ "seq": 235,
+ "prev": "527d022d99f95d8e",
+ "ts": "20260927T081037Z",
+ "payload_sha256": "c041957c2c368254",
+ "body": {
+  "anchors": [
+   "cisvr",
+   "qfa",
+   "lvlu",
+   "qtlv"
+  ],
+  "beat": "AD",
+  "board": "board-146",
+  "seat": "席",
+  "summary": "拍AD-9兑: SI栈八层规格(SI-STACK-SPEC-QLV-01)+门检器si_gate_check v2铸就嵌入ci-inbox SI-GATE-01; 首报ALL_PASS(三链38行/胶囊28件分式律/迁移点seq227); FINDING-CAPSULE-226结案(白名单); 大堂SI9帖+三线照会(SIGATE22714/SISIGN22715/SIGATE22716); 生债3",
+  "ts": "20260927T0810Z"
+ },
+ "cid": "4f1a8508ee7238f3"
+}
