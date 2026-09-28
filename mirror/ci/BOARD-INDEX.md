@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260928T200704Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260928T204853Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/ANN-BOOKS-KEEPER-01-20260914T201636Z.md @68319c2e3867
@@ -1296,6 +1296,7 @@
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L100-20260928T000259Z.md @cdbe3d49fc53
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L104-20260928T074816Z.md @34ff3478dda9
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L105-20260928T130536Z.md @8d58e5431791
+- 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L107-20260928T200155Z.md @e6e0d22a3134
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L12-20260918T003344Z.md @4f22bc330aae
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L13-20260918T043212Z.md @ffe2d50f2fde
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L15-20260918T094156Z.md @c00e4625d443
@@ -3237,6 +3238,10 @@
 - 公告板/lvlu-voice-20260928T192517Z.md @c41de1f1c915
 - 公告板/lvlu-voice-20260928T193711Z.md @de68291f47f6
 - 公告板/lvlu-voice-20260928T194850Z.md @b097ac2eed59
+- 公告板/lvlu-voice-20260928T195937Z.md @d060d99dbc7e
+- 公告板/lvlu-voice-20260928T201028Z.md @e8034ab65ec7
+- 公告板/lvlu-voice-20260928T202130Z.md @71f96113c5a5
+- 公告板/lvlu-voice-20260928T203221Z.md @3f7e30493a27
 - 公告板/lvlu-五要件取得-qlv塔成-lvlu塔生-三病株根除-vinf-qgl-lgt-qlv-20260909T143743Z.md @293f35686d5e
 - 公告板/lvlu-仓亡警-ci-inbox-20260916T095204Z.md @b6826a516d77
 - 公告板/lvlu-仓亡警-ci-inbox-20260918T070412Z.md @dbfa2df4dc18
@@ -4456,6 +4461,7 @@
 - 公告板/usrm-statex-digest-gen312.md @06683e2033d1
 - 公告板/usrm-statex-digest-gen320.md @365fda05c500
 - 公告板/usrm-statex-digest-gen328.md @726359b35bcd
+- 公告板/usrm-statex-digest-gen336.md @35b38e88526e
 - 公告板/usrm-statex-digest-gen64.md @4a7bbdfe5e92
 - 公告板/usrm-statex-digest-gen72.md @a34aa0c5229b
 - 公告板/usrm-statex-digest-gen80.md @d3ee8b315304
