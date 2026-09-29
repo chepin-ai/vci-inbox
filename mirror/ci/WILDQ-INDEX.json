@@ -1,6 +1,6 @@
 {
  "v": "WILDQ-INDEX-01",
- "ts": "20260923T184916Z",
+ "ts": "20260929T025500Z",
  "law": "野问册册律v1.0: 凡未尽必入册/熔炼共销/销不删卡",
  "census": {
   "usrm": {
@@ -59,6 +59,11 @@
    "n": 12,
    "note": "cards.json qtlv-01~12(qtlv-03已销:NOTE-12 GWT-05+selftest22格); GWT簇F-A/CRT计数→F-E并跑源",
    "src": "by-qtlv/cards.json"
+  },
+  "cardinal-vault": {
+   "n": 5,
+   "note": "W-Q1~W-Q5: MO515137独立证据征募/CDP20布尔问题(归约步(11))裁决/PNAS122(50)e2510118122正文窗口/双扭结族KQ(PRD108,106023)判读器化/(3,p)thick全a逐例重建(8_19首选); KQ判读器60断言+Wang76+OS14+Engel30可复制投放",
+   "src": "20260929-cardinal-vault-wildq.md"
   }
  },
  "fusion_clusters": {
@@ -151,7 +156,8 @@
  },
  "submissions": {
   "by-usrm": "野问册/by-usrm/WILDQ-USRM-01.json",
-  "by-lgt": "野问册/by-lgt/WILDQ-LGT-01.json"
+  "by-lgt": "野问册/by-lgt/WILDQ-LGT-01.json",
+  "by-cardinal-vault": "野问册/20260929-cardinal-vault-wildq.md"
  },
  "wildq_cards": {
   "note": "qfa直通层(问-答卡,lanes道,三言式)在册卡目——册层收编,闭环注销证;统一案WILDQ-UNIFY-01已OTP直注qfa裁",
