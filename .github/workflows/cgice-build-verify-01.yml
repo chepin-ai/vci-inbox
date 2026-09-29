@@ -23,20 +23,23 @@ jobs:
         run: |
           mkdir -p _build && cd _build
           echo "leanprover/lean4:v4.35.0-rc2" > lean-toolchain
-          printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "8d7d0c463a379a6fcad593782d5d8a250a767fc2"\n' > lakefile.toml
+          printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "9fe29c4b379922f49446b28b76cbe4fce041c8b3"\n' > lakefile.toml
           cp ../library/cgice/Spacetime_Formal_Proof_V20.lean .
           ls -la
-      - name: resolve mathlib + cache (v3 toolchain对齐mathlib pin)
+      - name: resolve mathlib + cache-or-sourcebuild (v9 终局实验)
         run: |
           cd _build
           lake update
           cp .lake/packages/mathlib/lean-toolchain lean-toolchain
           echo "aligned toolchain: $(cat lean-toolchain)"
           elan toolchain install "$(cat lean-toolchain)" || true
-          lake exe cache get
-          echo "=== cache verify ==="
-          ls .lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Analysis/Calculus/Deriv/ | head -5
-          test -f .lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Analysis/Calculus/Deriv/MeanValue.olean && echo CACHE_OK || echo CACHE_MISSING
+          lake exe cache get || true
+          if test -f .lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Analysis/Calculus/Deriv/MeanValue.olean; then
+            echo CACHE_OK
+          else
+            echo "CACHE_MISSING → 源码构建import闭包(终局实验·所报pin本体)"
+            time lake build Mathlib.Analysis.Calculus.Deriv.MeanValue Mathlib.Analysis.Calculus.MeanValue Mathlib.Analysis.SpecialFunctions.Log.Deriv Mathlib.Analysis.SpecialFunctions.Pow.Real Mathlib.Probability.Distributions.Gaussian.Real Mathlib.LinearAlgebra.Matrix.Trace Mathlib.LinearAlgebra.BilinearForm.Basic Mathlib.LinearAlgebra.Matrix.Notation Mathlib.Tactic Mathlib.Topology.Order.IntermediateValue
+          fi
       - name: compile (the verdict step)
         id: comp
         run: |
