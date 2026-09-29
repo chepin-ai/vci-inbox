@@ -1,0 +1,2415 @@
+Article
+
+Not peer-reviewed version
+
+Geometric–Information Relaxation and
+Derivative-Coupled Three-Stage
+Cosmology on SL(6,C)
+Hui Xu *
+Posted Date: 23 September 2026
+Keywords: geometric diffusion; cosmological emergence; entropy dissipation; dark energy; formal
+mathematics; SL(6,C)
+
+Preprints.org is a free multidisciplinary platform providing preprint service
+that is dedicated to making early versions of research outputs permanently
+available and citable. Preprints posted at Preprints.org appear in Web of
+Science, Crossref, Google Scholar, Scilit, Europe PMC, OpenAlex.
+Copyright: This open access article is published under a Creative Commons CC BY 4.0
+license, which permit the free download, distribution, and reuse, provided that the author
+and preprint are cited in any reuse.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+
+Disclaimer/Publisher’s Note: The statements, opinions, and data contained in all publications are solely those of the individual author(s) and
+contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to people or property resulting
+from any ideas, methods, instructions, or products referred to in the content.
+
+Article
+
+Geometric–Information Relaxation and
+Derivative-Coupled Three-Stage Cosmology on
+SL(6,C)
+Xu Hui
+China Academy of Urban Planning and Design (CAUPD), Beijing, China; flyyinghui@gmail.com
+
+Abstract
+We develop a unified effective framework for three cosmological regimes associated with geometric–
+information dynamics on the 35-dimensional Riemannian symmetric space SL(6, C)/SU(6). Statistical
+localization is characterized by distinct spectral and confined-diffusion estimates, while the physical
+sector is formulated on an assumed four-dimensional Lorentzian spacetime. A derivative coupling
+between a Fisher-geometry kinetic invariant X and an order parameter φ yields an effective kinetic
+coefficient A( φ) = Z − γφ2 /2 and a field-dependent mass m2eff = m20 + γX. The coupled Euler–
+Lagrange equations imply total stress-energy conservation and a calculable internal energy exchange
+along a single proper-time trajectory. Under explicit regularity, decay, and monotonicity hypotheses,
+the effective mass undergoes a unique critical crossing. Early accelerated expansion requires potential
+domination, whereas a tachyonic instability alone does not establish reheating, particle production,
+or selection of a particular SU(6) matrix vacuum. For convergent trajectories in the healthy kinetic
+m4
+
+domain, a positive residual vacuum density Λeff = U∞ − 4Λ0 implies w → −1 and conditional
+late-time domination over diluting matter. The nonzero Ornstein–Uhlenbeck covariance floor does
+not determine this vacuum energy. Complementary Lean proof bodies encode scalar conservation,
+constraint propagation, conditional crossing, and late-time limits. The framework provides conditional
+consistency results rather than a first-principles derivation of Lorentzian spacetime or a complete
+cosmological history.
+Keywords: geometric diffusion; cosmological emergence; entropy dissipation; dark energy; formal
+mathematics; SL(6,C)
+MSC: 53C35; 58J50; 53C21; 60H10; 22E46
+
+1. Scope and Mathematical Status
+The central question is what geometric diffusion and information dissipation actually constrain in
+a proposed three-stage cosmology. The effective stages considered here are early statistical localization,
+intermediate matter and dark-matter formation, and late dark-energy domination. A stage name is an
+interpretation to be tested against a physical response model. It is not a conclusion obtained merely by
+counting dimensions or assigning a name to a proposition.
+General relativity has a dynamical metric. The additional task here is to construct a map from a
+configuration-space probability law to a physical metric and stress-energy tensor. Neither the selection
+of SL(6,C) among possible symmetry groups nor this response map is established. The mathematical
+results below concern specified objects, not a complete derivation of spacetime.
+We use one evidence vocabulary throughout:
+Label
+S
+A
+M
+C
+O
+
+Meaning
+A concrete statement with a Lean proof body supplied in the accompanying source; compilation verified locally under the pinned build (see Appendix A)
+An analytic derivation or an external mathematical result with stated applicability conditions
+A model definition, constitutive assumption or approximation
+A chosen calibration or illustrative numerical input
+An open construction or physical mechanism
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+2 of 29
+
+The labels distinguish epistemic roles and are not an ordering of confidence. A conditional
+statement marked S still depends on all its explicit hypotheses. S means a supplied proof body, not a
+newly checked theorem, and it does not promote an effective-action assumption M into a derived law.
+1.1. Physical Motivation and the Meaning of Emergence
+The programme asks whether one statistical geometry can organize three otherwise separate
+questions: why geometric fluctuations become controlled, how persistent massive excitations form,
+and why a slowly varying energy component can dominate after matter dilutes. We retain this
+motivation. The common objects are the probability law on geometric configurations, its moments,
+compact internal charges, and their free-energy balance. They describe distinct aspects of a candidate
+underlying dynamics; none alone is a physical spacetime metric.
+Here “emergence” has three operational meanings: localization is convergence of a probability
+law at specified noise and tolerance; condensation is the appearance of stable nonzero order-parameter
+minima and populated massive modes; late domination is an inequality among physical densities on
+an expanding solution. A viable interpretation must relate these events on one clock and conserve
+total stress energy through their transitions. Spatial dimensionality and Lorentzian signature are a
+further construction, not synonyms for these three events.
+SL(6,C) is a candidate symmetry, not a uniquely selected group. Its compact real form and
+rank-five Cartan sector offer concrete representation and fluctuation calculations [1], but neither a
+three-generation particle spectrum nor a four-dimensional metric follows from these counts. Eldan’s
+localization method [2] motivates studying concentration; it is not an identification of that stochastic
+process with the autonomous Langevin process used here. This distinction also prevents transferring
+Euclidean dimension-dependent bounds to XE without a theorem.
+Three-stage overview. Early statistical localization controls a probability law under the stated
+curvature, confinement and initial-law hypotheses. The common effective action can concurrently
+support accelerated expansion if its potential dominates its physical kinetic energy. An intermediate
+origin instability is triggered when the evolving Fisher kinetic energy crosses a mass threshold; reaching
+a condensate, reheating and forming stable matter are additional dynamical steps. Late acceleration is
+possible when the same action approaches a healthy vacuum of positive energy and other components
+dilute. These regimes share field equations and proper time, but their occurrence and ordering are not
+automatic. CGICE-1 through CGICE-4 describe concurrent stochastic, moment, internal-transport and
+dissipative structures, not equations switched on at separate epochs. The link from their stochastic
+law to the physical fields remains a coarse-graining construction. None of these regimes is a proved
+change of spacetime dimension or signature.
+
+2. Geometry, Operators and Normalization
+2.1. Different Spatial Categories
+Object
+SL(6,C)
+C6
+XE = SL(6,C)/SU(6)
+XP = SL(6,C)/SU(3,3)
+T ∗ XE
+
+Real dimension
+70
+12
+35
+35
+70
+
+Role
+Candidate real Lie group of symmetries
+Fundamental complex representation; a geometric base requires separate construction
+Complete, noncompact, contractible Riemannian symmetric space
+Separate indefinite-metric quotient
+Canonical cotangent phase space for a separately specified Hamiltonian system
+
+All positive diffusion, elliptic spectral and Gibbs arguments in this paper refer to XE . They do not
+transfer automatically to XP . The real Lie-algebra Cartan decomposition is
+sl(6, C)R = su(6) ⊕ p.
+This is a vector-space decomposition of Lie algebras, not an additive decomposition of groups.
+A physical four-dimensional Lorentzian section requires independent metric, reality and causality
+conditions.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+3 of 29
+
+2.2. Restricted Roots and Three Different Rates
+For A5 , the ordinary Weyl vector and restricted half-sum are
+ρ alg = 12 (5, 3, 1, −1, −3, −5),
+
+ρres = 2ρ alg .
+
+Root multiplicity two gives Euclidean squared norms 35/2 and 70. Under the dual of the metric
+cTr, squared norms divide by c. Thus c=2 gives
+
+∥ρres ∥2 = 35,
+
+∥ρ alg ∥2 = 35/4.
+
+The finite calculation is S (CGICECore.restricted_threshold_35). Identifying the restricted
+norm with the free Laplacian spectral bottom requires the Riemannian symmetric-space spectral
+theorem and its metric convention (A).
+Let D>0 and define
+L = D∆ − ∇Vcon f · ∇,
+
+δL =
+
+inf
+
+µ = Z −1 e−Vcon f /D dvol,
+D
+
+R f ̸ =0
+f dµ=0
+
+R
+|∇ f |2 dµ
+R
+.
+f 2 dµ
+
+The infimum is over an appropriate closed Dirichlet-form domain. The Witten operator is
+WV (h) = −h2 ∆ + |∇V |2 − h∆V.
+For compatible closed operators, Gibbs normalization and the corresponding unitary transformation, the nonzero gaps obey
+δL =
+
+δW (2D, V )
+.
+4D
+
+A coefficient identity alone does not establish these operator conditions.
+The third quantity, rperp = 35/3, is an independent matching definition. It is not the gap of
+a coordinate of a three-dimensional OU process divided by three. As in the companion CGICE
+source, transverse_rate_of_matching proves only the arithmetic consequence rperp = rparallel /3; the
+matching premise itself is a separate model input [M].
+Quantity
+Value or condition
+Interpretation
+Free Laplacian bottom
+35 at c = 2
+Geometric spectral baseline
+Radial diffusion lower bound a − 6D, with a > 6D Sufficient positive relaxation estimate
+Matching rate rperp
+35/3
+M; requires an application-specific mapping
+Reference information time
+6π/35
+Dimensionless; not fixed to Planck time
+Signed RG parameter
+−36/35
+M in a specified beta function
+RG fixed-point square
+12π 2 /35
+Conditional algebraic result
+g2TC (D1 coupling square)
+24π 2 /35
+Independent matching convention
+At a = 6D the displayed sufficient bound loses strict positivity. This does not prove that the true
+spectral gap vanishes or that a physical phase transition occurs.
+2.3. Relation to localization literature
+The cited Klartag–Lehec work [3] establishes bounds up to dimension-dependent polylogarithmic
+factors. It does not provide the exact constants 35 or 29 in this model. Our radial confinement
+argument instead uses the chosen potential and curvature bound, together with the appropriate
+Bakry–Émery/Poincaré framework [4]. No general claim about the resolution of KLS is required.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+4 of 29
+
+3. CGICE Equations and the Three Effective Stages
+3.1. Unified Dynamical Basis
+Write τ for the configuration-process time, reserving t for physical cosmological time. In an
+explicitly stated Euclidean linearization, CGICE-1 is
+BB T = 2D.
+
+dXτ = (−∇Vcon f ( Xτ ) + Fτ ( Xτ ))dτ + B dWτ ,
+
+A manifold SDE additionally needs a connection or horizontal-lift convention. For F=0 and
+isotropic diffusion, its adjoint evolution is
+∂τ p = L∗ p = D∆p + div( p∇Vcon f ).
+CGICE-2 describes moments of this same probability law. For linear drift − HX,
+C ′ = − HC − CH T + 2D,
+T
+
+C (τ ) = e− Hτ C0 e− H τ +
+
+Z τ
+0
+
+T
+
+e− Hu 2De− H u du.
+
+This is a Lyapunov covariance equation. A filtering Riccati equation would require another state
+and a measurement model. For the symmetric, centered one-dimensional quartic process,
+C ′ = −2aC − 2qE[ X 4 ] + 2D = −2aC − 6qC2 + 2D − 2qκ4 ,
+
+κ4 = E[ X 4 ] − 3C2 .
+
+The Riccati reduction requires the additional Gaussian closure κ4 = 0. CGICECore.quartic_
+cov_decompose and gaussian_closure_reduces prove the algebra, not exact Gaussianity of a quartic
+process.
+The distinction matters for the review: quartic_cov_decompose has no Gaussian-closure hypothesis. Only gaussian_closure_reduces assumes it. Section 6.6 retains the exact cumulant correction
+and supplies error estimates instead of treating the approximation as an exact consequence of CGICE-1.
+Curvature corrections to Euclidean moment equations require their own estimates.
+CGICE-3 is internal adjoint transport on a compact Lie algebra:
+d 1
+⟨ j, j⟩ = 0.
+dτ 2
+
+j′ = − g[ a, j],
+
+It is not a sourced topological-charge equation or a probability continuity equation. CGICE-4, for
+fixed reference measure and appropriate regularity, is
+d
+KL( p∥µ) = − D
+dτ
+
+Z
+
+p|∇ log( p/µ)|2 dvol.
+
+An independently chosen scalar closure I ′ = −γ( I − E) is not a universal identity for KL or
+individual Brownian paths. Neither equation implies cyclic entropy conservation; in the companion
+CGICE source, zero_prefix_sums_force_zero proves that a prefix-sum law ∑i<n ∆Si = 0 for every n
+forces ∆Sn = 0, excluding nontrivial irreversible cyclic increments.
+3.2. Physical Responses During the Three Stages of Cosmic Evolution
+Effective stage
+Early localization
+Matter/CDM formation
+Late DE domination
+
+Mathematical benchmark
+Radial confinement; conditional spectral relaxation
+Kinetic mass crossing; scalar minima; internal Casimir
+Conditional limits of the action-derived stress; OU covariance separately
+
+Additional physical construction
+Statistical-to-physical map, potential-dominated expanding solution, exit
+Seed growth, matrix vacuum selection, reheating, masses and production rates
+Healthy positive residual vacuum, dilution, attraction and normalization
+
+A cosmological extension must determine a response and its expansion dynamics. For the
+principal effective model these are specified by the action in §3.9:
+µν
+
+Tgeo = T µν [ p, C, j, g phys ],
+
+H2 =
+
+ρtot
+,
+3 M̄2P
+
+ρ̇tot + 3H (ρtot + ptot ) = 0.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+5 of 29
+
+The action defines a candidate response [M]; its field equations imply conservation [A/S in the
+scalar reduction]. Its microscopic derivation and identification with CGICE stochastic dynamics remain
+O. A common solution in the healthy kinetic domain, phase criteria and a populated intermediate
+regime are required before the three stages can be claimed as a dynamical sequence. Internal exchange
+is calculated in §7.2, not chosen as an external source function.
+3.3. Common Proper Time, Units and Transition Data
+To compare stages, introduce the physical scale factor acos (t) > 0, H = ȧcos /acos and N =
+log( acos /aref ). In formulas involving density as a function of scale factor, the symbol a means acos ; the
+coefficient a in Vcon f remains a separate confinement parameter. Set h̄ = c = k B = 1 for the physical
+sector. τ, N and the geometric coordinates in the fixed reference metric are dimensionless; H and
+τ̇ have inverse-time units. Physical densities and pressures have energy dimension four, M̄2P has
+dimension two, and a source Qi has dimension five. A numerical geometric covariance must therefore
+be multiplied by a dimensionful response coefficient before it enters Friedmann’s equation.
+All principal field equations use one FLRW proper time. The expansion variable obeys the
+kinematic identity
+N (t) = log
+
+acos (t)
+,
+aref
+
+Ṅ = H.
+
+(1)
+
+There is no imposed constant relation between information time τ and N in the principal model.
+Einstein and field equations determine H(t) from initial data in §3.9. If a stochastic localization
+estimate is evaluated on this solution, τ (t) must be supplied by a controlled coarse-graining or lapse
+prescription; an action for smooth mean fields alone does not determine that prescription. Sections
+3.5–3.6 retain earlier transport and covariance-clock constructions as conditional diagnostics, not
+additional equations imposed on §3.9.
+Let tloc denote attainment of a chosen statistical tolerance, tc an origin-mass crossing, and t DE
+a specified density crossing. A sequential interpretation needs tloc < tc < t DE and a nonempty
+matter-dominated interval. A smooth solution of §3.9 carries continuous energy through tc without an
+imposed jump law; condensation need not be completed at that instant. Statistical tolerance, origin
+instability and density domination are distinct events. Radiation and reheating require additional field
+or bath dynamics and may occupy intervening intervals.
+3.4. Conservation and Preservation of the Expansion Constraint
+For a spatially flat effective FLRW sector, use finite total density and pressure, constant positive
+M̄2P , the action-derived total continuity equation of §3.9, and
+Ḣ = −
+
+ρtot + ptot
+.
+2 M̄2P
+
+The two scalar equations give ρ̇tot = −3H (ρtot + ptot ) by the off-shell identity (19). Consequently
+
+d
+3 M̄2P H 2 − ρtot = 0.
+dt
+
+(2)
+
+Thus the Friedmann constraint, if imposed on initial data, is preserved by these evolution
+equations. UnifiedDynamics.unified_continuity derives the actual density derivative from both
+scalar equations, and UnifiedDynamics.action_friedmann_hasDerivAt connects it to the retained
+Friedmann theorem. CosmologicalBridge.total_continuity remains reusable component algebra;
+friedmann_constraint_preserved is a real-line constancy theorem. The corresponding interval statement follows analytically on a connected existence interval. No global solution through singularities
+or kinetic degeneracy is asserted.
+For each component,
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+6 of 29
+
+d 3
+( a ρ ) = a3cos Qi − 3Ha3cos pi .
+dt cos i
+
+(3)
+
+The product-rule algebra is comoving_pressure_work. A comoving dust transfer model can
+conserve total mass, but a system containing vacuum pressure cannot omit the pressure-work term.
+If an idealized instantaneous condensation releases potential energy U− − U+ into radiation, energy
+matching requires ρr,+ − ρr,− = U− − U+ ; transition_energy_matching then proves continuity of
+ρr + U. This matching condition does not compute reheating, latent heat, surface stress or transition
+duration.
+3.5. Wasserstein Dynamics and Spatial Volume Reconstruction
+On a fixed complete Riemannian base, with finite second moments and appropriate entropy/domain hypotheses, set ξ = Vcon f + D (log p + 1). The CGICE continuity equation is
+v = −∇ξ.
+
+∂τ p + divXE ( pv) = 0,
+Its variational discretization is the JKO minimization
+(
+pk+1 ∈ argmin
+p∈P2 ( XE )
+
+)
+W22 ( p, pk )
+F [ p] +
+.
+2∆τ
+
+(4)
+
+Existence and convergence on this noncompact base require coercivity, lower semicontinuity
+and moment control; [5] supplies the foundational variational formulation, not a ready-made CGICE
+spacetime theorem. The finite-graph flux-force proof is not a formal proof of this minimization or its
+continuum limit.
+To obtain physical expansion, introduce a physical spatial patch Σ, a coarse-graining/projection
+Π : XE → Σ and an increasing clock τ (t) [M/O]. Where differentiation under the pushforward is
+justified, the projected number density n and physical velocity b obey
+∂t n + divΣ (nb) = 0,
+
+b(y) = τ̇ E[dΠ(v) | Π( X ) = y]
+
+(5)
+
+for a time-independent projection; moving projections and moving volume forms add terms.
+This is a weak pushforward construction under stated regularity, not an identification of p with mass
+density. On a flat physical patch assume an isotropic homologous flow b(t, y) = H (t)y; this is an extra
+spatial symmetry condition. If Φt is its flow and Jt = det dΦt > 0, Jacobi’s formula gives
+J̇t = θ Jt ,
+
+θ = divΣ b = 3H,
+
+N (t) =
+
+1
+3
+
+Z t
+t0
+
+θ (s) ds,
+
+acos (t) = aref e N (t) .
+
+(6)
+
+Thus the scale factor is reconstructed from spatial volume transport once that transport has been
+constructed. For homogeneous n, (5) gives ṅ + 3Hn = 0 and a3cos n is constant. This counts conserved
+particles, not vacuum energy; (3) still governs pressure work. TransportClock.density_dilution
+formalizes the scalar compatibility step. Jacobi’s formula, the pushforward and the flow existence
+theorem remain A/O.
+A direct identification can give the wrong sign. A centered isotropic Euclidean Gaussian with
+covariance CI3 has continuity velocity b = (Ċ/(2C ))y, hence H = Ċ/(2C ). During relaxation from
+above the OU noise floor, Ċ < 0 and H < 0 (covariance_volume_contracts). Statistical concentration
+would then correspond to contraction, not inflation. A different response must be specified and tested;
+optimal transport cannot remove this missing input by itself.
+3.6. A Covariance-Defined Clock and Its Regularity
+Let E(t) = C (t) − C∞ > 0, Ere f = E(t0 ) > 0, and choose β > 0. Define the following constitutive
+response [M]:
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+7 of 29
+
+NE (t) = β log
+
+Ere f
+,
+E(t)
+
+
+acos (t) = aref
+
+Ere f
+E(t)
+
+β
+.
+
+(7)
+
+This uses a dimensionless covariance ratio. It is an inverse-size response, not the covariancevolume identification just ruled out. Along the linear moment model, let λ(t) = τ̇ (t) > 0, a lapse
+between physical and information time, and Ė = −2ℓλE. Differentiating (7) gives
+H = ṄE = − β
+
+Ė
+= 2βℓλ,
+E
+
+θ = 6βℓλ.
+
+(8)
+
+The second equality is the compatibility constraint with (6); neither the existence of a projection
+realizing it nor the lapse is supplied by the OU equation. In this optional diagnostic, constant ℓ gives
+an integrated clock proportionality with coefficient ν = (2βℓ)−1 and m = 1/β. It is not imposed on
+the unified action. This moves the assumption into an explicit covariance-volume response; it does
+not eliminate it. For the quartic process of §6.6 the covariance error must be propagated through
+(7)–(8). For varying coefficients, changing equilibrium covariance adds forcing to Ė, and (8) must be
+recomputed. The symbol λ(t) here denotes a lapse, distinct from the quartic coupling in §3.9.
+On any interval I = [t0 , t1 ], assume E differentiable and positive and | Ė/E| ≤ L. Then the
+mean-value inequality gives
+
+| NE (t) − NE (s)| ≤ βL|t − s|,
+
+s, t ∈ I.
+
+(9)
+
+For the OU model with bounded lapse, L = 2ℓ sup I λ suffices. Alternatively E ≥ ε > 0
+and | Ė| ≤ M give L = M/ε. A finite-time zero of E is excluded; there is no unconditional
+global regularity through it. TransportClock.eFold_hasDerivAt, ou_eFold_hasDerivAt and eFold_
+interval_lipschitz work with the actual covariance-dependent function, not an arbitrary external
+N. covariance_tail_hasDerivAt instantiates the older tail-composition theorem with that function.
+The information-to-proper-time lapse remains independent data.
+For k = 2βℓ constant, äcos /acos = kλ̇ + k2 λ2 . Constant positive lapse forces constant H, so it
+cannot describe a decelerating matter interval between two accelerating intervals. Friedmann dynamics
+imposes λ = H/k but then the clock relation alone supplies no new evolution equation. A unified
+model must determine λ, thermal coefficients and stress response together, rather than treating this
+identity as an endogenous inflation/exit mechanism.
+3.7. Fisher Pullback, Vielbein Data and the Signature Obstruction
+To form a spacetime tensor, one needs a family of normalized distributions p(z; ϑ ), not merely one
+scalar Fisher functional. With a fixed reference measure and differentiable parameter dependence,
+define
+
+I AB (ϑ) =
+
+Z
+
+p(z; ϑ )∂ A log p(z; ϑ ) ∂ B log p(z; ϑ ) dvol(z).
+
+(10)
+
+For a parameter field ϑ : M4 → P , its pullback is
+Kµν = I AB ∂µ ϑ A ∂ν ϑ B .
+It is a symmetric covariant two-tensor, but
+K (v, v) =
+
+Z
+
+p [vµ ∂µ ϑ A ∂ A log p]2 dvol ≥ 0.
+
+(11)
+
+No real pullback of positive Fisher geometry has a timelike negative direction. In particular a
+rank-four immersion into XE gives a positive induced metric, not a Lorentzian one. This obstruction
+is not removed by calling ∂µ ϑ A a vielbein. A 35-dimensional target, a six-dimensional complex
+representation and a four-dimensional tangent bundle remain distinct objects.
+An explicit conditional physical geometry uses a rank-four coframe e a µ and the independently
+selected internal form ηab = diag(−1, 1, 1, 1), so gµν = ηab e a µ eb ν . Equivalently a positive lapse,
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+8 of 29
+
+three-metric and shift specify an ADM Lorentzian metric. This supplies a usable geometric setting,
+but assumes signature and dimension; compactification or a real-section selection must still derive
+them [O]. Induced-gravity ideas [6] motivate an effective action on such a background; they do not
+automatically create Lorentzian signature from a positive Fisher matrix.
+The Lean construction TensorResponse.pullback uses genuine bilinear forms and linear maps
+on fibers, proves composition, symmetry, internal-isometry invariance and nonnegativity, and proves
+positive_pullback_not_timelike. scoreGram_nonnegative gives a finite score approximation. It
+does not construct a smooth tensor bundle, a statistical family, a rank-four coframe or a global section;
+these distinctions limit the formal claim precisely.
+3.8. Covariant Action and Stress-Energy Response
+A precursor to the coupled response of §3.9, recovered when the derivative coupling is absent, is
+the action on the assumed Lorentzian geometry:
+Se f f =
+
+#
+M̄2P
+Z µν
+A
+B
+R − Λ − g I AB (ϑ ) Dµ ϑ Dν ϑ − U (ϑ ) + Lmatter d4 x.
+−g
+2
+2
+"
+
+Z
+
+p
+M4
+
+(12)
+
+Here Z > 0, the statistical metric is positive on the represented modes, and U, Λ, M̄2P and
+field content are independent effective inputs. For dimensionless ϑ, Z has mass dimension two and
+U, Λ have dimension four. The symmetry must act by isometries of I and preserve U. For a linear
+representation Dµ ϑ = ∂µ ϑ + Aµ ϑ; generally one uses its action vector fields on parameter space. The
+connection transforms as A′µ = RAµ R−1 − (∂µ R) R−1 . covariantRate_transforms formalizes the
+corresponding single-direction fiber law. It is not a global connection construction.
+Writing Kµν = I AB Dµ ϑ A Dν ϑ B , assume the statistical metric has no additional dependence on the
+physical metric when ϑ is fixed. Metric variation then gives
+
+ϑ
+Tµν
+= ZKµν − gµν
+
+
+Z αβ
+g Kαβ + U .
+2
+
+(13)
+
+scalarStress and scalarStress_symmetric encode this fiberwise tensor algebra; metric variation and the covariant divergence are analytical, not formalized here. For homogeneous fields in
+proper time, ρϑ = Z I AB ϑ̇ A ϑ̇ B /2 + U and pϑ = Z I AB ϑ̇ A ϑ̇ B /2 − U. Hence ρϑ + pϑ ≥ 0. A constant
+positive potential with stationary fields can supply w = −1; nonzero configuration noise alone does
+not imply that stress tensor.
+For compactly supported variations, diffeomorphism invariance of the total action yields the
+µν
+on-shell Ward identity ∇µ Ttot = 0, including the order parameter, gauge fields and any bath. Off
+shell, scalar Euler-Lagrange terms contribute E A ∇ν ϑ A ; exchanging subsystems need not conserve
+separately. If thermal coefficients are externally prescribed functions of temperature, the bath and its
+energy exchange must be included. Thus the stochastic dissipative process is not derived merely by
+appending (12); integrating out specified bath degrees of freedom with a controlled noise/dissipation
+limit remains O.
+Covariance is not arbitrary Lie invariance. A natural tensor response satisfies T [ φ∗ g, φ∗ ϑ ] =
+φ∗ T [ g, ϑ ]. Its Lie derivative generally does not vanish: even the constant line metric dx2 has L x∂x g = 2g.
+Requiring L X g = 0 is a Killing-symmetry condition, not a test of general covariance. lie_derivative_
+dilation_counterexample checks the coordinate arithmetic only. Consequently the universal zeroLie-derivative condition is replaced by tensor naturality and the on-shell conservation requirement.
+3.9. Unified Covariant Action and Conditional Autonomous Transitions
+3.9.1. Sign, Dimensions and the Healthy Kinetic Domain
+We adopt signature (−, +, +, +) on the independently specified M4 . For dimensionless statistical
+parameters ϑ A and a real scalar order parameter ϕ, define
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+9 of 29
+
+X = − 12 I AB gµν ∂µ ϑ A ∂ν ϑ B ,
+
+Y = − 12 gµν ∂µ ϕ∂ν ϕ,
+
+A(ϕ) = Z − γ2 ϕ2 ,
+
+W (ϕ) =
+
+m20 2
+λ 4
+2 ϕ + 4ϕ .
+
+(14)
+
+For homogeneous fields, X = I AB ϑ̇ A ϑ̇ B /2 ≥ 0 and Y = ϕ̇2 /2 ≥ 0. The proposed physical action
+[M] is
+S=
+
+Z p
+
+"
+
+#
+M̄2P
+−g d x
+R + A(ϕ) X + Y − Ugeo (ϑ ) − W (ϕ) .
+2
+4
+
+(15)
+
+Take Z > 0, γ > 0, m20 < 0, λ > 0 and positive-definite I on the retained parameter modes. We
+require A(ϕ) > 0 along the solution. Crossing A = 0 makes the kinetic metric degenerate; solutions
+and stability cannot be extrapolated through it using this effective model. Large ϕ would give a ghost
+direction unless higher operators change the model. Here [ X ] = 2, [Y ] = 4, [ Z ] = 2, [ϕ] = 1, [m20 ] = 2,
+[γ] = [λ] = 0, and [Ugeo ] = [W ] = 4, in mass units.
+This is a derivative coupling between fields, not a curvature coupling F (ϑ, ϕ) R. The reduced
+Planck mass is constant. An actual nonminimal curvature coupling would require new metric equations
+and extra stress terms. The review’s positive-sign contraction K = +I AB ∂µ ϑ A ∂µ ϑ B /2 is negative
+on a homogeneous solution in this signature; identifying it with positive kinetic energy reverses the
+intended trigger. Equation (14) corrects that sign.
+The geometric CGICE potential Vcon f is defined on configuration space with its own normalization;
+it cannot be inserted as a physical energy density by relabeling it. A possible response is Ugeo (ϑ ) =
+µ4 V (ϑ ) with dimensionless V , obtained, for example, from a specified expectation of Vcon f over p(z; ϑ ).
+The scale µ, parameter map, finite expectation and coarse-graining prescription are additional inputs.
+A steep statistical confinement potential is not a proof of slow roll in this physical potential.
+For an SU(6) Hermitian traceless adjoint, replace ϕ2 by Tr Φ2 , use Y = − Tr( DΦ)2 /2, and W =
+2
+m0 Tr Φ2 /2 + λmat Tr Φ4 /4. A scalar direction Φ = ϕT, Tr T 2 = 1, gives λ = λmat Tr T 4 . Holding this
+direction fixed is a reduction assumption, not a proof that transverse matrix equations vanish. Gauge
+dynamics requires the gauge kinetic term and Gauss constraint. The proof chain below covers the
+scalar reduction; §5.3.2 tests the matrix-vacuum claim separately.
+3.9.2. Field equations and the stress tensor
+Writing Vf orce (ϕ, X ) = 12 (m20 + γX )ϕ2 + λϕ4 /4, the identity
+ZX + Y − Ugeo − Vf orce = AX + Y − Ugeo − W
+is UnifiedDynamics.lagrangian_rearrangement. Because Vf orce depends on metric-contracted
+velocities, it is an instantaneous force potential, not a velocity-independent potential energy to add to
+ZX in ρ. Metric variation, holding I independent of g at fixed fields, gives
+Tµν = AI AB ∂µ ϑ A ∂ν ϑ B + ∂µ ϕ∂ν ϕ + gµν Ls ,
+ρ = AX + Y + Ugeo + W,
+
+Ls = AX + Y − Ugeo − W,
+
+p = AX + Y − Ugeo − W.
+
+(16)
+
+In particular, the derivative-coupling contribution to ρ is −γXϕ2 /2, not +γXϕ2 /2. The covariant
+scalar equations are
+
+A □ϑ A + Γ A BC ∂ϑ B · ∂ϑC + Aϕ ∂ϕ · ∂ϑ A − I AB ∂ B Ugeo = 0,
+
+□ϕ + Aϕ X − Wϕ = 0.
+
+(17)
+
+For a homogeneous single-parameter reduction with I = 1, put u = ϑ̇, v = ϕ̇, Uϑ = ∂ϑ Ugeo .
+These become
+
+Eϑ = Au̇ + 3H Au − γϕvu + Uϑ = 0,
+
+Eϕ = v̇ + 3Hv + (m20 + γX )ϕ + λϕ3 = 0.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+(18)
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+10 of 29
+
+For a general Fisher target the first equation uses the target covariant acceleration Dt ϑ̇ A and
+B Ugeo ; choosing a single canonical coordinate globally is not assumed. Equations (16)–(18)
+are analytic variational results. Lean encodes the scalar residuals and their consequences, not the
+underlying manifold variational calculus.
+
+I AB ∂
+
+3.9.3. Conservation derived from the two field equations
+Direct differentiation, including Ȧ = −γϕv, gives
+ρ̇ = Auu̇ − γϕvX + vv̇ + Uϑ u + (m20 ϕ + λϕ3 )v,
+
+ρ̇ + 3H (ρ + p) = uEϑ + vEϕ .
+
+(19)
+
+Thus the on-shell total continuity equation follows from both field equations. No independent
+Q DE or separate assumption of total continuity is needed. UnifiedDynamics.continuity_identity
+is the off-shell identity, density_hasDerivAt differentiates actual functions, unified_continuity
+inserts the equations, and action_friedmann_hasDerivAt connects the result to (2). The derivative
+hypothesis for Ugeo (ϑ (t)) is its chain rule Uϑ u; it does not assume U constant during the transition. The
+corresponding covariant Ward identity follows analytically from the action, with suitable variations
+and boundary conditions.
+The proposed continuity proof in the review used instead ρ = X + U + Vf orce , p = X − U − Vf orce ,
+Ẋ = −6HX, U̇ = ϕ̇ = 0. Its actual residual is
+ρ̇ + 3H (ρ + p) = −3γHXϕ2 ,
+
+(20)
+
+which is nonzero, for instance when all four factors equal one. review_continuity_residual
+and review_residual_counterexample record this obstruction. Setting ϕ̇ = 0 also does not mean
+adiabatic tracking of a moving minimum. The corrected chain retains both velocities and their coupling,
+rather than trying to prove the false cancellation.
+3.9.4. One autonomous system and its domain of existence
+Together with Einstein evolution and ȧcos = Hacos , the physical background is
+ϑ̇ = u,
+
+u̇ = −3Hu +
+
+Ḣ = −
+
+γϕvu − Uϑ
+,
+A
+
+Au2 + v2
+,
+2 M̄2P
+
+ϕ̇ = v,
+
+ȧcos = Hacos ,
+
+v̇ = −3Hv − (m20 + γu2 /2)ϕ − λϕ3 ,
+3 M̄2P H 2 = ρ
+
+on initial data.
+
+(21)
+
+For Ugeo ∈ C2 , M̄2P > 0, A > 0, acos > 0, this finite-dimensional vector field is locally Lipschitz and
+the usual local ODE existence/uniqueness theorem applies [A]. The Friedmann constraint propagates.
+Extending the solution requires control of the fields, curvature and a positive lower bound for A; the
+Lean results do not prove existence, a global basin or singularity avoidance. Smooth solutions have
+continuous total energy at a mass crossing, so no manually matched phase boundary is present in this
+model. Idealized jumps used in other approximations require separate matching conditions.
+The action is conservative as a full field system; Hubble damping exchanges local field energy
+with expansion work. It does not by itself derive the CGICE diffusion coefficient, friction/noise
+relation, Gibbs measure or information-time lapse. Obtaining a stochastic CGICE equation from
+specified eliminated degrees of freedom remains an open-system calculation [O]. A probability-law
+covariance at equilibrium can be nonzero while the smooth distribution-parameter field has zero time
+derivative: these are different quantities.
+3.9.5. Conditions for the Three Regimes
+Define Xc = −m20 /γ > 0. The origin mass is positive when X > Xc , zero at Xc , and negative
+below it. Acceleration of a scalar-dominated flat solution requires
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+11 of 29
+
+Ugeo + W > 2( AX + Y ),
+
+ρ + p = 2( AX + Y ) ≥ 0.
+
+(22)
+
+On the symmetric branch, both positive origin mass and acceleration can hold if
+Xc < X < Ugeo /(2Z ); this interval is nonempty when Ugeo > 2ZXc . The dimensionless values
+m20 = −1, γ = Z = 1, X = 2, Ugeo = 10 illustrate simultaneous inequalities after choosing units, not a
+computed cosmological history. Large statistical variance does not imply large X, and X > Xc does
+not imply slow roll. No automatic inflation or exit follows.
+Moreover the exact kinetic balance is
+A( Ẋ + 6HX ) = 2γϕvX − Uϑ u.
+
+(23)
+
+Expansion alone therefore does not guarantee monotone X. For A > 0, H ≥ 0, a nonpositive
+right-hand side suffices for Ẋ ≤ 0. In the invariant special branch ϕ = v = 0, Uϑ = 0, one obtains
+Ẋ = −6HX and X = X0 e−6( N − N0 ) . This is a consequence of field equations, not a chosen relation
+between τ and N. If N → ∞ and X0 > Xc , the branch reaches Nc − N0 = log( X0 /Xc )/6. Exactly zero
+order-parameter data remain exactly zero even after instability; a seed perturbation is needed to leave
+that branch. The linearized equation is δϕ̈ + 3Hδϕ̇ + (m20 + γX )δϕ = 0. Its growth, backreaction and
+eventual stabilization must be checked on the actual solution.
+More generally, X (t) → 0, continuity on t ≥ 0, and m20 + γX (0) > 0 imply at least one positivetime zero of the mass. Strict decrease makes that zero unique and orders its signs; it must be established independently, e.g. from a strict form of (23). The Lean theorem UnifiedDynamics.critical_
+crossing uses the stronger whole-line continuity hypothesis for convenience but draws a positive-time
+conclusion; critical_crossing_unique restricts strict monotonicity to nonnegative times. Neither
+assumes the existence of a crossing as a premise. Finally, late convergence gives vacuum pressure
+only with the conditions of §6.7. A proof of these three regimes on one nonempty, globally healthy,
+matter-producing solution family remains O.
+
+4. Early Statistical Localization
+4.1. Radial Confinement
+Let s = r2 on XE , and choose
+Vcon f =
+
+a
+q
+s + s2 ,
+2
+4
+
+a > 0, q ≥ 0.
+
+Cartan–Hadamard geometry gives Hess s ≥ 2g. The chain rule gives
+Hess(s2 ) = 2s Hess s + 2ds ⊗ ds,
+Hess Vcon f =
+
+a
+2
+
++
+
+qs 
+q
+Hess s + ds ⊗ ds ≥ ( a + qs) g ≥ ag.
+2
+2
+
+For r>0, Hess(r4 ) = 2r2 Hess(r2 ) + 8r2 dr⊗dr. Using s avoids the nonsmooth distance coordinate
+at the origin. PhaseI.radial_hessian_lower supplies the directional quadratic-form arithmetic. The
+manifold Hessian and comparison theorem remain A, not Lean-defined tensor objects.
+A scalar Poisson relation does not replace this tensor estimate. For example, V ( x, y) = 2x2 − y2
+has ∆V = 2 > 0 but Hess V = diag(4, −2). Thus a positive trace of the Hessian does not imply
+positive curvature in every direction.
+With Ric = −6g in the stipulated convention,
+D Ric + Hess Vcon f ≥ ( a − 6D ) g.
+Under normalized Gibbs measure, complete diffusion, and the closed form/semigroup hypotheses, the Bakry–Émery argument yields δL ≥ a − 6D. At a=35,q=4,D=1 this gives δL ≥ 29; D=2 instead
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+12 of 29
+
+gives 23. PhaseI.poincare_lower_bound converts an explicitly assumed Poincaré inequality for
+energy and variance functionals into a Rayleigh bound. It does not construct the geometric semigroup.
+4.2. Mixing, Clocks and Dimensionality
+For f 0 = p0 /µ − 1 in L2 (µ), spectral contraction gives
+
+∥ f τ ∥ 2 ≤ e − δL τ ∥ f 0 ∥ 2 .
+When 0 < ε < || f 0 ||2 , a sufficient time is τ ≥ (1/29)log(|| f 0 ||2 /ε). It depends on the initial
+state and tolerance. Physical units require t = t∗ τ with a separately determined t∗ . We use no
+dimension-only mixing formula.
+At positive noise, concentration does not entail an exact decrease of probability-support dimension. In a Euclidean strongly convex gradient model, synchronous coupling gives d| X − Y |2 /dτ ≤
+−2a| X − Y |2 . This contraction is not a proof of physical expansion. The illustrative expression
+R
+(35/6)log(1000001) ≈ 80.59 is a volume-based calibration, not the observable e-fold count Hdt; it
+is not used as a result of this model. Strong convexity alone also does not exclude every possible
+single-field slow-roll model.
+A purely statistical three-interval diagnostic can be defined by E(τ ) = E0 e( − 2ℓτ ), with E0 >
+θ1 > θ2 > 0 and ℓ > 0. Its crossing times τi = log( E0 /θi )/(2ℓ) satisfy 0 < τ1 < τ2 . These input
+thresholds do not identify condensation or DE dominance without the separate physical criteria in
+§3.2.
+4.3. What Localization Contributes to an Early Cosmological Regime
+In the reference model Vcon f = 35r2 /2 + r4 at D = 1, confinement can suppress deviations
+from a normalized Gibbs state despite negative background curvature. The physical motivation is
+control of geometric fluctuations before a long-lived effective geometry is used. This is compatible
+with a persistent thermal noise floor and does not require a probability measure to collapse onto a
+lower-dimensional support.
+For a separately justified increasing information-time lapse, the spectral estimate is
+
+∥ f τ (t) ∥2 ≤ e−δL [τ (t)−τ (t0 )] ∥ f τ (t0 ) ∥2 ,
+
+τ ( t ) − τ ( t0 ) ≥
+
+log(∥ f τ (t0 ) ∥2 /ε)
+δL
+
+.
+
+(24)
+
+The second inequality is a sufficient information-time interval to attain tolerance, when the initial
+norm exceeds ε. It does not set a number of e-folds. A genuine inflationary solution must satisfy
+H > 0, ϵ H = − Ḣ/H 2 < 1, admit a controlled perturbation calculation, and have an exit with an
+energy budget. From (2) and Raychaudhuri,
+äcos /acos = −(ρtot + 3ptot )/(6 M̄2P ).
+The conditional algebra is CosmologicalBridge.acceleration_from_raychaudhuri. In the
+unified scalar model, UnifiedDynamics.acceleration_criterion makes it the explicit potentialdominance inequality (22). Neither the dimensional number 35, the lower bound 29, nor the volume
+calibration 80.59 supplies that inequality. A large X relative to the mass threshold can coexist with a
+larger potential, but such a hierarchy must be specified and sustained, not inferred from confinement.
+For the kinetic trigger, a sufficient localization-before-crossing test is δL [τ (tc ) − τ (t0 )] >
+log(∥ f τ (t0 ) ∥2 /ε), with continuous increasing τ and a crossing tc obtained from the field solution.
+This still requires the stochastic lapse. The special branch in §3.9.5 determines Nc from its dynamical dilution law, but does not fix τ or ensure exit from acceleration. Temperature is needed for a
+bath/reheating calculation, not to define the principal trigger.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+13 of 29
+
+4.4. Stability of Confinement Under a Controlled Effective Correction
+The cumulant-expansion proposal can be made into a quantitative sufficient condition without
+assuming that convergence implies convexity. Suppose V = Vcon f + U and a certified uniform bound
+∥ Hess U ∥op ≤ L holds. Then
+D Ric + Hess V ≥ ( a − L − 6D ) g.
+
+(25)
+
+Under the same analytic diffusion hypotheses as §4.1, L < a − 6D retains a positive gap lower
+bound. PhaseI.perturbation_gap_lower proves the directional addition of these bounds; it does not
+certify the bound on U.
+For example, in a specified complete normed function space controlling two derivatives uniformly,
+assume ∥κn ∥C2 ≤ n!ABn and U = ∑n≥2 gcn κn /n!. For z = | gc | B < 1, absolute convergence gives
+∥U ∥C2 ≤ Az2 /(1 − z). This yields the sufficient condition Az2 /(1 − z) < 29 for the benchmark
+a = 35, D = 1, provided the norm controls the covariant Hessian. These norm bounds and their
+uniformity on noncompact XE have not been established for CGICE. A finite sampling result or an
+unrelated cluster-expansion citation cannot supply them. The distinction between convergence and a
+small enough Hessian perturbation is essential.
+
+5. Internal Charge, Transport and Matter Formation
+5.1. Positive Casimir and Actual Trajectories
+For complex matrices, B(X,Y)=Re tr(XY) is ad-invariant by trace cyclicity (InternalCharge.
+trace_pairing_ad_invariant). It is indefinite on sl(6,C). For H = diag(1, −1, 0, 0, 0, 0), B(H,H)=2 and
+B(iH, iH ) = −2.
+On the compact real form su(6), use < X, Y > = − Re tr(XY). Since X ∗ = − X, its quadratic form
+equals tr(X*X), hence is positive definite. For an actual differentiable compact trajectory,
+d 1
+⟨ j, j⟩ = − g⟨[ a, j], j⟩ = 0.
+dτ 2
+The source provides an arbitrary finite-dimensional orthonormal-coordinate version: if ji′ =
+∑k Aik jk and Aik = − Aki , then ∑i ji2 is constant (InternalCharge.casimir_hasDerivAt, casimir_
+conserved). It also contains the concrete su(2)/cross-product example from CGICE. Constructing an
+orthonormal su(6) basis and proving that its adjoint matrix realizes these hypotheses is still A/O. The
+matrix trace identity is not presented as that missing construction.
+5.2. Wasserstein comparison and time
+For absolutely continuous source measures with finite second moments and the hypotheses of the
+relevant transport theorem, the dynamic minimum-kinetic-energy problem has value W22 /2:
+inf
+
+Z 1Z
+
+∂τ ρ+div(ρv)=0 0
+
+2
+1
+2 ρ | v | dvoldτ.
+
+For smooth stationary variations using + φ(∂τ ρ + div(ρv)), integration by parts gives v = ∇ φ
+and ∂τ φ + |∇ φ|2 /2 = 0. Transport.kinetic_completion supplies the associated finite-dimensional
+square completion. A static optimal map written T = exp(−∇u) uses a different potential convention.
+Benamou–Brenier [7] supplies the dynamic formulation, and McCann [8] supplies a Riemannian
+polar-factorization result. The cited McCann paper treats compact manifolds; its citation alone does
+not establish the extension to noncompact XE . The relevant existence, uniqueness and integrability
+hypotheses there remain explicit analytic requirements.
+The actual CGICE diffusion corresponds, under the appropriate assumptions, to a free-energy
+Wasserstein gradient flow [5], generally not this fixed-endpoint geodesic. The vector field n =
+−∇u/|∇u|, where ∇u ̸= 0, is not a scalar clock. A global physical time requires a Lorentzian metric, a
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+14 of 29
+
+time function with suitable gradient, and causal conditions. Internal advection, optimal transport and
+condensation remain distinct equations.
+5.3. Separate Confinement and Symmetry-Breaking Potentials
+Use Vcon f for the statistical confinement potential, Ugeo for its separately specified physical
+response, and Vf orce (Φ, X ) for the derivative-coupled order-parameter force at fixed X. A tachyonic
+origin cannot obey the same everywhere-positive Hessian lower bound used for statistical confinement.
+Coupling and backreaction may modify the statistical potential; any continued use of the §4 gap then
+needs the perturbation control of §4.4.
+For the scalar example
+VSB (ϕ) =
+
+m2 2 λ 4
+ϕ + ϕ ,
+2
+4
+
+VSB (ϕ) +
+
+m2 < 0, λ > 0,
+
+
+2
+λ
+m2
+( m2 )2
+=
+ϕ2 +
+.
+4λ
+4
+λ
+
+√
+The global minima ± −m2 /Λ have positive Hessian; the origin has negative Hessian. The
+VEV123CW scalar results verify this example and its parameterized lower bound. The principal substitution is now m2 = m20 + γX (t), as justified by the scalar field equation. These minima belong to the
+frozen-X force landscape, not automatically to a minimum of the full velocity-dependent Hamiltonian
+or a dynamically attained matrix vacuum.
+For a compact SU(6) adjoint field with eigenvalues ui , ∑ ui = 0, a gauge-boson mass convention
+has m2ij = g2 (ui − u j )2 . An actual one-loop calculation must specify action, gauge, field/ghost
+spectrum, renormalization scheme and species-dependent subtraction constants; the schematic sum is
+∑s ns m4s [log(m2s /µ2 ) − cs ]/(64π 2 ). No numerical condensate scale follows without those inputs and a
+stability calculation.
+For multiplicities (1,2,3) of three distinct eigenvalues, the compact stabilizer S(U (1)U (2)U (3))
+has dimension 13, so 22 generators are broken and 66 massive-vector polarizations occur in a fourdimensional Higgs model. A generic six-distinct-eigenvalue configuration has 30 broken generators
+and 90 such polarizations. Neither count is the 35 noncompact directions of a different SL(6,C) model.
+5.3.1. Kinetic Triggering, Scalar Ordering and the Energy Budget
+The field equation (18) supplies, rather than independently prescribes,
+m2e f f (t) = m20 + γX (t),
+
+Vf orce (ϕ, X ) = 21 m2e f f ϕ2 + λ4 ϕ4 ,
+
+Xc = −m20 /γ.
+
+(26)
+
+At fixed X above Xc , the scalar origin is the unique minimum; below Xc it has negative Hessian
+and the minima satisfy
+
+ϕ± ( X ) = ±
+
+q
+
+−m2e f f /λ,
+
+Vf orce (ϕ± , X ) = −
+
+(m2e f f )2
+4λ
+
+,
+
+∂2ϕ Vf orce (ϕ± , X ) = −2m2e f f > 0.
+
+(27)
+
+The symbol ϕ± denotes minima, whereas v = ϕ̇ in §3.9 denotes velocity. UnifiedDynamics.mass_
+sign_criterion, critical_crossing, critical_crossing_unique and broken_scalar_minimum
+supply the conditional sign-to-crossing-to-minimum chain. The minimum proof reuses ThermalBridge.
+broken_minimum, whose algebra accepts any negative mass squared; its historical namespace does not
+make the new trigger thermal. The analytic square root exists for m2e f f < 0, λ > 0; the Lean minimum
+statement takes its defining square as a premise.
+This is a coupling-triggered instability of an order parameter, conceptually related to the waterfall
+mechanism in hybrid models [9]. Fisher target geometry can also influence perturbation stability [10],
+but that literature supplies neither an exact CGICE reduction nor stability for the present coefficient
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+15 of 29
+
+A. The local origin Hessian changes continuously through zero. A sufficiently long negative-mass
+interval, nonzero fluctuations, backreaction and attraction to a healthy broken branch are needed for
+actual ordering. During that process Ẋ need not remain negative, and multiple crossings are possible
+unless monotonicity is established.
+Energy flows according to (19) and §7.2; (27) is not a latent heat to add to radiation by hand. The
+two-scalar action contains no particles, bath distribution or decay channel from which a radiation
+abundance can be computed. Such a claim requires additional interactions and a nonequilibrium
+calculation, as illustrated by reheating analyses [11]. Small oscillations about a quadratic minimum
+can have an averaged dust-like equation of state only when their frequency is large relative to H and
+transfers are controlled. Stable cold particles additionally require lifetimes, momenta and production
+rates. Therefore mass instability, condensation, matter domination and cold-dark-matter abundance
+remain different steps.
+Retained thermal comparison. The previous m2T = c T ( T 2 − Tc2 ) example is still represented by ThermalBridge.massSq_positive_above, massSq_negative_below, symmetric_minimum
+and critical_origin_hessian. It is an optional bath model, not the main transition clock. Its scalar
+minimum formulas are obtained from (27) by replacing m2e f f with m2T . If temperature-dependent
+free energy F is used, its equilibrium energy is F − T∂ T F; an evolving bath and its exchange must be
+included. No thermal coefficients are silently added to (15).
+5.3.2. Matrix Vacuum and Particle Interpretation
+For a four-dimensional Hermitian traceless adjoint order parameter, the invariant notation is
+Ik = tr Φk = ∑i uik , k = 2, . . . , 6. A possible local potential contains
+2
+
+Vtree = m2 I2 + λ3 I3 + λ4a I4 + λ4b I22 +
+
+λ6
+I6 + · · · .
+Λ2EFT
+
+(28)
+
+The dimensions are [Φ] = 1, [λ3 ] = 1, and dimensionless quartic and displayed sextic couplings.
+This is a sample EFT truncation, not the complete degree-six invariant basis. Coleman–Weinberg
+corrections [12] and finite-temperature terms depend on the actual spectrum, gauge fixing and renormalization prescription. They do not determine a 1016 GeV vacuum merely from five stationarity
+equations.
+There is a stronger obstruction to the review’s automatic (1, 2, 3) claim. For the minimal frozen-X
+adjoint potential V = ∑6i=1 [m2e f f u2i /2 + λmat u4i /4], ∑i ui = 0, λmat > 0, m2e f f < 0, square completion
+gives
+m2e f f
+λmat 6
+2
+V=
+u
++
+i
+4 i∑
+λmat
+=1
+
+!2
+
+−
+
+6(m2e f f )2
+4λmat
+
+.
+
+(29)
+
+The lower bound is attained by (r, r, r, −r, −r, −r ) with r2 = −m2e f f /λmat . Every unconstrained
+scalar summand must attain its minimum for equality, so |ui | = r; tracelessness then requires three
+plus and three minus signs. Thus this particular classical force potential favors (3,3), not three distinct
+eigenvalues of multiplicities (1,2,3). UnifiedDynamics.six_mode_lower_bound gives the bound and
+three_three_witness checks an explicit saturating traceless example. The classification of all equality
+cases is analytic. The kinetic-domain condition Z − γ ∑i u2i /2 > 0 must also hold for the vacuum to be
+admissible; otherwise even this branch lies outside the effective theory. Additional invariants, loop
+corrections or field content may alter selection, but must be specified and compared across competing
+orbits and transverse fluctuations. The earlier (1,2,3) generator count remains conditional on selecting
+that pattern.
+The physical proposal is that stable massive excitations of a selected condensate can populate
+visible and dark sectors. Casimir conservation constrains internal motion; it neither creates particles
+nor establishes a collisionless equation of state. A sterile-neutrino or seesaw realization additionally
+needs fermion representations, Yukawa operators, a mass matrix, production and decay rates, and
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+16 of 29
+
+lifetime bounds. Those constructions are not provided here. No neutrino mass or dark-matter ratio is
+imported as a new prediction.
+5.4. Multiplicity Enumeration and Signatures
+Positive, ordered, pairwise-distinct integer multiplicities summing to six necessarily form (1,2,3).
+This is MultiplicityLabels.canonical_positive_sumSix_nondeg_unique. The sum constraint is
+representation dimension, not rank; the rank is five. Pairwise distinctness is an input, not a dynamical
+rejection of (2,2,2).
+A Vandermonde measure depends on eigenvalues, not multiplicities. For eigenvalues α, β, γ
+and multiplicities ni , the cubic trace is n1 α3 + n2 β3 + n3 γ3 under ∑ ni αi = 0; it is not generally ∑ n3i .
+Choosing (1, 2, 3) and (−3, 0, 1) gives cubic trace −24. Actual vacuum selection requires an action and
+comparison of gauge-inequivalent stable stationary points.
+The labels (3,1),(2,2),(1,3) enumerate positive ordered pairs summing to four. They are internal
+labels only. Along a continuous nondegenerate real metric path, inertia is locally constant. An ordinary
+black-hole interior remains locally Lorentzian; exchanging coordinate roles does not produce three
+time directions. These labels are not the three effective stages of §3.
+5.5. Abundance evolution and a conditional positive bound
+For x>0, let Y > Ye q > 0 solve
+2
+Y ′ = −λ(Y 2 − Yeq
+),
+
+b = λ[1 − (Yeq /Y )2 ].
+
+λ > 0,
+
+Then Y ′ < 0, (1/Y )′ = b and 0 ≤ b ≤ Λ. The Lean source proves these pointwise results on an
+actual solution record. To integrate them, require a positive reference x f , local absolute continuity of
+1/Y, and integrability of b on each finite interval. Then
+1
+1
+=
++
+Y(x)
+Y(x f )
+
+Z x
+xf
+
+b(s)ds.
+
+If the nonnegative cumulative integral is bounded by B < U∞ then
+1
++B
+Y(x f )
+
+Y(x) ≥
+
+! −1
+
+> 0.
+
+DMAbundance.positive_limit_from_reciprocal_identity proves positivity of a given limit
+from the explicit integral identity and bound. The general fundamental-theorem-of-calculus step from
+tail-integrable coefficients is not asserted as a Lean theorem. TailIntegrable means IntegrableOn f
+(Ioi x_f); it is never defined by the value of an integral without an integrability requirement.
+R
+Under these regularity conditions, finiteness of b is the exact criterion for a positive limit.
+R
+Finiteness of Λ is sufficient, not necessary. For example, Λ = 1, Y = 1 + e( − x ), Ye q = sqrt(Y 2 − e( −
+R
+x )) gives Yß1 despite divergent Λ. The source also provides a rational positive-relic solution and
+a decreasing solution converging to zero. These are mathematical examples; a physical relic density
+additionally requires mass, cross section, entropy density and Hubble history.
+5.6. Conservative Two-State Transfer
+Let B and D denote nonnegative comoving dust masses, u,v>0, and N=B+D. Set
+
+
+B′
+D′
+
+
+
+=
+
+−u v
+u −v
+
+! 
+B
+.
+D
+
+The characteristic polynomial is Λ(Λ + u + v). The stationary vector is proportional to (v,u), with
+DM/baryon ratio u/v. Positivity does not specify a numerical ratio such as 5.47.
+The solution is
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+17 of 29
+
+B∗ =
+
+vN
+,
+u+v
+
+B(τ ) = B∗ + ( B0 − B∗ )e−(u+v)τ ,
+
+D = N − B.
+
+For 0 ≤ B0 ≤ N and τ ≥ 0, the exponential interpolation preserves nonnegativity. For N>0 the
+ratio converges to u/v. The TwoState namespace supplies the differential equations, initial values,
+conservation, positivity, limits and uniqueness of the scalar reduced problem. These results concern
+the stated linear system; they are not a derivation of the reaction rates from CGICE.
+
+6. Dissipation and Late-Time Phenomenology
+6.1. Free Energy and Equilibrium Restrictions
+For fixed Vc on f , D and normalized p,
+
+F [ p] =
+
+Z
+
+Vcon f p + D
+
+Z
+
+p log p,
+
+F [ p] − F [µ] = D KL( p∥µ).
+
+With ξ = δF/δp, J = − p∇ξ and zero boundary flux, the square completion and continuity
+R
+equation yield F ′ = − p|∇ξ |2 . The companion finite-graph construction is reproduced with explicit vertices, edges, divergence and differentiable probability trajectories. CGICECore.freeEnergy_
+dissipation proves a genuine derivative identity, and freeEnergy_nonincrease_deriv proves its
+nonpositive sign. The source’s finite graph is a model with source-vertex edge mobility; a continuum
+convergence theorem is not assumed.
+For continuous diffusion, a periodic probability law and the KL dissipation identity imply zero
+integrated dissipation. Positivity, connectedness, regularity and the zero-dissipation characterization
+then force p = µ. This rules out a nontrivial periodic probability distribution in this fixed equilibrium
+model. It does not assert that each random path stops, and it does not concern externally driven
+systems. Monotonicity alone, without a characterization of zero dissipation, is insufficient.
+If the volume form varies with time, ∂τ p + vτ p = L ∗ τ p, where vτ = ∂τ log(dvolg τ ). If V varies,
+R
+′
+F contains the external-power term p ∂τ V. Cooling or driving therefore requires a separately derived
+dissipation balance.
+6.2. OU Covariance, Uniqueness and Noise Floor
+For dX = −ℓ X dτ + sqrt(2D )dW with ℓ > 0,
+′
+
+C = −2ℓC + 2D,
+
+
+
+D
+D −2ℓ τ
++ C0 −
+e
+.
+C (τ ) =
+ℓ
+ℓ
+
+The single definition CGICECore.ouCov is used throughout the proof file. Its initial value, actual
+derivative, uniqueness, limit and positivity appear as named theorems. For C0 > 0, D ≥ 0, τ ≥ 0, C
+stays positive. For D>0 the limit is D/ℓ, not zero. If E = C − D/ℓ, then
+E′ = −2ℓ E,
+
+( E2 )′ = −4ℓ E2 ≤ 0.
+
+Negative E approaches zero from below; it is not a positive energy density. The OU solution
+applies to the linear model or a controlled approximation, not a global quartic drift without moment
+closure.
+The potential with Hess Vc on f (o ) = 35g has local drift ℓ = 35 in the same metric/time convention.
+This ℓ = 35 is a chosen model input [M], not a consequence of the spectral threshold of §2.2: the
+free Laplacian bottom, the Witten gap and the diffusion relaxation rate are distinct quantities in the
+companion CGICE analysis, and the drift rate is not fixed by that threshold alone. A separate rate
+35/3 requires a separate effective model or a simultaneous transformation of time, noise and drift. At
+τ = 4.01, e( − 235τ ) ≈ 1.2403310−122 .
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+18 of 29
+
+6.3. Retained Phenomenological Comparisons for the Equation of State
+The models in §§6.3–6.3.2 are earlier response comparisons, preserved for their explicit algebra
+and observational diagnostics. They are not imposed on the derivative-coupled action, whose pressure
+and late limit are derived in §6.7. Their external Q and covariance-to-density conversion must not be
+silently identified with the exchange in §7.2; in particular their phantom branch is not a solution of the
+healthy scalar stress in (16).
+Suppose, as an extra response Ansatz, ρ D E = ρ∗ + κE(τ (t)). The physical continuity equation
+then implies
+w DE = −1 +
+
+2ℓτ̇ κE + Q DE
+.
+3Hρ DE
+
+CosmologicalClosure.eos_from_continuity proves the algebra for Hρ D E ̸= 0. The stressenergy interpretation, clock and expansion solution remain additional inputs. Entropy or covariance
+decay alone cannot determine w.
+For the different, separately conserved model
+ρ( a) = ρv (1 − 2ϵa−3 ),
+
+ρv > 0,
+
+a > 0,
+
+the identity p = −ρ − aρ′ ( a)/3 gives p = −ρv . On the positive-density domain a3 > 2ε,
+w ( a ) = −1 −
+
+2ϵ
+a3 − 2ϵ
+
+,
+
+w0 = − 1 −
+
+2ϵ
+,
+1 − 2ϵ
+
+wa = −
+
+6ϵ
+= −3w0 (1 + w0 ).
+(1 − 2ϵ)2
+
+Here wa = −w′ (1) is the local CPL coefficient, not an assertion of an exact CPL function at all a.
+The sign of ε selects the branch: for 0 < ε < 1/2, w0 < −1 and wa < 0 (phantom); for ε < 0, w0 > −1,
+wa > 0, and density positivity holds for every a>0. The illustrative w0 = −0.73 lies in the ε < 0 branch
+(ε = −27/146, wa = +0.5913), with ρ/ρv = 100/73 at a=1. ModelAlgebra supplies the elimination,
+inverse and sign statements. No combination of −0.73 with negative wa is claimed for this density law.
+6.3.1. An explicit clock-to-fluid bridge
+As an optional comparison, use §3.6’s covariance-volume response with a reference epoch of zero
+information and expansion coordinates. Its coefficient ν = (2βℓ)−1 gives m = 2ℓν = 1/β in (30). This
+comparison is not the proper-time identity (1) or an additional constraint on (21):
+E( N ) = E0 e−mN ,
+
+m = 2ℓν > 0,
+
+ρ g = ρ∗ + ρ E ,
+
+ρ E = κE0 e−mN .
+
+(30)
+
+Here ρ∗ > 0 and κ are independent dimensional response inputs: since the geometric covariance
+E0 is dimensionless, κ carries energy dimension four so that ρ E = κE0 is an energy density. ρ E is not the
+probability density p or the covariance itself. The sign of ρ E is not fixed by (30): κE0 may be positive or
+negative, and the nonnegative-tail and phantom branches below correspond to opposite signs. For
+separate conservation, Q g = 0, the pressure is fixed:
+p g = −ρ∗ +
+
+m
+3
+
+
+− 1 ρE ,
+
+ρg + pg =
+
+m
+ρE .
+3
+
+(31)
+
+Thus a nonnegative decaying excess with m > 0 gives w g ≥ −1 wherever ρ g > 0, approaching
+−1 as N → ∞. A negative excess cannot be called a positive energy component; it gives an effective
+phantom contribution and requires an independent stability analysis. Choosing the positive response
+ρ E = κE2 instead yields m = 4ℓν and the same conservation algebra, but a different response model.
+For Q g ̸= 0, (31) acquires Q g /(3H ); if Q g is also specified through branching, it cannot be ignored
+while fitting w.
+ClockResponse.ou_clock_identity connects the existing OU definition to the N-clock tail. tail_
+physical_hasDerivAt differentiates it along an actual differentiable N (t). continuity, enthalpy, no_
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+19 of 29
+
+phantom and tail_limit establish the conditional fluid relations. This construction still assumes the
+response law, the expanding geometry and the clock; it is not a derivation of them from SL(6,C).
+At m = 3, p g = −ρ∗ and the response is precisely vacuum plus a dust-like term. With are f = 1,
+identifying ρ∗ = ρv and κE0 = −2ρv ϵ recovers the density in §6.3. density_ansatz_match and
+positive_tail_epsilon_sign show that a nonnegative tail requires ϵ ≤ 0. The positive-ϵ phantom
+branch is therefore not the positive-tail realization of the same closure. In the nonnegative m = 3
+branch, background expansion alone is degenerate with a reassignment of dust and vacuum densities;
+discrimination requires perturbations or another observable.
+6.3.2. Domination, Acceleration and a Nonempty Late-Stage Benchmark
+Include separately conserved dust ρm = Me−3N , M > 0. Then
+H2 =
+
+Me−3N + ρ∗ + ρ E0 e−mN
+,
+3 M̄2P
+
+ä
+> 0 ⇐⇒ Me−3N + (m − 2)ρ E0 e−mN < 2ρ∗ .
+a
+
+(32)
+
+The equivalence follows from (31) and is formalized by ClockResponse.acceleration_criterion;
+it does not equate acceleration onset with equal densities. For ρ E0 ≥ 0 and m > 0, the two decaying
+terms vanish as N → ∞, giving late acceleration on the expanding solution. With these specified continuous positive densities, choosing the positive square root forq
+H and integrating dt/dN = 1/H ( N )
+
+constructs a regular background on each finite N interval; H → ρ∗ /(3 M̄2P ) implies an infinite future
+proper-time interval. This elementary quadrature is A-level, not a Lean solution-existence theorem.
+In the dust-like case m = 3, set Me f f = M + ρ E0 > 0. The distinct thresholds are
+Nacc = 13 log
+
+Me f f
+,
+2ρ∗
+
+Neq = 31 log
+
+Me f f
+,
+ρ∗
+
+Neq − Nacc = 13 log 2 > 0.
+
+(33)
+
+A matter interval after condensation requires Me f f e−3Nc > ρ∗ ; a decelerating dust-dominated
+interval requires the stronger Me f f e−3Nc > 2ρ∗ . These are explicit open sets of positive reducedmodel data. CosmologicalBridge.dust_vacuum_regime_witness checks the concrete point Me f f = 8,
+ρ∗ = 1 at scale factors 1 and 3. It checks inequalities, not a microscopic transition or the initial
+inflationary stage. The model therefore supplies a conditional, nonempty matter-to-vacuum crossover
+without claiming a full three-stage universe.
+Finally, ρ∗ has not been calculated. An exponentially small excess can coexist with an arbitrarily
+large constant term. Neither ℓ = 35 nor ℓ = 35/3, and neither a fitted relaxation duration nor the
+existence of an OU floor, solves the cosmological-constant hierarchy problem.
+6.4. Single-Field Kinetic Stability
+For P( X ) = −κX + ΛX 2 with κ, Λ > 0, using the k-essence perturbative framework [13],
+PX = −κ + 2λX,
+
+K = PX + 2XPXX = −κ + 6λX.
+
+At X = κ/(6Λ), K=0 and regular sound-speed propagation is not established. Both positive
+kinetic coefficient and positive gradient coefficient require X > κ/(2Λ). A positive ratio PX /K does
+not remove a ghost if both numerator and denominator are negative. For timelike X>0 and ρ > 0
+in this healthy region, ρ + p = 2XPX > 0, so the minimal model cannot support healthy phantom
+behavior. These conditional obstructions do not rule out every multi-field or higher-derivative theory;
+such alternatives need their own perturbation analysis.
+6.5. Cooling, Changing Reference Measures and the Information Arrow
+The thermal construction makes it essential to distinguish fixed equilibrium from driving. On a
+fixed volume form with D (τ ) > 0, V (τ ), normalized instantaneous µτ = Zτ−1 e−Vτ /Dτ , and sufficient
+R
+regularity, set K = KL( p∥µτ ) and I = p|∇ log( p/µτ )|2 . Differentiating both arguments gives
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+20 of 29
+
+K ′ = − DI −
+
+Z
+
+p ∂τ log µτ ,
+
+Fτ [ p] − Fτ [µτ ] = Dτ K.
+
+(34)
+
+R
+Consequently ( DK )′ = D ′ K − D2 I − D p∂τ log µτ . A cooling schedule is not free equilibrium relaxation. DrivenEntropy.moving_reference_balance proves the product-rule step, and kl_
+nonincrease states its separate sign requirement; the PDE identity (34) remains analytic. For a moving
+metric, the volume-form term in §6.1 must also be included.
+The no-periodic-distribution argument of §6.1 is the relevant classical fixed-reference obstruction.
+Watanabe–Oshikawa [14] give a different no-go theorem for specified equilibrium quantum systems;
+it must not be used as a theorem about every cosmological open system. A proposed oscillatory or
+time-crystal completion must display driving, energy exchange and perturbative stability.
+6.6. Non-Gaussian Correction and Uniform Covariance Control
+This subsection concerns the centered, symmetric one-dimensional Euclidean process with drift
+− ax − qx3 , a > 0, q ≥ 0, D > 0. Assume a nonexplosive solution, moment integrability sufficient
+for Itô’s formula and localization/removal of stopping times. These are analytic requirements; the
+following moment equations are not automatically equations on curved XE .
+Let M j = E[ X j ], C = M2 , κ4 = M4 − 3C2 , and let G ≥ 0 solve the Gaussian-closed Riccati
+equation. Subtracting the exact covariance equation gives
+δ′ = − A(τ )δ − 2qκ4 ,
+
+δ = C − G,
+
+A = 2a + 6q(C + G ) ≥ 2a.
+
+(35)
+
+This is QuarticError.exact_difference and restoring_rate_lower. The fourth-moment equation and Jensen’s inequality give
+M4′ = −4aM4 − 4qM6 + 12DC,
+12DC ≤ 2aC2 + 18D2 /a ≤ 2aM4 + 18D2 /a,
+
+C2 ≤ M4 ,
+M4′ ≤ −2aM4 + 18D2 /a.
+
+Consequently, on forward intervals,
+
+M4 (τ ) ≤ e−2aτ M4 (0) +
+
+9D2
+(1 − e−2aτ ) ≤ M := max{ M4 (0), 9D2 /a2 },
+a2
+
+|κ4 (τ )| ≤ 2M =: K. (36)
+
+The last inequality follows from −2M4 ≤ κ4 ≤ M4 . fourth_moment_differential_bound proves
+the polynomial Young-inequality certificate under explicit moment premises; fourth_moment_bound
+integrates it on [0, τ ], and cumulant_abs_bound proves the cumulant estimate. Itô’s formula, Jensen’s
+inequality for the law, and existence of its moments remain A, not hidden hypotheses asserted globally.
+Variation of constants in (35), using A ≥ 2a, yields the sharper analytical bound
+
+|δ(τ )| ≤ e−2aτ |δ(0)| +
+
+qK
+(1 − e−2aτ ).
+a
+
+(37)
+
+An independently formalizable squared-error route uses
+
+(δ2 )′ ≤ −2aδ2 +
+
+2q2 K2
+,
+a
+
+δ(τ )2 ≤ e−2aτ δ(0)2 +
+
+q2 K 2
+(1 − e−2aτ ).
+a2
+
+(38)
+
+squared_error_differential_bound supplies the differential certificate, scalar_comparison
+supplies integrating-factor control on an actual finite-interval trajectory, and covariance_error_
+bound combines them into (38). For solutions existing for all forward times with uniform hypotheses
+these estimates give lim sup |δ| ≤ qK/a, a persistent error floor rather than convergence to a Gaussian.
+Small qK/a in the chosen covariance units is required for accuracy. With a physical density coefficient
+κρ , the corresponding absolute density error is at most |κρ | |δ| when the same external clock and
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+21 of 29
+
+response are used. If the clock itself is reconstructed from covariance, its error must also be propagated;
+b ≥ ε > 0, | NE − N b | ≤ β| E − E
+b|/ε for a common reference.
+on E, E
+E
+There is no reason for κ4 to vanish at late time for fixed q > 0: the stationary density is proportional
+to exp[−( ax2 /2 + qx4 /4)/D ], not a Gaussian. More directly, at Gaussian initial moments M4 = 3C2 ,
+M6 = 15C3 ,
+κ4′ (0) = −24qC (0)3 < 0
+
+(q, C (0) > 0).
+
+(39)
+
+The polynomial identity and sign have Lean proof bodies. A perturbative stationary diagnostic,
+obtained by differentiating normalized Gibbs expectations at q = 0+ , is
+C∞ = D/a − 3qD2 /a3 + O(q2 ) and
+κ4,∞ = −6qD3 /a4 + O(q2 ), with a, D fixed. This local expansion is analytical and distinct from
+the uniform, nonperturbative bounds (36)-(38); no convergent all-order series is asserted. Decay of
+relative entropy toward this non-Gaussian equilibrium cannot establish zero fourth cumulant.
+6.7. Late Vacuum of the Common Action: Value, Health and Conditional Limits
+Consider a solution for which u → 0, v → 0, ϕ → ϕv , Ugeo (ϑ (t)) → U∞ , with
+γm20
+> 0,
+2λ
+
+(m20 )2
+> 0.
+(40)
+4λ
+The first relation supplies the scalar broken vacuum; it does not determine U∞ . Square completion
+gives W (ϕv ) = −(m20 )2 /(4λ), and continuity of the polynomial stress yields
+ϕv2 = −m20 /λ,
+
+Av = Z +
+
+ρ −→ Λe f f ,
+
+p −→ −Λe f f ,
+
+Λe f f = U∞ −
+
+w = p/ρ −→ −1.
+
+(41)
+
+The positive limiting density makes the denominator nonzero eventually. The chain is
+UnifiedDynamics.vacuum_potential_value, vacuum_density_pressure, density_pressure_limits
+and late_w_limit. These are limit implications for actual functions, not a statement that every initial
+condition is attracted to the vacuum. The symbol m in Lean is m20 , so its square in vacuumDensity
+means (m20 )2 , not m20 itself.
+For a stationary solution one must also have Uϑ (ϑ∞ ) = 0. With (40), u = v = 0 satisfies
+the
+scalar
+equations (vacuum_rest_equations), and the expanding flat Einstein branch has H∞ =
+q
+Λe f f /(3 M̄2P ). Around an isolated scalar vacuum with Uϑϑ > 0, the two canonical squared masses
+
+are Uϑϑ /Av and −2m20 , both positive. On this homogeneous de Sitter background the decoupled linear
+characteristic polynomials are s2 + 3H∞ s + Mi2 with roots of negative real part. This is an analytic local
+linear test; it does not prove global nonlinear attraction, gauge/matrix stability or a basin containing
+the earlier unstable trajectory. For the general Fisher target, the relevant covariant Hessian and kinetic
+metric replace the scalar quotient.
+The health and positive-energy conditions are nonvacuous: in chosen units Z = γ = λ = 1,
+m20 = −1, ϕv = 1, U∞ = 1 give Av = 1/2 and Λe f f = 3/4 (vacuum_health_positive_witness).
+Changing only U∞ to zero gives Λe f f = −1/4 (residual_energy_need_not_be_positive). Thus
+neither the sign nor the small observed magnitude of vacuum energy follows from symmetry breaking.
+A constant term in Ugeo is an independent gravitational input; calling it an OU residue does not solve
+its normalization or radiative stability.
+The OU result C∞ = D/ℓ describes variance of the configuration law. It does not equal X, which is
+quadratic in the time derivative of its parameter field, nor does it specify U∞ . A stationary distribution
+with nonzero variance can have X = 0. Any map from that variance to (40), and its uncertainty, must
+be derived from the open-system response described in §3.9.1. The non-Gaussian controls of §6.6
+bound the stated statistical approximation; they do not convert it into physical vacuum energy.
+If an additional, separately conserved pressureless sector has ρm ≥ 0 and acos → ∞, then
+−3 → 0. For a stationary positive vacuum, vacuum_eventually_dominates supplies ρ <
+ρm ∝ acos
+m
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+22 of 29
+
+Λe f f eventually. More generally, (41), ρm → 0 and pm → 0 imply negative total ρ + 3p eventually
+(UnifiedDynamics.late_accelerating_stress); the Friedmann/Raychaudhuri relation then gives
+acceleration. Particle-sector dilution, an expanding solution lasting to that limit, and a prior matterdominated interval are separate conditions. The two-field action alone has not produced that particle
+sector, so the statement is a conditional route to late domination, not a proved complete cosmic history.
+
+7. Branching, Normalization and Cosmological Conservation
+7.1. Joint Instantaneous Constraints
+Assume initial comoving DM/baryon ratio r, baryon normalization Bi > 0 relative to today’s
+critical density, converted fraction f ∈ [0, 1), DE branch d ∈ [0, 1], and no other sources. BH storage is
+empty at the end. DM subsequently redshifts as dust; DE produced at a single redshift z∗ has w = −1
+thereafter. Put A = (1 + z∗ )3 and denote the injected present DE contribution by ω. Then
+B f = Bi (1 − f ),
+
+R=
+
+r + (1 − d ) f
+,
+1− f
+
+ω = ABi f d.
+
+For e = ω/( ABi ), the joint solution is
+f =
+
+R−r+e
+,
+R+1
+
+d=
+
+e
+.
+f
+
+For R>r>0 and e>0, feasibility requires and is ensured by e ≤ ( R − r )/R. Indeed d ≤ 1 is e ≤ f ;
+substitution gives eR ≤ R − r. This bound implies e<1<r+1 and therefore 0<f<1. The two constraints
+determine f and then d uniquely. Branching.joint_constraints and joint_physical_range give
+an explicit algebraic construction and a sufficient feasible range; necessity and uniqueness follow
+analytically as above.
+For the illustrative choices r = 5, R = 5.47, Bi = 0.06, A = (5.29)3 and ω = 0.682, Branching.
+benchmark_joint_solution verifies both constraints and the fraction bounds using exact rationals. Bi
+and ω here are chosen inputs, not measured outputs. In particular B f must still be compared with
+baryon data. The arithmetic of this instantaneous example does not fit a complete cosmology.
+The value 5.47 is an illustrative target, not identified with every observational analysis.
+7.2. Internal Exchange Fixed by the Common Action
+For the specific subsystem convention
+ρϑ = AX + Ugeo ,
+
+pϑ = AX − Ugeo ,
+
+ρϕ = Y + W,
+
+pϕ = Y − W,
+
+the two Euler–Lagrange equations give
+ρ̇ϑ + 3H (ρϑ + pϑ ) = γϕϕ̇X,
+
+ρ̇ϕ + 3H (ρϕ + pϕ ) = −γϕϕ̇X.
+
+(42)
+
+These exchange terms are computed from the evolving fields and the chosen action. They
+are not arbitrary functions used to connect stages, and their direction can change with ϕϕ̇.
+UnifiedDynamics.theta_exchange, phi_exchange and exchange_balance encode the rate algebra;
+unified_continuity is the actual total trajectory theorem. Subsystem bookkeeping depends on where
+the interaction energy is assigned, but the total stress (16) and its conservation do not. On a smooth
+solution there is no externally inserted energy jump at m2e f f = 0.
+Equation (42) replaces the former four-component injection prescription in the principal model. It
+does not say each subsystem source vanishes, nor that an independently defined baryon/BH/CDM
+network has been derived. Existing Branching.sources_sum_zero and SourceQ results are retained
+as algebra for optional population models, not as consequences of (15). Their source laws would need
+a specified microscopic or coarse-grained coupling to enter the enlarged action. The instantaneous
+constraints of §7.1 and population checks of §7.3 are likewise conditional phenomenology; a factor
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+23 of 29
+
+(1 + z∗ )3 is not a prediction of the two-field vacuum model. Radiation, reheating and black-hole
+populations require additional variables and their equations.
+7.3. Joint Constraint Completeness and Population Histories
+The integrated source now supplies Branching.joint_unique, feasible_necessary and feasible_
+sufficient_sharp. Under R > r > 0, e ≥ 0, 0 ≤ f < 1, 0 ≤ d ≤ 1 and the two simultaneous equations, the feasible region is exactly eR ≤ R − r. Within it f > 0, the solution is unique and equals
+§7.1. Necessity follows from e = f d ≤ f and ( R + 1) f = R − r + e; sufficiency also implies e < 1, so
+the earlier extra bound e < r + 1 is redundant. This completes the algebraic evidence chain without
+claiming a physical rate model.
+For continuous injection, let dL(z) ≥ 0 denote a dimensionless positive measure of comoving
+energy loss normalized to today’s critical density, including the DE branch. With w = −1 after injection
+and the other assumptions of §7.1, its present contribution is
+∆Ω DE =
+
+Z
+
+3
+
+(1 + z) dL(z),
+
+3
+
+(1 + z e f f ) =
+
+R
+
+(1 + z)3 dL(z)
+R
+.
+dL(z)
+
+(43)
+
+This definition requires a positive finite denominator and finite third moment. It is a momentequivalent redshift, not the mean redshift or the peak of the star-formation history. Madau–Dickinson
+[15] provide a historical star-formation baseline; the BH population requires an IMF, formation efficiencies, delay distributions, lifetimes and branching fractions before dL is known. A stellar-population
+integral is not supplied by a lattice-gauge simulation. The reference z∗ = 4.29 remains a chosen
+single-epoch benchmark.
+For the exact input values of §7.1, e ≃ 0.07678, f ≃ 0.08451, d ≃ 0.90856 and B f ≃ 0.05493. These
+differ substantially from a 5.4
+
+8. RG and Index-to-Coupling Matching
+8.1. Coupling Conventions and Applicable Scales
+In a specified four-dimensional compact SU(6) gauge theory with 15 fundamental Dirac flavors
+[M] and no other contributions, trF ( T a T b ) = δ ab /2 gives C A = 6, TF = 1/2 and b0 = 12. It is a
+√
+field-content assumption [M], not a consequence of target-space dimension alone. Under T → 2 T,
+√
+C A , TF and this b0 all double; g → g/ 2 preserves gT. Asymptotic freedom of the perturbative branch
+does not establish ultraviolet completeness of a noncompact gravitational theory.
+With M = 101 6 GeV and g0 = 0.5 as inputs,
+g2 ( µ ) =
+
+g02
+.
+1 + b0 g02 log(µ/M )/(8π 2 )
+
+The formal pole is about 3.71388104 GeV and the formal D1 crossing about 9.81879104 GeV. Both
+lie in a strong-coupling extrapolation region; neither computes a condensation temperature. No
+instanton enhancement exponent from a different gauge group is inserted into this running law.
+For the separate specified flow β( g) = ηg/2 + bg3 /(8π 2 ), η = −36/35, b = 12, one finds
+g∗2 = 12π 2 /35 and β‘( g∗ ) = 36/35. It is locally IR-attractive as log µ decreases. The D1 definition gives
+gT C2 = 24π 2 /35. Their ratio two is algebraic — a consequence of the realification and basis-rescaling
+normalization analyzed in the companion CGICE source — not a mechanism relating two physical
+couplings. CGICECore.beta_fixedpoint, signed_fixedpoint and gTC_sq_eq_two_gStar_sq express
+that scope.
+8.2. Heat Kernel and Fredholm Problem
+For P = −∇2 + E, the local heat coefficient is a2 = R/6 − E, consistent with e( − tE) = 1 − tE + . . .
+in flat space. Connection-curvature squares occur at a4 [16]. The ratio 36/35 is a beta-function Ansatz;
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+24 of 29
+
+these heat coefficients do not derive a full FRG equation. Local expansions on a noncompact manifold
+do not automatically define a finite global heat trace.
+Following the Callias-type research route, with an applicable theorem such as [17], a possible
+index route starts on a specified Riemannian Clifford module, with self-adjoint D0 , φ and a common
+operator core, and considers B = D0 + iφ. Formally,
+B∗ B = D02 + Φ2 + i [ D0 , Φ].
+Domain, closedness, adjoint, ellipticity and a suitable coercivity condition outside a compact set
+must all be proved. Full anticommutation is not inferred merely from a principal-symbol relation. An
+additional doubling produces
+D=
+
+0
+B
+
+!
+B∗
+,
+0
+
+Γ=
+
+I
+0
+
+!
+0
+.
+−I
+
+One would compute ind B, not a nonzero ordinary index for the whole self-adjoint operator. A
+35-dimensional spinor bundle is not supplied with an even-dimensional chiral splitting by notation
+alone. No boundary class or index-one value is asserted here.
+The chosen conditional matching convention is
+2
+gmatch
+=
+
+8π 2
+.
+r⊥ | ind B|
+
+IndexMatching.couplingSq takes an integer index, and unit_index_matching proves substitution of |index|=1 and r p erp = 35/3. This is a matching calculation, not an index theorem or a
+derivation of its physical normalization.
+8.3. Noncompact Regularization Without an Index Shortcut
+For a nonnegative self-adjoint Laplace-type operator P on a specified finite-rank Hermitian bundle
+over XE , choose smooth cutoffs 0 ≤ χ R ≤ 1, equal to one on BR and supported in B2R . At t > 0, define
+the localized heat quantity
+TrχR (e−tP ) = Tr(χ R e−tP χ R ) =
+
+Z
+
+χ R ( x )2 tr Kt ( x, x ) dvol( x ).
+
+(44)
+
+The trace formula presupposes the heat-kernel and local trace-class hypotheses. If tr Kt ( x, x ) ≤ Bt
+R
+uniformly, it is bounded by Bt χ2R and is finite for each compact support. As R → ∞ this need not stay
+finite: homogeneous free kernels on infinite-volume XE do not acquire a global trace by exhaustion. AlR
+ternatively choose a fixed nonnegative integrable weight w and use Tr(w1/2 e−tP w1/2 ) ≤ Bt w. Without a uniform diagonal bound, require the weighted diagonal itself integrable. NoncompactControl.
+weighted_sum_bound formalizes only a finite quadrature analogue, not this infinite-dimensional operator theorem.
+The local small-t expansion [16] can be integrated against a fixed compact cutoff, retaining cutoffdependent coefficients. Removing the cutoff or interchanging R → ∞ and t ↓ 0 requires uniform
+integrable remainders. A Dirichlet heat trace on BR is another possible scheme, but its boundary
+coefficients differ from (44). A confining Witten operator may have discrete spectrum under separately
+checked conditions; this cannot be inferred for the free operator from a regularized trace.
+For the Callias route of §8.2, require outside a compact set a quadratic-form bound
+Φ2 ≥ m2 I,
+
+|⟨u, i [ D0 , Φ]u⟩| ≤ c∥u∥2 ,
+
+m2 − c > 0.
+
+(45)
+
+Then ∥ Bu∥2 ≥ (m2 − c)∥u∥2 for compactly supported exterior test sections, using D02 ≥ 0.
+For a first-order Dirac operator, boundedness of the displayed commutator requires the suitable
+compatibility of the principal symbol and Φ; it is not assumed for an arbitrary matrix potential.
+exterior_coercivity proves the quadratic-form arithmetic, not domain compatibility. Elliptic local
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+25 of 29
+
+compactness, closure/adjoint control and the hypotheses of the chosen Callias theorem [17] are
+still required to conclude Fredholmness. Cutoff localization produces derivative-of-cutoff terms,
+typically controlled by ∥∇χ R ∥2∞ ∥u∥2 in a squared-operator estimate; localization_error records the
+elementary error bookkeeping, not an IMS theorem on this bundle.
+A weighted or cutoff supertrace is not automatically an integer and is generally not independent of
+t: weights obstruct the unweighted cyclic cancellation. Hence neither (44) nor (45) computes an indexone boundary class or licenses the coupling substitution as a derived prediction. This responds to the
+noncompact-domain concern without replacing a Fredholm problem with finite-volume numerology.
+
+9. Numerical and Observational Scope
+9.1. Certified Geometry Versus Sampling
+Sampling uses the positive Riemannian geometry XE . A noisy exponential-map step is a Langevin
+discretization, not by itself a Hamiltonian Monte Carlo algorithm. For smooth one-dimensional
+restrictions,
+h 2 (4)
+f ( x + h) − 2 f ( x ) + f ( x − h)
+′′
+f ( x ) + o ( h2 ).
+=
+f
+(
+x
+)
++
+12
+h2
+For f ( x ) = x4 the expression is exactly 12x2 + 2h2 , as proved in NumericalBounds.quartic_
+central_difference. Finite-step exactness for quadratic functions does not imply general unbiasedness.
+A finite minimum of sampled Rayleigh quotients is an upper bound on the minimum over all
+directions. Finite position sampling likewise does not cover a noncompact space. A global lower
+certificate requires an analytic tail estimate and a compact-region covering with controlled Hessian
+variation. Given certified sample lower bound K, covering radius ε and operator-norm Lipschitz
+constant L, the transferable bound is K − Lε. certified_cover_bound proves its scalar inequality,
+assuming the error bound rather than deriving it from random samples.
+9.2. Tensor Sources and Observable Tests
+For k ̸= 0 and a symmetric spatial stress S in three dimensions,
+P= I−
+
+kk T
+,
+kT k
+
+ΠkTT (S) = PSP −
+
+tr( PS)
+P.
+2
+
+The source defines this explicit operator and provides the transverse projector’s symmetry,
+idempotence, trace and annihilation of k. It supplies an explicit nonzero TT witness and the vanishing
+of the projected isotropic tensor cI. The concrete operator also has supplied proof bodies for zero trace,
+transversality, symmetry on symmetric inputs, and idempotence (GWTT.explicit_mem_TT, explicit_
+idempotent). These bodies are retained from the supplied baseline, which reports a prior successful
+build; the current source compiles under the pinned build (0 errors).
+Three stage names do not determine three spectral peaks. No numerical peak frequency, amplitude
+or signal-to-noise ratio is predicted here. An observable GW calculation needs an anisotropic tensor
+source, its unequal-time correlation, propagation, redshift and detector response. The local EoS relation
+of §6.3 is instead a definite conditional test of that density law, with model choice and data calibration
+kept distinct.
+9.3. Restored Redshift Diagnostic and Historical Observational Context
+A frequency correction can be retained as a dimensional diagnostic. For an adiabatic radiation-era
+horizon source with angular scale H∗ , define f ∗ = H∗ /(2π ) and
+T0
+f0 =
+T∗
+
+
+
+gs0
+gs ∗
+
+1/3
+
+1
+2π
+
+r
+
+π 2 g∗ T∗2
+.
+90 M̄P
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+(46)
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+26 of 29
+
+Converting the natural-unit frequency with h̄ = 6.582119569 × 10−25 GeV s, and choosing
+T0 = 2.348 × 10−13 GeV, M̄P = 2.435 × 1018 GeV, g∗ = gs∗ = 106.75, gs0 = 3.91, gives approximately
+2.65 × 10−8 ( T∗ /GeV) Hz. Thus 1013 GeV corresponds to about 2.65 × 105 Hz in this benchmark; 1.71
+Hz corresponds to about 6.45 × 107 GeV. A bubble source can involve a different length scale, such
+as β−1 , so (46) does not compute its spectral peak. No three-peak or detection-significance claim is
+restored.
+The explicit finite-dimensional TT results in §9.2 establish neither homogeneous initial tensor
+data nor unequal-time correlations.
+Planck 2018 [18] and DESI 2024 [19] are retained as dated observational context, not a current
+combined-data fit. Their inferred parameters depend on model and data choices. The density-law
+relation wa = −3w0 (1 + w0 ) can be tested conditionally, but the numerical target w0 = −0.73 is an
+illustrative choice, not a derived measurement. Likewise, proton lifetime and companion neutrino
+masses need separate operators and source calculations and are not outputs of this manuscript.
+
+10. Conclusions and Outstanding Constructions
+The three-stage cosmological evolution scheme based on SL(6, C) proposed in this paper possesses
+a common effective physical action.. The Fisher derivative coupling changes the order-parameter mass
+on a single proper-time trajectory. Both field equations imply total continuity, internal exchange and
+preservation of the Friedmann constraint. This exclude the fixed information-to-expansion clock and
+arbitrary DE injection from the principal mechanism. Early acceleration, critical ordering and late
+vacuum pressure now have explicit inequalities and limiting conditions within the same background
+equations.
+The action also exposes restrictions hidden in the proposed narrative. Healthy propagation
+requires A > 0; kinetic energy need not decrease in the presence of backreaction. Continuous decay
+and an actual positive initial mass imply a crossing, while uniqueness requires monotonicity. The
+minimal matrix quartic force potential selects (3,3), so (1,2,3) requires additional dynamics. A broken
+scalar vacuum gives positive DE only if U∞ exceeds the negative condensate contribution. The Lean
+additions supply concrete proof bodies for these scalar identities and conditional limit/crossing
+statements; they do not certify tensor variation, full matrix selection, nonlinear attraction or particle
+production.
+The remaining programme is to derive or constrain the effective action and its stochastic opensystem limit, select a physical real section, establish a globally healthy solution family with seeded
+condensation and a populated matter interval, and calculate perturbations and observables with
+independently fixed parameters. The Fisher-signature obstruction, covariance-error estimates and
+noncompact-index limitations remain applicable. A unified effective equation set is a concrete advance
+over separate response prescriptions, but is not yet a first-principles derivation of three spacetime
+phases. The cosmological constant problem, four-dimensional Lorentzian emergence, inflationary exit
+and observational preference remain unresolved.
+
+Appendix A. Formal Coverage and Declaration Census
+The census includes attributes appearing on the same line as a declaration, counts noncomputable
+def within def, and excludes auto-generated structure projections and imported Mathlib declarations.
+“No custom axiom declarations” does not mean that the physical model has no assumptions or that
+imported logical dependencies have been audited.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+27 of 29
+
+Declaration kind
+axiom
+opaque
+theorem
+lemma
+def
+structure
+class
+inductive
+instance
+abbrev
+
+Active count
+0
+0
+297
+37
+125
+8
+0
+1
+0
+2
+
+The file contains 297 theorem declarations and 37 lemma declarations, totaling 334 explicit
+proof declarations, and 0 custom axiom declarations. The CGICECore namespace retains 73 proofs;
+the other namespaces contain 261. This is a source census, not a claim that every statement is a new
+mathematical discovery or that the two CGICE modules are mechanically identical. Definitions and
+structure fields are excluded from the proof total. The four retained auxiliary TT lemmas support the
+projection proofs of §9.2.
+Mathematical content
+Restricted-root normalization
+Radial Hessian
+Poincaré quotient
+OU dynamics
+Squared OU excess
+Compact-coordinate charge
+Free-energy dynamics
+Abundance lower bound
+Two-state transfer
+Scalar VEV and minimum
+EoS constraints
+Joint branching
+TT operator
+Integer index matching
+Covariance-dependent clock
+Tensor response and signature obstruction
+Local connection covariance
+Fourth-moment control
+Integrated covariance error
+Noncompact control
+Action-derived continuity
+Conditional critical crossing
+Matrix quartic obstruction
+Late action-derived stress
+
+Principal Lean declaration
+CGICECore.restricted_threshold_35
+PhaseI.radial_hessian_lower
+PhaseI.poincare_lower_bound
+CGICECore.ouCov_hasDerivAt, ouCov_unique, ouCov_limit, ouCov_positive
+CGICECore.ouCov_excess_square_hasDerivAt
+InternalCharge.casimir_conserved
+CGICECore.freeEnergy_dissipation
+DMAbundance.positive_limit_from_reciprocal_identity
+TwoState.solution, nonnegative, ratio_limit, uniqueness
+VEV123CW.V0_global_min, hessian_positive_at_stationary
+ModelAlgebra.w_a_elimination, eos_inverse_epsilon
+Branching.joint_constraints, joint_physical_range
+GWTT.explicit_mem_TT, explicit_idempotent, explicit_nonzero_witness
+IndexMatching.unit_index_matching
+TransportClock.eFold_interval_lipschitz, covariance_tail_hasDerivAt
+TensorResponse.pullback_composition, positive_pullback_not_timelike
+TensorResponse.covariantRate_transforms
+QuarticError.fourth_moment_differential_bound, fourth_moment_bound
+QuarticError.covariance_error_bound
+NoncompactControl.weighted_sum_bound, exterior_coercivity
+UnifiedDynamics.continuity_identity, unified_continuity, action_friedmann_hasDerivAt
+UnifiedDynamics.mass_eventually_negative, critical_crossing, critical_crossing_unique, critical_sign_order
+UnifiedDynamics.six_mode_lower_bound, three_three_witness
+UnifiedDynamics.density_pressure_limits, late_w_limit, late_accelerating_stress
+
+Exact coverage
+Finite arithmetic; geometric spectrum external
+Directional scalar bound under comparison hypotheses
+Actual functionals with an assumed Poincaré inequality
+Scalar linear ODE and initial-value properties
+Actual derivative; nonpositive sign when ℓ > 0
+Skew real generator; su(6) basis identification external
+Finite graph with positive differentiable trajectory and constitutive flux
+Integral identity and upper bound explicit; general FTC bridge external
+Explicit linear model; rates input
+One-loop parameterized potential; global minimum and positive Hessian at the stationary point
+Algebraic elimination under nonzero denominators
+Normalized instantaneous model; no Friedmann solution
+Explicit TT operator; no stochastic source spectrum
+Matching-law substitution, not a Fredholm construction
+Actual differentiated response and interval estimate; lapse and response remain inputs
+Bilinear forms on fibers; no smooth global bundle or Lorentzian selection
+Transformation law given explicitly; no manifold connection construction
+Polynomial estimate plus finite-interval comparison; Itô/Jensen assumptions explicit
+Actual trajectory estimate, with nonnegative moments and bounded cumulant as premises
+Finite sum/quadratic-form bounds, not a global trace or Fredholm theorem
+Both scalar field equations imply an actual density derivative and the Friedmann derivative identity
+Decay, continuity, actual initial sign and explicit monotonicity; no solution-existence premise hidden as a conclusion
+Six scalar lower bounds and a traceless saturating example; full orbit classification analytic
+Convergent trajectories and positive limiting density; no attractor or produced matter theorem
+
+The current file contains no custom axiom, opaque, sorry or admit declarations by census. These
+checks do not establish the variational PDE, stochastic reduction, bundle, global ODE solution or
+Fredholm hypotheses. The variational PDE, stochastic reduction, bundles, global ODE solution and
+Fredholm hypotheses are outside the present formal coverage.
+
+Appendix B. Integration and Proof Correspondence
+Appendix B.1. B.1. formal correspondence
+Manuscript relation
+Stability of confinement (25)
+Thermal Hessian changes sign at Tc
+Scalar broken minimum and stability
+OU-to-N clock relation (30)
+Conserved pressure and nonphantom sign (31)
+Old density Ansatz as m=3 subcase
+Late acceleration condition (32)
+Friedmann constraint (2)
+Pressure work and transition matching
+Joint branching completeness
+Changing-reference entropy (34)
+
+Lean evidence
+PhaseI.perturbation_gap_lower
+ThermalBridge.massSq_positive_above, massSq_negative_below, critical_origin_hessian
+ThermalBridge.broken_minimum
+ClockResponse.ou_clock_identity, tail_physical_hasDerivAt
+ClockResponse.continuity, enthalpy, no_phantom
+ClockResponse.density_ansatz_match, positive_tail_epsilon_sign
+ClockResponse.acceleration_criterion
+CosmologicalBridge.friedmann_constraint_hasDerivAt, friedmann_constraint_preserved
+CosmologicalBridge.comoving_pressure_work, transition_energy_matching
+Branching.joint_unique, feasible_necessary, feasible_sufficient_sharp
+DrivenEntropy.moving_reference_balance, kl_nonincrease
+
+Scope
+Directional arithmetic with a certified perturbation bound as premise
+Polynomial thermal Ansatz
+Scalar minimum with v2 specified; no matrix vacuum selection
+Exact linear model and differentiable physical clock
+Chosen density response with Q=0
+Algebra and sign correspondence
+Stress-energy criterion; response assumed
+Actual differentiable trajectories; no existence theorem
+Product-rule algebra and explicit matching premise
+Simultaneous normalized instantaneous constraints
+Product derivative and sign condition; PDE step analytic
+
+Appendix B.2. B.2. Completeness conditions for the three-stage emergence theorem
+A complete result must exhibit one initial-data set and a common solution for the configuration
+dynamics, order parameter, physical clock, metric and component densities. It must prove localization,
+a populated stable matter sector and late acceleration at ordered times, verify matching and stability,
+and compute observables without reusing them as calibration inputs.
+
+Appendix C. References and Materials
+Additional reference (not cited in the text):
+Companion materials supplied by the author: CGICE cosmic geometry–information dynamics
+manuscript and accompanying Lean source. Their model assumptions serve as the baseline for
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+28 of 29
+
+the explicitly selected results reproduced here. Available at https://github.com/flyyinghui/scientifc_
+discovery_proof
+Materials and Verification. The accompanying source retains the requested filename 6D_
+Spacetime_Formal_Proof_V20.lean; a local build may use the conventional module filename
+Spacetime_Formal_Proof_V20.lean. All numerical examples specify their inputs. No observational
+data analysis is reported. Formal coverage is in Appendices A-B. The CGICE v10 files are baseline
+references and are not modified by this revision. References [9]–[11] were checked against their primary
+arXiv records during this revision; this is not a new literature survey or a validation of the proposed
+model.
+AI Assistance. AI tools assisted mathematical exposition, source editing and source-level consistency checks. The named author must verify the scientific content, finalize applicable funding/conflict
+statements, complete local Lean compilation and approve any submission. This statement does not
+assert that author verification or journal submission has occurred.
+
+References
+1.
+2.
+
+3.
+4.
+
+5.
+
+6.
+
+7.
+8.
+
+9.
+
+10.
+
+11.
+
+12.
+13.
+14.
+15.
+16.
+
+S. Helgason, Differential Geometry, Lie Groups, and Symmetric Spaces, Academic Press (1978). Publisher record.
+R. Eldan, Thin Shell Implies Spectral Gap Up to Polylog via a Stochastic Localization Scheme, Geometric and
+Functional Analysis 23, 532–569 (2013). arXiv:1203.0893. Background motivation, not an autonomous
+cosmological Langevin theorem.
+B. Klartag and J. Lehec, Bourgain’s slicing problem and KLS isoperimetry up to polylog, arXiv:2203.15551.
+D. Bakry, I. Gentil and M. Ledoux, Analysis and Geometry of Markov Diffusion Operators, Springer (2014). Used
+for the conditional analytic diffusion framework; no manifold implementation is inferred from a scalar Lean
+inequality.
+R. Jordan, D. Kinderlehrer and F. Otto, The Variational Formulation of the Fokker–Planck Equation, SIAM
+Journal on Mathematical Analysis 29, 1–17 (1998). doi:10.1137/S0036141096303359. Variational diffusion
+background; physical spacetime reconstruction is not a conclusion of this theorem.
+M. Visser, Sakharov’s induced gravity: a modern perspective, Modern Physics Letters A 17, 977–988 (2002).
+arXiv:gr-qc/0204062, doi:10.1142/S0217732302006886. Effective-action motivation; not a proof of the CGICE
+response or of Lorentzian signature selection.
+J.-D. Benamou and Y. Brenier, A computational fluid mechanics solution to the Monge–Kantorovich mass transfer
+problem, Numerische Mathematik 84, 375–393 (2000). doi:10.1007/s002110050002.
+R. J. McCann, Polar factorization of maps on Riemannian manifolds, Geometric and Functional Analysis 11,
+589–608 (2001). doi:10.1007/PL00001679. Author’s institutional preprint record. The compact-manifold
+scope must be respected.
+A. Linde, Hybrid Inflation, Physical Review D 49, 748–754 (1994).
+arXiv:astro-ph/9307002,
+doi:10.1103/PhysRevD.49.748. A field-triggered waterfall comparison; not a derivation of the Fisher
+derivative coupling or a guarantee of inflationary exit here.
+S. Renaux-Petel and K. Turzyński, Geometrical Destabilization of Inflation, Physical Review Letters 117, 141301
+(2016). arXiv:1510.01281, doi:10.1103/PhysRevLett.117.141301. Field-space curvature can change perturbative stability; the sign and full perturbation system must be calculated for (15).
+L. Kofman, A. Linde and A. A. Starobinsky, Towards the Theory of Reheating After Inflation, Physical Review
+D 56, 3258–3295 (1997). arXiv:hep-ph/9704452, doi:10.1103/PhysRevD.56.3258. Nonequilibrium particle
+production and backreaction require specified interactions; no rates from that model are assigned to CGICE
+here.
+S. Coleman and E. Weinberg, Radiative Corrections as the Origin of Spontaneous Symmetry Breaking, Physical
+Review D 7, 1888–1910 (1973). doi:10.1103/PhysRevD.7.1888.
+J. Garriga and V. F. Mukhanov, Perturbations in k-inflation, Physics Letters B 458, 219–225 (1999). arXiv:hepth/9904176. Perturbative framework relevant to the kinetic conditions in §6.4.
+H. Watanabe and M. Oshikawa, Absence of Quantum Time Crystals, Physical Review Letters 114, 251603 (2015).
+arXiv:1410.2143. Equilibrium quantum no-go result, distinct from the classical KL argument.
+P. Madau and M. Dickinson, Cosmic Star-Formation History, Annual Review of Astronomy and Astrophysics
+52, 415–486 (2014). arXiv:1403.0007. Population-history input, not a DE-production law.
+D. V. Vassilevich, Heat kernel expansion: user’s manual, Physics Reports 388, 279–360 (2003), arXiv:hepth/0306138.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+Preprints.org (www.preprints.org) | NOT PEER-REVIEWED | Posted: 23 September 2026
+
+doi:10.20944/preprints202609.1998.v1
+29 of 29
+
+17.
+18.
+19.
+
+N. Anghel, On the index of Callias-type operators, Geometric and Functional Analysis 3, 431–438 (1993).
+doi:10.1007/BF01896237. A route to be instantiated, not evidence for index one in this model.
+Planck Collaboration, Planck 2018 results. VI. Cosmological parameters, Astronomy & Astrophysics 641, A6
+(2020). arXiv:1807.06209. Historical model-dependent cosmological constraints.
+DESI Collaboration, DESI 2024 VI: Cosmological Constraints from the Measurements of Baryon Acoustic Oscillations, The Astronomical Journal 168, 58 (2024). arXiv:2404.03002. Historical comparison; no updated
+likelihood analysis is performed here.
+
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those
+of the individual author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s)
+disclaim responsibility for any injury to people or property resulting from any ideas, methods, instructions or
+products referred to in the content.
+
+© 2026 by the author(s). Distributed under a Creative Commons CC BY license.
+
+
