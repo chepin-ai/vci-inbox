@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p _build && cd _build
           echo "leanprover/lean4:v4.35.0-rc2" > lean-toolchain
-          printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "47644f4b47defdd122eafa2aa3dd4fc793844dca"\n' > lakefile.toml
+          printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a"\n' > lakefile.toml
           cp ../library/cgice/Spacetime_Formal_Proof_V20.lean .
           ls -la
       - name: resolve mathlib + cache (v3 toolchain对齐mathlib pin)
@@ -70,7 +70,7 @@ jobs:
           verdict='COMPILE_OK' if rc=='0' else ('COMPILE_FAIL' if rc.lstrip('-').isdigit() else 'PIPELINE_ABORT')
           head=['CLASSIFY: L1(公域板面·零密钥)','# CGICE-BUILD-VERIFY-01 编译裁决回执 · '+ts,'',
                 '靶件: library/cgice/Spacetime_Formal_Proof_V20.lean','sha256: '+sha,
-                'toolchain: leanprover/lean4:v4.35.0-rc2','mathlib: 47644f4b47defdd122eafa2aa3dd4fc793844dca (所报pin之前3秒的master前驱·反向最小漂移)','论文所报pin: 9fe29c4b379922f49446b28b76cbe4fce041c8b3 (实存于master·但其cache CI产物缺失·0/4157·已登记诚实缺口)',
+                'toolchain: leanprover/lean4:v4.35.0-rc2','mathlib: 815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a (缺口窗内·mvfderiv golf前20:02Z·对赌探针)','论文所报pin: 9fe29c4b379922f49446b28b76cbe4fce041c8b3 (实存于master·但其cache CI产物缺失·0/4157·已登记诚实缺口)',
                 '裁决: **'+verdict+'** (rc='+rc+' · 编译耗时'+el+')','',
                 '## compile.log 尾部','```',log[-1600:],'```']
           body=chr(10).join(head)
