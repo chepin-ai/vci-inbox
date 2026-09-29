@@ -65,7 +65,7 @@ jobs:
           subprocess.run(['git','commit','-m','CGICE-ERROR-CENSUS-01 rc='+rc+' '+ts])
           for i in range(6):
               subprocess.run(['git','fetch','origin','main'])
-              subprocess.run(['git','rebase','origin','main'])
+              subprocess.run(['git','rebase','origin/main'])
               r=subprocess.run(['git','push','origin','HEAD:main'])
               if r.returncode==0: break
               import time; time.sleep(8)
