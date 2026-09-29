@@ -14,7 +14,10 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
-      - uses: leanprover/elan-action@v1
+      - name: install elan (manual·org白名单外action规避)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.35.0-rc2
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
       - name: setup project
         run: |
           mkdir -p _build && cd _build
