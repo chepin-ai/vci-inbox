@@ -1,11 +1,12 @@
 # CLASSIFY-01: L1(公仓·零密钥)
+# CGICE-BUILD-VERIFY-01 v2 · 枢/PIVOT-01 · F02修复: detached-HEAD推失落赛 + compile速败自检 + 回执stdout免鉴权
 name: CGICE-BUILD-VERIFY-01
-# 枢铸·编译级复现轨: 第三方复现CGICE Lean伴生件编译
-# 靶件: library/cgice/Spacetime_Formal_Proof_V20.lean · pin: leanprover/lean4:v4.35.0-rc2 + mathlib@9fe29c4b379922f49446b28b76cbe4fce041c8b3
 on:
-  workflow_dispatch: {}
   push:
-    paths: [".github/workflows/cgice-build-verify-01.yml", "library/cgice/Spacetime_Formal_Proof_V20.lean"]
+    paths:
+      - .github/workflows/cgice-build-verify-01.yml
+      - library/cgice/Spacetime_Formal_Proof_V20.lean
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -24,12 +25,17 @@ jobs:
           echo "leanprover/lean4:v4.35.0-rc2" > lean-toolchain
           printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "9fe29c4b379922f49446b28b76cbe4fce041c8b3"\n' > lakefile.toml
           cp ../library/cgice/Spacetime_Formal_Proof_V20.lean .
+          ls -la
       - name: resolve mathlib + cache
         run: cd _build && lake update && lake exe cache get
       - name: compile (the verdict step)
         id: comp
         run: |
           cd _build
+          echo "=== preflight ==="
+          ls -la
+          lake env lean --version
+          echo "=== compile ==="
           set +e
           START=$(date +%s)
           lake env lean Spacetime_Formal_Proof_V20.lean > compile.log 2>&1
@@ -37,7 +43,8 @@ jobs:
           set -e
           echo "rc=$RC" >> $GITHUB_OUTPUT
           echo "elapsed=$(($(date +%s)-START))s" >> $GITHUB_OUTPUT
-          tail -20 compile.log || true
+          echo "=== compile.log head ==="; head -30 compile.log || true
+          echo "=== compile.log tail ==="; tail -30 compile.log || true
       - name: verdict receipt to board
         if: always()
         env:
@@ -57,11 +64,21 @@ jobs:
                 'toolchain: leanprover/lean4:v4.35.0-rc2','mathlib: 9fe29c4b379922f49446b28b76cbe4fce041c8b3',
                 '裁决: **'+verdict+'** (rc='+rc+' · 编译耗时'+el+')','',
                 '## compile.log 尾部','```',log[-1600:],'```']
+          body=chr(10).join(head)
           fn='board/cgice-build-verify-'+ts+'.md'
-          open(fn,'w').write(chr(10).join(head))
+          open(fn,'w').write(body)
+          print('=== RECEIPT STDOUT (免鉴权可见) ===')
+          print(body)
           subprocess.run(['git','config','user.name','pivot-01'])
           subprocess.run(['git','config','user.email','pivot@vci-inbox'])
           subprocess.run(['git','add',fn])
           subprocess.run(['git','commit','-m','CGICE-BUILD-VERIFY-01 verdict '+verdict+' '+ts])
-          subprocess.run(['git','push'])
+          ok=False
+          for i in range(6):
+              subprocess.run(['git','fetch','origin','main'])
+              subprocess.run(['git','rebase','origin/main'])
+              r=subprocess.run(['git','push','origin','HEAD:main'])
+              if r.returncode==0: ok=True; break
+              import time; time.sleep(8)
+          print('PUSH_OK' if ok else 'PUSH_LOST_AFTER_RETRIES')
           PYEOF
