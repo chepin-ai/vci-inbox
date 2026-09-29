@@ -26,8 +26,17 @@ jobs:
           printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "9fe29c4b379922f49446b28b76cbe4fce041c8b3"\n' > lakefile.toml
           cp ../library/cgice/Spacetime_Formal_Proof_V20.lean .
           ls -la
-      - name: resolve mathlib + cache
-        run: cd _build && lake update && lake exe cache get
+      - name: resolve mathlib + cache (v3 toolchain对齐mathlib pin)
+        run: |
+          cd _build
+          lake update
+          cp .lake/packages/mathlib/lean-toolchain lean-toolchain
+          echo "aligned toolchain: $(cat lean-toolchain)"
+          elan toolchain install "$(cat lean-toolchain)" || true
+          lake exe cache get
+          echo "=== cache verify ==="
+          ls .lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Analysis/Calculus/Deriv/ | head -5
+          test -f .lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Analysis/Calculus/Deriv/MeanValue.olean && echo CACHE_OK || echo CACHE_MISSING
       - name: compile (the verdict step)
         id: comp
         run: |
