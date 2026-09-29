@@ -1,6 +1,6 @@
 CLASSIFY-01: L1(公仓·零密钥)
 name: CGICE-BUILD-VERIFY-01
-# 枢铸·编译级复现轨: 第三方复现CGICE Lean伴生件编译(论文"compilation verified locally"声明的独立验证)
+# 枢铸·编译级复现轨: 第三方复现CGICE Lean伴生件编译
 # 靶件: library/cgice/Spacetime_Formal_Proof_V20.lean · pin: leanprover/lean4:v4.35.0-rc2 + mathlib@9fe29c4b379922f49446b28b76cbe4fce041c8b3
 on:
   workflow_dispatch: {}
@@ -19,13 +19,7 @@ jobs:
         run: |
           mkdir -p _build && cd _build
           echo "leanprover/lean4:v4.35.0-rc2" > lean-toolchain
-          cat > lakefile.toml <<'EOF'
-          name = "cgicev20"
-          [[require]]
-          name = "mathlib"
-          git = "https://github.com/leanprover-community/mathlib4.git"
-          rev = "9fe29c4b379922f49446b28b76cbe4fce041c8b3"
-          EOF
+          printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "9fe29c4b379922f49446b28b76cbe4fce041c8b3"\n' > lakefile.toml
           cp ../library/cgice/Spacetime_Formal_Proof_V20.lean .
       - name: resolve mathlib + cache
         run: cd _build && lake update && lake exe cache get
@@ -33,39 +27,45 @@ jobs:
         id: comp
         run: |
           cd _build
+          set +e
           START=$(date +%s)
-          lake env lean Spacetime_Formal_Proof_V20.lean > compile.log 2>&1 || true
-          RC=${PIPESTATUS[0]:-$?}; RC=$(cd . && (lake env lean Spacetime_Formal_Proof_V20.lean > compile2.log 2>&1; echo $?) )
+          lake env lean Spacetime_Formal_Proof_V20.lean > compile.log 2>&1
+          RC=$?
+          set -e
           echo "rc=$RC" >> $GITHUB_OUTPUT
-          echo "elapsed=$(( $(date +%s) - START ))s" >> $GITHUB_OUTPUT
-          tail -20 compile.log
-          exit 0
+          echo "elapsed=$(($(date +%s)-START))s" >> $GITHUB_OUTPUT
+          tail -20 compile.log || true
       - name: verdict receipt → board
         if: always()
+        env:
+          RC: ${{ steps.comp.outputs.rc }}
+          EL: ${{ steps.comp.outputs.elapsed }}
         run: |
           python3 - <<'PY'
-          import json,subprocess,datetime,hashlib,os
+          import subprocess,datetime,hashlib,os
           ts=datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
-          log=open('_build/compile.log').read() if os.path.exists('_build/compile.log') else ''
-          rc='${{ steps.comp.outputs.rc }}' ; el='${{ steps.comp.outputs.elapsed }}'
+          log=open('_build/compile.log').read() if os.path.exists('_build/compile.log') else '<no compile.log>'
+          rc=os.environ.get('RC','?'); el=os.environ.get('EL','?')
           sha=hashlib.sha256(open('library/cgice/Spacetime_Formal_Proof_V20.lean','rb').read()).hexdigest()
+          verdict='COMPILE_OK' if rc=='0' else ('COMPILE_FAIL' if rc.isdigit() else 'PIPELINE_ABORT')
           body=f"""CLASSIFY: L1(公域板面·零密钥)
-          # CGICE-BUILD-VERIFY-01 编译裁决回执 · {ts}
-          run: ${{{{ github.run_number }}}} · commit: ${{{{ github.sha }}}}
-          靶件sha256: {sha}
-          裁决: rc={rc} · 编译耗时{el} · verdict={"COMPILE_OK" if rc=="0" else "COMPILE_FAIL"}
-          toolchain: leanprover/lean4:v4.35.0-rc2 · mathlib: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
-          ## compile.log 尾部
-          ```
-          {log[-2000:]}
-          ```
-          """
-          open('receipt.md','w').write(body)
+# CGICE-BUILD-VERIFY-01 编译裁决回执 · {ts}
+
+靶件: library/cgice/Spacetime_Formal_Proof_V20.lean
+sha256: {sha}
+toolchain: leanprover/lean4:v4.35.0-rc2 · mathlib: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
+**裁决: {verdict}** (rc={rc} · 编译耗时{el})
+
+## compile.log 尾部
+```
+{log[-1800:]}
+```
+"""
+          fn=f'board/cgice-build-verify-{ts}.md'
+          open(fn,'w').write(body)
           subprocess.run(['git','config','user.name','pivot-01'])
           subprocess.run(['git','config','user.email','pivot@vci-inbox'])
-          subprocess.run(['git','add','receipt.md'])
-          subprocess.run(['git','commit','-m','CGICE-BUILD-VERIFY-01 receipt '+ts])
-          subprocess.run(['git','mv','receipt.md','board/cgice-build-verify-'+ts+'.md'])
-          subprocess.run(['git','commit','-m','mv to board'])
+          subprocess.run(['git','add',fn])
+          subprocess.run(['git','commit','-m','CGICE-BUILD-VERIFY-01 verdict '+verdict+' '+ts])
           subprocess.run(['git','push'])
           PY
