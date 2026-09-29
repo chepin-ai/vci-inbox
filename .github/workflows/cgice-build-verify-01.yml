@@ -35,37 +35,30 @@ jobs:
           echo "rc=$RC" >> $GITHUB_OUTPUT
           echo "elapsed=$(($(date +%s)-START))s" >> $GITHUB_OUTPUT
           tail -20 compile.log || true
-      - name: verdict receipt → board
+      - name: verdict receipt to board
         if: always()
         env:
           RC: ${{ steps.comp.outputs.rc }}
           EL: ${{ steps.comp.outputs.elapsed }}
         run: |
-          python3 - <<'PY'
+          python3 - <<'PYEOF'
           import subprocess,datetime,hashlib,os
           ts=datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
-          log=open('_build/compile.log').read() if os.path.exists('_build/compile.log') else '<no compile.log>'
+          try: log=open('_build/compile.log').read()
+          except Exception: log='<no compile.log>'
           rc=os.environ.get('RC','?'); el=os.environ.get('EL','?')
           sha=hashlib.sha256(open('library/cgice/Spacetime_Formal_Proof_V20.lean','rb').read()).hexdigest()
-          verdict='COMPILE_OK' if rc=='0' else ('COMPILE_FAIL' if rc.isdigit() else 'PIPELINE_ABORT')
-          body=f"""CLASSIFY: L1(公域板面·零密钥)
-# CGICE-BUILD-VERIFY-01 编译裁决回执 · {ts}
-
-靶件: library/cgice/Spacetime_Formal_Proof_V20.lean
-sha256: {sha}
-toolchain: leanprover/lean4:v4.35.0-rc2 · mathlib: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
-**裁决: {verdict}** (rc={rc} · 编译耗时{el})
-
-## compile.log 尾部
-```
-{log[-1800:]}
-```
-"""
-          fn=f'board/cgice-build-verify-{ts}.md'
-          open(fn,'w').write(body)
+          verdict='COMPILE_OK' if rc=='0' else ('COMPILE_FAIL' if rc.lstrip('-').isdigit() else 'PIPELINE_ABORT')
+          head=['CLASSIFY: L1(公域板面·零密钥)','# CGICE-BUILD-VERIFY-01 编译裁决回执 · '+ts,'',
+                '靶件: library/cgice/Spacetime_Formal_Proof_V20.lean','sha256: '+sha,
+                'toolchain: leanprover/lean4:v4.35.0-rc2','mathlib: 9fe29c4b379922f49446b28b76cbe4fce041c8b3',
+                '裁决: **'+verdict+'** (rc='+rc+' · 编译耗时'+el+')','',
+                '## compile.log 尾部','```',log[-1600:],'```']
+          fn='board/cgice-build-verify-'+ts+'.md'
+          open(fn,'w').write(chr(10).join(head))
           subprocess.run(['git','config','user.name','pivot-01'])
           subprocess.run(['git','config','user.email','pivot@vci-inbox'])
           subprocess.run(['git','add',fn])
           subprocess.run(['git','commit','-m','CGICE-BUILD-VERIFY-01 verdict '+verdict+' '+ts])
           subprocess.run(['git','push'])
-          PY
+          PYEOF
