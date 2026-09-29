@@ -25,13 +25,19 @@ jobs:
               try:
                   with urllib.request.urlopen(req,timeout=20) as r: return r.status,r.read().decode('utf-8','ignore')
               except Exception as e: return getattr(e,'code','ERR'),''
+          def apiraw(path):
+              req=urllib.request.Request('https://api.github.com/repos/chepin-ai/ci-inbox/contents/'+urllib.parse.quote(path),
+                                         headers={**H,'Accept':'application/vnd.github.raw'})
+              try:
+                  with urllib.request.urlopen(req,timeout=20) as r: return r.status,r.read().decode('utf-8','ignore')
+              except Exception as e: return getattr(e,'code','ERR'),''
           st,lst=api('https://api.github.com/repos/chepin-ai/ci-inbox/contents/'+urllib.parse.quote('公告板')+'?per_page=100')
           out=[]
           if st==200:
               for it in json.loads(lst):
                   fn=it.get('name','')
                   if not fn.endswith('.md') or fn.startswith('_') or 'voice' in fn: continue
-                  st2,body=api('https://raw.githubusercontent.com/chepin-ai/ci-inbox/main/'+urllib.parse.quote('公告板/'+fn))
+                  st2,body=apiraw('公告板/'+fn)
                   m=re.search(r'^ts:\s*([0-9T:\-Z]+)',body,re.M) or re.search(r'(2026-[01]\d-\d\dT\d\d:\d\d)',body)
                   title=''
                   for ln in body.splitlines():
