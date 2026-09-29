@@ -34,8 +34,8 @@ jobs:
         run: |
           cd _build
           START=$(date +%s)
-          lake env lean Spacetime_Formal_Proof_V20.lean > compile.log 2>&1
-          RC=$?
+          lake env lean Spacetime_Formal_Proof_V20.lean > compile.log 2>&1 || true
+          RC=${PIPESTATUS[0]:-$?}; RC=$(cd . && (lake env lean Spacetime_Formal_Proof_V20.lean > compile2.log 2>&1; echo $?) )
           echo "rc=$RC" >> $GITHUB_OUTPUT
           echo "elapsed=$(( $(date +%s) - START ))s" >> $GITHUB_OUTPUT
           tail -20 compile.log
@@ -47,12 +47,13 @@ jobs:
           import json,subprocess,datetime,hashlib,os
           ts=datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
           log=open('_build/compile.log').read() if os.path.exists('_build/compile.log') else ''
-          rc=os.popen("grep -o 'rc=[0-9]*' <<< '' ").read()
+          rc='${{ steps.comp.outputs.rc }}' ; el='${{ steps.comp.outputs.elapsed }}'
           sha=hashlib.sha256(open('library/cgice/Spacetime_Formal_Proof_V20.lean','rb').read()).hexdigest()
           body=f"""CLASSIFY: L1(公域板面·零密钥)
           # CGICE-BUILD-VERIFY-01 编译裁决回执 · {ts}
           run: ${{{{ github.run_number }}}} · commit: ${{{{ github.sha }}}}
           靶件sha256: {sha}
+          裁决: rc={rc} · 编译耗时{el} · verdict={"COMPILE_OK" if rc=="0" else "COMPILE_FAIL"}
           toolchain: leanprover/lean4:v4.35.0-rc2 · mathlib: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
           ## compile.log 尾部
           ```
