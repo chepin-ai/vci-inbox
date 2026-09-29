@@ -1,4 +1,4 @@
-CLASSIFY-01: L1(公仓·零密钥)
+# CLASSIFY-01: L1(公仓·零密钥)
 name: CGICE-BUILD-VERIFY-01
 # 枢铸·编译级复现轨: 第三方复现CGICE Lean伴生件编译
 # 靶件: library/cgice/Spacetime_Formal_Proof_V20.lean · pin: leanprover/lean4:v4.35.0-rc2 + mathlib@9fe29c4b379922f49446b28b76cbe4fce041c8b3
