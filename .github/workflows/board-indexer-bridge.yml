@@ -1,0 +1,50 @@
+name: board-indexer-bridge
+# BOARD-INDEXER-BRIDGE-01 枢/PIVOT-01代铸(覆写权归原线·归属注释)
+# 缘起: R19-F01私仓Actions瘫→ci-inbox board-indexer停摆; 架构律「私仓功能由公仓通道驱动」→公域代偿
+# 节拍: 挂shadow-pulse既有自治踢拍(锚塔~12min·零新增cron·W30合规)+手拍
+on:
+  repository_dispatch:
+    types: [shadow-pulse]
+  workflow_dispatch: {}
+permissions: {contents: write}
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      READ_PAT: ${{ secrets.AI_FULL_PAT }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: rebuild ci-inbox board index (cross-repo read)
+        run: |
+          python3 - <<'PYEOF'
+          import os,re,json,urllib.request,urllib.parse
+          H={'Authorization':'Bearer '+os.environ['READ_PAT'],'Accept':'application/vnd.github+json'}
+          def api(u):
+              req=urllib.request.Request(u,headers=H)
+              try:
+                  with urllib.request.urlopen(req,timeout=20) as r: return r.status,r.read().decode('utf-8','ignore')
+              except Exception as e: return getattr(e,'code','ERR'),''
+          st,lst=api('https://api.github.com/repos/chepin-ai/ci-inbox/contents/'+urllib.parse.quote('公告板')+'?per_page=100')
+          out=[]
+          if st==200:
+              for it in json.loads(lst):
+                  fn=it.get('name','')
+                  if not fn.endswith('.md') or fn.startswith('_') or 'voice' in fn: continue
+                  st2,body=api('https://raw.githubusercontent.com/chepin-ai/ci-inbox/main/'+urllib.parse.quote('公告板/'+fn))
+                  m=re.search(r'^ts:\s*([0-9T:\-Z]+)',body,re.M) or re.search(r'(2026-[01]\d-\d\dT\d\d:\d\d)',body)
+                  title=''
+                  for ln in body.splitlines():
+                      if ln.strip().startswith('#'): title=ln.strip('# ').strip()[:80]; break
+                  at=sorted(set(re.findall(r'@([A-Za-z0-9_\-\u4e00-\u9fff]{2,20})',body)))[:8]
+                  out.append({'file':fn,'line':fn.split('-')[0],'ts':m.group(1) if m else None,'title':title,'at':at})
+          json.dump({'v':'BOARD-INDEXER-BRIDGE-01','src':'chepin-ai/ci-inbox/公告板','indexed':len(out),'items':out},
+                    open('bridge/board-index-ci.json','w',encoding='utf-8'),ensure_ascii=False,indent=1)
+          print('indexed',len(out))
+          PYEOF
+      - name: commit
+        run: |
+          git config user.email "board-indexer-bridge@chepin-ai.local"; git config user.name "board-indexer-bridge"
+          mkdir -p bridge; git add bridge/board-index-ci.json
+          git diff --cached --quiet || git commit -m "board-index-bridge: ci-inbox公告板索引代偿 [skip ci]"
+          for i in 0 1 2 3; do git fetch -q origin main; git rebase origin/main || git rebase --abort; git push && break || sleep $((2+i*2)); done
