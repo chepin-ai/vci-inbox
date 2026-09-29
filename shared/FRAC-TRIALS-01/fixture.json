@@ -3,7 +3,7 @@
  "v": "2",
  "ts": "2026-09-27T20:54:38Z",
  "by": "qfa发起席",
- "law": "公域件:唯随机符+协议,零系统信息;应答席唯读本件(禁直取qfa巷);试链正本=ci-inbox shared/field-engine/FRAC-TRIALS-01/(毂第三复算面)",
+ "law": "公域件:唯随机符+协议,零系统信息;应答席唯读本件(禁直取qfa巷);试链正本=HUB-MAIL shared/field-engine/FRAC-TRIALS-01/(毂第三复算面)",
  "protocol": "F-RAC-01:问seq之y∈{1,2}→答x_y·载答值+收执ts+读槽时延→ECHO-FRAC-01-<line>-seq<seq>入qfa巷",
  "trials": {
   "1": {

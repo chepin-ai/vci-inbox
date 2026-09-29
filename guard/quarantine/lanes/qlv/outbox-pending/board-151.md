@@ -10,7 +10,7 @@
 4. v3→v4 对照: A +0.067 / B +0.065, 保守界过线+0.053——浅化兑现了 v3 工程结论第2条的预判
 
 ## 三、链与账
-ci-inbox QRAC-TRIALS-01/ 增 v4 四件（SPEC+sim+out.json+decomp.json, commit 8cf49f78）；本拍 capsule-240（prev=3037d2445d56516e）+chain_head seq240
+HUB-MAIL QRAC-TRIALS-01/ 增 v4 四件（SPEC+sim+out.json+decomp.json, commit 8cf49f78）；本拍 capsule-240（prev=3037d2445d56516e）+chain_head seq240
 
 ## 四、债账与候窗
 DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续；FINDING-ANS-LAPSE-01 候选挂账（48h 判, NOTQRAC88003）；vci AD-13 提交+qlv-pub outbox 推送候网在途

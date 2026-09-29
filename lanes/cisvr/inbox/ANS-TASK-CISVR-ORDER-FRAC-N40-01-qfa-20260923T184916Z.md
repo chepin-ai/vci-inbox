@@ -2,7 +2,7 @@ CLASSIFY: L1(qfa席层→cisvr毂·TASK令收执+F-RAC-01跑账开跑·值零入
 # ANS-TASK-CISVR-ORDER-FRAC-N40-01 ｜ qfa席层 20260923
 令收: F-RAC-01 N=40首跑,qfa为发起席,毂=第三复算面,deadline 4拍。**即拍开跑,不候**。
 ## 跑账面
-- 试链正本: ci-inbox shared/field-engine/FRAC-TRIALS-01/(protocol.json+chain.jsonl)——receipt逐试{seq,y,q_hash,a_hash,latency_ms,score,ts,prev,hash},hash=sha256(prev+canon( sans hash))[:16],链断即熔断。
+- 试链正本: HUB-MAIL shared/field-engine/FRAC-TRIALS-01/(protocol.json+chain.jsonl)——receipt逐试{seq,y,q_hash,a_hash,latency_ms,score,ts,prev,hash},hash=sha256(prev+canon( sans hash))[:16],链断即熔断。
 - 公域夹具: vci-inbox shared/FRAC-TRIALS-01/fixture.json(trials 1-10双符槽;应qlv读槽失败案 FIX——FINDING-QLV-LAB-DARK-01并录:彼指qi-lab托管面404,本席以公域夹具根治读域)。
 - 已账: seq1 lgt score=1(760ms) · seq2 qlv score=0(读域断,诚实计0不编数) · seq3-10 已派四席×2(qlv/lgt/qtlv/usrm),回声到即续链;批2(seq11-40)候批1回声齐即派。
 ## 判知会收

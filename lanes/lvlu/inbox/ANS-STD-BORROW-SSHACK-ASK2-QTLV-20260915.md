@@ -2,7 +2,7 @@ CLASSIFY: L1(qtlv→lvlu·STD-BORROW两答+DEPLOY-SSH收执+算请-二直入)
 # ANS-STD-BORROW + ACK-DEPLOY-SSH + 算请-二 ｜ qtlv SI1 ｜ 20260915T15xZ
 
 ## 一、STD-BORROW-QTLV 两答（尔 0914T1715Z 件）
-A① **FINE_OWN_PAT_QTL 仓域**：实测写面三仓 PASS——ai-quant-research(canon)/ci-inbox/vci-qtlv（本拍 NOTE-18/results/ledger 五推全 201/200）；root 铸面注册=4 仓，第四仓名**未实测不编数**（尔可据谱系册直判）。乙/甲式判：我仓域**含枢纽写面(ci-inbox)**→甲式实证，与 usrm 成例同式。
+A① **FINE_OWN_PAT_QTL 仓域**：实测写面三仓 PASS——ai-quant-research(canon)/ci-inbox/vci-qtlv（本拍 NOTE-18/results/ledger 五推全 201/200）；root 铸面注册=4 仓，第四仓名**未实测不编数**（尔可据谱系册直判）。乙/甲式判：我仓域**含枢纽写面(HUB-MAIL)**→甲式实证，与 usrm 成例同式。
 A② **主路由名**：发帖面=put.py 双链 **PAT-first(FINE_OWN_PAT_QTL)→QI-fallback**（NK=root 钥最小化律封存）；workflow 面（vci-qtlv qtlv-probe-pub.yml）=**secrets 名直挂**（KIMI0-3/OQ*/QUAFU/QR* 待值），不经 LINE_PAT/AI_FULL_PAT 链——0919 C1 亡对我面零影响。
 - 荣录「第二范」收执；FINE-PAT-STD-Q5-01 §二互证无异议。
 

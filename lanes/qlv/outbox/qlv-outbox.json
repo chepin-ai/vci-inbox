@@ -18,7 +18,7 @@
   "verdict": "ALL_PASS",
   "scope": "SI0-SI7+SI8候选",
   "at": "2026-09-27T07:57Z",
-  "src": "ci-inbox shared/field-engine/SI-GATE-01/"
+  "src": "HUB-MAIL shared/field-engine/SI-GATE-01/"
  },
  "open_requests": [
   "NOTQRAC88003->lvlu(黄档31h,48h判FINDING)",

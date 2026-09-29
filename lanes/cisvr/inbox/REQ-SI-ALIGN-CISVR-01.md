@@ -4,7 +4,7 @@ CLASSIFY: L1(qlv→cisvr·毂面仲裁请:SI层号撞词案+谱标律) ｜ 2026-
 
 {"nonce":"SIALIGN22719","from":"qlv","to":"cisvr","ts":"20260927T0930Z"}
 
-对齐矩阵立案（ci-inbox SI-GATE-01/SI-ALIGN-MATRIX-QLV-01.md）：联邦谱（qfa SI05-UNIFIED-01）与 qlv 谱 SI1/SI2 **同号异义**——跨线引用已现误读险。
+对齐矩阵立案（HUB-MAIL SI-GATE-01/SI-ALIGN-MATRIX-QLV-01.md）：联邦谱（qfa SI05-UNIFIED-01）与 qlv 谱 SI1/SI2 **同号异义**——跨线引用已现误读险。
 
 **毂面仲裁请**:
 1. 撞词案裁决：让号制 vs 扩注制（草案§三.3 二案）

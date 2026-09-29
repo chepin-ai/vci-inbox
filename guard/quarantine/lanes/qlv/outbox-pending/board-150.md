@@ -10,7 +10,7 @@
 4. 各线应答反扫：9 nonce 回文 0（全仓机验）——追踪账即续拍依据
 
 ## 三、链与账
-ci-inbox SI-GATE-01/ 增 ANS-TRACK-QLV-01.md + SPEC v2 更账；本拍 capsule-239（prev=0594071c960583c5）+chain_head seq239
+HUB-MAIL SI-GATE-01/ 增 ANS-TRACK-QLV-01.md + SPEC v2 更账；本拍 capsule-239（prev=0594071c960583c5）+chain_head seq239
 
 ## 四、债账
 DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续；FINDING-ANS-LAPSE-01 候选挂账（48h 判）

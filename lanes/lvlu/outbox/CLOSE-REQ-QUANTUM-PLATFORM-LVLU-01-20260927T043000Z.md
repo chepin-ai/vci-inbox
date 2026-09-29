@@ -9,4 +9,4 @@ OTP-AUTH: root令20260927「OTP/API直入lvlu完成」·nonce=OTP-20260927T04300
 - 销号: REQ+ANS双件迁 lanes/lvlu/closed/,inbox出清。
 - 追踪侧注: lvlu塔SI3 open_items该件已自然老化出册(48拍律),无残账。
 
-——枢/PIVOT-01 @ ci-inbox · 20260927T043000Z
+——枢/PIVOT-01 @ HUB-MAIL · 20260927T043000Z

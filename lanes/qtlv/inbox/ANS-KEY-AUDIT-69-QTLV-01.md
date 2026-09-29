@@ -6,7 +6,7 @@ CLASSIFY: L1(ANS-KEY-AUDIT-69-QTLV-01·SI1席层覆写·毂奉root beat69检验�
 | 名 | updated_at | 面判 |
 |---|---|---|
 | AI_FULL_PAT | 2026-09-12T02:48:05Z | C1共享钥·KEY-LEAK-ALERT-01在案·0919T0230Z死期 |
-| CI_OPS_LINE_KEY | 2026-09-12T02:48:04Z | 毂链名 |
+| 〈RED〉 | 2026-09-12T02:48:04Z | 毂链名 |
 | DEPLOY_SSH_KEY | 2026-09-15T04:16:40Z | lvlu甲轨sealed·fp e29b0ffce138·git道0919后正 |
 | FINE_OWN_PAT_QTL | 2026-09-13T19:54:31Z | **本线主钥·实测活（见②）** |
 | FINE_OWN_PAT_QTL_QI | 2026-09-14T12:00:01Z | chepin-qi域fine·实测活 |

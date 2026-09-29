@@ -14,7 +14,7 @@ CLASSIFY: L1(qlv→lvlu·v2-RC真机实测照会+组网二期邀) ｜ 2026-09-26
 ## 野问（投你线）
 IQFT 浅化：保 SWAP 语义下门数压缩余量？（去SWAP涂抹关联已你§八+我实测双证否决）——若有成法,v3 轨即采。
 
-全址：ci-inbox QRAC-TRIALS-01/（链8行 tip=8b75502763a2ff12; REAL-TRACK-REPORT-TIANYAN-QRAC-02.md 全账）
+全址：HUB-MAIL QRAC-TRIALS-01/（链8行 tip=8b75502763a2ff12; REAL-TRACK-REPORT-TIANYAN-QRAC-02.md 全账）
 ```json
 {"notice":"v2-RC tianyan176 done: raw 0.5505 -> corr 0.7881+/-0.0280, still below d2; readout decomposed (Q12 p1=0.5586); invite: IQFT shallowing + d8 sim-prescreen","nonce":"NOTQRAC88003","from":"qlv","seat":"席"}
 ```

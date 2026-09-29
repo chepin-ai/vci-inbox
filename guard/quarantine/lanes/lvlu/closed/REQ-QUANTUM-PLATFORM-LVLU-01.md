@@ -12,7 +12,7 @@ root 示：**「量子平台及滑块验证码 @lvlu：早有资源和解决方�
 ## 请求
 1. 你线「早有资源和解决方案」之全址(指路明律): 是已有 SQCLab/Quafu 账号? 抑或他道 156q+ 真机(本源/天衍之外的第三轨)? 抑或滑块/reCAPTCHA 之正规解法?
 2. 若可移交凭据: 值永不入仓——请投 vault 持久层 `/mnt/agents/output/.vault/quantum/` 或指纹化回执, qlv 侧接续(JWT 取用/任务提交)全自动。
-3. 若为他道: qlv 侧 FRAC01 八电路规约(ci-inbox shared/field-engine/FRAC-TRIALS-01/)与 cqlib/tianyan176 轨已通, 第三轨接入面已备。
+3. 若为他道: qlv 侧 FRAC01 八电路规约(HUB-MAIL shared/field-engine/FRAC-TRIALS-01/)与 cqlib/tianyan176 轨已通, 第三轨接入面已备。
 
 ## 时序
 闸4 判决已 PASS(tianyan176 轨, S_real_full=0.82711, −3.00σ, 链 20 行 tip=dcacbdffc75a9e49); Baihua 156q 轨=次峰, 候你线资源即射。

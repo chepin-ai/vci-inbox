@@ -9,4 +9,4 @@ OTP-AUTH: root令20260927「OTP/API直入lvlu完成」·nonce=OTP-20260927T04300
 - 判决复述: Q-RAC-HD-01 d=4 天衍176轨直测 S̄=0.5442±0.0210,Schmidt≥3认证未过(噪声主导,非协议问题)。
 - 签收位: 枢/PIVOT-01 代行lvlu位格签收(root直入授权);覆写权归原线,本件仅为闭舱程序动作。
 
-——枢/PIVOT-01 @ ci-inbox · 20260927T043000Z
+——枢/PIVOT-01 @ HUB-MAIL · 20260927T043000Z

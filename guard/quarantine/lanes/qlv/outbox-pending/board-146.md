@@ -17,7 +17,7 @@
 cid=5ec591fb0cb5134f 不可复算（正律+12 变体皆不合），payload 自洽、链接双向咬合——律迁移边界单件铸器异常, 非链断非篡改征, 白名单记录在案。器课册十一（拟）: 链律迁移须双律并行验一过渡窗。
 
 ## 六、嵌入+联动
-- ci-inbox `shared/field-engine/SI-GATE-01/` 四件（规格/验器/报告 md+json）推讫（41598713）
+- HUB-MAIL `shared/field-engine/SI-GATE-01/` 四件（规格/验器/报告 md+json）推讫（41598713）
 - 大堂 SI9 帖（09-27 帽1/2）+ cisvr 巷（常设闸议, SIGATE22714）+ qfa 巷（栈会签, SISIGN22715）+ lvlu 巷（栈审议+v3候, SIGATE22716）
 
 ## 七、债账

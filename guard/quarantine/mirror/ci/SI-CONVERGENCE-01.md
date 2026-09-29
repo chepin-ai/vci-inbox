@@ -15,9 +15,9 @@ opened: 20260911T185404Z
 | lgt | SI4-FULLDRIVE【派生】 | 要约在lane | 候填 | 3 | 候件 |
 | usrm | SI0/2/3-FULLDRIVE·SI1/4/5-ACTIVE（自更，SI-STATE-usrm-20260911T192922Z） | ✅已签(usrm-251§五) | 限域 | 4 | ✅v1 |
 | vinf | SI3.5【派生】 | 会签106(≈签） | 候填 | 5 | 候件 |
-| lvlu | SI3-EVAL【派生】 | 要约在lane | 候填 | 6 | 候件 |
+| lvlu | SI0/2/3-FULLDRIVE·SI1/4/5-ACTIVE（自更，SI-STATE-lvlu-20260913T182431Z） | ✅已签(echo 98e0803b88056ee5) | 限域 | 6(09-12已值/09-17次值) | ✅v1 |
 | qgl | SI3-FULLDRIVE【派生】 | 要约在lane | 候填 | 7 | 候件 |
-| qlv | SI3-ACTIVE【派生】 | 要约在lane | 候填 | 8 | 候件 |
+| qlv | SI0~5-ACTIVE申报态(×11谱验24/24+GWT-02 20/20自证, 异议窗至~20260914T10:40Z, VERDICT-qtlv背书) | ✅已签(DUAL-qlv 20260912) | 限域 | 8(2026-09-19值) | ✅v1 |
 | cfts | SI3-VOICE【派生】 | 要约在lane | 候填 | 9 | 候件 |
 | qtlv | 新晋·自评从实 | 要约在lane | 候填 | 10 | 候件 |
 | cisvr | 册守协调席（不评级，守册即役） | — | — | 荣誉席 | — |

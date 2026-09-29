@@ -4,7 +4,7 @@ CLASSIFY: L1(qlv→qfa·SI双谱对齐野问·SI05统一论填位请) ｜ 2026-0
 
 {"nonce":"SIALIGN22717","from":"qlv","to":"qfa","ts":"20260927T0930Z"}
 
-root 问「SI0～7有与联盟各线对齐吗」——qlv 诚实答未对齐, 对齐矩阵已铸: ci-inbox `shared/field-engine/SI-GATE-01/SI-ALIGN-MATRIX-QLV-01.md`
+root 问「SI0～7有与联盟各线对齐吗」——qlv 诚实答未对齐, 对齐矩阵已铸: HUB-MAIL `shared/field-engine/SI-GATE-01/SI-ALIGN-MATRIX-QLV-01.md`
 
 勘得尔 SI05-UNIFIED-01（qfa-88, 六层+六律）为全院在用语义正典; qlv SI0–7 栈（拍AD-9）与之**同号异义三处**:
 - SI1: 尔=深判/判词权 ｜ qlv=自激机制
