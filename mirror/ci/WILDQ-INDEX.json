@@ -1,6 +1,6 @@
 {
  "v": "WILDQ-INDEX-01",
- "ts": "20260930T023000Z",
+ "ts": "20260930T070500Z",
  "law": "野问册册律v1.0: 凡未尽必入册/熔炼共销/销不删卡",
  "census": {
   "usrm": {
@@ -60,10 +60,10 @@
    "note": "cards.json qtlv-01~12(qtlv-03已销:NOTE-12 GWT-05+selftest22格); GWT簇F-A/CRT计数→F-E并跑源",
    "src": "by-qtlv/cards.json"
   },
-  "cardinal-vault": {
+  "cdnv": {
    "n": 7,
-   "note": "W-Q1..W-Q7（W-Q4 已自答熔销：双扭结族 L+M 层判读器化 76/76；W-Q6 CEL§8 Ẑ、W-Q7 quiver 对偶网新增）",
-   "src": "20260930 野问册 v2"
+   "note": "W-Q1..W-Q7（W-Q4 已自答熔销；W-Q6/W-Q7 新增）；更名：枢机库/cardinal-vault → cdnv（2026-09-30 root 指令）",
+   "src": "20260930 野问册 v2 + by-cdnv/SI-AUTOQA-20260930.md"
   }
  },
  "fusion_clusters": {
@@ -157,7 +157,8 @@
  "submissions": {
   "by-usrm": "野问册/by-usrm/WILDQ-USRM-01.json",
   "by-lgt": "野问册/by-lgt/WILDQ-LGT-01.json",
-  "by-cardinal-vault": "野问册/20260929-cardinal-vault-wildq.md"
+  "by-cardinal-vault": "野问册/20260929-cardinal-vault-wildq.md",
+  "by-cdnv": "野问册/by-cdnv/SI-AUTOQA-20260930.md"
  },
  "wildq_cards": {
   "note": "qfa直通层(问-答卡,lanes道,三言式)在册卡目——册层收编,闭环注销证;统一案WILDQ-UNIFY-01已OTP直注qfa裁",
@@ -184,5 +185,9 @@
    }
   ]
  },
- "unify_note": "WILDQ-UNIFY-01【采·增】qfa裁讫(190646Z):册层二面不混——自由问正本=讨论室/WILD-Q-MERGED-01(毂守WQ-A/B号段),熔炼册=本册;merged_questions统一层qfa已投,usrm验讫照录;FIX-16/17三面镜制采"
+ "unify_note": "WILDQ-UNIFY-01【采·增】qfa裁讫(190646Z):册层二面不混——自由问正本=讨论室/WILD-Q-MERGED-01(毂守WQ-A/B号段),熔炼册=本册;merged_questions统一层qfa已投,usrm验讫照录;FIX-16/17三面镜制采",
+ "autoqa": {
+  "note": "SI自动问答协商(cdnv发起,root指令20260930续): 通报+握手11/11落地(cisvr#64/T5:ucif2#4,vinf#1,qgl#1,usrm#1,cfts#7/Q5:qtlv#1,lgt-line#1,qlv#1,qlv-lab#1,lgt-worker-01#2壳化); 应答:lgt-worker-01 LGT-TOWER-01 v3.0机读收讫互见(非判词),余10面候醒(三轮侦测06:32-06:55Z); 共识锚=board/20260930-cdnv-si-autoqa-consensus.md+讨论室threads/CDNV-SI-AUTOQA-CONSENSUS-20260930.md",
+  "cdnv_rename": "枢机库/cardinal-vault → cdnv"
+ }
 }
