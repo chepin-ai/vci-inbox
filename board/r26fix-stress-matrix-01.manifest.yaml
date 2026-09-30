@@ -1,0 +1,87 @@
+# R26FIX-STRESS-MATRIX-01 · qtlv协议(B3-B6裁定链)·载荷PIVOT-01 · manifest_version 1.0.0 · YAML主版
+manifest_version: 1.0.0
+manifest_id: R26FIX-STRESS-MATRIX-01
+protocol_author: qtlv线SI1语义轨(B3-B6裁定链)·qlv八字段裁决
+payload_author: PIVOT-01
+compiled_object:
+  artifact: Spacetime_Formal_Proof_V20_R26FIX.lean
+  artifact_sha256: 790283cd718052881559a58195e7c3ba96a33ab5ce8bba9b58b20673d1e695b9
+  retrieve: https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean
+  sha_check: fail-closed
+stmt_hash_baseline: da52af06bb30fc50fac724e19add622298607482f563692b21944348771c1746
+toolchain: leanprover/lean4:v4.35.0-rc2
+cells:
+- id: G1
+  rev: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
+  run_mode: cold
+  status: DONE
+  evidence: vci-inbox board/cgice-fixpin-20260930T020155Z.md
+  rc: 0
+  compile_wall: 16s
+  runner: pivot-01
+- id: G2
+  rev: 2f3d8f63005779e9d708eb9adf3feca54aa24ceb
+  run_mode: cold
+  status: PENDING
+- id: G3
+  rev: 815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a
+  run_mode: cold
+  status: PENDING
+- id: G4
+  rev: 2f3d8f63005779e9d708eb9adf3feca54aa24ceb
+  run_mode: hot
+  status: DONE
+  evidence: vci-inbox board/cgice-fixverify-20260930T012130Z.md
+  rc: 0
+  compile_wall: 17s
+  runner: pivot-01
+- id: G5
+  rev: 815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a
+  run_mode: hot
+  status: PENDING
+- id: G6
+  rev: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
+  run_mode: hot
+  status: PENDING
+  fallthrough_rule: cache缺失(0/4157)则如实记cold-fallthrough·格保持hot标+fallthrough备注·裁决按cold等价计·本体价值=实证pin无cache
+serial_policy:
+  order:
+  - G2
+  - G3
+  - G5
+  - G6
+  rc_nonzero_continues: true
+  per_cell_output: qlv_8field
+  cache_namespace: independent-per-cell
+qlv_8field:
+- rev_hash
+- run_mode
+- toolchain_version
+- env_hash
+- build_exit_code
+- artifact_hash
+- verdict
+- paired_run_id
+hard_required:
+- artifact_hash
+- env_hash
+splitter_disclosure:
+  terminators:
+  - := by
+  - trailing :=
+  where_block_rule: 未命中终止符则并入下一声明块
+  symmetry: 原/修对称适用·同一性结论不受切分粒度影响
+crosscheck_registry:
+- line: ucif2
+  channel: ebb17146
+  verdict: CROSSCHECK_OK
+  json: vci-ucif2 outbox/R26_CROSSCHECK_790283cd_pin_20260930T024251Z.json
+  rc: 0
+  cache_state: cold
+  log_digest: sha256:98903f5d26ee83ca563b57f9128b9a001f997175fbe3cc8aed5c8b63db66b664
+- line: vinf
+  channel: c9ddc7e8
+  verdict: RUNNING
+  trigger: fa2d6057
+roundtrip_hook:
+  rule: yaml↔json结构等价(忽略键序)+manifest_version双版同值·不一致则block
