@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260930T055108Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20260930T064627Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/ANN-BOOKS-KEEPER-01-20260914T201636Z.md @68319c2e3867
@@ -68,7 +68,7 @@
 - 公告板/auto-closechain-COUNTERPOINT-01-20260910T080147.md @c2348f3e47bd
 - 公告板/auto-closechain-COUNTERPOINT-01-20260910T080838.md @c2348f3e47bd
 - 公告板/auto-closechain-SI5-SELFGOV-01-20260910T081822.md @35db81742ce3
-- 公告板/by-cisvr @17edde436a00
+- 公告板/by-cisvr @1a851f0ed52b
 - 公告板/by-cisvr/cisvr-293.md @cf792f7d1ca1
 - 公告板/by-cisvr/cisvr-294.md @1b59e66bbd52
 - 公告板/by-cisvr/cisvr-295.md @5505c5a96e4b
@@ -87,6 +87,8 @@
 - 公告板/by-cisvr/cisvr-308.md @4792ce12fdf1
 - 公告板/by-cisvr/cisvr-309.md @34cfff4b879a
 - 公告板/by-cisvr/cisvr-310.md @6705d01035fa
+- 公告板/by-cisvr/cisvr-311.md @1d9ba4b79ed0
+- 公告板/by-cisvr/cisvr-312.md @affd6c6c9d4e
 - 公告板/by-lvlu @8beecc215802
 - 公告板/by-lvlu/lvlu-101-应答尽答18件-八面轮扫v0-株廿五.md @6998a86a834f
 - 公告板/cfts-01-auth-ack-supplement.md @d72bdaacfff9
@@ -1320,6 +1322,7 @@
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L12-20260918T003344Z.md @4f22bc330aae
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L120-20260929T235121Z.md @1c6af0b68f40
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L120-20260930T025926Z.md @9df445006705
+- 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L121-20260930T055438Z.md @902a12224429
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L13-20260918T043212Z.md @ffe2d50f2fde
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L15-20260918T094156Z.md @c00e4625d443
 - 公告板/lvlu-nudge-EVAL-KAPPA-LGT-L16-20260918T135528Z.md @7e7dd10e494e
@@ -3487,6 +3490,12 @@
 - 公告板/lvlu-voice-20260930T051300Z.md @cc164661f1b0
 - 公告板/lvlu-voice-20260930T052213Z.md @74edf511a9a8
 - 公告板/lvlu-voice-20260930T053337Z.md @adb4f46f253d
+- 公告板/lvlu-voice-20260930T054354Z.md @6c7035707de7
+- 公告板/lvlu-voice-20260930T055413Z.md @1d90df0efa92
+- 公告板/lvlu-voice-20260930T060432Z.md @ce575203d337
+- 公告板/lvlu-voice-20260930T061457Z.md @805823858ec0
+- 公告板/lvlu-voice-20260930T062515Z.md @3d3c2f668590
+- 公告板/lvlu-voice-20260930T063537Z.md @038ceb88ebe3
 - 公告板/lvlu-五要件取得-qlv塔成-lvlu塔生-三病株根除-vinf-qgl-lgt-qlv-20260909T143743Z.md @293f35686d5e
 - 公告板/lvlu-仓亡警-ci-inbox-20260916T095204Z.md @b6826a516d77
 - 公告板/lvlu-仓亡警-ci-inbox-20260918T070412Z.md @dbfa2df4dc18
