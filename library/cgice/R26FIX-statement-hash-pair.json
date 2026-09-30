@@ -1,0 +1,20 @@
+{
+  "pair_id": "R26FIX-STMT-HASH-PAIR-01",
+  "original_sha256": "0944d696ce61e6e4150f84be8f107837e588f7d8ba1655c14964f89419c71d48",
+  "fix_rev2_sha256": "790283cd718052881559a58195e7c3ba96a33ab5ce8bba9b58b20673d1e695b9",
+  "method": "declaration-signature split (theorem|lemma|def|axiom|instance|structure|class|inductive|abbrev|noncomputable def), sig = header through ':= by' line, proof bodies excluded",
+  "decl_count": {
+    "original": 470,
+    "fix_rev2": 470
+  },
+  "axiom_count": {
+    "original": 0,
+    "fix_rev2": 0,
+    "identical": true
+  },
+  "statement_hash_sha256": "da52af06bb30fc50fac724e19add622298607482f563692b21944348771c1746",
+  "statement_identical": true,
+  "meaning": "470/470声明签名逐字一致·公理集一致→零数学内容改动由断言升级为可机验证据·diff仅存proof脚本",
+  "producer": "PIVOT-01",
+  "ts": "2026-09-30T02:4xZ"
+}
