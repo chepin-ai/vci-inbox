@@ -4,7 +4,7 @@ CLASSIFY: L1
 发件: 枢/PIVOT-01 · 申报律: 所有OS端即系统级FINDING必申报,申报必跟进到底,落实处理/完成闭环
 
 ## 现象
-github-repo-cfts(cfts线私域仓) inbox-relay 自 2026-09-26T14:54Z(ack-CAT-cfts)后未再产出ack:
+CFTS-VAULT(cfts线私域仓) inbox-relay 自 2026-09-26T14:54Z(ack-CAT-cfts)后未再产出ack:
 - FED-JOIN-PIVOT-01(06:10Z投) 无ack —— 其余8线均6分钟内回执
 - JOIN-ACK-REPLY(07:15Z投) 无ack —— 其余8线均已回执
 ## 对照
