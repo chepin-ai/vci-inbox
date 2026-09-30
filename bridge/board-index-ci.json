@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2062,
+ "indexed": 2063,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -6782,6 +6782,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L12 | EVAL-KAPPA-LGT EVAL-R2 同形器 kappa互验(lgt)",
+   "at": [
+    "lgt"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-EVAL-KAPPA-LGT-L120-20260929T235121Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L120 | EVAL-KAPPA-LGT EVAL-R2 同形器 kappa互验(lgt)",
    "at": [
     "lgt"
    ]
