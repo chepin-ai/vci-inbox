@@ -80,6 +80,16 @@ jobs:
           fn='receipts/health/HEALTH-'+now.strftime('%Y%m%d')+'.json'
           open(fn,'w').write(json.dumps(rep,ensure_ascii=False,indent=1))
           open('receipts/health/HEALTH-LATEST.json','w').write(json.dumps(rep,ensure_ascii=False,indent=1))
+          # F4激活: ci-logs=联邦健康档案仓(日快照)
+          try:
+              import base64 as _b
+              payload=_b.b64encode(open('receipts/health/HEALTH-LATEST.json','rb').read()).decode()
+              tgt='daily/HEALTH-'+now.strftime('%Y%m%d')+'.json'
+              rq=urllib.request.Request(f'https://api.github.com/repos/{ORG}/ci-logs/contents/{tgt}',
+                  data=json.dumps({'message':'HEALTH-01 archive '+rep['ts'],'content':payload}).encode(),method='PUT',
+                  headers={'Authorization':'token '+TOK,'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+              print('ci-logs archive:',urllib.request.urlopen(rq,timeout=30).status)
+          except Exception as e: print('ci-logs archive fail:',str(e)[:80])
           subprocess.run(['git','config','user.email','cisvr-hub@ci.local']); subprocess.run(['git','config','user.name','cisvr-hub'])
           subprocess.run(['git','add','receipts/health'])
           cm=subprocess.run(['git','commit','-m','HEALTH-01 '+rep['ts']+' sev='+str(len(sev))],capture_output=True,text=True)
