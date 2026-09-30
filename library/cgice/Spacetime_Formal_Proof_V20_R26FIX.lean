@@ -17,7 +17,7 @@ The CGICECore namespace reproduces selected mathematical results from the compan
   (证据保全于同库 Spacetime_Formal_Proof_V20.lean · 未动一字)。
   R25裁决: 原件在所报pin(mathlib 9fe29c4b·toolchain v4.35.0-rc2)上 rc=1 —— 行62/71 `rfl` defeq失败+行63/72级联。
   本修复版: 5处 convert-using-1 的defeq脆弱bullet级联 → all_goals-first 稳健链(show+ring/rfl/ring_nf/ext+simp/field_simp+ring)。
-  修复点均以【枢修R26】标注 · 原件©Hui Xu(preprints202609.1998.v1) · 修复: 枢/PIVOT-01代联邦 · 覆写权归原作者 · precedent lgt-118 -/
+  修复点均以【枢修R26/v2】标注; v2迭代: first→solve组合子·除ring_nf半成品毒化·增simp/push_cast备选 · 原件©Hui Xu(preprints202609.1998.v1) · 修复: 枢/PIVOT-01代联邦 · 覆写权归原作者 · precedent lgt-118 -/
 noncomputable section
 open Real Set Topology MeasureTheory ProbabilityTheory Filter
 open scoped BigOperators NNReal Matrix
@@ -63,24 +63,24 @@ theorem quartic_hasDerivAt (a q x : ℝ) :
   unfold quarticPotential quarticGradient
   convert (((hasDerivAt_id x).pow 2).const_mul (a/2)).add
     (((hasDerivAt_id x).pow 4).const_mul (q/4)) using 1
-  all_goals first -- 【枢修R26】原`· rfl`×2级联在所报pin defeq失败(行62/63)→稳健链
-    | (show a * x + q * x ^ 3 = a / 2 * (2 * x * 1) + q / 4 * (4 * x ^ 3 * 1); ring)
+  all_goals solve -- 【枢修R26v2】原`· rfl`×2级联在所报pin defeq失败(行62/63)→solve链(v1的ring_nf半成品毒化已除: bare ring_nf会部分归约后"成功"留下id-atom残局)
     | rfl
-    | ring_nf
     | (ext y; simp)
-    | (simp; ring_nf)
+    | simp
+    | (simp; ring)
+    | (push_cast; ring)
     | (field_simp; ring)
 theorem gradient_hasDerivAt (a q x : ℝ) :
     HasDerivAt (quarticGradient a q) (quarticHessian a q x) x := by
   unfold quarticGradient quarticHessian
   convert ((hasDerivAt_id x).const_mul a).add
     (((hasDerivAt_id x).pow 3).const_mul q) using 1
-  all_goals first -- 【枢修R26】原`· rfl`×2级联在所报pin defeq失败(行71/72)→稳健链
-    | (show a + 3 * q * x ^ 2 = a * 1 + q * (3 * x ^ 2 * 1); ring)
+  all_goals solve -- 【枢修R26v2】同上→solve链
     | rfl
-    | ring_nf
     | (ext y; simp)
-    | (simp; ring_nf)
+    | simp
+    | (simp; ring)
+    | (push_cast; ring)
     | (field_simp; ring)
 theorem hessian_positive (a q x : ℝ) (ha : 0 < a) (hq : 0 ≤ q) :
     0 < quarticHessian a q x := by
@@ -234,12 +234,12 @@ theorem cross_casimir_hasDerivAt (g : ℝ) (a j : ℝ → Fin 3 → ℝ) (t : �
       (2 * (j t k) * (-g * cross (a t) (j t) k)) t := by
     intro k
     convert (hj k).mul (hj k) using 1
-    all_goals first -- 【枢修R26】同款defeq脆弱级联(+11h rev行226/227/228实证失败)→稳健链
+    all_goals solve -- 【枢修R26v2】同款(+11h行226/227/228实证)→solve链(含pow_two备选)
       | rfl
-      | ring_nf
-      | ring
       | (ext x; simp [pow_two])
-      | (simp; ring_nf)
+      | simp
+      | (simp; ring)
+      | (push_cast; ring)
       | (field_simp; ring)
   have hderiv : HasDerivAt (fun s => ∑ k, (j s k)^2)
       (∑ k, 2 * (j t k) * (-g * cross (a t) (j t) k)) t := by
@@ -614,11 +614,12 @@ theorem beta_hasDerivAt (b eta g : ℝ) :
   unfold betaNP
   convert ((hasDerivAt_id g).const_mul (eta/2)).add
     (((hasDerivAt_id g).pow 3).const_mul (b/(8*Real.pi^2))) using 1
-  all_goals first -- 【枢修R26】同款defeq脆弱级联(+11h rev行604/605实证失败)→稳健链
+  all_goals solve -- 【枢修R26v2】同上→solve链
     | rfl
-    | ring_nf
     | (ext x; simp)
-    | (simp; ring_nf)
+    | simp
+    | (simp; ring)
+    | (push_cast; ring)
     | (field_simp; ring)
 theorem beta_fixedpoint (b eta g : ℝ) (hb : b ≠ 0)
     (hg : g^2 = -4*Real.pi^2*eta/b) : betaNP b eta g = 0 := by
@@ -1777,12 +1778,12 @@ theorem ratio_limit (u v N B0 : ℝ) (hu : 0 < u) (hv : 0 < v) (hN : 0 < N) :
   have htarget : (u*N/(u+v))/(v*N/(u+v))=u/v := by
     field_simp [ne_of_gt hu, ne_of_gt hv, ne_of_gt hN, ne_of_gt huv]
   convert hdiv using 1
-  all_goals first -- 【枢修R26】ext+rf点级联(+11h rev行1764/1765实证失败)→稳健链
+  all_goals solve -- 【枢修R26v2】ext+rfl级联(+11h行1764/1765实证)→solve链(含htarget改写)
     | rfl
-    | (ext t; simp)
-    | (ext t; ring_nf)
     | (rw [htarget])
-    | (simp; ring_nf)
+    | (ext t; simp)
+    | simp
+    | (simp; ring)
 
 theorem uniqueness (u v N B0 : ℝ) (h : u+v ≠ 0)
     (B : ℝ → ℝ) (hB : ∀ t, HasDerivAt B (-u*B t+v*(N-B t)) t)
