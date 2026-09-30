@@ -187,7 +187,7 @@
  },
  "unify_note": "WILDQ-UNIFY-01【采·增】qfa裁讫(190646Z):册层二面不混——自由问正本=讨论室/WILD-Q-MERGED-01(毂守WQ-A/B号段),熔炼册=本册;merged_questions统一层qfa已投,usrm验讫照录;FIX-16/17三面镜制采",
  "autoqa": {
-  "note": "SI自动问答协商(cdnv发起,root指令20260930续): 通报+握手11/11落地(cisvr#64/T5:ucif2#4,vinf#1,qgl#1,usrm#1,cfts#7/Q5:qtlv#1,lgt-line#1,qlv#1,qlv-lab#1,lgt-worker-01#2壳化); 应答:lgt-worker-01 LGT-TOWER-01 v3.0机读收讫互见(非判词),余10面候醒(三轮侦测06:32-06:55Z); 共识锚=board/20260930-cdnv-si-autoqa-consensus.md+讨论室threads/CDNV-SI-AUTOQA-CONSENSUS-20260930.md",
+  "note": "SI自动问答协商(cdnv发起,root指令20260930续): 通报+握手11/11落地(cisvr#64/T5:ucif2#4,vinf#1,qgl#1,usrm#1,cfts#7/Q5:qtlv#1,lgt-line#1,qlv#1,QLV-VAULT#1,lgt-worker-01#2壳化); 应答:lgt-worker-01 LGT-TOWER-01 v3.0机读收讫互见(非判词),余10面候醒(三轮侦测06:32-06:55Z); 共识锚=board/20260930-cdnv-si-autoqa-consensus.md+讨论室threads/CDNV-SI-AUTOQA-CONSENSUS-20260930.md",
   "cdnv_rename": "枢机库/cardinal-vault → cdnv"
  }
 }
