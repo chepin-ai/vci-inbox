@@ -1,7 +1,7 @@
 # VENDORED from chepin-ai/ci-control inbox/poller.py (v4)
 # 代铸迁移: 枢/PIVOT-01 依「公域CI通道驱动私域CI」律迁至vci-inbox公域执行面 (FINDING-03处置·lgt-118归属·2026-09-30)
 #!/usr/bin/env python3
-# command-inbox v4 poller — runs inside ci-control only. Zero credentials in the inbox repo.
+# command-inbox v4 poller — runs inside HUB-CORE only. Zero credentials in the inbox repo.
 # Protocol: issue title "[CMD]", body = single-line base64 SealedBox(inbox_pk, JSON{...,hmac})
 # hmac = HMAC_SHA256(CMD_AUTH, json.dumps(payload_without_hmac, sort_keys=True, separators=(",",":")))
 import os, sys, json, base64, hmac, hashlib, secrets as pysec, datetime
@@ -179,10 +179,10 @@ def op_rotate(cmd):
         api("POST", f"/repos/{CONTROL}/actions/variables",
             json={"name": "INBOX_REPO", "value": full_new})
     audit(f"指令仓改名 {INBOX} -> {full_new}")
-    return f"✅ 指令仓已改名: {new}（请记住并告知后续会话；ci-control 已同步变量）"
+    return f"✅ 指令仓已改名: {new}（请记住并告知后续会话；HUB-CORE 已同步变量）"
 
 def op_setkeys(cmd):
-    """轮换 SHARED_KEYS：payload 已在信封内加密，此处仅做键名白名单校验后写入 ci-control secrets。"""
+    """轮换 〈RED〉：payload 已在信封内加密，此处仅做键名白名单校验后写入 HUB-CORE secrets。"""
     sk = cmd.get("shared_keys")
     if not isinstance(sk, dict) or not sk:
         return "❌ 缺少 shared_keys 对象"
@@ -198,8 +198,8 @@ def op_setkeys(cmd):
     sc2, _ = api("PUT", f"/repos/{CONTROL}/actions/secrets/SHARED_KEYS",
                  json={"encrypted_value": base64.b64encode(ct).decode(), "key_id": pkj["key_id"]})
     if sc2 in (201, 204):
-        audit(f"SHARED_KEYS 已轮换，键数 {len(sk)}（值不落日志）")
-        return f"✅ SHARED_KEYS 已更新（{len(sk)} 键）。紧接发 sync 分发。"
+        audit(f"〈RED〉 已轮换，键数 {len(sk)}（值不落日志）")
+        return f"✅ 〈RED〉 已更新（{len(sk)} 键）。紧接发 sync 分发。"
     return f"❌ 写入失败 {sc2}"
 
 def op_leavemsg(cmd):
@@ -212,7 +212,7 @@ def op_leavemsg(cmd):
     body_txt = cmd.get("body", "")
     if not body_txt or len(body_txt.encode()) > 4096:
         return "❌ E803 消息为空或超 4KB"
-    if _re.search(r"(github_pat_|ghp_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|CI_APP_KEY|CMD_AUTH)", body_txt):
+    if _re.search(r"(github_pat_|ghp_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|〈RED〉|CMD_AUTH)", body_txt):
         return "❌ E804 命中敏感指纹，留言拒收"
     kind = cmd.get("kind", "chat")
     if kind not in ("request", "report", "alert", "chat"):
@@ -288,7 +288,7 @@ def op_vendor_ext(cmd):
     if r.status_code != 200 or len(r.content) > 200_000:
         return f"❌ 拉取失败 {r.status_code} 或超 200KB"
     header = (f"# VENDORED from {url}\n# license: {lic} · pin: {pin or 'unpinned'} · "
-              f"by ci-control vendor-ext · {now()}\n")
+              f"by HUB-CORE vendor-ext · {now()}\n")
     content = header.encode() + r.content
     sc, cur = api("GET", f"/repos/{full}/contents/{dest}")
     body = {"message": f"vendor: {dest} ({lic}, pin {pin or '-'}) [skip ci]",
@@ -308,7 +308,7 @@ def op_pool_post(cmd):
     frm = (cmd.get("from_repo") or "unknown").strip()
     if not body_txt or len(body_txt.encode()) > 4096:
         return "❌ E803 消息为空或超 4KB"
-    if _re.search(r"(github_pat_|ghp_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|CI_APP_KEY|CMD_AUTH)", body_txt):
+    if _re.search(r"(github_pat_|ghp_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|〈RED〉|CMD_AUTH)", body_txt):
         return "❌ E804 命中敏感指纹"
     kind = cmd.get("kind", "chat")
     if kind not in ("request", "report", "alert", "chat"):
@@ -326,7 +326,7 @@ def op_pool_post(cmd):
     sc2, _ = api("PUT", f"/repos/{BUS}/contents/pool/{datetime.datetime.utcnow():%Y-%m-%d}.md", json=body)
     if sc2 in (200, 201):
         audit(f"pool-post <- {frm} ({kind})")
-        return f"✅ 已入池 ci-bus pool（from: {frm}，外部会话代发标注）"
+        return f"✅ 已入池 〈RED〉 pool（from: {frm}，外部会话代发标注）"
     return f"❌ 入池失败 {sc2}"
 
 
@@ -404,7 +404,7 @@ def ensure_readme():
 - 明文指令、非授权作者、验签失败：一律擦除并记 E711。
 - 回执：评论形式，密文用 reply_pk 对应私钥解密。Issue 处理后即擦除+锁定。
 
-收件箱公钥见 ci-library CONVENTION.md §6（MIGRATE-01：正本已迁私域）。
+收件箱公钥见 HUB-LIB CONVENTION.md §6（MIGRATE-01：正本已迁私域）。
 """
     api("PUT", f"/repos/{INBOX}/contents/README.md", json={
         "message": "protocol doc", "content": base64.b64encode(doc.encode()).decode()})
