@@ -1,11 +1,11 @@
 # CLASSIFY-01: L1(公仓·零密钥)
-# CGICE-BUILD-VERIFY-01 v2 · 枢/PIVOT-01 · F02修复: detached-HEAD推失落赛 + compile速败自检 + 回执stdout免鉴权
+# CGICE-BUILD-VERIFY-01 v10 · 枢/PIVOT-01 · R26修复闭环终验: 修复件@所报pin(9fe29c4b)源码构建 · F02修复回执链
 name: CGICE-BUILD-VERIFY-01
 on:
   push:
     paths:
       - .github/workflows/cgice-build-verify-01.yml
-      - library/cgice/Spacetime_Formal_Proof_V20.lean
+      - library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,7 +24,7 @@ jobs:
           mkdir -p _build && cd _build
           echo "leanprover/lean4:v4.35.0-rc2" > lean-toolchain
           printf 'name = "cgicev20"\n\n[[require]]\nname = "mathlib"\ngit = "https://github.com/leanprover-community/mathlib4.git"\nrev = "9fe29c4b379922f49446b28b76cbe4fce041c8b3"\n' > lakefile.toml
-          cp ../library/cgice/Spacetime_Formal_Proof_V20.lean .
+          cp ../library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean .
           ls -la
       - name: resolve mathlib + cache-or-sourcebuild (v9 终局实验)
         run: |
@@ -50,7 +50,7 @@ jobs:
           echo "=== compile ==="
           set +e
           START=$(date +%s)
-          lake env lean Spacetime_Formal_Proof_V20.lean > compile.log 2>&1
+          lake env lean Spacetime_Formal_Proof_V20_R26FIX.lean > compile.log 2>&1
           RC=$?
           set -e
           echo "rc=$RC" >> $GITHUB_OUTPUT
@@ -69,15 +69,17 @@ jobs:
           try: log=open('_build/compile.log').read()
           except Exception: log='<no compile.log>'
           rc=os.environ.get('RC','?'); el=os.environ.get('EL','?')
-          sha=hashlib.sha256(open('library/cgice/Spacetime_Formal_Proof_V20.lean','rb').read()).hexdigest()
-          verdict='COMPILE_OK' if rc=='0' else ('COMPILE_FAIL' if rc.lstrip('-').isdigit() else 'PIPELINE_ABORT')
-          head=['CLASSIFY: L1(公域板面·零密钥)','# CGICE-BUILD-VERIFY-01 编译裁决回执 · '+ts,'',
-                '靶件: library/cgice/Spacetime_Formal_Proof_V20.lean','sha256: '+sha,
-                'toolchain: leanprover/lean4:v4.35.0-rc2','mathlib: 8d7d0c463a379a6fcad593782d5d8a250a767fc2 (pin+1.28h·13:54Z·二分探针)','论文所报pin: 9fe29c4b379922f49446b28b76cbe4fce041c8b3 (实存于master·但其cache CI产物缺失·0/4157·已登记诚实缺口)',
+          sha=hashlib.sha256(open('library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean','rb').read()).hexdigest()
+          sha0=hashlib.sha256(open('library/cgice/Spacetime_Formal_Proof_V20.lean','rb').read()).hexdigest()
+          verdict='R26FIX@PIN_COMPILE_OK' if rc=='0' else ('R26FIX@PIN_COMPILE_FAIL' if rc.lstrip('-').isdigit() else 'PIPELINE_ABORT')
+          head=['CLASSIFY: L1(公域板面·零密钥)','# CGICE-BUILD-VERIFY-01 v10 R26修复闭环终验回执 · '+ts,'',
+                '靶件: library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean (R26修复版rev2·solve链)','fix sha256: '+sha,
+                '原件 sha256: '+sha0+' (R25已定谳: 原件@所报pin rc=1 · 4硬错)',
+                'toolchain: leanprover/lean4:v4.35.0-rc2','mathlib: 9fe29c4b379922f49446b28b76cbe4fce041c8b3 (论文所报pin本体·源码构建通道)',
                 '裁决: **'+verdict+'** (rc='+rc+' · 编译耗时'+el+')','',
                 '## compile.log 尾部','```',log[-1600:],'```']
           body=chr(10).join(head)
-          fn='board/cgice-build-verify-'+ts+'.md'
+          fn='board/cgice-fixpin-'+ts+'.md'
           open(fn,'w').write(body)
           print('=== RECEIPT STDOUT (免鉴权可见) ===')
           print(body)
