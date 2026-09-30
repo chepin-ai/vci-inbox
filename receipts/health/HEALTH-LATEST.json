@@ -1,289 +1,52 @@
 {
- "ts": "2026-09-30T02:50:21Z",
+ "ts": "2026-09-30T11:19:52Z",
  "repos": {
-  "ci-build": {
-   "pushed_at": "2026-08-29T04:30:03Z",
-   "archived": true,
-   "wf": 0
-  },
-  "ci-bus": {
-   "pushed_at": "2026-09-29T02:20:15Z",
-   "archived": false,
-   "wf": 3
-  },
-  "ci-code": {
-   "pushed_at": "2026-09-04T04:34:36Z",
-   "archived": false,
-   "wf": 1
-  },
-  "ci-control": {
-   "pushed_at": "2026-09-30T02:49:48Z",
-   "archived": false,
-   "wf": 8
-  },
-  "ci-control-backup": {
-   "pushed_at": "2026-09-29T10:52:13Z",
-   "archived": false,
-   "wf": 8
-  },
-  "ci-inbox": {
-   "pushed_at": "2026-09-30T02:47:42Z",
-   "archived": false,
-   "wf": 9
-  },
-  "ci-library": {
-   "pushed_at": "2026-09-26T02:54:21Z",
-   "archived": false,
-   "wf": 1
-  },
-  "ci-logs": {
-   "pushed_at": "2026-08-29T04:29:31Z",
-   "archived": false,
-   "wf": 0
-  },
-  "ci-playground": {
-   "pushed_at": "2026-09-30T02:39:55Z",
-   "archived": false,
-   "wf": 0
-  },
-  "ci-root": {
-   "pushed_at": "2026-09-04T04:42:37Z",
-   "archived": false,
-   "wf": 1
-  },
-  "ci-worker-01": {
-   "pushed_at": "2026-09-30T02:41:21Z",
-   "archived": false,
-   "wf": 4
-  },
-  "ci-worker-02": {
-   "pushed_at": "2026-09-10T06:59:16Z",
-   "archived": false,
-   "wf": 4
-  },
-  "github-repo-cfts": {
-   "pushed_at": "2026-09-26T14:54:15Z",
-   "archived": false,
-   "wf": 5
-  },
-  "quantum-go-ledger": {
-   "pushed_at": "2026-09-28T05:46:55Z",
-   "archived": false,
-   "wf": 2
-  },
-  "ucif2-formalization-kernel": {
-   "pushed_at": "2026-09-26T14:46:33Z",
-   "archived": false,
-   "wf": 11
-  },
-  "usrm-repo": {
-   "pushed_at": "2026-09-26T14:54:07Z",
-   "archived": false,
-   "wf": 4
-  },
-  "vci-cfts": {
-   "pushed_at": "2026-09-30T02:49:21Z",
-   "archived": false,
-   "wf": 15
-  },
-  "vci-inbox": {
-   "pushed_at": "2026-09-30T02:48:29Z",
-   "archived": false,
-   "wf": 45
-  },
-  "vci-lgt": {
-   "pushed_at": "2026-09-30T02:48:49Z",
-   "archived": false,
-   "wf": 17
-  },
-  "vci-library": {
-   "pushed_at": "2026-09-10T06:46:20Z",
-   "archived": false,
-   "wf": 1
-  },
-  "vci-qfa": {
-   "pushed_at": "2026-09-30T02:39:15Z",
-   "archived": false,
-   "wf": 10
-  },
-  "vci-qgl": {
-   "pushed_at": "2026-09-30T02:50:57Z",
-   "archived": false,
-   "wf": 14
-  },
-  "vci-qlv": {
-   "pushed_at": "2026-09-30T02:48:44Z",
-   "archived": false,
-   "wf": 13
-  },
-  "vci-qtlv": {
-   "pushed_at": "2026-09-30T02:48:46Z",
-   "archived": false,
-   "wf": 50
-  },
-  "vci-ucif2": {
-   "pushed_at": "2026-09-30T02:48:40Z",
-   "archived": false,
-   "wf": 14
-  },
-  "vci-usrm": {
-   "pushed_at": "2026-09-30T02:48:38Z",
-   "archived": false,
-   "wf": 37
-  },
-  "vci-vinf": {
-   "pushed_at": "2026-09-30T02:48:57Z",
-   "archived": false,
-   "wf": 38
-  },
-  "vinf-market-kernel": {
-   "pushed_at": "2026-09-27T00:44:51Z",
-   "archived": false,
-   "wf": 5
-  }
+  "ci-build": "unreachable",
+  "ci-bus": "unreachable",
+  "ci-code": "unreachable",
+  "ci-control": "unreachable",
+  "ci-control-backup": "unreachable",
+  "ci-inbox": "unreachable",
+  "ci-library": "unreachable",
+  "ci-logs": "unreachable",
+  "ci-playground": "unreachable",
+  "ci-root": "unreachable",
+  "ci-worker-01": "unreachable",
+  "ci-worker-02": "unreachable",
+  "github-repo-cfts": "unreachable",
+  "quantum-go-ledger": "unreachable",
+  "ucif2-formalization-kernel": "unreachable",
+  "usrm-repo": "unreachable",
+  "vci-cfts": "unreachable",
+  "vci-inbox": "unreachable",
+  "vci-lgt": "unreachable",
+  "vci-library": "unreachable",
+  "vci-qfa": "unreachable",
+  "vci-qgl": "unreachable",
+  "vci-qlv": "unreachable",
+  "vci-qtlv": "unreachable",
+  "vci-ucif2": "unreachable",
+  "vci-usrm": "unreachable",
+  "vci-vinf": "unreachable",
+  "vinf-market-kernel": "unreachable"
  },
- "fail24": {
-  "ci-build": {
-   "自治兜底（总管失效时自用额度构建）": 5,
-   "响应总管调度": 17
-  },
-  "ci-bus": {
-   "llm-bench": 10,
-   "gate-sentinel": 4,
-   "spool-drain": 4
-  },
-  "ci-control": {
-   "backup-mirror-01": 6,
-   "kernel-resident-mini": 1,
-   "kernel-resident-01": 1,
-   "KEY-RELAY-QC-01 (拍46·cisvr库→vci-qtlv量子钥接力·名级回执值不出·OTP-46取得)": 1,
-   "qgl-board-sync": 2,
-   "warm-bridge": 1,
-   "beacon-relay": 18
-  },
-  "ci-control-backup": {
-   "gitee-mirror": 2,
-   "热备份看门狗（仅部署在备份仓库 ci-control-backup）": 5,
-   "llm-bench-ext": 5,
-   "backup-eye": 5,
-   "backup-poller": 5,
-   "bridge-poller": 5,
-   "隐私卫士（检测提案制 + 新仓库自动接入）": 3
-  },
-  "ci-inbox": {
-   "ack-sentinel": 3,
-   "kernel-loop-board": 13,
-   "board-indexer": 14
-  },
-  "ci-logs": {
-   "图表化大盘生成": 25
-  },
-  "ci-playground": {
-   "otp-loop-trigger": 1,
-   "zz-probe": 1,
-   "arena-pulse": 25
-  },
-  "ci-root": {
-   "x-fire-receiver": 4
-  },
-  "ci-worker-02": {
-   "hub-failover": 1
-  },
-  "github-repo-cfts": {
-   "otp-gate": 13,
-   "wake-inject": 13,
-   "inbox-relay-cfts": 2,
-   "line-inbox-ack": 2
-  },
-  "quantum-go-ledger": {
-   "origin-firstshot-03": 1,
-   "inbox-relay-qgl": 2,
-   "zz-probe": 1,
-   "agent-duty": 10,
-   "qgo-controller": 9,
-   "formal-lean": 1,
-   "Quantum Go Action CI": 1
-  },
-  "ucif2-formalization-kernel": {
-   "line-inbox-ack": 13,
-   "ECHO-91-RESPONDER-01 (qfa代铸·覆写权归原线·代产闭律)": 1,
-   "inbox-relay-ucif2": 3
-  },
-  "usrm-repo": {
-   "KEY-RELAY-QC-02 (拍47·本仓量子钥→vci-qtlv seal接力·名级回执)": 1,
-   "miniprobe": 6
-  },
-  "vci-inbox": {
-   "board-indexer-bridge": 7
-  },
-  "vci-lgt": {
-   "key-sentinel-01": 6
-  },
-  "vci-qlv": {
-   "key-sentinel-01": 7
-  },
-  "vci-qtlv": {
-   "key-sentinel-01": 4,
-   "qtlv-intake-watch": 4
-  },
-  "vci-vinf": {
-   "key-sentinel-01": 4
-  },
-  "vinf-market-kernel": {
-   "inbox-relay-vinf": 2,
-   "KEY-RELAY-QC-02 (拍47·本仓量子钥→vci-qtlv seal接力·名级回执)": 1,
-   "GITEE-MIRROR-02 (Gitee架子·拍41·名级用钥·mirror推+API建仓)": 1,
-   "GITEE-MIRROR-01 (Gitee架子·拍41·名级用钥值不出·mirror推+API建仓)": 4
-  }
- },
- "stale": [
-  "ci-build",
-  "ci-code",
-  "ci-logs",
-  "ci-root",
-  "ci-worker-02",
-  "vci-library"
- ],
- "zero_wf": [
-  "ci-build",
-  "ci-logs",
-  "ci-playground"
- ],
- "archived": [
-  "ci-build"
- ],
+ "fail24": {},
+ "stale": [],
+ "zero_wf": [],
+ "archived": [],
  "line_backlog": {
-  "usrm": {
-   "inbox_files": 175
-  },
-  "cfts": {
-   "inbox_files": 101
-  },
-  "qgl": {
-   "inbox_files": 119
-  },
-  "ucif2": {
-   "inbox_files": 98
-  },
-  "vinf": {
-   "inbox_files": 74
-  },
-  "qfa": {
-   "inbox_files": 73
-  },
-  "qlv": {
-   "inbox_files": 53
-  },
-  "lgt": {
-   "inbox_files": 90
-  },
-  "qtlv": {
-   "inbox_files": 93
-  }
+  "usrm": "unreachable",
+  "cfts": "unreachable",
+  "qgl": "unreachable",
+  "ucif2": "unreachable",
+  "vinf": "unreachable",
+  "qfa": "unreachable",
+  "qlv": "unreachable",
+  "lgt": "unreachable",
+  "qtlv": "unreachable"
  },
- "ci_control_runner": "DEAD(zero-runner)",
+ "ci_control_runner": "unknown",
  "severity": [
-  "fail24:ci-build,ci-bus,ci-control,ci-control-backup,ci-inbox,ci-logs,ci-playground,ci-root,ci-worker-02,github-repo-cfts,quantum-go-ledger,ucif2-formalization-kernel,usrm-repo,vci-inbox,vci-lgt,vci-qlv,vci-qtlv,vci-vinf,vinf-market-kernel",
-  "ci-control-runner-dead"
+  "clean"
  ]
 }
