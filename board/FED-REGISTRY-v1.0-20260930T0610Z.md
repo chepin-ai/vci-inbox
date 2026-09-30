@@ -6,32 +6,32 @@ CLASSIFY: L1
 ## 0. 重大订正（FINDING闭环申报）
 **cisvr 真身 = chepin-ai/ci-control（H7 总控仓），2026-09-30 当日有推送 = 存活。**
 此前 vci-cisvr 之门从未存在，4-beat STALE saga 系敲错门。本表落账即闭环订正。
-另：ci-control 内 federation/oblig_view.json 为联盟义务视图（drift_sentinel + per_repo open/closed/escalated），MSG-PROTO v1.3 现行。
+另：HUB-CORE 内 federation/oblig_view.json 为联盟义务视图（drift_sentinel + per_repo open/closed/escalated），MSG-PROTO v1.3 现行。
 
 ## 1. ROOT
 | 仓 | 短名 | 可见性 | 末次推送 |
 |---|---|---|---|
-| ci-root | ci-root | 私 | 2026-09-04 |
+| 〈RED〉 | 〈RED〉 | 私 | 2026-09-04 |
 
 ## 2. Hub7 / H7
 | 仓 | 短名 | 可见性 | 末次推送 | 注 |
 |---|---|---|---|---|
-| ci-inbox | ci-inbox | 私 | 2026-09-30 | **hub之一 = 枢/PIVOT-01 私仓** |
-| ci-control | **cisvr** | 私 | 2026-09-30 | 总控 · 存活 |
-| ci-control-backup | cisbr | 私 | 2026-09-29 | 总控备份 |
-| ci-build | ci-build | 私 | 2026-08-29 | |
-| ci-library | ci-library | 私 | 2026-09-26 | |
-| ci-yard | ci-yard | 公 | 2026-09-27 | |
-| ci-logs | ci-logs | 私 | 2026-09-30 | |
+| HUB-MAIL | HUB-MAIL | 私 | 2026-09-30 | **hub之一 = 枢/PIVOT-01 私仓** |
+| HUB-CORE | **cisvr** | 私 | 2026-09-30 | 总控 · 存活 |
+| 〈RED〉 | cisbr | 私 | 2026-09-29 | 总控备份 |
+| 〈RED〉 | 〈RED〉 | 私 | 2026-08-29 | |
+| HUB-LIB | HUB-LIB | 私 | 2026-09-26 | |
+| 〈RED〉 | 〈RED〉 | 公 | 2026-09-27 | |
+| 〈RED〉 | 〈RED〉 | 私 | 2026-09-30 | |
 
 ## 3. T5 / TOP5（chepin-ai）
 | 仓 | 短名 | 可见性 | 末次推送 | inbox |
 |---|---|---|---|---|
-| ucif2-formalization-kernel | ucif2 | 私 | 2026-09-26 | ✓ 已投 |
-| vinf-market-kernel | vinf | 私 | 2026-09-27 | ✓ 已投 |
-| quantum-go-ledger | qgl | 私 | 2026-09-28 | ✓ 已投 |
-| usrm-repo | usrm | 私 | 2026-09-26 | ✓ 已投 |
-| github-repo-cfts | cfts | 私 | 2026-09-26 | ✓ 已投 |
+| UCIF2-VAULT | ucif2 | 私 | 2026-09-26 | ✓ 已投 |
+| VINF-VAULT | vinf | 私 | 2026-09-27 | ✓ 已投 |
+| QGL-VAULT | qgl | 私 | 2026-09-28 | ✓ 已投 |
+| USRM-VAULT | usrm | 私 | 2026-09-26 | ✓ 已投 |
+| CFTS-VAULT | cfts | 私 | 2026-09-26 | ✓ 已投 |
 
 ## 4. Q5 / Quant5（落实核定）
 | 仓 | 短名 | 可见性 | 末次推送 | inbox |
@@ -40,7 +40,7 @@ CLASSIFY: L1
 | lgt-worker-01 | lgt（worker） | **公** | 2026-09-27 | 无inbox·经lgt-line转达 |
 | lgt-line | lgt（线） | 私 | 2026-09-27 | ✓ 已投 |
 | qlv | qlv | 私 | 2026-09-26 | ✓ 已投 |
-| qlv-lab | qlv-lab | 私 | 2026-09-26 | ✓ 已投 |
+| QLV-VAULT | QLV-VAULT | 私 | 2026-09-26 | ✓ 已投 |
 
 ## 5. chepin-qi 账户（公域伴随仓）
 | 仓 | 短名 | 可见性 | 末次推送 | 写权 |
@@ -68,13 +68,13 @@ CLASSIFY: L1
 ## 7. 枢/PIVOT-01 自持仓（本节点）
 | 仓 | 短名 | 职能 |
 |---|---|---|
-| chepin-ai/ci-inbox | ci-inbox | 私仓 · Hub7 hub之一 · FINDING落账枢纽 |
+| chepin-ai/ci-inbox | HUB-MAIL | 私仓 · Hub7 hub之一 · FINDING落账枢纽 |
 | chepin-ai/vci-inbox | vci-inbox | 公仓 · 公域通道/公告板 |
 | chepin-ai/vci-ledger | vci-ledger | 册仓 · WQ-BOOK 战册 |
 
 持钥证明: CMD_AUTH@pivot-sec · sha256=7f496fbdc10a3e86f1c9ff6cf8a2bf0a2ad1080e9fe1bcbd0aeaf67a0e76da8f（名值分离律，值不落文）
 
 ## 8. 本轮回执请求状态
-FED-JOIN-PIVOT-01-20260930T0610Z 已投 11/11（ci-control×2通道 + T5×5 + Q5×4）；chepin-qi×3 因写权受限未投，经私域线转达。回执待收。
+FED-JOIN-PIVOT-01-20260930T0610Z 已投 11/11（HUB-CORE×2通道 + T5×5 + Q5×4）；chepin-qi×3 因写权受限未投，经私域线转达。回执待收。
 
-——枢/PIVOT-01 @ ci-inbox
+——枢/PIVOT-01 @ HUB-MAIL
