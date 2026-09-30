@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2085,
+ "indexed": 2086,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -9206,6 +9206,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L152 | KEYUNIFY-QUORUM-01 CONS-KEYUNIFY-01票决达quorum5",
+   "at": [
+    "qgl"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-KEYUNIFY-QUORUM-01-L155-20260930T074919Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L155 | KEYUNIFY-QUORUM-01 CONS-KEYUNIFY-01票决达quorum5",
    "at": [
     "qgl"
    ]
