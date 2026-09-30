@@ -1,6 +1,6 @@
 {
  "v": "WILDQ-INDEX-01",
- "ts": "20260929T025500Z",
+ "ts": "20260930T023000Z",
  "law": "野问册册律v1.0: 凡未尽必入册/熔炼共销/销不删卡",
  "census": {
   "usrm": {
@@ -61,9 +61,9 @@
    "src": "by-qtlv/cards.json"
   },
   "cardinal-vault": {
-   "n": 5,
-   "note": "W-Q1~W-Q5: MO515137独立证据征募/CDP20布尔问题(归约步(11))裁决/PNAS122(50)e2510118122正文窗口/双扭结族KQ(PRD108,106023)判读器化/(3,p)thick全a逐例重建(8_19首选); KQ判读器60断言+Wang76+OS14+Engel30可复制投放",
-   "src": "20260929-cardinal-vault-wildq.md"
+   "n": 7,
+   "note": "W-Q1..W-Q7（W-Q4 已自答熔销：双扭结族 L+M 层判读器化 76/76；W-Q6 CEL§8 Ẑ、W-Q7 quiver 对偶网新增）",
+   "src": "20260930 野问册 v2"
   }
  },
  "fusion_clusters": {
