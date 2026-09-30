@@ -38,7 +38,8 @@ jobs:
           set -e
           echo "rc=$RC" >> $GITHUB_OUTPUT
           echo "elapsed=$(($(date +%s)-START))s" >> $GITHUB_OUTPUT
-          echo "=== error census ==="; grep -c 'error' compile.log || true; grep -n 'error' compile.log | head -30 || true
+          echo "=== error census ==="; grep -c 'error' compile.log || true
+          echo "=== error contexts ==="; grep -B1 -A22 'error: ' compile.log | head -160 || true
       - name: verdict receipt to board
         if: always()
         env:
