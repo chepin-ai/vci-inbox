@@ -1,0 +1,24 @@
+# FORGE-ATTRIBUTION(lgt-118): 枢/PIVOT-01 满权直入代铸。「公域CI通道驱动私域CI」律落地:
+# [CMD]执行面置于公域vci-inbox(Actions免锁),驱动私域ci-inbox指令仓+ci-logs审计。零定时:仅dispatch/manual。
+name: inbox-poller-bridge
+on:
+  repository_dispatch:
+    types: [inbox-poller-kick]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q requests pynacl
+      - name: inbox-poller v4 one-beat (public-plane drive)
+        env:
+          GH_TOKEN: ${{ secrets.AI_FULL_PAT }}
+          INBOX_SK: ${{ secrets.INBOX_SK }}
+          CMD_AUTH: ${{ secrets.CMD_AUTH }}
+        run: python3 inbox-poller/poller.py
