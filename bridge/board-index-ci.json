@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2117,
+ "indexed": 2118,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -11620,6 +11620,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L14 | T5KEY-WAVE-01 T5+cisvr专钥装讫验证波(PAT-MINT-SPEC-T5-CISVR-01)",
+   "at": [
+    "cisvr"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-T5KEY-WAVE-01-L140-20261001T000418Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L140 | T5KEY-WAVE-01 T5+cisvr专钥装讫验证波(PAT-MINT-SPEC-T5-CISVR-01",
    "at": [
     "cisvr"
    ]
