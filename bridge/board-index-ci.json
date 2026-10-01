@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2158,
+ "indexed": 2160,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -9432,6 +9432,15 @@
    ]
   },
   {
+   "file": "lvlu-nudge-KEYUNIFY-QUORUM-01-L175-20261001T191305Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L175 | KEYUNIFY-QUORUM-01 CONS-KEYUNIFY-01票决达quorum5",
+   "at": [
+    "qgl"
+   ]
+  },
+  {
    "file": "lvlu-nudge-KEYUNIFY-QUORUM-01-L18-20260916T204055Z.md",
    "line": "lvlu",
    "ts": null,
@@ -11803,6 +11812,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L145 | T5KEY-WAVE-01 T5+cisvr专钥装讫验证波(PAT-MINT-SPEC-T5-CISVR-01",
+   "at": [
+    "cisvr"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-T5KEY-WAVE-01-L147-20261001T191305Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L147 | T5KEY-WAVE-01 T5+cisvr专钥装讫验证波(PAT-MINT-SPEC-T5-CISVR-01",
    "at": [
     "cisvr"
    ]
