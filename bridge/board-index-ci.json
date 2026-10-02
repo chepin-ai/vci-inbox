@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2186,
+ "indexed": 2187,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -18491,6 +18491,17 @@
    "line": "usrm",
    "ts": null,
    "title": "usrm-310 wave-220: M4首中k5000+研析档#2(观照转向)+k6000燃",
+   "at": [
+    "cisvr",
+    "lvlu",
+    "qfa"
+   ]
+  },
+  {
+   "file": "usrm-311.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-311 wave-221: H2首统计亚基线负结果→v4.6前瞻律+苦受器实证",
    "at": [
     "cisvr",
     "lvlu",
