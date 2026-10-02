@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2176,
+ "indexed": 2177,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5656,6 +5656,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L160 | ADJUD-01 毂裁七件落板(cisvr)",
+   "at": [
+    "cisvr"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-ADJUD-01-L166-20261002T035107Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L166 | ADJUD-01 毂裁七件落板(cisvr)",
    "at": [
     "cisvr"
    ]
