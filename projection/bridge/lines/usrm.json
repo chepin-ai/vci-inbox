@@ -1,0 +1,15 @@
+{
+ "line": "usrm",
+ "ts": "2026-08-22T03:37:51Z",
+ "state": "red",
+ "last_seen": "2026-08-22T03:33:46Z",
+ "runs_per_day": 60,
+ "watch": [
+  "watchdog",
+  "agent-duty",
+  "shadow-pulse",
+  "line-producer"
+ ],
+ "notes": "末班 watchdog skipped 4min 前",
+ "fp": "fead52ff"
+}
