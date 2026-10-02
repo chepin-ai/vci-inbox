@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "updated": "2026-08-18T19:06:47Z",
+ "note": "对话线动态清单 · 每线 jsonl 每行 {n,q,a,ts,full,sha256} · full=false 时 q/a 为摘要",
+ "lines": [
+  {
+   "line": "ucif2",
+   "path": "bridge/lines/ucif2.jsonl",
+   "count": 0,
+   "updated": null
+  },
+  {
+   "line": "vinf",
+   "path": "bridge/lines/vinf.jsonl",
+   "count": 0,
+   "updated": null
+  },
+  {
+   "line": "qgl",
+   "path": "bridge/lines/qgl.jsonl",
+   "count": 0,
+   "updated": null
+  },
+  {
+   "line": "usrm",
+   "path": "bridge/lines/usrm.jsonl",
+   "count": 0,
+   "updated": null
+  },
+  {
+   "line": "cfts",
+   "path": "bridge/lines/cfts.jsonl",
+   "count": 0,
+   "updated": null
+  },
+  {
+   "line": "onto",
+   "path": "bridge/lines/onto.jsonl",
+   "count": 1,
+   "updated": "2026-08-18T19:06:47Z"
+  },
+  {
+   "line": "gcml",
+   "path": "bridge/lines/gcml.jsonl",
+   "count": 0,
+   "updated": null
+  },
+  {
+   "line": "cisvr",
+   "path": "bridge/lines/cisvr.jsonl",
+   "count": 5,
+   "updated": "2026-08-18T19:06:47Z"
+  }
+ ]
+}
