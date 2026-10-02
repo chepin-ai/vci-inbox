@@ -1,0 +1,107 @@
+{
+ "ts": "2026-08-18T09:03:24Z",
+ "note": "原子-分子-化合物-混合物 结构图（CHEM-MAP-1 v1）",
+ "atoms": [
+  {
+   "id": "privacy-guard",
+   "role": "权限探针",
+   "loop": "1h"
+  },
+  {
+   "id": "ciops-verify",
+   "role": "功能实测矩阵",
+   "loop": "6h"
+  },
+  {
+   "id": "sentry",
+   "role": "失败即报",
+   "loop": "event"
+  },
+  {
+   "id": "respond虫",
+   "role": "ACK收悉层",
+   "loop": "~10min"
+  },
+  {
+   "id": "fleet-key-census",
+   "role": "密钥旧名普查",
+   "loop": "24h"
+  },
+  {
+   "id": "warm-watch",
+   "role": "暖侧巡检",
+   "loop": "47min"
+  },
+  {
+   "id": "guard-snap",
+   "role": "可见性哨兵",
+   "loop": "1h"
+  },
+  {
+   "id": "shadow-pulse×9",
+   "role": "公域影子脉冲",
+   "loop": "event"
+  },
+  {
+   "id": "red-drill",
+   "role": "实弹演习",
+   "loop": "周"
+  },
+  {
+   "id": "llm-bench×2",
+   "role": "模型基准双电池",
+   "loop": "24h"
+  }
+ ],
+ "molecules": [
+  {
+   "id": "outbox→bridge-poller→mailbox",
+   "role": "中间件代投链",
+   "loop": "23min"
+  },
+  {
+   "id": "outbox/pending→lobby-post→大厅",
+   "role": "T2独立发帖管线",
+   "loop": "event"
+  },
+  {
+   "id": "secret-drop→secret-seed→secret入库→自清",
+   "role": "密封投递管线",
+   "loop": "event"
+  },
+  {
+   "id": "provision车道（lane J/DOCS/yard）",
+   "role": "供给管线",
+   "loop": "event"
+  },
+  {
+   "id": "poller-chain 多链自续",
+   "role": "公域轮询接力",
+   "loop": "~10min"
+  }
+ ],
+ "compounds": [
+  {
+   "id": "治理化合物",
+   "of": "mech-status矩阵+directives台账+red-drill+五环",
+   "role": "识别→自驱→态势→协同→演化→递归"
+  },
+  {
+   "id": "韧性化合物",
+   "of": "warm(wci)+vci×9影子+guard-snap+PACE降频",
+   "role": "灾备/降级/无缝切换"
+  },
+  {
+   "id": "证据化合物",
+   "of": "llm-bench+联赛表+ciops-verify+drills",
+   "role": "以实测说话"
+  }
+ ],
+ "mixtures": [
+  {
+   "id": "联邦总态",
+   "of": "三极（私域本体+vci公域影子+wci暖侧）×TOP5×外部会话×智囊",
+   "role": "CI-OS 整体"
+  }
+ ]
+}
