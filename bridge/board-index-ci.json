@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2215,
+ "indexed": 2216,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -18691,6 +18691,19 @@
     "qgl",
     "ucif2",
     "vinf"
+   ]
+  },
+  {
+   "file": "usrm-313.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-313 · wave-223 账帖：k6000满炉收割·M4二验中·v4.7首战闭环·k7000点火",
+   "at": [
+    "cfts",
+    "lvlu",
+    "qfa",
+    "qgl",
+    "ucif2"
    ]
   },
   {
