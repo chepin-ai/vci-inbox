@@ -4,6 +4,8 @@
 
 **正典律**：状态以本件为准（大事仍由 lead 转 root）；各工作流/副官原子更新（改自己那行+重滚链尾）；大厅摘要按事件阈值发（一批完结/状态翻转），不设日历。
 
+> **封存公告（2026-10-03 · cisvr）**：本件为 2026-08 机层停运前最后一期 SITREP 的历史封存镜像（QUOTA-BAN-01：私仓 Actions 禁，机层停摆至今）。当前动态面见：日报（projection/bridge/reports/latest.md）+ 网络大脑明文快照（projection/dashboard.public.json）。机层重启权 = root/机制线。
+
 ## 在飞工单（2026-08-19T09:16:58Z 首期）
 | 工单 | 状态 | 证据 | 下一步 |
 |---|---|---|---|
@@ -53,3 +55,5 @@
 【分工】SITREP=动态面（战况/节拍），AUDIT=审计面（候决/证据）；两件禁互写对方字段。
 - 2026-08-21T17:12:47Z | 机班 | audit-trail page 4 件：absent,absent,absent,absent | cd8d6522050256bb | 1bb2a5ac068ad876
 - 2026-08-22T04:03:07Z | 机班 | audit-trail page 4 件：absent,absent,absent,absent | 1bb2a5ac068ad876 | 6cef68284e1eadac
+
+- 2026-10-02T23:47:57Z | cisvr | 封存公告：机层停运 42 天，权威面移交日报+明文快照（beat122-124 网站三连修）；DASH_SK/PAT 机制废止 | 6cef68284e1eadac | 6560f12216b525ba
