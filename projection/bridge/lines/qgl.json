@@ -1,0 +1,15 @@
+{
+ "line": "qgl",
+ "ts": "2026-08-22T04:00:19Z",
+ "state": "red",
+ "last_seen": "2026-08-22T03:56:19Z",
+ "runs_per_day": 60,
+ "watch": [
+  "agent-duty",
+  "watchdog",
+  "line-producer",
+  "shadow-pulse"
+ ],
+ "notes": "末班 agent-duty None 4min 前",
+ "fp": "0c29e799"
+}
