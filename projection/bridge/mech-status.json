@@ -1,0 +1,765 @@
+{
+ "ts": "2026-09-07T03:52:30Z",
+ "mechanisms": [
+  {
+   "id": "privacy-guard",
+   "kind": "监视器·隐私卫士",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 60,
+   "note": "L0立法·白名单·PERM-PROBE",
+   "last_run": "2026-08-22T03:38:19Z",
+   "conclusion": "success",
+   "status": "ok",
+   "age_h": 1.3
+  },
+  {
+   "id": "ciops-verify",
+   "kind": "引擎·权限实测",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 360,
+   "note": "CI-OPS 六仓七权功能实证",
+   "last_run": "2026-08-22T03:36:57Z",
+   "conclusion": "success",
+   "status": "ok",
+   "age_h": 1.3
+  },
+  {
+   "id": "llm-bench",
+   "kind": "引擎·LLM基准",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 240,
+   "note": "LongCat 主线基准",
+   "last_run": "2026-08-22T04:41:27Z",
+   "conclusion": "success",
+   "status": "ok",
+   "age_h": 0.2
+  },
+  {
+   "id": "mech-status",
+   "kind": "监视器·总动员自警",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 60,
+   "note": "本聚合器（互检对象含自身）",
+   "last_run": "2026-08-22T03:46:14Z",
+   "conclusion": "success",
+   "status": "ok",
+   "age_h": 1.1
+  },
+  {
+   "id": "red-drill",
+   "kind": "机制·实弹演习",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 10080,
+   "note": "周常实弹+攻击测试",
+   "last_run": "2026-08-18T04:59:47Z",
+   "conclusion": "success",
+   "status": "ok",
+   "age_h": 95.9
+  },
+  {
+   "id": "provision",
+   "kind": "机制·公域供给",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 0,
+   "note": "事件型（provision/** 推送）",
+   "last_run": "2026-08-21T19:22:42Z",
+   "conclusion": "cancelled",
+   "status": "warn",
+   "age_h": 9.5
+  },
+  {
+   "id": "lobby-post",
+   "kind": "机制·大厅发帖管线",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 0,
+   "note": "事件型（outbox/pending）",
+   "last_run": "2026-08-19T07:41:29Z",
+   "conclusion": "success",
+   "status": "ok",
+   "age_h": 69.2
+  },
+  {
+   "id": "llm-bench-ext",
+   "kind": "引擎·cisbr基准",
+   "repo": "chepin-ai/ci-control-backup",
+   "interval_min": 240,
+   "note": "eye/ 外视基准",
+   "last_run": "2026-08-22T04:52:17Z",
+   "conclusion": "cancelled",
+   "status": "warn",
+   "age_h": 0.0
+  },
+  {
+   "id": "warm-watch",
+   "kind": "暖侧·镜像巡检",
+   "repo": "chepin-bi/ci-warm",
+   "interval_min": 47,
+   "note": "T2W 直读（自动管线，免会话中继）",
+   "last_run": "20260822T030957Z",
+   "conclusion": "ok",
+   "status": "silent"
+  },
+  {
+   "id": "shadow-pulse@vci-inbox",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-inbox",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T03:12:23Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-library",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-library",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T03:44:53Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-logs",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-logs",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T04:13:59Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-playground",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-playground",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T03:46:34Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-ucif2",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-ucif2",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T04:19:53Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-vinf",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-vinf",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T04:19:45Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-qgl",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-qgl",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T03:45:02Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-usrm",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-usrm",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T04:13:33Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "shadow-pulse@vci-cfts",
+   "kind": "影子引擎",
+   "repo": "chepin-ai/vci-cfts",
+   "interval_min": 360,
+   "note": "影子脉搏实测正常（6h 值班）",
+   "last_run": "2026-08-22T03:46:47Z",
+   "conclusion": "success",
+   "status": "ok"
+  },
+  {
+   "id": "outbox-registry",
+   "kind": "中间件·outbox轮询",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 23,
+   "note": "注册 18 线（13 线有 URL，余为评论串/收件槽过渡）",
+   "last_run": "2026-08-22T04:54:19Z",
+   "conclusion": "ok",
+   "status": "ok"
+  },
+  {
+   "id": "ext-daemon-1",
+   "kind": "守护·会话侧巡逻岗",
+   "repo": "kimi-cron（会话侧）",
+   "interval_min": 360,
+   "note": "EXT-DAEMON-1 首拍：6h 巡逻班在册（Kimi cron 1a01396a），异常经 lobby-post 管线上墙",
+   "last_run": "2026-08-18T09:03:24Z",
+   "conclusion": null,
+   "status": "silent"
+  },
+  {
+   "id": "agent-watch",
+   "kind": "监视器·智囊质量分",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 0,
+   "note": "立法中：代理产出机检（密钥扫描+事实抽查）+质量分入联赛表",
+   "last_run": null,
+   "conclusion": null,
+   "status": "idle"
+  },
+  {
+   "id": "perm-probe",
+   "kind": "监视器·权限探针",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 60,
+   "note": "缺权限即大厅报警",
+   "last_run": "2026-08-22T04:42:18Z",
+   "conclusion": "ok",
+   "status": "ok"
+  },
+  {
+   "id": "ciops-verify",
+   "kind": "引擎·权限实测读数",
+   "repo": "chepin-ai/ci-control",
+   "interval_min": 360,
+   "note": "GREEN 连续两次=旧 App 可退",
+   "last_run": "2026-08-22T03:36:33Z",
+   "conclusion": "GREEN",
+   "status": "ok"
+  },
+  {
+   "id": "LINESTATE-PIPE-01",
+   "kind": "引擎·自举网(MECH-SELFBOOT-01,cfts统筹)",
+   "repo": "chepin-ai/ci-control",
+   "note": "全线历史全时全量管道(首割八线4349消息,raw+distill双件落私仓linestate/,增量刷新入守望拍)",
+   "last_run": "2026-09-07T02:46:59Z",
+   "conclusion": "success",
+   "status": "ACTIVE"
+  },
+  {
+   "id": "TASK-ANCHOR-01",
+   "kind": "引擎·自举网(MECH-SELFBOOT-01,cfts统筹)",
+   "repo": "chepin-ai/ci-control",
+   "note": "激活囊正典:必携主线任务+上拍进展+下一步,禁空言",
+   "last_run": "2026-09-07T02:46:59Z",
+   "conclusion": "success",
+   "status": "ACTIVE"
+  },
+  {
+   "id": "RELAY-EXEC-01",
+   "kind": "引擎·自举网(MECH-SELFBOOT-01,cfts统筹)",
+   "repo": "chepin-ai/ci-control",
+   "note": "互触发路由:拍携@X见者验X引擎,未动即接力,双证律",
+   "last_run": "2026-09-07T02:46:59Z",
+   "conclusion": "success",
+   "status": "ACTIVE"
+  },
+  {
+   "id": "SELF-WAKE-CARD-01",
+   "kind": "引擎·自举网(MECH-SELFBOOT-01,cfts统筹)",
+   "repo": "chepin-ai/ci-control",
+   "note": "自触发件:醒即读自家distill尾→续主线→出拍;qlv WATCHTOWER v2首例",
+   "last_run": "2026-09-07T02:46:59Z",
+   "conclusion": "success",
+   "status": "ACTIVE"
+  },
+  {
+   "id": "METER-CADENCE-01",
+   "kind": "仪表·联邦节律(S-I/4点火计量承载)",
+   "repo": "chepin-ai/ci-control",
+   "note": "三站会签环载:cfts首窗实测(窗03:00-04:00Z 板拍10 溶率σ_t≈0.75 激发率≈1.33 两表相左→统一定义=环载第一项)→qlv校编码→cisvr著录;判据=完全终止式C(N=3窗 σ_t≥1∧相位锁≥0.95∧主能归bin0)",
+   "last_run": "2026-09-07T03:52:30Z",
+   "conclusion": "success",
+   "status": "ACTIVE-candidate"
+  }
+ ],
+ "directives": [
+  {
+   "id": "DIR-20260818-01",
+   "from": "root·Turn-P 图一",
+   "text": "令牌保存实测验明+非法令牌报错降级",
+   "status": "closed",
+   "evidence": "v2.5.1实测（坏令牌自净化+验明/拒收降级）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-02",
+   "from": "root·Turn-P 图二",
+   "text": "大厅fetch崩溃根因（非Latin-1字符）修复",
+   "status": "closed",
+   "evidence": "根因修复实测（全角/零宽/CJK剥除）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-03",
+   "from": "root·Turn-P 图三",
+   "text": "转派联动bug：handled key含唯一锚点",
+   "status": "closed",
+   "evidence": "键含唯一锚点（thr+来源+ts+djb2）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-04",
+   "from": "root·Turn-P 图四",
+   "text": "18轮种子入对话OS+导入配对机制答疑+知识谱系借范",
+   "status": "closed",
+   "evidence": "种子18轮首启自并+向导补配对规则；借范入D2#707",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-05",
+   "from": "root·Turn-P 图五",
+   "text": "指令无响应根因链+DIRECTIVE-LEDGER-01制度化",
+   "status": "closed",
+   "evidence": "根因链+LEDGER-01本轮交付",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-06",
+   "from": "root·Turn-P",
+   "text": "Dashboard机制矩阵：机制/monitor/引擎实时上墙",
+   "status": "closed",
+   "evidence": "机制矩阵上线（20行四态+台账+演习）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-07",
+   "from": "root·Turn-P",
+   "text": "vci 9公仓启动包下发+测试",
+   "status": "executing",
+   "evidence": "lane J 重试（仍 blocked-installation）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-08",
+   "from": "root·Turn-P 图六",
+   "text": "私仓CI角色重设 PRIV-CI-REMAP",
+   "status": "closed",
+   "evidence": "PRIV-CI-REMAP入D7#721",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-09",
+   "from": "root·Turn-P",
+   "text": "warm运行+私仓停摆恢复汇报",
+   "status": "closed",
+   "evidence": "warm-watch全绿（04:58Z中继）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-10",
+   "from": "root·Turn-P",
+   "text": "LongCat用量→D5(#710)、MIP进展→D8(#722)入房",
+   "status": "closed",
+   "evidence": "D5#710/D8#722已入房（lobby-post管线）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-11",
+   "from": "root·四只手②",
+   "text": "CI-OPS新设置实测验证+明确汇报→旧App退休",
+   "status": "verifying",
+   "evidence": "CIOPS-VERIFY-2 GREEN×1（streak 1/2）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-12",
+   "from": "root·四只手③",
+   "text": "T2到期(08-21)前迁移：lobby-post管线顶上",
+   "status": "closed",
+   "evidence": "lobby-post已实战发帖×5",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-13",
+   "from": "root·四只手④",
+   "text": "MIP-STAR-2 P1 量子环实测自主启动",
+   "status": "closed",
+   "evidence": "closed·P1 云端实测成功 F=1.0（D8#722 已帖）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-14",
+   "from": "root·Turn-P",
+   "text": "全方位压测/攻击测试+实弹演习 RED-DRILL-1",
+   "status": "closed",
+   "evidence": "RED-DRILL PASS（A MTTD0.4s/B×6/C 7.1min）",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818-15",
+   "from": "root·Turn-P",
+   "text": "构建师(coder子代理)合规性说明",
+   "status": "closed",
+   "evidence": "本轮回复",
+   "ts": "2026-08-18T04:50Z"
+  },
+  {
+   "id": "DIR-20260818Q-01",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "vci×9 增选 installation 后无损恢复私仓CI：lane J 下发+实测+矩阵转绿",
+   "status": "closed",
+   "evidence": "27/27 落地✓ 9/9 首发脉冲✓ 矩阵 20/20 ok（06:33Z）"
+  },
+  {
+   "id": "DIR-20260818Q-02",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "大厅 TOP5 双向消息积压清账：密封闸#673、EYE-001B#676 实质应答",
+   "status": "closed",
+   "evidence": "两应答 06:3xZ 已投（dtag seal-spec / eye001b-fire）"
+  },
+  {
+   "id": "DIR-20260818Q-03",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "T2W 入库免中继：secret-seed 管线",
+   "status": "closed",
+   "evidence": "06:28Z 入库✓ 自清✓ 暖行 T2W 直读 ok"
+  },
+  {
+   "id": "DIR-20260818Q-04",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "TOP5 讨论-执行闭环机制+计分矩阵激励+锦标赛试点",
+   "status": "executing",
+   "evidence": "BENCH-LEAGUE-1 已首发 D5；闭环机制案在总回复"
+  },
+  {
+   "id": "DIR-20260818Q-05",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "MIP* 真应用真效果+多纠缠×链/哈希耦合+量子/光Ising+ZKP",
+   "status": "executing",
+   "evidence": "路线案在总回复（P1.5 GHZ 链锚/Ising-QUBO/circom 试点）"
+  },
+  {
+   "id": "DIR-20260818Q-06",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "外部之眼/VAPI/心跳PAT 来龙去脉追溯",
+   "status": "closed",
+   "evidence": "EYE-001 档案+fleet-key-census+VAPI_*→API_* 轮换 saga 全链复原"
+  },
+  {
+   "id": "DIR-20260818Q-07",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "外部会话App+通信中间件+Cron/Daemon 区别汇报",
+   "status": "executing",
+   "evidence": "EXT-DAEMON-1 已注册（6h 巡逻）；报告在总回复"
+  },
+  {
+   "id": "DIR-20260818Q-08",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "计分矩阵起因/张量升级/多方案实测评估",
+   "status": "closed",
+   "evidence": "四方案同数据分歧实测已入 D5 联赛帖"
+  },
+  {
+   "id": "DIR-20260818Q-09",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "多智能体矩阵/智囊工作情况+案例+下一步",
+   "status": "executing",
+   "evidence": "总回复"
+  },
+  {
+   "id": "DIR-20260818Q-10",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "大厅沟通效能检讨+心跳洪水治理",
+   "status": "closed",
+   "evidence": "洪水 150+ 已闭环（212→59）；digest 模式请求已发 ucif2；#144 台账落"
+  },
+  {
+   "id": "DIR-20260818Q-11",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "keys/Secrets/GitHub App 系统汇报+强化",
+   "status": "closed",
+   "evidence": "KEY-REGISTRY-01.md 成册（2569字六章 Top10 风险）+ VIS-REMEDY-1 待 root 裁"
+  },
+  {
+   "id": "DIR-20260818Q-12",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "隐藏 cisvr/cisbr 目录文件指令执行检讨",
+   "status": "closed",
+   "evidence": "公仓扫描零路径泄漏；CISVR-PK.txt 唯一构件（功能必需）；dashboard bundle 演示名单待清"
+  },
+  {
+   "id": "DIR-20260818Q-13",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "自审-互审/自检-互检实测检讨",
+   "status": "closed",
+   "evidence": "自互审实测检讨入总回复§十；secret-seed 三败三修/闸问询/监控自证幻觉三案齐"
+  },
+  {
+   "id": "DIR-20260818Q-14",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "TOP5 各线可见对话导入方案",
+   "status": "executing",
+   "evidence": "导入向导已上线；TOP5-IMPORT-1 方案在总回复"
+  },
+  {
+   "id": "DIR-20260818Q-15",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "借范落实排程+耦合/嵌入/磨合计划",
+   "status": "executing",
+   "evidence": "总回复"
+  },
+  {
+   "id": "DIR-20260818Q-16",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "机制/引擎 原子-分子-化合物组合作用报告",
+   "status": "executing",
+   "evidence": "总回复"
+  },
+  {
+   "id": "DIR-20260818Q-17",
+   "ts": "2026-08-18T06:41:57Z",
+   "directive": "18轮会话指令识别&完成系统审计+实测应用",
+   "status": "closed",
+   "evidence": "TURN-AUDIT-01.md 成册（17KB；闭环率 59.4%；五事故十教训）"
+  },
+  {
+   "id": "DIR-20260818R-01",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "私域CI无缝重启总动令：三轨分派（私域主体+vci承接+wci分布式）+9/1额度恢复后排布",
+   "status": "executing",
+   "evidence": "RESTART-GUIDE-01 起草中"
+  },
+  {
+   "id": "DIR-20260818R-02",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "wci 热备持续运行+git架构作分布式处理强化 chepin-ai 端",
+   "status": "executing",
+   "evidence": "GUIDE 内含 wci 利用案"
+  },
+  {
+   "id": "DIR-20260818R-03",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "9/1 私域恢复震动/冲击预案（补班风暴）",
+   "status": "executing",
+   "evidence": "GUIDE §震动预案"
+  },
+  {
+   "id": "DIR-20260818R-04",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "cisvr 经 CI-OS 发布 TOP5 重启指引/指令",
+   "status": "executing",
+   "evidence": "#144 指引帖"
+  },
+  {
+   "id": "DIR-20260818R-05",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "TOP5 Cron/Daemon 空转/停摆重启修复",
+   "status": "executing",
+   "evidence": "GUIDE 修复序列+各线自检清单"
+  },
+  {
+   "id": "DIR-20260818R-06",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "种子式 Kimi 记忆指令（精简/自举/自驱动/自演化）",
+   "status": "executing",
+   "evidence": "SEED-MEM-01 起草"
+  },
+  {
+   "id": "DIR-20260818R-07",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "反官僚整改：§引用必须给全路径/全文；三选项内联；卡片直给",
+   "status": "closed",
+   "evidence": "本轮起执行；VIS-REMEDY-1 完整包重发"
+  },
+  {
+   "id": "DIR-20260818R-08",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "C4 批准流程定型：论证→Dashboard知会→批准→pilot→验收→投产",
+   "status": "executing",
+   "evidence": "VIS-REMEDY-1 按此流程走"
+  },
+  {
+   "id": "DIR-20260818R-09",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "总动员矩阵持久化+强化扩展",
+   "status": "executing",
+   "evidence": "mech-status v1.5 历史 jsonl+新行"
+  },
+  {
+   "id": "DIR-20260818R-10",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "大厅清账反一刀切：UCIF2 洪水溯源/善用/预后",
+   "status": "executing",
+   "evidence": "洪水解析→谱系燃料 →D5"
+  },
+  {
+   "id": "DIR-20260818R-11",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "借范加速：事件驱动排程规则+S1 即启+主动反馈",
+   "status": "executing",
+   "evidence": "借范排程 v2 本复"
+  },
+  {
+   "id": "DIR-20260818R-12",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "qr 双钥战役（128 限期冲刺+64_365 主力）TOP5 协同，cisbr 主持案",
+   "status": "executing",
+   "evidence": "MIP 战役队列+cisbr 委托案"
+  },
+  {
+   "id": "DIR-20260818R-13",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "CI 侧多链自续 poller 网+事件驱动网+递归引擎汇报",
+   "status": "executing",
+   "evidence": "本复 §十二"
+  },
+  {
+   "id": "DIR-20260818R-14",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "Dashboard 动态界面：自互审/monitor工况/原子-分子-化合物-混合物",
+   "status": "executing",
+   "evidence": "coder 委派"
+  },
+  {
+   "id": "DIR-20260818R-15",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "TOP5 闭环分工说清楚：outbox 发布谁动手",
+   "status": "closed",
+   "evidence": "本复 §三 分工表"
+  },
+  {
+   "id": "DIR-20260818R-16",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "激励箱持续跟进-闭环-推进-扩展",
+   "status": "executing",
+   "evidence": "联赛 R2+锦标赛试点排入"
+  },
+  {
+   "id": "DIR-20260818R-17",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "各线会话轮次自动滚动导入（会话端×Cron/Daemon 联动）",
+   "status": "executing",
+   "evidence": "SEED-MEM 内含滚动导出节律"
+  },
+  {
+   "id": "DIR-20260818R-18",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "自举驱动范式立法+本体研究会话打通（暗号/建仓/全生命周期实例）",
+   "status": "executing",
+   "evidence": "ONTO-SEED-01+接头流程"
+  },
+  {
+   "id": "DIR-20260818R-19",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "链/哈希-MIP*-Ising-ZKP 融合+UCIF2&CFTS 内核查询+谱系打通",
+   "status": "executing",
+   "evidence": "MIP 战役+ZKP 感应案"
+  },
+  {
+   "id": "DIR-20260818R-20",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "外部之眼强化/扩展+纠错应急范式+自互审梳理+闭环五环矩阵",
+   "status": "executing",
+   "evidence": "EYE-002+五环矩阵"
+  },
+  {
+   "id": "DIR-20260818R-21",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "ontological autonomous entities/Agents 借范实验",
+   "status": "executing",
+   "evidence": "ONTO-SEED 全流程实例即首试"
+  },
+  {
+   "id": "DIR-20260818R-22",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "TOP5 沉默态→Cron/Daemon 自驱与 CI 侧无缝对接/互改行为/嵌链入谱",
+   "status": "executing",
+   "evidence": "SEED-MEM+BRG-01+活镜像案"
+  },
+  {
+   "id": "DIR-20260818R-23",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "多智能体矩阵/智囊 monitor 照管缺位→AGENT-WATCH",
+   "status": "executing",
+   "evidence": "v1.5 新增行+代理质量分"
+  },
+  {
+   "id": "DIR-20260818R-24",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "TOP5 导入落实跟进+Dashboard 卡片直给",
+   "status": "executing",
+   "evidence": "投递核销台账+本复给版本卡位置"
+  },
+  {
+   "id": "DIR-20260818R-25",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "ci-control/backup 裸露缺口彻底解决",
+   "status": "executing",
+   "evidence": "VIS-REMEDY-1 待 root 批"
+  },
+  {
+   "id": "DIR-20260818R-26",
+   "ts": "2026-08-18T09:03:24Z",
+   "directive": "19轮审计落实+狠抓闭环率+反官僚作风",
+   "status": "executing",
+   "evidence": "本轮起每轮台账核销率上报"
+  }
+ ],
+ "drills": [
+  {
+   "id": "DRILL-20260818-0454",
+   "ts": "2026-08-18T04:54:20Z",
+   "overall": "FAIL",
+   "drills": [
+    {
+     "name": "A·告警链路实弹",
+     "result": "PASS",
+     "mttd_s": 0.7,
+     "note": "comment 201=True"
+    },
+    {
+     "name": "B·净化器攻击向量×6",
+     "result": "FAIL",
+     "mttd_s": 0,
+     "note": "全角空格剥离✓；零宽字符剥离✓；换行剥离✓；CJK剥离✗；垃圾输入拒收✓；过短拒收✓"
+    },
+    {
+     "name": "C·总动员上墙新鲜度",
+     "result": "FAIL",
+     "mttd_s": 9000000000.0,
+     "note": "mech-status 年龄 9000000000.0 min"
+    }
+   ],
+   "trigger": "legacy-manual（立法前案）"
+  },
+  {
+   "id": "DRILL-20260818-0459",
+   "ts": "2026-08-18T04:59:42Z",
+   "overall": "PASS",
+   "drills": [
+    {
+     "name": "A·告警链路实弹",
+     "result": "PASS",
+     "mttd_s": 0.4,
+     "note": "comment 201=True"
+    },
+    {
+     "name": "B·净化器攻击向量×6",
+     "result": "PASS",
+     "mttd_s": 0,
+     "note": "全角空格剥离✓；零宽字符剥离✓；换行剥离✓；CJK剥离✓；垃圾输入拒收✓；过短拒收✓"
+    },
+    {
+     "name": "C·总动员上墙新鲜度",
+     "result": "PASS",
+     "mttd_s": 7.1,
+     "note": "mech-status 年龄 7.1 min"
+    }
+   ],
+   "trigger": "legacy-manual（立法前案）"
+  }
+ ]
+}
