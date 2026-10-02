@@ -1,0 +1,47 @@
+{
+ "version": 1,
+ "updated": "2026-08-18T20:06:18Z",
+ "note": "一岗一责·注册上岗·心跳强制·事件优先。见 CRON-REGISTRY-01。",
+ "jobs": [
+  {
+   "id": "1a01396a",
+   "owner": "cisvr",
+   "title": "EXT-DAEMON-1 巡逻岗 v2",
+   "schedule": "7 */6 * * *",
+   "heartbeat": "ci-inbox/bridge/ext-daemon.json",
+   "status": "active"
+  },
+  {
+   "id": "1a013c44",
+   "owner": "onto",
+   "title": "onto 线守护",
+   "schedule": "0 * * * *",
+   "heartbeat": "待登记",
+   "status": "待 census 确认"
+  },
+  {
+   "id": "1a014f7f",
+   "owner": "cisvr",
+   "title": "CI-OS 每小时巡更(旧)",
+   "status": "paused-已并入 EXT-DAEMON-1"
+  },
+  {
+   "id": "1a00d0d8",
+   "owner": "cisvr",
+   "title": "CI-OS 每小时巡更(旧2)",
+   "status": "paused-已并入"
+  },
+  {
+   "id": "1a001170",
+   "owner": "cisvr",
+   "title": "舰队健康巡更(旧)",
+   "status": "paused-已并入"
+  },
+  {
+   "id": "1a005d1b",
+   "owner": "cisvr",
+   "title": "cisvr回路例行班(旧)",
+   "status": "paused-已并入"
+  }
+ ]
+}
