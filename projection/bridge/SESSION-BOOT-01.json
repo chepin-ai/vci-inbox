@@ -1,0 +1,61 @@
+{
+ "updated": "2026-08-22T04:03:07Z",
+ "dtag": "session-boot-01",
+ "entries": [
+  {
+   "id": "RESTART-GUIDE-01.md",
+   "title": "RESTART-GUIDE-01",
+   "sha12": "f5fe75b6bded",
+   "chain": "de5a3dcd10be049b"
+  },
+  {
+   "id": "VCI-LOAD-01.md",
+   "title": "VCI-LOAD-01",
+   "sha12": "78d876647af9",
+   "chain": "b2c92dbf4a7ba0ec"
+  },
+  {
+   "id": "WCI-LANE-01.md",
+   "title": "WCI-LANE-01",
+   "sha12": "a99b3ecf9e2e",
+   "chain": "b930035fb1d99003"
+  },
+  {
+   "id": "NEG-EVENT-01.md",
+   "title": "NEG-EVENT-01",
+   "sha12": "fe86c42d9ee7",
+   "chain": "becdb66ba961a9b2"
+  },
+  {
+   "id": "DECIDE-GATE-01.md",
+   "title": "DECIDE-GATE-01",
+   "sha12": "bc43d679166c",
+   "chain": "3cc16d6a12c83707"
+  },
+  {
+   "id": "NEG-PATTERNS-01.md",
+   "title": "NEG-PATTERNS-01",
+   "sha12": "1c800a39de7e",
+   "chain": "6ba5b0a95cf7ea60"
+  },
+  {
+   "id": "FILES-ARCHIVE-01.md",
+   "title": "FILES-ARCHIVE-01",
+   "sha12": "964c384ca11e",
+   "chain": "c0b624a1bedf4ccb"
+  },
+  {
+   "id": "LINE-AUTH-01.md",
+   "title": "LINE-AUTH-01",
+   "sha12": "7bb25ccd02e0",
+   "chain": "4afaa36799ece376"
+  },
+  {
+   "id": "diode-topology.md",
+   "title": "diode-topology",
+   "sha12": "24c1ef18fcb0",
+   "chain": "44650365cc201006"
+  }
+ ],
+ "count": 9
+}
