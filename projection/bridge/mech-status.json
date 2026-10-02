@@ -94,7 +94,7 @@
    "kind": "暖侧·镜像巡检",
    "repo": "chepin-bi/ci-warm",
    "interval_min": 47,
-   "note": "T2W 直读（自动管线，免会话中继）",
+   "note": "〈RED〉 直读（自动管线，免会话中继）",
    "last_run": "20260822T030957Z",
    "conclusion": "ok",
    "status": "silent"
@@ -423,9 +423,9 @@
   {
    "id": "DIR-20260818Q-03",
    "ts": "2026-08-18T06:41:57Z",
-   "directive": "T2W 入库免中继：secret-seed 管线",
+   "directive": "〈RED〉 入库免中继：secret-seed 管线",
    "status": "closed",
-   "evidence": "06:28Z 入库✓ 自清✓ 暖行 T2W 直读 ok"
+   "evidence": "06:28Z 入库✓ 自清✓ 暖行 〈RED〉 直读 ok"
   },
   {
    "id": "DIR-20260818Q-04",
