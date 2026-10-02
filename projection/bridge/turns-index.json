@@ -1,0 +1,55 @@
+{
+ "updated": "2026-08-22T04:03:07Z",
+ "dtag": "turns-index",
+ "note": "L1 投影：线名+轮数+最新 ts+指纹（NE5×CL2 零全文）",
+ "lines": [
+  {
+   "line": "cfts",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  },
+  {
+   "line": "cisvr",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  },
+  {
+   "line": "gcml",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  },
+  {
+   "line": "onto",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  },
+  {
+   "line": "qgl",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  },
+  {
+   "line": "ucif2",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  },
+  {
+   "line": "usrm",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  },
+  {
+   "line": "vinf",
+   "turns": 0,
+   "last_ts": null,
+   "fp": null
+  }
+ ]
+}
