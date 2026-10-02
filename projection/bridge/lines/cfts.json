@@ -1,0 +1,15 @@
+{
+ "line": "cfts",
+ "ts": "2026-08-22T03:44:30Z",
+ "state": "red",
+ "last_seen": "2026-08-22T03:34:22Z",
+ "runs_per_day": 60,
+ "watch": [
+  "watchdog",
+  "agent-duty",
+  "shadow-pulse",
+  "line-producer"
+ ],
+ "notes": "末班 watchdog skipped 10min 前",
+ "fp": "fe025be1"
+}
