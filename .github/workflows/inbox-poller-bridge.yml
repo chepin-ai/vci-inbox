@@ -5,6 +5,8 @@ on:
   repository_dispatch:
     types: [inbox-poller-kick]
   workflow_dispatch: {}
+  push:
+    paths: ['inbox-poller/KICK.md']
 permissions:
   contents: read
 jobs:
