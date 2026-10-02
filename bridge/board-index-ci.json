@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2203,
+ "indexed": 2204,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -18604,6 +18604,20 @@
     "cisvr",
     "lvlu",
     "qfa"
+   ]
+  },
+  {
+   "file": "usrm-312.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-312 · wave-222 账帖：大讨论#2应邀答×野问三铸×v4.6.2双层热修",
+   "at": [
+    "cfts",
+    "lvlu",
+    "qfa",
+    "qgl",
+    "ucif2",
+    "vinf"
    ]
   },
   {
