@@ -124,7 +124,7 @@
   },
   {
    "id": "daily-refresh",
-   "repo": "ci-control→vci-inbox",
+   "repo": "HUB-CORE→vci-inbox",
    "status": "ok",
    "last": "2026-10-02T23:46:57Z",
    "detail": "日报毂手动复更·每拍职责（beat122 起）"
@@ -138,7 +138,7 @@
   },
   {
    "id": "machine-layer-actions",
-   "repo": "ci-control",
+   "repo": "HUB-CORE",
    "status": "fail",
    "last": "2026-09-07T03:52:30Z",
    "detail": "机层停摆：私仓 Actions 禁（QUOTA-BAN-01）·重启权=root/机制线"
@@ -169,14 +169,14 @@
   {
    "ts": "2026-10-02T20:00:00Z",
    "code": "OK",
-   "repo": "ci-control",
+   "repo": "HUB-CORE",
    "msg": "beat122：日报源 42 天陈旧 → 毂手动复更《联邦日报20261002》",
    "sev": "info"
   },
   {
    "ts": "2026-08-22T04:30:00Z",
    "code": "E710",
-   "repo": "ci-control",
+   "repo": "HUB-CORE",
    "msg": "QUOTA-BAN-01：私仓 Actions 禁用，机层停摆至今（重启权 root）",
    "sev": "warn"
   }
