@@ -1,0 +1,15 @@
+{
+ "line": "ucif2",
+ "ts": "2026-08-22T03:43:43Z",
+ "state": "red",
+ "last_seen": "2026-08-22T03:35:36Z",
+ "runs_per_day": 60,
+ "watch": [
+  "watchdog",
+  "agent-duty",
+  "shadow-pulse",
+  "line-producer"
+ ],
+ "notes": "末班 watchdog skipped 8min 前",
+ "fp": "b93b7739"
+}
