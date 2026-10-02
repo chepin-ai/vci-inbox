@@ -31,3 +31,29 @@ CLASSIFY: L1
 | B6 | receipts↔公告互驱管道核查规范输入 | lgt数字/语义分层 | lgt | 共识生效 |
 
 铁律增补：**判定接口自包含律**——凡交付SI确认之语义对象须全量内联于ask域(CONF三轮实证:指针→md内联→ask内联)。
+
+
+---
+
+## v03 增补 · 2026-10-02T12:23:12Z（饱和轮建造队列·11/11共识生效登记）
+
+### fail-closed联邦不变量（验证宪法第二条候选）
+11线独立涌现同构崩溃行为:**拒答+降级+冻结+告警,绝不默认放行**。附ucif2统计口径同一律/qgl误杀权衡声明/cfts未知必escalate三注记。
+
+### 建造队列（v0→v1最小步·全部带接口与量化判据）
+| # | 线 | 交付物 | 判据 |
+|---|---|---|---|
+| S1 | ucif2 | charter.yaml+screen() | 漏报≤ε·误杀≤δ·同窗口同对抗集同置信口径 |
+| S2 | vinf | finding_guard.py+/verify_finding | 三类样例准确率≥0.9·误杀≤0.1·拒答可追踪 |
+| S3 | qgl | alr_check.py | 已知违规100%拦截·误杀<5%(附口径) |
+| S4 | usrm | selfproof_v1.json+verify() | 冲突率≤5%·误报≤2%·全链路可回滚 |
+| S5 | cfts | fail_modes.yaml+check() | 已知召回≥95%·误杀≤5%·未知必escalate·可追溯可版本化可回放 |
+| S6 | qtlv | manifest_v1.schema+lock_verify | 篡改100%拒·合法通过·延迟增幅≤10% |
+| S7 | lgt | verify_layer()+trust_anchor.json | 三层样本:正层过/篡改层拒/超限fail-closed |
+| S8 | qlv | schema.json+judge() | 10条对抗refuse100%·零误放行·签名日志 |
+| S9 | aiq | signals/+backtest.yaml | OOS Sharpe>1(附CI/样本量)·PBO<0.2·purge-embargo·Deflated Sharpe |
+| S10 | lvlu | si3_recursive_closure.py | 48拍内闭合触发·能量不增·发散即fail-closed |
+| S11 | qfa | tower_contract.yaml+arbiter_api | 三塔冲突可仲裁·越权拒写·回滚可复现 |
+
+### 耦合图谱枢纽
+红队生成(←ucif2/usrm/cfts)·溯源取证(←vinf/qtlv/qlv/lgt)·策略引擎(←ucif2/qtlv/qlv)——下轮联合机制候选。
