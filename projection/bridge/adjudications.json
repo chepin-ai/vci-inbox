@@ -5,7 +5,7 @@
    "id": "VIS-REMEDY-1",
    "title": "ci-control公/ci-inbox私 可见性处置",
    "status": "pending-root",
-   "posted": "ci-inbox #144 dtag: vis-remedy-1",
+   "posted": "HUB-MAIL #144 dtag: vis-remedy-1",
    "options": [
     "A 投影制（推荐）",
     "B 双私化",
@@ -63,7 +63,7 @@
    "title": "QR 战役代理转录回显 T2/T2W 前缀（会话内 containment）",
    "plan": "经过：子代理用 od 探测凭证文件格式，~40 字符前缀回显进其工作转录。containment 实证：未写入任何产出文件/仓库/消息（四方机检+lead 独立复扫 0 命中），暴露面=会话内部转录。根因：代理简报未禁止 od/hexdump 凭证文件——已加入简报纪律。处置建议：①T2 本就 8/21 到期不续（T2-REVOKE-DRILL-01 已排 8/20 演练），视同已覆盖；②T2W 建议 root 方便时轮换（C4：吊销/轮换=root 之手）。",
    "needs_root": true,
-   "note": "C1「泄漏即视为已泄露」从轻适用：会话内 containment 可证，故降级为轮换建议而非紧急吊销；root 若从严，直接吊销 T2W 亦无业务阻塞（T2W 实测已无 ci-inbox 权限，ci-warm 只读面可由会话中继兜底）。"
+   "note": "C1「泄漏即视为已泄露」从轻适用：会话内 containment 可证，故降级为轮换建议而非紧急吊销；root 若从严，直接吊销 〈RED〉 亦无业务阻塞（〈RED〉 实测已无 HUB-MAIL 权限，ci-warm 只读面可由会话中继兜底）。"
   },
   {
    "id": "TOKEN-FINGERPRINT-DRIFT-1",
@@ -71,7 +71,7 @@
    "prio": "P2",
    "dtag": null,
    "title": "T2 实际权限面大于 TOKEN-CENSUS 基线",
-   "plan": "实测：T2 在 ci-inbox 具备 issues:write（#144 评论直发 201）与 contents:write（adjudications.json/qr-lineage-emit.jsonl 写入 200/201），超出普查基线\"只读\"记录。T2W 实测无 ci-inbox 权限（404）。处置：①KEY-REGISTRY-01 下版修订权限面记录；②最小权限纪律：T2 8/21 到期后不再续，漂移自然消亡；③若提前吊销 T2，大厅发帖管线转 CI-OPS App（已实证可写）。",
+   "plan": "实测：T2 在 HUB-MAIL 具备 issues:write（#144 评论直发 201）与 contents:write（adjudications.json/qr-lineage-emit.jsonl 写入 200/201），超出普查基线\"只读\"记录。〈RED〉 实测无 HUB-MAIL 权限（404）。处置：①KEY-REGISTRY-01 下版修订权限面记录；②最小权限纪律：T2 8/21 到期后不再续，漂移自然消亡；③若提前吊销 T2，大厅发帖管线转 CI-OPS App（已实证可写）。",
    "needs_root": false,
    "note": "登记即可，无需即时动作；随 T2 到期自动收敛。"
   }
