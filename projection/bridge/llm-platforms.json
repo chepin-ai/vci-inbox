@@ -1,0 +1,37 @@
+{
+ "schema": "LLM 平台读数档（U3①）；无 API 平台走「会话读数投递」：root/各线粘贴读数→bridge/llm-readings/{platform}-{date}.json→本档归并→负事件分析（audit-trail 读额差）",
+ "updated": "2026-08-19T12:12:20Z",
+ "platforms": {
+  "kimi": {
+   "billing": {
+    "2026-08": "¥199.17",
+    "2026-07": "¥18.13"
+   },
+   "note": "十倍跳升——负事件候选（燃烧归因待查）",
+   "api_reading": false
+  },
+  "deepseek": {
+   "balance": "¥410.16",
+   "30d": "¥21.34（388 次/6940 万 tok）",
+   "model_ratio": "v4-flash:v4-pro≈3:1",
+   "offpeak": "谷段半价（北京 00:30-08:30=UTC 16:30-00:30；chore-bus 窗已校正 U3③）",
+   "api_reading": true
+  },
+  "longcat": {
+   "pack": "5000 万 tok 包已耗 46%",
+   "daily": "~1000 万 tok/日",
+   "eta": "平台预计 7 天用尽",
+   "api_reading": false
+  }
+ },
+ "governance": {
+  "longcat_burn": "cisbr 饱和测试须挂分线日预算+cache 命中率追踪（读数 cache 命中~30%，有优化空间）——预算闸随 U5 bench 合并案激活",
+  "daily_budgets": {
+   "deepseek_cost_usd": 1.0,
+   "longcat_tok": 2000000,
+   "kimi_tok": 1000000,
+   "note": "初值候 root 调；用量台账=bridge/llm-usage.jsonl（联测/饱和逐笔）"
+  },
+  "root_channel_eval": "V6④ 评估项：root 直通道=dmail 工具探测可用性（待 root 侧确认工具面）+大厅 page 帖双轨（burn/platform-change 已 page 级在役）"
+ }
+}
