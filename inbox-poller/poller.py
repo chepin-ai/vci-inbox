@@ -414,6 +414,14 @@ def main():
     sc, issues = api("GET", f"/repos/{INBOX}/issues?state=open&per_page=100")
     if sc != 200:
         print(f"列举指令失败 {sc}")
+        # PATCH(FINDING-20261002-01·枢/PIVOT-01代铸·覆写权归原线):
+        # 403/5xx = 共享令牌REST限流或上游故障 → 软退(exit 0)防误报FAILURE,审计留痕待下拍
+        if sc in (403, 429, 500, 502, 503, 504):
+            try:
+                audit(f"软退: 列举指令失败 {sc}(REST限流/上游),本拍跳过,事件驱动待下拍")
+            except Exception:
+                pass
+            sys.exit(0)
         sys.exit(1)
     n = 0
     for it in issues:
