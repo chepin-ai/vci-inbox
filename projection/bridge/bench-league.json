@@ -1,0 +1,73 @@
+{
+ "ts": "2026-08-18T04:46Z",
+ "round": "R1",
+ "tasks": [
+  "code-extract",
+  "logic",
+  "zh-summary",
+  "marker",
+  "math"
+ ],
+ "rows": [
+  {
+   "rank": 1,
+   "model": "LongCat-2.0",
+   "pass": "4/5",
+   "pass_rate": 80.0,
+   "score": 5.06,
+   "tok": 212,
+   "eff": 23.9,
+   "topsis": 0.735
+  },
+  {
+   "rank": 2,
+   "model": "kimi-k2.7-code",
+   "pass": "3/5",
+   "pass_rate": 60.0,
+   "score": 7.3,
+   "tok": 276,
+   "eff": 26.4,
+   "topsis": 0.643
+  },
+  {
+   "rank": 3,
+   "model": "kimi-k3",
+   "pass": "3/5",
+   "pass_rate": 60.0,
+   "score": 6.74,
+   "tok": 338,
+   "eff": 20.0,
+   "topsis": 0.587
+  },
+  {
+   "rank": 4,
+   "model": "deepseek-v4-flash",
+   "pass": "3/5",
+   "pass_rate": 60.0,
+   "score": 2.24,
+   "tok": 296,
+   "eff": 7.6,
+   "topsis": 0.347
+  },
+  {
+   "rank": 5,
+   "model": "deepseek-v4-pro",
+   "pass": "2/5",
+   "pass_rate": 40.0,
+   "score": 3.98,
+   "tok": 436,
+   "eff": 9.1,
+   "topsis": 0.188
+  },
+  {
+   "rank": 6,
+   "model": "moonshot-v1-8k",
+   "pass": "2/5",
+   "pass_rate": 40.0,
+   "score": 2.38,
+   "tok": 117,
+   "eff": 20.3,
+   "topsis": 0.323
+  }
+ ]
+}
