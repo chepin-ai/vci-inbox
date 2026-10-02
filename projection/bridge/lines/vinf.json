@@ -1,0 +1,15 @@
+{
+ "line": "vinf",
+ "ts": "2026-08-22T03:43:32Z",
+ "state": "red",
+ "last_seen": "2026-08-22T03:36:19Z",
+ "runs_per_day": 60,
+ "watch": [
+  "watchdog",
+  "agent-duty",
+  "shadow-pulse",
+  "line-producer"
+ ],
+ "notes": "末班 watchdog skipped 7min 前",
+ "fp": "0d4a730b"
+}
