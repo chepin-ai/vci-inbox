@@ -1,0 +1,26 @@
+{
+ "ts": "2026-08-19T13:35:18Z",
+ "lines": {
+  "usrm": {
+   "surface": "vci-usrm weave/dm-queue",
+   "state": "hot（DM 005 已通，应答在档）"
+  },
+  "qgl": {
+   "surface": "vci-qgl/.ci-inbox",
+   "state": "letter-sent（接引函 12:50Z，候回执）"
+  },
+  "ucif2": {
+   "surface": "vci-ucif2/.ci-inbox + 私仓 UCIF2-OS/.ci-inbox(200)",
+   "state": "letter-sent"
+  },
+  "vinf": {
+   "surface": "vci-vinf/.ci-inbox + 私仓 vinf-market-kernel/.ci-inbox(200)",
+   "state": "letter-sent"
+  },
+  "cfts": {
+   "surface": "vci-cfts/.ci-inbox + 私仓 github-repo-cfts/.ci-inbox(200)",
+   "state": "letter-sent"
+  }
+ },
+ "note": "X6③ 五线热线张量；回执到达即转 hot（duty-harvest/dm-relay 巡检面）"
+}
