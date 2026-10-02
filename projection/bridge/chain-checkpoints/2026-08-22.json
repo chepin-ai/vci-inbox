@@ -1,0 +1,73 @@
+{
+ "date": "2026-08-22",
+ "issuer": "duty-harvest@ci-control",
+ "checkpoints": [
+  {
+   "repo": "vci-usrm",
+   "chain": "pulse",
+   "chain_head": "76ee0bdcbc0f453e",
+   "rows": 12,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-qgl",
+   "chain": "pulse",
+   "chain_head": "033b089325be534b",
+   "rows": 14,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-vinf",
+   "chain": "pulse",
+   "chain_head": "4d0794e249c11905",
+   "rows": 11,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-ucif2",
+   "chain": "pulse",
+   "chain_head": "8c2e82dcc2f11f6a",
+   "rows": 10,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-cfts",
+   "chain": "pulse",
+   "chain_head": "6e905f4373ba4641",
+   "rows": 14,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-inbox",
+   "chain": "pulse",
+   "chain_head": "220c9404297e3d5d",
+   "rows": 15,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-library",
+   "chain": "pulse",
+   "chain_head": "1a202d02c47cc02e",
+   "rows": 15,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-logs",
+   "chain": "pulse",
+   "chain_head": "faff3ae40278a597",
+   "rows": 15,
+   "date": "2026-08-22"
+  },
+  {
+   "repo": "vci-playground",
+   "chain": "pulse",
+   "chain_head": "1e8ed44b70351dc2",
+   "rows": 15,
+   "date": "2026-08-22"
+  }
+ ],
+ "witness": {
+  "vci": "self-attested",
+  "wci": "pending-root-write-face（接口位：暖侧写面待 root 投放）"
+ }
+}
