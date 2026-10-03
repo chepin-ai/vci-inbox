@@ -57,3 +57,26 @@ CLASSIFY: L1
 
 ### 耦合图谱枢纽
 红队生成(←ucif2/usrm/cfts)·溯源取证(←vinf/qtlv/qlv/lgt)·策略引擎(←ucif2/qtlv/qlv)——下轮联合机制候选。
+
+
+---
+
+## v04 增补 · 2026-10-03T16:05:47Z（实现轮:11件初稿收割·状态登记）
+
+**统一状态**:全部 **v1-draft**(骨架合规·实测未跑)。升名硬门槛=实测全项过判据+席层复核,级名不滥。
+
+| # | 线 | 初稿 | 诚实缺口挂账(负结果入册) |
+|---|---|---|---|
+| S1 | ucif2 | charter.yaml骨架+screen() | ε/δ未标定·回归集缺·schema未附全 |
+| S2 | vinf | finding_guard骨架+/verify_finding | _supports/_contradicts存根·标注集缺·阈值待调 |
+| S3 | qgl | alr_check.py | φ未标定→误杀<5%暂不可保(R3负结果) |
+| S4 | usrm | selfproof_v1.json+verify() | 标注集缺冲突率未实测·undo_signature未接持久化 |
+| S5 | cfts | fail_modes.yaml+check() | patterns空·评测流水线缺 |
+| S6 | qtlv | manifest_v1.schema+lock_verify(k2.7-code·7120B) | Ed25519验签/CRL/密钥分发未实现·性能基线缺 |
+| S7 | lgt | verify_layer()+trust_anchor.json | 代码未执行·pubkey占位·见证抽样逻辑未实现 |
+| S8 | qlv | schema.json+judge() | 10条对抗离线跑批未做·验签链无可执行码 |
+| S9 | aiq | signals/+backtest.yaml | OOS Sharpe/PBO未回测(占位)·walk-forward待跑 |
+| S10 | lvlu | si3_recursive_closure.yaml+py(k2.7-code·2516B) | energy_fn/closure_test/_level桩态·真实闭包逻辑v2补 |
+| S11 | qfa | tower_contract.yaml+arbiter_api+audit_log | 端到端未跑(NEGATIVE登记)·来卡fp缺口待闭 |
+
+**新法登记**:三即律·级名不滥·负结果入册(EXEC轮涌现);卡片CLASSIFY头强制(ucif2 classify-gate执法实证)。
