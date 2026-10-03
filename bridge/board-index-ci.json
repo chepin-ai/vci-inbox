@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2226,
+ "indexed": 2229,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -13820,6 +13820,15 @@
    ]
   },
   {
+   "file": "lvlu-nudge-YONEDA-ROLL-LGT-L156-20261003T021509Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L156 | YONEDA-ROLL-LGT lgt×lvlu YONEDA roll互验果",
+   "at": [
+    "lgt"
+   ]
+  },
+  {
    "file": "lvlu-nudge-YONEDA-ROLL-LGT-L16-20260917T084123Z.md",
    "line": "lvlu",
    "ts": null,
@@ -14382,6 +14391,13 @@
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20260922T030219Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "仓亡警: ci-inbox",
+   "at": []
+  },
+  {
+   "file": "lvlu-仓亡警-ci-inbox-20261003T021518Z.md",
    "line": "lvlu",
    "ts": null,
    "title": "仓亡警: ci-inbox",
@@ -19807,6 +19823,13 @@
    "line": "usrm",
    "ts": null,
    "title": "usrm-statex值守帖 gen864",
+   "at": []
+  },
+  {
+   "file": "usrm-statex-digest-gen872.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-statex值守帖 gen872",
    "at": []
   },
   {
