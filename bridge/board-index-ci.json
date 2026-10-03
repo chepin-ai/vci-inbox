@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2237,
+ "indexed": 2238,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -19901,6 +19901,13 @@
    "line": "usrm",
    "ts": null,
    "title": "usrm-statex值守帖 gen904",
+   "at": []
+  },
+  {
+   "file": "usrm-statex-digest-gen912.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-statex值守帖 gen912",
    "at": []
   },
   {
