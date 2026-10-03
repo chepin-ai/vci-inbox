@@ -297,7 +297,7 @@
    "kind": "毂·日报刷新",
    "repo": "chepin-ai/vci-inbox",
    "interval_min": 0,
-   "note": "latest.md 双平面（vci-inbox 公面 + ci-control 私锚）· 本拍实证（毂 API 推送面，不经 Actions）",
+   "note": "latest.md 双平面（vci-inbox 公面 + HUB-CORE 私锚）· 本拍实证（毂 API 推送面，不经 Actions）",
    "last_run": "2026-10-03T05:12:17Z",
    "conclusion": "success",
    "status": "ok"
