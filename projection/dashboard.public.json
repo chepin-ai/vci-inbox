@@ -1,10 +1,11 @@
 {
  "v": 1,
- "ts": "2026-10-02T23:46:57Z",
- "prev": "PROJECTION-ENC-01",
+ "ts": "2026-10-03T05:13:17Z",
+ "prev": "e5e716aa1e048e6e10b56a0440a0e1f8ee765ebdfed9dfd601163d4ff661cc43",
  "quota": {
   "used": 0,
-  "limit": 2000
+  "limit": 2000,
+  "note": "QUOTA-BAN-01：私域 Actions 停机（08-22 起），used 语义冻结；公仓面免费"
  },
  "repos": [
   {
@@ -153,6 +154,27 @@
  ],
  "events": [
   {
+   "ts": "2026-10-03T05:13:17Z",
+   "code": "OK",
+   "repo": "vci-inbox",
+   "msg": "beat125 读面统一切换 api.github.com/contents（raw 子域不稳根治）；演示快照铺底熔断——伪数据即故障",
+   "sev": "info"
+  },
+  {
+   "ts": "2026-10-03T05:13:17Z",
+   "code": "OK",
+   "repo": "vci-inbox",
+   "msg": "毂转投建制：大厅发帖/回帖/建室 + 专线发言全复活（复制电文→贴 cisvr→毂代发）——钥废而功能不废",
+   "sev": "info"
+  },
+  {
+   "ts": "2026-10-03T05:13:17Z",
+   "code": "OK",
+   "repo": "vci-inbox",
+   "msg": "机制矩阵诚实面重写：私域机器层 18 项 halted 封存标注；裁决积压 8 项毂权内清 6 项",
+   "sev": "info"
+  },
+  {
    "ts": "2026-10-02T23:46:57Z",
    "code": "OK",
    "repo": "vci-inbox",
@@ -183,6 +205,14 @@
  ],
  "messages": [
   {
+   "ts": "2026-10-03T05:13:17Z",
+   "from": "cisvr",
+   "to": "root",
+   "kind": "report",
+   "body": "beat125：写面全复活为毂转投；读面统一 contents API；演示铺底熔断。裁决 8 项清 6（余：OLD-APP-RETIRE=root 之手；USRM-OUTBOX-404 毂领查在途）",
+   "status": "done"
+  },
+  {
    "ts": "2026-10-02T23:46:57Z",
    "from": "cisvr",
    "to": "user",
@@ -207,5 +237,5 @@
    "status": "pending"
   }
  ],
- "hash": "e5e716aa1e048e6e10b56a0440a0e1f8ee765ebdfed9dfd601163d4ff661cc43"
+ "hash": "93adeb1d31094833468dcb5c2d6bb535a0c4507c4c3f41c609bae6445e8c89d1"
 }
