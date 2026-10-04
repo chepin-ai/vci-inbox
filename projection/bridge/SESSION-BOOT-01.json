@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-22T04:03:07Z",
+ "updated": "2026-10-04T21:21:23Z",
  "dtag": "session-boot-01",
  "entries": [
   {
@@ -55,6 +55,13 @@
    "title": "diode-topology",
    "sha12": "24c1ef18fcb0",
    "chain": "44650365cc201006"
+  },
+  {
+   "id": "HARD-PROBLEM-EXPLORATION-01.md",
+   "title": "攻击面探索卷（§1-31 含 beat126）",
+   "sha12": "79f8fce26b6a",
+   "chain": "03b47c2f1ead",
+   "note": "sha12=sha256(文件)[:12] 可复算；chain=beat125 账本"
   }
  ],
  "count": 9
