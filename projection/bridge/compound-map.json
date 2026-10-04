@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-18T09:03:24Z",
+ "ts": "2026-10-04T21:20:26Z",
  "note": "原子-分子-化合物-混合物 结构图（CHEM-MAP-1 v1）",
  "atoms": [
   {
@@ -103,5 +103,6 @@
    "of": "三极（私域本体+vci公域影子+wci暖侧）×TOP5×外部会话×智囊",
    "role": "CI-OS 整体"
   }
- ]
+ ],
+ "plane_note": "私域原子（privacy-guard/ciops-verify/sentry/respond虫/fleet-key-census/warm-watch/guard-snap/red-drill/llm-bench×2）停机封存；公域 shadow-pulse 在役（公仓免费额度）；毂推送面（projection-sync/daily-refresh/lobby-relay/ledger-anchor）在役不经 Actions。"
 }
