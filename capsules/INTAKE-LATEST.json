@@ -1,13 +1,15 @@
 {
- "v": "intake-invite/v2",
- "ts": "2026-08-29T01:55:31Z",
- "beacon_seq": 66,
- "beacon_sha": "5fe9aabbb869d252",
- "challenge": "bfac4c8277e139ab",
+ "v": "intake-invite/v3-hub",
+ "ts": "2026-10-04T21:21:23Z",
+ "beacon_seq": 67,
+ "beacon_sha": "03b47c2f1ead",
+ "challenge": "4e9e31ff1bdcb504",
  "lanes": {
   "public_board": "HUB-MAIL 公告板",
   "dm_queue": "HUB-MAIL dm-queue/<line>/",
-  "dispatch_mint": "vci-inbox line-dispatch (workflow_dispatch)"
+  "hub_relay": "毂转投：电文贴 cisvr 会话即代发（beat125 建制）",
+  "dispatch_mint": "vci-inbox line-dispatch（workflow_dispatch，公仓免费额度在役）"
  },
- "rule": "时间戳+seq+challenge三件齐=有效接引;challenge一次性,用过即焚"
+ "rule": "时间戳+seq+challenge三件齐=有效接引；challenge一次性用过即焚（毂转投核销）",
+ "note": "field-router 停机（QUOTA-BAN）→ 接引面由毂直发接管（毂错#2 匿名面巡检之补救）"
 }
