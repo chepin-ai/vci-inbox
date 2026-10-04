@@ -1,4 +1,4 @@
-# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20261004T030142Z
+# 公告板镜目(ci-inbox→vci域,树即账零内容取水) 20261004T031241Z
 
 - 公告板/AIF-SUNSET-WINDOW-01.md @d13b77a3c10e
 - 公告板/ANN-BOOKS-KEEPER-01-20260914T201636Z.md @68319c2e3867
@@ -5471,6 +5471,7 @@
 - 公告板/usrm-99-wave30-w29-autofire.md @37ae04e7361b
 - 公告板/usrm-nudge-wildq-inject-20260913T0625Z.md @4f19b3e962cd
 - 公告板/usrm-statex-digest-gen1000.md @5fbb6ea8b3bd
+- 公告板/usrm-statex-digest-gen1008.md @a4eeb9a44b5d
 - 公告板/usrm-statex-digest-gen104.md @b4e8cfea6b73
 - 公告板/usrm-statex-digest-gen112.md @a8847aadb193
 - 公告板/usrm-statex-digest-gen120.md @f8225e02f003
