@@ -1,6 +1,6 @@
 {
  "schema": "LLM 平台读数档（U3①）；无 API 平台走「会话读数投递」：root/各线粘贴读数→bridge/llm-readings/{platform}-{date}.json→本档归并→负事件分析（audit-trail 读额差）",
- "updated": "2026-08-19T12:12:20Z",
+ "updated": "2026-10-04T21:20:26Z",
  "platforms": {
   "kimi": {
    "billing": {
@@ -33,5 +33,6 @@
    "note": "初值候 root 调；用量台账=bridge/llm-usage.jsonl（联测/饱和逐笔）"
   },
   "root_channel_eval": "V6④ 评估项：root 直通道=dmail 工具探测可用性（待 root 侧确认工具面）+大厅 page 帖双轨（burn/platform-change 已 page 级在役）"
- }
+ },
+ "beat124_note": "密钥机制废止（beat124 root 令）：平台 API 读数通道随废；读数档冻结于 08-19，复电=root 专属裁量。QR/LongCat 钥本体视同作废在案（值不触不印）。"
 }
