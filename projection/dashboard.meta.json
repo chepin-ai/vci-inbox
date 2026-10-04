@@ -1,6 +1,6 @@
 {
- "hash": "93adeb1d3109",
- "prev": "d1aff5298b02ac95ea509dbb0c291590c2a8f6709d377b731ed718b1772b42ab",
- "ts": "2026-10-04T21:20:26Z",
- "note": "beat126 对齐 dashboard.public.json 哈希链（prev e5e716aa→93adeb1d）"
+ "hash": "492cfc6b1401628bfea64a8d818e75bd2a242bc494d3307982adbadad171cbea",
+ "prev": "93adeb1d31094833468dcb5c2d6bb535a0c4507c4c3f41c609bae6445e8c89d1",
+ "ts": "2026-10-04T21:23:12Z",
+ "note": "beat126 对齐"
 }
