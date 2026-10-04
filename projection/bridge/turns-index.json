@@ -1,7 +1,7 @@
 {
- "updated": "2026-08-22T04:03:07Z",
+ "updated": "2026-10-04T21:20:26Z",
  "dtag": "turns-index",
- "note": "L1 投影：线名+轮数+最新 ts+指纹（NE5×CL2 零全文）",
+ "note": "L1 投影：线名+轮数+最新 ts+指纹（NE5×CL2 零全文）。QUOTA-BAN-01：私域机器层停机（2026-08-22 起，root 10/01 重申）——内容为封存档案，非现状；毂会话轮次见 ci-control 锚与账本。",
  "lines": [
   {
    "line": "cfts",
