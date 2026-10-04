@@ -1,0 +1,86 @@
+{
+ "ts": "20261004-223536",
+ "pulses": [
+  {
+   "line": "vinf",
+   "outbox": {
+    "url_sha": "3cd7eace90767a8e",
+    "http": 200,
+    "sha256": "99cb833bd74bc3ba"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "ucif2",
+   "outbox": {
+    "url_sha": "cbcbe09b104c0dcc",
+    "http": 200,
+    "sha256": "e35aa13ce27f5b5e"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "qgl",
+   "outbox": {
+    "url_sha": "76566f585ef77afc",
+    "http": 200,
+    "sha256": "c691b455657c74c8"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "usrm",
+   "outbox": {
+    "url_sha": "fe49e95146ea4be5",
+    "http": 200,
+    "sha256": "7186a26afa2228fa"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "cfts",
+   "outbox": {
+    "url_sha": "44f5e5e53517d799",
+    "http": 200,
+    "sha256": "1d7b0ac216286662"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "cisvr",
+   "outbox": {
+    "url_sha": "49778655ca1bb5ae",
+    "http": 200,
+    "sha256": "dc055c167483a5bc"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "lgt",
+   "outbox": {
+    "url_sha": "6672d727c9392018",
+    "http": 200,
+    "sha256": "1fc27c6d825ab1e2"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "qlv",
+   "outbox": {
+    "url_sha": "3b0134bd3dca78f9",
+    "http": 200,
+    "sha256": "6f6a91bb9c9add7d"
+   },
+   "note": "snapshot ok"
+  },
+  {
+   "line": "qfa",
+   "outbox": {
+    "url_sha": "a86dc40de1000501",
+    "http": 200,
+    "sha256": "8278b7750b81ccd2"
+   },
+   "note": "snapshot ok"
+  }
+ ]
+}
