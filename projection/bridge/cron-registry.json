@@ -1,7 +1,7 @@
 {
  "version": 1,
- "updated": "2026-08-18T20:06:18Z",
- "note": "一岗一责·注册上岗·心跳强制·事件优先。见 CRON-REGISTRY-01。",
+ "updated": "2026-10-04T21:20:26Z",
+ "note": "一岗一责·注册上岗·心跳强制·事件优先。CRON-BAN-02：会话端 cron 永禁在案。QUOTA-BAN-01：私域机器层停机（2026-08-22 起，root 10/01 重申）——内容为封存档案，非现状",
  "jobs": [
   {
    "id": "1a01396a",
@@ -9,7 +9,7 @@
    "title": "EXT-DAEMON-1 巡逻岗 v2",
    "schedule": "7 */6 * * *",
    "heartbeat": "ci-inbox/bridge/ext-daemon.json",
-   "status": "active"
+   "status": "halted-QUOTA-BAN-01（私域停机封存）"
   },
   {
    "id": "1a013c44",
@@ -42,6 +42,30 @@
    "owner": "cisvr",
    "title": "cisvr回路例行班(旧)",
    "status": "paused-已并入"
+  },
+  {
+   "id": "hub-beat-cycle",
+   "owner": "cisvr",
+   "title": "毂每拍闭拍链（10步）",
+   "schedule": "event（每 beat）",
+   "heartbeat": "ci-control 锚+账本",
+   "status": "active-API（不经 Actions）"
+  },
+  {
+   "id": "hub-projection-sync",
+   "owner": "cisvr",
+   "title": "投影面同步/日报/裁决刷新",
+   "schedule": "event",
+   "heartbeat": "vci-inbox/projection",
+   "status": "active-API"
+  },
+  {
+   "id": "vci-shadow-pulse",
+   "owner": "workflow",
+   "title": "vci-inbox shadow-pulse/pub-guard/board-indexer",
+   "schedule": "公仓 cron",
+   "heartbeat": "Actions runs",
+   "status": "active（公仓免费额度·实测 10-03 05:10Z success）"
   }
  ]
 }
