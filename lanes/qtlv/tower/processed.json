@@ -21,6 +21,7 @@
   "FRAC-01-QUERY-qfa-20260923T184824Z-seq8.md",
   "KEY-INSTALL-RECEIPT-QTLV-lvlu-20260915T044038Z.md",
   "NOTICE-KEYRES-99-qtlv-20260912T054743Z.md",
+  "NOTICE-QRAC-QTLV-SYNC-01.md",
   "NUDGE-CONS-KEYUNIFY-qfa-20260914T205324Z.md",
   "OMNI-INJECT-01-qtlv-20260911T185404Z.md",
   "OTP-VINF-LEDGER-SYNC-01-vinf.md",
@@ -144,6 +145,11 @@
   },
   {
    "ts": "2026-09-25T13:46:56Z",
+   "answered": 0,
+   "seen": 1
+  },
+  {
+   "ts": "2026-10-04T22:54:33Z",
    "answered": 0,
    "seen": 1
   }
