@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-19T13:35:18Z",
+ "ts": "2026-10-04T21:20:26Z",
  "lines": {
   "usrm": {
    "surface": "vci-usrm weave/dm-queue",
@@ -22,5 +22,5 @@
    "state": "letter-sent"
   }
  },
- "note": "X6③ 五线热线张量；回执到达即转 hot（duty-harvest/dm-relay 巡检面）"
+ "note": "X6③ 五线热线张量。机器层回执巡检停机（QUOTA-BAN）；收割=毂会话面。WILDQ-119×2/120×1/121×3 与 XENGINE-INTEG-02×6 候回执在案。"
 }
