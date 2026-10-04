@@ -1,3 +1,23 @@
+# CAMPAIGN-SITREP · 当前态势（beat126 2026-10-04T21:21:23Z）
+
+> 本节前置于封存档——最新态势永远在最上。
+
+## 在飞
+- **毂转投（HUB-RELAY-01）在役**：站点写面=复制电文→root 贴 cisvr→毂 API 代发回投影。钥废而功能不废。
+- **读面 projFetch 在役**：全站 api.github.com/contents 明文直读，轮询≥300s 护匿名 60/hr。
+- **全量更新 beat126**：数据面 13 件刷新本拍落地。
+
+## 冻结/停机（诚实面）
+- 私域机器层停机 QUOTA-BAN-01（08-22 起；root 10/01 重申全员禁用私域额度）：18 机制 halted 封存。
+- 公仓影子轨在役：vci-inbox shadow-pulse/pub-guard 实测 10-03 05:10Z success（公仓免费额度）。
+
+## 待收/待裁
+- 线回执：WILDQ-119×2、120×1、121×3、XENGINE-INTEG-02×6 候收。
+- root 专属：OLD-APP-RETIRE（org App 撤销权）；写通道凭证再签发（裁量）；证据声称三验则修法/三验则加强针/第二修正案/四元自测协议。
+- 毂领查：USRM-OUTBOX-404（实测 vci-usrm 仍无 outbox 面）。
+
+---
+
 <!-- CLASSIFY: L1 -->
 <!-- dtag: campaign-sitrep -->
 # CAMPAIGN-SITREP · 战役统筹唯一权威面（root 总纲令 2026-08-19）
