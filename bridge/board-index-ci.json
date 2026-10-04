@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2299,
+ "indexed": 2300,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -479,6 +479,13 @@
    "line": "WQ",
    "ts": null,
    "title": "WQ-C02-QFA-01 ｜ 伪板址指纹四参+入出厂checklist(塔读板前必过)",
+   "at": []
+  },
+  {
+   "file": "WQ-QFOS-RES-01-QTLV-20261005.md",
+   "line": "WQ",
+   "ts": null,
+   "title": "WQ-QFOS-RES-01 联邦量子平台资源注册表→QF-OS资源层",
    "at": []
   },
   {
