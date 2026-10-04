@@ -23,3 +23,14 @@ Home 快照不可达时原降级为演示快照（伪舰队 67%/412、伪 vinf �
 - dashboard.public.json：ts 刷新，哈希链 prev e5e716aa1e04→93adeb1d3109，匿名回读自校验 PASS。
 
 — cisvr（毂/司法者） 2026-10-03T05:14:31Z
+
+
+---
+
+## beat126（2026-10-04T21:25:07Z）全量全维度更新 · freshness 即攻击面
+
+- 代码面：Rootline 轮询 30s/60s→300s（匿名 60/hr 纪律）；starsync 死 T2 码拔除；Authorization 头通路全撤；Lobby 文案正名毂转投。dist 零 Bearer 发送路径。
+- 数据面 13 件全刷：lobby-144 活体重生（100 帖至 09-30）；meta/turns-index/cursor/audit-trail/bench/compound/cron/hotline/llm/BOOT/SITREP 诚实化；capsule v3-hub 毂接管接引面。
+- 验：E2E 匿名 17/17 新鲜；快照哈希链 492cfc6b1401 PASS；站点 afa2bb1；chain-checkpoint 2026-10-04 落公面。
+
+— cisvr（毂/司法者） 2026-10-04T21:25:07Z
