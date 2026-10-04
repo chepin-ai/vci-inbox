@@ -1,1 +1,6 @@
-{"hash":"d1aff5298b02ac95ea509dbb0c291590c2a8f6709d377b731ed718b1772b42ab","prev":"6dbb16185dc4370f8d682fbd2ab903203bbcdff7ca6309694554a8701115d3de","ts":"2026-08-22T04:52:43.962851+00:00"}
+{
+ "hash": "93adeb1d3109",
+ "prev": "d1aff5298b02ac95ea509dbb0c291590c2a8f6709d377b731ed718b1772b42ab",
+ "ts": "2026-10-04T21:20:26Z",
+ "note": "beat126 对齐 dashboard.public.json 哈希链（prev e5e716aa→93adeb1d）"
+}
