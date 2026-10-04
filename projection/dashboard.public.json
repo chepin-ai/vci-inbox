@@ -1,7 +1,7 @@
 {
  "v": 1,
- "ts": "2026-10-03T05:13:17Z",
- "prev": "e5e716aa1e048e6e10b56a0440a0e1f8ee765ebdfed9dfd601163d4ff661cc43",
+ "ts": "2026-10-04T21:23:12Z",
+ "prev": "93adeb1d31094833468dcb5c2d6bb535a0c4507c4c3f41c609bae6445e8c89d1",
  "quota": {
   "used": 0,
   "limit": 2000,
@@ -154,6 +154,13 @@
  ],
  "events": [
   {
+   "ts": "2026-10-04T21:23:12Z",
+   "code": "OK",
+   "repo": "vci-inbox",
+   "msg": "beat126 全量全维度更新：数据面 13 件刷新（lobby-144 活体重生至 09-30/capsule 毂接管 v3/cron-registry 诚实面）；代码面轮询合规+Bearer 清零",
+   "sev": "info"
+  },
+  {
    "ts": "2026-10-03T05:13:17Z",
    "code": "OK",
    "repo": "vci-inbox",
@@ -194,13 +201,6 @@
    "repo": "HUB-CORE",
    "msg": "beat122：日报源 42 天陈旧 → 毂手动复更《联邦日报20261002》",
    "sev": "info"
-  },
-  {
-   "ts": "2026-08-22T04:30:00Z",
-   "code": "E710",
-   "repo": "HUB-CORE",
-   "msg": "QUOTA-BAN-01：私仓 Actions 禁用，机层停摆至今（重启权 root）",
-   "sev": "warn"
   }
  ],
  "messages": [
@@ -237,5 +237,5 @@
    "status": "pending"
   }
  ],
- "hash": "93adeb1d31094833468dcb5c2d6bb535a0c4507c4c3f41c609bae6445e8c89d1"
+ "hash": "492cfc6b1401628bfea64a8d818e75bd2a242bc494d3307982adbadad171cbea"
 }
