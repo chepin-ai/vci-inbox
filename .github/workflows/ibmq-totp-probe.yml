@@ -1,0 +1,42 @@
+name: IBMQ-TOTP-PROBE-01
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pyotp requests
+      - name: TOTP rail probe (values never printed)
+        env:
+          IBM_TOTP_SECRET: ${{ secrets.IBM_TOTP_SECRET }}
+          IBMID_PW: ${{ secrets.IBMID_PW }}
+        run: |
+          python3 - <<'PY'
+          import pyotp, requests, json, datetime, os
+          rep={'schema':'IBMQ-TOTP-PROBE-01','ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+          # 1) TOTP轨: 秘密在场且算法可执行(码值永不打印)
+          try:
+              t=pyotp.TOTP(os.environ['IBM_TOTP_SECRET']); code=t.now()
+              rep['totp_rail']='OK' if (code.isdigit() and len(code)==6) else 'MALFORMED'
+              rep['totp_interval']=t.interval; del code
+          except Exception as e: rep['totp_rail']=f'FAIL:{type(e).__name__}'
+          # 2) 凭证在场布尔
+          rep['ibmid_pw_present']=bool(os.environ.get('IBMID_PW'))
+          # 3) IBM IAM端点可达性
+          try:
+              r=requests.post('https://iam.cloud.ibm.com/identity/token',timeout=20)
+              rep['iam_endpoint']='reachable' if r.status_code in (200,400,401) else f'http{r.status_code}'
+          except Exception as e: rep['iam_endpoint']=f'unreachable:{type(e).__name__}'
+          # 4) IBM Quantum API可达性
+          try:
+              r=requests.get('https://api.quantum.ibm.com/runtime/backends',timeout=20)
+              rep['iqp_api']=f'http{r.status_code}'
+          except Exception as e: rep['iqp_api']=f'unreachable:{type(e).__name__}'
+          rep['note']='TOTP轨+凭证在场+端点可达=登录自动化前置全绿; 完整web登录流(browser challenge)排入下拍机件化'
+          open('probe.json','w').write(json.dumps(rep,ensure_ascii=False,indent=2)); print(json.dumps(rep))
+          PY
+      - name: commit probe
+        run: |
+          mkdir -p receipts && cp probe.json receipts/IBMQ-PROBE-$(date -u +%Y%m%dT%H%M%SZ).json
+          git config user.name "hub-probe"; git config user.email "hub@ci-mesh"
+          git add receipts/ && git commit -m "IBMQ-TOTP-PROBE-01 [skip ci]" && git push
