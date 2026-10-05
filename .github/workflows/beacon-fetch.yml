@@ -41,5 +41,11 @@ jobs:
       - name: commit receipt
         run: |
           mkdir -p receipts && cp receipt.json receipts/BEACON-$(date -u +%Y%m%dT%H%M%SZ).json
-          git config user.name "hub-beacon"; git config user.email "hub@ci-mesh"
-          git add receipts/ && git commit -m "BEACON-FETCH-01 receipt [skip ci]" && git push
+          git config user.name "hub-bot"; git config user.email "hub@ci-mesh"
+          git add receipts/
+          git commit -m "BEACON-FETCH-01 receipt [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 3
+          done
+          exit 1
