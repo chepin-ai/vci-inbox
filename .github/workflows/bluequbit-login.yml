@@ -28,8 +28,14 @@ jobs:
                   pg.goto('https://app.bluequbit.io/login',timeout=60000,wait_until='networkidle')
                   rep['page']='loaded'
                   rep['title']=pg.title()
+                  # cookie横幅先决
+                  try:
+                      for bs in ['button:has-text("Reject All")','button:has-text("Accept All")']:
+                          el=pg.query_selector(bs)
+                          if el: el.click(); pg.wait_for_timeout(2500); rep['cookie']='dismissed'; break
+                  except Exception: pass
                   # SPA渲染等待+现场勘定
-                  try: pg.wait_for_selector('input',timeout=20000)
+                  try: pg.wait_for_selector('input[type="password"]',timeout=20000)
                   except Exception: pass
                   rep['inputs']=[{'type':i.get_attribute('type'),'name':i.get_attribute('name'),'ph':i.get_attribute('placeholder')} for i in pg.query_selector_all('input')]
                   rep['buttons']=[b.inner_text()[:30] for b in pg.query_selector_all('button')][:8]
