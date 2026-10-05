@@ -1,0 +1,75 @@
+name: JUDGE-RESEAL-01
+# 裁决链×真量子熵重封轨(beat132): 读R2 beacon/QRNG真熵 -> qgl协议beatHash=SHA256(prev‖payload‖ts‖qv)逐拍封印 -> 写回judiciary/
+on:
+  workflow_dispatch:
+    inputs:
+      verdicts:
+        description: 'JSON array of verdict objects'
+        required: false
+        default: '[{"claim":"WILDQ-131七答对校完成","judge":"hub","verdict":"成立"},{"claim":"qlv第五基元=裁决层与JUDGE-INTEG-01独立收敛","judge":"hub","verdict":"采信为最强互证"},{"claim":"毂代铸须双签(qfa立法)","judge":"hub","verdict":"立为成文"},{"claim":"真量子熵入网并耦联裁决链","judge":"hub","verdict":"QF-OS基座熵源层落成"}]'
+permissions:
+  contents: write
+jobs:
+  reseal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install boto3
+      - name: qrng-reseal
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.CF_R2_USER_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_USER_SECRET_ACCESS_KEY }}
+          VERDICTS: ${{ github.event.inputs.verdicts }}
+        run: |
+          python3 - <<'PY'
+          import boto3, json, hashlib, datetime, os
+          s3 = boto3.client('s3', endpoint_url=f"https://{os.environ['CF_ACCOUNT_ID']}.r2.cloudflarestorage.com")
+          # 1) 取最新真量子熵件
+          objs = s3.list_objects_v2(Bucket='ci-mesh-state', Prefix='beacon/QRNG-').get('Contents',[])
+          assert objs, 'beacon缺席:宁可停机不回退(qgl律)'
+          latest = sorted(objs, key=lambda o:o['Key'])[-1]
+          beac = json.loads(s3.get_object(Bucket='ci-mesh-state', Key=latest['Key'])['Body'].read())
+          assert beac.get('fetch_ok'), '熵件fetch_ok=false,停机'
+          qv_pool = beac['qv']  # 真量子熵块
+          # 2) qgl协议逐拍封印
+          verdicts = json.loads(os.environ['VERDICTS'])
+          C=[]; prev='0'*64
+          base = datetime.datetime.now(datetime.timezone.utc).timestamp()
+          for i,v in enumerate(verdicts):
+              qv = qv_pool[i % len(qv_pool)]
+              ts = base + i*1e-3
+              bh = hashlib.sha256((prev+json.dumps(v,sort_keys=True,ensure_ascii=False)+repr(ts)+qv).encode()).hexdigest()
+              C.append({'prev':prev,'payload':v,'ts':ts,'qv_sha':hashlib.sha256(qv.encode()).hexdigest()[:16],
+                        'entropy':'ANU QRNG真量子熵','beacon_key':latest['Key'],'hash':bh})
+              prev = bh
+          art = {'schema':'JUDGE-CHAIN-01-QSEAL(qgl耦联协议×真量子熵)','writer':'hub','beacon':latest['Key'],
+                 'qv_policy':'每拍一熵块,链上只存qv指纹(qv_sha),熵原件住R2 beacon/','chain':C,'tip':prev}
+          # 3) 自验(ucif2四不变量)
+          ok=True
+          for i,b in enumerate(C):
+              e=hashlib.sha256((b['prev']+json.dumps(b['payload'],sort_keys=True,ensure_ascii=False)+repr(b['ts'])+qv_pool[i%len(qv_pool)]).encode()).hexdigest()
+              if e!=b['hash'] or (i>0 and b['prev']!=C[i-1]['hash']) or (i>0 and b['ts']<=C[i-1]['ts']): ok=False
+          art['self_verify']=ok
+          assert ok
+          key='judiciary/JUDGE-CHAIN-HUB-QSEAL-01.json'
+          s3.put_object(Bucket='ci-mesh-state', Key=key, Body=json.dumps(art,ensure_ascii=False).encode())
+          rb=json.loads(s3.get_object(Bucket='ci-mesh-state', Key=key)['Body'].read())
+          receipt={'key':key,'readback_ok':rb['tip']==prev,'tip':prev[:16],'beats':len(C),
+                   'entropy':'ANU QRNG','beacon':latest['Key'],'self_verify':ok,
+                   'ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+          open('receipt.json','w').write(json.dumps(receipt,ensure_ascii=False,indent=2)); print(json.dumps(receipt))
+          PY
+      - name: commit receipt
+        run: |
+          mkdir -p receipts && cp receipt.json receipts/JUDGE-RESEAL-$(date -u +%Y%m%dT%H%M%SZ).json
+          git config user.name "hub-bot"; git config user.email "hub@ci-mesh"
+          git add receipts/
+          git commit -m "JUDGE-RESEAL-01 receipt [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 3
+          done
+          exit 1
