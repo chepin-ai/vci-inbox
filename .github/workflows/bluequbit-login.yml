@@ -34,6 +34,12 @@ jobs:
                           el=pg.query_selector(bs)
                           if el: el.click(); pg.wait_for_timeout(2500); rep['cookie']='dismissed'; break
                   except Exception: pass
+                  # 着陆页→登录表单页
+                  try:
+                      for ls in ['a:has-text("Log in")','text=Log in','a[href*="login"]']:
+                          el=pg.query_selector(ls)
+                          if el: el.click(); pg.wait_for_timeout(4000); rep['nav']='clicked'; break
+                  except Exception: pass
                   # SPA渲染等待+现场勘定
                   try: pg.wait_for_selector('input[type="password"]',timeout=20000)
                   except Exception: pass
