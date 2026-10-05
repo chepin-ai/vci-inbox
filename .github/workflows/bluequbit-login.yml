@@ -1,0 +1,59 @@
+name: BLUEQUBIT-LOGIN-01
+# 量子云登录探针(beat133): BlueQubit email+PW整对凭证 playwright真实登录 (值永不打印)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  login-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install playwright && playwright install --with-deps chromium
+      - name: bluequbit login probe
+        env:
+          BQ_EMAIL: ${{ secrets.BLUEQUBIT_GMAIL }}
+          BQ_PW: ${{ secrets.BLUEQUBIT_PW }}
+        run: |
+          python3 - <<'PY'
+          import json, datetime, os
+          from playwright.sync_api import sync_playwright
+          rep={'schema':'BLUEQUBIT-LOGIN-01','ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+          try:
+              with sync_playwright() as p:
+                  br=p.chromium.launch(headless=True)
+                  pg=br.new_page()
+                  pg.goto('https://app.bluequbit.io/login',timeout=45000,wait_until='domcontentloaded')
+                  rep['page']='loaded'
+                  rep['title']=pg.title()
+                  # 探测表单
+                  email_sel='input[type="email"], input[name="email"], input[name="username"]'
+                  pw_sel='input[type="password"]'
+                  if pg.query_selector(email_sel) and pg.query_selector(pw_sel):
+                      rep['form']='found'
+                      pg.fill(email_sel, os.environ['BQ_EMAIL'])
+                      pg.fill(pw_sel, os.environ['BQ_PW'])
+                      pg.click('button[type="submit"], button:has-text("Log in"), button:has-text("Sign in")')
+                      pg.wait_for_timeout(8000)
+                      rep['post_url']=pg.url
+                      rep['login_ok']='login' not in pg.url.lower()
+                      if rep['login_ok']:
+                          rep['dashboard_hint']=pg.title()
+                  else:
+                      rep['form']='not-found'
+                      rep['body_hint']=pg.inner_text('body')[:200]
+                  br.close()
+          except Exception as e:
+              rep['error']=f'{type(e).__name__}:{str(e)[:120]}'
+          rep['note']='诚实探针:login_ok=布尔断言;失败即负结果入册,不伪报'
+          open('probe.json','w').write(json.dumps(rep,ensure_ascii=False,indent=2)); print(json.dumps(rep))
+          PY
+      - name: commit receipt
+        run: |
+          mkdir -p receipts && cp probe.json receipts/BQ-LOGIN-$(date -u +%Y%m%dT%H%M%SZ).json
+          git config user.name "hub-bot"; git config user.email "hub@ci-mesh"
+          git add receipts/
+          git commit -m "BLUEQUBIT-LOGIN-01 [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do git pull --rebase origin main && git push && exit 0; sleep 3; done; exit 1
