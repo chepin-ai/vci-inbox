@@ -1,0 +1,11 @@
+{
+  "schema": "IBMQ-LOGIN-RECON-01",
+  "ts": "2026-10-05T13:29:47Z",
+  "landing": "ok",
+  "title": "IBM Quantum Platform",
+  "login_url": "https://quantum.cloud.ibm.com/signin?redirectTo=%2F",
+  "has_ibmid_form": true,
+  "has_google_oauth": false,
+  "has_totp_hint": false,
+  "note": "侦察件:不携不试任何凭证;IBMID username配对确认后下拍全真登录"
+}
