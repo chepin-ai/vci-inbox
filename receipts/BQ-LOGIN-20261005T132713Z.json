@@ -1,0 +1,9 @@
+{
+  "schema": "BLUEQUBIT-LOGIN-01",
+  "ts": "2026-10-05T13:27:11Z",
+  "page": "loaded",
+  "title": "BlueQubit App",
+  "form": "not-found",
+  "body_hint": "",
+  "note": "诚实探针:login_ok=布尔断言;失败即负结果入册,不伪报"
+}
