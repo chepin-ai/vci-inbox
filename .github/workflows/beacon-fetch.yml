@@ -1,0 +1,45 @@
+name: BEACON-FETCH-01
+on:
+  workflow_dispatch:
+    inputs:
+      length: {description: 'hex blocks', default: '4'}
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.CF_R2_USER_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_USER_SECRET_ACCESS_KEY }}
+jobs:
+  beacon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install boto3 requests
+      - name: fetch ANU QRNG -> R2 beacon/
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          LEN: ${{ inputs.length }}
+        run: |
+          python3 - <<'PY'
+          import boto3, requests, json, datetime, hashlib
+          r = requests.get('https://qrng.anu.edu.au/API/jsonI.php', params={'length':4,'type':'hex16','size':32}, timeout=30)
+          st = r.status_code
+          art = {'schema':'BEACON-QRNG-01','ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                 'source':'ANU QRNG public API (quantum vacuum fluctuations)','http':st}
+          if st==200 and r.json().get('success'):
+              art['qv'] = r.json()['data']; art['fetch_ok']=True
+              art['sha256'] = hashlib.sha256(''.join(art['qv']).encode()).hexdigest()
+          else:
+              art['fetch_ok']=False; art['note']='QRNG不可达:诚实负结果入册,不回退伪熵'
+          s3 = boto3.client('s3', endpoint_url=f"https://{__import__('os').environ['CF_ACCOUNT_ID']}.r2.cloudflarestorage.com")
+          key = f"beacon/QRNG-{art['ts'].replace(':','').replace('-','')}.json"
+          s3.put_object(Bucket='ci-mesh-state', Key=key, Body=json.dumps(art,ensure_ascii=False).encode())
+          rb = s3.get_object(Bucket='ci-mesh-state', Key=key)['Body'].read().decode()
+          art['readback_ok'] = (rb==json.dumps(art,ensure_ascii=False))
+          # 回执不携qv原文落git(熵件只住R2), 只携指纹
+          receipt = {'key':key,'fetch_ok':art['fetch_ok'],'sha256':art.get('sha256'),'readback_ok':art['readback_ok'],'ts':art['ts']}
+          open('receipt.json','w').write(json.dumps(receipt,ensure_ascii=False,indent=2))
+          print(json.dumps(receipt))
+          PY
+      - name: commit receipt
+        run: |
+          mkdir -p receipts && cp receipt.json receipts/BEACON-$(date -u +%Y%m%dT%H%M%SZ).json
+          git config user.name "hub-beacon"; git config user.email "hub@ci-mesh"
+          git add receipts/ && git commit -m "BEACON-FETCH-01 receipt [skip ci]" && git push
