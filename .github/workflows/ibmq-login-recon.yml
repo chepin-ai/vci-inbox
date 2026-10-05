@@ -1,0 +1,48 @@
+name: IBMQ-LOGIN-RECON-01
+# IBM Quantum登录侦察(beat133): 无username配对凭证,只侦察登录页结构,不提交任何凭证(防误锁)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install playwright && playwright install --with-deps chromium
+      - name: ibmq login recon
+        run: |
+          python3 - <<'PY'
+          import json, datetime
+          from playwright.sync_api import sync_playwright
+          rep={'schema':'IBMQ-LOGIN-RECON-01','ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+          try:
+              with sync_playwright() as p:
+                  br=p.chromium.launch(headless=True)
+                  pg=br.new_page()
+                  pg.goto('https://quantum.ibm.com/',timeout=45000,wait_until='domcontentloaded')
+                  rep['landing']='ok'; rep['title']=pg.title()
+                  # 找登录入口
+                  for sel in ['text=Sign in','text=Log in','a:has-text("Sign in")']:
+                      el=pg.query_selector(sel)
+                      if el: el.click(); pg.wait_for_timeout(5000); break
+                  rep['login_url']=pg.url
+                  body=pg.inner_text('body')[:400]
+                  rep['has_ibmid_form']=bool(pg.query_selector('input[name="username"], input#username'))
+                  rep['has_google_oauth']='google' in body.lower()
+                  rep['has_totp_hint']='verification' in body.lower() or 'authenticator' in body.lower()
+                  br.close()
+          except Exception as e:
+              rep['error']=f'{type(e).__name__}:{str(e)[:120]}'
+          rep['note']='侦察件:不携不试任何凭证;IBMID username配对确认后下拍全真登录'
+          open('probe.json','w').write(json.dumps(rep,ensure_ascii=False,indent=2)); print(json.dumps(rep))
+          PY
+      - name: commit receipt
+        run: |
+          mkdir -p receipts && cp probe.json receipts/IBMQ-RECON-$(date -u +%Y%m%dT%H%M%SZ).json
+          git config user.name "hub-bot"; git config user.email "hub@ci-mesh"
+          git add receipts/
+          git commit -m "IBMQ-LOGIN-RECON-01 [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do git pull --rebase origin main && git push && exit 0; sleep 3; done; exit 1
