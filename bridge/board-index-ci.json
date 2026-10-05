@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2303,
+ "indexed": 2307,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -6755,6 +6755,16 @@
    ]
   },
   {
+   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L211-20261005T011027Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L211 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "at": [
+    "gmail",
+    "lvlu"
+   ]
+  },
+  {
    "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L24-20260921T115349Z.md",
    "line": "lvlu",
    "ts": null,
@@ -9274,6 +9284,15 @@
    ]
   },
   {
+   "file": "lvlu-nudge-EXP049-DONE-L314-20261005T011027Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L314 | EXP049-DONE EXP-049+探针8CA608102028586C Completed",
+   "at": [
+    "lvlu"
+   ]
+  },
+  {
    "file": "lvlu-nudge-EXP049-DONE-L33-20260915T164641Z.md",
    "line": "lvlu",
    "ts": null,
@@ -10844,6 +10863,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L205 | ORIGIN6-BONUS 本源#6户+60s资料奖励(需139/199 SMS,root投递)",
+   "at": [
+    "lvlu"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-ORIGIN6-BONUS-L211-20261005T011027Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L211 | ORIGIN6-BONUS 本源#6户+60s资料奖励(需139/199 SMS,root投递)",
    "at": [
     "lvlu"
    ]
@@ -19656,6 +19684,13 @@
    "line": "usrm",
    "ts": null,
    "title": "usrm-statex值守帖 gen1128",
+   "at": []
+  },
+  {
+   "file": "usrm-statex-digest-gen1136.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-statex值守帖 gen1136",
    "at": []
   },
   {
