@@ -62,7 +62,7 @@ jobs:
                       rep['auth_markers']={'api_token_link':'see api token' in body_low,'app_nav':all(k in body_low for k in ('playground','docs')),'tour':'starts a tour' in body_low}
                       rep['login_ok']=bool(rep['auth_markers']['api_token_link'] or (rep['auth_markers']['app_nav'] and 'sign up' not in body_low))
                       rep['err_boxes']=[e.inner_text()[:80] for e in pg.query_selector_all('[role="alert"], .error, .MuiAlert-message, [class*="error" i]')][:4]
-                      rep['login_ok']='login' not in pg.url.lower()
+                      rep['login_ok_url']='login' not in pg.url.lower()  # URL断言降级为旁证(毂错#11:SPA断言行序案)
                       if rep['login_ok']:
                           rep['dashboard_hint']=pg.title()
                   else:
