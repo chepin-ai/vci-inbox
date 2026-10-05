@@ -58,6 +58,9 @@ jobs:
                       pg.wait_for_timeout(10000)
                       rep['post_url']=pg.url
                       rep['post_body']=pg.inner_text('body')[:300]
+                      body_low=rep['post_body'].lower()
+                      rep['auth_markers']={'api_token_link':'see api token' in body_low,'app_nav':all(k in body_low for k in ('playground','docs')),'tour':'starts a tour' in body_low}
+                      rep['login_ok']=bool(rep['auth_markers']['api_token_link'] or (rep['auth_markers']['app_nav'] and 'sign up' not in body_low))
                       rep['err_boxes']=[e.inner_text()[:80] for e in pg.query_selector_all('[role="alert"], .error, .MuiAlert-message, [class*="error" i]')][:4]
                       rep['login_ok']='login' not in pg.url.lower()
                       if rep['login_ok']:
