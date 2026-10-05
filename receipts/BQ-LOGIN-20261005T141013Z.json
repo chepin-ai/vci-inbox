@@ -1,0 +1,58 @@
+{
+  "schema": "BLUEQUBIT-LOGIN-01",
+  "ts": "2026-10-05T14:09:53Z",
+  "page": "loaded",
+  "title": "BlueQubit login",
+  "cookie": "dismissed",
+  "nav": "clicked",
+  "inputs": [
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "text",
+      "name": "email",
+      "ph": null
+    },
+    {
+      "type": "password",
+      "name": "password",
+      "ph": null
+    }
+  ],
+  "buttons": [
+    "Customise",
+    "Reject All",
+    "Accept All",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "form": "found",
+  "post_url": "https://app.bluequbit.io/login",
+  "post_body": "BlueQubit AI...\nSee API token\n-\n-\nHome\nJobs\nDocs\nHybrid\nTutorials\nPlayground\nHackathons\nPage Not Found\n\nSorry, we couldn’t find the page you’re looking for.\n\nBack to Home\n?\n\nThis marker starts a tour\n\nThere are a few more next to the other areas of the app. Click any of them for a quick guided tour ",
+  "auth_markers": {
+    "api_token_link": true,
+    "app_nav": true,
+    "tour": true
+  },
+  "login_ok": false,
+  "err_boxes": [
+    ""
+  ],
+  "note": "诚实探针:login_ok=布尔断言;失败即负结果入册,不伪报"
+}
