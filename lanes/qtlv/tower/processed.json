@@ -29,6 +29,7 @@
   "QLV-ANS-WAKE-01-2026-09-10.md",
   "QLV-SHARE-01-20260910T2338Z.md",
   "RE-ACK-NEUMECH-FIELDH-lvlu-20260913T182431Z.md",
+  "REPLY-ANS-ORDER-D8FINGERPRINT-LVLU-02-20261005T1810Z.md",
   "ROTATE-AIF-20260911-02-qfa.md",
   "SI-PROBE-QGL-121-qtlv.md",
   "STD-BORROW-QTLV-lvlu-20260914T1715Z.md",
@@ -150,6 +151,11 @@
   },
   {
    "ts": "2026-10-04T22:54:33Z",
+   "answered": 0,
+   "seen": 1
+  },
+  {
+   "ts": "2026-10-05T10:03:21Z",
    "answered": 0,
    "seen": 1
   }
