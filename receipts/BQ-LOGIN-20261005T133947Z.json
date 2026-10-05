@@ -1,0 +1,36 @@
+{
+  "schema": "BLUEQUBIT-LOGIN-01",
+  "ts": "2026-10-05T13:39:24Z",
+  "page": "loaded",
+  "title": "BlueQubit login",
+  "inputs": [
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    }
+  ],
+  "buttons": [
+    "Customise",
+    "Reject All",
+    "Accept All",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "form": "not-found",
+  "body_hint": "We value your privacy\n\nWe use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking \"Accept All\", you consent to our use of cookies.\n\nCus",
+  "note": "诚实探针:login_ok=布尔断言;失败即负结果入册,不伪报"
+}
