@@ -1,0 +1,49 @@
+{
+  "schema": "BLUEQUBIT-LOGIN-01",
+  "ts": "2026-10-05T14:05:21Z",
+  "page": "loaded",
+  "title": "BlueQubit login",
+  "cookie": "dismissed",
+  "nav": "clicked",
+  "inputs": [
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "text",
+      "name": "email",
+      "ph": null
+    },
+    {
+      "type": "password",
+      "name": "password",
+      "ph": null
+    }
+  ],
+  "buttons": [
+    "Customise",
+    "Reject All",
+    "Accept All",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "form": "found",
+  "post_url": "https://app.bluequbit.io/login",
+  "login_ok": false,
+  "note": "诚实探针:login_ok=布尔断言;失败即负结果入册,不伪报"
+}
