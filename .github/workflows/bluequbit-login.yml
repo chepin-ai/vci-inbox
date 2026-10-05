@@ -57,6 +57,8 @@ jobs:
                           pg.click('form button, button[type="submit"]',timeout=10000)
                       pg.wait_for_timeout(10000)
                       rep['post_url']=pg.url
+                      rep['post_body']=pg.inner_text('body')[:300]
+                      rep['err_boxes']=[e.inner_text()[:80] for e in pg.query_selector_all('[role="alert"], .error, .MuiAlert-message, [class*="error" i]')][:4]
                       rep['login_ok']='login' not in pg.url.lower()
                       if rep['login_ok']:
                           rep['dashboard_hint']=pg.title()
