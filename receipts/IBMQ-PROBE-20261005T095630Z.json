@@ -1,0 +1,10 @@
+{
+  "schema": "IBMQ-TOTP-PROBE-01",
+  "ts": "2026-10-05T09:56:29Z",
+  "totp_rail": "OK",
+  "totp_interval": 30,
+  "ibmid_pw_present": true,
+  "iam_endpoint": "reachable",
+  "iqp_api": "unreachable:ConnectionError",
+  "note": "TOTP轨+凭证在场+端点可达=登录自动化前置全绿; 完整web登录流(browser challenge)排入下拍机件化"
+}
