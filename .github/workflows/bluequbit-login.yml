@@ -51,8 +51,11 @@ jobs:
                       rep['form']='found'
                       pg.fill(email_sel, os.environ['BQ_EMAIL'])
                       pg.fill(pw_sel, os.environ['BQ_PW'])
-                      pg.click('button[type="submit"], button:has-text("Log in"), button:has-text("Sign in")')
-                      pg.wait_for_timeout(8000)
+                      try:
+                          pg.press(pw_sel,'Enter')
+                      except Exception:
+                          pg.click('form button, button[type="submit"]',timeout=10000)
+                      pg.wait_for_timeout(10000)
                       rep['post_url']=pg.url
                       rep['login_ok']='login' not in pg.url.lower()
                       if rep['login_ok']:
