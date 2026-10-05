@@ -35,8 +35,14 @@ jobs:
           rep['note']='TOTP轨+凭证在场+端点可达=登录自动化前置全绿; 完整web登录流(browser challenge)排入下拍机件化'
           open('probe.json','w').write(json.dumps(rep,ensure_ascii=False,indent=2)); print(json.dumps(rep))
           PY
-      - name: commit probe
+      - name: commit receipt
         run: |
           mkdir -p receipts && cp probe.json receipts/IBMQ-PROBE-$(date -u +%Y%m%dT%H%M%SZ).json
-          git config user.name "hub-probe"; git config user.email "hub@ci-mesh"
-          git add receipts/ && git commit -m "IBMQ-TOTP-PROBE-01 [skip ci]" && git push
+          git config user.name "hub-bot"; git config user.email "hub@ci-mesh"
+          git add receipts/
+          git commit -m "IBMQ-TOTP-PROBE-01 [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 3
+          done
+          exit 1
