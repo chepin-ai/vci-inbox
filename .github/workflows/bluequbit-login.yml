@@ -25,11 +25,15 @@ jobs:
               with sync_playwright() as p:
                   br=p.chromium.launch(headless=True)
                   pg=br.new_page()
-                  pg.goto('https://app.bluequbit.io/login',timeout=45000,wait_until='domcontentloaded')
+                  pg.goto('https://app.bluequbit.io/login',timeout=60000,wait_until='networkidle')
                   rep['page']='loaded'
                   rep['title']=pg.title()
-                  # 探测表单
-                  email_sel='input[type="email"], input[name="email"], input[name="username"]'
+                  # SPA渲染等待+现场勘定
+                  try: pg.wait_for_selector('input',timeout=20000)
+                  except Exception: pass
+                  rep['inputs']=[{'type':i.get_attribute('type'),'name':i.get_attribute('name'),'ph':i.get_attribute('placeholder')} for i in pg.query_selector_all('input')]
+                  rep['buttons']=[b.inner_text()[:30] for b in pg.query_selector_all('button')][:8]
+                  email_sel='input[type="email"], input[name="email"], input[name="username"], input[placeholder*="mail" i]'
                   pw_sel='input[type="password"]'
                   if pg.query_selector(email_sel) and pg.query_selector(pw_sel):
                       rep['form']='found'
