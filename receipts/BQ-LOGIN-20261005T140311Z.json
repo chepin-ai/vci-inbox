@@ -1,0 +1,48 @@
+{
+  "schema": "BLUEQUBIT-LOGIN-01",
+  "ts": "2026-10-05T14:02:28Z",
+  "page": "loaded",
+  "title": "BlueQubit login",
+  "cookie": "dismissed",
+  "nav": "clicked",
+  "inputs": [
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "checkbox",
+      "name": null,
+      "ph": null
+    },
+    {
+      "type": "text",
+      "name": "email",
+      "ph": null
+    },
+    {
+      "type": "password",
+      "name": "password",
+      "ph": null
+    }
+  ],
+  "buttons": [
+    "Customise",
+    "Reject All",
+    "Accept All",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "form": "found",
+  "error": "TimeoutError:Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"button[type=\\\"submit\\\"], button:has-text(\\\"Log ",
+  "note": "诚实探针:login_ok=布尔断言;失败即负结果入册,不伪报"
+}
