@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2364,
+ "indexed": 2367,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -6832,6 +6832,16 @@
    ]
   },
   {
+   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L237-20261007T135432Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L237 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "at": [
+    "gmail",
+    "lvlu"
+   ]
+  },
+  {
    "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L24-20260921T115349Z.md",
    "line": "lvlu",
    "ts": null,
@@ -11079,6 +11089,15 @@
    ]
   },
   {
+   "file": "lvlu-nudge-ORIGIN6-BONUS-L237-20261007T135432Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L237 | ORIGIN6-BONUS 本源#6户+60s资料奖励(需139/199 SMS,root投递)",
+   "at": [
+    "lvlu"
+   ]
+  },
+  {
    "file": "lvlu-nudge-ORIGIN6-BONUS-L24-20260921T115349Z.md",
    "line": "lvlu",
    "ts": null,
@@ -11992,6 +12011,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L195 | SI5CLOUD-UCIF2 TH-SI5-CLOUD-01 大讨论 ucif2 应件",
+   "at": [
+    "ucif2"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-SI5CLOUD-UCIF2-L202-20261007T135432Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L202 | SI5CLOUD-UCIF2 TH-SI5-CLOUD-01 大讨论 ucif2 应件",
    "at": [
     "ucif2"
    ]
