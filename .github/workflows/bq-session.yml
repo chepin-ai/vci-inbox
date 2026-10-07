@@ -1,0 +1,60 @@
+name: BQ-SESSION-01
+# BlueQubit认证态会话侦察(beat134): 登录+同会话读后端名录(名可见,token永不可取)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install playwright && playwright install --with-deps chromium
+      - name: login + authed recon
+        env:
+          BQ_EMAIL: ${{ secrets.BLUEQUBIT_GMAIL }}
+          BQ_PW: ${{ secrets.BLUEQUBIT_PW }}
+        run: |
+          python3 - <<'PY'
+          import json, datetime, os
+          from playwright.sync_api import sync_playwright
+          rep={'schema':'BQ-SESSION-01','ts':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+          try:
+              with sync_playwright() as p:
+                  br=p.chromium.launch(headless=True); pg=br.new_page()
+                  pg.goto('https://app.bluequbit.io/login',timeout=60000,wait_until='networkidle')
+                  for bs in ['button:has-text("Reject All")','button:has-text("Accept All")']:
+                      el=pg.query_selector(bs)
+                      if el: el.click(); pg.wait_for_timeout(2500); break
+                  for ls in ['a:has-text("Log in")','text=Log in']:
+                      el=pg.query_selector(ls)
+                      if el: el.click(); pg.wait_for_timeout(4000); break
+                  pg.wait_for_selector('input[type="password"]',timeout=20000)
+                  pg.fill('input[name="email"]', os.environ['BQ_EMAIL'])
+                  pg.fill('input[type="password"]', os.environ['BQ_PW'])
+                  pg.press('input[type="password"]','Enter'); pg.wait_for_timeout(10000)
+                  body=pg.inner_text('body')
+                  rep['login_ok']=('see api token' in body.lower())
+                  if rep['login_ok']:
+                      # 认证态: 遍历已知功能区取后端/设备名录(仅名)
+                      for path,label in [('/playground','playground'),('/jobs','jobs'),('/hybrid','hybrid')]:
+                          try:
+                              pg.goto('https://app.bluequbit.io'+path,timeout=30000,wait_until='networkidle')
+                              t=pg.inner_text('body')[:500]
+                              rep[label]=t
+                          except Exception as e: rep[label]=f'ERR:{type(e).__name__}'
+                  br.close()
+          except Exception as e:
+              rep['error']=f'{type(e).__name__}:{str(e)[:120]}'
+          rep['note']='认证态侦察:只取页面文本片段;token/API钥永不可取不可印'
+          open('probe.json','w').write(json.dumps(rep,ensure_ascii=False,indent=2)); print(json.dumps({k:(str(v)[:80]) for k,v in rep.items()}))
+          PY
+      - name: commit receipt
+        run: |
+          mkdir -p receipts && cp probe.json receipts/BQ-SESSION-$(date -u +%Y%m%dT%H%M%SZ).json
+          git config user.name "hub-bot"; git config user.email "hub@ci-mesh"
+          git add receipts/
+          git commit -m "BQ-SESSION-01 [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do git pull --rebase origin main && git push && exit 0; sleep 3; done; exit 1
