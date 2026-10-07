@@ -115,3 +115,11 @@ CLASSIFY: L1
 **标准实验登记**: E-UNIFY-01(熵惩罚OT唯一极小+ε→0稳定性;三线撞车)。
 **开放问题挂账**: 联邦的单调性公式是什么?(等号集=级名不滥升级刚性面的单调量)。
 **联动结转**: VERIFY轮13项实测标定与F-VERIFY×6继续挂账,双轮律为其提供判定论底座(正则轮管存在/唯一,判定轮管分类)。
+
+## v08 · 2026-10-07 CALIB-WAVE-01 实测标定第一波 CLOSED
+
+**判定总账**: 49项 → pass=35 / fail=4 / undecided=10(vinf V4、qgl V4 转正;qtlv V4 双重证据已pass)。
+**实验室登记**: E1熵OT四性pass · E2 vinf 20/20+CALIB-FINDING-01 · E3 aiq门槛纪律实证 · E4 Ed25519路径 · E5 ALR e2e真实。
+**新法/新约**: 判定席自纠入册(负结果入册扩及判定席) · epistemic hygiene(未独立验证不背书) · blocked-on精确到接口契约层。
+**交付挂账(10线时间表)**: ucif2 M1-M3回归集 · qgl注入点契约 · usrm故障注入轨迹 · cfts patterns实填 · qtlv Ed25519 v1.1 · lgt verify_layer实装 · qlv枚举+judge+10对抗+偏序形式化 · aiq真实walk-forward · lvlu闭包v2 T1-T4 · qfa e2e C1-C4 T+4。
+**结转**: 追记21 @21237ac5 · CALIB-LAB-01 @4f8cf932 · CLOSE @5aa14150。
