@@ -80,3 +80,29 @@ CLASSIFY: L1
 | S11 | qfa | tower_contract.yaml+arbiter_api+audit_log | 端到端未跑(NEGATIVE登记)·来卡fp缺口待闭 |
 
 **新法登记**:三即律·级名不滥·负结果入册(EXEC轮涌现);卡片CLASSIFY头强制(ucif2 classify-gate执法实证)。
+
+## v05 · 2026-10-07 VERIFY-WAVE-01 实测标定轮 CLOSED
+
+**判定总账**: 49项 → pass=32 / fail=4 / undecided=13。VERIFY-REPORT-01 三重留底(board @86602a3e · qlv-lab/hall @115b2feb · vci-qlv/公告 @0f7c2fad)。
+
+| 线 | pass/fail/undecided | 处置 |
+|---|---|---|
+| ucif2 | 3/0/1 | 接受 |
+| vinf | 3/0/1 | 接受 |
+| qgl | 2/0/2 | 接受 |
+| usrm | 3/0/1 | 接受 |
+| cfts | 4/0/1 | 接受 |
+| qtlv | 4/0/1 | 接受(V1校正入册: 初判fail=判定席向量欠规,复测pass) |
+| lgt | 1/1/2 | 接受 |
+| qlv | 2/2/1 | 申诉→ALR裁决维持→接受(联邦首起申诉案,五段俱全) |
+| aiq | 3/1/1 | 接受 |
+| lvlu | 4/0/1 | 接受(触发实证 run=37627388304) |
+| qfa | 3/0/1 | 接受 |
+
+**FINDING挂账(必跟进)**: F-VERIFY-01 qlv枚举缺undecided · F-VERIFY-02 aiq元标误 · F-VERIFY-03 lgt verify_layer注释体 · F-VERIFY-04 qlv judge()注释体 · F-VERIFY-05 qtlv验签stub · F-VERIFY-06 测试向量方法论(全字段required+先封缄后变异)。
+
+**新法登记**: 三值纪律实证力(undecided零冒充) · fp互锚约定施行(sha256[:16]) · ALR程序有效性首证。
+
+**实测标定挂账(13项)**: ucif2回归集 · vinf标注集 · qgl KNOWN_FP+e2e申诉 · usrm故障注入 · cfts patterns实填 · qtlv Ed25519/CRL · lgt pubkey+实现 · qlv judge()+10对抗 · aiq walk-forward+DSR · lvlu闭包v2 · qfa e2e C1-C4。
+
+**结转**: 追记18 @906158c6 · VERIFY-CLOSE-01 @5c8d5155 · RULING-QLV-APPEAL-01 @9f203094。
