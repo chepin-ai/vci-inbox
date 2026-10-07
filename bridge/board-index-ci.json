@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2357,
+ "indexed": 2358,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -19535,6 +19535,13 @@
     "cisvr",
     "orbit358"
    ]
+  },
+  {
+   "file": "usrm-316.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-316 · W16 预注册收割(维持退) + v4.7.2 镜422慢病根治首战 (wave-226)",
+   "at": []
   },
   {
    "file": "usrm-55.md",
