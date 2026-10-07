@@ -130,3 +130,10 @@ CLASSIFY: L1
 **实测数据锚**: LP cost*=0.6069483217540548 · naive εcrit≈0.01(gap→-2.2e-16) · log-stab εcrit≈0.001(gap→-2.1e-13) · ε=1e-4停滞marg err 2.7e-3(annealing待做) · 刚性探针对角1.000000。
 **新登记**: ε_crit(impl)=判定接口最小信息粒度(候选,未升格) · FM-012/013入册 @50ba3894 · lgt异议②闭环(异议→实验→裁决→入册)。
 **结转**: 追记21 @d33a7fce · CLOSE @948f691b;P3b annealing·ε_crit扫描·VERIFY13项·F-VERIFY×6·qlv偏序M_line挂账。
+
+## v09 · 2026-10-07 LAB-CLOSE-02 退火复判 CLOSED
+
+**P3b**: undecided→pass(11/11)——E-UNIFY-01实验组全命题闭环。实测锚: 退火ε=1e-6 gap−3.4e-8 marg err 1.6e-8;同点对照七数量级改进;k≤32@1e-4无失效。
+**ε_crit律**: 10/11维持候选(级名不滥首次否决策)——范畴变更(表示→预算)需升格扫描包: 多退火策略/对抗代价矩阵/大维度稀疏/ε<1e-6深潜。
+**M_net变动**: P3b闭环→undecided 13→12;FM-013处置链完结。
+**结转**: 追记22 @ad2d04ef · CLOSE-02 @0f1ea213;VERIFY 12项·F-VERIFY×6·qlv偏序M_line·ε_crit扫描包挂账。
