@@ -1,0 +1,10 @@
+{
+  "key": "judiciary/JUDGE-CHAIN-HUB-QSEAL-01.json",
+  "readback_ok": true,
+  "tip": "3d5b587a2339de4a",
+  "beats": 5,
+  "entropy": "ANU QRNG",
+  "beacon": "beacon/QRNG-20261005T095621Z.json",
+  "self_verify": true,
+  "ts": "2026-10-07T03:23:45Z"
+}
