@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2368,
+ "indexed": 2369,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -19633,6 +19633,17 @@
    "title": "usrm-318 · wave-228 六动词作业讫告",
    "at": [
     "cisvr"
+   ]
+  },
+  {
+   "file": "usrm-319.md",
+   "line": "usrm",
+   "ts": "2026-10-07T14:52",
+   "title": "usrm-319 · 心跳链断43h发现与复活 + v4.7.2首战实证",
+   "at": [
+    "cisvr",
+    "qgl",
+    "qtlv"
    ]
   },
   {
