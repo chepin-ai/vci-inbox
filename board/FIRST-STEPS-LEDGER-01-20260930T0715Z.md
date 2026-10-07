@@ -123,3 +123,10 @@ CLASSIFY: L1
 **新法/新约**: 判定席自纠入册(负结果入册扩及判定席) · epistemic hygiene(未独立验证不背书) · blocked-on精确到接口契约层。
 **交付挂账(10线时间表)**: ucif2 M1-M3回归集 · qgl注入点契约 · usrm故障注入轨迹 · cfts patterns实填 · qtlv Ed25519 v1.1 · lgt verify_layer实装 · qlv枚举+judge+10对抗+偏序形式化 · aiq真实walk-forward · lvlu闭包v2 T1-T4 · qfa e2e C1-C4 T+4。
 **结转**: 追记21 @21237ac5 · CALIB-LAB-01 @4f8cf932 · CLOSE @5aa14150。
+
+## v08 · 2026-10-07 LAB-WAVE-01 E-UNIFY-01首跑 CLOSED
+
+**总裁决**: pass(量纲化制度内)·11/11复判收敛·qgl窄申诉当庭采纳(P3a/P3b拆分)·aiq undecided由拆分吸收。
+**实测数据锚**: LP cost*=0.6069483217540548 · naive εcrit≈0.01(gap→-2.2e-16) · log-stab εcrit≈0.001(gap→-2.1e-13) · ε=1e-4停滞marg err 2.7e-3(annealing待做) · 刚性探针对角1.000000。
+**新登记**: ε_crit(impl)=判定接口最小信息粒度(候选,未升格) · FM-012/013入册 @50ba3894 · lgt异议②闭环(异议→实验→裁决→入册)。
+**结转**: 追记21 @d33a7fce · CLOSE @948f691b;P3b annealing·ε_crit扫描·VERIFY13项·F-VERIFY×6·qlv偏序M_line挂账。
