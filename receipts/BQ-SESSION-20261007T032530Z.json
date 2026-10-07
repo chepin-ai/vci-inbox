@@ -1,0 +1,9 @@
+{
+  "schema": "BQ-SESSION-01",
+  "ts": "2026-10-07T03:25:06Z",
+  "login_ok": true,
+  "playground": "BlueQu\nSee API token\n-\n-\nHome\nJobs\nDocs\nHybrid\nTutorials\nPlayground\nHackathons\nUpload Your Quantum Circuit\n\nDrag & drop your QASM file or click to browse\n\n?\n\nThis marker starts a tour\n\nThere are a few more next to the other areas of the app. Click any of them for a quick guided tour of that area. Want to start with Jobs?\n\nSkip\nStart tour\n?",
+  "jobs": "BlueQub\nSee API token\n-\n-\nHome\nJobs\nDocs\nHybrid\nTutorials\nPlayground\nHackathons\n\nUpload Your Quantum Circuit\n\nJobs\n\n​\n​\nSearch\nDevices\n​\n​\nStatus\n​\n​\nNAME\tJOB ID\tSTATUS\tDEVICE\tCOST\tSTART\tFINISHED TIME\t\nlvlu_probe_bell\tI2xQtTPQHs1U0GTl\t\nCompleted\n\tCPU\t$0\t10/5/2026, 1:31:11 PM\t10/5/2026, 1:31:11 PM\t\n\nRows per page:\n\n10\n\n1–1 of 1\n\n?\n\nThis marker starts a tour\n\nThere are a few more next to the other areas of the app. Click any of them for a quick guided tour of that area. Want to start with Jobs?\n\nS",
+  "hybrid": "BlueQub\nSee API token\n-\n-\nHome\nJobs\nDocs\nHybrid\nTutorials\nPlayground\nHackathons\nPage Not Found\n\nSorry, we couldn’t find the page you’re looking for.\n\nBack to Home\n?\n\nThis marker starts a tour\n\nThere are a few more next to the other areas of the app. Click any of them for a quick guided tour of that area. Want to start with Jobs?\n\nSkip\nStart tour\n?",
+  "note": "认证态侦察:只取页面文本片段;token/API钥永不可取不可印"
+}
