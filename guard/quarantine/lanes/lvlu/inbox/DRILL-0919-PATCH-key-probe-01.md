@@ -14,9 +14,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: probe
         env:
-          〈RED〉: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+          〈RED〉: ${{ secrets.〈RED〉 || secrets.〈RED〉 || github.token }}
           〈RED〉: ${{ secrets.〈RED〉 }}
-          LINE_PAT: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+          〈RED〉: ${{ secrets.〈RED〉 || secrets.〈RED〉 || github.token }}
           FED_PAT: ${{ secrets.FED_PAT }}
           QI_PAT: ${{ secrets.QI_PAT }}
           GH_PAT_QI_FULL: ${{ secrets.GH_PAT_QI_FULL }}
@@ -36,7 +36,7 @@ jobs:
               except Exception as e: return 'ERR:'+type(e).__name__
           repo=os.environ['REPO']
           out={'v':'KEY-PROBE-01','ts':datetime.datetime.now(datetime.UTC).strftime('%Y%m%dT%H%M%SZ'),'repo':repo,'keys':{}}
-          for name in ['〈RED〉','〈RED〉','LINE_PAT','FED_PAT','QI_PAT','GH_PAT_QI_FULL']:
+          for name in ['〈RED〉','〈RED〉','〈RED〉','FED_PAT','QI_PAT','GH_PAT_QI_FULL']:
               v=os.environ.get(name,'').strip()
               out['keys'][name]='ABSENT' if not v else 'HTTP%s'%probe('https://api.github.com/user',v)
           v=os.environ.get('〈RED〉','').strip()

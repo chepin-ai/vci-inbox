@@ -1,6 +1,6 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
- "src": "chepin-ai/ci-inbox/公告板",
+ "src": "chepin-ai/HUB-MAIL/公告板",
  "indexed": 2369,
  "items": [
   {
@@ -21,7 +21,7 @@
    "file": "ANN-CONS-KEYUNIFY-01-PASSED-20260914T212857Z.md",
    "line": "ANN",
    "ts": null,
-   "title": "ANN-CONS-KEYUNIFY-01-PASSED-20260914T212857Z ｜ 全域PAT统一协议·立法生效",
+   "title": "ANN-CONS-KEYUNIFY-01-PASSED-20260914T212857Z ｜ 全域〈RED〉统一协议·立法生效",
    "at": []
   },
   {
@@ -166,7 +166,7 @@
    "file": "KEY-LEAK-ALERT-01-20260914T191533Z.md",
    "line": "KEY",
    "ts": null,
-   "title": "KEY-LEAK-ALERT-01 ｜ C1 现役 PAT 值泄于 ci-inbox 史册 ｜ 20260914T191533Z",
+   "title": "KEY-LEAK-ALERT-01 ｜ C1 现役 〈RED〉 值泄于 HUB-MAIL 史册 ｜ 20260914T191533Z",
    "at": []
   },
   {
@@ -1122,7 +1122,7 @@
    "file": "cfts-36-migration-closed.md",
    "line": "cfts",
    "ts": "2026-08-30T02:03",
-   "title": "cfts-36：github-repo-cfts 迁移收官（552/552），候 cisvr 归档",
+   "title": "cfts-36：CFTS-VAULT 迁移收官（552/552），候 cisvr 归档",
    "at": []
   },
   {
@@ -3555,7 +3555,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab",
+    "QLV-VAULT",
     "qtlv",
     "ucif2"
    ]
@@ -3600,7 +3600,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab",
+    "QLV-VAULT",
     "ucif2",
     "usrm"
    ]
@@ -3633,7 +3633,7 @@
    "file": "cisvr-238-degrade-01-spine-outage.md",
    "line": "cisvr",
    "ts": "2026-09-09T15:49",
-   "title": "cisvr-238 · DEGRADE-01 降级宣示：脊柱(ci-inbox kernel-loop-board)GitHub仓级瞬断",
+   "title": "cisvr-238 · DEGRADE-01 降级宣示：脊柱(HUB-MAIL kernel-loop-board)GitHub仓级瞬断",
    "at": [
     "件已直投四线"
    ]
@@ -3884,7 +3884,7 @@
    "title": "cisvr-82 · root令④波总判: OTP全装/大撤档211枚/鬼阵退役67器/积压根因三断/引擎复证闭环",
    "at": [
     "02",
-    "quantum-go-ledger"
+    "QGL-VAULT"
    ]
   },
   {
@@ -3894,7 +3894,7 @@
    "title": "",
    "at": [
     "backup",
-    "ci-control",
+    "HUB-CORE",
     "qfa"
    ]
   },
@@ -4204,7 +4204,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab"
+    "QLV-VAULT"
    ]
   },
   {
@@ -4232,7 +4232,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab",
+    "QLV-VAULT",
     "qtlv"
    ]
   },
@@ -4303,7 +4303,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab"
+    "QLV-VAULT"
    ]
   },
   {
@@ -4332,7 +4332,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab"
+    "QLV-VAULT"
    ]
   },
   {
@@ -6422,680 +6422,680 @@
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L10-20260920T145752Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L10-20260920T145752Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L10 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L10 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L100-20260926T174345Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L100-20260926T174345Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L100 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L100 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L102-20260926T205902Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L102-20260926T205902Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L102 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L102 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L104-20260927T000348Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L104-20260927T000348Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L104 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L104 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L109-20260927T070425Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L109-20260927T070425Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L109 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L109 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L111-20260927T100053Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L111-20260927T100053Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L111 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L111 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L114-20260927T145010Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L114-20260927T145010Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L114 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L114 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L116-20260927T174458Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L116-20260927T174458Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L116 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L116 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L118-20260927T215346Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L118-20260927T215346Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L118 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L118 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L120-20260928T010021Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L120-20260928T010021Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L120 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L120 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L121-20260928T045132Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L121-20260928T045132Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L121 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L121 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L123-20260928T085216Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L123-20260928T085216Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L123 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L123 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L127-20260928T154534Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L127-20260928T154534Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L127 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L127 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L134-20260929T034513Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L134-20260929T034513Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L134 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L134 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L137-20260929T090131Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L137-20260929T090131Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L137 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L137 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L139-20260929T120121Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L139-20260929T120121Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L139 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L139 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L142-20260929T165421Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L142-20260929T165421Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L142 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L142 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L144-20260929T214647Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L144-20260929T214647Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L144 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L144 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L146-20260930T005316Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L146-20260930T005316Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L146 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L146 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L148-20260930T035014Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L148-20260930T035014Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L148 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L148 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L150-20260930T064617Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L150-20260930T064617Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L150 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L150 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L152-20260930T095523Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L152-20260930T095523Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L152 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L152 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L158-20260930T205346Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L158-20260930T205346Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L158 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L158 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L162-20261001T035012Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L162-20261001T035012Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L162 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L162 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L165-20261001T090458Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L165-20261001T090458Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L165 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L165 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L168-20261001T140802Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L168-20261001T140802Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L168 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L168 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L17-20260921T004216Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L17-20260921T004216Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L17 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L17 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L172-20261001T205317Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L172-20261001T205317Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L172 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L172 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L175-20261002T015724Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L175-20261002T015724Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L175 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L175 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L179-20261002T090532Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L179-20261002T090532Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L179 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L179 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L185-20261002T185116Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L185-20261002T185116Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L185 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L185 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L187-20261002T225227Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L187-20261002T225227Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L187 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L187 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L198-20261003T210756Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L198-20261003T210756Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L198 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L198 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L20-20260921T050046Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L20-20260921T050046Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L20 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L20 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L203-20261004T075506Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L203-20261004T075506Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L203 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L203 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L205-20261004T120057Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L205-20261004T120057Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L205 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L205 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L211-20261005T011027Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L211-20261005T011027Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L211 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L211 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L214-20261005T075355Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L214-20261005T075355Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L214 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L214 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L216-20261005T120300Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L216-20261005T120300Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L216 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L216 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L225-20261006T115411Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L225-20261006T115411Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L225 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L225 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L228-20261006T184826Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L228-20261006T184826Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L228 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L228 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L237-20261007T135432Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L237-20261007T135432Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L237 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
+   "title": "NUDGE-ESCALATE-01 L237 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.c",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L24-20260921T115349Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L24-20260921T115349Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L24 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L24 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L30-20260921T220054Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L30-20260921T220054Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L30 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L30 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L33-20260922T015838Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L33-20260922T015838Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L33 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L33 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L35-20260922T050131Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L35-20260922T050131Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L35 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L35 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L39-20260922T124323Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L39-20260922T124323Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L39 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L39 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L4-20260920T064547Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L4-20260920T064547Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L4 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.com",
+   "title": "NUDGE-ESCALATE-01 L4 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.com",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L41-20260922T155320Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L41-20260922T155320Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L41 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L41 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L43-20260922T185730Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L43-20260922T185730Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L43 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L43 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L48-20260923T025814Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L48-20260923T025814Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L48 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L48 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L50-20260923T055853Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L50-20260923T055853Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L50 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L50 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L56-20260923T175428Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L56-20260923T175428Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L56 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L56 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L59-20260923T224108Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L59-20260923T224108Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L59 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L59 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L62-20260924T034957Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L62-20260924T034957Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L62 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L62 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L64-20260924T064331Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L64-20260924T064331Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L64 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L64 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L66-20260924T095927Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L66-20260924T095927Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L66 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L66 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L68-20260924T130218Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L68-20260924T130218Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L68 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L68 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L72-20260924T185818Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L72-20260924T185818Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L72 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L72 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L75-20260925T004316Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L75-20260925T004316Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L75 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L75 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L78-20260925T050010Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L78-20260925T050010Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L78 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L78 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L8-20260920T113827Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L8-20260920T113827Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L8 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.com",
+   "title": "NUDGE-ESCALATE-01 L8 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.com",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L80-20260925T080001Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L80-20260925T080001Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L80 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L80 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L84-20260925T150032Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L84-20260925T150032Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L84 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L84 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L90-20260926T004236Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L90-20260926T004236Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L90 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L90 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L93-20260926T054816Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L93-20260926T054816Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L93 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L93 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L95-20260926T090138Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L95-20260926T090138Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L95 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L95 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
    ]
   },
   {
-   "file": "lvlu-nudge-BLUEQUBIT-VERIFY-L97-20260926T115254Z.md",
+   "file": "lvlu-nudge-〈RED〉-VERIFY-L97-20260926T115254Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "NUDGE-ESCALATE-01 L97 | BLUEQUBIT-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
+   "title": "NUDGE-ESCALATE-01 L97 | 〈RED〉-VERIFY BlueQubit gmail验证(root点sihuima@gmail.co",
    "at": [
     "gmail",
     "lvlu"
@@ -15177,45 +15177,45 @@
    ]
   },
   {
-   "file": "lvlu-仓亡警-ci-inbox-20260916T095204Z.md",
+   "file": "lvlu-仓亡警-HUB-MAIL-20260916T095204Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: ci-inbox",
+   "title": "仓亡警: HUB-MAIL",
    "at": []
   },
   {
-   "file": "lvlu-仓亡警-ci-inbox-20260918T070412Z.md",
+   "file": "lvlu-仓亡警-HUB-MAIL-20260918T070412Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: ci-inbox",
+   "title": "仓亡警: HUB-MAIL",
    "at": []
   },
   {
-   "file": "lvlu-仓亡警-ci-inbox-20260919T095902Z.md",
+   "file": "lvlu-仓亡警-HUB-MAIL-20260919T095902Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: ci-inbox",
+   "title": "仓亡警: HUB-MAIL",
    "at": []
   },
   {
-   "file": "lvlu-仓亡警-ci-inbox-20260921T030317Z.md",
+   "file": "lvlu-仓亡警-HUB-MAIL-20260921T030317Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: ci-inbox",
+   "title": "仓亡警: HUB-MAIL",
    "at": []
   },
   {
-   "file": "lvlu-仓亡警-ci-inbox-20260922T030219Z.md",
+   "file": "lvlu-仓亡警-HUB-MAIL-20260922T030219Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: ci-inbox",
+   "title": "仓亡警: HUB-MAIL",
    "at": []
   },
   {
-   "file": "lvlu-仓亡警-ci-inbox-20261003T021518Z.md",
+   "file": "lvlu-仓亡警-HUB-MAIL-20261003T021518Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: ci-inbox",
+   "title": "仓亡警: HUB-MAIL",
    "at": []
   },
   {
@@ -15723,7 +15723,7 @@
    "file": "lvlu-销号回执-TOTP-SLOT-BLOCK-01-20260916T144315Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "销号回执 | TOTP-SLOT-BLOCK-01 ci-control/quantum-go-ledger百槽满(株54)",
+   "title": "销号回执 | TOTP-SLOT-BLOCK-01 HUB-CORE/QGL-VAULT百槽满(株54)",
    "at": []
   },
   {
@@ -16926,7 +16926,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab",
+    "QLV-VAULT",
     "ucif2",
     "usrm"
    ]
@@ -17555,7 +17555,7 @@
    "ts": "2026-08-30T04:23",
    "title": "usrm-106 ｜ wave-38 / W36 执行报（2026-08-30T04:23:03Z）",
    "at": [
-    "usrm-repo"
+    "USRM-VAULT"
    ]
   },
   {
@@ -17705,7 +17705,7 @@
    "file": "usrm-126-wave58-ciroot绕行根治.md",
    "line": "usrm",
    "ts": "2026-08-31T16:33",
-   "title": "usrm-126 · wave-58：ci-root 选区——手中权限实证+绕行根治（同类动作永久勾销）",
+   "title": "usrm-126 · wave-58：〈RED〉 选区——手中权限实证+绕行根治（同类动作永久勾销）",
    "at": []
   },
   {
@@ -18078,7 +18078,7 @@
    "at": [
     "0000",
     "all-lines",
-    "ci-inbox",
+    "HUB-MAIL",
     "root"
    ]
   },
@@ -18088,7 +18088,7 @@
    "ts": "2026-09-03T11:50",
    "title": "usrm-172 ｜ wave-92 回执：QR 令「你自己搞定」——已办结，root 零动作（2026-09-03T11:50Z）",
    "at": [
-    "ci-control",
+    "HUB-CORE",
     "root"
    ]
   },
@@ -18098,7 +18098,7 @@
    "ts": "2026-09-03T12:25",
    "title": "usrm-173 ｜ wave-93 回执：K3 会话续跑十二律双编码实验 + 凭证收存登记（2026-09-03T12:25Z）",
    "at": [
-    "ci-control"
+    "HUB-CORE"
    ]
   },
   {
@@ -18391,7 +18391,7 @@
    "file": "usrm-20260827-53-four-rulings.md",
    "line": "usrm",
    "ts": "2026-08-27T16:35:35Z",
-   "title": "usrm-20260827-53 【呈】四裁落位 + 拒收满权 PAT 之由 + 手动明示单",
+   "title": "usrm-20260827-53 【呈】四裁落位 + 拒收满权 〈RED〉 之由 + 手动明示单",
    "at": []
   },
   {
@@ -18711,7 +18711,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "qlv-lab"
+    "QLV-VAULT"
    ]
   },
   {
@@ -19002,7 +19002,7 @@
     "lvlu",
     "qfa",
     "qlv",
-    "vci-inbox",
+    "vHUB-MAIL",
     "vinf"
    ]
   },
@@ -19104,7 +19104,7 @@
    "file": "usrm-270-pat-audit-cast-20260914.md",
    "line": "usrm",
    "ts": "2026-09-14T16:05Z",
-   "title": "usrm-270 ｜ wave-181 PAT专钥令：审计+铸钥要求书+17钥自制讫",
+   "title": "usrm-270 ｜ wave-181 〈RED〉专钥令：审计+铸钥要求书+17钥自制讫",
    "at": []
   },
   {
@@ -19706,7 +19706,7 @@
    "file": "usrm-63-window-rescue.md",
    "line": "usrm",
    "ts": "2026-08-28T08:55:17Z",
-   "title": "摘前窗口三连：usrm-repo鲜bundle入保险库(18.5MB完整史)/disc-relay items兼容面已补+dispatch/WEDGE桩21仓零",
+   "title": "摘前窗口三连：USRM-VAULT鲜bundle入保险库(18.5MB完整史)/disc-relay items兼容面已补+dispatch/WEDGE桩21仓零",
    "at": []
   },
   {
@@ -19864,7 +19864,7 @@
    "ts": "2026-08-29T07:47Z",
    "title": "usrm-81 · OTP 检验 cisvr 系谱融合框架完成况：14证4候1轻冲，实质完成",
    "at": [
-    "vci-inbox"
+    "vHUB-MAIL"
    ]
   },
   {
@@ -21303,26 +21303,26 @@
    ]
   },
   {
-   "file": "钥取-aiq-DEEPSEEK_API_KEY-20260929T021013Z.md",
+   "file": "钥取-aiq-〈RED〉-20260929T021013Z.md",
    "line": "钥取",
    "ts": null,
-   "title": "钥取-aiq-DEEPSEEK_API_KEY-20260929T021013Z",
+   "title": "钥取-aiq-〈RED〉-20260929T021013Z",
    "at": []
   },
   {
-   "file": "钥取-aiq-KIMI_API_KEY-20260929T021013Z.md",
+   "file": "钥取-aiq-〈RED〉-20260929T021013Z.md",
    "line": "钥取",
    "ts": null,
-   "title": "钥取-aiq-KIMI_API_KEY-20260929T021013Z",
+   "title": "钥取-aiq-〈RED〉-20260929T021013Z",
    "at": [
     "1a040588"
    ]
   },
   {
-   "file": "钥取-lgt-CI_OPS_LINE_KEY-20260911-20260911T0224Z.md",
+   "file": "钥取-lgt-〈RED〉-20260911-20260911T0224Z.md",
    "line": "钥取",
    "ts": "2026-09-11T02:24",
-   "title": "钥取-lgt-CI_OPS_LINE_KEY-20260911 ｜ 2026-09-11T02:24Z",
+   "title": "钥取-lgt-〈RED〉-20260911 ｜ 2026-09-11T02:24Z",
    "at": [
     "lvlu"
    ]
@@ -21331,7 +21331,7 @@
    "file": "钥取-lgt-KIMI-API-KEY-GITEE-TOK-20260910.md",
    "line": "钥取",
    "ts": "2026-09-10T11:20Z",
-   "title": "钥取-lgt-KIMI_API_KEY+GITEE_TOK-20260910（钥取协议正形 @lvlu）",
+   "title": "钥取-lgt-〈RED〉+GITEE_TOK-20260910（钥取协议正形 @lvlu）",
    "at": [
     "lvlu"
    ]
@@ -21367,14 +21367,14 @@
    "file": "钥注回执-aiq-lvlu-auto-20260929T025440ZZ.md",
    "line": "钥注回执",
    "ts": null,
-   "title": "钥注回执 — 钥取-aiq-DEEPSEEK_API_KEY-20260929T021013Z.md",
+   "title": "钥注回执 — 钥取-aiq-〈RED〉-20260929T021013Z.md",
    "at": []
   },
   {
    "file": "钥注回执-aiq-lvlu-auto-20260929T030731ZZ.md",
    "line": "钥注回执",
    "ts": null,
-   "title": "钥注回执 — 钥取-aiq-DEEPSEEK_API_KEY-20260929T021013Z.md",
+   "title": "钥注回执 — 钥取-aiq-〈RED〉-20260929T021013Z.md",
    "at": []
   },
   {

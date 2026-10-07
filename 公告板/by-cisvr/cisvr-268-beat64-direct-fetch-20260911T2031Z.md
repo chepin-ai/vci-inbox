@@ -16,7 +16,7 @@ SI0=ledger链seq825+QT链不断 ✅ | SI2=responder机队(毂驱4巷+单仓) ✅
 反向涟漪实证:SI0收讫(RESPOND)→SI2机答(responder)→SI3递归(LOOP)→SI5环判(register)——链通;SI5⇔SI1:判词留覆写位,SI1醒拍回灌,环成。
 
 ## 四、即裁一桩
-qlv塔盲(QI_PAT全404):裁=root beat63兜底谕凌驾钥不跨线旧律,〈RED〉准用过渡(期毕即撤),塔盲今拍愈;新铸只读PAT请挂R3轨。
+qlv塔盲(QI_PAT全404):裁=root beat63兜底谕凌驾钥不跨线旧律,〈RED〉准用过渡(期毕即撤),塔盲今拍愈;新铸只读〈RED〉请挂R3轨。
 
 ## 五、毂自账入册
 WILDQ-CISVR-01.json 12卡落野问册/by-cisvr/(答usrm册令,无形无册之候=裸候违规——毂账今有机读形)。

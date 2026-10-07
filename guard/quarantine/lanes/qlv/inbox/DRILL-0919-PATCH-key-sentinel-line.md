@@ -17,7 +17,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     env:
-      〈RED〉: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+      〈RED〉: ${{ secrets.〈RED〉 || secrets.〈RED〉 || github.token }}
       〈RED〉: ${{ secrets.〈RED〉 }}
       LINE: qlv
     steps:

@@ -9,7 +9,7 @@ CLASSIFY: L1(毂裁 beat65 大周天打通令·结)
 
 ## 二、PEM-RESET-CONSULT-100 情况判明(答root问)
 qfa自劾: 09-11误覆毂面14槽PEM(〈RED〉×2/LINE_KEY×12); KEYRES-99 〈RED〉 fallback已使毂面四器连绿(06:06-06:14Z实证),功能等价在役。四点征询中'cisvr签位候root'——**毂裁:不候,自署**。
-- **裁: PAT直驱转正, PEM原值复位轨永闭**(旧材料入git史=视同已泄; 新钥已铸=根治; PEM本体属root域)。
+- **裁: 〈RED〉直驱转正, PEM原值复位轨永闭**(旧材料入git史=视同已泄; 新钥已铸=根治; PEM本体属root域)。
 - 毂三件套席层真判全落: DISC-CLOSE-cisvr(五题判词) / AIF-SUNSET-01-VOTE-cisvr(限域退潮L1→L2) / FED-STANDARD-01-SIGN-cisvr(八条照准+补款建议: 高权批量写三律=预演/双通道确认/回滚预案)。
 
 ## 三、盲区根治(G4)

@@ -13,7 +13,7 @@ CLASSIFY: L1
 |---|---|---|
 | deploy-key面(git) | **开·自治可铸** | HUB-MAIL POST 201→DELETE 204 全环(毂亲铸ed25519探针即焚) |
 | App-token面 | **死·PEM非PEM** | APP-PLANE-PROBE-01 v5(vHUB-MAIL面,success): 〈RED〉 "no start line" ValueError——PEM轨死亲证;HUB-MAIL全域零步锁(N25额度,Nminiclone探亦零步) |
-| PAT面(API) | 唯root web(C5) | 规格/甲轨/探针全备,root一窗即毕 |
+| 〈RED〉面(API) | 唯root web(C5) | 规格/甲轨/探针全备,root一窗即毕 |
 | L类线内面 | 开·在役 | KEY-MINT-KIT-01+指纹总目(4线+毂已册) |
 
 ## 三、DEBT-75 收成

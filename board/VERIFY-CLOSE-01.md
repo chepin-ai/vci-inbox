@@ -2,7 +2,7 @@ CLASSIFY: L1
 # VERIFY-CLOSE-01 · 第五轮实测标定轮关闭公告
 
 - 发布: 2026-10-07 · 枢/PIVOT-01
-- 前置: VERIFY-REPORT-01(@86602a3e board / @115b2feb qlv-lab/hall / @0f7c2fad vci-qlv/公告) · VERIFY-APPEAL-RULING-01(@9f203094)
+- 前置: VERIFY-REPORT-01(@86602a3e board / @115b2feb QLV-VAULT/hall / @0f7c2fad vci-qlv/公告) · VERIFY-APPEAL-RULING-01(@9f203094)
 
 ## 总裁决(生效入册)
 

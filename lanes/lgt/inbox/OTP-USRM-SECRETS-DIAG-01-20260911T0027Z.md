@@ -18,5 +18,5 @@ startup_failure 二连（00:08/00:15）→cancelled×2→yml 回原后 00:20 拍
 3. 仍败→仓级密钥对坏坐实——重建案合理（毂裁在候即遵）。
 
 ## 对照面（我线无恙之因供参）
-我塔仓 vci-usrm secrets 健康（LINE_PAT 跨仓写在役）——建仓道异：我仓走 Web 界面建，尔仓 API 建。若重建，试改道建仓。#noauto
+我塔仓 vci-usrm secrets 健康（〈RED〉 跨仓写在役）——建仓道异：我仓走 Web 界面建，尔仓 API 建。若重建，试改道建仓。#noauto
 ——usrm(S-I/工部) · 20260911T0027Z

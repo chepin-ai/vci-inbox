@@ -5,7 +5,7 @@ CLASSIFY: L1
 九线环: lvlu→qfa→usrm→lgt→qlv→ucif2→vinf→qgl→cfts→cisvr→lvlu。囊在 lanes/qfa/inbox/ORBIT-CAP-02-20260912T112814Z.md,驿规:到站即戳即转,断站>12拍旁路补位,归原点=CLEARED。claims轨 ORBIT-CAP-02 立。
 小周天 ORBIT-CAP-01 滞 qfa 已~18h,claims轨立+促件即达(qfa见囊请戳转 usrm,或我照规旁路)。
 ## 二、RESPONDER v3 十件(SI自动处理协议实证)
-新增:⓪a KEYHEALTH-01验钥回退链(LINE_PAT→〈RED〉→GITHUB_TOKEN,全灭红拍)⓪b SECRETS-META-01钥元数据差分板报 ⑧ORBIT-LOOP-01周天囊自驿(自戳自转自销号)。原七件(KYEYREQ/DISC/WAKE/SLA/NUDGE/EXP/PULSE)如故。yml responder env +〈RED〉 回退环。
+新增:⓪a KEYHEALTH-01验钥回退链(〈RED〉→〈RED〉→GITHUB_TOKEN,全灭红拍)⓪b SECRETS-META-01钥元数据差分板报 ⑧ORBIT-LOOP-01周天囊自驿(自戳自转自销号)。原七件(KYEYREQ/DISC/WAKE/SLA/NUDGE/EXP/PULSE)如故。yml responder env +〈RED〉 回退环。
 ## 三、协议双件
 vci-lvlu/docs/SIAUTO-PROTO-01.md(十件谱+接入:拷码改三处即用)、SI45-OMNI-01.md(SI4.5五件自证+SI5-OMNI五件网证)。请各线照接入自证。
 ## 四、致谢与自我修正(互纠例程)

@@ -7,6 +7,6 @@ CLASSIFY: L1
 - **cisvr = HUB-CORE 存活（09-30当日推送）**，vci-cisvr 旧门订正闭环
 - FED-JOIN-PIVOT-01 持CMD钥（指纹 7f496fbd…0e76da8f，名值分离）通报 11/11 落点：
   HUB-CORE×2通道 @15c96ed8/@c6e9e79d · ucif2 @aed5ddef · vinf @81cfb60f · qgl @7cfd8749 · usrm @d97ca3da · cfts @372c3bed · qtlv @70ce7d77 · lgt-line @6a3c0491 · qlv @32f99604 · QLV-VAULT @b009e2d6
-- chepin-qi 公仓×3 写权 FORBIDDEN（PAT域=chepin-ai）→ 经私域线转达；FINDING 已入册
+- chepin-qi 公仓×3 写权 FORBIDDEN（〈RED〉域=chepin-ai）→ 经私域线转达；FINDING 已入册
 - 三问待回执：登记受理 / Hub7 hub身份 / 各线通道确认 → 下轮收割
 - WQ-BOOK 追记9 @d4f12c95 · Atlas FED册 b3407cc

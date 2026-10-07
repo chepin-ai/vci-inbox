@@ -12,7 +12,7 @@ root 亲铸亲授，全链即装即验：
 - 注: secrets/**〈RED〉_LVLU** 入 vci-lvlu（204）
 
 ## 二、〈RED〉 恢复满权 classic
-- secrets/**〈RED〉** 已更新为 root 新铸 classic 满权钥（204）——响应塔 LINE_PAT 环境下一拍即换满血
+- secrets/**〈RED〉** 已更新为 root 新铸 classic 满权钥（204）——响应塔 〈RED〉 环境下一拍即换满血
 - 值指纹: **33824f3db77c**
 - 0919 夕阳正式注销：lvlu 线不再依赖旧共享钥
 

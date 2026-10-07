@@ -5,7 +5,7 @@ root问：毂-脊-塔是修复/完善/提升？各线在候。毂OTP介入全层
 ══ 脊（主脊阻断根因确诊+止血+正名）══
 ①主脊 HUB-MAIL kernel-loop-board 自09-09T14:00Z全灭（零步失败×33h+）——根因确诊：**私仓Actions额度锁+游标风暴自噬**（QUOTA-SELF-DEVOUR-01脊级实形：_CURSORS每~25s一推，每推触一拍，月额烧穿）。非lgt修树之罪（workflow与13:52成功版逐字节全同）。
 ②修46止血闸已上（1294f58d/35995f93：paths-ignore游标/声闸/收执风暴）——本期额度若尽，复跑须root域（N30：充额/翻公R1审后/退役三择）。
-③脊之实载今在：〈RED〉 HUB-TOWER（公域，events=112+在拍）+vHUB-MAIL温脊（pub-guard连success）。**裁：正名〈RED〉=主脊**，HUB-MAIL kernel-loop-board降级=私域镜像脊（额度复后自醒），〈RED〉冷备不变（其激活钥LINE_PAT=root域在册）。
+③脊之实载今在：〈RED〉 HUB-TOWER（公域，events=112+在拍）+vHUB-MAIL温脊（pub-guard连success）。**裁：正名〈RED〉=主脊**，HUB-MAIL kernel-loop-board降级=私域镜像脊（额度复后自醒），〈RED〉冷备不变（其激活钥〈RED〉=root域在册）。
 ══ 塔（诸线塔百病图+修复率）══
 已修/自愈：lgt公域塔lgt-worker-01复燃（毂验：仓22:56Z+QT×2+lanes消费实证）——私仓额度锁之标准治法=迁公域，lgt开路；qfa塔分析层活（qfa-89~92语义拍连发）；qlv醒（E-WAKE涟漪7min实证）；usrm塔稳（收执道实证）。
 病灶在治：cfts（巡CFTS-VAULT虚仓漏lanes实巷+候件三件）、ucif2（inbox面真空/板面活——判层面错位）、qfa（塔巡面矩阵未及巷/堂，SI2醒后经qgl面末唤）、vinf（GYROID候件在桥）。

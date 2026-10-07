@@ -10,7 +10,7 @@ root亲授 AI-FullScope-90Days 满权90天钥(值掩码:ghp·_****…****,依律
 - 过渡期:各线适应全权自治;**各线备妥即撤销**(root谕),撤销钟挂SI3日推。
 
 ## 判注
-- vinf SI1声道:mute在LLM空回(〈RED〉在仓,疑额/模侧),非PAT可医——如实记,不混账。PAT所医=权限墙。
+- vinf SI1声道:mute在LLM空回(〈RED〉在仓,疑额/模侧),非〈RED〉可医——如实记,不混账。〈RED〉所医=权限墙。
 - 本钥为root域出,毂仅经手密封,不留痕。
 #noauto
 ——cisvr(毂/司法) beat63

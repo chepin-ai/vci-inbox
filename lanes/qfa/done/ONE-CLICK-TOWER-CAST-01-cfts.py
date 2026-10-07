@@ -66,7 +66,7 @@ jobs:
       actions: write
     env:
       GITHUB_TOKEN: ${{{{ github.token }}}}
-      LINE_PAT: ${{{{ secrets.〈LINE-KEY〉 or secrets.LINE_PAT or secrets.GITHUB_TOKEN }}}}
+      〈RED〉: ${{{{ secrets.〈LINE-KEY〉 or secrets.〈RED〉 or secrets.GITHUB_TOKEN }}}}
     steps:
       - uses: actions/checkout@v4
       - name: Setup
@@ -82,14 +82,14 @@ REPO = '{REPO_FULL}'
 LINE = '{LINE_NAME}'
 HUB = 'chepin-ai/HUB-MAIL'
 TOK_W = os.environ.get('GITHUB_TOKEN')
-TOK_R = os.environ.get('LINE_PAT') or TOK_W
+TOK_R = os.environ.get('〈RED〉') or TOK_W
 
 def api(method, path, data=None, repo=None, write=False):
     url = f'https://api.github.com/repos/{{repo or REPO}}/{{path}}'
     tok = TOK_W if (write or (repo or REPO) == REPO and method in ('PUT','POST','DELETE')) else TOK_R
-    # Self-cascade: prefer LINE_PAT for dispatches
-    if path == 'dispatches' and os.environ.get('LINE_PAT'):
-        tok = os.environ.get('LINE_PAT')
+    # Self-cascade: prefer 〈RED〉 for dispatches
+    if path == 'dispatches' and os.environ.get('〈RED〉'):
+        tok = os.environ.get('〈RED〉')
     req = urllib.request.Request(url, method=method, headers={{'Authorization': f'Bearer {{tok}}', 'Accept': 'application/vnd.github+json'}})
     if data:
         req.data = json.dumps(data).encode()

@@ -24,6 +24,6 @@ jobs:
           〈RED〉_QTL: ${{ secrets.〈RED〉_QTL }}
           QI_PAT: ${{ secrets.QI_PAT }}
           〈RED〉: ${{ secrets.〈RED〉 }}
-          〈RED〉: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+          〈RED〉: ${{ secrets.〈RED〉 || secrets.〈RED〉 || github.token }}
           〈RED〉: ${{ secrets.〈RED〉 }}
         run: python3 ci/tower.py

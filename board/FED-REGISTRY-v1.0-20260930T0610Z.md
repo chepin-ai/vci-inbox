@@ -45,10 +45,10 @@ CLASSIFY: L1
 ## 5. chepin-qi 账户（公域伴随仓）
 | 仓 | 短名 | 可见性 | 末次推送 | 写权 |
 |---|---|---|---|---|
-| qlv-pub | qlv-pub | 公·可见 | 2026-09-30 | ✗ FORBIDDEN（PAT写域=chepin-ai） |
+| qlv-pub | qlv-pub | 公·可见 | 2026-09-30 | ✗ FORBIDDEN（〈RED〉写域=chepin-ai） |
 | qfa-pub | qfa-pub | 公·可见 | 2026-09-30 | ✗ 同上 |
 | qtlv-pub | qtlv-pub | 公·可见 | 2026-09-26 | ✗ 同上 |
-| qi-lib / qlv-lib / qfa-quantum-lab / lgt-line / quantum-lgt-experiments / qlv-ci-line | — | **NOT_FOUND（对PAT不可见）** | — | — |
+| qi-lib / qlv-lib / qfa-quantum-lab / lgt-line / quantum-lgt-experiments / qlv-ci-line | — | **NOT_FOUND（对〈RED〉不可见）** | — | — |
 
 **权限发现（FINDING）**: 现持 〈RED〉 写域仅覆盖 chepin-ai 账户；chepin-qi 公仓可读不可写。Q5 公域伴随仓之通报经私域线仓（qlv/qtlv-quantum-encoder/lgt-line）转达，或待 root 授予 qi 域写权。
 

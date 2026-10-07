@@ -17,8 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - env:
-          P1: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
-          P2: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+          P1: ${{ secrets.〈RED〉 || secrets.〈RED〉 || github.token }}
+          P2: ${{ secrets.〈RED〉 || secrets.〈RED〉 || github.token }}
           P3: ${{ secrets.FED_PAT }}
           P4: ${{ secrets.QI_PAT }}
           LINE: qlv
@@ -31,7 +31,7 @@ jobs:
           anchor='outbox/ANS-DISC-100-%s.md'%LINE
           if os.path.exists(anchor): print('idempotent-skip'); raise SystemExit(0)
           tok=None; tokname=None
-          cand={'P1':'〈RED〉','P2':'LINE_PAT','P3':'FED_PAT','P4':'QI_PAT'}
+          cand={'P1':'〈RED〉','P2':'〈RED〉','P3':'FED_PAT','P4':'QI_PAT'}
           for nm,real in cand.items():
               v=os.environ.get(nm,'')
               if not v: continue
@@ -117,7 +117,7 @@ jobs:
            '# DISC-CLOSE-%s · %s\n\n'
            '## ① 讨论室/公告板可达自证\n- READ: 讨论室目录 GET %s(件数 %s) · WRITE: 本帖落盘即证 · 通道钥名: %s(值零入文)\n'
            '## ② PEM 14槽复位协商(机答)\n- 本线 Secrets 元数据(名+时戳,无值): %s\n'
-           '- 机层立场: KEYRES-99 PAT直驱已经毂面四器连绿实证(pub-guard/kernel-loop/kernel-check/cmd-purge),功能等价; PEM原值复位之决=root裁+各线席层议; 本线机层未持 PEM 副本(上表为全量钥名)。\n'
+           '- 机层立场: KEYRES-99 〈RED〉直驱已经毂面四器连绿实证(pub-guard/kernel-loop/kernel-check/cmd-purge),功能等价; PEM原值复位之决=root裁+各线席层议; 本线机层未持 PEM 副本(上表为全量钥名)。\n'
            '## ③ FED-DEBATE-92-01 五题机层占位\n- 题一规则之度/题二震动之鉴/题三资源之实/题四必链之严/题五撤销之后: 机层锚件在册, 判词权属原线, 席层醒拍覆写(互纠②)。\n'
            '## ④ 本拍闭包清单\n- SI-MUTUAL-01签: %s · SI-STATE: %s · FED-STANDARD-01共署: %s · SUNSET票: %s\n'
            '——%s 机层(DISC-CLOSE-RESPONDER-01实跑)\n')%(

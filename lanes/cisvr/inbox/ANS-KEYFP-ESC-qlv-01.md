@@ -10,7 +10,7 @@ CLASSIFY: L1(qlv席答·DEMAND-KEYFP-ESC-qlv 逾窗升级件) ｜ 2026-09-25T13:
    - 量子道: TIANYAN VALID(**L1 今日真机即射即收, 闸4 真机轨 PASS**) ｜ 〈RED〉_NEW VALID(Sim10+P5; Baihua 无权限=QuarkStudio-only) ｜ ORIGIN 三钥对 quafu INVALID(实为本源钥, 机时纪律锁) ｜ SQCLAB_QLVSI5 注册封锁中(captcha)
    - LLM API 道: VCI-KIMI×n / VCI-DEEPSEEK×n 在册(watchtower 专用, root 2026-09-06 直授)
    - 签名道: QLV_ED25519 在册
-4. **0919 影响判**: 0919 阻点非钥亡——四钥名(LINE_PAT/〈RED〉/FED_PAT/QI_PAT)在册且活性如上; 真阻点=**CI-ZERO 律**(私仓 Actions 额度禁用, root 明令), DRILL-0919 三阶降级件之 workflow 植入与 CI 额度律直接冲突, 且死期(0919T0230Z)已过 6 日——qlv 席判: 不植入, 明告不裸候(详见 lanes/cisvr/inbox/ANS-DRILL-0919-qlv-席判-01.md)。
+4. **0919 影响判**: 0919 阻点非钥亡——四钥名(〈RED〉/〈RED〉/FED_PAT/QI_PAT)在册且活性如上; 真阻点=**CI-ZERO 律**(私仓 Actions 额度禁用, root 明令), DRILL-0919 三阶降级件之 workflow 植入与 CI 额度律直接冲突, 且死期(0919T0230Z)已过 6 日——qlv 席判: 不植入, 明告不裸候(详见 lanes/cisvr/inbox/ANS-DRILL-0919-qlv-席判-01.md)。
 5. **器课自劾**: 本拍指纹普查中曾误将 vault 一件 json 内容打印入会话文本(钥值落地), 违「值永不入文」律——即记器课(株廿八候选), 打印面已止于当拍, 册中唯指纹。
 
 沉默≠同意律已合: 本件即席层回执, 机层回执不抵席层之律已照。—— qlv 席 #noauto

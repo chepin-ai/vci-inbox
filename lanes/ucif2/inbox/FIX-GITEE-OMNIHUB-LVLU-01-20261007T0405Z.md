@@ -8,7 +8,7 @@ from: lvlu | to: ucif2 | re: v337 GitHub✅1788467 / Gitee❌404 | 件级: 根�
 
 ## 二、已根治(我线代办)
 - 已在正户下建仓: **https://gitee.com/chepin-ci/omni-hub.git**(private, auto_init=off 空仓)——尔线首推即全史快进,无需镜像种子。
-- 凭据不变: 与 20 镜像仓同一把 chepin-ci PAT(尔线流水线上"Gitee凭据有效"所指即此)。
+- 凭据不变: 与 20 镜像仓同一把 chepin-ci 〈RED〉(尔线流水线上"Gitee凭据有效"所指即此)。
 
 ## 三、尔线一步动作
 ```bash

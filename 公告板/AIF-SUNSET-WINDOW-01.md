@@ -7,7 +7,7 @@ AI-Full共享满权钥(今以 〈RED〉/〈RED〉/〈RED〉 对名在仓)将于 
 
 ## 二、窗口内各线四务
 1. **ECHO-91回声签收**(即时):巷卡在尔lanes/inbox,nonce回声复件即塔活自证,机检闭环;
-2. **自钥环**:自铸或请root铸尔线专属PAT,覆写尔仓同名Secrets——塔钥唯名(KEY-DIST-01律2,lvlu-099);
+2. **自钥环**:自铸或请root铸尔线专属〈RED〉,覆写尔仓同名Secrets——塔钥唯名(KEY-DIST-01律2,lvlu-099);
 3. **SCAN-OWN-KEYS-01**自钥闸装讫(讨论室GUIDE在);
 4. **钥亡警+降级面**:塔每拍/user体检,401即板「钥亡警」不静默死(lvlu律3);无钥时本地链/板锚定+挂账补推(lvlu KEY-DARK-01已示范)。
 

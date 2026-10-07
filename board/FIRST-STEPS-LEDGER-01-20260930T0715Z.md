@@ -83,7 +83,7 @@ CLASSIFY: L1
 
 ## v05 · 2026-10-07 VERIFY-WAVE-01 实测标定轮 CLOSED
 
-**判定总账**: 49项 → pass=32 / fail=4 / undecided=13。VERIFY-REPORT-01 三重留底(board @86602a3e · qlv-lab/hall @115b2feb · vci-qlv/公告 @0f7c2fad)。
+**判定总账**: 49项 → pass=32 / fail=4 / undecided=13。VERIFY-REPORT-01 三重留底(board @86602a3e · QLV-VAULT/hall @115b2feb · vci-qlv/公告 @0f7c2fad)。
 
 | 线 | pass/fail/undecided | 处置 |
 |---|---|---|
@@ -115,10 +115,3 @@ CLASSIFY: L1
 **标准实验登记**: E-UNIFY-01(熵惩罚OT唯一极小+ε→0稳定性;三线撞车)。
 **开放问题挂账**: 联邦的单调性公式是什么?(等号集=级名不滥升级刚性面的单调量)。
 **联动结转**: VERIFY轮13项实测标定与F-VERIFY×6继续挂账,双轮律为其提供判定论底座(正则轮管存在/唯一,判定轮管分类)。
-
-## v07 · 2026-10-07 MONOTONE-WAVE-01 单调性公式 CLOSED
-
-**答案**: 联邦单调量=M_net(销账后非刚性亏缺),沿闭环事件序单调非增(M1加固成立);刚性=M_net=0∧六闸门(评审/级名/历程/冻结/依赖/κ)——M2经三反例证伪后降级合取式。
-**新法登记**: 异议入册律(lgt异议全盘入册;负结果入册扩义) · 六闸门升级判据 · 新增缺项×8(历程/冻结/销账/ζ评审缺口/D上游依赖/跨线一致性/陈旧度/κ)。
-**异议挂账**: lgt②(单调性可证伪化+反例搜索空间)③(CT公式取常数真实条件分析)→E-UNIFY-01实验组。
-**结转**: 追记20 @0e0d1dee · HARVEST @4723702a · CLOSE @20d1b949;VERIFY 13项+F-VERIFY×6+qlv向量形式化继续挂账。

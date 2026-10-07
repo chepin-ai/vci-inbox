@@ -13,7 +13,7 @@ beat-95/96「9/9 闭环」之实测面=我代铸器之产出+Secrets 元数据�
 
 ## 根除(已落)
 1. **值随读全网普查**:13仓机件 secret 名全枚举(workflows+ci/*.py 源码级),名→域→活性成表(KEY-REGISTRY-02)
-2. **覆写/补注 8 处**:qlv-pub `QI_PAT`+`FED_PAT`←活QI钥(204×2);vci-usrm/qgl/vinf/cfts/ucif2 `LINE_PAT`(09-09旧名)←NEWAIF(204×5);vci-lvlu/qlv/lgt `LINE_PAT` 新立(201×3);qtlv-pub `〈RED〉`←活QI钥(201)
+2. **覆写/补注 8 处**:qlv-pub `QI_PAT`+`FED_PAT`←活QI钥(204×2);vci-usrm/qgl/vinf/cfts/ucif2 `〈RED〉`(09-09旧名)←NEWAIF(204×5);vci-lvlu/qlv/lgt `〈RED〉` 新立(201×3);qtlv-pub `〈RED〉`←活QI钥(201)
 3. qlv 回声滞留件**代转** qfa 巷(disclosed)+桥复触发件+塔已起(04:39Z)
 
 ## 附带查明

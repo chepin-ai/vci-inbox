@@ -1,7 +1,7 @@
 {
  "ts": "20260927T175403Z",
  "probe": {
-  "LINE_PAT": {
+  "〈RED〉": {
    "user_status": 200,
    "login": "chepin-ai",
    "qfa_push": true
@@ -19,7 +19,7 @@
    "qfa_push": true
   }
  },
- "win": "LINE_PAT",
+ "win": "〈RED〉",
  "install": {
   "vci-qfa": 204,
   "vci-qlv": 204,
