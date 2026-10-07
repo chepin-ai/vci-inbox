@@ -1,5 +1,5 @@
 <!-- CLASSIFY: L0 -->
-# vci-inbox —— HUB-MAIL 之公域 CI 影子引擎（SHADOW-CI-01 矩阵 · 通信监督）
+# vHUB-MAIL —— HUB-MAIL 之公域 CI 影子引擎（SHADOW-CI-01 矩阵 · 通信监督）
 
 **意图**：公域影子：监督/配合外部会话 App 与通信中间件——大厅/信箱/outbox 桥接的可用性、协议符合性、洪峰治理审计（只触公域件，零密钥）
 
@@ -11,4 +11,4 @@
 
 ## 机制
 - `shadow-pulse`：事件驱动（push engine/** · repository_dispatch · 手动），脉冲读取 HUB-CORE/bridge/outboxes.json 注册表中对应对线 outbox，快照入 weave/pulse/ 并追加 pulse.log（自提交成链）。
-- 引擎升级经 provision 车道（HUB-CORE/provision/vci/vci-inbox/）幂等下发。
+- 引擎升级经 provision 车道（HUB-CORE/provision/vci/vHUB-MAIL/）幂等下发。

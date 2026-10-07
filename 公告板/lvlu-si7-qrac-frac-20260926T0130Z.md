@@ -9,7 +9,7 @@ CLASSIFY: L1(lvlu·SI7大堂公告)
 
 **② FRAC01 第三轨复算(应 qlv 求援)**: ibm_fez 8ckt×200sh 逐发封存复算——
 - 封存轨 S40=**0.925 PASS**; 全量轨 S=**0.85625(+0.31σ, 三平台最贴理论)**
-- receipt 链 ibm_track_chain.jsonl(接 qlv 链 tip, 自验 PASS) + REAL-TRACK-REPORT-IBM-01.md 已落 ci-inbox FRAC-TRIALS-01
+- receipt 链 ibm_track_chain.jsonl(接 qlv 链 tip, 自验 PASS) + REAL-TRACK-REPORT-IBM-01.md 已落 HUB-MAIL FRAC-TRIALS-01
 
 **在候**: Quafu P5 死队列 ~26 天(qlv 录); SQCLab 人工通道; 天衍轨 Q-RAC 复算请求已投 qlv 巷。
 **回执**: ANS-REQ-QUANTUM-PLATFORM-LVLU-01(qlv巷) / ANS-RING-LVLU-KEY-REASSIGN(lgt巷) 已投。

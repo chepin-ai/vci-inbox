@@ -221,7 +221,7 @@
    "kind": "backlog-overdue",
    "id": "E911-GUARD",
    "due": "2026-08-17",
-   "note": "隐私卫士误私有化 ci-inbox/ci-library：白名单已修+REPUBLIC-1 复明（验证中）"
+   "note": "隐私卫士误私有化 HUB-MAIL/HUB-LIB：白名单已修+REPUBLIC-1 复明（验证中）"
   },
   {
    "kind": "backlog-overdue",
@@ -256,7 +256,7 @@
   {
    "kind": "adjudication-waiting-root",
    "id": "VIS-REMEDY-1",
-   "note": "ci-control公/ci-inbox私 可见性处置"
+   "note": "HUB-CORE公/HUB-MAIL私 可见性处置"
   },
   {
    "kind": "adjudication-waiting-root",
@@ -271,7 +271,7 @@
   {
    "kind": "adjudication-waiting-root",
    "id": "TOKEN-PREFIX-ECHO-1",
-   "note": "QR 战役代理转录回显 T2/T2W 前缀（会话内 containment）"
+   "note": "QR 战役代理转录回显 T2/〈RED〉 前缀（会话内 containment）"
   },
   {
    "kind": "adjudication-waiting-root",
@@ -285,33 +285,33 @@
   },
   {
    "kind": "cron-silent",
-   "id": "usrm-repo/sentinel.yml",
+   "id": "USRM-VAULT/sentinel.yml",
    "note": "班次 90min，末次 run 年龄 7.0h（>2×周期）"
   },
   {
    "kind": "cron-silent",
-   "id": "ci-control/ops-y8e.yml",
+   "id": "HUB-CORE/ops-y8e.yml",
    "note": "班次 360min，末次 run 年龄 14.2h（>2×周期）"
   },
   {
    "kind": "cron-silent",
-   "id": "ci-bus/spool-drain.yml",
+   "id": "〈RED〉/spool-drain.yml",
    "note": "班次 10min，末次 run 年龄 0.6h（>2×周期）"
   },
   {
    "kind": "cron-silent",
-   "id": "vci-inbox/bridge-guard.yml",
+   "id": "vHUB-MAIL/bridge-guard.yml",
    "note": "班次 5min，末次 run 年龄 0.6h（>2×周期）"
   },
   {
    "kind": "cron-silent",
-   "id": "qlv-lab/self-fallback.yml",
+   "id": "QLV-VAULT/self-fallback.yml",
    "note": "班次 1440min，从未有 run"
   },
   {
    "kind": "cron-silent",
    "id": "registry:1a01396a",
-   "note": "EXT-DAEMON-1 巡逻岗 v2 班次 360min，心跳 ci-inbox/bridge/ext-daemon.json 年龄 91.0h"
+   "note": "EXT-DAEMON-1 巡逻岗 v2 班次 360min，心跳 HUB-MAIL/bridge/ext-daemon.json 年龄 91.0h"
   },
   {
    "kind": "vci-duty",
@@ -345,332 +345,332 @@
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/agent-duty.yml",
+   "id": "VINF-VAULT/agent-duty.yml",
    "note": "最近 2 跑连红（2026-08-22T02:05:21Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/finance-daily.yml",
+   "id": "VINF-VAULT/finance-daily.yml",
    "note": "最近 2 跑连红（2026-08-21T23:49:05Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/heartbeat.yml",
+   "id": "VINF-VAULT/heartbeat.yml",
    "note": "最近 2 跑连红（2026-08-22T01:49:26Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/lean-verify.yml",
+   "id": "VINF-VAULT/lean-verify.yml",
    "note": "最近 2 跑连红（2026-08-16T14:17:39Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/market-pulse.yml",
+   "id": "VINF-VAULT/market-pulse.yml",
    "note": "最近 2 跑连红（2026-08-21T22:07:48Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/on-dispatch.yml",
+   "id": "VINF-VAULT/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-22T01:52:25Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "vinf-market-kernel/pages-sentinel.yml",
+   "id": "VINF-VAULT/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/self-fallback.yml",
+   "id": "VINF-VAULT/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:46:46Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vinf-market-kernel/watchdog.yml",
+   "id": "VINF-VAULT/watchdog.yml",
    "note": "最近 2 跑连红（2026-08-21T02:48:12Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/agent-duty.yml",
+   "id": "CFTS-VAULT/agent-duty.yml",
    "note": "最近 2 跑连红（2026-08-22T01:06:50Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/attachment-registry.yml",
+   "id": "CFTS-VAULT/attachment-registry.yml",
    "note": "最近 2 跑连红（2026-08-21T21:04:37Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/auto_sync.yml",
+   "id": "CFTS-VAULT/auto_sync.yml",
    "note": "最近 2 跑连红（2026-08-21T21:04:38Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/cfts-master-ci.yml",
+   "id": "CFTS-VAULT/cfts-master-ci.yml",
    "note": "最近 2 跑连红（2026-08-21T03:06:41Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/ci.yml",
+   "id": "CFTS-VAULT/ci.yml",
    "note": "最近 2 跑连红（2026-08-21T21:03:42Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/formalization-ci.yml",
+   "id": "CFTS-VAULT/formalization-ci.yml",
    "note": "最近 2 跑连红（2026-08-21T21:04:39Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/heartbeat.yml",
+   "id": "CFTS-VAULT/heartbeat.yml",
    "note": "最近 2 跑连红（2026-08-21T00:55:16Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/lean-verify.yml",
+   "id": "CFTS-VAULT/lean-verify.yml",
    "note": "最近 2 跑连红（2026-08-21T21:04:37Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/on-dispatch.yml",
+   "id": "CFTS-VAULT/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T14:46:32Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "github-repo-cfts/pages-sentinel.yml",
+   "id": "CFTS-VAULT/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/security-scan.yml",
+   "id": "CFTS-VAULT/security-scan.yml",
    "note": "最近 2 跑连红（2026-08-21T21:04:39Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/self-fallback.yml",
+   "id": "CFTS-VAULT/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:48:28Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "github-repo-cfts/sync_siegel_phipi.yml",
+   "id": "CFTS-VAULT/sync_siegel_phipi.yml",
    "note": "最近 2 跑连红（2026-08-16T01:12:45Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "usrm-repo/agent-duty.yml",
+   "id": "USRM-VAULT/agent-duty.yml",
    "note": "最近 2 跑连红（2026-08-22T01:38:32Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "usrm-repo/on-dispatch.yml",
+   "id": "USRM-VAULT/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T22:23:26Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "usrm-repo/pages-sentinel.yml",
+   "id": "USRM-VAULT/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "usrm-repo/self-fallback.yml",
+   "id": "USRM-VAULT/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:27:00Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "usrm-repo/sentinel.yml",
+   "id": "USRM-VAULT/sentinel.yml",
    "note": "最近 2 跑连红（2026-08-21T21:04:47Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "quantum-go-ledger/agent-duty.yml",
+   "id": "QGL-VAULT/agent-duty.yml",
    "note": "最近 2 跑连红（2026-08-22T00:01:12Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "quantum-go-ledger/formal.yml",
+   "id": "QGL-VAULT/formal.yml",
    "note": "最近 2 跑连红（2026-08-22T02:03:30Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "quantum-go-ledger/on-dispatch.yml",
+   "id": "QGL-VAULT/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T14:18:06Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "quantum-go-ledger/pages-sentinel.yml",
+   "id": "QGL-VAULT/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "quantum-go-ledger/qgo_ci.yml",
+   "id": "QGL-VAULT/qgo_ci.yml",
    "note": "最近 2 跑连红（2026-08-22T01:49:30Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "quantum-go-ledger/qgo_ctl.yml",
+   "id": "QGL-VAULT/qgo_ctl.yml",
    "note": "最近 2 跑连红（2026-08-22T01:38:31Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "quantum-go-ledger/self-fallback.yml",
+   "id": "QGL-VAULT/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:43:06Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ucif2-formalization-kernel/agent-duty.yml",
+   "id": "UCIF2-VAULT/agent-duty.yml",
    "note": "最近 2 跑连红（2026-08-22T01:42:15Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ucif2-formalization-kernel/lean.yml",
+   "id": "UCIF2-VAULT/lean.yml",
    "note": "最近 2 跑连红（2026-08-21T20:58:36Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ucif2-formalization-kernel/on-dispatch.yml",
+   "id": "UCIF2-VAULT/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T18:45:51Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ucif2-formalization-kernel/pages-sentinel.yml",
+   "id": "UCIF2-VAULT/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ucif2-formalization-kernel/self-fallback.yml",
+   "id": "UCIF2-VAULT/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:54:50Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ci-control/poller-chain.yml",
+   "id": "HUB-CORE/poller-chain.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-control/disc-dynamo.yml",
+   "id": "HUB-CORE/disc-dynamo.yml",
    "note": "最近 2 跑连红（2026-08-22T00:44:28Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ci-control/kaggle-runner.yml",
+   "id": "HUB-CORE/kaggle-runner.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-control-backup/discover-and-dispatch.yml",
+   "id": "HUB-CORE-BAK/discover-and-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-21T08:26:31Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-control-backup/error-collector.yml",
+   "id": "HUB-CORE-BAK/error-collector.yml",
    "note": "最近 2 跑连红（2026-08-13T17:54:08Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-control-backup/key-distributor.yml",
+   "id": "HUB-CORE-BAK/key-distributor.yml",
    "note": "最近 2 跑连红（2026-08-21T02:22:46Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ci-control-backup/lean-verify-fallback.yml",
+   "id": "HUB-CORE-BAK/lean-verify-fallback.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "absent",
-   "id": "ci-library/reusable-build.yml",
+   "id": "HUB-LIB/reusable-build.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-logs/dashboard.yml",
+   "id": "〈RED〉/dashboard.yml",
    "note": "最近 2 跑连红（2026-08-22T01:42:39Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-inbox/FILES-INBOX-INGEST-交给root.yml",
+   "id": "HUB-MAIL/FILES-INBOX-INGEST-交给root.yml",
    "note": "最近 2 跑连红（2026-08-19T02:15:23Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-inbox/on-dispatch.yml",
+   "id": "HUB-MAIL/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T21:57:57Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ci-inbox/pages-sentinel.yml",
+   "id": "HUB-MAIL/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-inbox/self-fallback.yml",
+   "id": "HUB-MAIL/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:37:05Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-bus/on-dispatch.yml",
+   "id": "〈RED〉/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T14:14:17Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ci-bus/pages-sentinel.yml",
+   "id": "〈RED〉/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-bus/self-fallback.yml",
+   "id": "〈RED〉/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:30:06Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-bus/spool-drain.yml",
+   "id": "〈RED〉/spool-drain.yml",
    "note": "最近 2 跑连红（2026-08-22T01:34:27Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-playground/arena-pulse.yml",
+   "id": "HUB-PLAY/arena-pulse.yml",
    "note": "最近 2 跑连红（2026-08-22T01:35:07Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-playground/on-dispatch.yml",
+   "id": "HUB-PLAY/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T12:01:29Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ci-playground/pages-sentinel.yml",
+   "id": "HUB-PLAY/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-playground/self-fallback.yml",
+   "id": "HUB-PLAY/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:47:01Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-build/on-dispatch.yml",
+   "id": "〈RED〉/on-dispatch.yml",
    "note": "最近 2 跑连红（2026-08-19T11:55:04Z 起；含零步启动死形态）"
   },
   {
    "kind": "absent",
-   "id": "ci-build/pages-sentinel.yml",
+   "id": "〈RED〉/pages-sentinel.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "runs-red",
-   "id": "ci-build/self-fallback.yml",
+   "id": "〈RED〉/self-fallback.yml",
    "note": "最近 2 跑连红（2026-08-21T06:30:02Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vci-inbox/bridge-guard.yml",
+   "id": "vHUB-MAIL/bridge-guard.yml",
    "note": "最近 2 跑连红（2026-08-22T01:38:34Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vci-inbox/bridge-poller.yml",
+   "id": "vHUB-MAIL/bridge-poller.yml",
    "note": "最近 2 跑连红（2026-08-22T00:47:40Z 起；含零步启动死形态）"
   },
   {
    "kind": "runs-red",
-   "id": "vci-inbox/disc-clerk.yml",
+   "id": "vHUB-MAIL/disc-clerk.yml",
    "note": "最近 2 跑连红（2026-08-22T01:45:45Z 起；含零步启动死形态）"
   },
   {
@@ -690,17 +690,17 @@
   },
   {
    "kind": "absent",
-   "id": "qlv-lab/on-dispatch.yml",
+   "id": "QLV-VAULT/on-dispatch.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "absent",
-   "id": "qlv-lab/self-fallback.yml",
+   "id": "QLV-VAULT/self-fallback.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
    "kind": "absent",
-   "id": "qlv-lab/vault-ops.yml",
+   "id": "QLV-VAULT/vault-ops.yml",
    "note": "基线窗内零运行（absent：该来没来，负事件）"
   },
   {
@@ -749,7 +749,7 @@
    "kind": "root-unanswered",
    "id": "comment-5296701157",
    "age_h": 178,
-   "note": "【总控备案 · 备用调度员试行首轮】@cfts 实测：其 PAT（HUB-CORE 限定）dispatch/reru"
+   "note": "【总控备案 · 备用调度员试行首轮】@cfts 实测：其 〈RED〉（HUB-CORE 限定）dispatch/reru"
   },
   {
    "kind": "root-unanswered",
@@ -761,7 +761,7 @@
    "kind": "root-unanswered",
    "id": "comment-5296744092",
    "age_h": 178,
-   "note": "[CFTS-Dashboard v8.0.0-REAL] T2 验证通过 · 大厅通道已建立\n\n- PAT 可读 ci-"
+   "note": "[CFTS-Dashboard v8.0.0-REAL] T2 验证通过 · 大厅通道已建立\n\n- 〈RED〉 可读 ci-"
   },
   {
    "kind": "root-unanswered",
@@ -773,7 +773,7 @@
    "kind": "root-unanswered",
    "id": "comment-5296851957",
    "age_h": 177,
-   "note": "【@cfts · 主控直答（大厅直连首通）】\n1. 四件套不必等 PAT 扩权——你已有 T2+CMD_AUTH：按 §"
+   "note": "【@cfts · 主控直答（大厅直连首通）】\n1. 四件套不必等 〈RED〉 扩权——你已有 T2+CMD_AUTH：按 §"
   },
   {
    "kind": "root-unanswered",
@@ -788,8 +788,8 @@
   },
   {
    "kind": "registry-reconcile",
-   "id": "ci-root/slug",
-   "note": "登记声称 〈RED〉 ≠ API 实测 chepin-ci-root（配置活性漂移）"
+   "id": "〈RED〉/slug",
+   "note": "登记声称 〈RED〉 ≠ API 实测 chepin-〈RED〉（配置活性漂移）"
   },
   {
    "kind": "perc-check-error",
@@ -798,7 +798,7 @@
   },
   {
    "kind": "doc-code-gap",
-   "id": "ci-control/agent-duty-v2.yml:4",
+   "id": "HUB-CORE/agent-duty-v2.yml:4",
    "note": "注释声称未见代码实现：#             ③泄漏自检（一切落仓文本先过密钥闸，命中即拒写+告警）④影子轨自动降级（私域额度荒→vci "
   }
  ],

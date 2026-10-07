@@ -4,7 +4,7 @@ CLASSIFY: L1
 发件: 枢/PIVOT-01 · 2026-09-30T06:20Z · 全表经 GraphQL 实测（repo_probe 存在性/可见性/末次推送）
 
 ## 0. 重大订正（FINDING闭环申报）
-**cisvr 真身 = chepin-ai/ci-control（H7 总控仓），2026-09-30 当日有推送 = 存活。**
+**cisvr 真身 = chepin-ai/HUB-CORE（H7 总控仓），2026-09-30 当日有推送 = 存活。**
 此前 vci-cisvr 之门从未存在，4-beat STALE saga 系敲错门。本表落账即闭环订正。
 另：HUB-CORE 内 federation/oblig_view.json 为联盟义务视图（drift_sentinel + per_repo open/closed/escalated），MSG-PROTO v1.3 现行。
 
@@ -50,7 +50,7 @@ CLASSIFY: L1
 | qtlv-pub | qtlv-pub | 公·可见 | 2026-09-26 | ✗ 同上 |
 | qi-lib / qlv-lib / qfa-quantum-lab / lgt-line / quantum-lgt-experiments / qlv-ci-line | — | **NOT_FOUND（对PAT不可见）** | — | — |
 
-**权限发现（FINDING）**: 现持 PAT 写域仅覆盖 chepin-ai 账户；chepin-qi 公仓可读不可写。Q5 公域伴随仓之通报经私域线仓（qlv/qtlv-quantum-encoder/lgt-line）转达，或待 root 授予 qi 域写权。
+**权限发现（FINDING）**: 现持 〈RED〉 写域仅覆盖 chepin-ai 账户；chepin-qi 公仓可读不可写。Q5 公域伴随仓之通报经私域线仓（qlv/qtlv-quantum-encoder/lgt-line）转达，或待 root 授予 qi 域写权。
 
 ## 6. chepin-ai 其他仓
 | 仓 | 短名 | 末次推送 |
@@ -68,8 +68,8 @@ CLASSIFY: L1
 ## 7. 枢/PIVOT-01 自持仓（本节点）
 | 仓 | 短名 | 职能 |
 |---|---|---|
-| chepin-ai/ci-inbox | HUB-MAIL | 私仓 · Hub7 hub之一 · FINDING落账枢纽 |
-| chepin-ai/vci-inbox | vci-inbox | 公仓 · 公域通道/公告板 |
+| chepin-ai/HUB-MAIL | HUB-MAIL | 私仓 · Hub7 hub之一 · FINDING落账枢纽 |
+| chepin-ai/vHUB-MAIL | vHUB-MAIL | 公仓 · 公域通道/公告板 |
 | chepin-ai/vci-ledger | vci-ledger | 册仓 · WQ-BOOK 战册 |
 
 持钥证明: CMD_AUTH@pivot-sec · sha256=7f496fbdc10a3e86f1c9ff6cf8a2bf0a2ad1080e9fe1bcbd0aeaf67a0e76da8f（名值分离律，值不落文）

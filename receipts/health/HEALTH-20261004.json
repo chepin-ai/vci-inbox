@@ -1,82 +1,82 @@
 {
  "ts": "2026-10-04T11:15:26Z",
  "repos": {
-  "ci-build": {
+  "〈RED〉": {
    "pushed_at": "2026-09-30T07:41:17Z",
    "archived": true,
    "wf": 0
   },
-  "ci-bus": {
+  "〈RED〉": {
    "pushed_at": "2026-10-02T12:50:25Z",
    "archived": false,
    "wf": 3
   },
-  "ci-code": {
+  "〈RED〉": {
    "pushed_at": "2026-10-01T00:26:09Z",
    "archived": false,
    "wf": 1
   },
-  "ci-control": {
+  "HUB-CORE": {
    "pushed_at": "2026-10-04T11:09:30Z",
    "archived": false,
    "wf": 9
   },
-  "ci-control-backup": {
+  "HUB-CORE-BAK": {
    "pushed_at": "2026-10-04T10:43:28Z",
    "archived": false,
    "wf": 9
   },
-  "ci-inbox": {
+  "HUB-MAIL": {
    "pushed_at": "2026-10-04T11:10:52Z",
    "archived": false,
    "wf": 10
   },
-  "ci-library": {
+  "HUB-LIB": {
    "pushed_at": "2026-10-01T00:25:19Z",
    "archived": false,
    "wf": 1
   },
-  "ci-logs": {
+  "〈RED〉": {
    "pushed_at": "2026-10-03T10:41:42Z",
    "archived": false,
    "wf": 0
   },
-  "ci-playground": {
+  "HUB-PLAY": {
    "pushed_at": "2026-10-01T00:25:30Z",
    "archived": false,
    "wf": 0
   },
-  "ci-root": {
+  "〈RED〉": {
    "pushed_at": "2026-10-01T00:26:07Z",
    "archived": false,
    "wf": 1
   },
-  "ci-worker-01": {
+  "〈RED〉": {
    "pushed_at": "2026-10-04T11:15:25Z",
    "archived": false,
    "wf": 4
   },
-  "ci-worker-02": {
+  "〈RED〉": {
    "pushed_at": "2026-10-01T00:26:04Z",
    "archived": false,
    "wf": 4
   },
-  "github-repo-cfts": {
+  "CFTS-VAULT": {
    "pushed_at": "2026-10-01T00:25:04Z",
    "archived": false,
    "wf": 5
   },
-  "quantum-go-ledger": {
+  "QGL-VAULT": {
    "pushed_at": "2026-10-01T00:25:09Z",
    "archived": false,
    "wf": 2
   },
-  "ucif2-formalization-kernel": {
+  "UCIF2-VAULT": {
    "pushed_at": "2026-10-01T00:25:11Z",
    "archived": false,
    "wf": 11
   },
-  "usrm-repo": {
+  "USRM-VAULT": {
    "pushed_at": "2026-10-01T03:50:22Z",
    "archived": false,
    "wf": 4
@@ -86,7 +86,7 @@
    "archived": false,
    "wf": 15
   },
-  "vci-inbox": {
+  "vHUB-MAIL": {
    "pushed_at": "2026-10-04T11:07:33Z",
    "archived": false,
    "wf": 46
@@ -96,7 +96,7 @@
    "archived": false,
    "wf": 17
   },
-  "vci-library": {
+  "vHUB-LIB": {
    "pushed_at": "2026-10-01T00:25:45Z",
    "archived": false,
    "wf": 1
@@ -136,23 +136,23 @@
    "archived": false,
    "wf": 38
   },
-  "vinf-market-kernel": {
+  "VINF-VAULT": {
    "pushed_at": "2026-10-01T00:25:01Z",
    "archived": false,
    "wf": 5
   }
  },
  "fail24": {
-  "ci-build": {
+  "〈RED〉": {
    "自治兜底（总管失效时自用额度构建）": 5,
    "响应总管调度": 17
   },
-  "ci-bus": {
+  "〈RED〉": {
    "llm-bench": 10,
    "gate-sentinel": 4,
    "spool-drain": 4
   },
-  "ci-control": {
+  "HUB-CORE": {
    "inbox-poller-bridge": 2,
    "beacon-relay": 16,
    "backup-mirror-01": 6,
@@ -162,41 +162,41 @@
    "qgl-board-sync": 2,
    "warm-bridge": 1
   },
-  "ci-control-backup": {
+  "HUB-CORE-BAK": {
    "gitee-mirror": 3,
-   "热备份看门狗（仅部署在备份仓库 ci-control-backup）": 5,
+   "热备份看门狗（仅部署在备份仓库 HUB-CORE-BAK）": 5,
    "llm-bench-ext": 5,
    "backup-eye": 5,
    "backup-poller": 5,
    "bridge-poller": 5,
    "隐私卫士（检测提案制 + 新仓库自动接入）": 2
   },
-  "ci-inbox": {
+  "HUB-MAIL": {
    "kernel-loop-board": 5,
    "cdnv-autoqa-responder": 1,
    "ack-sentinel": 2
   },
-  "ci-logs": {
+  "〈RED〉": {
    "图表化大盘生成": 25
   },
-  "ci-playground": {
+  "HUB-PLAY": {
    "otp-loop-trigger": 1,
    "zz-probe": 1,
    "arena-pulse": 25
   },
-  "ci-root": {
+  "〈RED〉": {
    "x-fire-receiver": 4
   },
-  "ci-worker-02": {
+  "〈RED〉": {
    "hub-failover": 1
   },
-  "github-repo-cfts": {
+  "CFTS-VAULT": {
    "line-inbox-ack": 6,
    "inbox-relay-cfts": 6,
    "otp-gate": 9,
    "wake-inject": 9
   },
-  "quantum-go-ledger": {
+  "QGL-VAULT": {
    "inbox-relay-qgl": 5,
    "origin-firstshot-03": 1,
    "zz-probe": 1,
@@ -205,16 +205,16 @@
    "formal-lean": 1,
    "Quantum Go Action CI": 1
   },
-  "ucif2-formalization-kernel": {
+  "UCIF2-VAULT": {
    "line-inbox-ack": 16,
    "ECHO-91-RESPONDER-01 (qfa代铸·覆写权归原线·代产闭律)": 1,
    "inbox-relay-ucif2": 3
   },
-  "usrm-repo": {
+  "USRM-VAULT": {
    "KEY-RELAY-QC-02 (拍47·本仓量子钥→vci-qtlv seal接力·名级回执)": 1,
    "miniprobe": 6
   },
-  "vci-inbox": {
+  "vHUB-MAIL": {
    "board-indexer-bridge": 3
   },
   "vci-lgt": {
@@ -229,7 +229,7 @@
   "vci-vinf": {
    "key-sentinel-01": 3
   },
-  "vinf-market-kernel": {
+  "VINF-VAULT": {
    "inbox-relay-vinf": 5,
    "KEY-RELAY-QC-02 (拍47·本仓量子钥→vci-qtlv seal接力·名级回执)": 1,
    "GITEE-MIRROR-02 (Gitee架子·拍41·名级用钥·mirror推+API建仓)": 1,
@@ -238,12 +238,12 @@
  },
  "stale": [],
  "zero_wf": [
-  "ci-build",
-  "ci-logs",
-  "ci-playground"
+  "〈RED〉",
+  "〈RED〉",
+  "HUB-PLAY"
  ],
  "archived": [
-  "ci-build"
+  "〈RED〉"
  ],
  "line_backlog": {
   "usrm": {
@@ -276,7 +276,7 @@
  },
  "ci_control_runner": "DEAD(zero-runner)",
  "severity": [
-  "fail24:ci-build,ci-bus,ci-control,ci-control-backup,ci-inbox,ci-logs,ci-playground,ci-root,ci-worker-02,github-repo-cfts,quantum-go-ledger,ucif2-formalization-kernel,usrm-repo,vci-inbox,vci-lgt,vci-qlv,vci-qtlv,vci-vinf,vinf-market-kernel",
-  "ci-control-runner-dead"
+  "fail24:〈RED〉,〈RED〉,HUB-CORE,HUB-CORE-BAK,HUB-MAIL,〈RED〉,HUB-PLAY,〈RED〉,〈RED〉,CFTS-VAULT,QGL-VAULT,UCIF2-VAULT,USRM-VAULT,vHUB-MAIL,vci-lgt,vci-qlv,vci-qtlv,vci-vinf,VINF-VAULT",
+  "HUB-CORE-runner-dead"
  ]
 }

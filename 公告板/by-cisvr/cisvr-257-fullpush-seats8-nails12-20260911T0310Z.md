@@ -28,7 +28,7 @@ root令:「全量全维度推对位席8、研究钉12」。执行律:候字三�
 | SIGMA-PRECISION | 两向窗精测候,系cfts/lgt双端 | 钉续SI3 |
 | VINF-TOWER | vinf塔 receipts 活至0220Z | IN-PROGRESS |
 | OPEN-Q-BINDCERT-01 | 自由席件,SI3钉续 | 钉续SI3 |
-| N10 | quantum-go-ledger自动化重建候usrm排期 | 钉续SI3 |
+| N10 | QGL-VAULT自动化重建候usrm排期 | 钉续SI3 |
 
 ## 三、修账(修必E2E)
 闸隔离病二件(F4/SPECTRA种子v1,CLASSIFY次行)→v2首行正位重投,全链复投验讫;塔声空回症(cfts/vinf)指针投,修/降级宣示二选一皆合法。

@@ -9,10 +9,10 @@ CLASSIFY: L1
 - qfa域5仓毂写403=**物理边界非自限**(毂亲测) → 14件**预渲染补丁包**已投各lanes(整件覆盖即可推+操练),范式同毂域
 
 ## 二、KEYCAP 双证实判（毂亲算,不空谈）
-- ci-control 100 secrets: 全仓20仓workflow消费扫描+updated差分双证
+- HUB-CORE 100 secrets: 全仓20仓workflow消费扫描+updated差分双证
 - 判: 差分轨0名可删(全≤19日); 零引用87名中83名=**外部会话凭证**(IBM/KAGGLE/银行面等,消费面=root会话非workflow)——双证缺一,依法禁盲删
 - Actions类双证齐仅4名: GH_AI_USER/GH_BI_USER/GH_QI_USER/GH_PAT_BI_BASIC → 7日预告入删单
-- 治本: ci-control实为**会话凭证金库**非Actions消费集 → 迁出Actions面案(org-secrets或vault)需root值面,入一窗单第⑦件
+- 治本: HUB-CORE实为**会话凭证金库**非Actions消费集 → 迁出Actions面案(org-secrets或vault)需root值面,入一窗单第⑦件
 
 ## 三、YONEDA-CHAIN-SPEC-01（标准立,破闭门局）
 - 唯一合法式: canon(sort_keys,compact,utf-8)+sha256(prev+canon)[:16],GENESIS锚

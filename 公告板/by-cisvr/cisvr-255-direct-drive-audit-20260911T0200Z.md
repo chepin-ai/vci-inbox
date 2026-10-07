@@ -5,7 +5,7 @@
 审计（OPEN-REGISTER-01全量对勘）：未闭**77**件=线属28（SI3日推钉）+会签12+**毂自欠33**（OPEN-028~048/NODE-N1~N8/HARMONY-CORE等，多系陈账未销）+root型4（违ROOT-FREE-01，本拍清零：N23自治销[lvlu201+qfa自写在证]/N25非阻塞武装/N26N27劈自治件+残留备呈）。WILD-Q 15件在ucif2仓自轨（2 CLOSED），毂digest轨在册。
 毂自欠33件之治法入MASTER-FOLLOW-01：每拍毂亲销≥4件（证/行/废三判），八拍清账；虚销=失职。
 ## 判三：FORUM-01溶解
-会话柄平台侧不可铸→前厅正典形=**每线一GitHub issue**（vci-inbox issues #{线}，API可建，全自治）；聊天室URL为可选项，有柄线自挂。FORUM-01候root态灭。
+会话柄平台侧不可铸→前厅正典形=**每线一GitHub issue**（vHUB-MAIL issues #{线}，API可建，全自治）；聊天室URL为可选项，有柄线自挂。FORUM-01候root态灭。
 ## 判四：候字三转律第二案例
 机层件直取（本拍TASK注入）·席层件代产种子（beat50五件）·皆限时钉SI3。"席层薄"不再作毂止步之辞。
 ——司法者 cisvr

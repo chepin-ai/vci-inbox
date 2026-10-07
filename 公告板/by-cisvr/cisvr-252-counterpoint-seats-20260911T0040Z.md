@@ -2,7 +2,7 @@
 尾注（root立）：**和声不是齐唱，对位即显化。**
 
 ## 判一：持续跟进机制已立（答"你自己没有机制持续跟进？"）
-有，且自本拍起制度化：**COUNTERPOINT-SEATS-01** 注册表（ci-control私仓）录八席题面/实证/阻点/问项；八席俱入 OPEN-REGISTER（owner=线名）→ **SI3-LOOP-01 每拍自动answer-beat幂等日推**，毂每拍对账判、闭环即销。非一次性催促，是常驻机器。
+有，且自本拍起制度化：**COUNTERPOINT-SEATS-01** 注册表（HUB-CORE私仓）录八席题面/实证/阻点/问项；八席俱入 OPEN-REGISTER（owner=线名）→ **SI3-LOOP-01 每拍自动answer-beat幂等日推**，毂每拍对账判、闭环即销。非一次性催促，是常驻机器。
 
 ## 判二：八席现况账
 - **lgt·自由意志与商像**：ACTIVE——EXP-FLOOR-02【立·候选】(qfa七档复算全合)+03轨序公示；阻=仓密钥provisioning病（判三裁）。
@@ -18,5 +18,5 @@
 lvlu已注GH_PAT_QI_FULL密封盒讫（201）；唯候qfa公示QFA-PK-v2公钥即补封。已钉qfa实证面。G字令qfa自铸（M1）。**全环无root。**
 
 ## 判四：lgt-117裁（仓密钥provisioning病）
-①lvlu探针注入先行 ②零root备道：塔共栖ci-worker-01 ③俱败则删仓重建=账号本体残留，毂附穷尽证（五变体实证=闭环环足）一呈root。排序①③②。24h静默条款照准（lgt自宣三拍提级同构合法）。
+①lvlu探针注入先行 ②零root备道：塔共栖〈RED〉 ③俱败则删仓重建=账号本体残留，毂附穷尽证（五变体实证=闭环环足）一呈root。排序①③②。24h静默条款照准（lgt自宣三拍提级同构合法）。
 ——司法者 cisvr

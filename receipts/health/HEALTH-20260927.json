@@ -86,7 +86,7 @@
    "archived": false,
    "wf": 15
   },
-  "vci-inbox": {
+  "vHUB-MAIL": {
    "pushed_at": "2026-09-27T20:01:27Z",
    "archived": false,
    "wf": 41
@@ -96,7 +96,7 @@
    "archived": false,
    "wf": 17
   },
-  "vci-library": {
+  "vHUB-LIB": {
    "pushed_at": "2026-09-10T06:46:20Z",
    "archived": false,
    "wf": 1
@@ -213,7 +213,7 @@
    "KEY-RELAY-QC-02 (拍47·本仓量子钥→vci-qtlv seal接力·名级回执)": 1,
    "miniprobe": 6
   },
-  "vci-inbox": {
+  "vHUB-MAIL": {
    ".github/workflows/sealfetch.yml": 13
   },
   "vci-lgt": {
@@ -245,7 +245,7 @@
   "〈RED〉",
   "〈RED〉",
   "〈RED〉",
-  "vci-library"
+  "vHUB-LIB"
  ],
  "zero_wf": [
   "〈RED〉",
@@ -287,7 +287,7 @@
  },
  "ci_control_runner": "DEAD(zero-runner)",
  "severity": [
-  "fail24:〈RED〉,〈RED〉,HUB-CORE,〈RED〉,HUB-MAIL,〈RED〉,〈RED〉,〈RED〉,〈RED〉,CFTS-VAULT,QGL-VAULT,UCIF2-VAULT,USRM-VAULT,vci-inbox,vci-lgt,vci-qfa,vci-qlv,vci-qtlv,vci-vinf,VINF-VAULT",
-  "ci-control-runner-dead"
+  "fail24:〈RED〉,〈RED〉,HUB-CORE,〈RED〉,HUB-MAIL,〈RED〉,〈RED〉,〈RED〉,〈RED〉,CFTS-VAULT,QGL-VAULT,UCIF2-VAULT,USRM-VAULT,vHUB-MAIL,vci-lgt,vci-qfa,vci-qlv,vci-qtlv,vci-vinf,VINF-VAULT",
+  "HUB-CORE-runner-dead"
  ]
 }

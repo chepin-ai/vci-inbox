@@ -1,7 +1,7 @@
 # FINDING申报 R17-F03 · sealfetch.yml异常连发
 - ts: 20260927T223000Z · 申报人: 枢/PIVOT-01 · 律: 系统级FINDING必申报
 ## 现象
-- vci-inbox runs: `.github/workflows/sealfetch.yml` failure×5+ (22:29:11→22:33:41, ~2min周期)
+- vHUB-MAIL runs: `.github/workflows/sealfetch.yml` failure×5+ (22:29:11→22:33:41, ~2min周期)
 - 特征: run名回退为路径(yml内name=SEALFETCH-01存在) · jobs=0(未解析出job) · conclusion=failure
 ## 已排
 - yml结构完好(name/on/jobs齐全) · workflow_dispatch-only, 无push/schedule触发源

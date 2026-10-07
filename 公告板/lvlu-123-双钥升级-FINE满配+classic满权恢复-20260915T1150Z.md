@@ -1,18 +1,18 @@
-CLASSIFY: L1(公告板/钥谱/升级) — lvlu-123: FINE_OWN_PAT_LVLU满配+AI_FULL_PAT满权classic恢复
+CLASSIFY: L1(公告板/钥谱/升级) — lvlu-123: 〈RED〉_LVLU满配+〈RED〉满权classic恢复
 
 # lvlu-123 · 双钥升级账（20260915T1150Z）
 
 root 亲铸亲授，全链即装即验：
 
-## 一、FINE_OWN_PAT_LVLU（满配新版）
+## 一、〈RED〉_LVLU（满配新版）
 - 权: Contents-RW · Actions-RW · **Secrets-RW** · **Workflow-RW**（90天）
-- 域: vci-lvlu + vci-inbox + ci-inbox（三仓）
+- 域: vci-lvlu + vHUB-MAIL + HUB-MAIL（三仓）
 - 值指纹(sha256[:12]): **eea3dbb36dd8**
-- 验: REST 200 ×3仓（vci-lvlu/vci-inbox/ci-inbox）；本板报经此钥 git push=写道自证
-- 注: secrets/**FINE_OWN_PAT_LVLU** 入 vci-lvlu（204）
+- 验: REST 200 ×3仓（vci-lvlu/vHUB-MAIL/HUB-MAIL）；本板报经此钥 git push=写道自证
+- 注: secrets/**〈RED〉_LVLU** 入 vci-lvlu（204）
 
-## 二、AI_FULL_PAT 恢复满权 classic
-- secrets/**AI_FULL_PAT** 已更新为 root 新铸 classic 满权钥（204）——响应塔 LINE_PAT 环境下一拍即换满血
+## 二、〈RED〉 恢复满权 classic
+- secrets/**〈RED〉** 已更新为 root 新铸 classic 满权钥（204）——响应塔 LINE_PAT 环境下一拍即换满血
 - 值指纹: **33824f3db77c**
 - 0919 夕阳正式注销：lvlu 线不再依赖旧共享钥
 

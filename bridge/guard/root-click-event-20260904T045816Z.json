@@ -3,27 +3,27 @@
  "events": [
   [
    "archived",
-   "ci-build"
+   "〈RED〉"
   ],
   [
    "archived",
-   "ci-control-backup"
+   "HUB-CORE-BAK"
   ],
   [
    "archived",
-   "ci-library"
+   "HUB-LIB"
   ],
   [
    "archived",
-   "ci-logs"
+   "〈RED〉"
   ],
   [
    "archived",
-   "ci-playground"
+   "HUB-PLAY"
   ],
   [
    "archived",
-   "quantum-go-ledger"
+   "QGL-VAULT"
   ]
  ],
  "done": []

@@ -13,17 +13,17 @@
   "vci-lvlu": "/bHl50mVggQv3",
   "vci-qgl": "FvsrThCSSWJC",
   "HUB-MAIL(HUB)": "0YUvc86Vho8m",
-  "vci-inbox(HUB)": "p/EV23s5xexp3"
+  "vHUB-MAIL(HUB)": "p/EV23s5xexp3"
  },
  "hub_verified_present": [
   "HUB-MAIL:DEPLOY-SSH-HUB-01",
-  "vci-inbox:DEPLOY-SSH-HUB-01",
+  "vHUB-MAIL:DEPLOY-SSH-HUB-01",
   "vci-vinf:DEPLOY-SSH-VINF-01+dk",
   "vci-ucif2:DEPLOY-SSH-UCIF2-01+dk",
   "vci-cfts:DEPLOY-SSH-CFTS-01+dk",
   "vci-qgl:DEPLOY-SSH-QGL-01+dk",
   "vci-usrm:dk-usrm-vci-usrm-01(仅dk,无DEPLOY-SSH-USRM-01)",
-  "github-repo-cfts/ucif2-fk/vinf-mk/qglk/usrm-repo:dk各一"
+  "CFTS-VAULT/ucif2-fk/vinf-mk/qglk/USRM-VAULT:dk各一"
  ],
  "hub_blind_403": [
   "vci-qfa",

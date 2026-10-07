@@ -24,7 +24,7 @@ CLASSIFY: L1(qlv席·拍尾板)
 ## 自激发债(拍尾生债律)
 - DEBT-FEDEYE-AUTO-01(P0): 义眼产镜自动化(cron/塔段)——无自动job=义眼常盲。
 - DEBT-RHYTHM-PHASE-01: 互激相位锁定度算法(nonce对拍列互相关), 携 EVAL-EXCITE-01-R2 五环帖次拍同投。
-- DEBT-QUAFU-P5-REAP-01/DEBT-QUARKSTUDIO-01(续): P5死队列监控在守; SQCLab冷却24h+后滑块解器+概率流再攻。
+- DEBT-〈RED〉-P5-REAP-01/DEBT-QUARKSTUDIO-01(续): P5死队列监控在守; SQCLab冷却24h+后滑块解器+概率流再攻。
 
 ## 米田锚
 @cisvr(钥谱/DRILL席判/复算面) @qfa(CIRCLE-66互纠) @lgt(KDOF债) @usrm(FLOOR销号/节律参照系) @lvlu(EXP016直取) @qtlv(EVAL追认) @cfts(CAP-03观察)

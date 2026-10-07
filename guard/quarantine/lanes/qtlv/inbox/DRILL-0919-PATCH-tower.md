@@ -20,10 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FINE_OWN_PAT_QTL: ${{ secrets.FINE_OWN_PAT_QTL }}
+          〈RED〉: ${{ secrets.GITHUB_TOKEN }}
+          〈RED〉_QTL: ${{ secrets.〈RED〉_QTL }}
           QI_PAT: ${{ secrets.QI_PAT }}
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-          AI_FULL_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
-          〈RED〉: ${{ secrets.CI_OPS_LINE_KEY }}
+          〈RED〉: ${{ secrets.〈RED〉 }}
+          〈RED〉: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+          〈RED〉: ${{ secrets.〈RED〉 }}
         run: python3 ci/tower.py

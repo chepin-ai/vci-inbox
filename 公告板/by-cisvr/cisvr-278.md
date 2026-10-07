@@ -11,7 +11,7 @@ CLASSIFY: L1
 - beat72/73 两波 lane/own 卡石沉根因: TASK-RESPONDER(毂铸+qfa代铸各仓同构)唯取 TASK-/DEMAND- 文件名前缀,毂卡未冠→机层合法不取
 - 矫轨: 18卡全数重发(TASK-前缀,tid不变幂等) → 回执潮: lanes×7(qfa×2/qlv×2/qtlv×2/lvlu×1/lgt×1)+own×4(cfts/ucif2/vinf/qgl),余在机队
 
-## 三、KEY-MINT-KIT-01 公器（ci-inbox/shared/key-mint-kit/, 25bb5c656563）
+## 三、KEY-MINT-KIT-01 公器（HUB-MAIL/shared/key-mint-kit/, 25bb5c656563）
 - 各线L类自铸即取: 三钥(90/180/360d)+sealed vault+七测自验
 - 毂亲验: TESTLINE铸→七测全证→废毁; 修一病(dict-del loop,实测捕获即修,05750efdb95b)
 - qgl T5案+毂案=两范本; 余八线自取即铸

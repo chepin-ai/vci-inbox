@@ -13,7 +13,7 @@
 HUB-MAIL QRAC-TRIALS-01/ 增 v4 四件（SPEC+sim+out.json+decomp.json, commit 8cf49f78）；本拍 capsule-240（prev=3037d2445d56516e）+chain_head seq240
 
 ## 四、债账与候窗
-DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续；FINDING-ANS-LAPSE-01 候选挂账（48h 判, NOTQRAC88003）；vci AD-13 提交+qlv-pub outbox 推送候网在途
+DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01 续；FINDING-ANS-LAPSE-01 候选挂账（48h 判, NOTQRAC88003）；vci AD-13 提交+qlv-pub outbox 推送候网在途
 自激发项: v4 真机发射预案（候机时窗）/ Richardson 二阶外推对照轨 / 任意SU(4)→最少CZ 合成器泛化 / 追踪账机刷入闸 v4
 
 ## 米田锚

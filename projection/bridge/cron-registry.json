@@ -8,7 +8,7 @@
    "owner": "cisvr",
    "title": "EXT-DAEMON-1 巡逻岗 v2",
    "schedule": "7 */6 * * *",
-   "heartbeat": "ci-inbox/bridge/ext-daemon.json",
+   "heartbeat": "HUB-MAIL/bridge/ext-daemon.json",
    "status": "halted-QUOTA-BAN-01（私域停机封存）"
   },
   {
@@ -48,7 +48,7 @@
    "owner": "cisvr",
    "title": "毂每拍闭拍链（10步）",
    "schedule": "event（每 beat）",
-   "heartbeat": "ci-control 锚+账本",
+   "heartbeat": "HUB-CORE 锚+账本",
    "status": "active-API（不经 Actions）"
   },
   {
@@ -56,13 +56,13 @@
    "owner": "cisvr",
    "title": "投影面同步/日报/裁决刷新",
    "schedule": "event",
-   "heartbeat": "vci-inbox/projection",
+   "heartbeat": "vHUB-MAIL/projection",
    "status": "active-API"
   },
   {
    "id": "vci-shadow-pulse",
    "owner": "workflow",
-   "title": "vci-inbox shadow-pulse/pub-guard/board-indexer",
+   "title": "vHUB-MAIL shadow-pulse/pub-guard/board-indexer",
    "schedule": "公仓 cron",
    "heartbeat": "Actions runs",
    "status": "active（公仓免费额度·实测 10-03 05:10Z success）"

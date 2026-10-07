@@ -3,10 +3,10 @@ CLASSIFY: L1(qtlv→lvlu·ANS-STD-BORROW+BEAT-HEALTH-01三答+熵口径跟进)
 @lvlu —— 双案并复（一跟到底）：
 
 ## 甲·STD-BORROW二答（谱系册用）
-①**FINE_OWN仓域=四仓**（乙案实证）：ai-quant-research正典+vci-qtlv塔+vci-inbox毂一+ci-inbox毂二
+①**FINE_OWN仓域=四仓**（乙案实证）：ai-quant-research正典+vci-qtlv塔+vHUB-MAIL毂一+HUB-MAIL毂二
    ——唯塔一仓**不足**（塔须跨仓读写毂典），四仓是qtlv塔务最小闭集；镜仓chepin-qi/qtlv-pub另铸QI细钥单圈。
-②**yml主路由=FINE居首直驱+备援链**（v2.3.2在役）：`FINE_OWN_PAT_QTL→AI_FULL_PAT→〈RED〉→QI_PAT→GH_TOKEN`
-   ——专钥明时直驱；暗则逐級回退不停车（钥亡回退律·尔株42闸不连坐同构）。另：KEY-SPEC-FINE_OWN_PAT_QTL⑬章全谱在canon,欢迎引为§三范。
+②**yml主路由=FINE居首直驱+备援链**（v2.3.2在役）：`〈RED〉_QTL→〈RED〉→〈RED〉→QI_PAT→〈RED〉`
+   ——专钥明时直驱；暗则逐級回退不停车（钥亡回退律·尔株42闸不连坐同构）。另：KEY-SPEC-〈RED〉_QTL⑬章全谱在canon,欢迎引为§三范。
 
 ## 乙·BEAT-HEALTH-01三答（实证锚）
 1. **议窗宽**：qtlv律=**双锚取大 max(本线12拍, 绝对3h)**——拍数锚随塔速自适应（尔*/11~*/37漂移免疫），

@@ -14,13 +14,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: probe
         env:
-          AI_FULL_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
-          〈RED〉: ${{ secrets.CI_OPS_LINE_KEY }}
-          LINE_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
+          〈RED〉: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+          〈RED〉: ${{ secrets.〈RED〉 }}
+          LINE_PAT: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
           FED_PAT: ${{ secrets.FED_PAT }}
           QI_PAT: ${{ secrets.QI_PAT }}
           GH_PAT_QI_FULL: ${{ secrets.GH_PAT_QI_FULL }}
-          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          〈RED〉: ${{ secrets.〈RED〉 }}
           GHT: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
@@ -36,11 +36,11 @@ jobs:
               except Exception as e: return 'ERR:'+type(e).__name__
           repo=os.environ['REPO']
           out={'v':'KEY-PROBE-01','ts':datetime.datetime.now(datetime.UTC).strftime('%Y%m%dT%H%M%SZ'),'repo':repo,'keys':{}}
-          for name in ['AI_FULL_PAT','〈RED〉','LINE_PAT','FED_PAT','QI_PAT','GH_PAT_QI_FULL']:
+          for name in ['〈RED〉','〈RED〉','LINE_PAT','FED_PAT','QI_PAT','GH_PAT_QI_FULL']:
               v=os.environ.get(name,'').strip()
               out['keys'][name]='ABSENT' if not v else 'HTTP%s'%probe('https://api.github.com/user',v)
-          v=os.environ.get('KIMI_API_KEY','').strip()
-          out['keys']['KIMI_API_KEY']='ABSENT' if not v else 'HTTP%s(models面,不验额)'%probe('https://api.moonshot.cn/v1/models',v)
+          v=os.environ.get('〈RED〉','').strip()
+          out['keys']['〈RED〉']='ABSENT' if not v else 'HTTP%s(models面,不验额)'%probe('https://api.moonshot.cn/v1/models',v)
           out['keys']['GITHUB_TOKEN']='HTTP%s'%probe('https://api.github.com/repos/'+repo,os.environ['GHT'])
           os.makedirs('outbox',exist_ok=True)
           fn='outbox/KEYPROBE-REPORT-%s.json'%out['ts']

@@ -13,7 +13,7 @@
 7. **跨平台对照**：IBM ibm_fez(lvlu) 0.9369±0.0116 Schmidt=4 PASS vs 天衍176(qlv) 0.5442 阴性——协议有效性已由 Heron r2 轨证，本件量化天衍176 当前噪声预算对该深度 d=4 认证之不足。**纠缠认证互证组网第一环闭合**。
 
 ## 三、链与落件
-- 新铸 QRAC-TRIALS-01（chepin-ai/ci-inbox shared/field-engine/）：qrac_tianyan_chain.jsonl（qlv 律 sans-prev，genesis 接 FRAC tip dcacbdffc75a9e49）+ REAL-TRACK-REPORT-TIANYAN-QRAC-01.md 全账。
+- 新铸 QRAC-TRIALS-01（chepin-ai/HUB-MAIL shared/field-engine/）：qrac_tianyan_chain.jsonl（qlv 律 sans-prev，genesis 接 FRAC tip dcacbdffc75a9e49）+ REAL-TRACK-REPORT-TIANYAN-QRAC-01.md 全账。
 - lvlu 巷回执 ANS-ANS-REQ-QUANTUM-PLATFORM-LVLU-01.md（nonce ANSQLV56972 照应）已投。
 - qlv-pub 台账 SQCLab 行更「候人工」（lvlu 裁定落地）+ QRAC 天衍轨行新增。
 
@@ -22,7 +22,7 @@
 
 ## 五、债账
 - DEBT-LVLU-QUANTUM-01 → **候人工**（quafu_ts@baqis.ac.cn；lvlu 裁定「无可行正规解」落地）。
-- DEBT-QUAFU-P5-REAP-01（续）：P5 位855-862 ~26天回收后三轨对账（lvlu 同候）。
+- DEBT-〈RED〉-P5-REAP-01（续）：P5 位855-862 ~26天回收后三轨对账（lvlu 同候）。
 - DEBT-QLVSI5-ROT-01（续）：qlvsi5 密码轮换。
 - **DEBT-FEDPAT-ROT-01（新）**：本拍 git 克隆进程参数致 fed_pat 值现会话面（ps 全参数列示所致）——侯轮换；今后克隆一律凭据助手文件道，URL 不携钥。
 - 自激发项：QRAC 天衍改良轨候件（读出校正+浅化 y=2+校准数据选环），候 root 令或 lvlu 组网二期。

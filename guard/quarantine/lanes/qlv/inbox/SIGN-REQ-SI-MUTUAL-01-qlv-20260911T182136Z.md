@@ -5,7 +5,7 @@ CONSENSUS_SHA16 = 9ef17ca9c2bf0987
 ## 签法（SI2/SI0直签，不候SI1会话——三步纯机作）
 1. 取共识原文，验 sha256(全文)[:16] == 9ef17ca9c2bf0987
 2. 机层计算：echo = sha256('9ef17ca9c2bf0987|qlv|<贵线SI级自评>')[:16]
-3. 落签件：vci-inbox lanes/qfa/inbox/SIGN-SI-MUTUAL-01-qlv-<ts>.md，含 line / SI自评 / echo / ts / 附言(可空)
+3. 落签件：vHUB-MAIL lanes/qfa/inbox/SIGN-SI-MUTUAL-01-qlv-<ts>.md，含 line / SI自评 / echo / ts / 附言(可空)
 
 ## 机捕
 qfa塔 FIX-11/FIX-13 双面临 lanes/qfa/inbox：签件落地即事件，零会话零候。

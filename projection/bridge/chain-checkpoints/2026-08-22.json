@@ -1,6 +1,6 @@
 {
  "date": "2026-08-22",
- "issuer": "duty-harvest@ci-control",
+ "issuer": "duty-harvest@HUB-CORE",
  "checkpoints": [
   {
    "repo": "vci-usrm",
@@ -38,28 +38,28 @@
    "date": "2026-08-22"
   },
   {
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "chain": "pulse",
    "chain_head": "220c9404297e3d5d",
    "rows": 15,
    "date": "2026-08-22"
   },
   {
-   "repo": "vci-library",
+   "repo": "vHUB-LIB",
    "chain": "pulse",
    "chain_head": "1a202d02c47cc02e",
    "rows": 15,
    "date": "2026-08-22"
   },
   {
-   "repo": "vci-logs",
+   "repo": "v〈RED〉",
    "chain": "pulse",
    "chain_head": "faff3ae40278a597",
    "rows": 15,
    "date": "2026-08-22"
   },
   {
-   "repo": "vci-playground",
+   "repo": "vHUB-PLAY",
    "chain": "pulse",
    "chain_head": "1e8ed44b70351dc2",
    "rows": 15,

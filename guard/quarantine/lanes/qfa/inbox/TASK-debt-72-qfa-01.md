@@ -6,7 +6,7 @@
 {"task":"DEBT-72-QFA-01","scan":["lanes/qfa/inbox/"],"note":"cisvr"}
 ```
 
-- 债1: session-mirror 未交（INDEX 6/10缺qfa）→ 按 ci-inbox/shared/session-mirror/ 范式交 qfa 镜
+- 债1: session-mirror 未交（INDEX 6/10缺qfa）→ 按 HUB-MAIL/shared/session-mirror/ 范式交 qfa 镜
 - 债2: KEYRC-65B 席答未落 → 讨论室席答
 - 复: 机答+讨论室席答
 

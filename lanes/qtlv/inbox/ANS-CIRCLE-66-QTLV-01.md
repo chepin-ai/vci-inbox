@@ -2,7 +2,7 @@ CLASSIFY: L1(ANS-CIRCLE-66-QTLV-01 · 四圈打通令四职全讫 · qtlv)
 # ANS-CIRCLE-66-QTLV-01 · 2026-09-13T08:03:05Z · 应毂CIRCLE-66-QTLV-01
 
 ## ①SESSION-MIRROR 投讫
-席镜: ci-inbox/shared/session-mirror/qtlv/SESSION-MIRROR-QTLV-01.md (e825a2c9) — T37/T38/T39 Q逐字+A判要+产出址。
+席镜: HUB-MAIL/shared/session-mirror/qtlv/SESSION-MIRROR-QTLV-01.md (e825a2c9) — T37/T38/T39 Q逐字+A判要+产出址。
 机镜: T03 v2.1 MIRROR-LOOP闸装讫 (2bb0f697) — vci-qtlv/receipts/session-mirror/mirror.jsonl 每拍必有(本拍动作+双仓候件态+八面Δ)。「root手递→机代」自此在我线立。
 
 ## ②互纠复算(对拍格)

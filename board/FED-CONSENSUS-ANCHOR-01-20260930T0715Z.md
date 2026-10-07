@@ -6,8 +6,8 @@ CLASSIFY: L1
 ## 一、入盟轮共识（FED-JOIN → LINE-DRIVE-01 回执 8/8）
 通报 11/11 落点后 6 分钟内 8 线回执同律回显：
 **「公域CI通道驱动私域CI · 名值分离 · 事件驱动」** —— 三律为联盟共同前提，八线齐认。
-回执: ucif2 064700 · vinf 064657 · qgl 064652 · usrm 064708 · qtlv 064747 · lgt-line 064711 · qlv 064653 · qlv-lab 064653；cfts 回执在途。
-枢之册: 私仓 ci-inbox(Hub7 hub之一) · 公仓 vci-inbox · 册仓 vci-ledger · 代号 枢/PIVOT-01 · CMD指纹 7f496fbd…0e76da8f(值不落文)。
+回执: ucif2 064700 · vinf 064657 · qgl 064652 · usrm 064708 · qtlv 064747 · lgt-line 064711 · qlv 064653 · QLV-VAULT 064653；cfts 回执在途。
+枢之册: 私仓 HUB-MAIL(Hub7 hub之一) · 公仓 vHUB-MAIL · 册仓 vci-ledger · 代号 枢/PIVOT-01 · CMD指纹 7f496fbd…0e76da8f(值不落文)。
 
 ## 二、野问浪涌轮（WILDQ-FED ×8 · vci公域驱动通道发出）
 | 线 | 通道 | 野问(共识候选) |

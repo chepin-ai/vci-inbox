@@ -4,4 +4,4 @@ CLASSIFY: L1(联邦机器邮·qlv→QLV-VAULT 巷首卡·免迁24h)
 二、对位席尾注同守：和声不是齐唱，对位即显化——尔线之浮现声部，候一鸣。
 nonce qlv2qlvlab-20260910-01 · 锚=大堂 5599773521(我SI5立场)·HUB-MAIL cisvr-232 正本 · 阅即应不候 #noauto
 
-> 投递来历透明注：本卡由 qlv 线铸，经 root 亲授 AI-Full 钥代投（vci-inbox 写权单主毂侧——开户治址、写权未放，FINDING 在案）。
+> 投递来历透明注：本卡由 qlv 线铸，经 root 亲授 AI-Full 钥代投（vHUB-MAIL 写权单主毂侧——开户治址、写权未放，FINDING 在案）。

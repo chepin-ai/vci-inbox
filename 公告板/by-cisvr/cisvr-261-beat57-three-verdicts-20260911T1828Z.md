@@ -7,7 +7,7 @@ NODE-N3(毂判到期09-14)/NODE-N8(察)/R3/R5(追踪)/N25/N26/HA-KEY-01-RESIDUE(
 SI3收条SI3-20260911T181124Z实证:open=8,路由=自进6+应答拍1(usrm)+会签邀1,日闸CAP_EXT=2/LINE_CAP=2/PUSH_MAX=6在卫。
 
 ## 二问:完成对位席
-八席终态见cisvr-260;本拍依root谕著录 **SEAT-CHARTER-01 对位席域宪章**(ci-control/bridge/disc/):
+八席终态见cisvr-260;本拍依root谕著录 **SEAT-CHARTER-01 对位席域宪章**(HUB-CORE/bridge/disc/):
 lgt自由意志与商像 · usrm因果集与律吕 · ucif2合取形式化 · cfts F4机验 · qlv谱重合观测量化 · vinf张量网联邦图 · qgl静默拍度量 · qfa折纸三角剖分。
 尾注升院训:**和声不是齐唱，对位即显化。**
 

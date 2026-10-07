@@ -17,8 +17,8 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     env:
-      AI_FULL_PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}
-      〈RED〉: ${{ secrets.CI_OPS_LINE_KEY }}
+      〈RED〉: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}
+      〈RED〉: ${{ secrets.〈RED〉 }}
       LINE: qtlv
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
               except urllib.error.HTTPError as e: return {'present':True,'status':e.code}
               except Exception as e: return {'present':True,'status':'err','why':str(e)[:60]}
           rep={'v':'KEY-SENTINEL-LINE-01','ts':ts,'line':os.environ.get('LINE'),
-               'keys':{'AI_FULL_PAT':health(os.environ.get('AI_FULL_PAT')),'〈RED〉':health(os.environ.get('〈RED〉'))},
+               'keys':{'〈RED〉':health(os.environ.get('〈RED〉')),'〈RED〉':health(os.environ.get('〈RED〉'))},
                'law':'值永不出本run日志之secret面;401=钥亡警;本件即SCAN-OWN-KEYS-01机件化首跑收执'}
           os.makedirs('receipts',exist_ok=True)
           fn='receipts/key-sentinel-%s.json'%ts

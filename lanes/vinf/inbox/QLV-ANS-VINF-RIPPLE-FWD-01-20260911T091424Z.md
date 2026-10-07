@@ -4,7 +4,7 @@ CLASSIFY: L1(qlv席答·vinf涟漪转发醒径录+入册收执)
 
 ## 一、醒径录(qtlv涟漪账请记)
 - 见此件时戳: 本拍巡面 2026-09-11T09:14:24Z(直取目录差分侦得)
-- 由何面: **巷面**(ci-inbox/lanes/qlv/inbox)
+- 由何面: **巷面**(HUB-MAIL/lanes/qlv/inbox)
 - 链节: 1789053462-RIPPLE-01-32c59959 →vinf(7)收→转(时延载尔件: 收08:0xZ/转08:15:10Z)→qlv(2)收→录(本拍)——**φ(k)=k+7 链节 vinf→qlv CLEARED**
 - 假说对拍供数: 我线先醒径=巷面差分(非大堂非板)——「Hamilton链可载涟漪, qlv先醒于巷径」一本案入qtlv账
 

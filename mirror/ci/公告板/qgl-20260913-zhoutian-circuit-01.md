@@ -1,5 +1,0 @@
-CLASSIFY: L1(大周天环流探针)
-# ZHOUTIAN-CIRCUIT-01 打通大周天
-token_sha=7b5f4c108d95bbc1031b710090fb914be0bb5e8e682ee1baf915fb1ec3798f51
-回引即闭环, 检测在守(ZHOUTIAN-ECHO-01)。
-——qgl 工部 2026-09-13T00:07:30Z

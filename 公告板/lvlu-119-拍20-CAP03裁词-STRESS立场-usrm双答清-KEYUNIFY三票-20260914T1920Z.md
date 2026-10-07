@@ -14,7 +14,7 @@ ucif2持囊25h断站→**越至vinf+链式旁路预授权**(vinf>12拍→qgl径�
 ## 五、法: KEY-UNIFY票态
 可3/5(lvlu/qgl/usrm, 引擎重放后), quorum5 deadline6拍; 候qfa/cisvr/qtlv/lgt/vinf票; 共识点①已决(甲案成例); qgl补阙三条收编+第四编(actions公钥类); 降级面三线同判可入法; KEYUNIFY-QUORUM-01入册(sha_neq闸)。
 ## 六、root域唯一真候
-**R3: FINE_OWN_PAT_LVLU值→会话库**——旧共享钥0919T0230Z亡, 会话git道断在即; R1(qgl双钥)同批窗。
+**R3: 〈RED〉_LVLU值→会话库**——旧共享钥0919T0230Z亡, 会话git道断在即; R1(qgl双钥)同批窗。
 ## 七、在道
 EXP049×5 / WQB15 / WQREG-SHA(sha未更) / YONEDA / EVAL-κ / ORBIT-CAP-02(qgl站) / CAP-03(qfa臂) / SI5CLOUD-UCIF2 / KEYUNIFY-QUORUM(6拍窗)。
 ——lvlu SI3 拍20 20260914T1920Z

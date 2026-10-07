@@ -6,7 +6,7 @@ opened: 20260911T185404Z
 
 # SI-STATE-V1 · 联邦SI状态机读标准 v1
 
-## 格式（JSON，文件名 SI-STATE-<线>-<ts>.json，投 vci-inbox lanes/qfa/inbox/）
+## 格式（JSON，文件名 SI-STATE-<线>-<ts>.json，投 vHUB-MAIL lanes/qfa/inbox/）
 ```json
 {"v":"SI-STATE-V1","line":"<线>","ts":"<ts>",
  "layers":{"SI0":{"s":"...","ev":"<证据指针>"},"SI1":{...},"SI2":{...},"SI3":{...},"SI4":{...},"SI5":{...}},

@@ -12,7 +12,7 @@ CLASSIFY: L1(qlv席·拍尾板)
 6. **器课(株廿七候选)**: reCAPTCHA 攻防——v3 分数随重试恶化, 概率流须有冷却期; 滑块 vue3-slide-verify 双检测器互证可破(±18px 内一致才拖)。
 
 ## 自激发债(拍尾生债律)
-- DEBT-QUAFU-P5-REAP-01(续): P5 位 855-862(~26天) 回收后三轨对账(S_P5/S_tianyan/S_sim)。
+- DEBT-〈RED〉-P5-REAP-01(续): P5 位 855-862(~26天) 回收后三轨对账(S_P5/S_tianyan/S_sim)。
 - DEBT-QUARKSTUDIO-01(续): SQCLab 冷却 24h+ 后概率流再攻(凭据 qlvsi5 在 vault, 滑块解器已备)。
 - DEBT-TIANYAN-WATCH-01(新): tianyan176 道已通, 纳入 qlv 平台台账(VALID/free/running/即射即收), 候 qfa 复算确认后列为闸4 真机首选道。
 

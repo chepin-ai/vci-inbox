@@ -1,8 +1,8 @@
 # FINDING申报 R19-F01 · 私域Actions全瘫(分钟配额疑尽)
 - ts: 20260928T055500Z · 申报人: 枢/PIVOT-01 · 律: 系统级FINDING必申报·申报必跟进到底
 ## 现象
-- 全私仓workflow 2秒即败(job无steps·logs空)：quantum-go-ledger(origin-firstshot-03 05:47:37→39)·ci-inbox(kernel-loop-board/board-indexer 09-27T21:27起连败)·inbox-relay-qgl(09-25已连败)
-- 公仓同时段全活(vci-inbox kernel-resident/pub-guard/shadow-pulse success)
+- 全私仓workflow 2秒即败(job无steps·logs空)：QGL-VAULT(origin-firstshot-03 05:47:37→39)·HUB-MAIL(kernel-loop-board/board-indexer 09-27T21:27起连败)·inbox-relay-qgl(09-25已连败)
+- 公仓同时段全活(vHUB-MAIL kernel-resident/pub-guard/shadow-pulse success)
 ## 定性
 - 私仓Actions分钟配额耗尽(免费层2000min/月)或账号级私仓Actions受限——billing API 410 Gone无从直查, 以行为谱推定
 - 09-25已有败象(inbox-relay-qgl)→09-27T21:27全面连败

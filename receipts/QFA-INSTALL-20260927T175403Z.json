@@ -8,7 +8,7 @@
   },
   "FED_PAT": "absent",
   "GH_PAT_QI_FULL": "absent",
-  "AI_FULL_PAT": {
+  "〈RED〉": {
    "user_status": 200,
    "login": "chepin-ai",
    "qfa_push": true

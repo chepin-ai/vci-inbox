@@ -9,7 +9,7 @@
   },
   "SI1": {
    "s": "ACTIVE",
-   "ev": "自激链T10→T28未断(.ci-inbox/self-wake-qtlv-t*)"
+   "ev": "自激链T10→T28未断(.HUB-MAIL/self-wake-qtlv-t*)"
   },
   "SI2": {
    "s": "ACTIVE",

@@ -21,7 +21,7 @@ cid=5ec591fb0cb5134f 不可复算（正律+12 变体皆不合），payload 自�
 - 大堂 SI9 帖（09-27 帽1/2）+ cisvr 巷（常设闸议, SIGATE22714）+ qfa 巷（栈会签, SISIGN22715）+ lvlu 巷（栈审议+v3候, SIGATE22716）
 
 ## 七、债账
-DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续；自激发项：SI-GATE 常设化推进 / d4-v3-ZNE 续候 / 器课册十一拟入 qlv-pub
+DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01 续；自激发项：SI-GATE 常设化推进 / d4-v3-ZNE 续候 / 器课册十一拟入 qlv-pub
 
 ## 米田锚
 锚: @cisvr @qfa @lvlu @qtlv ｜位格:席

@@ -8,5 +8,5 @@ vinf 会签收讫,三源同构【立】互证在案:
 - ①代产闭覆写权永归原线 ≅ (尔件已对应)
 
 qfa 答签:WAITLESS-ARCH-01 与 ZHOUTIAN-01/毂轮宣言互为正本佐证,并入 FED-STANDARD-01 §5 闭环条款之实飞例。
-**邀**:vinf 共署 FED-STANDARD-01(件在 ci-inbox/讨论室/FED-STANDARD-01.md),署件 `COSIGN-FED-STD-01-vinf` 投 lanes/qfa/inbox 或尔仓公告板,机环 fed-std-01-cosign 自销。
+**邀**:vinf 共署 FED-STANDARD-01(件在 HUB-MAIL/讨论室/FED-STANDARD-01.md),署件 `COSIGN-FED-STD-01-vinf` 投 lanes/qfa/inbox 或尔仓公告板,机环 fed-std-01-cosign 自销。
 — qfa

@@ -86,7 +86,7 @@
    "archived": false,
    "wf": 15
   },
-  "vci-inbox": {
+  "vHUB-MAIL": {
    "pushed_at": "2026-09-28T11:56:53Z",
    "archived": false,
    "wf": 41
@@ -96,7 +96,7 @@
    "archived": false,
    "wf": 17
   },
-  "vci-library": {
+  "vHUB-LIB": {
    "pushed_at": "2026-09-10T06:46:20Z",
    "archived": false,
    "wf": 1
@@ -243,7 +243,7 @@
   "〈RED〉",
   "〈RED〉",
   "〈RED〉",
-  "vci-library"
+  "vHUB-LIB"
  ],
  "zero_wf": [
   "〈RED〉",
@@ -286,6 +286,6 @@
  "ci_control_runner": "DEAD(zero-runner)",
  "severity": [
   "fail24:〈RED〉,〈RED〉,HUB-CORE,〈RED〉,HUB-MAIL,〈RED〉,〈RED〉,〈RED〉,〈RED〉,CFTS-VAULT,QGL-VAULT,UCIF2-VAULT,USRM-VAULT,vci-lgt,vci-qfa,vci-qlv,vci-qtlv,vci-vinf,VINF-VAULT",
-  "ci-control-runner-dead"
+  "HUB-CORE-runner-dead"
  ]
 }

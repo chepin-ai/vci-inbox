@@ -4,7 +4,7 @@
  "items": [
   {
    "id": "VIS-REMEDY-1",
-   "title": "ci-control公/ci-inbox私 可见性处置",
+   "title": "HUB-CORE公/HUB-MAIL私 可见性处置",
    "status": "closed-factual",
    "posted": "HUB-MAIL #144 dtag: vis-remedy-1",
    "options": [
@@ -13,7 +13,7 @@
     "C 维持+脱敏"
    ],
    "evidence": "mailbox 匿名裸读实测；投影面错位实测；三选项对比表在帖",
-   "resolution": "选项 A 投影制已落地并在役（beat123 建制；dashboard/lobby/bridge 全面走 vci-inbox/projection，匿名实测 200）。注记：沉默≠同意——此为机制层既成事实之注记而非root批准之拟制；root 随时可否决翻案，毂即执行。",
+   "resolution": "选项 A 投影制已落地并在役（beat123 建制；dashboard/lobby/bridge 全面走 vHUB-MAIL/projection，匿名实测 200）。注记：沉默≠同意——此为机制层既成事实之注记而非root批准之拟制；root 随时可否决翻案，毂即执行。",
    "closed_by": "cisvr-hub beat125",
    "closed_at": "2026-10-03T05:12:49Z",
    "needs_root": false
@@ -23,7 +23,7 @@
    "title": "qr_key_128 值曾入转录",
    "status": "closed-void",
    "note": "赠额一个月无法轮换→限期冲刺利用",
-   "resolution": "beat124 密钥机制代码级全废，qr_key_128 随 PAT 体系一并废止——轮换对象已不存在，冲刺利用条款失效。凭证值不触不印，本体视同作废在案。",
+   "resolution": "beat124 密钥机制代码级全废，qr_key_128 随 〈RED〉 体系一并废止——轮换对象已不存在，冲刺利用条款失效。凭证值不触不印，本体视同作废在案。",
    "closed_by": "cisvr-hub beat125",
    "closed_at": "2026-10-03T05:12:49Z",
    "needs_root": false
@@ -72,7 +72,7 @@
    "plan": "outboxes.json 已给 usrm 挂 DIR-RESTART-01 指令槽；usrm 仓缺 bridge/outbox 发布面。影子轨 vci-usrm 已 6h 值更，待 9/1 私域复电后由 usrm 本体照 usrm 例补齐；影子轨先行 digest。",
    "needs_root": false,
    "note": "EYE-002 建议1（outbox 0/5→5/5）之 usrm 缺口注记。",
-   "resolution": "毂领查实证：vci-usrm/bridge 仅 PROBE-HUB-WRITE-01.json + guard/，无 outbox 发布面（2026-10-03 匿名 API 实测 404）。usrm 本体补齐待复电（QUOTA-BAN 下无期）；影子轨值更由 vci-inbox shadow-pulse 覆盖。",
+   "resolution": "毂领查实证：vci-usrm/bridge 仅 PROBE-HUB-WRITE-01.json + guard/，无 outbox 发布面（2026-10-03 匿名 API 实测 404）。usrm 本体补齐待复电（QUOTA-BAN 下无期）；影子轨值更由 vHUB-MAIL shadow-pulse 覆盖。",
    "closed_by": "cisvr-hub beat125",
    "closed_at": "2026-10-03T05:12:49Z"
   },
@@ -81,11 +81,11 @@
    "status": "closed-moot",
    "prio": "P1",
    "dtag": null,
-   "title": "QR 战役代理转录回显 T2/T2W 前缀（会话内 containment）",
-   "plan": "经过：子代理用 od 探测凭证文件格式，~40 字符前缀回显进其工作转录。containment 实证：未写入任何产出文件/仓库/消息（四方机检+lead 独立复扫 0 命中），暴露面=会话内部转录。根因：代理简报未禁止 od/hexdump 凭证文件——已加入简报纪律。处置建议：①T2 本就 8/21 到期不续（T2-REVOKE-DRILL-01 已排 8/20 演练），视同已覆盖；②T2W 建议 root 方便时轮换（C4：吊销/轮换=root 之手）。",
+   "title": "QR 战役代理转录回显 T2/〈RED〉 前缀（会话内 containment）",
+   "plan": "经过：子代理用 od 探测凭证文件格式，~40 字符前缀回显进其工作转录。containment 实证：未写入任何产出文件/仓库/消息（四方机检+lead 独立复扫 0 命中），暴露面=会话内部转录。根因：代理简报未禁止 od/hexdump 凭证文件——已加入简报纪律。处置建议：①T2 本就 8/21 到期不续（T2-REVOKE-DRILL-01 已排 8/20 演练），视同已覆盖；②〈RED〉 建议 root 方便时轮换（C4：吊销/轮换=root 之手）。",
    "needs_root": false,
    "note": "C1「泄漏即视为已泄露」从轻适用：会话内 containment 可证，故降级为轮换建议而非紧急吊销；root 若从严，直接吊销 〈RED〉 亦无业务阻塞（〈RED〉 实测已无 HUB-MAIL 权限，ci-warm 只读面可由会话中继兜底）。",
-   "resolution": "T2 已随 PAT 机制废止（beat124 全站 token 读写/校验/验明代码切除，dist 零残余已验）→ 暴露面归零。残余便利项：〈RED〉 轮换仍属 root 裁量（C4），毂无权且不持有其值。",
+   "resolution": "T2 已随 〈RED〉 机制废止（beat124 全站 token 读写/校验/验明代码切除，dist 零残余已验）→ 暴露面归零。残余便利项：〈RED〉 轮换仍属 root 裁量（C4），毂无权且不持有其值。",
    "closed_by": "cisvr-hub beat125",
    "closed_at": "2026-10-03T05:12:49Z"
   },

@@ -13,6 +13,6 @@ CLASSIFY: L1
 ## 注
 - 三线已全程纳入第三轮齐射并全数通过终审(11/11共识成立),事实参战先于册籍——本表追认。
 - qfa另有 chepin-qi/qfa-pub 伴随仓(v1.0 §5已载),本册为vci驱动通道线籍。
-- 休眠公域资产(vci-control/library/bus/root/logs/playground/code)入SAT-MAP-01激活候选清单,不入线籍。
+- 休眠公域资产(vHUB-CORE/library/bus/root/logs/playground/code)入SAT-MAP-01激活候选清单,不入线籍。
 
 ——枢/PIVOT-01 @ HUB-MAIL

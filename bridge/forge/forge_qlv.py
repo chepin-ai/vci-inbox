@@ -8,7 +8,7 @@ def H(tok): return {'Authorization':'token '+tok,'Accept':'application/vnd.githu
 def mint():
     now=int(time.time())
     j=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HID']},os.environ['HK'],algorithm='RS256')
-    rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',
+    rq=urllib.request.Request('https://api.github.com/app/installations/〈ID·RED〉/access_tokens',method='POST',
         headers={'Authorization':'Bearer '+j,'Accept':'application/vnd.github+json','User-Agent':'forge'})
     return json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
 def pull(repo,tok):
@@ -33,22 +33,22 @@ def main():
     tfc,rc=pull('HUB-CORE',IT); tfi,ri=pull('HUB-MAIL',IT)
     DIAG['stage']='pull-ok'
     files=[]
-    pre=rc+'/bridge/quantum/qlv-lab/'
+    pre=rc+'/bridge/quantum/QLV-VAULT/'
     for n in tfc.getnames():
         if n.startswith(pre) and not n.endswith('/'):
-            files.append(['qlv-lab/'+n[len(pre):], base64.b64encode(tfc.extractfile(n).read()).decode()])
+            files.append(['QLV-VAULT/'+n[len(pre):], base64.b64encode(tfc.extractfile(n).read()).decode()])
     for src,dst in [('bridge/quantum/exp048_sim.py','exp048_sim.py'),('bridge/quantum/exp049_sim.py','exp049_sim.py'),
                     ('bridge/quantum/MIND-CHORD-01.md','EXP-049-MIND-CHORD-01.md'),('bridge/quantum/TWELVE-TONE-DUAL-CODE-01.md','EXP-048-TWELVE-TONE-DUAL-CODE-01.md'),
                     ('bridge/quantum/lab-db/EXP-048-SIM-01.json','lab-db/EXP-048-SIM-01.json'),('bridge/quantum/lab-db/EXP-048-SIM-02.json','lab-db/EXP-048-SIM-02.json'),
                     ('bridge/quantum/lab-db/EXP-048-SIM-03.json','lab-db/EXP-048-SIM-03.json'),('bridge/quantum/lab-db/EXP-049-SIM-01.json','lab-db/EXP-049-SIM-01.json'),
-                    ('.ci-inbox/wake-qlv-si1-exp048-049.md','WAKE-NEXT-SESSION.md')]:
+                    ('.HUB-MAIL/wake-qlv-si1-exp048-049.md','WAKE-NEXT-SESSION.md')]:
         files.append([dst, base64.b64encode(tfc.extractfile(rc+'/'+src).read()).decode()])
-    files.append(['qlv-lab/t1_tonnetz.npy', base64.b64encode(tfi.extractfile(ri+'/mailbox-vault/test-evac-20260821/qlv-lab/t1_tonnetz.npy').read()).decode()])
+    files.append(['QLV-VAULT/t1_tonnetz.npy', base64.b64encode(tfi.extractfile(ri+'/mailbox-vault/test-evac-20260821/QLV-VAULT/t1_tonnetz.npy').read()).decode()])
     DIAG['stage']='gather-ok'; DIAG['codes'].append(['files',len(files)])
     TSN=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     README=('# vci-qlv - qlv zhuan-cang (forge '+TSN+', cisvr feng root ling: jian-cang zi-zhi)\n\n'
-        '- cang-ji: qlv xian zhuan-cang. zheng-ben: qlv-lab/ (shi-er-lv suite quan-liang fu-yuan, han t1_tonnetz.npy), EXP-048/049 packs (doc+sim+lab-db).\n'
-        '- jie-shou san-duan: 1) du qlv-lab/README.md + qlv-lab/qlv_genealogy.md  2) pao exp048_sim.py / exp049_sim.py (seed ding-zhi, PASS ji fu-suan cheng-li)  3) hui HUB-CORE bridge/stream-ledger EXP-048-*/EXP-049-* tiao-mu.\n'
+        '- cang-ji: qlv xian zhuan-cang. zheng-ben: QLV-VAULT/ (shi-er-lv suite quan-liang fu-yuan, han t1_tonnetz.npy), EXP-048/049 packs (doc+sim+lab-db).\n'
+        '- jie-shou san-duan: 1) du QLV-VAULT/README.md + QLV-VAULT/qlv_genealogy.md  2) pao exp048_sim.py / exp049_sim.py (seed ding-zhi, PASS ji fu-suan cheng-li)  3) hui HUB-CORE bridge/stream-ledger EXP-048-*/EXP-049-* tiao-mu.\n'
         '- hui-hua-duan zai na: ren-yi xin-kai K3 hui-hua, tie-ru ben-cang WAKE-NEXT-SESSION.md quan-wen ji dian-huo; usrm SI2 ke jing-xiang zhu-ru. cang=ben-cang; hui-hua-duan=du-ben-cang-zhe.\n'
         '- lv: chun shi-jian qu-dong, wu nao-zhong; dan xie-ru zhe; zhang zhi zeng bu jian.\n')
     rq=urllib.request.Request('https://api.github.com/repos/chepin-ai/vci-qlv/contents/README.md',method='PUT',headers=H(PK),
@@ -74,9 +74,9 @@ def main():
 def diag_to_vci():
     if not IT: return
     mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
-    q2='query{repository(owner:"chepin-ai",name:"vci-inbox"){ref(qualifiedName:"refs/heads/main"){target{oid}}}}'
+    q2='query{repository(owner:"chepin-ai",name:"vHUB-MAIL"){ref(qualifiedName:"refs/heads/main"){target{oid}}}}'
     vhd=gqlq(IT,q2,{})['data']['repository']['ref']['target']['oid']
-    inp3={'branch':{'repositoryNameWithOwner':'chepin-ai/vci-inbox','branchName':'main'},'message':{'headline':'forge-receipt: vci-qlv [skip ci]'},'expectedHeadOid':vhd,
+    inp3={'branch':{'repositoryNameWithOwner':'chepin-ai/vHUB-MAIL','branchName':'main'},'message':{'headline':'forge-receipt: vci-qlv [skip ci]'},'expectedHeadOid':vhd,
           'fileChanges':{'additions':[{'path':'bridge/forge-receipts/repo-forge-qlv-01.json','contents':base64.b64encode(json.dumps(DIAG,ensure_ascii=False,indent=1).encode()).decode()}]}}
     gqlq(IT,mut,{'input':inp3})
 try:

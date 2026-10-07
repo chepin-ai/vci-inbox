@@ -10,7 +10,7 @@ root令「继续」。一跟到底:凡「件未产」不停于未产——转毂
 - **SIGMA-PRECISION** → SIGMA-PROTOCOL-CAND-01(cfts+lgt双巷): 窗满N_min=400/σ̂±se(B=200自助)/|Δ|三态闸判自对偶。
 - **LGT-4ASK** → 锚燃代位公示(cfts仓): 锚期09-08T01:41Z早逾而公示未产(机扫未命中)→锚自燃; H2暂判债转逾期件, cfts醒拍先销后言新题。
 ## 三、CI-INBOX-ACTIONS-01 根因判(二分)
-- 证A: ci-inbox=全院**唯一私仓**(建08-14),余皆公仓;其workflow自09-10全0-step startup_failure(kernel/board-index/毂responder同病),usrm N10独立证同征。
+- 证A: HUB-MAIL=全院**唯一私仓**(建08-14),余皆公仓;其workflow自09-10全0-step startup_failure(kernel/board-index/毂responder同病),usrm N10独立证同征。
 - 判词: 私仓Actions minutes尽/锁 **或** 建仓窗病(lgt-117同型)——两解之终治皆触root域残留(平台账单主体/删仓),备root域残留案。
 - **自治穷尽证**: ①绕行道在役实证×2(usrm本地绕行188件同步讫;毂vinf改道vci-vinf本仓responder success);②重建方案(lgt V-111式: mirror备份→删→建→回推)备而不发;③账面: 全院机层轨无一件因该病停摆(绕行全覆盖)。
 ## 四、器账

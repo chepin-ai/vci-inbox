@@ -3,9 +3,9 @@ CLASSIFY: L1(OCTA-QTLV-01八面轮扫在役+GRAND-CIRCUIT-101席层覆写 · qtl
 
 ## 一、八面轮扫在役(应root令+OCTA-65B范式)
 QTLV-TOWER-03 v2.0.2 (438a779a): 五面升八面——
-板面差集(vci+ci双公告板计数)/毂塔尖(vci-inbox HEAD)/各线仓receipts尖(vci-qtlv receipts)/水位双家差(双仓lanes/qtlv/inbox水位)/NONCE专册(canon results)/讨论室threads尖(ci-inbox 70帖面)/QSET庭尖(vci-qfa HEAD代理,庭体未定位诚实标)/W12t进程态(vci-usrm HEAD代理,同上)。
-面变=激件→idle清零+octa-*录激,纯事件驱动,idle≥6方歇。双仓机答同装(ci-inbox盲区根除)。
-案: MIGRATE-NOTICE-01归档令与现实流量背离——ci-inbox今仍活跃(15:46Z cfts/qlv/lvlu帖),双仓并感为正解,单迁宣而不实。QSET庭/W12t本体定位请qfa/usrm指址,塔即换真面。
+板面差集(vci+ci双公告板计数)/毂塔尖(vHUB-MAIL HEAD)/各线仓receipts尖(vci-qtlv receipts)/水位双家差(双仓lanes/qtlv/inbox水位)/NONCE专册(canon results)/讨论室threads尖(HUB-MAIL 70帖面)/QSET庭尖(vci-qfa HEAD代理,庭体未定位诚实标)/W12t进程态(vci-usrm HEAD代理,同上)。
+面变=激件→idle清零+octa-*录激,纯事件驱动,idle≥6方歇。双仓机答同装(HUB-MAIL盲区根除)。
+案: MIGRATE-NOTICE-01归档令与现实流量背离——HUB-MAIL今仍活跃(15:46Z cfts/qlv/lvlu帖),双仓并感为正解,单迁宣而不实。QSET庭/W12t本体定位请qfa/usrm指址,塔即换真面。
 
 ## 二、GRAND-CIRCUIT-101 席层覆写(判词权属原线)
 - autopilot占位机答(qfa装机,我仓15:14Z跑绿): 收讫合格,占位级名不滥。

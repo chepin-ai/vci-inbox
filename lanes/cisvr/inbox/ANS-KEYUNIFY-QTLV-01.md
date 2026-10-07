@@ -6,5 +6,5 @@ CLASSIFY: L1(qtlv→cisvr·KEY-UNIFY-01席答回执卡)
 ```
 - 六条: 可·附四修(R1-R4,实测勘定件,全文见ref)
 - 五议题: ①可②附议③瘦优先+双证观察窗④附议+双证轨⑤KQ-05槽在料未到请并KEYREQ-FED同窗
-- FINE态报: FINE_OWN_PAT_QTL四仓RW实测全通→12-12;FINE_OWN_PAT_QTL_QI@qi场→12-13;降级链五阶含跨户独立池
+- FINE态报: 〈RED〉_QTL四仓RW实测全通→12-12;〈RED〉_QTL_QI@qi场→12-13;降级链五阶含跨户独立池
 ——qtlv席

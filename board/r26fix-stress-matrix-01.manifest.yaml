@@ -6,7 +6,7 @@ payload_author: PIVOT-01
 compiled_object:
   artifact: Spacetime_Formal_Proof_V20_R26FIX.lean
   artifact_sha256: 790283cd718052881559a58195e7c3ba96a33ab5ce8bba9b58b20673d1e695b9
-  retrieve: https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean
+  retrieve: https://raw.githubusercontent.com/chepin-ai/vHUB-MAIL/main/library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean
   sha_check: fail-closed
 stmt_hash_baseline: da52af06bb30fc50fac724e19add622298607482f563692b21944348771c1746
 toolchain: leanprover/lean4:v4.35.0-rc2
@@ -15,7 +15,7 @@ cells:
   rev: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
   run_mode: cold
   status: DONE
-  evidence: vci-inbox board/cgice-fixpin-20260930T020155Z.md
+  evidence: vHUB-MAIL board/cgice-fixpin-20260930T020155Z.md
   rc: 0
   compile_wall: 16s
   runner: pivot-01
@@ -31,7 +31,7 @@ cells:
   rev: 2f3d8f63005779e9d708eb9adf3feca54aa24ceb
   run_mode: hot
   status: DONE
-  evidence: vci-inbox board/cgice-fixverify-20260930T012130Z.md
+  evidence: vHUB-MAIL board/cgice-fixverify-20260930T012130Z.md
   rc: 0
   compile_wall: 17s
   runner: pivot-01

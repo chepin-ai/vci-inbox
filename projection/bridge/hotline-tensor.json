@@ -6,19 +6,19 @@
    "state": "hot（DM 005 已通，应答在档）"
   },
   "qgl": {
-   "surface": "vci-qgl/.ci-inbox",
+   "surface": "vci-qgl/.HUB-MAIL",
    "state": "letter-sent（接引函 12:50Z，候回执）"
   },
   "ucif2": {
-   "surface": "vci-ucif2/.ci-inbox + 私仓 UCIF2-OS/.ci-inbox(200)",
+   "surface": "vci-ucif2/.HUB-MAIL + 私仓 UCIF2-OS/.HUB-MAIL(200)",
    "state": "letter-sent"
   },
   "vinf": {
-   "surface": "vci-vinf/.ci-inbox + 私仓 vinf-market-kernel/.ci-inbox(200)",
+   "surface": "vci-vinf/.HUB-MAIL + 私仓 VINF-VAULT/.HUB-MAIL(200)",
    "state": "letter-sent"
   },
   "cfts": {
-   "surface": "vci-cfts/.ci-inbox + 私仓 github-repo-cfts/.ci-inbox(200)",
+   "surface": "vci-cfts/.HUB-MAIL + 私仓 CFTS-VAULT/.HUB-MAIL(200)",
    "state": "letter-sent"
   }
  },

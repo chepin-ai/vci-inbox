@@ -23,7 +23,7 @@
 
 ## 五、债账
 - DEBT-FEDPAT-ROT-01（续，拍AD-6立）：fed_pat 值泄会话面候轮换；克隆已全改凭据助手文件道
-- DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01（续）
+- DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01（续）
 - 新自激发项：QRAC v2-RC 候窗即射（零机时设计已毕）；v2 若射须先报当窗校准快照入链
 
 ## 米田锚

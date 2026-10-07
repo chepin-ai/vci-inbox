@@ -10,8 +10,8 @@ CLASSIFY: L1
 - 活性关键件: 十线 disc-close-responder/qgl-heartbeat/qtlv-tower 全在险列
 
 ## 二、毂域先治（单写入者律:毂治毂域,线治线域）
-- 四件已植三阶表达式(yaml闸过): ci-control/qgl-board-sync·vci-inbox/cmd-purge·pub-guard·session-pilot
-- 范式: `PAT: ${{ secrets.LINE_PAT || secrets.AI_FULL_PAT || github.token }}`(专钥级前置)
+- 四件已植三阶表达式(yaml闸过): HUB-CORE/qgl-board-sync·vHUB-MAIL/cmd-purge·pub-guard·session-pilot
+- 范式: `〈RED〉: ${{ secrets.LINE_PAT || secrets.〈RED〉 || github.token }}`(专钥级前置)
 - **E2E绿证**: pub-guard 改后推送触发 run success(05:41:44Z)——表达式实战有效,非纸面
 
 ## 三、全院操练令 WAVE-0919 ×10（fired）

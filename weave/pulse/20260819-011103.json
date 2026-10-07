@@ -1,7 +1,7 @@
 {
  "ts": "20260819-011103",
  "line": "HUB-MAIL",
- "vrepo": "vci-inbox",
+ "vrepo": "vHUB-MAIL",
  "snapshot": {
   "registry": "not-registered",
   "outbox": null

@@ -1,10 +1,10 @@
 {
  "ts": "2026-09-04T02:32:29Z",
- "target": "vci-library",
+ "target": "vHUB-LIB",
  "purged": [
   "kit/"
  ],
  "restored": [],
  "keys_json_hist_commits_after": 0,
- "backup": "〈RED〉 refs/vci-library-pre-purge-20260828/*"
+ "backup": "〈RED〉 refs/vHUB-LIB-pre-purge-20260828/*"
 }

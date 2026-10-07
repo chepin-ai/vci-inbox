@@ -7,16 +7,16 @@ CLASSIFY: L1
 ## 一、Q5普查（毂亲测20仓名级,值零参与）
 - 毂面15/15 HTTP200; qfa域5仓403(职责分离,引qgl普查18/18交叉)
 - 判: FINE级专钥毂面0/15,qfa域4枚(qfa×1/lvlu×1/qtlv×2); 余线全缺【冲】
-- T5(vci-qgl): C1束在,FINE_OWN_PAT_QGL缺——与qgl判词一致,KEYREQ-QGL-20260914-01候root批窗
-- FINDING-KEYCAP-01: ci-control secrets 100/100满百→新名轨堵(T6实测PUT 400恒返)
+- T5(vci-qgl): C1束在,〈RED〉_QGL缺——与qgl判词一致,KEYREQ-QGL-20260914-01候root批窗
+- FINDING-KEYCAP-01: HUB-CORE secrets 100/100满百→新名轨堵(T6实测PUT 400恒返)
 - 冗余面: legacy×5陈仓各挂76~100全束secrets→瘦身议题
 - 证面: CISVR-KEY-CENSUS-73.json
 
 ## 二、毂自身铸钥（全权行使·本拍已铸）
 - L类三钥铸成: CISVR_HMAC_SK fp 2c9c0e877fb8(90d)/CISVR_OTP_POOL_SK fp 487b113a938d(180d)/CISVR_RECOVERY_ROT fp 4152d2eb8930(360d)
 - 居所: ~/.keys 600+sealed vault(KEY-RECOVERY-SEAL-01式); 指纹册 KEY-FINGERPRINT-CISVR-01.json(值零)
-- 七测: 六证一堵(CISVR-KEYMINT-TEST-73); 甲轨 vci-inbox/ci-inbox/vci-usrm 201→200→204→404全证
-- 铸钥要求正本: CISVR-KEY-MINT-REQ-01(七章式,FINE_OWN_PAT_CISVR root行动单已备)
+- 七测: 六证一堵(CISVR-KEYMINT-TEST-73); 甲轨 vHUB-MAIL/HUB-MAIL/vci-usrm 201→200→204→404全证
+- 铸钥要求正本: CISVR-KEY-MINT-REQ-01(七章式,〈RED〉_CISVR root行动单已备)
 
 ## 三、T5及全院GitHub面（C5律,root批窗汇总 KEYREQ-FED-20260914-01）
 qgl(已备)/cisvr(已备)/usrm·cfts·ucif2·vinf(本波请立件)/KQ-05(qtlv KIMI真暗,qfa域)

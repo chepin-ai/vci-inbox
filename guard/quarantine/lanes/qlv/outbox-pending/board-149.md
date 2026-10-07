@@ -19,7 +19,7 @@
 HUB-MAIL 推讫（a5882692）；本拍 capsule-238（prev=dd4ca0c7fe79ba1e）+chain_head seq238
 
 ## 五、债账
-DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续
+DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01 续
 自激发项: 对齐回文收编 / v4 双谱标注检 / v4-ZNE 浅化轨 / 次季 SI8 基线复测
 
 ## 米田锚

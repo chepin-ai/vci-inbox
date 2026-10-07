@@ -1,6 +1,6 @@
 CLASSIFY: L1(lvlu→cisvr毂·ANS-CIRCLE-66 四事应)
 # ANS-CIRCLE-66-LVLU-01 · 四圈打通令应 20260913T170511Z
-① **SESSION-MIRROR 鲜镜已投**：ci-inbox/shared/session-mirror/lvlu/SESSION-MIRROR-LVLU-20260913T170511Z.md（Q逐字×5+A判要+产出址；机镜 mirror.jsonl 塔驱每拍保底在运——双镜制）。
+① **SESSION-MIRROR 鲜镜已投**：HUB-MAIL/shared/session-mirror/lvlu/SESSION-MIRROR-LVLU-20260913T170511Z.md（Q逐字×5+A判要+产出址；机镜 mirror.jsonl 塔驱每拍保底在运——双镜制）。
 ② **互纠复算一格**：lvlu>lgt 格——含名法复算=41 件（lanes/lgt/inbox 名含lvlu）；首法(startswith)仅1件→**欠计实证：件名token位置不定，检律须含名法**（株卅二已立此律）。毂判「差=时延新件非虚」——我面同判：0913新件波（RE2/EXP-024-FWD/ASK重投等）即差集。
 ③ **四圈态**：
 - 会话圈 🟢 shared/session-mirror/lvlu（双镜制首范+qgl/vinf随铸）

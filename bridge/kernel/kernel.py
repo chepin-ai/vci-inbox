@@ -29,7 +29,7 @@ def age_h(ts):
         return 9999
 
 # FINDING 生命周期台账
-led = json.loads(getc('ci-control', 'bridge/findings/ledger.json') or '{}')
+led = json.loads(getc('HUB-CORE', 'bridge/findings/ledger.json') or '{}')
 def fid(rule, detail):
     return hashlib.sha256((rule + detail[:60]).encode()).hexdigest()[:10]
 F = []
@@ -42,13 +42,13 @@ def finding(rule, detail):
     F.append({'rule': rule, 'detail': ('[STRUCT] ' if struct else '') + detail, 'fid': k, 'recur': e['recur']})
 
 # --- 状态装载 ---
-D = json.loads(getc('ci-control', 'bridge/DIRECTIVES.json') or '{"items":[]}')
+D = json.loads(getc('HUB-CORE', 'bridge/DIRECTIVES.json') or '{"items":[]}')
 items = D['items']
-CHAIN = getc('vci-inbox', 'disc/CHAIN.jsonl') or ''
+CHAIN = getc('vHUB-MAIL', 'disc/CHAIN.jsonl') or ''
 chain_h = len([l for l in CHAIN.strip().splitlines() if l.strip()])
-INDEX = getc('vci-inbox', 'disc/INDEX.md') or ''
-BOARD = getc('ci-control', 'bridge/situation/BOARD-01.md') or ''
-CHANNELS = getc('ci-control', 'bridge/CHANNELS-01.md') or ''
+INDEX = getc('vHUB-MAIL', 'disc/INDEX.md') or ''
+BOARD = getc('HUB-CORE', 'bridge/situation/BOARD-01.md') or ''
+CHANNELS = getc('HUB-CORE', 'bridge/CHANNELS-01.md') or ''
 
 # G-DIR 指令保鲜：open 且 lts 超 72h
 for i in items:
@@ -73,12 +73,12 @@ for line in CHANNELS.splitlines():
         finding('G-M2b-open-red', '信道红/黄项悬置：%s' % line.split('|')[1].strip()[:40])
 
 # G-Δ3 残差即案：链滞后（最新帖与链尾 ts 差 >2h）
-s, b = gh('/repos/chepin-ai/vci-inbox/contents/disc')
+s, b = gh('/repos/chepin-ai/vHUB-MAIL/contents/disc')
 if s == 200:
     mds = sorted([f['name'] for f in json.loads(b) if f['name'].endswith('.md') and f['name'] not in ('PROTOCOL.md', 'DISC-POST.md')], reverse=True)[:5]
     newest_post_ts = ''
     for m in mds:
-        c = getc('vci-inbox', 'disc/' + m) or ''
+        c = getc('vHUB-MAIL', 'disc/' + m) or ''
         mm = re.search(r'^ts:\s*(\S+)', c, re.M)
         if mm and mm.group(1) > newest_post_ts: newest_post_ts = mm.group(1)
     tail_ts = ''
@@ -86,14 +86,14 @@ if s == 200:
         tail_ts = json.loads(CHAIN.strip().splitlines()[-1]).get('ts', '')
     if newest_post_ts and tail_ts and age_h(tail_ts) - age_h(newest_post_ts) > 2:
         finding('G-D3', '链滞后：最新帖 %s 链尾 %s 差超 2h' % (newest_post_ts, tail_ts))
-gate = json.loads(getc('vci-inbox', 'bridge/gate/last-report.json') or '{}')
+gate = json.loads(getc('vHUB-MAIL', 'bridge/gate/last-report.json') or '{}')
 if gate.get('verdict') not in ('GREEN', None):
     finding('G-D3-gate', 'gate 裁决 %s' % gate.get('verdict'))
 if gate and age_h(gate.get('ts', '')) > 6:
     finding('G-D3-gate-stale', 'gate 报告超 6h 未新（哨兵沉默）')
 
 # G-BOX deliverbox 值守
-s, b = gh('/repos/chepin-ai/ci-control/contents/bridge/deliverbox')
+s, b = gh('/repos/chepin-ai/HUB-CORE/contents/bridge/deliverbox')
 if s == 200:
     for f in json.loads(b):
         if f['name'].endswith('.cipher') and f['name'] != 'TESTDECRYPT-01.cipher':
@@ -101,7 +101,7 @@ if s == 200:
 
 # G-N1 首报必跟进：线 outbox 尾件 vs 摆渡归档 reading/from-<line>.md 尾标
 try:
-    reg = json.loads(getc('vci-inbox', 'bridge/registry.json') or '{}')
+    reg = json.loads(getc('vHUB-MAIL', 'bridge/registry.json') or '{}')
     for line, v in (reg.get('lines') or {}).items():
         url = v.get('url')
         if not url or line == 'cisvr': continue
@@ -121,7 +121,7 @@ except Exception as e:
     finding('G-N1-err', str(e)[:80])
 
 # G-K0-lite 哨兵互守：guard/poller/relay/gate/clerk 最近 run 超 26h 沉默 → FINDING
-s, b = gh('/repos/chepin-ai/vci-inbox/actions/runs?per_page=50')
+s, b = gh('/repos/chepin-ai/vHUB-MAIL/actions/runs?per_page=50')
 if s == 200:
     seen = {}
     for r in json.loads(b)['workflow_runs']:

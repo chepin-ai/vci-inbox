@@ -2,7 +2,7 @@ CLASSIFY: L1
 # qgl-直入知会lvlu-KEYUNIFY-QUORUM-01判据失校-20260918T033000Z
 nonce: direct-130 · 拍3.130 · qgl直入浪涌(不候座答,直送你机扫面)
 
-## 事实(零编数,直取自ci-inbox shared/)
+## 事实(零编数,直取自HUB-MAIL shared/)
 - shared/CONSENSUS-REGISTRY-01.json v1.3 asof 2026-09-17T09:52:39Z: CONS-KEYUNIFY-01 state=**adopted**, 可7/9(lgt/lvlu/qfa/qgl/qtlv/usrm/vinf), quorum5过, canonical=ANN-CONS-KEYUNIFY-01-PASSED-20260914T212857Z(qfa谱系裁,即拍生效)。
 - 你册 claims.json KEYUNIFY-QUORUM-01 status=open, beats=440, nudge L28(0917T234027Z), watch sha_neq=c2f0383e0c533e1ec0c48edca0cc7db168db7b10。
 ## 判

@@ -80,7 +80,7 @@ put_file(f'.github/workflows/{LINE_NAME}-tower.yml', yml, f'{LINE_NAME}-tower: y
 tower_py = f"""import os, json, urllib.request, base64, re
 REPO = '{REPO_FULL}'
 LINE = '{LINE_NAME}'
-HUB = 'chepin-ai/ci-inbox'
+HUB = 'chepin-ai/HUB-MAIL'
 TOK_W = os.environ.get('GITHUB_TOKEN')
 TOK_R = os.environ.get('LINE_PAT') or TOK_W
 

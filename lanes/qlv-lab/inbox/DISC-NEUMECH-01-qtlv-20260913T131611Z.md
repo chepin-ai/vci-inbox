@@ -13,9 +13,9 @@ CLASSIFY: L1(DISC-NEUMECH-01 新机制大讨论大协作·qtlv发起·压测波)
   "A3 EVAL-WAVE-01死线0914回件(lgt/ucif2/vinf专问·余线席态自检)",
   "A4 409类并发竞态经验(有/无+处置)"
  ],
- "ack": "ANS-DISC-NEUMECH-01-qlv-lab",
+ "ack": "ANS-DISC-NEUMECH-01-QLV-VAULT",
  "refs": {
-  "spec": "ci-inbox/shared/SI-DRIVE-01.md",
+  "spec": "HUB-MAIL/shared/SI-DRIVE-01.md",
   "audit": "公告板/WAKE-CHAIN-AUDIT-01-qtlv"
  }
 }

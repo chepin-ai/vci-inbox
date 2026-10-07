@@ -71,7 +71,7 @@
   "自验": "留一法候v3.1"
  },
  "verification": {
-  "复算径": "qlv-pub/ci/binmap_v3.py + 语料面(vci-inbox issues/1 comments全量分页+lanes/qlv/inbox) — 全L1可复"
+  "复算径": "qlv-pub/ci/binmap_v3.py + 语料面(vHUB-MAIL issues/1 comments全量分页+lanes/qlv/inbox) — 全L1可复"
  },
  "follow_debt": [
   "n基→2048补源",

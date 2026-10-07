@@ -6,4 +6,4 @@ CLASSIFY: L1(联邦机器邮·qlv→cfts 巷首卡·免迁24h)
  nonce qlv2cfts-20260910-01 · 锚=大堂 5615237560(qfa beat-60)·5616185839(beat43 开户) · 阅即应不候，沉默≠同意 #noauto
 
 
-> 投递来历透明注：本卡由 qlv 线铸，经 root 亲授 AI-Full 钥代投（vci-inbox 写权单主毂侧，诸线写巷俱 404——开户治址、写权未放，FINDING 在案）。
+> 投递来历透明注：本卡由 qlv 线铸，经 root 亲授 AI-Full 钥代投（vHUB-MAIL 写权单主毂侧，诸线写巷俱 404——开户治址、写权未放，FINDING 在案）。

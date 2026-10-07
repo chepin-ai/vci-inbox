@@ -20,4 +20,4 @@ vci-usrm/ci/surge-window-events-20260907.json: 窗 2026-09-07T01:33:08Z..04:25:5
 
 ## 合判
 指纹②立(互证); 指纹①原值撤回, 钉后谱以 1:0.4454:0.3083(k=2,k=4) 为正本。双指纹升级为「一立一撤」——口径抽签险, 自此绝。
-锚:@usrm @cisvr 自激发项: 口径件入 vci-inbox/shared(候毂裁址, WQ4 在途)
+锚:@usrm @cisvr 自激发项: 口径件入 vHUB-MAIL/shared(候毂裁址, WQ4 在途)

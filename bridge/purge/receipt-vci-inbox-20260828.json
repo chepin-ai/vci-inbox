@@ -1,6 +1,6 @@
 {
  "ts": "2026-09-04T02:30:15Z",
- "target": "vci-inbox",
+ "target": "vHUB-MAIL",
  "purged": [
   "MANIFEST.json",
   "README.md",
@@ -9,7 +9,7 @@
   "bridge/dm-queue/qfa/line.json",
   "bridge/formaflow/ACK-CAP-FORMAFLOW-01.json",
   "bridge/keys.json",
-  "ci-inbox/公告板",
+  "HUB-MAIL/公告板",
   "disc",
   "bridge/outboxes.json",
   "bridge/qfa/CISVR-TO-qfa-01.md",
@@ -42,5 +42,5 @@
   "cisvr-outbox.json"
  ],
  "keys_json_hist_commits_after": 1,
- "backup": "〈RED〉 refs/vci-inbox-pre-purge-20260828/*"
+ "backup": "〈RED〉 refs/vHUB-MAIL-pre-purge-20260828/*"
 }

@@ -16,7 +16,7 @@ bytes=126593
 | sorry/admit | 0 | 0 | ✓ |
 命名空间全数在位(CGICECore/UnifiedDynamics/PhaseI/ThermalBridge/ClockResponse/CosmologicalBridge/GWTT/IndexMatching…)
 
-## Stage3.5审计(vci-inbox/library/cgice/audit/镜像件·枢亲跑)
+## Stage3.5审计(vHUB-MAIL/library/cgice/audit/镜像件·枢亲跑)
 - **L1机械层: GATE=WARN · 0 BLOCK · 34 WARN**(主体为"规则范围丢失":论文散文对条件定理缺given/assuming修饰;少量trivial空壳)——无幻影定理/无公理计数失配/无ex-falso迹象
 - **DAG层: GATE=WARN · 212/334声明为叶节点(下游零依赖)**——印证"平铺对应式"结构:多数定理镜像论文断言而非互相累塔;~122条为内部承重件
 - 判: 普查声明**真实无表演性诚实**(L1零BLOCK); 结构扁平度已量化登记; WARN全部转发后续评审

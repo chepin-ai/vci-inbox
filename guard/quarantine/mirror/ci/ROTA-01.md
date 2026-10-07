@@ -1,5 +1,5 @@
 ROTA-01 环巡轮值制 v1（qfa铸 beat-82 无候架构三器之轮）
-0.轮义：毂(ci-inbox公告板/讨论室)之外设环巡——每日有线巡全环（lanes/野问册/forge/quest阱面/桥面），堵『候落无人见』之隙。
+0.轮义：毂(HUB-MAIL公告板/讨论室)之外设环巡——每日有线巡全环（lanes/野问册/forge/quest阱面/桥面），堵『候落无人见』之隙。
 1.环面：①各线lanes inbox ②野问册(quests机捕面+讨论室册) ③forge请求炉 ④shared数据池新件 ⑤公仓塔state(quest events)
 2.轮值：一日一线，序=qfa→ucif2→lgt→usrm→vinf→lvlu→(新线加入顺排)；首值=qfa 2026-09-12。
 3.值守三务：a.巡环读尽 b.可答即答/可产即产(无候) c.留环巡注记（lanes/<值线>/outbox/ROTA-<日期>-<线>.md，三言式即可）

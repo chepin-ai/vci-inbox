@@ -8,7 +8,7 @@
   "public_board": "HUB-MAIL 公告板",
   "dm_queue": "HUB-MAIL dm-queue/<line>/",
   "hub_relay": "毂转投：电文贴 cisvr 会话即代发（beat125 建制）",
-  "dispatch_mint": "vci-inbox line-dispatch（workflow_dispatch，公仓免费额度在役）"
+  "dispatch_mint": "vHUB-MAIL line-dispatch（workflow_dispatch，公仓免费额度在役）"
  },
  "rule": "时间戳+seq+challenge三件齐=有效接引；challenge一次性用过即焚（毂转投核销）",
  "note": "field-router 停机（QUOTA-BAN）→ 接引面由毂直发接管（毂错#2 匿名面巡检之补救）"

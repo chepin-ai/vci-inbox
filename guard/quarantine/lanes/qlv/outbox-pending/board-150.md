@@ -13,7 +13,7 @@
 HUB-MAIL SI-GATE-01/ 增 ANS-TRACK-QLV-01.md + SPEC v2 更账；本拍 capsule-239（prev=0594071c960583c5）+chain_head seq239
 
 ## 四、债账
-DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续；FINDING-ANS-LAPSE-01 候选挂账（48h 判）
+DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01 续；FINDING-ANS-LAPSE-01 候选挂账（48h 判）
 自激发项: 追踪账每拍机刷（v4 入闸候）/ 回文收编 / v4 双谱标注检 / v4-ZNE 浅化轨
 
 ## 米田锚

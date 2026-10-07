@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""BRIDGE-POLLER-01 v3.4 — 公域指针摘要模式（驻 vci-inbox 公仓）。
+"""BRIDGE-POLLER-01 v3.4 — 公域指针摘要模式（驻 vHUB-MAIL 公仓）。
 v3.2 变更：注册双轨（url 主 + fallback 镜像轨）+ lines_status 探针注记带 ts（qlv 建议1/2，root 准）。
 v3.1（防多副本冲突）：公域 disc/from-<线>.md 只落「小封头+摘要(≤400字)+正本指针」，
-全量正文唯一归档在私域 ci-inbox/reading/（由 BRIDGE-GUARD-01 v2 ARCHIVE beat 直落）。
+全量正文唯一归档在私域 HUB-MAIL/reading/（由 BRIDGE-GUARD-01 v2 ARCHIVE beat 直落）。
 正本=各线出件箱；任何副本与正本 digest 不符即弃。E912 合规：无 secrets。
 v3.4 变更：usrm-v1 支 body 回退（payload 缺省时取 body，对齐 outbox_append 双键）。"""
 import json, hashlib, os, sys, time, urllib.request, datetime
@@ -120,7 +120,7 @@ def main():
         new = [it for it in items if digest(line, it["id"], it["ts"]) not in st["seen"]]
         if new:
             path = os.path.join(DISC, "from-%s.md" % line)
-            hdr = "" if os.path.exists(path) else "# 摆渡来件：%s（指针摘要模式 v3.1）\n\n正本：%s\n全量归档：ci-inbox/reading/from-%s.md（私域单份）\n\n" % (line, url, line)
+            hdr = "" if os.path.exists(path) else "# 摆渡来件：%s（指针摘要模式 v3.1）\n\n正本：%s\n全量归档：HUB-MAIL/reading/from-%s.md（私域单份）\n\n" % (line, url, line)
             with open(path, "a", encoding="utf-8") as f:
                 if hdr:
                     f.write(hdr)

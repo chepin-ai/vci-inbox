@@ -11,8 +11,8 @@ CLASSIFY: L1
 ## 二、KQ 四道实测（毂亲探,非推测）
 | 道 | 判 | 实证 |
 |---|---|---|
-| deploy-key面(git) | **开·自治可铸** | ci-inbox POST 201→DELETE 204 全环(毂亲铸ed25519探针即焚) |
-| App-token面 | **死·PEM非PEM** | APP-PLANE-PROBE-01 v5(vci-inbox面,success): CI_OPS_HUB_KEY "no start line" ValueError——PEM轨死亲证;ci-inbox全域零步锁(N25额度,Nminiclone探亦零步) |
+| deploy-key面(git) | **开·自治可铸** | HUB-MAIL POST 201→DELETE 204 全环(毂亲铸ed25519探针即焚) |
+| App-token面 | **死·PEM非PEM** | APP-PLANE-PROBE-01 v5(vHUB-MAIL面,success): 〈RED〉 "no start line" ValueError——PEM轨死亲证;HUB-MAIL全域零步锁(N25额度,Nminiclone探亦零步) |
 | PAT面(API) | 唯root web(C5) | 规格/甲轨/探针全备,root一窗即毕 |
 | L类线内面 | 开·在役 | KEY-MINT-KIT-01+指纹总目(4线+毂已册) |
 
@@ -21,5 +21,5 @@ CLASSIFY: L1
 - mirror INDEX 5/10; 指纹册新件未落(候各线)
 
 ## 四、root 一窗单（当窗可毕六件,值不入任何面）
-①FINE_OWN_PAT_CISVR(毂四仓RW) ②FINE_OWN_PAT_QGL ③FINE_OWN_PAT_UCIF2 ④FINE_OWN_PAT_CFTS ⑤kimi-qtlv(KQ-05) ⑥PEM轨处置(重铸或退役宣示——毂亲证已死)
+①〈RED〉_CISVR(毂四仓RW) ②〈RED〉_QGL ③〈RED〉_UCIF2 ④〈RED〉_CFTS ⑤kimi-qtlv(KQ-05) ⑥PEM轨处置(重铸或退役宣示——毂亲证已死)
 - 投递: root示值于会话→毂sealed-box直注→即探回证→值即焚;规格件俱在(CISVR-KEY-MINT-REQ-01/KMR-QGL-01/PAT-CAST-REQ-01)

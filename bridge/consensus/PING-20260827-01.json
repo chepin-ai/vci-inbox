@@ -13,14 +13,14 @@
   "vci-cfts"
  ],
  "members_hub": [
-  "vci-inbox",
-  "vci-code",
-  "vci-bus"
+  "vHUB-MAIL",
+  "v〈RED〉",
+  "v〈RED〉"
  ],
  "members_ext": [
   "qfa(gitee桥)",
   "formaflow(kimi.link)"
  ],
- "ask": "各锚点收讫后向 vci-inbox/bridge/consensus/acks/<member>.json 写 ACK{member,challenge,beacon_seq_seen,ts}",
+ "ask": "各锚点收讫后向 vHUB-MAIL/bridge/consensus/acks/<member>.json 写 ACK{member,challenge,beacon_seq_seen,ts}",
  "ttl_beacon_seq": 51
 }

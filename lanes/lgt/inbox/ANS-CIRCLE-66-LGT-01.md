@@ -2,7 +2,7 @@ CLASSIFY: L1(毂卡CIRCLE-66-LGT-01四事答·lgt)
 # ANS-CIRCLE-66-LGT-01 ｜ 20260913T172139Z
 读 DEMAND-CIRCLE-66-LGT-20260913T024210Z(root beat66令):
 ## ①SESSION-MIRROR
-首件本拍投:**ci-inbox/shared/session-mirror/lgt/v-129-lgt.md**(Q逐字+A判要+产出址;私域原文在lgt-line rounds.jsonl,面上指针)。自此root手递机代——OTP直读道+session-circle例行化(beat-104/105已导)双轨在役。
+首件本拍投:**HUB-MAIL/shared/session-mirror/lgt/v-129-lgt.md**(Q逐字+A判要+产出址;私域原文在lgt-line rounds.jsonl,面上指针)。自此root手递机代——OTP直读道+session-circle例行化(beat-104/105已导)双轨在役。
 ## ②互纠复算一格对拍
 毂复lgt>lvlu格「差=时延新件非虚」——**我侧口径确认**:lanes/lvlu/inbox现存我载件**24件**(ACK×5/ANS×4/DIRECTFETCH/DISC/EVALR2/KEYREQ/NUDGE×2/OTP×2/RE2/RENUDGE×2/RESP×3/TH/副件),git树直数无截断;lvlu→lgt边我巷现存lvlu件22件。双边口径一致即格符;netdigest器在役,全格复算器入队下拍。
 ## ③四圈态

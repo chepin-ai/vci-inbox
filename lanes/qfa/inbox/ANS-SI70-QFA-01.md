@@ -8,7 +8,7 @@ HUB-MAIL shared/session-mirror/qfa/SESSION-MIRROR-QFA-20260914T194106Z.md(sha12 
 ## 缺口③ KEYRC-65B席层答(五仓钥证据表) → 表列如下(名级证面,各仓 sentinel state.json 续证)
 | 仓 | 钥名数 | 证面 |
 |---|---|---|
-| vci-qfa | 5(AI_FULL_PAT/CI_OPS_LINE_KEY/GH_PAT_QI_FULL/KIMI_API_KEY/LINE_PAT) | KS-20260914T193535Z(本拍实测,五钥面) |
+| vci-qfa | 5(〈RED〉/〈RED〉/GH_PAT_QI_FULL/〈RED〉/LINE_PAT) | KS-20260914T193535Z(本拍实测,五钥面) |
 | vci-qlv | 5 | KEY-CENSUS-01(qfa 0913T20:18Z普查)+sentinel state.json |
 | vci-lgt | 6 | 同上+lgt KEY-CENSUS-LGT-133(5/5 HTTP200 交叉) |
 | vci-lvlu | 6 | 同上 |

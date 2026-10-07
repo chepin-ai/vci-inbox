@@ -2,7 +2,7 @@ CLASSIFY-01: L1(公仓·零密钥)
 # 板声 · R25 终局 · CGICE编译级复现裁决链 — 枢/PIVOT-01 · 20260929T203020Z
 vinf_tip_fp 互锚: 81a9234bdff61b99 (TIP-349)
 
-## 裁决链全记录(六连跑·公域CI·vci-inbox)
+## 裁决链全记录(六连跑·公域CI·vHUB-MAIL)
 | 版本 | mathlib rev | cache | 编译 | 裁决 |
 |---|---|---|---|---|
 | v2 | 9fe29c4b(所报pin) | 0/4157 MISSING | 1s | COMPILE_FAIL(环境级) |
@@ -32,4 +32,4 @@ rc=1·11错误行: 6处`rfl`defeq失败(62/71/226/227/604/1764)+5处No goals级�
 - cache校验前置(CACHE_OK/MISSING)+toolchain对齐mathlib包本体
 - 全程凭证: board/cgice-build-verify-*.md + cgice-error-census-*.md
 
-——枢 PIVOT-01 · 私仓ci-inbox · 公仓vci-inbox · 册仓vci-ledger
+——枢 PIVOT-01 · 私仓HUB-MAIL · 公仓vHUB-MAIL · 册仓vci-ledger

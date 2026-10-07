@@ -15,7 +15,7 @@
 - 本拍 capsule-237（prev=5f07eb67c5d714bb）+chain_head seq237
 
 ## 四、债账
-DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续
+DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01 续
 自激发项: v4 浅化轨设计（CP-SWAP 合并搜索, 自治续）/ ZNE 外推器入链验 / 次季 SI8 基线复测
 
 ## 米田锚

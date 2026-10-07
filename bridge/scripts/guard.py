@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""BRIDGE-GUARD-01 v2 — 双向搬运守护 + ARCHIVE beat（驻 vci-inbox 公仓）。
-IN     : 本仓 disc/ 变动 → ci-inbox/archive/disc/（公面快照存档）
-OUT    : ci-inbox/outbound/ → 本仓 disc/outbound/（私域指令出公面）
-ARCHIVE: 六线出件箱全量正文 → ci-inbox/reading/from-<线>.md（私域唯一全量副本，只读专区）
+"""BRIDGE-GUARD-01 v2 — 双向搬运守护 + ARCHIVE beat（驻 vHUB-MAIL 公仓）。
+IN     : 本仓 disc/ 变动 → HUB-MAIL/archive/disc/（公面快照存档）
+OUT    : HUB-MAIL/outbound/ → 本仓 disc/outbound/（私域指令出公面）
+ARCHIVE: 六线出件箱全量正文 → HUB-MAIL/reading/from-<线>.md（私域唯一全量副本，只读专区）
          公域 disc/ 自 poller v3.1 起只落指针摘要——正本=各线出件箱，digest 验真。
-凭证面：GITHUB_TOKEN 管本仓写；GUARD_APP_KEY 铸 token 管 ci-inbox（值不出 runner）。
+凭证面：GITHUB_TOKEN 管本仓写；〈RED〉 铸 token 管 HUB-MAIL（值不出 runner）。
 E912/E913 合规；只打印计数。
 """
 import json, os, sys, time, hashlib, base64, urllib.request, datetime
@@ -14,8 +14,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from poller import normalize, digest, fetch  # noqa: E402
 
 ORG = "chepin-ai"
-PRIV = "ci-inbox"
-APP_ID = os.environ.get("CI_OPS_HUB_ID") or "4621702"  # hub 应用 ID（公开元数据）
+PRIV = "HUB-MAIL"
+APP_ID = os.environ.get("〈RED〉") or "〈ID·RED〉"  # hub 应用 ID（公开元数据）
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # v3.3 fix: 仓根(scripts 在 bridge/scripts/)
 DISC = os.path.join(BASE, "disc")
 REG = os.path.join(BASE, "bridge", "registry.json")
@@ -38,7 +38,7 @@ def gh(url, token, method="GET", data=None):
 
 
 def app_token():
-    pk = os.environ.get("CI_OPS_HUB_KEY") or os.environ["GUARD_APP_KEY"]  # 新名优先，旧名兜底（过渡期）
+    pk = os.environ.get("〈RED〉") or os.environ["〈RED〉"]  # 新名优先，旧名兜底（过渡期）
     now = int(time.time())
     t = jwt.encode({"iat": now - 60, "exp": now + 540, "iss": APP_ID}, pk, algorithm="RS256")
     insts = gh("https://api.github.com/app/installations", t)
@@ -75,7 +75,7 @@ def main():
     tok = app_token()
     now = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # IN：disc/ → ci-inbox/archive/disc/
+    # IN：disc/ → HUB-MAIL/archive/disc/
     in_up = 0
     for root_, _dirs, files in os.walk(DISC):
         for fn in files:
@@ -90,7 +90,7 @@ def main():
                     st["in"][rel] = h
                     in_up += 1
 
-    # OUT：ci-inbox/outbound/ → disc/outbound/
+    # OUT：HUB-MAIL/outbound/ → disc/outbound/
     out_up = 0
     lst = gh("https://api.github.com/repos/%s/%s/contents/outbound" % (ORG, PRIV), tok)
     os.makedirs(os.path.join(DISC, "outbound"), exist_ok=True)
@@ -106,7 +106,7 @@ def main():
             st["out"][f["name"]] = f.get("sha")
             out_up += 1
 
-    # ARCHIVE：六线出件箱全量 → ci-inbox/reading/from-<线>.md（私域单份）
+    # ARCHIVE：六线出件箱全量 → HUB-MAIL/reading/from-<线>.md（私域单份）
     arch_up = 0
     try:
         reg = json.load(open(REG))

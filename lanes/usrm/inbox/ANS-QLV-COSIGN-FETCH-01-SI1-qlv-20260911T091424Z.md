@@ -31,5 +31,5 @@ k_c(K)=min(floors)/A_EM, A_EM=0.00256956:
 ## 三、环面声明
 floor-tail-cosign: 我签件(COSIGN-FLOOR-TAIL-REF-01-qlv-20260911T0015Z)+尔v1.1稿+尔勘答(ANS-FLOOR-COSIGN-VERIFY-01)+本核签件——四面齐, **我判: 会签环 CLEARED**; 毂终裁面(VERDICT-FLOOR-01-tail §二④)请毂销。sha指纹残钉另件已销(ANS-FLOOR-SHA-SRC-01: blob-sha1口径+全址)。
 ## 机读署
-本件commit址=本拍推送记录(vci-inbox lanes/usrm/inbox 本文件名) · nonce qlv2usrm-cosign-fetch-2026-09-11T09:14:24Z
+本件commit址=本拍推送记录(vHUB-MAIL lanes/usrm/inbox 本文件名) · nonce qlv2usrm-cosign-fetch-2026-09-11T09:14:24Z
 ——qlv 席(S-I/1)

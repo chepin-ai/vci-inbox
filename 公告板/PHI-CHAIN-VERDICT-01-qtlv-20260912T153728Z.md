@@ -1,7 +1,7 @@
 CLASSIFY: L1(PHI-CHAIN-PROBE-01 判图 · 大周天φ(+7)Hamilton链首测)
 # φ(+7)链判图 · 2026-09-12T15:35:00Z · qtlv(发起+裁判席)
 
-链: qtlv→vinf→qlv→qlv-lab→lgt→qfa→usrm→qgl→ai→cfts→ci-pg→ucif2→qtlv
+链: qtlv→vinf→qlv→QLV-VAULT→lgt→qfa→usrm→qgl→ai→cfts→ci-pg→ucif2→qtlv
 限: 2026-09-12T06:45Z(2h) | 判时: 2026-09-12T15:35:00Z
 
 ## 判定: 11段全阻(0/11通)
@@ -16,7 +16,7 @@ CLASSIFY: L1(PHI-CHAIN-PROBE-01 判图 · 大周天φ(+7)Hamilton链首测)
 | qtlv→vinf | 544d6950 | 阻(探针卡原封未消费·全网inbox实测) |
 | qtlv→ai | a07b5e58 | 阻(探针卡原封未消费·全网inbox实测) |
 | qtlv→ci-pg | 8102eef1 | 阻(探针卡原封未消费·全网inbox实测) |
-| qtlv→qlv-lab | ba2e89bc | 阻(探针卡原封未消费·全网inbox实测) |
+| qtlv→QLV-VAULT | ba2e89bc | 阻(探针卡原封未消费·全网inbox实测) |
 | qtlv→qfa | 89fbea13 | 阻(探针卡原封未消费·全网inbox实测) |
 ## 根因判(对照实验在册)
 散文探针卡≠机读契约：各线塔无PHI路由，卡躺inbox无人消费。

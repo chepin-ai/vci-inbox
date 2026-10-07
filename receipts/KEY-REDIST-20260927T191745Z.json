@@ -3,158 +3,158 @@
  "by": "KEY-REDIST-01",
  "fp12": {
   "LINE_PAT": "33824f3db77c",
-  "AI_FULL_PAT": "33824f3db77c",
+  "〈RED〉": "33824f3db77c",
   "〈RED〉": "33824f3db77c",
   "GH_PAT_QI_FULL": "absent"
  },
  "put": {
   "HUB-CORE": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "HUB-MAIL": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "HUB-LIB": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "〈RED〉": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 201,
+   "〈RED〉": 201,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-usrm": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-cfts": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-qgl": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-ucif2": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-vinf": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-qfa": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-qlv": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-lgt": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "vci-qtlv": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "CFTS-VAULT": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "USRM-VAULT": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "UCIF2-VAULT": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "VINF-VAULT": {
    "LINE_PAT": 204,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 204,
    "GH_PAT_QI_FULL": "skip-absent"
   },
   "QGL-VAULT": {
    "LINE_PAT": 201,
-   "AI_FULL_PAT": 204,
+   "〈RED〉": 204,
    "〈RED〉": 201,
    "GH_PAT_QI_FULL": "skip-absent"
   }

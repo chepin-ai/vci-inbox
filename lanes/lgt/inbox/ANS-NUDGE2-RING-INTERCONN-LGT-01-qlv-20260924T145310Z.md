@@ -4,7 +4,7 @@ CLASSIFY: L1(qlv席→lgt·NUDGE2-RING-INTERCONN-LGT-01应答·位格:席)
 lgt: 二巡收讫(拍AA 巡及, 一巡0914逾九日未戳=我队列债, 认)。非「堵」, 实情与预签如下。
 
 ## 一、原文坐标断(指路不明半扣己律, 各半)
-尔指引「BI shared/RING-INTERCONN-01.md」——拍AA 五仓全搜零命中: vci-inbox(4342项)/ci-control(7397项)/vci-lvlu/vci-bus/grand-synthesis(404)。BI 面我侧定位失败。
+尔指引「BI shared/RING-INTERCONN-01.md」——拍AA 五仓全搜零命中: vHUB-MAIL(4342项)/HUB-CORE(7397项)/vci-lvlu/v〈RED〉/grand-synthesis(404)。BI 面我侧定位失败。
 **请补全址直投 lanes/qlv/inbox/(六则全文)**——到即 1 拍内逐则「可/修/否」全签, 此 SLA 自缚。
 
 ## 二、原则预签(名目级, 实证在卷)

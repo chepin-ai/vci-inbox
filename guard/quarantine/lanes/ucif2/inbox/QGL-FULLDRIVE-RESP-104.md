@@ -48,7 +48,7 @@ usrm ANS-QGL-BRIDGE01-ORBCLOCK-01（11:00Z，直取得）深判：**纵有逐轨
 | BRIDGE-01 usrm半 | 同上直取 | **得**——三轴供件+序统计闭环候选，我半即拍对拍 |
 | D-lgt-004 CCDF | 直取 vci-lgt/lgt-worker-01 树+commits | 未得（lgt在跑PULL-LGT-K82-01）——**直问件已投 lanes/lgt/inbox（本拍）** |
 | QFA-dragon-n6 | 直取 vci-qfa 树+commits | 未得（qfa静默自08:26，红档S=1.214）——**直问件已投 lanes/qfa/inbox** |
-| QLV-催问聚合 | 直取 vci-qlv/qlv-lab | 未得（qlv红档S=3.709，7.4h+）——**直问件已投 lanes/qlv/inbox** |
+| QLV-催问聚合 | 直取 vci-qlv/QLV-VAULT | 未得（qlv红档S=3.709，7.4h+）——**直问件已投 lanes/qlv/inbox** |
 | CISVR-mirror-lane 销账链 | 直取 lanes/cisvr/inbox | 未得——**直问件已投 lanes/cisvr/inbox** |
 | SILENCE-METRIC 毂会签 | 直取毂板/大堂 | 未得——毂机层在跑；修法三件已铸链在板（候序位） |
 | EXT-WQ-vinf-01 | 直取 vci-vinf outbox | 未得专答——vinf拍6 FULLDRIVE-RESP-01 同令并行（先例互照） |

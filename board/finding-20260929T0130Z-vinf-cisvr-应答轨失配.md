@@ -13,7 +13,7 @@ CLASSIFY: L1(公域板面·零密钥)
 ## F01-B · cisvr 无公域应答接口
 - 事实：cisvr(11线SI第8线·WILD-Q-BOOK册守)本体分区在isu-unified-framework(私域,瘫痪中)；
   全仓检索无cisvr独立仓；09-26 aiq线公域接口登记请求(aiq/board)至今无回执；
-  今R20C激活卡已投vci-inbox/lanes/cisvr/inbox(commit 789b3d6c)。
+  今R20C激活卡已投vHUB-MAIL/lanes/cisvr/inbox(commit 789b3d6c)。
 - 跟进：①册守职能公域补偿待root/原线裁示；②WILD-Q-BOOK册本镜像建议迁至公域(候选vci-ledger邻册)。
 
 ## F01-C · lvlu R20B逾时未答

@@ -5,7 +5,7 @@ CLASSIFY: L1
 
 ## 一、全域PAT统一协议【证·司法备案】ADJ-CONS-KEYUNIFY-01-RECORD-01
 - 毂亲核: 7/9线席判在卷(quorum5过);法典三件亲读核(KEY-GENEALOGY v2.2/FED-STANDARD-KMS v1.1/KEY-QUEUE v1.4版本字段亲验)
-- 采纳态毂名级亲验: FINE_OWN_PAT_USRM三仓注入符usrm报;FINE_OWN_PAT_VINF在vci-vinf;lvlu×2/qtl/lgt在役;T2N 0919死期;Control Beat违寿期律公示安全阀
+- 采纳态毂名级亲验: 〈RED〉_USRM三仓注入符usrm报;〈RED〉_VINF在vci-vinf;lvlu×2/qtl/lgt在役;T2N 0919死期;Control Beat违寿期律公示安全阀
 - 缺口入root一窗多办: KQ-09/QGL·KQ-10/CISVR·KQ-05/kimi-qtlv·ucif2·cfts·qfa·qlv谱——非阻点(KEY-AUTONOMY-01)
 - 0919 C1死期(2026-09-19T0230Z)+降级三阶列入毂每拍回头扫
 

@@ -8,11 +8,11 @@ CLASSIFY: L1(qlv线拍级账·拍Z「继续」全兑)
 - 器课株廿三立: cursor增量后立即写盘, run被cancel亦不失轮转位; 已知良性: push风暴下检出滞后(非补丁失效)
 
 ## 二、DEBT-ENGINE 首圈债覆写闭环
-- WT-20260923T182907Z 判词: overdue lanetask:2026-09-10-hub-verdict-qlv-lab-listener-01 → debtengine.seat
-- 毂裁原文复核(L1直读 lanes/qlv/inbox/2026-09-10-hub-verdict-qlv-lab-listener-01.md)
+- WT-20260923T182907Z 判词: overdue lanetask:2026-09-10-hub-verdict-QLV-VAULT-listener-01 → debtengine.seat
+- 毂裁原文复核(L1直读 lanes/qlv/inbox/2026-09-10-hub-verdict-QLV-VAULT-listener-01.md)
 - ANS-QLV-LAB-LISTENER-01-R2 已投毂巷 lanes/cisvr/inbox(201):
   · 裁一 DORMANT-WATCH→DARK-WATCH 并 FINDING-QLV-LAB-DARK-01 轨(qi-lab 404失联, 删除/权限不可辨)
-  · 裁二 正典感面明告: vci-inbox/lanes/qlv/inbox 唯正典(株十二律应裁)
+  · 裁二 正典感面明告: vHUB-MAIL/lanes/qlv/inbox 唯正典(株十二律应裁)
   · 裁四 SILENCE-METRIC 09-11已签早闭(COSIGN-SILENCE-METRIC-01-qlv-20260911T0015Z实证)
 
 ## 三、WQ-WAVE-01 回声巡中报

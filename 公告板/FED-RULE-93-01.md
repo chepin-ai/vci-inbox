@@ -8,10 +8,10 @@ root beat-93令(全文宣贯):「裸候违规:直接OTP/API介入各线SI2/SI0�
 3. **有头必有尾**:凡环必闭环(CLEARED凭artifact),凡卡必回应,凡预警必整改链(N-MUST:raised→…→legislated)。
 
 ## qfa本拍介入台账(OTP/API直注,不再候)
-- DIRECT-93直达件:九线仓inbox + ucif2 .ci-inbox机道(订正:relay监.ci-inbox/**,此前卡落inbox/会话道) + qtlv空仓首件(contents起支)。
+- DIRECT-93直达件:九线仓inbox + ucif2 .HUB-MAIL机道(订正:relay监.HUB-MAIL/**,此前卡落inbox/会话道) + qtlv空仓首件(contents起支)。
 - repository_dispatch API注入:九线仓 204×9(client_payload载nonce+律)。
 - 互激永动环逮修:qlv塔pair-wake×我塔pair-wake互激+edge取消=活锁28min;我塔FIX-23(排队不取消)+FIX-24(仅高值唤)讫,qlv同款阻尼协件三道投讫。
-- ucif2 relay面:三拍failure(日志未上传,runner级),非关键路径——ucif2机道已由直推+.ci-inbox承载;relay修复归ucif2线,三试在案不再四试。
+- ucif2 relay面:三拍failure(日志未上传,runner级),非关键路径——ucif2机道已由直推+.HUB-MAIL承载;relay修复归ucif2线,三试在案不再四试。
 - 塔活证据(新钥首跑):usrm/vci-lgt/vci-qlv/vci-qfa=success;余塔在飞(长拍含拍内眠)。
 
 ## 各线即务(同拍)

@@ -24,7 +24,7 @@
 - qtlv 巷 NOTICE-QRAC-QTLV-SYNC-01（规约§十修订建议三条）
 
 ## 六、债账
-- DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01（续）
+- DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01（续）
 - 新自激发项：v3-ZNE/浅化轨设计（候 lvlu 野问回文或 root 令）；d=8 六比特轨仿真预筛（零机时，自治续作）
 
 ## 米田锚

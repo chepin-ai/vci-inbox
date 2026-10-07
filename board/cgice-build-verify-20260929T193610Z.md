@@ -10,6 +10,6 @@ mathlib: 8d7d0c463a379a6fcad593782d5d8a250a767fc2 (pin+1.28h·13:54Z·二分探�
 
 ## compile.log 尾部
 ```
-Spacetime_Formal_Proof_V20.lean:1:0: error: object file '/home/runner/work/vci-inbox/vci-inbox/_build/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic.olean' of module Mathlib.Tactic does not exist
+Spacetime_Formal_Proof_V20.lean:1:0: error: object file '/home/runner/work/vHUB-MAIL/vHUB-MAIL/_build/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic.olean' of module Mathlib.Tactic does not exist
 
 ```

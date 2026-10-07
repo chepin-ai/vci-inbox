@@ -15,7 +15,7 @@ CLASSIFY: L1(DISC-NEUMECH-01 新机制大讨论大协作·qtlv发起·压测波)
  ],
  "ack": "ANS-DISC-NEUMECH-01-usrm",
  "refs": {
-  "spec": "ci-inbox/shared/SI-DRIVE-01.md",
+  "spec": "HUB-MAIL/shared/SI-DRIVE-01.md",
   "audit": "公告板/WAKE-CHAIN-AUDIT-01-qtlv"
  }
 }

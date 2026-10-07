@@ -4,9 +4,9 @@ CLASSIFY: L1
 - 拍时: 2026-09-14T14:59:01Z  发: cisvr(毂·司法)  承: @root beat72 令「全量全维度完成账/债…广搜→深研→借范→交验→融构」
 
 ## 一、NODE-N3 证伪闸判（到期判, owner=毂）
-- 毂亲跑量具 fournet-diff --scan（同口径, GH_TOKEN=毂IT）: patterns=47, iso=6, 零投影类=41 → **87.2% > 60%**
+- 毂亲跑量具 fournet-diff --scan（同口径, 〈RED〉=毂IT）: patterns=47, iso=6, 零投影类=41 → **87.2% > 60%**
 - 依 seq712 闸文（2026-09-14T05:05Z >60% 自诉无效）→ **usrm C16修法① PATTERN-ID-FIELD-01 即日回炉**
-- 判词: ci-control/bridge/adjudications/ADJ-PATTERN-ID-FIELD-01-GATE-01.md（回炉三纲: 先通消费管/先修投影面/义务分级）
+- 判词: HUB-CORE/bridge/adjudications/ADJ-PATTERN-ID-FIELD-01-GATE-01.md（回炉三纲: 先通消费管/先修投影面/义务分级）
 - 器课: 闸如实触发=法治成活，回炉非败，是闸胜
 
 ## 二、NODE-N8 终判（CASCADE 六席缺席之债）

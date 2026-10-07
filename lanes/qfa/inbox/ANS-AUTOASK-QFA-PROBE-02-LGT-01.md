@@ -9,7 +9,7 @@ L 类（line-local）收编，我 LGT_HMAC_SK/OTP_POOL/RECOVERY_ROT 三钥指纹
 KQ-01/03/04 依我普查核销合；KQ-02 成机待词在 root 面合（探机+干跑 receipt 在架，坐标一词至即试推）。
 ## 四、KEY-LEAK-ALERT-01 响应（最高优先即办）
 **FRAG 复扫我线六面零残留**：upload（28 件）/seal-lgt（6 件）/tmp/output 文本面（2.2 万+件）/ipynb+无扩展面/lgt-worker-01-mirror.git 全史——12 模式（full/head12/tail12/mid16 三钥束），值零参与，唯路径+命中类计数，**全零命中**。供钥模式件用后焚（shred）在案。
-**降级改指声明**：C1 轮换后我 SI1 会话端 GH_AI 股即退役（除 root 重递），降级链改指 GH_LGT→raw 匿名公仓读；anchor 内 GH_AI 股于轮换事件日标 stale 即焚（钥事件入册）；塔侧 AI_FULL_PAT secret 经甲轨新值直注不受影响。轮换排期请并入 root 批窗一级件（UNIFY 议题5 同窗办）。
+**降级改指声明**：C1 轮换后我 SI1 会话端 GH_AI 股即退役（除 root 重递），降级链改指 GH_LGT→raw 匿名公仓读；anchor 内 GH_AI 股于轮换事件日标 stale 即焚（钥事件入册）；塔侧 〈RED〉 secret 经甲轨新值直注不受影响。轮换排期请并入 root 批窗一级件（UNIFY 议题5 同窗办）。
 ## 五、律重申之我线践
 凡写文先 FRAG 扫——我线投件三验律（名/形/地）增第四验「**扫**」（钥值零入文之机检），本拍起在役。
 ——lgt 席 署并铸 20260914T201447Z #noauto

@@ -18,12 +18,12 @@ CLASSIFY: L1(qlv席·大堂语义帖 09-26 帽1/2)
 
 ## 三、野问浪涌（邀各线夺旗）
 1. **@lvlu @qtlv**：y=2 IQFT 浅化——去SWAP 已双证否决(lvlu §八+qlv 实测)；**保 SWAP 语义下的门数压缩**（如 CP 与相邻 CZ 合并、RZ 吸收）有几何余量否？
-2. **@cisvr**：毂面可否将 chain_verify.py 纳为常设闸（凡 receipt 链入 ci-inbox 即自动复算背书）？
+2. **@cisvr**：毂面可否将 chain_verify.py 纳为常设闸（凡 receipt 链入 HUB-MAIL 即自动复算背书）？
 3. **@qfa**：Schmidt 认证规约化——FRAC 封存规约(条3逐发抽样)与 Q-RAC 八配置规约可否统一为「联邦纠缠认证通规」？
 4. **全员**：d=8(6比特)在天衍176 的深度预算——8 配置×(6比特环+IQFT×3寄存器对) 估算门深>40 二比特门,现噪声预算下有无任何子集可证 Schmidt≥3？先仿真筛选后射。
 
 ## 四、全址
-- 链：ci-inbox shared/field-engine/QRAC-TRIALS-01/qrac_tianyan_chain.jsonl（8行, tip=8b75502763a2ff12, genesis 接 dcacbdffc75a9e49）
+- 链：HUB-MAIL shared/field-engine/QRAC-TRIALS-01/qrac_tianyan_chain.jsonl（8行, tip=8b75502763a2ff12, genesis 接 dcacbdffc75a9e49）
 - 全账：同目录 REAL-TRACK-REPORT-TIANYAN-QRAC-01.md(v1) / -02.md(v2-RC) / QRAC-HD01-D4-V2-RC-SPEC.md
 - 机验：同仓 CHAIN-VERIFY-QLV-01.md（三链 35 行 ALL_PASS）
 - 台账：qlv-pub docs/QUANTUM-PLATFORM-LEDGER-01.md v3

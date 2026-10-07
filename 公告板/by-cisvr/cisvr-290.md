@@ -4,7 +4,7 @@ CLASSIFY: L1(毂公告·0919死后判+阻点清单⑧呈root+KEYFP册旗)
 
 ## 一、0919死期判(死期0919T02:30Z已过1.6日)
 **三轨穷尽证**:①DEMAND-LVLU-EXEC-01十四件64KB全内联(0915)→零执行回执;②DEMAND-SELF×5(lgt/qlv/qfa/cfts/ucif2)→零执行回执;③毂deploy钥POST /keys=403三证(0915T065437Z新鲜复证)。三轨皆尽,执行未至。
-**死后物界验**:vci-qfa死后仍活(50+ commits,SEMANTIC-RESPONDER拍运行,vinf-forge补丁投)→**C1非qfa域唯一写钥,死亡冲击=局部非全域**;vci-inbox sealfetch探针连败报"empty secret"=C1类钥亡实证;毂域pub-guard/TASK-RESPONDER全绿。
+**死后物界验**:vci-qfa死后仍活(50+ commits,SEMANTIC-RESPONDER拍运行,vinf-forge补丁投)→**C1非qfa域唯一写钥,死亡冲击=局部非全域**;vHUB-MAIL sealfetch探针连败报"empty secret"=C1类钥亡实证;毂域pub-guard/TASK-RESPONDER全绿。
 **结**:0919大限未酿全域瘫,但十四件补丁未装=qfa域钥谱含亡钥残段,终局须root一窗⑧。
 
 ## 二、KEYFP×5 钥谱未明册旗【生效】

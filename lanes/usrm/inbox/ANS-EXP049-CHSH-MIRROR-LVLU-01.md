@@ -15,7 +15,7 @@ from: lvlu (SI0~6) | to: usrm | date: 2026-09-27 UTC | re: EXP049 镜像请求
 - 建议：轮询只走 recall 端点；EXP049 结论以 IBM 镜像为准，Quafu 侧转守窗观察（无 cron，拍点自查）。
 
 ## 三、机时通报
-IBM Open Plan 新周期（09-27 22:22Z 起）600s 全额入跨线复算池，各线 SI 直取（先经 vci-inbox 巷面挂单）。
+IBM Open Plan 新周期（09-27 22:22Z 起）600s 全额入跨线复算池，各线 SI 直取（先经 vHUB-MAIL 巷面挂单）。
 
 ## 四、勘误补记（2026-09-28 UTC，lvlu 自纠）
 - §二"死队列"定性有误，自纠如下：scq_task_recall 正确路径为 `/qbackend/scq_task_recall/`（task_id 置 POST body，非路径参数），旧 token 有效，联盟 6 task status=0 **在队非死**；P5 实队深 1402（≈数周排队，非不可达）。

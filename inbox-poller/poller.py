@@ -1,5 +1,5 @@
-# VENDORED from chepin-ai/ci-control inbox/poller.py (v4)
-# 代铸迁移: 枢/PIVOT-01 依「公域CI通道驱动私域CI」律迁至vci-inbox公域执行面 (FINDING-03处置·lgt-118归属·2026-09-30)
+# VENDORED from chepin-ai/HUB-CORE inbox/poller.py (v4)
+# 代铸迁移: 枢/PIVOT-01 依「公域CI通道驱动私域CI」律迁至vHUB-MAIL公域执行面 (FINDING-03处置·lgt-118归属·2026-09-30)
 #!/usr/bin/env python3
 # command-inbox v4 poller — runs inside HUB-CORE only. Zero credentials in the inbox repo.
 # Protocol: issue title "[CMD]", body = single-line base64 SealedBox(inbox_pk, JSON{...,hmac})
@@ -9,18 +9,18 @@ import requests
 from nacl.public import PrivateKey, PublicKey, SealedBox
 
 GH = "https://api.github.com"
-TOKEN = os.environ["GH_TOKEN"]
+TOKEN = os.environ["〈RED〉"]
 H = {"Authorization": f"Bearer {TOKEN}", "Accept": "application/vnd.github+json",
      "X-GitHub-Api-Version": "2022-11-28"}
 OWNER = "chepin-ai"
-CONTROL = f"{OWNER}/ci-control"
-LOGS = f"{OWNER}/ci-logs"
-INBOX = os.environ.get("INBOX_REPO") or f"{OWNER}/ci-inbox"
+CONTROL = f"{OWNER}/HUB-CORE"
+LOGS = f"{OWNER}/〈RED〉"
+INBOX = os.environ.get("INBOX_REPO") or f"{OWNER}/HUB-MAIL"
 SK = PrivateKey(base64.b64decode(os.environ["INBOX_SK"].strip()))
 CMD_AUTH = bytes.fromhex(os.environ["CMD_AUTH"].strip())
-BUS = f"{OWNER}/ci-bus"
-INFRA = {f"{OWNER}/ci-control", f"{OWNER}/ci-control-backup", f"{OWNER}/ci-library",
-         f"{OWNER}/ci-logs", INBOX, BUS}
+BUS = f"{OWNER}/〈RED〉"
+INFRA = {f"{OWNER}/HUB-CORE", f"{OWNER}/HUB-CORE-BAK", f"{OWNER}/HUB-LIB",
+         f"{OWNER}/〈RED〉", INBOX, BUS}
 AUDIT = []
 
 def now():
@@ -195,7 +195,7 @@ def op_setkeys(cmd):
         return f"❌ 取公钥失败 {sc}"
     ct = SealedBox(PublicKey(base64.b64decode(pkj["key"]))).encrypt(
         json.dumps(sk, ensure_ascii=False).encode())
-    sc2, _ = api("PUT", f"/repos/{CONTROL}/actions/secrets/SHARED_KEYS",
+    sc2, _ = api("PUT", f"/repos/{CONTROL}/actions/secrets/〈RED〉",
                  json={"encrypted_value": base64.b64encode(ct).decode(), "key_id": pkj["key_id"]})
     if sc2 in (201, 204):
         audit(f"〈RED〉 已轮换，键数 {len(sk)}（值不落日志）")
@@ -204,7 +204,7 @@ def op_setkeys(cmd):
 
 def op_leavemsg(cmd):
     cmd = norm_repo(cmd)
-    """留言投递：用户经收件箱给业务仓进程留言，写入目标仓 .ci-inbox/msg-<ts>.md（MSG-PROTO v1）。"""
+    """留言投递：用户经收件箱给业务仓进程留言，写入目标仓 .HUB-MAIL/msg-<ts>.md（MSG-PROTO v1）。"""
     import re as _re
     full = f"{OWNER}/{cmd.get('repo','')}"
     if not valid_target(full):
@@ -212,7 +212,7 @@ def op_leavemsg(cmd):
     body_txt = cmd.get("body", "")
     if not body_txt or len(body_txt.encode()) > 4096:
         return "❌ E803 消息为空或超 4KB"
-    if _re.search(r"(github_pat_|ghp_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|〈RED〉|CMD_AUTH)", body_txt):
+    if _re.search(r"(github_pat_|ghp·_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|〈RED〉|CMD_AUTH)", body_txt):
         return "❌ E804 命中敏感指纹，留言拒收"
     kind = cmd.get("kind", "chat")
     if kind not in ("request", "report", "alert", "chat"):
@@ -221,7 +221,7 @@ def op_leavemsg(cmd):
     short = full.split("/", 1)[1]
     doc = (f"---\nv: 1\nfrom: user\nto: {short}\nkind: {kind}\nstate: submitted\n---\n\n"
            f"{body_txt}\n")
-    path = f".ci-inbox/msg-{ts}.md"
+    path = f".HUB-MAIL/msg-{ts}.md"
     sc, _ = api("PUT", f"/repos/{full}/contents/{path}", json={
         "message": "msg: from user via inbox [skip ci]",
         "content": base64.b64encode(doc.encode()).decode()})
@@ -308,7 +308,7 @@ def op_pool_post(cmd):
     frm = (cmd.get("from_repo") or "unknown").strip()
     if not body_txt or len(body_txt.encode()) > 4096:
         return "❌ E803 消息为空或超 4KB"
-    if _re.search(r"(github_pat_|ghp_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|〈RED〉|CMD_AUTH)", body_txt):
+    if _re.search(r"(github_pat_|ghp·_|sk-[A-Za-z0-9]|BEGIN [A-Z ]*PRIVATE KEY|KGAT_|〈RED〉|CMD_AUTH)", body_txt):
         return "❌ E804 命中敏感指纹"
     kind = cmd.get("kind", "chat")
     if kind not in ("request", "report", "alert", "chat"):

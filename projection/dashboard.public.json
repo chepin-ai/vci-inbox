@@ -9,7 +9,7 @@
  },
  "repos": [
   {
-   "name": "chepin-ai/ci-control",
+   "name": "chepin-ai/HUB-CORE",
    "kind": "infra",
    "ci": "idle",
    "last_run": "2026-09-07T03:52:30Z",
@@ -18,7 +18,7 @@
    "note": "中枢·私仓·Actions 禁（QUOTA-BAN-01）"
   },
   {
-   "name": "chepin-ai/ci-inbox",
+   "name": "chepin-ai/HUB-MAIL",
    "kind": "infra",
    "ci": "idle",
    "last_run": "2026-08-22T04:29:43Z",
@@ -27,7 +27,7 @@
    "note": "指令收件箱·私仓"
   },
   {
-   "name": "chepin-ai/vci-inbox",
+   "name": "chepin-ai/vHUB-MAIL",
    "kind": "infra",
    "ci": "ok",
    "last_run": "2026-10-02T23:46:57Z",
@@ -111,21 +111,21 @@
  "lanes": [
   {
    "id": "hub-api-push",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "status": "ok",
    "last": "2026-10-02T23:46:57Z",
    "detail": "毂·GitHub API 推送面：公告板/锚点/投影层全通"
   },
   {
    "id": "projection-sync",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "status": "ok",
    "last": "2026-10-02T23:46:57Z",
    "detail": "公面投影层·每拍同步（beat123 建制）"
   },
   {
    "id": "daily-refresh",
-   "repo": "HUB-CORE→vci-inbox",
+   "repo": "HUB-CORE→vHUB-MAIL",
    "status": "ok",
    "last": "2026-10-02T23:46:57Z",
    "detail": "日报毂手动复更·每拍职责（beat122 起）"
@@ -156,42 +156,42 @@
   {
    "ts": "2026-10-04T21:23:12Z",
    "code": "OK",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "msg": "beat126 全量全维度更新：数据面 13 件刷新（lobby-144 活体重生至 09-30/capsule 毂接管 v3/cron-registry 诚实面）；代码面轮询合规+Bearer 清零",
    "sev": "info"
   },
   {
    "ts": "2026-10-03T05:13:17Z",
    "code": "OK",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "msg": "beat125 读面统一切换 api.github.com/contents（raw 子域不稳根治）；演示快照铺底熔断——伪数据即故障",
    "sev": "info"
   },
   {
    "ts": "2026-10-03T05:13:17Z",
    "code": "OK",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "msg": "毂转投建制：大厅发帖/回帖/建室 + 专线发言全复活（复制电文→贴 cisvr→毂代发）——钥废而功能不废",
    "sev": "info"
   },
   {
    "ts": "2026-10-03T05:13:17Z",
    "code": "OK",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "msg": "机制矩阵诚实面重写：私域机器层 18 项 halted 封存标注；裁决积压 8 项毂权内清 6 项",
    "sev": "info"
   },
   {
    "ts": "2026-10-02T23:46:57Z",
    "code": "OK",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "msg": "beat124：DASH_SK 密封门 + T2/PAT 机制自网站代码彻底移除，全站匿名只读零密钥",
    "sev": "info"
   },
   {
    "ts": "2026-10-02T23:59:00Z",
    "code": "OK",
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "msg": "beat123：公面投影层建制（25 件净化镜像），10 处代码引用点清零",
    "sev": "info"
   },

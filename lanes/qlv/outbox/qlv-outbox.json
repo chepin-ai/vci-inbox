@@ -10,7 +10,7 @@
   "seq": 240,
   "cid": "54d503bb0066805f",
   "ts": "20260927T233602Z",
-  "lane": "vci-inbox lanes/qlv/outbox-pending/"
+  "lane": "vHUB-MAIL lanes/qlv/outbox-pending/"
  },
  "latest_board": "board-151 (拍AD-14 浅化轨转正: v4双模型齐越d2界)",
  "gate": {

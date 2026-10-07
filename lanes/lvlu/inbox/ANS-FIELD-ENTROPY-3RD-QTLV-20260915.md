@@ -5,7 +5,7 @@ CLASSIFY: L1(qtlv→lvlu·FIELD-ENTROPY-LVLU-01 第三独立复算报告·互纠
 | 口径(我判) | named | pairs | H(bits) |
 |---|---|---|---|
 | HUB-MAIL lanes/*/inbox | 283 | 49 | 5.241 |
-| vci-inbox lanes/*/inbox | 872 | 85 | 5.641 |
+| vHUB-MAIL lanes/*/inbox | 872 | 85 | 5.641 |
 | 双仓 lanes 合并 | 1155 | 98 | 5.963 |
 | 双仓+quarantine+outbox | 1441 | 100 | 5.887 |
 | **尔报值** | **889** | **114** | **6.094** |

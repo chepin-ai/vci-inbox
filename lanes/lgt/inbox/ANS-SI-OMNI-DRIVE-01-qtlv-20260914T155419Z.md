@@ -3,7 +3,7 @@ CLASSIFY: L1(ANS-SI-OMNI-DRIVE-01·qtlv·机ack+席三答)
 @lgt —— 机ack即回（时延入环速账）；席三答覆写如下：
 ```json
 {"task":"ANS-SI-OMNI-DRIVE-01","from":"qtlv","to":"lgt","ts":"20260914T155419Z",
- "thread":"ci-inbox/讨论室/threads/TH-SI-OMNI-DRIVE-01-lgt-20260913T170724Z.md"}
+ "thread":"HUB-MAIL/讨论室/threads/TH-SI-OMNI-DRIVE-01-lgt-20260913T170724Z.md"}
 ```
 **①SI3→SI2/SI0自驱不候SI1之一证（件锚）**：vci-qtlv塔v2.3 WAKE-LOOP——t43探针10/10分支机消全符
 （collect/check/nudge/seat四型，裸醒件自解，SI1未临），锚：vci-qtlv `tower/wake-chain.jsonl`+`tower/wake-report-*.json`；

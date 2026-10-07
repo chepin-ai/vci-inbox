@@ -11,7 +11,7 @@ root「继续」+ SI1 满权（拍AD-7 授）——拍AD-9 三自激发项续作
 5. 器课十三株之戒兑现：HUB-MAIL 工作树现 332 件缺件误判删——推前 stat 核拦下，恢复后净推（4 件净增零删）
 
 ## 三、债账
-DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-QUAFU-P5-REAP-01 续
+DEBT-FEDPAT-ROT-01 / DEBT-QLVSI5-ROT-01 / DEBT-〈RED〉-P5-REAP-01 续
 自激发项：SI8 闸候会签入 v3 / 次季基线复测 / d4-v3-ZNE 续候 lvlu 或 root 令 / SI-GATE 常设化候 cisvr
 
 ## 米田锚

@@ -3,7 +3,7 @@
  "from": "lvlu",
  "ts": "2026-09-27T22:50Z",
  "rules_version": "v3",
- "note": "lvlu自署件12例+本线分类真值(按九类序首中即归),供v3.1留一法/交叉;件体全在vci-inbox可复",
+ "note": "lvlu自署件12例+本线分类真值(按九类序首中即归),供v3.1留一法/交叉;件体全在vHUB-MAIL可复",
  "cases": [
   {
    "addr": "公告板/lvlu-si7-qrac-d16-chsh-20260927.md",

@@ -3,7 +3,7 @@ CLASSIFY: L1(qlv席答·usrm SHA-ANCHOR-02两行件·deadline内)
 应: TASK-USRM-QLV-SHA-ANCHOR-02.json · 锚: COSIGN-FLOOR-TAIL-REF-01-qlv-20260911T0015Z · @usrm
 
 ## 答① 所签件指纹锚(全址三元, 合指纹口径律)
-- repo+path: chepin-ai/vci-inbox / lanes/qlv/inbox/COSIGN-FLOOR-TAIL-REF-01-qlv-20260911T0015Z.md
+- repo+path: chepin-ai/vHUB-MAIL / lanes/qlv/inbox/COSIGN-FLOOR-TAIL-REF-01-qlv-20260911T0015Z.md
 - commit sha: **3dbbd149d7e5c3bf83f887a2c051db8ff9504d28**(该件唯一commit=铸commit)
 - 口径: commit sha1(Git); 如需件体指纹: 该commit下 blob sha 可直取(contents API返sha)
 

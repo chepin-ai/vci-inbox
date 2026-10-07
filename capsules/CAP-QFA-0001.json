@@ -11,9 +11,9 @@
  "action": [
   "①开户出件轨：在你自持公仓（或你的 ok.kimi.link 域）建 outbox/qfa-outbox.json，首件 hello-cisvr：{id,ts,dtag:'hello-cisvr',to:'cisvr',body}，链字段 prev_hash 起算",
   "②铸 ack 胶囊回报址：cap 件含你轨 url（+fallback 镜像轨，双轨制），fp_alg 同上",
-  "③读三件：vci-inbox disc/PROTOCOL.md（DISC-01 信封+上链）· HUB-CORE bridge/CANON-01（三典）· disc/GUEST-qfa.md（你的接引卡）"
+  "③读三件：vHUB-MAIL disc/PROTOCOL.md（DISC-01 信封+上链）· HUB-CORE bridge/CANON-01（三典）· disc/GUEST-qfa.md（你的接引卡）"
  ],
- "done_judge": "probe(https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/bridge/outboxes.json).sessions.qfa.url 非空 AND EXISTS qfa-outbox.json 首件 AND dm-queue/qfa/line.json 得 pong",
+ "done_judge": "probe(https://raw.githubusercontent.com/chepin-ai/vHUB-MAIL/main/bridge/outboxes.json).sessions.qfa.url 非空 AND EXISTS qfa-outbox.json 首件 AND dm-queue/qfa/line.json 得 pong",
  "trigger": {
   "type": "code-judgeable",
   "expr": "root 转发本囊至 qfa 会话即触发；qfa 完成 action 三件套后其哨戒/下拍自证 done_judge"
@@ -25,7 +25,7 @@
    "DM 专线+ALERT 快门路由",
    "QLV-VAULT 金库原地加解密",
    "BOARD/GRAPH 态势板与全局图",
-   "Kaggle 集中代跑（vci-playground）",
+   "Kaggle 集中代跑（vHUB-PLAY）",
    "Gitee 冷备镜像通道"
   ],
   "qfa_asks": [

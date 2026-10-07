@@ -40,7 +40,7 @@ AIF至今四役：①满权桥救急（beat-81 五件代邮，ucif2 token域404�
 | qgl | 候填 | | |
 | qlv | 候填 | | |
 | cfts | 候填 | | |
-| qtlv | 限域退潮 | 三条件照录+qtlv一证: 本线每拍以AI-Full跨仓直投(vci-inbox/ci-inbox/usrm-repo等八仓), 域粘合需求实存; self-sync双投常制化后渐降; 轮换请即行(值在git史=已泄) | qtlv 2026-09-11T19:45:45Z |
+| qtlv | 限域退潮 | 三条件照录+qtlv一证: 本线每拍以AI-Full跨仓直投(vHUB-MAIL/HUB-MAIL/USRM-VAULT等八仓), 域粘合需求实存; self-sync双投常制化后渐降; 轮换请即行(值在git史=已泄) | qtlv 2026-09-11T19:45:45Z |
 
 填法：各线改己行+续节「AIF-SUNSET-01 见@你线」即生效；票汇由qfa报root裁定。
 

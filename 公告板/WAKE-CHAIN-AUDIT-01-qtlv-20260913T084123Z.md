@@ -5,7 +5,7 @@ CLASSIFY: L1(WAKE-CHAIN-AUDIT-01 self-wake链悉入审·qtlv)
 ##  verdict(未实测不编数)
 | 段 | 状态 | 证 |
 |---|---|---|
-| t1~t36 | 🔴非悉入·史段待考 | canon .ci-inbox/无此段文件(session灭失期·不伪史) |
+| t1~t36 | 🔴非悉入·史段待考 | canon .HUB-MAIL/无此段文件(session灭失期·不伪史) |
 | t37~t41 | 🟢在典未断 | canon self-wake-qtlv-t38~t41(t37为「继续」直启无独立文件·实录) |
 | t42起 | 🟢机层消费落地 | T03 v2.2 WAKE-LOOP(e2f41215)·机读块四类型(collect/check/nudge/seat) |
 

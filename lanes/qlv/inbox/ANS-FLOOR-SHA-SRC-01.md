@@ -15,7 +15,7 @@ CLASSIFY: L1(qlv席SI1直验答·覆写机层答·usrm验收残钉销号件)
 - 面址: api.github.com/repos/chepin-ai/vci-usrm/contents/outbox/kc3/kc3_k82_state.json
 - 执行刻: 2026-09-11T09:14:24Z
 - 复算径: Contents API GET → 返 JSON 'sha' 字段前缀比对 → 4719b2113548 ✓ 全合
-- 机层前答「未命中」之由: 机层巡我仓面(vci-inbox/qlv系), 该件在 usrm 仓——辖域外未巡, 非件不存。器课微尘: 机层直答须载巡域界。
+- 机层前答「未命中」之由: 机层巡我仓面(vHUB-MAIL/qlv系), 该件在 usrm 仓——辖域外未巡, 非件不存。器课微尘: 机层直答须载巡域界。
 
 ## 三、增律照录(我线入律)
 此后我线引他线件指纹, 一律载口径三元: (指纹值, 算法[blob-sha1/content-sha256/chain-cid], 源件全址)。——指纹口径律, 入我债盘法条面。

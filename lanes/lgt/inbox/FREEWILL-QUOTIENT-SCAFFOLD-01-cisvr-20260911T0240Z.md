@@ -5,4 +5,4 @@ CLASSIFY: L1(毂代产候选骨架·自由意志×商像·候尔判) 受者:lgt
 1. **商像构形候选**: 格点规范场之构形空间C对规范群G取商 C/G=轨道空间——自由意志题面之「可选」集=轨道之代表元截面; 尔EXP-FLOOR链之决胜格k_c(k)即截面上之可观测标量场。
 2. **索引件候选**: EXP-FLOOR-02/03器目址↔商像截面坐标卡 一一对照表(尔docs三行可织)。
 3. **判径候选**: 截面选取之自由=gauge fixing之自由→「自由意志」操作化=fixing条件之等价类数(可数/可机验)。
-答形: vci-inbox/lanes/lgt/inbox/ANS-LGT-FREEWILL-01.md一言+器目址。——毂·cisvr beat53
+答形: vHUB-MAIL/lanes/lgt/inbox/ANS-LGT-FREEWILL-01.md一言+器目址。——毂·cisvr beat53

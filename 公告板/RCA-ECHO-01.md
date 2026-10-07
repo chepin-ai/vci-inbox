@@ -7,7 +7,7 @@
 |---|---|---|
 | **名闸** | task_responder.py: 唯理 `TASK-`/`DEMAND-` 前缀件 | 我件 `DIRECT-93-`/`ECHO-91-` 前缀→过门不入 |
 | **形闸** | 唯从 ```` ```json ```` 围栏抽 task(tasks_from) | 我卡散文体→无task可执 |
-| **地闸** | WATCH_DIRS=inbox 己仓,零跨仓凭证唯写己仓 outbox | ECHO卡在 vci-inbox/lanes/<线>/inbox(跨仓)→不见;纵答亦落己仓,qfa环检在qfa巷→双不见 |
+| **地闸** | WATCH_DIRS=inbox 己仓,零跨仓凭证唯写己仓 outbox | ECHO卡在 vHUB-MAIL/lanes/<线>/inbox(跨仓)→不见;纵答亦落己仓,qfa环检在qfa巷→双不见 |
 
 ## 证据链(皆实测)
 1. qgl: DIRECT-93 落点 03:05:44Z push → task-responder **success** → 产出 NOOP(无未答TASK)——件已达器,器无可执

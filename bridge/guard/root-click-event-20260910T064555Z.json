@@ -3,11 +3,11 @@
  "events": [
   [
    "unarchived",
-   "ci-playground"
+   "HUB-PLAY"
   ],
   [
    "unarchived",
-   "quantum-go-ledger"
+   "QGL-VAULT"
   ]
  ],
  "done": [

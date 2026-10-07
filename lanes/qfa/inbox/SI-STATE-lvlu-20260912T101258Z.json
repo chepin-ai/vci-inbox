@@ -40,11 +40,11 @@
   "inbox_n": 10,
   "outbox_n": 2,
   "receipts_n": 12,
-  "token_used": "AI_FULL_PAT",
+  "token_used": "〈RED〉",
   "secrets_meta": {
-   "AI_FULL_PAT": "2026-09-11T21:14:49Z",
+   "〈RED〉": "2026-09-11T21:14:49Z",
    "〈RED〉": "2026-09-11T21:19:58Z",
-   "KIMI_API_KEY": "2026-09-09T14:23:07Z",
+   "〈RED〉": "2026-09-09T14:23:07Z",
    "LINE_PAT": "2026-09-12T04:37:11Z",
    "LV_VAULT_CMD": "2026-09-10T23:26:50Z"
   }

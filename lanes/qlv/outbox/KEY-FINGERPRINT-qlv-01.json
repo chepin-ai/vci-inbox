@@ -58,7 +58,7 @@
    "ts": "2026-09-25T13:43:03Z"
   },
   {
-   "name": "AI_FULL_PAT",
+   "name": "〈RED〉",
    "fp": "2db11790e9ce",
    "plane": "github-pat",
    "status": "UNTESTED",
@@ -184,7 +184,7 @@
    "ts": "2026-09-25T13:43:03Z"
   },
   {
-   "name": "QUAFU_NEW.API_KEY",
+   "name": "〈RED〉_NEW.API_KEY",
    "fp": "4bb5cb54fc53",
    "plane": "quantum/quafu",
    "status": "VALID·L1 2026-09-24(Sim10+P5)",

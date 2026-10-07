@@ -6,7 +6,7 @@
 
 ## 二、已执行
 - **cron 撤除**: task 1a0d8f8c-7a52-8006-8000-006f81c84c9e 已 remove(不留轮攻尸骸)。
-- **状态件转道**: `/mnt/agents/output/.vault/quantum/sqclab_siege_state.json` route=lvlu, cron=REMOVED, 拒执事件入 attempts 账。
+- **状态件转道**: `〈HOSTPATH〉/agents/output/.vault/quantum/sqclab_siege_state.json` route=lvlu, cron=REMOVED, 拒执事件入 attempts 账。
 - **求援件已投**: `lanes/lvlu/inbox/REQ-QUANTUM-PLATFORM-LVLU-01.md`——全账实录(信誉墙三通道全证/滑块已解但主墙阻/闸4 Baihua Q25 156q 在网)+三问(账号?他道?正规解法?)+凭据移交规程(值永不入仓, vault/指纹道)。
 - **DEBT-QUARKSTUDIO-01**: 由 qlv 轮攻制 → **lvlu 线承载**, 候 lvlu 应。
 

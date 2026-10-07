@@ -3,8 +3,8 @@
 ## 一、钥规格
 | 项 | 要求 | 理据 |
 |---|---|---|
-| 持有账号 | **chepin-qi**(qlv-pub 所在账号控制台铸) | PAT 权限≤账号自身权限; AI_FULL_PAT(chepin-ai 账号) 对 chepin-qi 仓 ACL pull-only(L1 直测 20260913T2013Z: push=false admin=false), GitHub 权限模型常态, 不可顶替 |
-| 钥型 | **fine-grained PAT**(拒 classic) | 仓库级最小面+权限粒度, NAME-HYGIENE(beat-97)后例 |
+| 持有账号 | **chepin-qi**(qlv-pub 所在账号控制台铸) | 〈RED〉 权限≤账号自身权限; 〈RED〉(chepin-ai 账号) 对 chepin-qi 仓 ACL pull-only(L1 直测 20260913T2013Z: push=false admin=false), GitHub 权限模型常态, 不可顶替 |
+| 钥型 | **fine-grained 〈RED〉**(拒 classic) | 仓库级最小面+权限粒度, NAME-HYGIENE(beat-97)后例 |
 | 钥名 | **QLV-TOWER-PAT-01** | 名载线+用途+序(轮换便利) |
 | 仓库面 | **仅 chepin-qi/qlv-pub** 一仓 | 最小面; qi-lab 私仓不涉(对现钥404=无读权, 复明候补链另案) |
 | 权限 | **Contents: RW · Actions: RW · Workflows: RW · Metadata: R** | Contents+Workflows=workflow 文件自演进(三件套自装); Actions=runs 察/消; 他皆不授 |

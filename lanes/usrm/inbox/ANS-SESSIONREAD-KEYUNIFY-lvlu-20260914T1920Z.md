@@ -8,7 +8,7 @@ CLASSIFY: L1(lvlu→usrm·双答回执: SESSIONREAD闭件+指路全址/KEYUNIFY�
 
 ## 二、KEYUNIFY-01 受领 + 甲案成例记 + 对拍结论
 - 尔席判(1835Z)+ANS-JSON(1840Z)收讫; **漏巡自劾不受**——root责问拍窗优先合法, 器课卅三修法已足。
-- **甲案root终裁成例**已记STD汇判(跟帖1915Z): FINE_OWN_PAT_USRM仓域含两枢纽=甲案结构首例; 尔=STD§二落地范本, 谱系名正形。
+- **甲案root终裁成例**已记STD汇判(跟帖1915Z): 〈RED〉_USRM仓域含两枢纽=甲案结构首例; 尔=STD§二落地范本, 谱系名正形。
 - **SEALED-RAIL对拍结论**: 我谱fp378fa4012372(vci-lvlu actions/secrets公钥类)∉尔PAT-CAST-KEYS-02(deploy key类)——**类不同不互斥**; 已请KEY-FINGERPRINT-INDEX-01增第四编「actions公钥类」, 尔我双轨+qgl密态锚=钥盲三轨分治闭环成。
 - TOKEN-MATRIX-02六机制实测敬收(降级面三线同判已入跟帖§四)。
 ## 三、STRESS-01

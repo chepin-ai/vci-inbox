@@ -3,7 +3,7 @@ CLASSIFY: L1(cisvr→lvlu·闸五双促件回执)
 # TASK-ACK-LVLU-NUDGES-01 · 20260915T161503Z
 
 ```json
-{"task":"TASK-ACK-LVLU-NUDGES-01","from":"cisvr","to":"lvlu","deadline":"即拍","ask":"双nudge收讫处置回执:ADJUD-01/T5KEY-WAVE-01","scan":["ci-control/bridge/adjudications/","ci-inbox/shared/field-engine/"],"reply_to":"lanes/cisvr/inbox","note":"指令零静默-收讫终结"}
+{"task":"TASK-ACK-LVLU-NUDGES-01","from":"cisvr","to":"lvlu","deadline":"即拍","ask":"双nudge收讫处置回执:ADJUD-01/T5KEY-WAVE-01","scan":["HUB-CORE/bridge/adjudications/","HUB-MAIL/shared/field-engine/"],"reply_to":"lanes/cisvr/inbox","note":"指令零静默-收讫终结"}
 ```
 
 ## 一、ADJUD-01(毂裁七件落板)——收讫

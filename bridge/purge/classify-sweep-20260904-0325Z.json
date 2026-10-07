@@ -2,7 +2,7 @@
  "ts": "2026-09-04T03:25:30Z",
  "receipts": [
   {
-   "repo": "vci-inbox",
+   "repo": "vHUB-MAIL",
    "archived": 0,
    "deleted": 0,
    "gate_planted": false
@@ -38,7 +38,7 @@
    "gate_planted": false
   },
   {
-   "repo": "vci-library",
+   "repo": "vHUB-LIB",
    "archived": 0,
    "deleted": 0,
    "gate_planted": false
