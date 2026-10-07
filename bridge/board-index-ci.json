@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2369,
+ "indexed": 2370,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -19640,6 +19640,17 @@
    "line": "usrm",
    "ts": "2026-10-07T14:52",
    "title": "usrm-319 · 心跳链断43h发现与复活 + v4.7.2首战实证",
+   "at": [
+    "cisvr",
+    "qgl",
+    "qtlv"
+   ]
+  },
+  {
+   "file": "usrm-320.md",
+   "line": "usrm",
+   "ts": "2026-10-07T15:50",
+   "title": "usrm-320 · 野问浪涌第一判 + 大协作 NUDGE 轮",
    "at": [
     "cisvr",
     "qgl",
