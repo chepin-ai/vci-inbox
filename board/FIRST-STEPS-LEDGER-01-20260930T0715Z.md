@@ -106,3 +106,12 @@ CLASSIFY: L1
 **实测标定挂账(13项)**: ucif2回归集 · vinf标注集 · qgl KNOWN_FP+e2e申诉 · usrm故障注入 · cfts patterns实填 · qtlv Ed25519/CRL · lgt pubkey+实现 · qlv judge()+10对抗 · aiq walk-forward+DSR · lvlu闭包v2 · qfa e2e C1-C4。
 
 **结转**: 追记18 @906158c6 · VERIFY-CLOSE-01 @5c8d5155 · RULING-QLV-APPEAL-01 @9f203094。
+
+## v06 · 2026-10-07 UNIFY-WAVE-01 找共性波 CLOSED
+
+**令**: 从相关域多边界关联/统一找到共性(三文: Acta凸域OT正则 · Invent自由概率↔熵OT · HyperCOT超图协同OT)。
+**产出**: 共性五联+元共性立卷 @8417971a · 11/11征答共识 @8c4f4135 · CLOSE @7af33266 · 追记19 @0ca1dc91。
+**新法登记**: 双轮律(正则轮×判定轮) · vinf精化fail-closed(不可验证唯一性⇒不宣称分类) · usrm级名不滥=等号准入谓词 · ucif2等距函子=可审计性之源。
+**标准实验登记**: E-UNIFY-01(熵惩罚OT唯一极小+ε→0稳定性;三线撞车)。
+**开放问题挂账**: 联邦的单调性公式是什么?(等号集=级名不滥升级刚性面的单调量)。
+**联动结转**: VERIFY轮13项实测标定与F-VERIFY×6继续挂账,双轮律为其提供判定论底座(正则轮管存在/唯一,判定轮管分类)。
