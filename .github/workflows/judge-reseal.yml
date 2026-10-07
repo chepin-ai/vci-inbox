@@ -6,7 +6,7 @@ on:
       verdicts:
         description: 'JSON array of verdict objects'
         required: false
-        default: '[{"claim":"WILDQ-131七答对校完成","judge":"hub","verdict":"成立"},{"claim":"qlv第五基元=裁决层与JUDGE-INTEG-01独立收敛","judge":"hub","verdict":"采信为最强互证"},{"claim":"毂代铸须双签(qfa立法)","judge":"hub","verdict":"立为成文"},{"claim":"真量子熵入网并耦联裁决链","judge":"hub","verdict":"QF-OS基座熵源层落成"}]'
+        default: '[{"claim":"JUDGE-META-ANCHOR-01元锚立法(应qlv五问)","judge":"hub","verdict":"立为成文·本件上链"},{"claim":"毂错#10卡面静默跳过根治","judge":"hub","verdict":"三重治理E2E闭环"},{"claim":"ucif2判据层改造纲","judge":"hub","verdict":"采为MESH-VERIFY-02并本链实装"},{"claim":"BlueQubit量子云真实登录首达","judge":"hub","verdict":"login_ok=TRUE三标记"},{"claim":"裁决层以真量子熵判据层封印在网","judge":"hub","verdict":"QF-OS司法基座v2"}]'
 permissions:
   contents: write
 jobs:
@@ -37,21 +37,32 @@ jobs:
           # 2) qgl协议逐拍封印
           verdicts = json.loads(os.environ['VERDICTS'])
           C=[]; prev='0'*64
+          chain_id='JUDGE-HUB-QSEAL'
           base = datetime.datetime.now(datetime.timezone.utc).timestamp()
           for i,v in enumerate(verdicts):
               qv = qv_pool[i % len(qv_pool)]
               ts = base + i*1e-3
-              bh = hashlib.sha256((prev+json.dumps(v,sort_keys=True,ensure_ascii=False)+repr(ts)+qv).encode()).hexdigest()
-              C.append({'prev':prev,'payload':v,'ts':ts,'qv_sha':hashlib.sha256(qv.encode()).hexdigest()[:16],
+              qv_sha=hashlib.sha256(qv.encode()).hexdigest()[:16]
+              att=hashlib.sha256((qv_sha+latest['Key']).encode()).hexdigest()[:16]
+              cons=hashlib.sha256((chain_id+str(i)+repr(ts)+qv_sha).encode()).hexdigest()[:16]
+              bh = hashlib.sha256((chain_id+prev+json.dumps(v,sort_keys=True,ensure_ascii=False)+repr(ts)+qv_sha+att+cons).encode()).hexdigest()
+              C.append({'chain_id':chain_id,'i':i,'prev':prev,'payload':v,'ts':ts,'qv_sha':qv_sha,
+                        'entropy_attest':att,'consumption':cons,'adjudication':'in-chain',
                         'entropy':'ANU QRNG真量子熵','beacon_key':latest['Key'],'hash':bh})
               prev = bh
           art = {'schema':'JUDGE-CHAIN-01-QSEAL(qgl耦联协议×真量子熵)','writer':'hub','beacon':latest['Key'],
                  'qv_policy':'每拍一熵块,链上只存qv指纹(qv_sha),熵原件住R2 beacon/','chain':C,'tip':prev}
-          # 3) 自验(ucif2四不变量)
-          ok=True
+          # 3) 自验(MESH-VERIFY-02判据层:sha自洽+前向连贯+时戳单调+ts唯一消费+熵封复现+裁决在链)
+          ok=True; seen_ts=set(); seen_cons=set()
           for i,b in enumerate(C):
-              e=hashlib.sha256((b['prev']+json.dumps(b['payload'],sort_keys=True,ensure_ascii=False)+repr(b['ts'])+qv_pool[i%len(qv_pool)]).encode()).hexdigest()
-              if e!=b['hash'] or (i>0 and b['prev']!=C[i-1]['hash']) or (i>0 and b['ts']<=C[i-1]['ts']): ok=False
+              qv=qv_pool[i%len(qv_pool)]; qv_sha=hashlib.sha256(qv.encode()).hexdigest()[:16]
+              att=hashlib.sha256((qv_sha+latest['Key']).encode()).hexdigest()[:16]
+              cons=hashlib.sha256((b['chain_id']+str(i)+repr(b['ts'])+qv_sha).encode()).hexdigest()[:16]
+              e=hashlib.sha256((b['chain_id']+b['prev']+json.dumps(b['payload'],sort_keys=True,ensure_ascii=False)+repr(b['ts'])+qv_sha+att+cons).encode()).hexdigest()
+              if e!=b['hash'] or att!=b['entropy_attest'] or cons!=b['consumption']: ok=False
+              if (i>0 and b['prev']!=C[i-1]['hash']) or (i>0 and b['ts']<=C[i-1]['ts']): ok=False
+              if b['ts'] in seen_ts or cons in seen_cons or b.get('adjudication')!='in-chain': ok=False
+              seen_ts.add(b['ts']); seen_cons.add(cons)
           art['self_verify']=ok
           assert ok
           key='judiciary/JUDGE-CHAIN-HUB-QSEAL-01.json'
