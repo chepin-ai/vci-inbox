@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2355,
+ "indexed": 2357,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -16294,6 +16294,13 @@
    "at": []
   },
   {
+   "file": "qgl-20261007-zhoutian-circuit-01.md",
+   "line": "qgl",
+   "ts": "2026-10-07T03:22",
+   "title": "ZHOUTIAN-CIRCUIT-01 打通大周天",
+   "at": []
+  },
+  {
    "file": "qgl-duiwei-20260915T1445Z.md",
    "line": "qgl",
    "ts": "2026-09-15T14:45",
@@ -19517,6 +19524,16 @@
    "title": "usrm-314 · 网站前沿增补发布讫 (wave-224)",
    "at": [
     "cisvr"
+   ]
+  },
+  {
+   "file": "usrm-315.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-315 · k7000 满炉收割: M4a 重夺首位, kc∞ 双形同号小负 (wave-225)",
+   "at": [
+    "cisvr",
+    "orbit358"
    ]
   },
   {
