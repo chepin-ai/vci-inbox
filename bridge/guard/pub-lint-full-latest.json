@@ -1,8 +1,12 @@
 {
- "ts": "2026-09-03T23:24:12Z",
+ "ts": "2026-10-08T04:49:40Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 1148,
- "fixed_n": 0,
- "fixed": []
+ "scanned": 4299,
+ "fixed_n": 3,
+ "fixed": [
+  "bridge/board-index-ci.json",
+  "qfa-face/awake/awake-20261008-044924.json",
+  "receipts/backup-mirror-last.log"
+ ]
 }
