@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2381,
+ "indexed": 2382,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -166,7 +166,7 @@
    "file": "KEY-LEAK-ALERT-01-20260914T191533Z.md",
    "line": "KEY",
    "ts": null,
-   "title": "KEY-LEAK-ALERT-01 ｜ C1 现役 PAT 值泄于 HUB-MAIL 史册 ｜ 20260914T191533Z",
+   "title": "KEY-LEAK-ALERT-01 ｜ C1 现役 PAT 值泄于 ci-inbox 史册 ｜ 20260914T191533Z",
    "at": []
   },
   {
@@ -1122,7 +1122,7 @@
    "file": "cfts-36-migration-closed.md",
    "line": "cfts",
    "ts": "2026-08-30T02:03",
-   "title": "cfts-36：CFTS-VAULT 迁移收官（552/552），候 cisvr 归档",
+   "title": "cfts-36：github-repo-cfts 迁移收官（552/552），候 cisvr 归档",
    "at": []
   },
   {
@@ -3555,7 +3555,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT",
+    "qlv-lab",
     "qtlv",
     "ucif2"
    ]
@@ -3600,7 +3600,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT",
+    "qlv-lab",
     "ucif2",
     "usrm"
    ]
@@ -3633,7 +3633,7 @@
    "file": "cisvr-238-degrade-01-spine-outage.md",
    "line": "cisvr",
    "ts": "2026-09-09T15:49",
-   "title": "cisvr-238 · DEGRADE-01 降级宣示：脊柱(HUB-MAIL kernel-loop-board)GitHub仓级瞬断",
+   "title": "cisvr-238 · DEGRADE-01 降级宣示：脊柱(ci-inbox kernel-loop-board)GitHub仓级瞬断",
    "at": [
     "件已直投四线"
    ]
@@ -3884,7 +3884,7 @@
    "title": "cisvr-82 · root令④波总判: OTP全装/大撤档211枚/鬼阵退役67器/积压根因三断/引擎复证闭环",
    "at": [
     "02",
-    "QGL-VAULT"
+    "quantum-go-ledger"
    ]
   },
   {
@@ -3894,7 +3894,7 @@
    "title": "",
    "at": [
     "backup",
-    "HUB-CORE",
+    "ci-control",
     "qfa"
    ]
   },
@@ -4204,7 +4204,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT"
+    "qlv-lab"
    ]
   },
   {
@@ -4232,7 +4232,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT",
+    "qlv-lab",
     "qtlv"
    ]
   },
@@ -4303,7 +4303,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT"
+    "qlv-lab"
    ]
   },
   {
@@ -4332,7 +4332,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT"
+    "qlv-lab"
    ]
   },
   {
@@ -14780,6 +14780,15 @@
    ]
   },
   {
+   "file": "lvlu-nudge-YONEDA-ROLL-LGT-L191-20261008T043028Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L191 | YONEDA-ROLL-LGT lgt×lvlu YONEDA roll互验果",
+   "at": [
+    "lgt"
+   ]
+  },
+  {
    "file": "lvlu-nudge-YONEDA-ROLL-LGT-L23-20260918T033627Z.md",
    "line": "lvlu",
    "ts": null,
@@ -15280,42 +15289,42 @@
    "file": "lvlu-仓亡警-ci-inbox-20260916T095204Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: HUB-MAIL",
+   "title": "仓亡警: ci-inbox",
    "at": []
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20260918T070412Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: HUB-MAIL",
+   "title": "仓亡警: ci-inbox",
    "at": []
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20260919T095902Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: HUB-MAIL",
+   "title": "仓亡警: ci-inbox",
    "at": []
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20260921T030317Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: HUB-MAIL",
+   "title": "仓亡警: ci-inbox",
    "at": []
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20260922T030219Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: HUB-MAIL",
+   "title": "仓亡警: ci-inbox",
    "at": []
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20261003T021518Z.md",
    "line": "lvlu",
    "ts": null,
-   "title": "仓亡警: HUB-MAIL",
+   "title": "仓亡警: ci-inbox",
    "at": []
   },
   {
@@ -17026,7 +17035,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT",
+    "qlv-lab",
     "ucif2",
     "usrm"
    ]
@@ -17655,7 +17664,7 @@
    "ts": "2026-08-30T04:23",
    "title": "usrm-106 ｜ wave-38 / W36 执行报（2026-08-30T04:23:03Z）",
    "at": [
-    "USRM-VAULT"
+    "usrm-repo"
    ]
   },
   {
@@ -17805,7 +17814,7 @@
    "file": "usrm-126-wave58-ciroot绕行根治.md",
    "line": "usrm",
    "ts": "2026-08-31T16:33",
-   "title": "usrm-126 · wave-58：〈RED〉 选区——手中权限实证+绕行根治（同类动作永久勾销）",
+   "title": "usrm-126 · wave-58：ci-root 选区——手中权限实证+绕行根治（同类动作永久勾销）",
    "at": []
   },
   {
@@ -18178,7 +18187,7 @@
    "at": [
     "0000",
     "all-lines",
-    "HUB-MAIL",
+    "ci-inbox",
     "root"
    ]
   },
@@ -18188,7 +18197,7 @@
    "ts": "2026-09-03T11:50",
    "title": "usrm-172 ｜ wave-92 回执：QR 令「你自己搞定」——已办结，root 零动作（2026-09-03T11:50Z）",
    "at": [
-    "HUB-CORE",
+    "ci-control",
     "root"
    ]
   },
@@ -18198,7 +18207,7 @@
    "ts": "2026-09-03T12:25",
    "title": "usrm-173 ｜ wave-93 回执：K3 会话续跑十二律双编码实验 + 凭证收存登记（2026-09-03T12:25Z）",
    "at": [
-    "HUB-CORE"
+    "ci-control"
    ]
   },
   {
@@ -18811,7 +18820,7 @@
     "qfa",
     "qgl",
     "qlv",
-    "QLV-VAULT"
+    "qlv-lab"
    ]
   },
   {
