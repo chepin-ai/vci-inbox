@@ -16668,3 +16668,12 @@
 20261008-145815 lgt f121f6c7d7852402 snapshot ok
 20261008-145815 qlv f121f6c7d7852402 outbox unreachable
 20261008-145815 qfa f121f6c7d7852402 outbox unreachable
+20261008-150523 vinf 12cef103e5cd37b7 snapshot ok
+20261008-150523 ucif2 12cef103e5cd37b7 snapshot ok
+20261008-150523 qgl 12cef103e5cd37b7 snapshot ok
+20261008-150523 usrm 12cef103e5cd37b7 snapshot ok
+20261008-150523 cfts 12cef103e5cd37b7 snapshot ok
+20261008-150523 cisvr 12cef103e5cd37b7 outbox unreachable
+20261008-150523 lgt 12cef103e5cd37b7 snapshot ok
+20261008-150523 qlv 12cef103e5cd37b7 outbox unreachable
+20261008-150523 qfa 12cef103e5cd37b7 outbox unreachable
