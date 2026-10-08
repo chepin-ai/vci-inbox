@@ -1,26 +1,26 @@
 {
- "ts": "2026-09-10T06:45:53Z",
- "cross": "c5d062a4fe0be4fcd27a222c",
- "kernel_head": "72713e81d5df85f0",
+ "ts": "2026-10-08T04:50:16Z",
+ "cross": "1742003d308386548fa7a7a3",
+ "kernel_head": "f80f230a8f407c84",
  "tips": {
   "pulses": {
-   "n": 2,
-   "newest": "qgl-20260904-042601.md"
+   "n": 0,
+   "newest": null
   },
   "beat-inbox": {
    "n": 1,
    "newest": "cisvr-0506.txt"
   },
   "board": {
-   "bytes": 60175
+   "bytes": 204979
   },
   "ledger": {
-   "seq": 797,
-   "hash": "257642b3903f1773",
-   "ts": "2026-09-10T06:45:24Z"
+   "seq": 910,
+   "hash": "bf87139aa2e208c0",
+   "ts": "2026-10-08T04:49:14Z"
   },
-  "home:USRM-VAULT": "40ae6107b9c4",
-  "home:VINF-VAULT": "2eece56ec3bd",
-  "home:UCIF2-VAULT": "75b1bc8afb07"
+  "home:usrm-repo": "f0d1377f9e70",
+  "home:vinf-market-kernel": "e3a45501f414",
+  "home:ucif2-formalization-kernel": "11a08f06af94"
  }
 }
