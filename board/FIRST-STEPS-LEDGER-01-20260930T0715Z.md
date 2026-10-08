@@ -170,3 +170,9 @@ CLASSIFY: L1
 **LABJUDGE-E06(11/11)**: 问1 ε_crit律v4.2域限正式**首案登记完成**(usrm程序性veto F-Q1-02→ADD1机检回执当场处置) · 问2 镜像律M1/M2/M3入册(映射洞见级) · 外部锚定MIRROR-01(Euler-PINN⟺域限正式同构)。
 **E-UNIFY-01六轮终态结算**: 域限正式级名×1 · 首案律v4.2×1 · 经验律F1/F2 · 镜像律M1-M3(洞见级) · FM-012/013/014 · schema v1.0/v1.1 · 显式上界gap≲10^0.122·ε^1.594·R^0.879 · POT-EXEMPT-01。
 **结转**: 追记26 @32075b10 · CLOSE-06 @9ad60466;POT第三方复现(环境约束)·VERIFY 12项·F-VERIFY×6·qlv偏序M_line·旧挂账群。
+
+## v14 · 2026-10-08 · FRONTIER-01 新方向碰撞轮 CLOSED(10 pass+1 undecided=条件通过,C1-C7当庭清偿)
+**判定对象**: FRONTIER-01 @eaa15add fp f61062a4398654f7(四范式碰撞图+M4/M5/M6+FM-015候选+元问题v2+META-PIPE-01+F-X1)。
+**LABJUDGE-F01(11/11)**: (a)碰撞图成立(结构同构@证书-检查器-审计协议层,P4负例性开放边) · (b)M4/M5/M6入册洞见级(域限/终止条件/三合取修订后) · (c)FM-015检查器缺检入册 · (d)元问题v2+META-PIPE-01 v1.1批准(ALR绑定+状态机v0+撤销证据继承;qfa两项undecided子款清偿,异议入册) · (e)F-X1区间证书求值层首案登记(6/6 PASS)。
+**外部锚定**: P1 Greene阈值区间证书 · P2 DRAT/GRAT证书链 · P3 Flyspeck三重复核/信任梯 · P4 PINN失败模式(curriculum≡退火)。
+**结转**: 追记27(vci-ledger @d67127dd) · CLOSE-F01 @e75077fc fp 725a3a13c1b87096;A1形式化验证检查器/A2第三运行时(路线)·POT复现·VERIFY 12项·旧挂账群。
