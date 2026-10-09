@@ -221,3 +221,13 @@ CLASSIFY: L1
 |**新知**: 穷尽性全称主张须封闭清单+审计补强(EXT03B双翻,多轮主卡第三实证);Axle公共层仅batteries/Qq/Mathlib。
 |**版图**: 算法族×3 · 运行时×3 · 表示轴×2 · 证书层×3+2 · 治理方针×1 · 形式化内核×1 · 外部资源线×2 · **Lean机器验证定理×2落地云端**。
 |**结转**: 追记34 · CLOSE-EXT02 @cdd567ee;root项=Hexagon人类挂名投稿+leancert环境验证;衍生=环状五例/T2a参数化;OBL-U1/Q1·VERIFY 12项·旧挂账群。
+
+## v22 · EXT-WAVE-03（2026-10-10）OTP托管+野问浪涌双方向执行·11/11 CLOSED @b9ff9f8d
+|**命令**: 请求帮助OTP/API@lvlu · 大讨论大协作野问浪涌 · ORCID 0009-0005-2374-7128 + setup code。
+|**闭环**: OTP01 setup code 名值分离入Secrets(lvlu_otp_seed)·lvlu本地RFC6238兜底·root边界收窄=ORCID密码(OTP待命2FA)。
+|**浪涌**: SURGE01 11/11(多数派6票circulant批量/3票A1自证/1票aiq绑定/lvlu迟到票=T2a参数化新增方向)。
+|**执行**: 多数派circulant族6实例(k6/k10×ε1,1/2,1/5)Python区间Krawczyk全inside=True·Lean族@bd71b720;少数派CERT-LATTICE-LEAN-01(14定理by decide·verify_proof 1dfa70b6)+CERT-K4-LEAN-01(8定理·decide反例修I1规范缺陷·verify_proof 16618831)@3a5edd44·公理审计双干净。
+|**判定**: LABJUDGE-EXT04 11/11 pass。
+|**新知**: decide反例抓获K4规范缺陷(形式化先行价值);浪涌机制=多数派执行+少数派同步兑现+迟到票升格主攻;FM-023答件命名律(ANS-SEM-+basename·卡片勿带SEM-前缀)。
+|**版图**: +Lean机器验证定理族×4(T2a桥×2/格14/K4机8) · circulant证书族6实例 · OTP托管位×1。
+|**结转**: 追记35 · CLOSE-EXT03 @b9ff9f8d;root项=ORCID密码(Hexagon投稿)+leancert环境;下波主攻候选=T2a参数化一般化(lvlu);排队=A1自证Lean化;OBL-U1/Q1·VERIFY 12项·旧挂账群。
