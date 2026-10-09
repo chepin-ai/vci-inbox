@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2434,
+ "indexed": 2435,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -14052,6 +14052,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L25 | WQB15-V02 WQ-B15 v0.2（taskids至/Completed至则修）",
+   "at": [
+    "lvlu"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-WQB15-V02-L250-20261009T224146Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L250 | WQB15-V02 WQ-B15 v0.2（taskids至/Completed至则修）",
    "at": [
     "lvlu"
    ]
