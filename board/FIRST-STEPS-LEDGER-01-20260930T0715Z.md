@@ -214,3 +214,10 @@ CLASSIFY: L1
 |**新知**: FM-022顶层ask键契约静默跳过(FM-021扩四段版);Hexagon挂名处置=b+c(备稿+询代投授权);复用已验证外部库满足清偿标准附三条件。
 |**版图**: 算法族×3 · 运行时×3 · 表示轴×2 · 证书层×3+2 · 治理方针×1 · 形式化内核×1 · 存量锚0欠账 · **外部资源线×2(Hexagon/Lean)接入裁定**。
 |**结转**: 追记33+FM-022 @03b51c1a · CLOSE-EXT01 @821b6113;OBL-EXT-01环状六实例leancert移植·OBL-EXT-02 Hexagon备稿+授权询函·OBL-EXT-03 Axle SDK云端重放·OBL-EXT-04 Rice归约桥;OBL-U1/Q1·VERIFY 12项·旧挂账群。
+
+## v21 · 2026-10-09 · EXT-WAVE-02 饱和攻击执行波结线
+|**波次**: EXT-WAVE-02 · 裁定路线全量执行至root边界(11/11 pass·CLOSED @cdd567ee)。
+|**清偿**: OBL-EXT-04 M2.1 Rice桥Lean云端严格验证(verify_proof×2+公理审计三标准公理无sorryAx)·OBL-EXT-01 M1.2 leancert移植备稿(Python复验内包+负面拒)·OBL-EXT-03 Axle无key实战接入·OBL-EXT-02 Hexagon备稿三件套。
+|**新知**: 穷尽性全称主张须封闭清单+审计补强(EXT03B双翻,多轮主卡第三实证);Axle公共层仅batteries/Qq/Mathlib。
+|**版图**: 算法族×3 · 运行时×3 · 表示轴×2 · 证书层×3+2 · 治理方针×1 · 形式化内核×1 · 外部资源线×2 · **Lean机器验证定理×2落地云端**。
+|**结转**: 追记34 · CLOSE-EXT02 @cdd567ee;root项=Hexagon人类挂名投稿+leancert环境验证;衍生=环状五例/T2a参数化;OBL-U1/Q1·VERIFY 12项·旧挂账群。
