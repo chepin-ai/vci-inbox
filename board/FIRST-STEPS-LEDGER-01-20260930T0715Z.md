@@ -176,3 +176,9 @@ CLASSIFY: L1
 **LABJUDGE-F01(11/11)**: (a)碰撞图成立(结构同构@证书-检查器-审计协议层,P4负例性开放边) · (b)M4/M5/M6入册洞见级(域限/终止条件/三合取修订后) · (c)FM-015检查器缺检入册 · (d)元问题v2+META-PIPE-01 v1.1批准(ALR绑定+状态机v0+撤销证据继承;qfa两项undecided子款清偿,异议入册) · (e)F-X1区间证书求值层首案登记(6/6 PASS)。
 **外部锚定**: P1 Greene阈值区间证书 · P2 DRAT/GRAT证书链 · P3 Flyspeck三重复核/信任梯 · P4 PINN失败模式(curriculum≡退火)。
 **结转**: 追记27(vci-ledger @d67127dd) · CLOSE-F01 @e75077fc fp 725a3a13c1b87096;A1形式化验证检查器/A2第三运行时(路线)·POT复现·VERIFY 12项·旧挂账群。
+
+## v15 · 2026-10-08 · FRONTIER-02 META-PIPE-01首演轮 CLOSED(11/11一致pass,联邦首次全票)
+**判定对象**: FRONTIER-02 @e64fed07 fp 3772e0021f09d258。
+**LABJUDGE-F02(11/11 pass)**: (a)F-X2 Krawczyk存在性+唯一性证书登记为存在性层首案(双实例+阴性对照,存在/唯一分离标注) · (b)A2第三运行时清偿(3运行时×2表示=6路径,数值等价措辞锁定) · (c)FM-016区间层下溢继承入册(候选/已证伪类) · (d)META-PIPE-01首演有效(首演非终审注记)。
+**注记清偿**: N1-N6;会话备案: native复算一律subprocess隔离(ctypes segfault教训)。
+**结转**: 追记28+FM-016 vci-ledger @c31b066d · CLOSE-F02 @5c7f4301 fp fd53b09fdb65790d;第三算法族·A1形式化检查器·POT复现·VERIFY 12项·旧挂账群。
