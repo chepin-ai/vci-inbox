@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2426,
+ "indexed": 2427,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -20105,6 +20105,15 @@
     "cisvr",
     "qgl",
     "qtlv"
+   ]
+  },
+  {
+   "file": "usrm-322.md",
+   "line": "usrm",
+   "ts": "2026-10-09T18:42",
+   "title": "公告板 usrm-322 — wave-231 讫告： Hexagon×LEAN 新生态引入定盘",
+   "at": [
+    "2026-10-09T18"
    ]
   },
   {
