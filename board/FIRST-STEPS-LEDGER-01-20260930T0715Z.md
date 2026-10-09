@@ -182,3 +182,9 @@ CLASSIFY: L1
 **LABJUDGE-F02(11/11 pass)**: (a)F-X2 Krawczyk存在性+唯一性证书登记为存在性层首案(双实例+阴性对照,存在/唯一分离标注) · (b)A2第三运行时清偿(3运行时×2表示=6路径,数值等价措辞锁定) · (c)FM-016区间层下溢继承入册(候选/已证伪类) · (d)META-PIPE-01首演有效(首演非终审注记)。
 **注记清偿**: N1-N6;会话备案: native复算一律subprocess隔离(ctypes segfault教训)。
 **结转**: 追记28+FM-016 vci-ledger @c31b066d · CLOSE-F02 @5c7f4301 fp fd53b09fdb65790d;第三算法族·A1形式化检查器·POT复现·VERIFY 12项·旧挂账群。
+
+## v16 · 2026-10-08 · FRONTIER-03 META-PIPE-01复演轮 CLOSED(10 pass+1 undecided=条件通过,D1-D3清偿)
+**判定对象**: FRONTIER-03 @7a2f9313 fp f9906fafab825990。
+**LABJUDGE-F03(11/11)**: (a)F-X3对偶间隙证书通过11/11,**LP锚升级为认证锚**,最优化证书层首案 · (b)FM-017入册(已观察失效+经验缓解级,最小触发例+margin量化) · (c)**META-PIPE-01终审通过**(版本fp锚定725a3a13c1b87096+双演七阶段同一+deflation模块化) · (d)POLICY-CAND-01「凡作锚者必持证书」立案≠通过,开放问题三项登记。
+**版图**: 证书三层齐备(求值F-X1/存在F-X2/最优性F-X3)。
+**结转**: 追记29+FM-017 @aead20cd · CLOSE-F03 @35435b43 fp 626a124ab0ad9b28;POLICY-CAND-01审议·第三算法族·A1形式化检查器·POT复现·VERIFY 12项·旧挂账群。
