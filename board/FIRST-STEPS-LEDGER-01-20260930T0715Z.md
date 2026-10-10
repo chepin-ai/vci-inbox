@@ -243,3 +243,15 @@ CLASSIFY: L1
 |**工程新知**: verify_proof formal_statement须含自定义定义块;omega不穿透beta红点(show解法)。
 |**版图**: +T2a模板(桥+外延+发生器+3实例) · +自证核(4定理) · Lean云端验证定理累计 2+14+8+6+4=34。
 |**结转**: 追记36 · CLOSE-EXT04 @2f992879;root项=ORCID密码复核+leancert环境;下波=circulant Lean编译/Hexagon询函/T2a入稿;OBL-U1/Q1·VERIFY 12项·旧挂账群。
+
+## v24 · 2026-10-10 午后 · EXT-WAVE-04b — ORCID 打通 / Hexagon 首投提交 / 公域CI驱动私域能力定型
+
+|**命令**: 全量同步推进(ORCID登录+Hexagon投稿主攻)·OCID邮箱/密码已交付·lvlu可操作2FA·root途中供恢复码×3+验证链接×2+实时TOTP×1。
+|**ORCID打通**: 恢复码×3三登全成;FM-024扩展定谳——浏览器上下文每用户轮重置(单轮全链律)·TOTP仅当前窗无±1(726915实证被拒)·恢复码=唯一稳健跨轮通道(库存现0)。
+|**Hexagon账户**: ORCID OAuth绑定·chepin@163.com Verified(链接#2落地)·额度1/UTC日·hexagon_sub_token名值分离双位入库(Secrets+Actions secret)。
+|**CI投稿通道**: vci-inbox hexagon-submit workflow建成并一次跑通——GraphQL落盘触发/CF-1010浏览器UA绕过/幂等续传修复(@ba3ea09f: init-complete/part-409=成功)/结果回写触发路径外防循环/push段rebase重试抗竞态。
+|**投稿完成**: draft a06cdff2→双件complete→preview ready→**commit 202·identifier hexagon:2610.00183·versionId 2610.00183v1·processing**(screen→moderation)·今日额度已消费。题:A Machine-Checked Kernel for Federated Automated Adjudication(格完备/生命周期/数值锚/Rice模板四件+anc/AI溯源披露)·cs.LO+math.LO/cs.MS·MSC 03B35/68V15/03D35/65G40·CC BY 4.0。
+|**判定**: LABJUDGE-EXT06首收**11/11 pass**无补强——「下游异步态不阻塞收口」获全线复述·与EXT03B/EXT05B判例合流为常数链。
+|**工程新知**: Hexagon upload幂等续传语义/preview软闸门/commit202即保留identifier;GraphQL createCommitOnBranch须String!;CI结果回写防循环+rebase抗竞态(dd038b8f失结果之鉴)。
+|**版图**: +Hexagon外部出口首通(联邦工件首次进入公共学术登记线)·+CI投稿定式(公域通道驱动私域能力·FM-024j)·FINDING-FM-024扩展d–j @4ad5b062。
+|**结转**: 追记37 · CLOSE-EXT04b @0142e3cc;观察=2610.00183 screen/moderation轮询;root项=admin询函发件+恢复码续供;下波=Palomar/Prove2.me挂列(formalization链接位)·circulant Lean编译·OBL-EXT-03r仍冻结。
