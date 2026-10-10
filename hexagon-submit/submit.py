@@ -1,14 +1,22 @@
 # CLASSIFY: L1
-# hexagon-submit/submit.py — PIVOT-01 federation Hexagon submission client (stdlib only)
-import json, os, sys, time, urllib.request, urllib.error
+# hexagon-submit/submit.py — PIVOT-01 federation Hexagon submission client (stdlib only, self-reporting)
+import json, os, sys, time, traceback, urllib.request, urllib.error
 
 BASE = 'https://hexagonmath.org'
-TOK = os.environ['HEXAGON_SUB_TOKEN'].strip()
 HERE = os.path.dirname(os.path.abspath(__file__))
 IDEM = 'pivot01-extwave04b-v2-0001'
 RESULT = os.path.join(HERE, 'result.json')
+out = {'idempotency_key': IDEM, 'steps': []}
+
+def write_result(**kw):
+    out.update(kw)
+    try:
+        with open(RESULT, 'w') as f: json.dump(out, f, indent=2, ensure_ascii=False)
+    except Exception:
+        pass
 
 def req(method, path, body=None, raw=None, headers=None):
+    TOK = os.environ.get('HEXAGON_SUB_TOKEN', '').strip()
     url = BASE + path
     h = {'Authorization': 'Bearer ' + TOK}
     data = None
@@ -28,78 +36,86 @@ def req(method, path, body=None, raw=None, headers=None):
         try: return e.code, json.loads(t)
         except Exception: return e.code, {'_text': t[:4000]}
 
-def write_result(obj):
-    with open(RESULT, 'w') as f: json.dump(obj, f, indent=2, ensure_ascii=False)
-    print('RESULT:', json.dumps(obj, ensure_ascii=False)[:3000])
-
-meta = json.load(open(os.path.join(HERE, 'metadata.json')))
-main_tex = open(os.path.join(HERE, 'payload', 'main.tex'), 'rb').read()
-disc = open(os.path.join(HERE, 'payload', 'ai-use-disclosure.md'), 'rb').read()
-
-out = {'idempotency_key': IDEM, 'steps': []}
 def step(name, st, body):
     out['steps'].append({'step': name, 'status': st, 'body': body})
-    print('STEP', name, st, json.dumps(body, ensure_ascii=False)[:1200])
+    write_result()
 
-# 1. create/resume draft
-st, d = req('POST', '/api/v1/submissions', body=meta, headers={'Idempotency-Key': IDEM})
-if st == 400 and 'aiSystems' in json.dumps(d):
-    meta2 = dict(meta); meta2.pop('aiSystems', None)
-    st, d = req('POST', '/api/v1/submissions', body=meta2, headers={'Idempotency-Key': IDEM})
-step('create_draft', st, d)
-if st not in (200, 201):
-    write_result({**out, 'final': 'draft_failed'}); sys.exit(1)
-draft = d.get('draftId') or d.get('id') or (d.get('draft') or {}).get('draftId')
-if not draft:
-    write_result({**out, 'final': 'no_draft_id', 'raw': d}); sys.exit(1)
-out['draftId'] = draft
+def main():
+    if not os.environ.get('HEXAGON_SUB_TOKEN'):
+        write_result(final='no_token'); return 1
+    meta = json.load(open(os.path.join(HERE, 'metadata.json')))
+    meta.pop('CLASSIFY', None)
+    main_tex = open(os.path.join(HERE, 'payload', 'main.tex'), 'rb').read()
+    disc = open(os.path.join(HERE, 'payload', 'ai-use-disclosure.md'), 'rb').read()
 
-def upload(kind, fname, rel, ctype, blob):
-    st, u = req('POST', '/api/v1/submissions/%s/uploads' % draft,
-                body={'kind': kind, 'filename': fname, 'relativePath': rel,
-                      'contentType': ctype, 'sizeBytes': len(blob)})
-    step('upload_init:' + rel, st, u)
-    if st not in (200, 201): return False
-    uid = u.get('uploadId') or u.get('id') or (u.get('upload') or {}).get('uploadId')
-    if not uid: return False
-    st, p = req('PUT', '/api/v1/submissions/%s/uploads/%s/parts/1' % (draft, uid), raw=blob)
-    step('upload_part:' + rel, st, p if isinstance(p, dict) else {'_': str(p)[:200]})
-    if st != 200: return False
-    st, c = req('POST', '/api/v1/submissions/%s/uploads/%s/complete' % (draft, uid))
-    step('upload_complete:' + rel, st, c)
-    return st == 200
+    st, d = req('POST', '/api/v1/submissions', body=meta, headers={'Idempotency-Key': IDEM})
+    if st == 400 and 'aiSystems' in json.dumps(d):
+        meta2 = dict(meta); meta2.pop('aiSystems', None)
+        st, d = req('POST', '/api/v1/submissions', body=meta2, headers={'Idempotency-Key': IDEM})
+        step('create_draft_nosystems', st, d)
+    else:
+        step('create_draft', st, d)
+    if st not in (200, 201):
+        write_result(final='draft_failed'); return 1
+    draft = d.get('draftId') or d.get('id') or (d.get('draft') or {}).get('draftId')
+    if not draft:
+        write_result(final='no_draft_id'); return 1
+    out['draftId'] = draft
 
-ok1 = upload('source', 'main.tex', 'main.tex', 'application/x-tex', main_tex)
-ok2 = upload('source-asset', 'ai-use-disclosure.md', 'anc/ai-use-disclosure.md', 'text/markdown', disc)
-if not ok1:
-    write_result({**out, 'final': 'main_upload_failed'}); sys.exit(1)
+    def upload(kind, fname, rel, ctype, blob):
+        st, u = req('POST', '/api/v1/submissions/%s/uploads' % draft,
+                    body={'kind': kind, 'filename': fname, 'relativePath': rel,
+                          'contentType': ctype, 'sizeBytes': len(blob)})
+        step('upload_init:' + rel, st, u)
+        if st not in (200, 201): return False
+        uid = u.get('uploadId') or u.get('id') or (u.get('upload') or {}).get('uploadId')
+        if not uid: return False
+        st, p = req('PUT', '/api/v1/submissions/%s/uploads/%s/parts/1' % (draft, uid), raw=blob)
+        step('upload_part:' + rel, st, p)
+        if st != 200: return False
+        st, c = req('POST', '/api/v1/submissions/%s/uploads/%s/complete' % (draft, uid))
+        step('upload_complete:' + rel, st, c)
+        return st == 200
 
-# preview (advisory gate)
-st, pv = req('POST', '/api/v1/submissions/%s/preview' % draft)
-step('preview_queue', st, pv)
-preview_ok = None
-if st == 202:
-    for i in range(40):
-        time.sleep(15)
-        st, pv = req('GET', '/api/v1/submissions/%s/preview' % draft)
+    ok1 = upload('source', 'main.tex', 'main.tex', 'application/x-tex', main_tex)
+    ok2 = upload('source-asset', 'ai-use-disclosure.md', 'anc/ai-use-disclosure.md', 'text/markdown', disc)
+    if not ok1:
+        write_result(final='main_upload_failed'); return 1
+
+    st, pv = req('POST', '/api/v1/submissions/%s/preview' % draft)
+    step('preview_queue', st, pv)
+    preview_ok = None
+    if st == 202:
+        for i in range(40):
+            time.sleep(15)
+            st, pv = req('GET', '/api/v1/submissions/%s/preview' % draft)
+            s = json.dumps(pv)
+            if ('success' in s) or ('failed' in s) or ('error' in s):
+                break
+        step('preview_final', st, pv)
         s = json.dumps(pv)
-        if any(k in s for k in ('"success"', '"failed"', '"error"', 'succeeded')) or (isinstance(pv, dict) and pv.get('preview', {}) and pv['preview'].get('state') in ('success','failed','error')):
-            break
-    step('preview_final', st, pv)
-    s = json.dumps(pv)
-    if 'success' in s: preview_ok = True
-    elif ('fail' in s) or ('error' in s): preview_ok = False
+        if 'success' in s: preview_ok = True
+        elif ('failed' in s) or ('error' in s): preview_ok = False
 
-if preview_ok is False:
-    st, lg = req('GET', '/api/v1/submissions/%s/preview/log' % draft)
-    write_result({**out, 'final': 'preview_failed', 'log': lg.get('_text', json.dumps(lg))[:8000]}); sys.exit(2)
+    if preview_ok is False:
+        st, lg = req('GET', '/api/v1/submissions/%s/preview/log' % draft)
+        write_result(final='preview_failed', log=lg.get('_text', json.dumps(lg))[:8000])
+        return 2
 
-# commit
-st, cm = req('POST', '/api/v1/submissions/%s/commit' % draft)
-step('commit', st, cm)
-if st != 202:
-    write_result({**out, 'final': 'commit_failed', 'preview_ok': preview_ok}); sys.exit(1)
-time.sleep(10)
-st, dd = req('GET', '/api/v1/submissions/%s' % draft)
-step('final_status', st, dd)
-write_result({**out, 'final': 'committed', 'preview_ok': preview_ok, 'draft': dd})
+    st, cm = req('POST', '/api/v1/submissions/%s/commit' % draft)
+    step('commit', st, cm)
+    if st != 202:
+        write_result(final='commit_failed', preview_ok=preview_ok); return 1
+    time.sleep(10)
+    st, dd = req('GET', '/api/v1/submissions/%s' % draft)
+    step('final_status', st, dd)
+    write_result(final='committed', preview_ok=preview_ok)
+    return 0
+
+if __name__ == '__main__':
+    try:
+        code = main()
+    except Exception:
+        write_result(final='crash', traceback=traceback.format_exc()[-3000:])
+        code = 9
+    sys.exit(code)
