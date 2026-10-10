@@ -2,12 +2,62 @@
   "idempotency_key": "pivot01-extwave04b-v2-0001",
   "steps": [
     {
-      "step": "create_draft",
-      "status": 403,
+      "step": "create_draft_nosystems",
+      "status": 200,
       "body": {
-        "_text": "error code: 1010\n"
+        "draftId": "a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
+        "status": "uploading",
+        "identifier": null,
+        "versionId": null,
+        "expiresAt": "2026-10-11T14:48:56.650Z",
+        "links": {
+          "self": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
+          "uploads": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads",
+          "commit": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/commit"
+        }
+      }
+    },
+    {
+      "step": "upload_init:main.tex",
+      "status": 200,
+      "body": {
+        "uploadId": "e65a7e0e-20e0-4c48-83af-9d0439fdab4b",
+        "status": "complete",
+        "partSizeBytes": 5242880,
+        "links": {
+          "partTemplate": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/e65a7e0e-20e0-4c48-83af-9d0439fdab4b/parts/{partNumber}",
+          "complete": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/e65a7e0e-20e0-4c48-83af-9d0439fdab4b/complete"
+        }
+      }
+    },
+    {
+      "step": "upload_part:main.tex",
+      "status": 409,
+      "body": {
+        "error": "Upload is already complete"
+      }
+    },
+    {
+      "step": "upload_init:anc/ai-use-disclosure.md",
+      "status": 200,
+      "body": {
+        "uploadId": "92478ef8-32f7-452c-971e-eefa8f26ed6f",
+        "status": "complete",
+        "partSizeBytes": 5242880,
+        "links": {
+          "partTemplate": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/92478ef8-32f7-452c-971e-eefa8f26ed6f/parts/{partNumber}",
+          "complete": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/92478ef8-32f7-452c-971e-eefa8f26ed6f/complete"
+        }
+      }
+    },
+    {
+      "step": "upload_part:anc/ai-use-disclosure.md",
+      "status": 409,
+      "body": {
+        "error": "Upload is already complete"
       }
     }
   ],
-  "final": "draft_failed"
+  "draftId": "a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
+  "final": "main_upload_failed"
 }
