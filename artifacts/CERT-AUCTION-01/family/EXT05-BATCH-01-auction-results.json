@@ -1,0 +1,181 @@
+{
+  "methodology": "F-X4 拍卖（前向+ε-scaling+价格暖启动）× F-X3 对偶括弧交叉认证；HiGHS 仅候选生成器；区间算术 np.nextafter 外向舍入；δ-deflation=1e-10；判据：cost∈k×[LB_lo,UB_hi] ∧ gap≤k·ε_final ∧ 交换扰动阴性对照越界拒证",
+  "generator": "rng=default_rng(seed); rng.random(k)×2 预抽; C=10^(R·(2·rng.random((k,k))−1))",
+  "results": [
+    {
+      "tag": "k8-R2-seed7-BENCH",
+      "k": 8,
+      "R": 2,
+      "seed": 7,
+      "eps0": 0.5,
+      "factor": 5.0,
+      "eps_final": 1e-06,
+      "rounds": 10,
+      "bids": 124,
+      "auction_cost": "0.2550220110027003",
+      "epsCS_residual": "1.000000000139778e-06",
+      "bracket": [
+        "0.2550220109771976",
+        "0.2550220110027017"
+      ],
+      "bracket_width": "2.5504098832840327e-11",
+      "dual_feasible_certified": true,
+      "deflated": true,
+      "rc_min_lo": "1.0349898021955182e-12",
+      "gap": "2.5502655542908315e-11",
+      "gap_bound_k_eps": "8e-06",
+      "inside": true,
+      "gap_within_bound": true,
+      "neg_swap": [
+        0,
+        5,
+        1,
+        0
+      ],
+      "neg_cost": "97.27656874697311",
+      "neg_rejected": true,
+      "pass": true,
+      "note": "F-X4 既成基准复验"
+    },
+    {
+      "tag": "k6-R2-seed11-EXT",
+      "k": 6,
+      "R": 2,
+      "seed": 11,
+      "eps0": 0.5,
+      "factor": 5.0,
+      "eps_final": 1e-06,
+      "rounds": 10,
+      "bids": 95,
+      "auction_cost": "0.4976476476323629",
+      "epsCS_residual": "1.000000000139778e-06",
+      "bracket": [
+        "0.4976476475825974",
+        "0.49764764763236535"
+      ],
+      "bracket_width": "4.976796752487189e-11",
+      "dual_feasible_certified": true,
+      "deflated": true,
+      "rc_min_lo": "1.1681766665105895e-12",
+      "gap": "4.976552503421772e-11",
+      "gap_bound_k_eps": "6e-06",
+      "inside": true,
+      "gap_within_bound": true,
+      "neg_swap": [
+        1,
+        3,
+        3,
+        2
+      ],
+      "neg_cost": "122.64067597900728",
+      "neg_rejected": true,
+      "pass": true,
+      "note": "扩实例"
+    },
+    {
+      "tag": "k10-R2-seed13-EXT",
+      "k": 10,
+      "R": 2,
+      "seed": 13,
+      "eps0": 0.5,
+      "factor": 5.0,
+      "eps_final": 1e-06,
+      "rounds": 10,
+      "bids": 133,
+      "auction_cost": "1.0503729902320804",
+      "epsCS_residual": "1.0000000005838672e-06",
+      "bracket": [
+        "1.0503729901270409",
+        "1.0503729902320884"
+      ],
+      "bracket_width": "1.0504752623319291e-10",
+      "dual_feasible_certified": true,
+      "deflated": true,
+      "rc_min_lo": "1.0154498769621154e-12",
+      "gap": "1.0503953262741561e-10",
+      "gap_bound_k_eps": "9.999999999999999e-06",
+      "inside": true,
+      "gap_within_bound": true,
+      "neg_swap": [
+        3,
+        2,
+        9,
+        0
+      ],
+      "neg_cost": "130.70654456257586",
+      "neg_rejected": true,
+      "pass": true,
+      "note": "扩实例"
+    },
+    {
+      "tag": "k12-R2-seed17-EXT",
+      "k": 12,
+      "R": 2,
+      "seed": 17,
+      "eps0": 0.5,
+      "factor": 5.0,
+      "eps_final": 1e-06,
+      "rounds": 10,
+      "bids": 210,
+      "auction_cost": "0.4652959967378902",
+      "epsCS_residual": "9.999999999177334e-07",
+      "bracket": [
+        "0.4652959966913589",
+        "0.4652959967378986"
+      ],
+      "bracket_width": "4.6539716525018093e-11",
+      "dual_feasible_certified": true,
+      "deflated": true,
+      "rc_min_lo": "1.023481646655888e-12",
+      "gap": "4.653127883003094e-11",
+      "gap_bound_k_eps": "1.2e-05",
+      "inside": true,
+      "gap_within_bound": true,
+      "neg_swap": [
+        6,
+        5,
+        11,
+        4
+      ],
+      "neg_cost": "100.38351760771062",
+      "neg_rejected": true,
+      "pass": true,
+      "note": "扩实例"
+    },
+    {
+      "tag": "k8-R2-seed7-SCHED-VAR",
+      "k": 8,
+      "R": 2,
+      "seed": 7,
+      "eps0": 1.0,
+      "factor": 4.0,
+      "eps_final": 1e-06,
+      "rounds": 11,
+      "bids": 129,
+      "auction_cost": "0.2550220110027003",
+      "epsCS_residual": "1.000000000139778e-06",
+      "bracket": [
+        "0.2550220109771976",
+        "0.2550220110027017"
+      ],
+      "bracket_width": "2.5504098832840327e-11",
+      "dual_feasible_certified": true,
+      "deflated": true,
+      "rc_min_lo": "1.0349898021955182e-12",
+      "gap": "2.5502655542908315e-11",
+      "gap_bound_k_eps": "8e-06",
+      "inside": true,
+      "gap_within_bound": true,
+      "neg_swap": [
+        0,
+        5,
+        1,
+        0
+      ],
+      "neg_cost": "97.27656874697311",
+      "neg_rejected": true,
+      "pass": true,
+      "note": "ε-schedule 变体 ε0=1,/4"
+    }
+  ]
+}
