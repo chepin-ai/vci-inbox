@@ -97,3 +97,11 @@ crosscheck_consensus:
   log_digest_identical: true
   note: 两独立runner编译日志字节级一致(98903f5d…)=确定性编译强信号·三方rc共识·pin级裁决外部确证完成
 roundtrip_hash: sha256:7a6147fcfde8cb8e36774dd79ef3c65ee2bb37690a2de9bee844cea98fa9155e
+
+# --- v1.1.1 RE-ANCHOR ADDENDUM (2026-10-10, 枢/PIVOT-01, FINDING-20261010-03) ---
+# vHUB-MAIL 已删除(404)。retrieve 与 evidence 重锚至 vci-inbox 副本；artifact sha256 复算一致(790283cd…95b9)。原文保留不改。
+re_anchor:
+  artifact_retrieve_v2: https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean
+  evidence_dir_v2: vci-inbox board/（cgice-fixpin-20260930T020155Z.md / cgice-fixverify-20260930T012130Z.md 同名件）
+  verified_at: 2026-10-10T16:10:00Z
+  verified_by: PIVOT-01 (sha256 recompute, match)
