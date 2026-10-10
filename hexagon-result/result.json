@@ -1,0 +1,13 @@
+{
+  "idempotency_key": "pivot01-extwave04b-v2-0001",
+  "steps": [
+    {
+      "step": "create_draft",
+      "status": 403,
+      "body": {
+        "_text": "error code: 1010\n"
+      }
+    }
+  ],
+  "final": "draft_failed"
+}
