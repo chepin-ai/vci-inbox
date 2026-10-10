@@ -18,7 +18,7 @@ def write_result(**kw):
 def req(method, path, body=None, raw=None, headers=None):
     TOK = os.environ.get('HEXAGON_SUB_TOKEN', '').strip()
     url = BASE + path
-    h = {'Authorization': 'Bearer ' + TOK}
+    h = {'Authorization': 'Bearer ' + TOK, 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'Accept': 'application/json, text/plain, */*'}
     data = None
     if raw is not None:
         data = raw; h['Content-Type'] = 'application/octet-stream'
