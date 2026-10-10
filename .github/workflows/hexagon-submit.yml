@@ -30,4 +30,7 @@ jobs:
           cp hexagon-submit/run.log hexagon-result/run.log 2>/dev/null || true
           git add hexagon-result/
           git diff --cached --quiet || git commit -m "hexagon-submit result $(date -u +%Y%m%dT%H%M%SZ)"
-          git push
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && break
+            sleep 3
+          done
