@@ -1,0 +1,31 @@
+# CLASSIFY: L1
+name: hexagon-submit
+on:
+  push:
+    paths:
+      - 'hexagon-submit/payload/**'
+      - 'hexagon-submit/metadata.json'
+      - 'hexagon-submit/submit.py'
+      - '.github/workflows/hexagon-submit.yml'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run submission
+        env:
+          HEXAGON_SUB_TOKEN: ${{ secrets.HEXAGON_SUB_TOKEN }}
+        run: python3 hexagon-submit/submit.py
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "pivot-ci"
+          git config user.email "ci@pivot.local"
+          mkdir -p hexagon-result
+          if [ -f hexagon-submit/result.json ]; then cp hexagon-submit/result.json hexagon-result/result-$(date -u +%Y%m%dT%H%M%SZ).json; fi
+          git add hexagon-result/
+          git diff --cached --quiet || git commit -m "hexagon-submit result $(date -u +%Y%m%dT%H%M%SZ)"
+          git push
