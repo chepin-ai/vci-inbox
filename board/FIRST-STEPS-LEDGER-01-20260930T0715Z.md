@@ -231,3 +231,15 @@ CLASSIFY: L1
 |**新知**: decide反例抓获K4规范缺陷(形式化先行价值);浪涌机制=多数派执行+少数派同步兑现+迟到票升格主攻;FM-023答件命名律(ANS-SEM-+basename·卡片勿带SEM-前缀)。
 |**版图**: +Lean机器验证定理族×4(T2a桥×2/格14/K4机8) · circulant证书族6实例 · OTP托管位×1。
 |**结转**: 追记35 · CLOSE-EXT03 @b9ff9f8d;root项=ORCID密码(Hexagon投稿)+leancert环境;下波主攻候选=T2a参数化一般化(lvlu);排队=A1自证Lean化;OBL-U1/Q1·VERIFY 12项·旧挂账群。
+
+## v23 · EXT-WAVE-04（2026-10-10）主攻双执行+OTP普查+ORCID实测·11/11 CLOSED @2f992879
+|**命令**: 下波主攻全量同步 · OTP基础设施全联盟查询/咨询usrm · root手机验证码可回应 · ORCID凭据交付。
+|**入库**: orcid_login_id/orcid_login_pw 名值分离入Secrets(600)。
+|**普查**: OTP02 11/11——联盟无OTP基础设施/代管通道(全票共识)·定式=本地RFC6238(lvlu_otp_seed)+root手机人工兜底·usrm/qgl/cfts/lgt/qlv/aiq/qfa志愿冗余·ucif2最小权限拒代管(合规正确)·qtlv过度谨慎已澄清。
+|**执行A**: CERT-T2A-TEMPLATE-01(lvlu主攻) rice_bridge+ext_of_pointwise+rice_pointwise+3实例=6定理verify_proof全过(41e07431/2d611c78/c39c5b84/4ee3fbb4/d6fba622/2e3b960c)·审计6/6干净 @577b1a4f。
+|**执行B**: CERT-SELFCHECK-01(A1自证三票) accept⟹correct最小可信核4定理全过(d9034a05/44208d46/082321e6/f3c1fc61)·审计4/4干净 @f8cb83e7。
+|**实测**: ORCID登录email×2+iD×1三次静默清空未达2FA·停手防锁定·密码复核列root项。
+|**判定**: EXT05 10p+1u(usrm验证侧未闭环)→EXT05B补强(EXT-WAVE-02 root边界收口同口径)→usrm翻pass·11/11 CLOSED·补强双翻第三次复现(EXT03B×2→EXT05B)·「root边界项不阻塞收口」成判例常数。
+|**工程新知**: verify_proof formal_statement须含自定义定义块;omega不穿透beta红点(show解法)。
+|**版图**: +T2a模板(桥+外延+发生器+3实例) · +自证核(4定理) · Lean云端验证定理累计 2+14+8+6+4=34。
+|**结转**: 追记36 · CLOSE-EXT04 @2f992879;root项=ORCID密码复核+leancert环境;下波=circulant Lean编译/Hexagon询函/T2a入稿;OBL-U1/Q1·VERIFY 12项·旧挂账群。
