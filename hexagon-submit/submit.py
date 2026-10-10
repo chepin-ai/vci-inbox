@@ -68,14 +68,17 @@ def main():
                           'contentType': ctype, 'sizeBytes': len(blob)})
         step('upload_init:' + rel, st, u)
         if st not in (200, 201): return False
+        if (u.get('status') or (u.get('upload') or {}).get('status')) == 'complete':
+            return True  # idempotent resume: matching upload already complete server-side
         uid = u.get('uploadId') or u.get('id') or (u.get('upload') or {}).get('uploadId')
         if not uid: return False
         st, p = req('PUT', '/api/v1/submissions/%s/uploads/%s/parts/1' % (draft, uid), raw=blob)
         step('upload_part:' + rel, st, p)
-        if st != 200: return False
+        if (st != 200) and not (st == 409 and 'already complete' in json.dumps(p)):
+            return False  # 409 already-complete = resumed upload done; treat as success
         st, c = req('POST', '/api/v1/submissions/%s/uploads/%s/complete' % (draft, uid))
         step('upload_complete:' + rel, st, c)
-        return st == 200
+        return (st == 200) or (st == 409 and 'already complete' in json.dumps(c))
 
     ok1 = upload('source', 'main.tex', 'main.tex', 'application/x-tex', main_tex)
     ok2 = upload('source-asset', 'ai-use-disclosure.md', 'anc/ai-use-disclosure.md', 'text/markdown', disc)
