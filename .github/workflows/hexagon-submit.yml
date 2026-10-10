@@ -7,7 +7,12 @@ on:
       - 'hexagon-submit/metadata.json'
       - 'hexagon-submit/submit.py'
       - '.github/workflows/hexagon-submit.yml'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'submit = 投稿全流程; status = 仅轮询 draft 状态'
+        required: false
+        default: 'submit'
 permissions:
   contents: write
 jobs:
@@ -18,15 +23,18 @@ jobs:
       - name: Run submission
         env:
           HEXAGON_SUB_TOKEN: ${{ secrets.HEXAGON_SUB_TOKEN }}
+          HX_MODE: ${{ github.event.inputs.mode || 'submit' }}
         run: |
           python3 hexagon-submit/submit.py 2>&1 | tee hexagon-submit/run.log || true
       - name: Commit result
         if: always()
+        env:
+          HX_MODE: ${{ github.event.inputs.mode || 'submit' }}
         run: |
           git config user.name "pivot-ci"
           git config user.email "ci@pivot.local"
           mkdir -p hexagon-result
-          cp hexagon-submit/result.json hexagon-result/result.json 2>/dev/null || true
+          if [ "$HX_MODE" = "status" ]; then cp hexagon-submit/result.json hexagon-result/status.json 2>/dev/null || true; else cp hexagon-submit/result.json hexagon-result/result.json 2>/dev/null || true; fi
           cp hexagon-submit/run.log hexagon-result/run.log 2>/dev/null || true
           git add hexagon-result/
           git diff --cached --quiet || git commit -m "hexagon-submit result $(date -u +%Y%m%dT%H%M%SZ)"

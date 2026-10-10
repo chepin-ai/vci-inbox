@@ -40,9 +40,33 @@ def step(name, st, body):
     out['steps'].append({'step': name, 'status': st, 'body': body})
     write_result()
 
+def status_main():
+    draft = None
+    for p in (os.path.join(HERE, '..', 'hexagon-result', 'result.json'), RESULT):
+        try:
+            j = json.load(open(p)); draft = draft or j.get('draftId')
+        except Exception:
+            pass
+    if not draft:
+        write_result(final='status_no_draft'); return 1
+    out['draftId'] = draft
+    st, dd = req('GET', '/api/v1/submissions/%s' % draft)
+    step('status_get', st, dd)
+    if st != 200:
+        write_result(final='status_http_%s' % st); return 1
+    ident = dd.get('identifier') or dd.get('workIdentifier')
+    write_result(final='status_ok', mode='status', submission_status=dd.get('status'),
+                 identifier=ident, versionId=dd.get('versionId'),
+                 rejectionReasonCode=dd.get('rejectionReasonCode'),
+                 rejectionExplanation=dd.get('rejectionExplanation'),
+                 jobs=dd.get('jobs'), updatedAt=dd.get('updatedAt'))
+    return 0
+
 def main():
     if not os.environ.get('HEXAGON_SUB_TOKEN'):
         write_result(final='no_token'); return 1
+    if os.environ.get('HX_MODE', 'submit').strip() == 'status':
+        return status_main()
     meta = json.load(open(os.path.join(HERE, 'metadata.json')))
     meta.pop('CLASSIFY', None)
     main_tex = open(os.path.join(HERE, 'payload', 'main.tex'), 'rb').read()
@@ -105,6 +129,13 @@ def main():
         write_result(final='preview_failed', log=lg.get('_text', json.dumps(lg))[:8000])
         return 2
 
+    st, dd0 = req('GET', '/api/v1/submissions/%s' % draft)
+    step('precommit_check', st, dd0)
+    if (dd0.get('identifier') or dd0.get('workIdentifier')) or dd0.get('status') == 'processing':
+        write_result(final='already_committed', preview_ok=preview_ok,
+                     identifier=dd0.get('identifier') or dd0.get('workIdentifier'),
+                     versionId=dd0.get('versionId'), submission_status=dd0.get('status'))
+        return 0
     st, cm = req('POST', '/api/v1/submissions/%s/commit' % draft)
     step('commit', st, cm)
     if st != 202:
