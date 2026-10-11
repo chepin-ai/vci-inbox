@@ -58,7 +58,7 @@ W4 已将三 axiom 降格为带前提 theorem，前提解除移交 W5–W7。定
 
 ## 5. 数据缺口与局限（如实声明）
 
-1. **canonical 普查文档未找到**：总账「164 sorry + 10 axiom，T0(15–25)/T1(65)/T2(30–40) 分层」仅在 vci-inbox board/FIRST-STEPS-LEDGER-01（v26/v28 节）与 LAB-CLOSE-EXT06 中被转述，164 项清单与分层规则原文在 infinity-cmc、sorry-resolver、vci-inbox、ci-inbox 四仓（含 git 历史）均不存在。本文层级为**代理规则赋值**（fan-out 阈值），T0=19 落在 15–25 带内属巧合性一致，T1=43/T2=107 与总账带不符——可能总账分层只覆盖子集（三带合计 110–130 < 164），或分层维度不同（如按攻坚难度而非依赖度）。**禁止据本文反推总账分层原义。**
+1. **canonical 普查文档未找到**：总账「164 sorry + 10 axiom，T0(15–25)/T1(65)/T2(30–40) 分层」仅在 vci-inbox board/FIRST-STEPS-LEDGER-01（v26/v28 节）与 LAB-CLOSE-EXT06 中被转述，164 项清单与分层规则原文在 infinity-cmc、sorry-resolver、vci-inbox、HUB-MAIL 四仓（含 git 历史）均不存在。本文层级为**代理规则赋值**（fan-out 阈值），T0=19 落在 15–25 带内属巧合性一致，T1=43/T2=107 与总账带不符——可能总账分层只覆盖子集（三带合计 110–130 < 164），或分层维度不同（如按攻坚难度而非依赖度）。**禁止据本文反推总账分层原义。**
 2. **跨文件同名合流**：仓内 26 个标识符在多文件重复定义（如 `CICY58Manifold` 在 Framework 与 Phase2_Physics 各有一份；各 Phase 文件互不 import，仅 Main import Phase1/Phase2_Physics/Phase3_Advanced）。文本级引用无法区分同名实体，fan-out 为**上界估计**。
 3. **Mathlib 引用未剔除**：`SSet`、`ToricVariety` 等疑似真实/虚构 Mathlib 名被计入；虚构 import（如 `Mathlib.Geometry.Manifold.Kähler`）表明仓内声明关系本就不完整。
 4. **unlock 仅一层**，未做传递闭包；文本解析不含 Lean  elaborator 语义，实例隐式使用（typeclass inference）不可见。
