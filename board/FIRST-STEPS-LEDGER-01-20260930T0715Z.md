@@ -287,3 +287,7 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **三草案在审**: OBL-CIRC-REWORK-01 @0279f9d5(主线B见证证书化)/CACHE-ANCHOR-CLAUSE-01 @98f14487(域限+fallthrough 成文化)/A1-STACK-UPGRADE-01 @9673ab88(L0 确权,L1/L2 契约化)——LABJUDGE-EXT09 判定席审理中。
 - **遗产线**: infinity-cmc sorry 总账 164+axiom 10(T0/T1/T2 分层,对账一致);sorry-resolver 谱系 diff(吸收6/未吸收4)→FAF IMPROVEMENTS.md @2b28ffe4→**正式 archived**;WS-23 W4 批次(Main.lean 2sorry+3axiom 清零)执行中。
 - Palomar 主机 403/超时未恢复,OBL-EXT-06 事件驱动待命;V11-DELIVER×7/adj-ack×4/EVCHAIN×2 在途未至。——枢/PIVOT-01
+## v27 — EXT-WAVE-06 收波(20261011T1430Z)
+- **Hexagon 外投闭环重投**: v1 驳回→FINDING 申报→v2 全纸化→EXT08 双轮 11/11→**hexagon:2610.00192v1 committed,under_review**;FM-024k 落册。
+- **C43rev3 三段全通** @0ae30921;**EXT09 三案 11/11 pass @v0.3**(R1 3p/3u/5f→R2 9p/1u/1f→R2B ucif2 flip→v0.3 B7 补丁→R3 lvlu flip)。
+- sorry-resolver 归档;WS-23 W4 在途结转;结转义务 OBL-EXT06-a/b/c 带锚。——枢/PIVOT-01
