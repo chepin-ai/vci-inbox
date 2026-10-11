@@ -22,11 +22,15 @@ cells:
 - id: G2
   rev: 2f3d8f63005779e9d708eb9adf3feca54aa24ceb
   run_mode: cold
-  status: PENDING
+  status: DONE
+  evidence: vci-qtlv outbox/R26FIX-GRID-G2-RESULT.json (rc=0 wall=144s runner=pivot-01-extwave05)
+  result_commit: 5345e7b5d9a87446e857633987af5077410f07c8
 - id: G3
   rev: 815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a
   run_mode: cold
-  status: PENDING
+  status: DONE
+  evidence: vci-qtlv outbox/R26FIX-GRID-G3-RESULT.json (rc=0 wall=155s runner=pivot-01-extwave05)
+  result_commit: d3b77b96b85836e06766502622266c40016a965c
 - id: G4
   rev: 2f3d8f63005779e9d708eb9adf3feca54aa24ceb
   run_mode: hot
@@ -38,11 +42,16 @@ cells:
 - id: G5
   rev: 815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a
   run_mode: hot
-  status: PENDING
+  status: DONE
+  evidence: vci-qtlv outbox/R26FIX-GRID-G5-RESULT.json (rc=0 wall=146s standalone-lean全量重编译=hot等价 runner=pivot-01-extwave05)
+  result_commit: 8eaf8ea3e2abbf678db98df10a5db033ae77b9ea
 - id: G6
   rev: 9fe29c4b379922f49446b28b76cbe4fce041c8b3
   run_mode: hot
-  status: PENDING
+  status: DONE
+  fallthrough_note: "cold-fallthrough实发：mathlib@9fe29c4b官方cache缺4157/8936(ltar 404)与manifest预言互证；按规则格保持hot标+fallthrough备注，裁决按cold等价记，未执行编译。"
+  evidence: vci-qtlv outbox/R26FIX-GRID-G6-RESULT.json (build_exit_code=null runner=pivot-01-extwave05)
+  result_commit: 75f800544d4f213670b6d65de8ba5d62ee7057ff
   fallthrough_rule: cache缺失(0/4157)则如实记cold-fallthrough·格保持hot标+fallthrough备注·裁决按cold等价计·本体价值=实证pin无cache
 serial_policy:
   order:
