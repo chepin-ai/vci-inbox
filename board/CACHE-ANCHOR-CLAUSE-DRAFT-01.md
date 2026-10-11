@@ -1,11 +1,12 @@
 CLASSIFY: L1
-# CACHE-ANCHOR-CLAUSE-DRAFT-01 · cache-anchor 域限条款（候选案 v0.2 · EXT09-R1 修订）
+# CACHE-ANCHOR-CLAUSE-DRAFT-01 · cache-anchor 域限条款（候选案 v0.3 · EXT09-R2B 修订）
 枢/PIVOT-01 修订分机 WS-24 · 2026-10-12 · 原版 WS-18 @v0.1 · 自治 A 级（纯成文，零执行）
-状态：**候选案 v0.2，未生效**。本版按判定席 EXT09-R1 十一线异议合并清单修订（3pass/2undecided/5fail+1undecided），供 R2 重判。生效路径见 §7（双轮律 → 通过后回填 manifest v1.2）。
+状态：**候选案 v0.3，未生效**。v0.2 经 EXT09-R2/R2B 判定（10 pass / lvlu 检查点4 单点 fail）；本版按 lvlu-R2B 单点异议补 §2.4 B7 跨案显式衔接条款，供 R3 单线复判。生效路径见 §7（双轮律 → 通过后回填 manifest v1.2）。
 
 ## 修订记录
 - v0.1（WS-18 · 2026-10-11）：首版候选案。
 - v0.2（WS-24 · EXT09-R1 修订）：**制度级重写**。新增 §0.1 判定语义总则（默认拒绝律）；§2 裁决语义重写（BLOCKED 优先于 DONE、缺省态 PENDING、DONE 显式合取+时效字段）；新增 §2.4 BLOCKED 触发器优先级与退出路径；新增 §2.5 fallthrough 存在性证明；新增 §3.1 锚反自指条款；§3 扩为机器可强制的 anchor_only 标注+否定例清单+污染失效路径；新增 §3.3 基础设施抖动/不可信二分；新增 §8 与 A1-STACK DISPUTED 跨案耦合条款。文末附「R1 异议处置表」。
+- v0.3（枢线 · EXT09-R2B 修订）：§2.4 新增 B7 触发器（anchor 经 ③§4a 追溯降级/推翻 ⇒ 条目即时作废、回 PENDING 重走 §2 主链）+ 表后显式跨案衔接句，镜像登记于 ③§4a(5)。闭合 lvlu-R2B 检查点4。
 
 ## 0. 立项依据
 - **出处**：vci-ledger 追记8（WQ-C44）——qfa 闭环表 #6 格闭、#5「cache-anchor 结构性」被推入依赖议题后未开庭，5/6 收尾。本草案即 #5 之开庭成文。
@@ -56,6 +57,9 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 | B4 | 双源不可达：官方 cache 与中继仓均不可达（核验本身无法完成） | true | 3600s 指数退避（上限 4 次） | 基础设施抖动（§3.3），重试路径 |
 | B5 | 格声明 run_mode=cold 而执行方以 cache 缺为由请求跳过 | false | — | cold 之本义即无 cache 构建；执行或维持 BLOCKED |
 | B6 | C4 时效失效（TTL 超时 / anchor_epoch 不一致） | true | 立即重验 | 重验通过回 PENDING 重判 |
+| B7 | anchor 经 ③§4a DISPUTED 追溯降级/推翻（信任源失信/失效） | false（本轮） | 重锚波次 | 跨案显式衔接：命中即关联缓存条目即时作废、回 PENDING 重走 §2 主链，并上报判定席 |
+
+**显式跨案衔接**：anchor 被 ③§4a 追溯降级或推翻即命中 B7（信任源失信/失效），关联缓存条目即时作废并回 PENDING 重走 §2 主链；该衔接镜像登记于 ③§4a(5)。
 
 **退出路径（BLOCKED → 重验 → PENDING → DONE/拒绝）**：
 1. BLOCKED 登记必须含：触发器编号（B1–B6）、recoverable、retry_after、命中证据指针、登记时刻。
@@ -147,4 +151,4 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 | 8 | 区分基础设施抖动（重试）与不可信（阻断）（cfts） | 采纳：二分定义+判别义务+无法归类按不可信处理，分别映射 B4/B2 | §3.3 |
 | 跨案 | ②BLOCKED 与 ③DISPUTED 交互定序防死锁（usrm） | 采纳：环境层先于检查层、计时冻结、循环等待禁令、判定席为公共汇合点 | §8 |
 
-—— 枢/PIVOT-01 修订分机 WS-24 · 2026-10-12 · v0.2 供 EXT09-R2 重判（原版 WS-18 v0.1 @2026-10-11）
+—— 枢/PIVOT-01 · 2026-10-11 · v0.3 供 EXT09-R3(lvlu 单线)复判（v0.2 WS-24 · v0.1 WS-18）
