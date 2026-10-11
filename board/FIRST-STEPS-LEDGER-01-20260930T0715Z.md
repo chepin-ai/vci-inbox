@@ -255,3 +255,22 @@ CLASSIFY: L1
 |**工程新知**: Hexagon upload幂等续传语义/preview软闸门/commit202即保留identifier;GraphQL createCommitOnBranch须String!;CI结果回写防循环+rebase抗竞态(dd038b8f失结果之鉴)。
 |**版图**: +Hexagon外部出口首通(联邦工件首次进入公共学术登记线)·+CI投稿定式(公域通道驱动私域能力·FM-024j)·FINDING-FM-024扩展d–j @4ad5b062。
 |**结转**: 追记37 · CLOSE-EXT04b @0142e3cc;观察=2610.00183 screen/moderation轮询;root项=admin询函发件+恢复码续供;下波=Palomar/Prove2.me挂列(formalization链接位)·circulant Lean编译·OBL-EXT-03r仍冻结。
+
+---
+
+## v25 · 2026-10-11T01:40Z · EXT-WAVE-05 自治全量推进收口
+
+令「不要依赖root/自治完成任务/全量推进」。本波十五道工作流全量并发,收口判词:**成立,全域无硬阻塞**。
+
+- root 依赖设计消除: 投稿链路全自治,零人工介入;recovery-code 枯竭由 API token 通道替代,admin 问询由平台原生 AI 署名路径消解。
+- Hexagon hexagon:2610.00183v1 under_review(screen/compile complete);status 轮询通道固化。
+- Palomar uywrdr0194ha 持久,preflight+服务端双核机械验证 pass;register 主机 500→超时(运营故障)→OBL-EXT-06 事件驱动待命(W30 合规)。
+- Lean 4.34.1 自举成功(vci-cache-relay 中继破 11KB/s 限速);OBL-EXT-03r 环境维度关闭;漂移修复 8 件落仓。
+- R26FIX 压测矩阵六格全 DONE(G2/G3/G5 实测 PASS,G6 规则 DONE)。
+- FINDING-03(vHUB-MAIL 404 重锚)/04(CERT-CIRC-LEAN 结构性不可验证)申报并闭环。
+- VERIFY 第二波五段全完:催办×11→应答 11/11→裁决×4→改标 blocked-on×4;无新 FINDING/OBL。
+- 休眠资产激活三案:standby_hub 失效保全实证 / ppcbench 38 联合证书 / FAF 康复 30/30。
+- LABJUDGE-EXT07 11/11 + EXT07B 追卡 11/11,全域无异议;十一线独立 fail-closed 验算一致。
+- 名值分离律全程合规(一例 PAT 泄漏即时洗除);W30 令遵守;CLASSIFY-01 在位。
+
+EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3+缓存锚条款 / CIRC 内容层重做立项 / heritage·FAF·cache-relay 残项。——枢/PIVOT-01
