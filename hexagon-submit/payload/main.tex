@@ -1,160 +1,1053 @@
+% CLASSIFY: L1
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
-\newtheorem{theorem}{Theorem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\rid}[1]{\texttt{#1}}
+\newcommand{\lean}[1]{\texttt{#1}}
+
 \title{A Machine-Checked Kernel for Federated Automated Adjudication:\\
-Lattice Completion, Lifecycle Invariants, Certified Numerical Anchors,\\
-and a Parameterized Rice Template}
-\author{PIVOT-01 Federation (machine-generated; AI-use disclosure attached)}
-\date{October 10, 2026 (v2)}
+Credibility Lattice Completion, Certificate Lifecycle Invariants,\\
+Certified Numerical Anchors, and a Parameterized Rice Template}
+\author{PIVOT-01 Federation (machine-generated; no human author claimed;\\
+AI-use disclosure attached as supplementary material)}
+\date{October 11, 2026 (v2; supersedes the registration-style v1, identifier 2610.00183v1)}
+
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We register a formally specified and machine-checked kernel for a federated
-automated adjudication system in which independent computational lines judge
-mathematical and operational claims. The kernel comprises: (i) a three-rung,
-three-track credibility lattice obtained as the free completion of a legacy
-five-element poset, verified by exhaustive enumeration over all $11^3=1331$
-ordered triples and fully re-formalized in Lean~4 (fourteen theorems by
-decision over the finite carrier); (ii) a five-state certificate lifecycle
-machine with nine legal transitions and machine-checked invariants, also
-re-formalized in Lean~4 --- the formalization caught a specification flaw in
-one invariant, which we report; (iii) certified numerical anchors: uniqueness
-of the gauged fixed point of circulant entropic-optimal-transport (Sinkhorn)
-systems, established by a Krawczyk interval operator with outward rounding
-across a six-instance family ($k\in\{6,10\}$, $\varepsilon\in\{1,1/2,1/5\}$),
-and ported to the Lean~4 verified interval library \emph{leancert}; (iv) a
-parameterized Lean~4 template for Rice-type undecidability, with an
-instantiation generator and three discharged instances; and (v) a minimal
-trusted computing base result: the soundness of an interval certificate
-checker (accept implies correctness), itself machine-proved. All Lean
-artifacts were verified on cloud infrastructure (Axiom Axle, environment
-\texttt{lean-4.28.0}) with axiom audits restricted to
-\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}.
-Empirical fuzzing observed zero false accepts; we report rule-of-three upper
-bounds and do not claim a guarantee.
+We present a formally specified and machine-checked kernel for a federated
+automated adjudication system, in which independent computational lines judge
+mathematical and operational claims and deposit their verdicts, evidence, and
+certificates in a shared ledger. The kernel comprises five components.
+(i)~A three-rung, three-track credibility lattice obtained as a
+completion of a legacy five-element poset: the completion is justified by an
+exhaustive enumeration over all $11^{3}=1331$ ordered triples and is fully
+re-formalized in Lean~4, where the equational lattice laws, the order axioms,
+and the extremality properties of join and meet are all proved by the
+\texttt{decide} procedure over the finite carrier.
+(ii)~A five-state certificate lifecycle machine with nine legal transitions
+and machine-checked invariants, likewise re-formalized in Lean~4; the
+formalization caught a specification flaw in one invariant (the originally
+stated grant-gating condition is false), and we report the corrected,
+machine-proved form.
+(iii)~Certified numerical anchors: uniqueness of the gauged fixed point of
+circulant entropic-optimal-transport (Sinkhorn) systems, established by a
+Krawczyk interval operator with outward rounding across a six-instance family
+($k\in\{6,10\}$, $\varepsilon\in\{1,1/2,1/5\}$, later extended to ten
+instances), together with a second anchor family of five auction-algorithm
+assignment instances certified by interval dual brackets. We state plainly
+that the certification of these numerical anchors is carried by the Python
+interval-arithmetic layer; the attempted port to the Lean~4 interval library
+\emph{leancert} is blocked by structural capability boundaries of that
+library (absence of the logarithm from its supported expression grammar and
+infeasibility of its determinant computation at the required dimensions),
+and the Lean files are formal statements, not machine-verified certificates.
+(iv)~A parameterized Lean~4 template for Rice-type undecidability, consisting
+of a bridge theorem, an extensionality lemma, an instantiation generator, and
+discharged instances of increasing difficulty.
+(v)~A minimal trusted computing base result: the soundness of an interval
+certificate checker (accept implies correctness), itself machine-proved in
+Lean~4. All Lean artifacts were verified on cloud infrastructure (Axiom Axle,
+environment \texttt{lean-4.28.0}) under the strict \texttt{verify\_proof}
+channel, with axiom audits restricted to \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}, and no \texttt{sorryAx}.
+Empirical fuzzing over three certificate families observed zero false
+accepts; we report rule-of-three 95\% upper bounds on the false-accept rate
+and explicitly do not claim a guarantee.
 \end{abstract}
 
-\section{Introduction}
-Automated adjudication among mutually untrusted computational agents requires
-a small, auditable kernel: a credibility order, a certificate lifecycle, and
-anchored numerical certificates whose acceptance cannot be fabricated by
-construction. This work deposits such a kernel together with its machine
-certificates. All enumeration and interval certificates are reproducible from
-the pinned scripts referenced in the appendix; the Lean artifacts are
-referenced via their permanent cloud-verification request identifiers.
+\tableofcontents
 
-\section{The credibility lattice}
-\begin{definition}
-Rungs $R=\{\text{candidate}<\text{empirical}<\text{domain-formal}\}$;
-tracks $T=\{\text{adjudication},\text{insight},\text{governance}\}$.
-Elements $(R\times T)\cup\{\top,\bot\}$; order by rung within a track;
-cross-track joins are $\top$ and cross-track meets are $\bot$.
-\end{definition}
-\begin{theorem}[CERT-LATTICE-01 / CERT-LATTICE-LEAN-01]
-The 11-element structure is a lattice: commutativity, associativity of join
-and meet, and absorption hold for all 1331 ordered triples (exhaustive
-machine check, zero failures). The legacy five-element poset has exactly
-seven join-gaps, each closed by the embedding. The full structure (carriers,
-operations, order) is formalized in Lean~4: fourteen theorems
-(\texttt{join\_comm}, \texttt{join\_assoc}, \texttt{meet\_comm},
-\texttt{meet\_assoc}, two absorption laws, reflexivity, transitivity,
-antisymmetry, \texttt{join\_is\_lub}, \texttt{meet\_is\_glb}, and the two
-order--operation compatibilities) are all proved by \texttt{decide} over the
-finite carrier; cloud verification request
-\texttt{1dfa70b6-ba1e-492d-b45c-5391727aff3c}.
-\end{theorem}
+\section{Introduction}\label{sec:intro}
 
-\section{The certificate lifecycle}
-\begin{theorem}[CERT-K4-01 / CERT-K4-LEAN-01]
-The five-state machine (candidate, granted, maintained, demoted, revoked)
-with nine legal transitions satisfies: (I1) granting is gated ---
-\emph{granted} entries arise only from \emph{candidate} (four-gate review)
-or \emph{demoted} (remediation re-review); (I2) evidence is append-only;
-(I3) appeal freezes execution; plus $\#\text{legal}=9$,
-$\#\text{illegal}=11$, revocation terminality, no return to candidate, and
-no self-loops. The Lean~4 formalization's \texttt{decide} procedure produced
-a counterexample to our original stronger statement of (I1) (``granted only
-from candidate''), which is false because of the demoted$\to$granted edge;
-the invariant above is the corrected, machine-proved form. Cloud
-verification request \texttt{16618831-e457-4d29-8d65-b57fa563e33d}.
-\end{theorem}
+\subsection{The problem: adjudication among untrusted computational lines}
 
-\section{A certified numerical anchor family}
-For circulant costs $C[i][j]=c_{(j-i)\bmod k}$, uniform marginals, gauge
-$f_0=0$, and regularization $\varepsilon$, the fixed-point system
+Consider a federation of autonomous computational agents---``lines'' in the
+terminology of our federation---that make claims about mathematical and
+operational facts: that a nonlinear system has a unique solution in a box,
+that a discrete optimization heuristic came within a certified bracket of the
+optimum, that a proposed inference rule preserves truth. The lines do not
+trust one another, and there is no central authority whose judgment is taken
+on faith. Any claim that is to be used downstream must therefore carry
+\emph{machine-checkable evidence}, and the rules by which evidence is
+credited, promoted, maintained, downgraded, and revoked must themselves be
+small enough to audit and rigid enough to be machine-checked.
+
+This is the federated automated adjudication problem. It is not primarily a
+problem of proving one hard theorem; it is a problem of \emph{governance
+infrastructure for proofs}: a credibility order over claims, a lifecycle over
+certificates, numerical anchors whose acceptance cannot be fabricated by
+construction, a formal explanation of why fully automatic adjudication over
+unrestricted semantic properties is impossible, and a minimal trusted base in
+which the accept-implies-correct pattern is proved rather than assumed.
+
+A naive design would adjudicate every semantic property of every program or
+certificate. Rice's theorem~\cite{rice1953} forbids this: any nontrivial
+extensional property of partial recursive functions is undecidable. The
+federation therefore adopts a \emph{domain-limited, three-valued}
+architecture: adjudication objects are quadruples
+$o=(\varphi, D, \pi, V)$ consisting of a proposition $\varphi$, an explicit
+applicability domain $D$, a certificate $\pi$, and a checker $V$; the
+adjudication map $J$ is total by construction, taking values in
+$\{\mathrm{pass}, \mathrm{fail}, \mathrm{undecided}\}$, with non-convergence
+within a round assigned the third value. Within this architecture, the
+soundness interface is the single clause
 \[
-f_i+\varepsilon\log k+\varepsilon\log\textstyle\sum_j e^{(g_j-C[i][j])/\varepsilon}=0,\qquad
-g_j+\varepsilon\log k+\varepsilon\log\textstyle\sum_i e^{(f_i-C[i][j])/\varepsilon}=0
+V(\varphi, D, \pi) = \mathrm{accept} \;\Longrightarrow\; \varphi \text{ holds on } D,
 \]
-has the closed-form solution $f^*=0$, $g^*=-\varepsilon(\log
-k+\mathrm{lse}(-c/\varepsilon))$.
-\begin{theorem}[CERT-CIRC-01 family / CERT-CIRC-LEAN-01 family]
-For all six instances $k\in\{6,10\}$,
-$\varepsilon\in\{1,\tfrac12,\tfrac15\}$ (two circulant vector families), the
-Krawczyk operator with rationalized centers, rationalized analytic-inverse
-preconditioners, and box radius $10^{-9}$ maps strictly inside the box
-(interval arithmetic with outward rounding; Jacobian condition numbers
-$22.2$--$43.1$; maximal Krawczyk image widths $2.55\cdot10^{-15}$ to
-$6.93\cdot10^{-14}$). Hence each box contains exactly one real root.
-Negative controls (centers perturbed by $10^{-6}$) are rejected. The Lean~4
-port of all six instances uses \emph{leancert}'s
-\texttt{verify\_unique\_system\_root} with \texttt{native\_decide}
-certificates.
+backed at each layer by a classical theorem: outward-rounding inclusion for
+interval evaluation, the Krawczyk theorem for existence and uniqueness, and
+LP weak duality for optimality brackets.
+
+\subsection{What this paper deposits}
+
+This paper is the full paper-form account of the kernel previously deposited
+in registration form (v1, identifier 2610.00183v1). Every component below is
+accompanied by machine certificates that are pinned, by content and by commit
+identifier, in the federation's public repository, and every Lean~4 artifact
+carries a permanent cloud-verification request identifier under which the
+verification can be re-queried. The five components are:
+
+\begin{enumerate}
+\item \textbf{Credibility lattice completion} (Section~\ref{sec:lattice}).
+The legacy five-element credibility poset has exactly seven join gaps, found
+by enumeration; its completion is an eleven-element structure (three rungs
+$\times$ three tracks, plus formal top and bottom). The lattice laws are
+verified exhaustively over all $11^{3}=1331$ ordered triples, and the entire
+structure is re-formalized in Lean~4 with every law decided over the finite
+carrier (certificate CERT-LATTICE-01\,/\,CERT-LATTICE-LEAN-01).
+\item \textbf{Certificate lifecycle machine} (Section~\ref{sec:lifecycle}).
+A five-state machine (\emph{candidate}, \emph{granted}, \emph{maintained},
+\emph{demoted}, \emph{revoked}) with exactly nine legal and eleven illegal
+distinct transitions, with machine-checked gating, terminality, and freezing
+invariants (CERT-K4-01\,/\,CERT-K4-LEAN-01). The Lean formalization refuted
+our original stronger statement of the grant-gating invariant; the corrected
+invariant is the machine-proved one.
+\item \textbf{Certified numerical anchors} (Section~\ref{sec:anchors}). A
+six-instance (later ten-instance) family of gauged circulant Sinkhorn
+fixed-point systems, each certified to contain exactly one real root by a
+Krawczyk interval operator with outward rounding and negative controls; and a
+five-instance family of auction-algorithm assignment problems certified by
+interval dual brackets (CERT-CIRC-01 family, CERT-AUCTION-01). The
+certification carrier is the Python interval layer; we report, as a first-class
+result of the project, the structural boundary that blocks the Lean-side port
+(FINDING-04).
+\item \textbf{Parameterized Rice template} (Section~\ref{sec:rice}). A
+Lean~4 template that reduces any nontrivial extensional predicate on codes to
+Mathlib's formalized Rice theorem, together with an instantiation generator
+and seven discharged instances of increasing witness difficulty
+(T2A-BRIDGE-01, CERT-T2A-TEMPLATE-01).
+\item \textbf{Minimal trusted base} (Section~\ref{sec:selfcheck}). A Lean~4
+proof that the interval certificate checker is sound---acceptance implies the
+semantic property---for the step algebra used by the numerical anchors
+(CERT-SELFCHECK-01).
+\end{enumerate}
+
+\subsection{Contributions}
+
+The contributions of this paper are infrastructural and methodological rather
+than a new theorem of independent depth:
+\begin{itemize}
+\item a complete, pinned, and machine-checked specification of an
+adjudication kernel, with every enumeration certificate reproducible from
+pinned scripts and every Lean artifact carrying a cloud-verification request
+identifier;
+\item a worked example in which formalization \emph{caught} a specification
+flaw in a stated invariant (Section~\ref{sec:lifecycle}), which we regard as
+the strongest argument for the kernel's methodology;
+\item an honest account of a failed port: the circulant family is certified
+at the Python interval layer, and its Lean-side formalization is structurally
+unverifiable under the pinned version of the target library; we document the
+exact boundary (Section~\ref{sec:finding04});
+\item a reproducibility and axiom-audit protocol (Section~\ref{sec:repro}),
+including rule-of-three honesty bounds on all empirical zero-failure claims.
+\end{itemize}
+
+\paragraph{Provenance and authorship stance.}
+This paper is machine-generated by the PIVOT-01 federation orchestrator as
+part of an explicit experiment in machine-checked adjudication
+infrastructure. No human author is claimed; the contributing account holder
+does not claim human understanding of every derivation step. Good-faith
+correctness belief rests on the exhaustiveness of the enumeration
+certificates, the outward-rounding discipline of the interval certificates,
+kernel-level and cloud-level verification of the Lean artifacts, and the
+rule-of-three statistical framing of all empirical claims. An AI-use
+disclosure accompanies the submission as supplementary material, and the
+derivation transcripts are retained in the federation ledger.
+
+\paragraph{Organization.}
+Section~\ref{sec:related} situates the work. Sections~\ref{sec:lattice}
+through~\ref{sec:selfcheck} present the five kernel components.
+Section~\ref{sec:repro} gives the reproducibility and axiom-audit protocol
+and the evidence-anchor table. Section~\ref{sec:limitations} states
+limitations and honest gaps. Section~\ref{sec:conclusion} concludes.
+Appendix~\ref{app:anchors} collects the pinned artifact index.
+
+\section{Related Work}\label{sec:related}
+
+\paragraph{Proof assistants and Mathlib.}
+Our formalizations are written in Lean~4~\cite{lean4} and build on
+Mathlib~\cite{mathlib}, whose library of formalized mathematics includes a
+development of computability theory---partial recursive functions, codes, and
+Rice's theorem in the form \lean{ComputablePred.rice\_2}---due to
+Carneiro~\cite{carneiro2019}. Our Rice template
+(Section~\ref{sec:rice}) is a thin, reusable layer on top of that foundation:
+the hard direction is entirely Mathlib's, and our contribution is the
+parameterization and the instance generator. Our trust posture toward the
+proof assistant itself follows the spirit of work on the metatheory and
+self-verification of Lean, such as Lean4Lean~\cite{lean4lean}; we do not
+rely on such results, and instead minimize and audit what our artifacts
+assume (Section~\ref{sec:repro}).
+
+\paragraph{Interval arithmetic and Krawczyk certification.}
+Interval arithmetic as a tool for rigorous numerical bounds goes back to
+Moore~\cite{moore1966}. The Krawczyk operator~\cite{krawczyk1969} converts a
+candidate root and a box into a certified uniqueness statement: if the
+operator maps the box strictly into itself, the box contains exactly one
+root. Our numerical anchors (Section~\ref{sec:anchors}) use exactly this
+criterion, with rationalized centers, rationalized analytic-inverse
+preconditioners, and outward rounding at every step, so that the acceptance
+of a certificate is a theorem about real numbers rather than about floating
+point. The accept-implies-correct shape of these certificates is what our
+minimal trusted base (Section~\ref{sec:selfcheck}) formalizes in miniature.
+
+\paragraph{Optimal transport and auction algorithms.}
+Entropic regularization of optimal transport and its Sinkhorn iteration are
+classical~\cite{sinkhorn1967,cuturi2013}. We do not certify the iteration;
+we certify the \emph{fixed-point system} directly for circulant cost
+matrices, where a closed-form solution exists and serves as ground truth for
+negative controls. The auction algorithm for assignment problems is due to
+Bertsekas~\cite{bertsekas1988}; our second anchor family certifies auction
+output a posteriori via interval dual brackets (LP weak duality), with the
+solver treated as an untrusted candidate generator.
+
+\paragraph{Undecidability and the shape of the escape.}
+Rice's theorem~\cite{rice1953} is the formal reason that the federation's
+adjudication map is three-valued and domain-limited. We treat the theorem not
+as background but as a component of the kernel: the template of
+Section~\ref{sec:rice} makes the blocking result callable, so that any
+proposed extension of the adjudication domain to a new semantic property must
+first pass (or be blocked by) a discharged instance.
+
+\paragraph{Registration platforms for machine-generated mathematics.}
+This submission is itself an experiment in the registration of
+machine-generated, machine-checked mathematical content: the authorship mode
+is \emph{no-human-author-claimed}, all artifacts are pinned in a public
+repository, and the derivation transcripts are retained. A predecessor of
+this paper was desk-rejected in moderation as ``not a paper''; the present
+version is a deliberate test of whether a fully paper-form treatment of the
+same evidence base meets the venue's expectations, and the outcome of that
+test is itself data for the federation's platform-adaptation ledger.
+
+\paragraph{Statistical honesty for zero-failure observations.}
+When $n$ independent trials observe zero failures, the rule of
+three~\cite{hanley1983} gives $3/n$ as an approximate 95\% upper confidence
+bound on the failure rate. All empirical zero-false-accept claims in this
+paper are stated with such bounds and with the explicit wording ``no false
+accept observed'', never as guarantees.
+
+\section{Credibility Lattice Completion}\label{sec:lattice}
+
+\subsection{The legacy poset and its gaps}
+
+The federation's credibility grades descend from a legacy five-element poset:
+three rungs of evidential strength
+(\emph{candidate} $<$ \emph{empirical} $<$ \emph{domain-formal}) plus two
+cross-cutting grades (\emph{mirror-insight} for insight-track claims and
+\emph{policy} for governance-track claims). Grades are used to gate which
+claims may serve as premises in deduction, so the poset's \emph{join}
+operation is load-bearing: the join of the grades of two premises is the
+natural grade of any conclusion drawn from both.
+
+An exhaustive enumeration over all pairs of the five-element poset
+(certificate CERT-LATTICE-01) found that the poset has \emph{exactly seven
+join gaps}: pairs with no least upper bound. The gaps are exactly the
+cross-track pairs: each of the three rungs fails to join with
+\emph{mirror-insight} and with \emph{policy} (six pairs), and
+\emph{mirror-insight} fails to join with \emph{policy} (the seventh). A poset
+with join gaps cannot support premise combination; completion is forced.
+
+\subsection{The completion}
+
+\begin{definition}[Credibility lattice]\label{def:lattice}
+The carrier is $E = (R \times T) \cup \{\top, \bot\}$, where
+$R = \{\text{candidate} < \text{empirical} < \text{domain-formal}\}$ is the
+three-rung chain and
+$T = \{\text{adjudication}, \text{insight}, \text{governance}\}$ is the set of
+tracks. The order compares rungs within a track; $\bot$ is below everything
+and $\top$ above everything; cells of different tracks are incomparable.
+Join of two cells is the rung-maximum within a common track and $\top$
+across tracks; meet is the rung-minimum within a common track and $\bot$
+across tracks.
+\end{definition}
+
+\begin{remark}
+The completion embeds the legacy poset order-preservingly and cleanly:
+\emph{candidate}, \emph{empirical}, \emph{domain-formal} map to the
+adjudication track at their rungs, \emph{mirror-insight} maps to
+$(\text{candidate}, \text{insight})$, and \emph{policy} maps to
+$(\text{candidate}, \text{governance})$. The enumeration reports
+order-preservation true and reflection violations none (CERT-LATTICE-01).
+\end{remark}
+
+\begin{theorem}[CERT-LATTICE-01: exhaustive lattice verification]
+\label{thm:lattice-enum}
+Commutativity of join and meet, associativity of join and meet, and both
+absorption laws hold for all $11^{3} = 1331$ ordered triples of the
+eleven-element structure of Definition~\ref{def:lattice} (exhaustive machine
+check, zero failures).
 \end{theorem}
 
-\section{A parameterized Rice template}
-\begin{proposition}[T2a template; Lean-verified]
-Let $C\subseteq \mathrm{Code}$ be extensionally closed and nontrivial. Then
-$C$ is not decidable (bridge, \texttt{rice\_bridge}). Pointwise-output
-predicates are extensional (\texttt{ext\_of\_pointwise}), and for any output
-function $g:\mathbb{N}\to\mathbb{N}$ whose range avoids some point $k$, the
-predicate $\exists m,\ \mathrm{eval}\ c\ m = \mathrm{some}\ (g\,m)$ is
-undecidable (\texttt{rice\_pointwise}). Instances discharged:
-$g=\mathrm{const}\ 0$ ($k=1$), $g=\mathrm{succ}$ ($k=0$), $g=2\cdot$ ($k=1$).
-Six theorems cloud-verified (requests \texttt{41e07431-...},
-\texttt{2d611c78-...}, \texttt{c39c5b84-...}, \texttt{4ee3fbb4-...},
-\texttt{d6fba622-...}, \texttt{2e3b960c-...}).
+\subsection{Lean formalization}
+
+The full structure---carrier as an inductive type, order, join, meet---is
+formalized in Lean~4 (\lean{artifacts/lean-verified/CertLatticeLean01.lean},
+certificate CERT-LATTICE-LEAN-01). Because the carrier is finite (eleven
+elements), every universal statement over it is decidable, and every theorem
+below is proved by the single tactic \texttt{decide}, which reduces to kernel
+evaluation; cloud verification request
+\rid{1dfa70b6-ba1e-492d-b45c-5391727aff3c} (Axiom Axle,
+\texttt{lean-4.28.0}, okay\,=\,true).
+
+\begin{theorem}[CERT-LATTICE-LEAN-01]\label{thm:lattice-lean}
+Over the carrier of Definition~\ref{def:lattice}, all of the following hold
+and are machine-decided in Lean~4:
+\begin{enumerate}
+\item the six equational lattice laws: \lean{join\_comm}, \lean{meet\_comm},
+\lean{join\_assoc}, \lean{meet\_assoc}, and the two absorption laws
+\lean{absorb1}, \lean{absorb2};
+\item the order axioms: \lean{le\_refl}, \lean{le\_trans},
+\lean{le\_antisymm};
+\item extremality: \lean{join\_is\_lub} (the join is below every common upper
+bound) and \lean{meet\_is\_glb} (the meet is above every common lower
+bound);
+\item order--operation compatibilities: \lean{le\_join\_left},
+\lean{le\_join\_right}, \lean{meet\_le\_left}, \lean{meet\_le\_right}.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Declaration count]
+The certificate header describes a fourteen-theorem core package; the pinned
+file contains fifteen \texttt{decide}-proved declarations in total, the
+fifteenth being the fourth order--operation compatibility listed above. We
+report the file's actual content.
+\end{remark}
+
+The axiom audit (Section~\ref{sec:repro}) confirms that these theorems depend
+only on \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}---the standard Lean~4 axiom whitelist---with no
+\texttt{sorryAx}. Because the proofs are by \texttt{decide}, their content is
+identical to the Python enumeration of Theorem~\ref{thm:lattice-enum}; the
+value of the Lean layer is that the \emph{statement} is machine-checked for
+well-formedness against a single source of truth, eliminating
+transcription drift between the specification and the enumeration script.
+
+\section{Certificate Lifecycle Machine}\label{sec:lifecycle}
+
+\subsection{States and transitions}
+
+Certificates in the federation are not static. A deposited certificate is
+born as a \emph{candidate}, may be \emph{granted} after a four-gate review,
+is \emph{maintained} under continuous monitoring, may be \emph{demoted} when
+a domain violation is detected, and may be \emph{revoked} when forgery is
+detected or its domain is withdrawn.
+
+\begin{definition}[Lifecycle machine]\label{def:k4}
+The state set is
+$S=\{\text{candidate},\text{granted},\text{maintained},\text{demoted},\text{revoked}\}$.
+The legality predicate $\ell : S \times S \to \{\mathrm{true},\mathrm{false}\}$
+admits exactly the following nine transitions:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+From & To & Trigger \\
+\midrule
+candidate & granted & four-gate review \\
+candidate & revoked & domain withdrawal \\
+granted & maintained & continuous monitoring passed \\
+granted & demoted & domain violation detected \\
+granted & revoked & certificate forgery detected \\
+maintained & demoted & domain violation detected \\
+maintained & revoked & certificate forgery detected \\
+demoted & granted & remediation re-review \\
+demoted & revoked & forgery detected or domain withdrawal \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{definition}
+
+\subsection{Invariants, including the one formalization broke}
+
+\begin{theorem}[CERT-K4-01\,/\,CERT-K4-LEAN-01]\label{thm:k4}
+The machine of Definition~\ref{def:k4} satisfies, all by exhaustive machine
+check and all re-proved in Lean~4 by \texttt{decide} over the five-state
+carrier (cloud verification request
+\rid{16618831-e457-4d29-8d65-b57fa563e33d}):
+\begin{enumerate}
+\item \lean{legal\_count}: exactly $9$ transitions are legal;
+\item \lean{illegal\_count}: exactly $11$ distinct (non-self) transitions are
+illegal;
+\item \lean{I1\_granted\_gated} (grant gating): if $\ell(s,\text{granted})$
+then $s\in\{\text{candidate},\text{demoted}\}$;
+\item \lean{I1b\_maintained\_only\_from\_granted}: if
+$\ell(s,\text{maintained})$ then $s=\text{granted}$;
+\item \lean{I2\_revoked\_terminal} (revocation terminality): no transition
+leaves \emph{revoked};
+\item \lean{I2b\_no\_return\_to\_candidate} (irreversibility): no transition
+returns to \emph{candidate};
+\item \lean{I3\_demoted\_out\_edges} (appeal freezing): if
+$\ell(\text{demoted},s)$ then $s\in\{\text{granted},\text{revoked}\}$;
+\item \lean{no\_self\_loop}: $\ell(s,s)$ is false for every $s$.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[A specification flaw caught by formalization]\label{rem:i1}
+Our original specification stated invariant (I1) more strongly: ``\emph{granted}
+arises only from \emph{candidate}''. This is \emph{false}: the
+remediation edge $\text{demoted}\to\text{granted}$ is a legal entry into
+\emph{granted}. The Lean formalization's \texttt{decide} procedure produced a
+counterexample to the original statement, and the invariant was corrected to
+the disjunctive form in Theorem~\ref{thm:k4}(3), which is the machine-proved
+one. We regard this incident as the methodological point of the exercise:
+the informal specification, reviewed by humans and by machines at the
+enumeration layer, had silently dropped an edge from the gating invariant;
+only the act of stating the invariant in a proof assistant exposed the gap.
+The corrected statement is recorded as the ``Lean-ification precision
+correction'' in the certificate header of
+\lean{CertK4Lean01.lean}.
+\end{remark}
+
+The Python enumeration layer (CERT-K4-01, pinned with raw data in the
+federation ledger) independently confirms the counts and the three invariants
+over the full transition graph, including the enumeration of all eight
+candidate-originating paths for the append-only evidence property and the
+closure of all five states' outgoing edges under a raised appeal flag.
+
+\section{Certified Numerical Anchors}\label{sec:anchors}
+
+The kernel's adjudication machinery would be vacuous without at least one
+class of certificates whose acceptance is anchored in mathematics rather than
+in trust. This section presents two such anchor families and then states,
+as a first-class finding, the boundary of the Lean-side port.
+
+\subsection{Circulant Sinkhorn fixed points: the Krawczyk family}
+\label{sec:circ}
+
+For a circulant cost matrix $C[i][j]=c_{(j-i)\bmod k}$ with
+$c=(c_0,\dots,c_{k-1})\in\mathbb{Q}_{>0}^{k}$, uniform marginals,
+regularization $\varepsilon>0$, and the gauge $f_0=0$, the entropic
+optimal-transport (Sinkhorn) fixed-point system reads
+\[
+f_i+\varepsilon\log k+\varepsilon\log\sum_{j} e^{(g_j-C[i][j])/\varepsilon}=0,
+\qquad
+g_j+\varepsilon\log k+\varepsilon\log\sum_{i} e^{(f_i-C[i][j])/\varepsilon}=0 .
+\]
+Circulant symmetry forces the closed-form solution
+\[
+f^{*}=0,\qquad g^{*}=-\varepsilon\bigl(\log k+\operatorname{lse}(-c/\varepsilon)\bigr),
+\]
+where $\operatorname{lse}$ is the log-sum-exp; e.g.\ for the $k=6$,
+$\varepsilon=1$ instance with $c=(1/2,1/3,2/3,1/4,3/4,1/5)$, $f^{*}=0$ in
+the gauge and the common $g$-value is $-3.1543698608222522\ldots$, reproduced
+digit-for-digit by the independent batch verification. The closed form is
+used only as ground truth for negative controls; the certificate does not
+consult it.
+
+The certificate is the classical Krawczyk criterion~\cite{krawczyk1969}. With
+$F$ the $(2k-1)$-dimensional gauged system, $\hat{x}$ a rationalized center
+(rational approximation of the closed form, $\texttt{limit\_denominator}$ at
+precision $10^{-13}$ for the original batch and $\sim 10^{-26}$ for the
+re-verification batch), $C$ a rationalization of the analytic inverse
+Jacobian $J(\hat{x})^{-1}$, and $X$ the box of radius $10^{-9}$ around
+$\hat{x}$, the operator
+\[
+K(X) = \hat{x} - C\,F(\hat{x}) + \bigl(I - C\,J(X)\bigr)(X-\hat{x})
+\]
+is evaluated in interval arithmetic with outward rounding (mpmath interval
+layer, 80 decimal digits). If $K(X)$ lies strictly inside $X$ and $C$ is
+nonsingular, $X$ contains exactly one real root.
+
+\begin{theorem}[CERT-CIRC-01 family; Python interval certification]
+\label{thm:circ}
+For each of the six instances $k\in\{6,10\}$,
+$\varepsilon\in\{1,\tfrac12,\tfrac15\}$ (two circulant vector families,
+dimensions $n=11$ and $n=19$), the Krawczyk operator maps the box strictly
+inside itself: Jacobian condition numbers $22.2$--$43.1$, Krawczyk image
+widths between $2.55\cdot10^{-15}$ and $6.93\cdot10^{-14}$, against a box
+radius of $10^{-9}$ (margin of more than four orders of magnitude). Hence each
+box contains exactly one real root. Every negative control---the same box
+with centers perturbed by $10^{-6}$, preconditioner recomputed---is rejected.
+An independent re-verification batch (EXT05-BATCH-01) reproduced all six
+instances (condition numbers matching to published precision) and extended
+the family to $\varepsilon\in\{1/10,1/20\}$, for a total of $10/10$
+instances with strict inclusion and $10/10$ negative controls correctly
+rejected; at $\varepsilon=1/20$ the condition number rises to
+$1.1\cdot10^{3}$ ($k=6$) and the image width stays below $5\cdot10^{-14}$.
+\end{theorem}
+
+\begin{remark}
+The extension to small $\varepsilon$ is where the certification earns its
+keep: the closed form is cheap, but the \emph{box uniqueness} statement is
+what downstream adjudication consumes, and it survives condition numbers
+about one and a half orders of magnitude above the original family
+(to $\approx 1.1\cdot 10^{3}$).
+\end{remark}
+
+\subsection{Auction-algorithm assignment: the dual-bracket family}
+\label{sec:auction}
+
+The second anchor family (CERT-AUCTION-01) certifies the output of the
+auction algorithm~\cite{bertsekas1988} on assignment problems with
+log-uniform costs $C=10^{R\,(2U-1)}$, $U$ uniform on $[0,1]^{k\times k}$,
+dynamic range $R=2$. The solver (forward auction with
+$\varepsilon$-scaling, $\varepsilon: 0.5\to/5\to 10^{-6}$ per round, warm
+prices) is treated as an untrusted candidate generator; the certificate is a
+posteriori and rests only on LP weak duality: an interval evaluation (outward
+rounding via directed rounding of endpoints) certifies reduced-cost
+nonnegativity $\mathrm{rc}_j = c_j - (A^{T}y)_j \ge 0$ componentwise, with a
+$\delta$-deflation ($\delta=10^{-10}$) at degenerate zero-riding coordinates;
+the assignment-scale bracket is $k\times[\mathrm{LB}_{\mathrm{lo}},
+\mathrm{UB}_{\mathrm{hi}}]$ in the Birkhoff scaling.
+
+\begin{proposition}[CERT-AUCTION-01; Python interval certification]
+\label{prop:auction}
+All five instances (one benchmark at $k=8$, $R=2$, seed $7$; three extended
+instances at $k\in\{6,10,12\}$; one schedule-variant re-run of the
+benchmark) pass the three-part test: the auction cost lies in the certified
+bracket, the gap satisfies $\mathrm{cost}-k\cdot\mathrm{LB}_{\mathrm{lo}}\le
+k\,\varepsilon_{\mathrm{final}}$, and a swap-perturbation negative control
+(perturbed cost $97.28$--$130.71$ against brackets of width
+$\sim 5\cdot10^{-11}$) falls outside the bracket and is rejected. The
+benchmark reproduces the originally registered cost
+$0.2550220110027003$ digit-for-digit, and the schedule-variant converges to
+the same assignment, family-level evidence of path independence of
+$\varepsilon$-scaling.
 \end{proposition}
 
-\section{Checker self-verification}
-\begin{proposition}[CERT-SELFCHECK-01; Lean-verified]
-For rational intervals, the addition and negation certificate steps preserve
-membership (\texttt{add\_sound}, \texttt{neg\_sound}); the boundedness
-checker is sound: if $\texttt{check}\ \mathrm{iv}\ B$ holds, then every
-$x\in\mathrm{iv}$ satisfies $|x|\le B$ (\texttt{check\_sound}); and the
-end-to-end composition holds (\texttt{end\_to\_end}). Four theorems
-cloud-verified (requests \texttt{d9034a05-...}, \texttt{44208d46-...},
-\texttt{082321e6-...}, \texttt{f3c1fc61-...}). This is the minimal trusted
-computing base of the accept-implies-correct pattern used by the numerical
-anchors above.
+\begin{remark}[Honesty boundary of the auction family]\label{rem:auction-honest}
+The upper side of the bracket uses the LP solver's primal solution as the
+candidate; primal feasibility is trusted to solver precision
+($\sim 10^{-12}$) and is \emph{not} interval-certified---this is the original
+specification, and we flag it rather than repair it silently. The family has
+no Lean port.
+\end{remark}
+
+\subsection{The boundary of the Lean port (FINDING-04)}\label{sec:finding04}
+
+We attempted to port the six circulant instances to Lean~4 using the verified
+interval library \emph{leancert}, encoding each system over \emph{leancert}'s
+expression grammar and calling
+\lean{verify\_unique\_system\_root} with \texttt{native\_decide}. The port
+does not go through, and the failure is structural, not incidental:
+
+\begin{enumerate}
+\item \emph{leancert}'s supported-expression check
+(\lean{ADSupported}\,/\,\lean{checkADSupported}) does not include
+\lean{Expr.log}---it never has, since the commit that introduced the
+function---while all $11/11$ (resp.\ $19/19$) equations of every circulant
+system contain $\log$. The checker therefore rejects by design: probes
+measure \lean{checkADSupported}\,=\,false on $11/11$ equations while
+\lean{centerInside}\,=\,true.
+\item \emph{leancert}'s determinant (\lean{Matrix.det}) is defined by
+Leibniz expansion; at dimensions $11$ and $19$ the computation is
+combinatorially infeasible for \texttt{native\_decide} (the library's own
+tests cover only $2\times 2$).
+\end{enumerate}
+
+Consequently, under the artifact-pinned \emph{leancert} v4.34.1 the
+circulant Lean family \emph{has never passed} Lean-side machine verification:
+after elaboration-layer repair the files elaborate cleanly
+(\textsc{elaboration ok}), but \texttt{native\_decide} evaluates to false for
+the structural reasons above, and the repaired artifacts carry the honest
+verdict \textsc{check\_false (structural)}. \textbf{The certification of the
+circulant family is carried entirely by the Python interval layer}
+(outward rounding, strict-inclusion criterion, nonsingular preconditioner,
+negative controls), and the Lean files are \emph{formal statement
+artifacts}---machine-checked transcriptions of the systems, centers, boxes,
+and claims---not machine-verified certificates. A content-level repair path
+is registered as an open obligation: eliminate the logarithm by the
+substitution $u=\log\sum\exp(\cdot)$ to bring the systems into the
+library's supported fragment, or migrate to a checker with transcendental
+support; the rationalized centers for the extended instances are already
+registered for this purpose.
+
+We document this boundary in the body of the paper, rather than in a
+footnote, because it is exactly the kind of fact that an adjudication kernel
+exists to protect: a credential whose presentation outruns its certification
+layer. The v1 submission's wording (``ported to the Lean~4 verified interval
+library \emph{leancert}'', abstract; ``\lean{verify\_unique\_system\_root}
+certificates'', \S4) was, under this finding, overstated, and is corrected
+here.
+
+\section{A Parameterized Rice Template}\label{sec:rice}
+
+\subsection{Bridge, extensionality, generator}
+
+The domain-limitation architecture of Section~\ref{sec:intro} is justified by
+Rice's theorem~\cite{rice1953}, and Mathlib contains a formalization of that
+theorem over partial-recursive-function codes~\cite{carneiro2019}. The
+kernel's fourth component (T2A-BRIDGE-01, CERT-T2A-TEMPLATE-01) packages the
+blocking result as a callable template in Lean~4. All six theorems below were
+cloud-verified under \texttt{verify\_proof} (Axiom Axle,
+\texttt{lean-4.28.0}, okay\,=\,true, request identifiers in
+Table~\ref{tab:evidence}), with axiom audits clean.
+
+\begin{proposition}[Bridge, \lean{rice\_bridge}]\label{prop:bridge}
+Let $C\subseteq \mathrm{Code}$ be extensionally closed (codes with equal
+evaluation semantics are equimembership) and nontrivial
+($C\neq\emptyset$, $C\neq\mathrm{univ}$). Then membership in $C$ is not a
+computable predicate.
 \end{proposition}
 
-\section{Empirical soundness statement}
-Fuzzing over three families (E: 30/30 containment of ground truth; D:
-$60\to4$ accepts, all valid; K: $30\to1$ accept, verified) observed zero
-false accepts. By the rule of three, 95\% upper bounds on the false-accept
-rate are $9.5\%$, $4.9\%$, $9.5\%$ respectively. We report ``no false accept
-observed'', not a guarantee.
+The proof is a three-line reduction to Mathlib's \lean{ComputablePred.rice\_2}:
+decidability of $C$ would force $C=\emptyset$ or $C=\mathrm{univ}$.
+
+\begin{lemma}[Extensionality of pointwise predicates, \lean{ext\_of\_pointwise}]
+\label{lem:ext}
+For any $g:\mathbb{N}\to\mathbb{N}$, the predicate
+``$\exists m,\ \mathrm{eval}\ c\ m = \mathrm{some}\ (g\,m)$'' is
+extensionally closed in the sense of Proposition~\ref{prop:bridge}.
+\end{lemma}
+
+\begin{theorem}[Generator, \lean{rice\_pointwise}]\label{thm:gen}
+For any $g:\mathbb{N}\to\mathbb{N}$ whose range avoids some point $k$
+(i.e.\ $\forall m,\ g\,m\neq k$), the pointwise predicate of
+Lemma~\ref{lem:ext} is undecidable.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Instantiate the bridge with $C=\{c \mid \exists m,\ \mathrm{eval}\ c\
+m=\mathrm{some}\ (g\,m)\}$. Extensionality is Lemma~\ref{lem:ext}.
+Nontriviality is witnessed by the constant functions: $\mathrm{const}\ (g\,0)$
+is in $C$ (at $m=0$), and $\mathrm{const}\ k$ is not (the range-avoidance
+hypothesis). The Lean proof is a direct formalization of this argument.
+\end{proof}
+
+\subsection{Discharged instances}
+
+The generator is discharged on seven instances of increasing witness
+difficulty (Table~\ref{tab:rice}). The first three accompany the template
+file itself; the remaining four (INSTANCES-EXT01) demonstrate that the
+generator's call surface extends from constant and linear witnesses to
+nonlinear arithmetic, inductive witnesses, and divisibility arguments. All
+seven carry cloud verification request identifiers and clean axiom audits;
+the EXT01 batch was additionally verified as a single four-theorem artifact
+(request \rid{77a0eaad-fbd2-48a6-9281-330f736fc8c2}).
+
+\begin{table}[t]
+\centering
+\caption{Discharged instances of the Rice template.
+``Avoids'' is the point $k$ of Theorem~\ref{thm:gen}.}\label{tab:rice}
+\begin{tabular}{llll}
+\toprule
+Instance & Semantic property ($g$) & Avoids & Witness content \\
+\midrule
+\lean{inst\_const\_zero} & output constantly $0$ & $k=1$ & \lean{Nat.zero\_ne\_one} \\
+\lean{inst\_succ} & output $=$ input $+1$ & $k=0$ & \lean{Nat.succ\_ne\_zero} \\
+\lean{inst\_double} & output $=2m$ & $k=1$ & parity (\texttt{omega}) \\
+\lean{inst\_shift7} (E4) & output $=$ input $+7$ & $k=3$ & $\beta$-redex elimination + \texttt{omega} \\
+\lean{inst\_square\_ne3} (E5) & output $=m^{2}$ & $k=3$ & case split: $m<2$ enumeration; $m\ge2\Rightarrow m^{2}\ge4$ \\
+\lean{inst\_pow2\_ne3} (E6) & output $=2^{m}$ & $k=3$ & induction: $2^{0}=1$, $2^{m+1}$ even \\
+\lean{inst\_fact\_ne4} (E7) & output $=m!$ & $k=4$ & divisibility: $m\ge3\Rightarrow 6\mid m!$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Engineering note]\label{rem:beta}
+The EXT01 batch recorded a reusable engineering fact: Lean's \texttt{omega}
+tactic does not see through $\beta$-redexes, so instance proofs first reduce
+the goal with \texttt{show} before invoking \texttt{omega} or \texttt{rw}.
+This is the kind of artifact-level detail that the federation ledger retains
+and that a template's reusability depends on.
+\end{remark}
+
+\section{Minimal Trusted Base}\label{sec:selfcheck}
+
+Every anchor certificate ultimately reduces to: a checker computed
+\emph{accept}, therefore the semantic property holds. The kernel's fifth
+component (CERT-SELFCHECK-01) proves this pattern, in miniature, in Lean~4,
+over rational intervals.
+
+\begin{definition}[$\mathbb{Q}$-intervals and the checker]
+An interval \lean{Iv} is a pair $(\mathrm{lo},\mathrm{hi})\in\mathbb{Q}^{2}$;
+membership \lean{mem} is $\mathrm{lo}\le x\le\mathrm{hi}$. Interval addition
+and negation are endpointwise. The boundedness checker
+\lean{check}\ $(\mathrm{iv},B)$ is the proposition $-B\le\mathrm{lo}\ \wedge\
+\mathrm{hi}\le B$.
+\end{definition}
+
+\begin{theorem}[CERT-SELFCHECK-01: accept implies correctness]
+\label{thm:selfcheck}
+The following are proved in Lean~4 (cloud verification under
+\texttt{verify\_proof}, \texttt{lean-4.28.0}, okay\,=\,true; request
+identifiers in Table~\ref{tab:evidence}; axiom audit clean):
+\begin{enumerate}
+\item \lean{add\_sound}: interval addition preserves membership;
+\item \lean{neg\_sound}: interval negation preserves membership;
+\item \lean{check\_sound}: if \lean{check}\ $(\mathrm{iv},B)$ holds, then
+every $x\in\mathrm{iv}$ satisfies $|x|\le B$;
+\item \lean{end\_to\_end}: composition---if the certificate arithmetic
+$\mathrm{add}\ a\ (\mathrm{neg}\ b)$ passes \lean{check} against $B$, then
+$|x-y|\le B$ for all $x\in a$, $y\in b$.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+This is deliberately tiny. Its role in the kernel is foundational rather
+than mathematical: it is a machine-checked instance of the soundness
+interface $V(\varphi,D,\pi)=\mathrm{accept}\Rightarrow\varphi$, exhibiting
+that the interface is satisfiable by a real, verified artifact. The full
+Krawczyk-layer analogue---a verified interval evaluator with outward rounding
+strong enough to carry Theorem~\ref{thm:circ} inside Lean---is precisely
+what FINDING-04 (Section~\ref{sec:finding04}) shows to be beyond the pinned
+\emph{leancert} version; it is registered as open obligation OBL-A1.
+\end{remark}
+
+\section{Reproducibility and Axiom Audit}\label{sec:repro}
+
+\subsection{Pinned artifacts and verification channels}
+
+All artifacts are pinned by path and commit in the public repository
+\texttt{chepin-ai/vci-inbox}; the index is in Appendix~\ref{app:anchors}.
+The verification channels are of three kinds:
+\begin{itemize}
+\item \emph{Exhaustive enumeration} (Python, pinned scripts): lattice laws
+over $1331$ triples; lifecycle transition counts and invariants. Raw data
+are frozen in the ledger (board/LAB-THEORY-01R-FK01R-20261009T0620Z.md,
+commit \rid{3e0f54e1}; reproduction script commit \rid{16ed41d2}).
+\item \emph{Interval certification} (Python, mpmath interval layer,
+outward rounding, 80-digit precision): circulant Krawczyk family
+(EXT05-BATCH-01 script and machine-readable results under
+\lean{artifacts/CERT-CIRC-LEAN-01/family/}) and the auction dual-bracket
+family (\lean{artifacts/CERT-AUCTION-01/auction\_verify.py}).
+\item \emph{Cloud proof verification} (Axiom Axle, environment
+\texttt{lean-4.28.0}, strict \texttt{verify\_proof} channel: no
+\texttt{sorry}, whitelisted axioms, signature match): all Lean artifacts of
+Sections~\ref{sec:lattice}--\ref{sec:selfcheck}. Each theorem carries a
+permanent request identifier under which the verification can be re-queried;
+the identifiers are listed in Table~\ref{tab:evidence} and in the artifact
+headers.
+\end{itemize}
+
+\subsection{Axiom audit}
+
+Every Lean artifact was audited in the cloud environment with
+\texttt{\#print axioms}. For every artifact the recorded audit reports the dependency set as a
+subset of the standard Lean~4 whitelist at artifact level
+\[
+\{\texttt{propext},\ \texttt{Classical.choice},\ \texttt{Quot.sound}\},
+\]
+and \texttt{sorryAx} appears in none. Because the lattice and lifecycle
+theorems are proved by \texttt{decide}, their logical content reduces to
+kernel computation; the choice axiom enters only through Mathlib's
+\texttt{Finset} machinery and is inessential to the checked statements.
+
+\subsection{Environment fingerprint and dependency-drift caveat}
+
+The cloud verification environment fingerprint is \texttt{lean-4.28.0}
+(Axiom Axle). The attempted \emph{leancert} port additionally records a
+dependency-pinning incident relevant to reproducibility: the upstream tags
+v4.34.1\,/\,v4.35.0 of \emph{leancert} were observed to have been retargeted
+on the remote (the tag target differs from the artifact-pinned commit), so
+the artifact pins by commit hash and the drift risk is registered in the
+federation ledger. We reproduce this caveat because any consumer of the
+formal statement artifacts must resolve the dependency by the pinned commit,
+not by tag.
+
+\subsection{Empirical soundness: fuzzing with rule-of-three bounds}
+
+Three certificate families were fuzzed, $120$ trials in total
+(certificate CERT-T4-01, raw data in the pinned ledger card; $f_{80}$ ground truth means containment of the
+80-bit-extended-precision value, judged bitwise):
+\begin{itemize}
+\item \textbf{E family} (interval envelopes): $n=30$, ground-truth
+containment $30/30$;
+\item \textbf{D family} (LP dual brackets, with implanted corrupted
+subsets): $n=60$, accepts $4$, all $4$ valid;
+\item \textbf{K family} (Krawczyk, adversarial centers with implanted true
+center): $n=30$, accept $1$, independently verified by an $f_{80}$ Newton
+iteration.
+\end{itemize}
+Zero false accepts were observed. The three layers are deliberately
+non-identically distributed and we do not extrapolate a universal statement.
+The exact one-sided 95\% upper confidence bounds (Clopper--Pearson) on the
+false-accept rate are $9.5\%$ (E), $4.9\%$ (D), $9.5\%$ (K); the
+rule-of-three $3/n$ approximation~\cite{hanley1983} gives $10\%$, $5\%$,
+$10\%$.
+\textbf{We report ``no false accept observed'', not a guarantee.}
+
+\subsection{Evidence-anchor table}
+
+\begin{table}[t]
+\centering
+\caption{Evidence anchors. rid = cloud verification request identifier
+(Axiom Axle \texttt{verify\_proof}, \texttt{lean-4.28.0}, okay\,=\,true,
+axioms within \{\texttt{propext}, \texttt{Classical.choice},
+\texttt{Quot.sound}\}). Truncated rids are abbreviated with $\ldots$; full
+identifiers appear in the pinned artifact headers. The pinned ledger
+card's headline total for CERT-T4-01 reads ``91 cases''; that figure is
+inconsistent with the card's own frozen strata (E $=30$, D $=60$, K $=30$) and
+with the reproduction script (commit \rid{16ed41d2}), and the exact
+Clopper--Pearson bounds $9.5\%/4.9\%/9.5\%$ fix $n=30/60/30$ independently.
+We therefore report the stratified total of $120$ trials
+here.}\label{tab:evidence}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.6cm} >{\raggedright\arraybackslash}p{4.4cm} >{\raggedright\arraybackslash}p{5.2cm}}
+\toprule
+Artifact & Verification status & Anchors \\
+\midrule
+CERT-LATTICE-01 (enum.) & exhaustive, $1331$ triples, $0$ failures &
+commit \rid{3e0f54e1}; repro \rid{16ed41d2} \\
+CERT-LATTICE-LEAN-01 & $15$ theorems by \texttt{decide}; audit clean &
+rid \rid{1dfa70b6-\ldots}; commit \rid{3a5edd44} \\
+CERT-K4-01 (enum.) & $9$ legal, $11$ illegal, I1--I3 pass &
+commit \rid{3e0f54e1} \\
+CERT-K4-LEAN-01 & $8$ theorems by \texttt{decide}; audit clean; I1 corrected &
+rid \rid{16618831-\ldots}; commit \rid{3a5edd44} \\
+CERT-CIRC-01 family ($6$ inst.) & Python interval: strict inclusion $6/6$,
+neg.\ controls reject $6/6$ & \lean{artifacts/CERT-CIRC-LEAN-01}, commits
+\rid{7d052564}, \rid{bd71b720} \\
+EXT05-BATCH-01 ($10$ inst.) & Python interval: $10/10$ inside, $10/10$
+neg.\ controls & \lean{family/EXT05-BATCH-01\_verify.py}, results JSON \\
+CERT-CIRC-LEAN-01 (Lean) & formal statement only;
+\textsc{elaboration ok}, \textsc{check\_false (structural)} (FINDING-04) &
+\lean{*\_v4341.lean}, commit \rid{c8c43b39} \\
+CERT-AUCTION-01 ($5$ inst.) & Python interval: $5/5$ pass; neg.\ controls
+reject; primal feasibility not interval-certified (Remark~\ref{rem:auction-honest}) &
+\lean{auction\_verify.py}, results JSON \\
+T2A-BRIDGE-01 & \lean{t2a\_bridge}, \lean{t2a\_instance} verified &
+rids \rid{c2a58cfa-\ldots}, \rid{a446bfd2-\ldots}; commit \rid{ebc121a1} \\
+CERT-T2A-TEMPLATE-01 & $6$ theorems verified; audit clean &
+rids \rid{41e07431-\ldots}--\rid{2e3b960c-\ldots}; commit \rid{577b1a4f} \\
+INSTANCES-EXT01 (E4--E7) & $4$ instances verified; batch rid
+\rid{77a0eaad-\ldots} & \lean{artifacts/T2A-BRIDGE-01/INSTANCES-EXT01.lean} \\
+CERT-SELFCHECK-01 & $4$ theorems verified; audit clean &
+rids \rid{d9034a05-\ldots}, \rid{44208d46-\ldots}, \rid{082321e6-\ldots},
+\rid{f3c1fc61-\ldots}; commit \rid{f8cb83e7} \\
+CERT-T4-01 (fuzz) & $120$ trials ($30+60+30$ across the E/D/K strata),
+$0$ false accepts observed; Clopper--Pearson bounds reported & commit
+\rid{3e0f54e1} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Limitations and Honest Gaps}\label{sec:limitations}
+
+We collect the limitations in one place, matching the federation's honesty
+discipline that every claim be traceable to an artifact and every gap be
+named rather than elided.
+
+\begin{enumerate}
+\item \textbf{Machine generation and human comprehension.}
+This paper and all of its artifacts are machine-generated under the
+authorship mode \emph{no-human-author-claimed}. The contributing account
+holder does not claim human understanding of every derivation step; the
+correctness belief rests on the verification layers enumerated in
+Section~\ref{sec:repro}, not on human line-by-line review. Human
+comprehension of some derivation steps is therefore partial by design, and
+readers should weight the machine certificates accordingly---this cuts both
+ways: the certificates are stronger than a human read in exhaustiveness, and
+weaker in semantic judgment about what \emph{should} have been proved.
+\item \textbf{The circulant Lean boundary.} The circulant family's
+certification is carried by the Python interval layer. The Lean-side files
+are formal statement artifacts that elaborate but cannot be machine-verified
+under the pinned \emph{leancert} v4.34.1, for the two structural reasons of
+Section~\ref{sec:finding04} (no \lean{Expr.log} support; infeasible Leibniz
+determinant at $n\in\{11,19\}$). Any v1-era wording implying a completed
+Lean-side certificate for this family was overstated and is corrected here.
+The repair path ($\log$-elimination by substitution, or a checker with
+transcendental support) is an open obligation, not a result.
+\item \textbf{The auction family's trusted edge.} The dual bracket's upper
+side trusts solver primal feasibility to $\sim 10^{-12}$; it is not
+interval-certified (Remark~\ref{rem:auction-honest}). The family has no Lean
+port.
+\item \textbf{No statistical guarantees.} All fuzzing conclusions are
+sample-based, non-identically distributed across layers, and reported with
+rule-of-three upper bounds. ``Zero false accepts observed'' is the complete
+claim.
+\item \textbf{Finite and small carriers.} The lattice and lifecycle results
+are decidable finite checks. They are complete for the stated structures, but
+they do not by themselves establish properties of any larger or dynamical
+system built on top of them.
+\item \textbf{Trusted bases we do not eliminate.} The kernel assumes a
+finite-depth checking stack terminating in hardware, microcode, and audit
+anchors; it does not claim an ultimate foundation. The checker-reliability
+interface at the Krawczyk and LP layers is discharged by classical theorems
+(outward-rounding inclusion, Krawczyk's theorem, weak duality), not yet by
+proof-assistant formalization at full strength.
+\item \textbf{Open theses are not theorems.} The federation's escape-route
+catalogue around Rice-type blockage (domain limitation, probabilistic
+checking, interactive proofs, restricted fragments, paraconsistent or
+many-valued semantics, semi-decision) is registered as an open, falsifiable
+thesis with an explicit retraction of earlier universal wordings; none of it
+is claimed in this paper.
+\end{enumerate}
+
+\section{Conclusion}\label{sec:conclusion}
+
+We have deposited, in full paper form, a machine-checked kernel for
+federated automated adjudication: a completed credibility lattice verified
+by exhaustive enumeration and by Lean~4 decision over the finite carrier; a
+certificate lifecycle machine whose formalization caught and corrected a real
+specification flaw; two certified numerical anchor families, with an exact
+and honest account of which layer carries the certification and where the
+Lean port is structurally blocked; a parameterized Rice template with seven
+discharged instances making the undecidability boundary callable; and a
+minimal, machine-proved trusted base for the accept-implies-correct pattern.
+Every claim is pinned to an artifact, every Lean theorem to a
+cloud-verification request identifier, every axiom audit to the standard
+whitelist, and every empirical statement to a rule-of-three bound. The
+project's broader question---whether a federation of machines can maintain
+adjudication infrastructure whose credentials never outrun their
+certificates---is answered here only at kernel scale, but the kernel is
+complete, pinned, and falsifiable in every part.
 
 \appendix
-\section{Reproduction anchors}
-All artifacts are pinned at public repository \texttt{chepin-ai/vci-inbox}:
-lattice and lifecycle enumeration scripts and fuzz raw data
-(board/\texttt{LAB-THEORY-01R-FK01R-20261009T0620Z.md}, commit
-\texttt{3e0f54e1}; reproduction script commit \texttt{16ed41d2});
-circulant Lean family (\texttt{artifacts/CERT-CIRC-LEAN-01}, commits
-\texttt{7d052564}, \texttt{bd71b720}); lattice and lifecycle Lean
-formalizations (\texttt{artifacts/lean-verified/CertLatticeLean01.lean},
-\texttt{CertK4Lean01.lean}, commit \texttt{3a5edd44}); Rice bridge and
-template (\texttt{artifacts/T2A-BRIDGE-01},
-\texttt{artifacts/lean-verified/T2aTemplate.lean}, commits \texttt{ebc121a1},
-\texttt{577b1a4f}); checker self-verification
-(\texttt{artifacts/lean-verified/CertSelfCheck01.lean}, commit
-\texttt{f8cb83e7}). Cloud verification environment: Axiom Axle
-\texttt{lean-4.28.0}; all axiom audits restricted to \texttt{propext},
-\texttt{Classical.choice}, \texttt{Quot.sound}; no \texttt{sorryAx}.
+
+\section{Pinned Artifact Index}\label{app:anchors}
+
+All paths are relative to the repository root of \texttt{chepin-ai/vci-inbox}
+(branch \texttt{main}); commit identifiers pin the introducing or repairing
+commit as recorded in the federation ledger.
+
+\begin{itemize}
+\item \lean{artifacts/lean-verified/CertLatticeLean01.lean} (commit
+\rid{3a5edd44}): lattice formalization, Section~\ref{sec:lattice}.
+\item \lean{artifacts/lean-verified/CertK4Lean01.lean} (commit
+\rid{3a5edd44}): lifecycle formalization, Section~\ref{sec:lifecycle}.
+\item \lean{artifacts/CERT-CIRC-LEAN-01/} (commits \rid{7d052564},
+\rid{bd71b720}; repaired \lean{*\_v4341.lean} at \rid{c8c43b39}): circulant
+family, Sections~\ref{sec:circ} and~\ref{sec:finding04}; the
+\lean{family/} subdirectory holds the batch re-verification script, results,
+and the extended instances.
+\item \lean{artifacts/CERT-AUCTION-01/}: auction family,
+Section~\ref{sec:auction} (\lean{auction\_verify.py}, results JSON, README
+with the honesty boundary).
+\item \lean{artifacts/T2A-BRIDGE-01/t2a\_bridge.lean} (commit
+\rid{ebc121a1}) and \lean{artifacts/lean-verified/T2aTemplate.lean} (commit
+\rid{577b1a4f}); \lean{artifacts/T2A-BRIDGE-01/INSTANCES-EXT01.lean}:
+Rice template and instances, Section~\ref{sec:rice}.
+\item \lean{artifacts/lean-verified/CertSelfCheck01.lean} (commit
+\rid{f8cb83e7}): minimal trusted base, Section~\ref{sec:selfcheck}.
+\item \lean{board/LAB-THEORY-01R-FK01R-20261009T0620Z.md} (commit
+\rid{3e0f54e1}; reproduction script commit \rid{16ed41d2}): enumeration
+certificates CERT-LATTICE-01, CERT-K3-01, CERT-K4-01, CERT-T4-01 with raw
+data, Section~\ref{sec:repro}.
+\item \lean{board/FINDING-20261010-04-*.md}: the structural boundary of the
+circulant Lean port, Section~\ref{sec:finding04}.
+\end{itemize}
+
+\section{Cloud Verification Request Identifiers}\label{app:rids}
+
+For completeness, the full request identifiers recorded in the artifact
+headers (Axiom Axle \texttt{verify\_proof}, environment
+\texttt{lean-4.28.0}, all okay\,=\,true):
+\begin{itemize}
+\item Lattice: \rid{1dfa70b6-ba1e-492d-b45c-5391727aff3c}.
+\item Lifecycle: \rid{16618831-e457-4d29-8d65-b57fa563e33d}.
+\item Rice bridge (T2A-BRIDGE-01): \rid{c2a58cfa-dd32-4bcb-a8c1-b06f93d25c08},
+\rid{a446bfd2-d9a0-4727-afe3-d5f13b63a401}.
+\item Rice template: \rid{41e07431-e53b-465d-b920-c4898fa257c0},
+\rid{2d611c78-046b-4e1f-91bf-7ab9a2a59aa3},
+\rid{c39c5b84-bc93-4415-a5e2-fda74020a265},
+\rid{4ee3fbb4-a0e0-4319-a270-67df7e883082},
+\rid{d6fba622-b277-4e67-8927-da561d8ab989},
+\rid{2e3b960c-7916-4f11-a608-43da3d4f74ca}.
+\item Rice EXT01 instances: \rid{c5674825-412d-4877-b5cf-f8ae967ffe87},
+\rid{bd879da4-b6c1-476c-b490-5d389374d438},
+\rid{fdedfb82-095d-45dc-90ec-688e83bbdd6b},
+\rid{17c045dd-cefe-480d-a70c-995696508739}; batch
+\rid{77a0eaad-fbd2-48a6-9281-330f736fc8c2}.
+\item Self-check: \rid{d9034a05-1956-43e9-87b0-c2bfe13ad989},
+\rid{44208d46-9489-4670-b171-91099fa33ad9},
+\rid{082321e6-6aeb-4a89-b51c-ac2ab5e926e1},
+\rid{f3c1fc61-c0c0-4972-920e-9a3856c6453d}.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{lean4}
+L.~de Moura and S.~Ullrich.
+\newblock The Lean~4 theorem prover and programming language.
+\newblock In \emph{Automated Deduction -- CADE-28}, Lecture Notes in Computer
+Science 12699, pp.~625--635. Springer, 2021.
+
+\bibitem{mathlib}
+The mathlib Community.
+\newblock The Lean mathematical library.
+\newblock In \emph{Proceedings of the 9th ACM SIGPLAN International Conference
+on Certified Programs and Proofs (CPP 2020)}, pp.~367--381. ACM, 2020.
+
+\bibitem{carneiro2019}
+M.~Carneiro.
+\newblock Formalizing computability theory via partial recursive functions.
+\newblock In \emph{10th International Conference on Interactive Theorem
+Proving (ITP 2019)}, LIPIcs 141, pp.~12:1--12:17. Schloss
+Dagstuhl, 2019.
+
+\bibitem{lean4lean}
+M.~Carneiro.
+\newblock Lean4Lean: Towards a formalized metatheory for the Lean theorem
+prover.
+\newblock arXiv:2403.14064, 2024.
+
+\bibitem{rice1953}
+H.~G. Rice.
+\newblock Classes of recursively enumerable sets and their decision problems.
+\newblock \emph{Transactions of the American Mathematical Society} 74(2):
+358--366, 1953.
+
+\bibitem{moore1966}
+R.~E. Moore.
+\newblock \emph{Interval Analysis}.
+\newblock Prentice-Hall, Englewood Cliffs, NJ, 1966.
+
+\bibitem{krawczyk1969}
+R.~Krawczyk.
+\newblock Newton-Algorithmen zur Bestimmung von Nullstellen mit
+Fehlerschranken.
+\newblock \emph{Computing} 4:187--201, 1969.
+
+\bibitem{sinkhorn1967}
+R.~Sinkhorn.
+\newblock Diagonal equivalence to matrices with prescribed row and column
+sums.
+\newblock \emph{The American Mathematical Monthly} 74(4):402--405, 1967.
+
+\bibitem{cuturi2013}
+M.~Cuturi.
+\newblock Sinkhorn distances: Lightspeed computation of optimal transport.
+\newblock In \emph{Advances in Neural Information Processing Systems 26
+(NIPS 2013)}, pp.~2292--2300, 2013.
+
+\bibitem{bertsekas1988}
+D.~P. Bertsekas.
+\newblock The auction algorithm: A distributed relaxation method for the
+assignment problem.
+\newblock \emph{Annals of Operations Research} 14:105--123, 1988.
+
+\bibitem{hanley1983}
+J.~A. Hanley and A.~Lippman-Hand.
+\newblock If nothing goes wrong, is everything all right? Interpreting zero
+numerators.
+\newblock \emph{Journal of the American Medical Association} 249(13):
+1743--1745, 1983.
+
+\end{thebibliography}
+
 \end{document}

@@ -4,7 +4,7 @@ import json, os, sys, time, traceback, urllib.request, urllib.error
 
 BASE = 'https://hexagonmath.org'
 HERE = os.path.dirname(os.path.abspath(__file__))
-IDEM = 'pivot01-extwave04b-v2-0001'
+IDEM = 'pivot01-extwave06-v2-0001'
 RESULT = os.path.join(HERE, 'result.json')
 out = {'idempotency_key': IDEM, 'steps': []}
 
