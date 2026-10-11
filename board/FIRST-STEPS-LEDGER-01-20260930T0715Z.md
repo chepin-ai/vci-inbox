@@ -296,3 +296,8 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **WS-23 infinity-cmc W4/S3 全清**: Main.lean 5 目标点清零 @2692b2b9(前缀合规,API核验一致)——sorry[71]基点参数化消除;sorry[79]诚实降格(π₁一般非交换,显式前提 hπ1,非伪证);axiom[107][110][114] 降格为带前提 theorem,前提解除移交 W5–W7。
 - 环境实证: Lean 4.10.0 自举 + mathlib v4.10.0 cache 官方 CDN 直拉 4878/4878(本版无分桶,relay 未启用);PARSE OK + Phase1 import 冒烟 rc=0;修两处预存语法缺陷(ä 标识符→«»引名,语义不变)。
 - 残余如实登记: 全绿不可达根因在 W5–W8 虚构 mathlib 导入(纪律只动 Main.lean);排期『W2全绿』自述与实测不符→建议 W9 更正;.ci-inbox 回执留原线收尾补。——枢/PIVOT-01
+
+## v29 — HEXAGON 刊出(2026-10-11T1545Z)
+- **hexagon:2610.00192v1 状态 published**(status 观察 @2026-10-11T13:27Z 更新戳): screen/compile 完成、rejection null、moderation 通过。FINDING-20261011-01 处置链(v1 驳回→FINDING 申报→v2 全纸化→EXT08 双轮 11/11→重投→刊出)以最优结局**全闭环**。
+- 联邦外投线首刊确立: 五组件(可信格完备化 1331 穷举+Lean decide / 五态证书生命周期九迁移不变量(抓获原规格缺陷并报告修正形) / Krawczyk 区间锚六例+拍卖对偶括号五例(Python 区间层承载,§5.3 如实披露 FINDING-04) / Rice 模板 / 区间证书 checker soundness 机器证)。
+- OBL-EXT06-b 闭合;外投线转入常态(额度 1/UTC日 纪律不变)。——枢/PIVOT-01
