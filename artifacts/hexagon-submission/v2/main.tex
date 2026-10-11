@@ -34,7 +34,7 @@ We present a formally specified and machine-checked kernel for a federated
 automated adjudication system, in which independent computational lines judge
 mathematical and operational claims and deposit their verdicts, evidence, and
 certificates in a shared ledger. The kernel comprises five components.
-(i)~A three-rung, three-track credibility lattice obtained as the free
+(i)~A three-rung, three-track credibility lattice obtained as a
 completion of a legacy five-element poset: the completion is justified by an
 exhaustive enumeration over all $11^{3}=1331$ ordered triples and is fully
 re-formalized in Lean~4, where the equational lattice laws, the order axioms,
@@ -436,7 +436,7 @@ The Python enumeration layer (CERT-K4-01, pinned with raw data in the
 federation ledger) independently confirms the counts and the three invariants
 over the full transition graph, including the enumeration of all eight
 candidate-originating paths for the append-only evidence property and the
-closure of all five states' outgoing edges under an raised appeal flag.
+closure of all five states' outgoing edges under a raised appeal flag.
 
 \section{Certified Numerical Anchors}\label{sec:anchors}
 
@@ -462,7 +462,7 @@ Circulant symmetry forces the closed-form solution
 f^{*}=0,\qquad g^{*}=-\varepsilon\bigl(\log k+\operatorname{lse}(-c/\varepsilon)\bigr),
 \]
 where $\operatorname{lse}$ is the log-sum-exp; e.g.\ for the $k=6$,
-$\varepsilon=1$ instance with $c=(1/2,1/3,2/3,1/4,3/4,1/5)$, $g^{*}=0$ in
+$\varepsilon=1$ instance with $c=(1/2,1/3,2/3,1/4,3/4,1/5)$, $f^{*}=0$ in
 the gauge and the common $g$-value is $-3.1543698608222522\ldots$, reproduced
 digit-for-digit by the independent batch verification. The closed form is
 used only as ground truth for negative controls; the certificate does not
@@ -489,7 +489,7 @@ $\varepsilon\in\{1,\tfrac12,\tfrac15\}$ (two circulant vector families,
 dimensions $n=11$ and $n=19$), the Krawczyk operator maps the box strictly
 inside itself: Jacobian condition numbers $22.2$--$43.1$, Krawczyk image
 widths between $2.55\cdot10^{-15}$ and $6.93\cdot10^{-14}$, against a box
-radius of $10^{-9}$ (margin of at least five orders of magnitude). Hence each
+radius of $10^{-9}$ (margin of more than four orders of magnitude). Hence each
 box contains exactly one real root. Every negative control---the same box
 with centers perturbed by $10^{-6}$, preconditioner recomputed---is rejected.
 An independent re-verification batch (EXT05-BATCH-01) reproduced all six
@@ -504,7 +504,8 @@ $1.1\cdot10^{3}$ ($k=6$) and the image width stays below $5\cdot10^{-14}$.
 The extension to small $\varepsilon$ is where the certification earns its
 keep: the closed form is cheap, but the \emph{box uniqueness} statement is
 what downstream adjudication consumes, and it survives condition numbers
-three orders of magnitude above the original family.
+about one and a half orders of magnitude above the original family
+(to $\approx 1.1\cdot 10^{3}$).
 \end{remark}
 
 \subsection{Auction-algorithm assignment: the dual-bracket family}
@@ -588,9 +589,10 @@ registered for this purpose.
 We document this boundary in the body of the paper, rather than in a
 footnote, because it is exactly the kind of fact that an adjudication kernel
 exists to protect: a credential whose presentation outruns its certification
-layer. The v1 abstract's wording (``ported to \emph{leancert} with
-\lean{verify\_unique\_system\_root} certificates'') was, under this finding,
-overstated, and is corrected here.
+layer. The v1 submission's wording (``ported to the Lean~4 verified interval
+library \emph{leancert}'', abstract; ``\lean{verify\_unique\_system\_root}
+certificates'', \S4) was, under this finding, overstated, and is corrected
+here.
 
 \section{A Parameterized Rice Template}\label{sec:rice}
 
@@ -745,8 +747,8 @@ headers.
 \subsection{Axiom audit}
 
 Every Lean artifact was audited in the cloud environment with
-\texttt{\#print axioms}. In every case the dependency set is exactly a subset
-of the standard Lean~4 whitelist
+\texttt{\#print axioms}. For every artifact the recorded audit reports the dependency set as a
+subset of the standard Lean~4 whitelist at artifact level
 \[
 \{\texttt{propext},\ \texttt{Classical.choice},\ \texttt{Quot.sound}\},
 \]
@@ -769,8 +771,8 @@ not by tag.
 
 \subsection{Empirical soundness: fuzzing with rule-of-three bounds}
 
-Three certificate families were fuzzed (certificate CERT-T4-01, raw data in
-the pinned ledger card; $f_{80}$ ground truth means containment of the
+Three certificate families were fuzzed, $120$ trials in total
+(certificate CERT-T4-01, raw data in the pinned ledger card; $f_{80}$ ground truth means containment of the
 80-bit-extended-precision value, judged bitwise):
 \begin{itemize}
 \item \textbf{E family} (interval envelopes): $n=30$, ground-truth
@@ -783,8 +785,10 @@ iteration.
 \end{itemize}
 Zero false accepts were observed. The three layers are deliberately
 non-identically distributed and we do not extrapolate a universal statement.
-By the rule of three~\cite{hanley1983}, the 95\% upper confidence bounds on
-the false-accept rate are $9.5\%$ (E), $4.9\%$ (D), $9.5\%$ (K).
+The exact one-sided 95\% upper confidence bounds (Clopper--Pearson) on the
+false-accept rate are $9.5\%$ (E), $4.9\%$ (D), $9.5\%$ (K); the
+rule-of-three $3/n$ approximation~\cite{hanley1983} gives $10\%$, $5\%$,
+$10\%$.
 \textbf{We report ``no false accept observed'', not a guarantee.}
 
 \subsection{Evidence-anchor table}
@@ -795,7 +799,13 @@ the false-accept rate are $9.5\%$ (E), $4.9\%$ (D), $9.5\%$ (K).
 (Axiom Axle \texttt{verify\_proof}, \texttt{lean-4.28.0}, okay\,=\,true,
 axioms within \{\texttt{propext}, \texttt{Classical.choice},
 \texttt{Quot.sound}\}). Truncated rids are abbreviated with $\ldots$; full
-identifiers appear in the pinned artifact headers.}\label{tab:evidence}
+identifiers appear in the pinned artifact headers. The pinned ledger
+card's headline total for CERT-T4-01 reads ``91 cases''; that figure is
+inconsistent with the card's own frozen strata (E $=30$, D $=60$, K $=30$) and
+with the reproduction script (commit \rid{16ed41d2}), and the exact
+Clopper--Pearson bounds $9.5\%/4.9\%/9.5\%$ fix $n=30/60/30$ independently.
+We therefore report the stratified total of $120$ trials
+here.}\label{tab:evidence}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{4.6cm} >{\raggedright\arraybackslash}p{4.4cm} >{\raggedright\arraybackslash}p{5.2cm}}
 \toprule
@@ -829,8 +839,9 @@ INSTANCES-EXT01 (E4--E7) & $4$ instances verified; batch rid
 CERT-SELFCHECK-01 & $4$ theorems verified; audit clean &
 rids \rid{d9034a05-\ldots}, \rid{44208d46-\ldots}, \rid{082321e6-\ldots},
 \rid{f3c1fc61-\ldots}; commit \rid{f8cb83e7} \\
-CERT-T4-01 (fuzz) & $91$ trials, $0$ false accepts observed;
-rule-of-three bounds reported & commit \rid{3e0f54e1} \\
+CERT-T4-01 (fuzz) & $120$ trials ($30+60+30$ across the E/D/K strata),
+$0$ false accepts observed; Clopper--Pearson bounds reported & commit
+\rid{3e0f54e1} \\
 \bottomrule
 \end{tabular}
 \end{table}
