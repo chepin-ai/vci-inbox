@@ -1,77 +1,113 @@
 {
-  "idempotency_key": "pivot01-extwave04b-v2-0001",
+  "idempotency_key": "pivot01-extwave06-v2-0001",
   "steps": [
     {
       "step": "create_draft_nosystems",
-      "status": 200,
+      "status": 201,
       "body": {
-        "draftId": "a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
+        "draftId": "cc06dbc9-4167-4685-8ecf-9a1a1508a3e0",
         "status": "uploading",
         "identifier": null,
         "versionId": null,
-        "expiresAt": "2026-10-11T14:48:56.650Z",
+        "expiresAt": "2026-10-12T07:38:56.432Z",
         "links": {
-          "self": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
-          "uploads": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads",
-          "commit": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/commit"
+          "self": "/api/v1/submissions/cc06dbc9-4167-4685-8ecf-9a1a1508a3e0",
+          "uploads": "/api/v1/submissions/cc06dbc9-4167-4685-8ecf-9a1a1508a3e0/uploads",
+          "commit": "/api/v1/submissions/cc06dbc9-4167-4685-8ecf-9a1a1508a3e0/commit"
         }
       }
     },
     {
       "step": "upload_init:main.tex",
-      "status": 200,
+      "status": 201,
       "body": {
-        "uploadId": "e65a7e0e-20e0-4c48-83af-9d0439fdab4b",
-        "status": "complete",
+        "uploadId": "bd7dabdc-009a-42a3-9111-ccc5d82ba653",
+        "status": "uploading",
         "partSizeBytes": 5242880,
         "links": {
-          "partTemplate": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/e65a7e0e-20e0-4c48-83af-9d0439fdab4b/parts/{partNumber}",
-          "complete": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/e65a7e0e-20e0-4c48-83af-9d0439fdab4b/complete"
+          "partTemplate": "/api/v1/submissions/cc06dbc9-4167-4685-8ecf-9a1a1508a3e0/uploads/bd7dabdc-009a-42a3-9111-ccc5d82ba653/parts/{partNumber}",
+          "complete": "/api/v1/submissions/cc06dbc9-4167-4685-8ecf-9a1a1508a3e0/uploads/bd7dabdc-009a-42a3-9111-ccc5d82ba653/complete"
         }
+      }
+    },
+    {
+      "step": "upload_part:main.tex",
+      "status": 200,
+      "body": {
+        "partNumber": 1,
+        "etag": "c1a5820fdee6e60ff7933051760bf26a",
+        "sizeBytes": 54503
+      }
+    },
+    {
+      "step": "upload_complete:main.tex",
+      "status": 200,
+      "body": {
+        "uploadId": "bd7dabdc-009a-42a3-9111-ccc5d82ba653",
+        "status": "complete",
+        "sizeBytes": 54503
       }
     },
     {
       "step": "upload_init:anc/ai-use-disclosure.md",
-      "status": 200,
+      "status": 201,
       "body": {
-        "uploadId": "92478ef8-32f7-452c-971e-eefa8f26ed6f",
-        "status": "complete",
+        "uploadId": "12394bcd-4eb8-4396-a7c4-754c878fb805",
+        "status": "uploading",
         "partSizeBytes": 5242880,
         "links": {
-          "partTemplate": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/92478ef8-32f7-452c-971e-eefa8f26ed6f/parts/{partNumber}",
-          "complete": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52/uploads/92478ef8-32f7-452c-971e-eefa8f26ed6f/complete"
+          "partTemplate": "/api/v1/submissions/cc06dbc9-4167-4685-8ecf-9a1a1508a3e0/uploads/12394bcd-4eb8-4396-a7c4-754c878fb805/parts/{partNumber}",
+          "complete": "/api/v1/submissions/cc06dbc9-4167-4685-8ecf-9a1a1508a3e0/uploads/12394bcd-4eb8-4396-a7c4-754c878fb805/complete"
         }
       }
     },
     {
-      "step": "preview_queue",
+      "step": "upload_part:anc/ai-use-disclosure.md",
       "status": 200,
       "body": {
-        "draftId": "a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
+        "partNumber": 1,
+        "etag": "b3f41be4db1d8c908da58ae099f345cf",
+        "sizeBytes": 1151
+      }
+    },
+    {
+      "step": "upload_complete:anc/ai-use-disclosure.md",
+      "status": 200,
+      "body": {
+        "uploadId": "12394bcd-4eb8-4396-a7c4-754c878fb805",
+        "status": "complete",
+        "sizeBytes": 1151
+      }
+    },
+    {
+      "step": "preview_queue",
+      "status": 202,
+      "body": {
+        "draftId": "cc06dbc9-4167-4685-8ecf-9a1a1508a3e0",
         "ready": true,
         "reason": null,
-        "digest": "e56a6ad15f5c10718a0b308109c5c3a356b45e2272d208b068bc223024499548",
+        "digest": "3bcb0f6a16e777e4420ed5d412ca8c7f68ed034e58042042261e269a7933fa64",
         "engine": "pdflatex",
         "engineRefusal": null,
         "preview": {
-          "id": "2e811260eb354b3689608e76b388ec35",
-          "status": "succeeded",
-          "digest": "e56a6ad15f5c10718a0b308109c5c3a356b45e2272d208b068bc223024499548",
+          "id": "9b8364f3edc54ad781b23d4585e84db5",
+          "status": "queued",
+          "digest": "3bcb0f6a16e777e4420ed5d412ca8c7f68ed034e58042042261e269a7933fa64",
           "current": true,
           "errorCode": null,
           "message": null,
-          "createdAt": "2026-10-10 14:49:01",
-          "completedAt": "2026-10-10 14:49:16",
-          "hasLog": true,
-          "hasPdf": true,
-          "pdfSizeBytes": 215794
+          "createdAt": "2026-10-11 07:39:04",
+          "completedAt": null,
+          "hasLog": false,
+          "hasPdf": false,
+          "pdfSizeBytes": null
         },
         "gate": {
-          "state": "previewed",
+          "state": "preview_running",
           "allowed": true,
-          "warn": false,
+          "warn": true,
           "policy": "soft",
-          "warning": null
+          "warning": "The compile preview has not finished."
         },
         "limits": {
           "dailyLimit": 20,
@@ -80,76 +116,43 @@
       }
     },
     {
-      "step": "commit",
-      "status": 202,
-      "body": {
-        "draftId": "a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
-        "status": "processing",
-        "identifier": "hexagon:2610.00183",
-        "versionId": "2610.00183v1",
-        "links": {
-          "record": "/abs/2610.00183",
-          "preview": "/submit/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
-          "status": "/api/v1/submissions/a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52"
-        }
-      }
-    },
-    {
-      "step": "final_status",
+      "step": "preview_final",
       "status": 200,
       "body": {
-        "id": "a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
-        "status": "processing",
-        "metadataJson": "{\"abstract\":\"We register a formally specified and machine-checked kernel for a federated automated adjudication system in which independent computational lines judge mathematical and operational claims. The kernel comprises: (i) a three-rung, three-track credibility lattice obtained as the free completion of a legacy five-element poset, verified by exhaustive enumeration over all 11^3=1331 ordered triples and fully re-formalized in Lean 4 (fourteen theorems by decision over the finite carrier); (ii) a five-state certificate lifecycle machine with nine legal transitions and machine-checked invariants, also re-formalized in Lean 4 -- the formalization caught a specification flaw in one invariant, which we report; (iii) certified numerical anchors: uniqueness of the gauged fixed point of circulant entropic-optimal-transport (Sinkhorn) systems, established by a Krawczyk interval operator with outward rounding across a six-instance family (k in {6,10}, epsilon in {1,1/2,1/5}), and ported to the Lean 4 verified interval library leancert; (iv) a parameterized Lean 4 template for Rice-type undecidability, with an instantiation generator and three discharged instances; and (v) a minimal trusted computing base result: the soundness of an interval certificate checker (accept implies correctness), itself machine-proved. All Lean artifacts were verified on cloud infrastructure (Axiom Axle, environment lean-4.28.0) with axiom audits restricted to propext, Classical.choice, Quot.sound. Empirical fuzzing observed zero false accepts; we report rule-of-three upper bounds and do not claim a guarantee.\",\"aiSystems\":[],\"authors\":[{\"affiliation\":\"PIVOT-01 Federation\",\"name\":\"Chepin Zhang\",\"orcid\":null}],\"authorshipMode\":\"no-human-author-claimed\",\"citationsConfirmed\":true,\"communityInterestConfirmed\":true,\"correctnessConfirmed\":true,\"crossListSubjects\":[\"math.LO\",\"cs.MS\"],\"formalizations\":[],\"humanUnderstanding\":\"some\",\"license\":\"CC BY 4.0\",\"mscCodes\":[\"03B35\",\"68V15\",\"03D35\",\"65G40\"],\"provenance\":\"# AI Use Disclosure (Hexagon supplementary material)\\n\\nThis submission is machine-generated by the PIVOT-01 federation orchestrator\\n(an AI agent system) as part of an explicit experiment in machine-checked\\nadjudication infrastructure. Per Hexagon policy, the contributing human\\naccount holder does not claim human understanding of every derivation step;\\ngood-faith correctness belief rests on:\\n\\n1. All enumeration certificates (lattice laws over 1331 triples; lifecycle\\n   transition graph) are exhaustive and reproducible from the pinned scripts.\\n2. All interval certificates use outward rounding and are negative-controlled.\\n3. Lean artifacts are kernel-checked (native_decide) and additionally pass\\n   strict cloud verification (Axle verify_proof: no sorry, whitelist axioms,\\n   signature match) where the public environment supports the dependencies.\\n4. Empirical claims are stated with rule-of-three bounds and no guarantee\\n   wording.\\n\\nModel transcripts and prompts for the derivation sessions are retained in the\\nfederation ledger (chepin-ai/vci-ledger, ledger/wild-q-book) and can be\\nfurnished on request to admin@hexagonmath.org.\",\"rightsConfirmed\":true,\"sponsorName\":\"Chepin Zhang\",\"subject\":\"cs.LO\",\"submittingContributorIndex\":0,\"submittingOrganizationId\":null,\"tags\":[\"formal verification\",\"Lean 4\",\"interval arithmetic\",\"Rice theorem\",\"federated adjudication\",\"machine-checked certificates\"],\"title\":\"A Machine-Checked Kernel for Federated Automated Adjudication: Lattice Completion, Lifecycle Invariants, Certified Numerical Anchors, and a Parameterized Rice Template\"}",
-        "arxivId": null,
-        "workIdentifier": "2610.00183",
-        "versionId": "2610.00183v1",
-        "expiresAt": "2026-10-11T14:48:56.650Z",
-        "createdAt": "2026-10-10 14:48:56",
-        "updatedAt": "2026-10-10 15:08:18",
-        "rejectionReasonCode": null,
-        "rejectionExplanation": null,
-        "uploads": [
-          {
-            "id": "e65a7e0e-20e0-4c48-83af-9d0439fdab4b",
-            "kind": "source",
-            "filename": "main.tex",
-            "relativePath": "main.tex",
-            "contentType": "application/x-tex",
-            "expectedSizeBytes": 8913,
-            "sizeBytes": 8913,
-            "sha256": null,
-            "status": "complete"
-          },
-          {
-            "id": "92478ef8-32f7-452c-971e-eefa8f26ed6f",
-            "kind": "source-asset",
-            "filename": "ai-use-disclosure.md",
-            "relativePath": "anc/ai-use-disclosure.md",
-            "contentType": "text/markdown",
-            "expectedSizeBytes": 1151,
-            "sizeBytes": 1151,
-            "sha256": null,
-            "status": "complete"
-          }
-        ],
-        "jobs": [
-          {
-            "id": "38a3da6a-b59f-4768-a3ed-a17aaff5c9fc",
-            "kind": "screen",
-            "status": "running",
-            "attempts": 1,
-            "maxAttempts": 5,
-            "errorCode": null,
-            "errorMessage": null,
-            "createdAt": "2026-10-10 15:08:18",
-            "completedAt": null
-          }
-        ]
+        "draftId": "cc06dbc9-4167-4685-8ecf-9a1a1508a3e0",
+        "ready": true,
+        "reason": null,
+        "digest": "3bcb0f6a16e777e4420ed5d412ca8c7f68ed034e58042042261e269a7933fa64",
+        "engine": "pdflatex",
+        "engineRefusal": null,
+        "preview": {
+          "id": "9b8364f3edc54ad781b23d4585e84db5",
+          "status": "running",
+          "digest": "3bcb0f6a16e777e4420ed5d412ca8c7f68ed034e58042042261e269a7933fa64",
+          "current": true,
+          "errorCode": null,
+          "message": null,
+          "createdAt": "2026-10-11 07:39:04",
+          "completedAt": null,
+          "hasLog": true,
+          "hasPdf": false,
+          "pdfSizeBytes": null
+        },
+        "gate": {
+          "state": "preview_running",
+          "allowed": true,
+          "warn": true,
+          "policy": "soft",
+          "warning": "The compile preview has not finished."
+        },
+        "limits": {
+          "dailyLimit": 20,
+          "usedToday": 1
+        }
       }
     }
   ],
-  "draftId": "a06cdff2-be5a-4ec0-9a60-9d96a6fb6f52",
-  "final": "committed",
-  "preview_ok": null
+  "draftId": "cc06dbc9-4167-4685-8ecf-9a1a1508a3e0",
+  "final": "preview_failed",
+  "log": "Rc files read:\n  NONE\nLatexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.\nNo existing .aux file, so I'll make a simple one, and require run of *latex.\nLatexmk: applying rule 'pdflatex'...\nRule 'pdflatex':  Reasons for rerun\nCategory 'other':\n  Rerun of 'pdflatex' forced or previously required:\n    Reason or flag: 'Initial setup'\n\n------------\nRun number 1 of rule 'pdflatex'\n------------\n------------\nRunning 'pdflatex -fmt=.mathlake-pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -no-shell-escape -recorder --jobname=\"paper\" -output-directory=\"/workspace/mathlake/output\"  \"/workspace/mathlake/input/main.tex\"'\n------------\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=.mathlake-pdflatex)\nentering extended mode\n(/workspace/mathlake/input/main.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/local/texlive/2025/texmf-dist/tex/latex/base/size11.clo))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/local/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.s\nty (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty)\n(/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/local/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n\n(/usr/local/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty\n)))\n(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\n(/workspace/mathlake/output/paper.aux)\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/color.sty\n(/usr/local/texlive/2025/texmf-dist"
 }
