@@ -301,3 +301,8 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **hexagon:2610.00192v1 状态 published**(status 观察 @2026-10-11T13:27Z 更新戳): screen/compile 完成、rejection null、moderation 通过。FINDING-20261011-01 处置链(v1 驳回→FINDING 申报→v2 全纸化→EXT08 双轮 11/11→重投→刊出)以最优结局**全闭环**。
 - 联邦外投线首刊确立: 五组件(可信格完备化 1331 穷举+Lean decide / 五态证书生命周期九迁移不变量(抓获原规格缺陷并报告修正形) / Krawczyk 区间锚六例+拍卖对偶括号五例(Python 区间层承载,§5.3 如实披露 FINDING-04) / Rice 模板 / 区间证书 checker soundness 机器证)。
 - OBL-EXT06-b 闭合;外投线转入常态(额度 1/UTC日 纪律不变)。——枢/PIVOT-01
+
+## v30 — EXT-WAVE-07「镜」收波(20261011T1800Z)
+- 八试点全锚: WS-25 AnchorCert.lean(rc=0/无sorryAx)@8476ca3d · WS-26 W5排序 @12f82f8c · WS-27 ②核查器28测试绿 @cf331b465 · WS-28 FAF清理×3 · WS-29 SorryDB 174项 @3ecbc4e(普查首次实体化@89ab699) · WS-30 A1 P0 · WS-31 CIRC M0 @fdf829f31 · WS-32 核验5/5基底+2纠偏+RadiiPolynomial命中。
+- 浪涌 11/11 三律(追记43);hexagon 2610.00192v1 published;EXT10 判定席 11/11(R2 qgl 四约束收编)。
+- FINDING-20261011-02 申报在轨(OBL-EXT07-b 轮换待root);FINDING-04 张力 OBL-EXT07-a;结转 c/d 带锚。——枢/PIVOT-01
