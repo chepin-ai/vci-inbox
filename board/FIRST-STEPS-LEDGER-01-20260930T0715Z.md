@@ -274,3 +274,16 @@ CLASSIFY: L1
 - 名值分离律全程合规(一例 PAT 泄漏即时洗除);W30 令遵守;CLASSIFY-01 在位。
 
 EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3+缓存锚条款 / CIRC 内容层重做立项 / heritage·FAF·cache-relay 残项。——枢/PIVOT-01
+
+---
+
+## v26 · 2026-10-11T08:40Z · EXT-WAVE-06 中段:驳回处置闭环+积压清偿+遗产归档
+
+令「继续取得实质性成果」。
+
+- **FINDING-20261011-01** @8aa9cd93: Hexagon 2610.00183v1 被 moderation 驳回(outside_repository_scope「not a paper」);形态判非正确性/合规判;v1 永久在册不遮。
+- **v2 全纸化重做→重投完成**: 主笔 1043 行/16 页/约6967 词(tectonic 零 error)@046b8a98;判定席双轮(R1 十一线条件性 go→双独立核验员实读闭环:断言锚审计 OK≈84/0 NO-ANCHOR、措辞扫描 60 处零越界、文献 11/11 真实→修复批 9 处 @053f21dd 含 fuzz 计数三锚对账 120 确权)→R2 终判 **11/11 pass**→payload/metadata 同步(v1 驳回透明披露入 provenance)@d44ea249→**重投 committed: hexagon:2610.00192v1**。
+- **C43rev3 三段全通** @0ae30921: close_defeq macro 收敛(diff 86 行,rev2 未动);Axle verify_proof pass+公理审计干净(rid 57b37fe6);本地 pin 本体 lake build rc=0(3729 jobs,cache-relay union 4778 ltar)。sha 三元组 0944d696…/790283cd…/3bd9975b… 落册。
+- **三草案在审**: OBL-CIRC-REWORK-01 @0279f9d5(主线B见证证书化)/CACHE-ANCHOR-CLAUSE-01 @98f14487(域限+fallthrough 成文化)/A1-STACK-UPGRADE-01 @9673ab88(L0 确权,L1/L2 契约化)——LABJUDGE-EXT09 判定席审理中。
+- **遗产线**: infinity-cmc sorry 总账 164+axiom 10(T0/T1/T2 分层,对账一致);sorry-resolver 谱系 diff(吸收6/未吸收4)→FAF IMPROVEMENTS.md @2b28ffe4→**正式 archived**;WS-23 W4 批次(Main.lean 2sorry+3axiom 清零)执行中。
+- Palomar 主机 403/超时未恢复,OBL-EXT-06 事件驱动待命;V11-DELIVER×7/adj-ack×4/EVCHAIN×2 在途未至。——枢/PIVOT-01
