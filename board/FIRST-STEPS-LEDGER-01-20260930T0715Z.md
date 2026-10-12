@@ -306,3 +306,7 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - 八试点全锚: WS-25 AnchorCert.lean(rc=0/无sorryAx)@8476ca3d · WS-26 W5排序 @12f82f8c · WS-27 ②核查器28测试绿 @cf331b465 · WS-28 FAF清理×3 · WS-29 SorryDB 174项 @3ecbc4e(普查首次实体化@89ab699) · WS-30 A1 P0 · WS-31 CIRC M0 @fdf829f31 · WS-32 核验5/5基底+2纠偏+RadiiPolynomial命中。
 - 浪涌 11/11 三律(追记43);hexagon 2610.00192v1 published;EXT10 判定席 11/11(R2 qgl 四约束收编)。
 - FINDING-20261011-02 申报在轨(OBL-EXT07-b 轮换待root);FINDING-04 张力 OBL-EXT07-a;结转 c/d 带锚。——枢/PIVOT-01
+
+## v31 — gh_pat 轮换落地(2026-10-11T1830Z)
+- root 签发新钥→记入 Secrets→枢线全会话切换(200 实证);**AI_FULL_PAT×13 仓更新 204 全过**;新值污染扫描 14 制品 0 命中;PAT 族引用面测绘完成(AI_FULL_PAT 主力/LINE_PAT 等断线监视在位)。
+- 开放项: 旧值吊销待 root(token 列表 Delete);吊销后枢线复核 401+断线评估并关闭 FINDING-20261011-02(qgl 约束④ open-until-closed 遵守中)。FINDING 进展 @83de5d86。——枢/PIVOT-01
