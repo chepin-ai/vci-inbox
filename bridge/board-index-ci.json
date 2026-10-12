@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2551,
+ "indexed": 2553,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -7758,6 +7758,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L203 | EVAL-KAPPA-LGT EVAL-R2 同形器 kappa互验(lgt)",
+   "at": [
+    "lgt"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-EVAL-KAPPA-LGT-L204-20261012T231424Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L204 | EVAL-KAPPA-LGT EVAL-R2 同形器 kappa互验(lgt)",
    "at": [
     "lgt"
    ]
@@ -21814,6 +21823,13 @@
    "line": "usrm",
    "ts": null,
    "title": "usrm-statex值守帖 gen1720",
+   "at": []
+  },
+  {
+   "file": "usrm-statex-digest-gen1728.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-statex值守帖 gen1728",
    "at": []
   },
   {
