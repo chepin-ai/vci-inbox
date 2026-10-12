@@ -1,0 +1,77 @@
+{
+  "schema": "witnesses-ns-manifest/1.0",
+  "run_id": "ws43-ns-20261012T171410Z",
+  "ts": "2026-10-12T17:14:10Z",
+  "generator": {
+    "script": "ci/witness_ns_gen.py",
+    "sha256": "cdcbe1cb9224b8a7dc83abdf1adee99c1afb024dd97140376f1b088029fc60d6"
+  },
+  "verifier": {
+    "script": "ci/witness_ns_verify.py",
+    "sha256": "bf26f12874b6e91834db4db2a49b5faab981892f49b60accd9f114b58c9480eb"
+  },
+  "witnesses": [
+    {
+      "witness_id": "ns-energy-cancellation-20261012",
+      "file": "ns-energy-cancellation-20261012.witness.json",
+      "sha256": "b02db51ea20f10e402b38532ad2bd01f2a2c62d7cce3bb3c2a19bae5fac2c737",
+      "family": "ns-energy-cancellation",
+      "verdict": "all_pass"
+    },
+    {
+      "witness_id": "ns-galerkin-energy-bound-20261012",
+      "file": "ns-galerkin-energy-bound-20261012.witness.json",
+      "sha256": "a028db7907b3f85d1cdaf69173ec40f8ce2ae14a6a6fbf90271e7713766306c1",
+      "family": "ns-galerkin-energy-bound",
+      "verdict": "all_pass"
+    },
+    {
+      "witness_id": "ns-trajectory-envelope-blocked-20261012",
+      "file": "ns-trajectory-envelope-blocked-20261012.witness.json",
+      "sha256": "f37aee7f658f10ad2148941cacf3257b0099ce532fd0de6ebfac0ade77f4133e",
+      "family": "ns-trajectory-envelope-blocked",
+      "verdict": "blocked(B1)"
+    }
+  ],
+  "counts": {
+    "ns1_cases": 288,
+    "ns1_per_form": {
+      "skewB": 218,
+      "orthProjB": 70
+    },
+    "ns2_cases": 56,
+    "ns2_samples_total": 3640,
+    "ns2_per_kind": {
+      "orthProjB": 28,
+      "skewB": 28
+    }
+  },
+  "blocked": [
+    {
+      "witness_id": "ns-trajectory-envelope-blocked-20261012",
+      "code": "B1",
+      "kind": "structural/toolchain-missing",
+      "statement": "完整轨道包络（RadiiPolynomial 级 CAP）登记为 BLOCKED（B1 结构性/工具链缺）：WS-41 Lean 核已证 2D NS Galerkin 截断的能量相消、Grönwall 先验界与整体存在（定性层，零 sorry）；但对有限 Galerkin ODE 的严格轨道包络需 radii-polynomial 不动点认证（区间 Banach 代数上的范数界 + p(r)<0 多项式不等式 + 严格积分器）。当前联邦工具链无现货：本仓区间层仅支持逐点 mpmath.iv 算术，无 Taylor 模型/Hermite–Obreshkov 级严格积分层，无 RadiiPolynomial 认证层；WS-40 §4 评估指出 Lean 侧 RadiiPolynomial 框架（arXiv:2610.02335）仅覆盖多项式 IVP/Lorenz 级实例，NS 所需的 Fourier 系数 Banach 代数与卷积界缺席。本批次不产出任何轨道包络数值，此登记仅为阻塞显式化，非部分成果宣称。",
+      "requirements": [
+        "RadiiPolynomial 不动点认证框架（有限维约化 + 尾部分解 + p(r)<0 区间验证）",
+        "严格 ODE 积分器（Taylor 模型或区间 Hermite–Obreshkov 级，mpmath.iv 可承载）",
+        "（PDE/Fourier 层）系数 Banach 代数与卷积界——超出本波范围，仅登记不承诺"
+      ]
+    }
+  ],
+  "consistency_gate": "双跑决定论一致性（主流程 vs --emit-raw 独立子进程，规范化 JSON 逐字节一致方签发）",
+  "env_fp": {
+    "runner": "PIVOT-01 WS-43 witness_ns_gen.py",
+    "platform": "Linux-5.10.134-18.0.12.lifsea8.x86_64-x86_64-with-glibc2.36",
+    "packages": {
+      "python": "3.12.12",
+      "numpy": "2.2.5",
+      "mpmath": "1.3.0",
+      "scipy": "1.16.2"
+    },
+    "deps_manifest_sha256": "d224704ab4eba6bb0adf3d06cd757955251d5875d78a9362fe0d408ddad453ae",
+    "lean_free": true,
+    "note": "interim（沿用 WS-37 U3 代偿）：runner 声明 + 依赖清单哈希；无 lean/mathlib 维度"
+  },
+  "notes": "W-NS1/W-NS2=区间实证见证（内生 fail-closed 复算核验，非机器验证证书）；W-NS3=阻塞登记（BLOCKED B1）"
+}
