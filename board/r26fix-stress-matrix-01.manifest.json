@@ -1,5 +1,5 @@
 {
-  "manifest_version": "1.1.0",
+  "manifest_version": "1.2.0",
   "manifest_id": "R26FIX-STRESS-MATRIX-01",
   "protocol_author": "qtlv线SI1语义轨(B3-B6裁定链)·qlv八字段裁决",
   "payload_author": "PIVOT-01",
@@ -26,13 +26,17 @@
       "id": "G2",
       "rev": "2f3d8f63005779e9d708eb9adf3feca54aa24ceb",
       "run_mode": "cold",
-      "status": "PENDING"
+      "status": "DONE",
+      "evidence": "vci-qtlv outbox/R26FIX-GRID-G2-RESULT.json (rc=0 wall=144s runner=pivot-01-extwave05)",
+      "result_commit": "5345e7b5d9a87446e857633987af5077410f07c8"
     },
     {
       "id": "G3",
       "rev": "815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a",
       "run_mode": "cold",
-      "status": "PENDING"
+      "status": "DONE",
+      "evidence": "vci-qtlv outbox/R26FIX-GRID-G3-RESULT.json (rc=0 wall=155s runner=pivot-01-extwave05)",
+      "result_commit": "d3b77b96b85836e06766502622266c40016a965c"
     },
     {
       "id": "G4",
@@ -48,14 +52,20 @@
       "id": "G5",
       "rev": "815bbf137d2cbfc6c48fbfdc61a8a6a2b13ef14a",
       "run_mode": "hot",
-      "status": "PENDING"
+      "status": "DONE",
+      "evidence": "vci-qtlv outbox/R26FIX-GRID-G5-RESULT.json (rc=0 wall=146s standalone-lean全量重编译=hot等价 runner=pivot-01-extwave05)",
+      "result_commit": "8eaf8ea3e2abbf678db98df10a5db033ae77b9ea"
     },
     {
       "id": "G6",
       "rev": "9fe29c4b379922f49446b28b76cbe4fce041c8b3",
       "run_mode": "hot",
-      "status": "PENDING",
-      "fallthrough_rule": "cache缺失(0/4157)则如实记cold-fallthrough·格保持hot标+fallthrough备注·裁决按cold等价计·本体价值=实证pin无cache"
+      "status": "DONE",
+      "fallthrough_note": "cold-fallthrough实发：mathlib@9fe29c4b官方cache缺4157/8936(ltar 404)与manifest预言互证；按规则格保持hot标+fallthrough备注，裁决按cold等价记，未执行编译。",
+      "evidence": "vci-qtlv outbox/R26FIX-GRID-G6-RESULT.json (build_exit_code=null runner=pivot-01-extwave05)",
+      "result_commit": "75f800544d4f213670b6d65de8ba5d62ee7057ff",
+      "fallthrough_rule": "cache缺失(0/4157)则如实记cold-fallthrough·格保持hot标+fallthrough备注·裁决按cold等价计·本体价值=实证pin无cache",
+      "clause_ref": "②案 CACHE-ANCHOR-CLAUSE-DRAFT-01 v0.4 @4231bcc §2.2(cold-fallthrough记法成文化)/§2.3(DONE显式合取)/§2.4(BLOCKED触发器)/§2.5(fallthrough存在性证明)——本格为 G6 先例锚，溯及确认不改动"
     }
   ],
   "serial_policy": {
@@ -113,15 +123,29 @@
       "log_digest": "sha256:98903f5d26ee83ca563b57f9128b9a001f997175fbe3cc8aed5c8b63db66b664"
     }
   ],
-  "roundtrip_hook": {
-    "rule": "yaml↔json结构等价(忽略键序)+manifest_version双版同值·不一致则block"
+  "clause_ref": {
+    "case2_clause": "vci-inbox board/CACHE-ANCHOR-CLAUSE-DRAFT-01.md v0.4 @4231bcc(EXT09-R3 11/11 pass @v0.3 → EXT11 11/11 pass @v0.4增录)",
+    "ucif2_r2b_point7": "resolver与外部FINDING链触发顺序 → 已由②案v0.4 §4末句提前成文，本回写仅以指针引用闭合",
+    "ucif2_r2b_point8": "跨案联合态(DISPUTED×BLOCKED) → 已由②案v0.4 §8定序规则第5条提前成文，本回写仅以指针引用闭合",
+    "case3_mirror": "vci-inbox board/A1-STACK-UPGRADE-DRAFT-01.md v0.3 §4a(5)(③案镜像登记)",
+    "q4_retroactive": "G6先例锚溯及确认——仅增clause_ref指针，先例本文不改动"
   },
-  "supersedes": "1.0.0",
+  "roundtrip_hook": {
+    "rule": "yaml↔json结构等价(忽略键序)+manifest_version双版同值·不一致则block",
+    "roundtrip_hash_scheme": "sha256(json.dumps(parse(yaml)去除roundtrip_hash字段, sort_keys=True, ensure_ascii=False, separators=(',',':')))——v1.2.0 起显式成文"
+  },
+  "supersedes": "1.1.1",
   "crosscheck_consensus": {
     "independent_runners": 2,
     "rc_consensus": "0=0=0(reporter/ucif2/vinf)",
     "log_digest_identical": true,
     "note": "两独立runner编译日志字节级一致(98903f5d…)=确定性编译强信号·三方rc共识·pin级裁决外部确证完成"
   },
-  "roundtrip_hash": "sha256:7a6147fcfde8cb8e36774dd79ef3c65ee2bb37690a2de9bee844cea98fa9155e"
+  "re_anchor": {
+    "artifact_retrieve_v2": "https://raw.githubusercontent.com/chepin-ai/vci-inbox/main/library/cgice/Spacetime_Formal_Proof_V20_R26FIX.lean",
+    "evidence_dir_v2": "vci-inbox board/（cgice-fixpin-20260930T020155Z.md / cgice-fixverify-20260930T012130Z.md 同名件）",
+    "verified_at": "2026-10-10T16:10:00Z",
+    "verified_by": "PIVOT-01 (sha256 recompute, match)"
+  },
+  "roundtrip_hash": "sha256:cd3f0628c7f8259b07fcc7d2ce8b8f571d6d550fa3f18fdd22423fa51a1e995a"
 }
