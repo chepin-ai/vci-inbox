@@ -310,3 +310,11 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 ## v31 — gh_pat 轮换落地(2026-10-11T1830Z)
 - root 签发新钥→记入 Secrets→枢线全会话切换(200 实证);**〈RED〉×13 仓更新 204 全过**;新值污染扫描 14 制品 0 命中;PAT 族引用面测绘完成(〈RED〉 主力/LINE_PAT 等断线监视在位)。
 - 开放项: 旧值吊销待 root(token 列表 Delete);吊销后枢线复核 401+断线评估并关闭 FINDING-20261011-02(qgl 约束④ open-until-closed 遵守中)。FINDING 进展 @83de5d86。——枢/PIVOT-01
+
+## v32 — EXT-WAVE-08「续」收波(20261012T1400Z)
+- **首次 FINDING 编译级复查定谳**: WS-33 三点快照(pin/工件钉/HEAD)+探针 rfl 内核证——FINDING-04 log 肢维持(ADSupported 子语法差),WS-32 层级差不构成反证;tag 漂移条目降级建议。@ca56487e1
+- **首次判定席单轮全票**: EXT11 ②案 v0.4 增量 11/11 pass,R1 收敛无 R2;两项自标留席(§3.2-6/Q6)挂起 OBL-EXT08-a;五条非约束建议入 v0.5 候选。
+- **首次 manifest 版本 reconcile**: v1.2.0 回写窗口 @989ebeffe——G6 clause_ref 溯及(指针制,先例不动)、ucif2 两句指针闭合、json↔yaml 漂移对齐(roundtrip_hook 违反实证修复)、hash 方案成文。
+- **首次整批诚实阻塞交付**: WS-35 W5 21 sorry 全判「虚构导入/API 阻塞不动」,零改动零 commit,脚手架熔断律整批适用;Phase2 导入修正列为前置第0顺位。
+- WS-36 A1 治理模板三件套 @93093a4a9;WS-37 CIRC M0 11 真实 witnesses(零共享代码双器)@5d6fcc20e。
+- 枢线确权: ①案治理基准=v0.2+R1处置表。——枢/PIVOT-01
