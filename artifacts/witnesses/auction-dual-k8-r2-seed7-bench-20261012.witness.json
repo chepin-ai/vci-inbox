@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "witness_id": "auction-dual-k8-r2-seed7-bench-20261012",
+  "family": "auction-dual",
+  "claim": "cost_in_dual_bracket",
+  "inputs": {
+    "k": 8,
+    "R": 2,
+    "seed": 7,
+    "eps_schedule": {
+      "eps0": "0.5",
+      "factor": "/5",
+      "eps_final": "1e-06"
+    },
+    "generator": "rng=np.random.default_rng(seed); rng.random(k)×2 预抽; C=10^(R·(2·rng.random((k,k))−1))",
+    "solver": "forward-auction + HiGHS(仅作不可信候选生成器)"
+  },
+  "interval_engine": {
+    "name": "numpy.nextafter",
+    "precision": "float64",
+    "rounding": "directed_endpoints"
+  },
+  "rationalization": {
+    "limit_denominator": null,
+    "note": "auction 族无有理化收敛子；区间算术为 np.nextafter 定向舍入"
+  },
+  "bounds": {
+    "bracket": {
+      "lb_lo": "0.2550220109771976",
+      "ub_hi": "0.2550220110027017"
+    },
+    "bracket_scale": "k×[LB_lo,UB_hi] (Birkhoff)",
+    "bracket_width": "2.5504098832840327e-11",
+    "rc_min_lo": "1.0349898021955182e-12",
+    "delta_deflation": "1e-10",
+    "deflated": true,
+    "gap": "2.5502655542908315e-11",
+    "gap_bound": "k·eps_final",
+    "gap_bound_value": "8e-06",
+    "auction_cost": "0.2550220110027003",
+    "epsCS_residual": "1.000000000139778e-06",
+    "rounds": 10,
+    "bids": 124
+  },
+  "verdict": {
+    "inside": true,
+    "gap_within_bound": true,
+    "dual_feasible_certified": true,
+    "metrics": {
+      "auction_cost": "0.2550220110027003",
+      "gap": "2.5502655542908315e-11",
+      "gap_bound_k_eps": "8e-06",
+      "bracket_width": "2.5504098832840327e-11",
+      "rc_min_lo": "1.0349898021955182e-12"
+    }
+  },
+  "honesty_boundary": "UB=c·x 以 HiGHS 原始解为候选，primal 可行性信赖至 ~1e-12，未经区间认证（hexagon-submission v2 §5.3 Remark 5.2 口径；该族无 Lean 移植）",
+  "negative_control": {
+    "perturbation": {
+      "kind": "swap_perturbation",
+      "spec": "交换扰动：交换增量最大的一对分配",
+      "swap": [
+        0,
+        5,
+        1,
+        0
+      ]
+    },
+    "neg_verdict": {
+      "neg_rejected": true,
+      "neg_cost": "97.27656874697311"
+    },
+    "same_lineage": {
+      "same_script": true,
+      "script_path": "artifacts/CERT-AUCTION-01/auction_verify.py",
+      "env_fp_sha256": "d224704ab4eba6bb0adf3d06cd757955251d5875d78a9362fe0d408ddad453ae",
+      "statement": "负控与正例同脚本、同环境指纹（OBL §4 AC4 纪律延伸至见证层）"
+    }
+  },
+  "replay": {
+    "script_path": "artifacts/CERT-AUCTION-01/auction_verify.py",
+    "script_sha256": "6cb8bd00d5a5dc79b237c3034100d1fcb04ba70c84d04d1af82e1c667fc82ae9",
+    "results_path": "artifacts/CERT-AUCTION-01/family/EXT05-BATCH-01-auction-results.json",
+    "results_sha256": "518a2fad3276328534aed7f46aceb58f3027de4619d34cf20c7ae861015a1239",
+    "env_fp": {
+      "runner": "PIVOT-01 WS-37 witness_gen.py",
+      "platform": "Linux-5.10.134-18.0.12.lifsea8.x86_64-x86_64-with-glibc2.36",
+      "packages": {
+        "python": "3.12.12",
+        "numpy": "2.2.5",
+        "mpmath": "1.3.0",
+        "scipy": "1.16.2"
+      },
+      "deps_manifest_sha256": "d224704ab4eba6bb0adf3d06cd757955251d5875d78a9362fe0d408ddad453ae",
+      "lean_free": true,
+      "note": "M0-AC5 interim（规格 U3）：env_fp 规范未定，以 runner 声明 + 依赖清单哈希代偿；无 lean/mathlib 维度"
+    },
+    "run_id": "ws37-m0-20261012T125021Z",
+    "ts": "2026-10-12T12:50:21Z"
+  },
+  "provenance": {
+    "generator_line": "PIVOT-01 计算线",
+    "source_anchors": [
+      "artifacts/CERT-AUCTION-01/auction_verify.py",
+      "artifacts/CERT-AUCTION-01/family/EXT05-BATCH-01-auction-results.json",
+      "artifacts/CERT-AUCTION-01/README.md"
+    ]
+  },
+  "lean_binding": null,
+  "notes": "M0 口径=内生 fail-closed 见证复算核验；非机器验证证书（OBL §10 升级门未过）",
+  "witness_sha256": "fba1d08141eac2686af918bbcbc5f91d0921120dd923f00681911a616fb342e6"
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "witness_id": "circulant-sinkhorn-k10-e1-2-20261012",
+  "family": "circulant-sinkhorn",
+  "claim": "unique_root_in_box",
+  "inputs": {
+    "k": 10,
+    "eps": "1/2",
+    "c": [
+      "1/2",
+      "1/3",
+      "2/3",
+      "1/4",
+      "3/4",
+      "1/5",
+      "2/5",
+      "3/5",
+      "4/5",
+      "1/6"
+    ],
+    "gauge": "f0=0",
+    "n": 19
+  },
+  "interval_engine": {
+    "name": "mpmath.iv",
+    "precision": "dps=80",
+    "rounding": "outward"
+  },
+  "rationalization": {
+    "center_limit_denominator": "1e13",
+    "preconditioner_limit_denominator": "1e10",
+    "center_err": "4.4864e-27"
+  },
+  "bounds": {
+    "box_radius": "1e-9",
+    "center": {
+      "f": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "g": "-17810979987221/9462826318427"
+    },
+    "preconditioner": {
+      "kind": "rationalized_inverse_jacobian",
+      "limit_denominator": "1e10"
+    },
+    "krawczyk_image": {
+      "max_width": "2.220446049250313e-16",
+      "min_margin": "9.999999234290238e-10"
+    }
+  },
+  "verdict": {
+    "inside": true,
+    "metrics": {
+      "condJ": "38.792397209686726",
+      "K_max_width": "2.220446049250313e-16",
+      "K_min_margin": "9.999999234290238e-10"
+    }
+  },
+  "negative_control": {
+    "perturbation": {
+      "kind": "center_shift",
+      "target": "g",
+      "delta": "1e-6",
+      "preconditioner": "recomputed"
+    },
+    "neg_verdict": {
+      "neg_inside": false,
+      "neg_K_min_margin": "-9.99000000076227e-07"
+    },
+    "same_lineage": {
+      "same_script": true,
+      "script_path": "artifacts/CERT-CIRC-LEAN-01/family/EXT05-BATCH-01_verify.py",
+      "env_fp_sha256": "d224704ab4eba6bb0adf3d06cd757955251d5875d78a9362fe0d408ddad453ae",
+      "statement": "负控与正例同脚本、同环境指纹（OBL §4 AC4 纪律延伸至见证层）"
+    }
+  },
+  "replay": {
+    "script_path": "artifacts/CERT-CIRC-LEAN-01/family/EXT05-BATCH-01_verify.py",
+    "script_sha256": "b2f721341678c14223295c08bb1adb1c93f7e961f6140fd021776b4f44ad3479",
+    "results_path": "artifacts/CERT-CIRC-LEAN-01/family/EXT05-BATCH-01-results.json",
+    "results_sha256": "e812c5251e8cf58b39acf2d1e7dd428bd0e9dd2e65c09f87020fb813728a99d5",
+    "env_fp": {
+      "runner": "PIVOT-01 WS-37 witness_gen.py",
+      "platform": "Linux-5.10.134-18.0.12.lifsea8.x86_64-x86_64-with-glibc2.36",
+      "packages": {
+        "python": "3.12.12",
+        "numpy": "2.2.5",
+        "mpmath": "1.3.0",
+        "scipy": "1.16.2"
+      },
+      "deps_manifest_sha256": "d224704ab4eba6bb0adf3d06cd757955251d5875d78a9362fe0d408ddad453ae",
+      "lean_free": true,
+      "note": "M0-AC5 interim（规格 U3）：env_fp 规范未定，以 runner 声明 + 依赖清单哈希代偿；无 lean/mathlib 维度"
+    },
+    "run_id": "ws37-m0-20261012T125021Z",
+    "ts": "2026-10-12T12:50:21Z"
+  },
+  "provenance": {
+    "generator_line": "PIVOT-01 计算线",
+    "source_anchors": [
+      "artifacts/CERT-CIRC-LEAN-01/family/EXT05-BATCH-01_verify.py",
+      "artifacts/CERT-CIRC-LEAN-01/family/EXT05-BATCH-01-results.json",
+      "artifacts/CERT-CIRC-LEAN-01/family/EXT05-BATCH-01-RESULTS.md",
+      "artifacts/CERT-CIRC-LEAN-01/family/README.md"
+    ]
+  },
+  "lean_binding": null,
+  "notes": "M0 口径=内生 fail-closed 见证复算核验；非机器验证证书（OBL §10 升级门未过）",
+  "witness_sha256": "169cda97f2c7d57197477d9fc2e14733259f0e3df9cb503f0881734687ae40b6"
+}
