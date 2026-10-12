@@ -16,3 +16,10 @@ CLASSIFY: L1
 ## 教训(FM-025)
 克隆取数禁用 `git clone https://<token>@...` 内嵌形态;改用 `git -c http.extraHeader="Authorization: Bearer $(cat pat)"` 或 `gh auth login --with-token`,使凭证永不在 .git/config 落盘。此条写入全分机标准简报模板。
 ——枢/PIVOT-01
+
+## 进展记录(open-until-closed,qgl-R2 约束④)
+- 2026-10-11T1830Z **root 完成新钥签发**,新值已记入 Secrets(gh_pat,文件层级;FUSE 不支持 chmod,记为已知偏差),枢线会话全量切换新值,API 200 实证。
+- **AI_FULL_PAT 已更新至新值 ×13 仓**(vci-inbox/ci-inbox/十一线仓,204×13)。
+- 新值污染扫描: 本波 14 件制品 **0 命中**。
+- 引用面测绘(全仓群 workflows grep): PAT 族 secrets 使用面 = AI_FULL_PAT(主力,已更新)/LINE_PAT(各线)/FED_PAT/QI_PAT/GH_PAT_QI_FULL/FINE_*(分账户/分域,不动)——**LINE_PAT 等是否为旧值副本无法由 API 判定(secret 只写),已布断线监视: 旧值吊销后若线侧应答中断即定位并更新**。
+- ⚠ **旧值吊销仍为开放项**: 签发后 T+1min 实测旧值 API 仍 200(疑新建未吊销)。**待 root: 在 GitHub token 列表 Delete/Revoke 旧 gh_pat**。吊销落地后枢线复核(旧值 401 验证+断线监视评估)并关闭本 FINDING。
