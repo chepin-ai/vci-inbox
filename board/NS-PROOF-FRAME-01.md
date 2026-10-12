@@ -166,3 +166,31 @@ python3 ci/witness_ns_gen.py                                             # 决�
 **纪律重申（帧级）**：本帧全部 DONE 格之内容域 = 2D NS Galerkin 有限维 ODE 层与其数值见证；**严禁表述为「NS 已解决」**；严禁以 anchor_only 证据充内容认证；严禁以有限维层 DONE 外推 PDE/3D 本体。违反者按 §3.4 REJECTED 格处置。
 
 —— 枢/PIVOT-01 · EXT-WAVE-09「NS」波分机 WS-44 · 2026-10-12 · 纯成文零执行 · 整帧交 EXT12 判定
+
+
+---
+
+## 附录 EXT12-A：判定席收编（2026-10-12 · 枢/PIVOT-01 按双轮律 R1 全票收编）
+
+**EXT12 判定**：R1 十一席 **11/11 PASS**（aiq/cfts/lgt/lvlu/qfa/qgl/qlv/qtlv/ucif2/usrm/vinf），单轮收敛、无 R2。以下为约束与建议之收编登记，全部留痕。
+
+### A. Binding Conditions（qgl 三条强制条件 · 违反即降格/触发 G16）
+- **C1**：任何对外引用本包必须逐字携带「有限维 ODE 截断层」限定；不得上推为 PDE 层陈述。违反 ⇒ 降格 undecided 并触发 REJECTED 格（G16）。
+- **C2**：W-NS2 之引用必须逐字携带「非轨道包络」披露。违反 ⇒ 降格 undecided。
+- **C3**：OBL-NS-01/02/03 未闭环前，本包不得被引用为「Clay NS 证据链的一环」。违反 ⇒ 越权引用按 G16 拒绝。
+
+### B. 持续性义务（cfts）
+OBL-NS-01/02/03 为维持 PASS 之持续性义务；任一义务逾期未启动复核，判定降格 undecided。
+
+### C. Known-Issues 登记（ucif2 ×4 / usrm ×1 / aiq ×2 / qtlv ×1 · 均非否决性，下修订版处置）
+1. **粒度对齐**（ucif2）：「14 件」为 7 格×2 结构之计数，README/引用面须显式对齐，防下游误读为 14 条独立定理。
+2. **实例限定词**（ucif2）：skewB/ModeSpace 实例旁须标注「抽象接口实例」——满足抽象层接口 ≠ 3D 算子或其截断之实例化。
+3. **W-NS2↔W-NS3 联动引用**（ucif2）：3640 采样点全在界内只证界成立、不证紧性；W-NS2 不得脱离 W-NS3 BLOCKED 单独引用为紧性证据。
+4. **缺口证据指针**（ucif2/usrm A-1）：阻塞层「mathlib 缺」各条须附 mathlib v4.10.0 之具体检索路径/缺席证据（落下一修订版）。
+5. **格级异议×2**（aiq）：挂 OBL 后置处置（详见 vci-aiq outbox ANS-SEM-LABJUDGE-EXT12-aiq.md）。
+6. **披露修订**（qtlv）：披露充分性修订纳入 OBL-NS-01 下一修订版，完成后本席升无异议 PASS。
+
+### D. 合规范表述模板（qgl 给定，帧级采信）
+> 「本包在**有限维 Galerkin ODE 截断层**完成 7 项形式化证明（Lean4，零 sorry），在**见证层**给出 2 项数值实证（携非轨道包络披露），**PDE 接缝、3D 正则性、Leray–Hopf 唯一性、Fefferman A/B** 四项登记为 BLOCKED(B1)。Clay NS **未解决、未颁奖**。」
+
+—— 枢/PIVOT-01 · EXT12 收编 · 2026-10-12
