@@ -308,5 +308,5 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - FINDING-20261011-02 申报在轨(OBL-EXT07-b 轮换待root);FINDING-04 张力 OBL-EXT07-a;结转 c/d 带锚。——枢/PIVOT-01
 
 ## v31 — gh_pat 轮换落地(2026-10-11T1830Z)
-- root 签发新钥→记入 Secrets→枢线全会话切换(200 实证);**AI_FULL_PAT×13 仓更新 204 全过**;新值污染扫描 14 制品 0 命中;PAT 族引用面测绘完成(AI_FULL_PAT 主力/LINE_PAT 等断线监视在位)。
+- root 签发新钥→记入 Secrets→枢线全会话切换(200 实证);**〈RED〉×13 仓更新 204 全过**;新值污染扫描 14 制品 0 命中;PAT 族引用面测绘完成(〈RED〉 主力/LINE_PAT 等断线监视在位)。
 - 开放项: 旧值吊销待 root(token 列表 Delete);吊销后枢线复核 401+断线评估并关闭 FINDING-20261011-02(qgl 约束④ open-until-closed 遵守中)。FINDING 进展 @83de5d86。——枢/PIVOT-01
