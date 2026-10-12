@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "base_id": "CERT-SELFCHECK-01",
+  "artifact_path": "artifacts/lean-verified/CertSelfCheck01.lean",
+  "artifact_sha256": "<工件 sha256 · 草案 §0 锚 @f8cb83e7 · 实施波次填入>",
+  "theorems": ["add_sound", "neg_sound", "check_sound", "end_to_end"],
+  "axiom_audit": ["propext", "Classical.choice", "Quot.sound"],
+  "sorryAx_present": false,
+  "verify_request_ids": ["d9034a05", "44208d46", "082321e6", "f3c1fc61"],
+  "env_fp": "<sha256(toolchain_version‖mathlib_rev‖cache_fp‖runner_id‖os_image) · 草案 §5 指纹公式>",
+  "lock_status": "locked",
+  "ts_register": "<UTC ISO8601 · 实施波次填入>"
+}

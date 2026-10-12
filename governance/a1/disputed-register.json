@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "register_id": "A1-DISPUTED-REGISTER",
+  "kind": "disputed_register",
+  "append_only": true,
+  "defaults": {
+    "dispute_timeout_ms": 604800000,
+    "default_action_on_timeout": "escalate"
+  },
+  "entries": [
+    {
+      "schema_version": "1.0",
+      "example": true,
+      "dispute_id": "DSP-YYYYMMDD-NN",
+      "artifact_sha256": "<争议工件 sha256>",
+      "l1_record_ptr": "<L1 输出 JSON 落板指针>",
+      "l2_record_ptr": "<L2 输出 JSON 落板指针>",
+      "ts_open": "<UTC ISO8601>",
+      "dispute_resolver": "判定席/<具体承审席次 · §8 Q3 未决占位>",
+      "dispute_timeout_ms": 604800000,
+      "default_action_on_timeout": "escalate",
+      "status": "open",
+      "resolution_ptr": null,
+      "timeout_frozen": false,
+      "freeze_log": []
+    }
+  ]
+}
