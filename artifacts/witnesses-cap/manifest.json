@@ -1,0 +1,58 @@
+{
+  "schema": "witnesses-cap-manifest/1.0",
+  "run_id": "ws55-cap-20261012T201100Z",
+  "ts": "2026-10-12T20:11:00Z",
+  "generator": {
+    "script": "ci/krawczyk_ns_gen.py",
+    "sha256": "f63d6a5cd6f9a36a6f22c8a652fd7e1dbc48ccea8cd035ffbf7dfce8df2514da"
+  },
+  "verifier": {
+    "script": "ci/krawczyk_ns_verify.py",
+    "sha256": "f69a50d521e6f605ea41977207392a9994dfd882d461f8787e0692e9fec82cf8"
+  },
+  "certificates": [
+    {
+      "case_id": "cap-b3-p1-mild",
+      "file": "cap-b3-p1-mild.cap.json",
+      "sha256": "a54b6ea1d140cffd0703b97a66c2593d532192f07bca5d38a8fdf90bd93c9dc4",
+      "status": "PASS"
+    },
+    {
+      "case_id": "cap-b3-p2-medium",
+      "file": "cap-b3-p2-medium.cap.json",
+      "sha256": "99d5d9f58330d7c8da8b517cb765da4b954ed11c3c009c6d9f0e1fd4d7f7105b",
+      "status": "PASS"
+    },
+    {
+      "case_id": "cap-b3-p3-stiff",
+      "file": "cap-b3-p3-stiff.cap.json",
+      "sha256": "a3af3b1335bfdded527ffe584e6fc0cd9b7810cf33378fae325800254c52ae10",
+      "status": "PASS"
+    },
+    {
+      "case_id": "cap-b3-p4-hardfail",
+      "file": "cap-b3-p4-hardfail.cap.json",
+      "sha256": "7d56f700977a5a111237501facf223bd0f1b9a02d929e736b182fbf004bb9c65",
+      "status": "FAIL"
+    }
+  ],
+  "counts": {
+    "cases": 4,
+    "pass": 3,
+    "fail": 1
+  },
+  "consistency_gate": "双跑决定论一致性（主流程 vs --emit-raw 独立子进程，规范化 JSON 逐字节一致方签发）",
+  "env_fp": {
+    "runner": "PIVOT-01 WS-55 krawczyk_ns_gen.py",
+    "platform": "Linux-5.10.134-18.0.12.lifsea8.x86_64-x86_64-with-glibc2.36",
+    "packages": {
+      "python": "3.12.12",
+      "numpy": "2.2.5",
+      "mpmath": "1.3.0"
+    },
+    "deps_manifest_sha256": "5a6cd949faaaf80483c4b1a7909a29d034c1b6e0f1f00e4023f4f15a7af742cf",
+    "lean_free": true,
+    "note": "interim（沿用 WS-37 U3 代偿）：runner 声明 + 依赖清单哈希；无 lean/mathlib 维度"
+  },
+  "notes": "PASS 组=区间 Krawczyk 存在+唯一证书（外证层真实数学证，待验证器独立复算确认）；FAIL 组=诚实失败登记（熔断判据 ws52 §3，未升格高精度候选）"
+}

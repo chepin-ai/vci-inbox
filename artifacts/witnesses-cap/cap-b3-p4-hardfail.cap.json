@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "family": "ns-krawczyk-stationary",
+  "claim": "exists_unique_zero_in_box",
+  "case_id": "cap-b3-p4-hardfail",
+  "run_id": "ws55-cap-20261012T201100Z",
+  "ts_utc": "2026-10-12T20:11:00Z",
+  "system": {
+    "equation": "F(u) = B3(u)u − ν·diag(a)·u + f = 0（稳态；vf 符号约定同 WS-42 Lean 核）",
+    "components": [
+      "F0 = 2*u1*u2 − nu*a0*u0 + f0",
+      "F1 = −2*u0*u2 − nu*a1*u1 + f1",
+      "F2 = −nu*a2*u2 + f2"
+    ],
+    "jacobian": "DF(u) = [[−νa0, 2u2, 2u1], [−2u2, −νa1, −2u0], [0, 0, −νa2]]",
+    "b3_source": "library/ns/NsGalerkin/ExplicitB.lean (B3fun/B3, WS-42, commit 5887bbb4)"
+  },
+  "params": {
+    "nu": "0.000000001",
+    "a": [
+      "1",
+      "1",
+      "1"
+    ],
+    "f": [
+      "0.5",
+      "0.25",
+      "0"
+    ]
+  },
+  "candidate": {
+    "z": [
+      "500000000.0",
+      "250000000.0",
+      "0.0"
+    ],
+    "float64_residual_sup": "0.0",
+    "policy": "候选 z 与 Y 均由 float64（Newton 迭代 ≤64 步 + numpy 数值逆）产出，不升格高精度：若 float64 候选质量不足以在给定半径调度内闭合 Krawczyk 两条件，本组如实登记 FAIL（ws52 §3 熔断判据：区间见证无法闭合→降级登记，不强行升格）。证书可靠性不依赖候选质量——两条件由验证器对登记数据的独立区间复算承载。"
+  },
+  "preconditioner": {
+    "Y": [
+      [
+        "-999999999.9999999",
+        "-0.0",
+        "-4.999999999999999e+26"
+      ],
+      [
+        "-0.0",
+        "-999999999.9999999",
+        "9.999999999999997e+26"
+      ],
+      [
+        "-0.0",
+        "-0.0",
+        "-999999999.9999999"
+      ]
+    ]
+  },
+  "box": null,
+  "radius_schedule": {
+    "r0": "1e-09",
+    "r_cap": "0.25",
+    "factor": "1.4142135623730951",
+    "n_steps": 56
+  },
+  "krawczyk": null,
+  "interval_engine": {
+    "name": "mpmath.iv",
+    "precision": "dps=50",
+    "rounding": "outward"
+  },
+  "verdict": {
+    "existence": false,
+    "uniqueness": false,
+    "status": "FAIL"
+  },
+  "note": "诚实失败组：f₂=0 ⇒ u₂=0、DF 上三角化（ρ 斜率 ~6/ν=6e9），存在性需 r>ε 而唯一性需 r<ν/6≈1.7e-10，窗口不交 ⇒ 全半径调度失败，如实登记 FAIL（不升格高精度候选）",
+  "generator": {
+    "script": "ci/krawczyk_ns_gen.py",
+    "sha256": "f63d6a5cd6f9a36a6f22c8a652fd7e1dbc48ccea8cd035ffbf7dfce8df2514da"
+  },
+  "verifier": {
+    "script": "ci/krawczyk_ns_verify.py",
+    "sha256": "f69a50d521e6f605ea41977207392a9994dfd882d461f8787e0692e9fec82cf8"
+  },
+  "provenance": {
+    "generator_line": "PIVOT-01 计算线",
+    "source_anchors": [
+      "/mnt/agents/output/ws42-report.md",
+      "/mnt/agents/output/ws51-report.md §4",
+      "ci/krawczyk_ns_gen.py",
+      "artifacts/witnesses-cap/run-log.json"
+    ]
+  },
+  "fail_registration": {
+    "reason": "半径调度耗尽：float64 候选下无半径同时满足内部阈值（min_margin ≥ 0.3·r 且 ρ_hi ≤ 0.25）",
+    "diagnostics": {
+      "eps_hi": "1.3363823550460977e-42",
+      "last_attempt": {
+        "r": "0.1898125312485032",
+        "rho_hi": "759250324.9940127",
+        "min_margin": "-144115225.8485497",
+        "exists": false,
+        "uniq": false
+      }
+    },
+    "fuse_policy": "ws52 §3 熔断判据：区间见证无法闭合 → 如实降级登记 FAIL，不升格高精度候选、不粉饰"
+  },
+  "cert_sha256": "7d56f700977a5a111237501facf223bd0f1b9a02d929e736b182fbf004bb9c65"
+}

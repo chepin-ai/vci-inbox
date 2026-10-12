@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "family": "ns-krawczyk-stationary",
+  "claim": "exists_unique_zero_in_box",
+  "case_id": "cap-b3-p2-medium",
+  "run_id": "ws55-cap-20261012T201100Z",
+  "ts_utc": "2026-10-12T20:11:00Z",
+  "system": {
+    "equation": "F(u) = B3(u)u − ν·diag(a)·u + f = 0（稳态；vf 符号约定同 WS-42 Lean 核）",
+    "components": [
+      "F0 = 2*u1*u2 − nu*a0*u0 + f0",
+      "F1 = −2*u0*u2 − nu*a1*u1 + f1",
+      "F2 = −nu*a2*u2 + f2"
+    ],
+    "jacobian": "DF(u) = [[−νa0, 2u2, 2u1], [−2u2, −νa1, −2u0], [0, 0, −νa2]]",
+    "b3_source": "library/ns/NsGalerkin/ExplicitB.lean (B3fun/B3, WS-42, commit 5887bbb4)"
+  },
+  "params": {
+    "nu": "0.05",
+    "a": [
+      "1",
+      "2",
+      "3"
+    ],
+    "f": [
+      "1",
+      "-1",
+      "0.5"
+    ]
+  },
+  "candidate": {
+    "z": [
+      "-0.14773337999475059",
+      "-0.15110800034996064",
+      "3.333333333333333"
+    ],
+    "float64_residual_sup": "1.1102230246251565e-16",
+    "policy": "候选 z 与 Y 均由 float64（Newton 迭代 ≤64 步 + numpy 数值逆）产出，不升格高精度：若 float64 候选质量不足以在给定半径调度内闭合 Krawczyk 两条件，本组如实登记 FAIL（ws52 §3 熔断判据：区间见证无法闭合→降级登记，不强行升格）。证书可靠性不依赖候选质量——两条件由验证器对登记数据的独立区间复算承载。"
+  },
+  "preconditioner": {
+    "Y": [
+      [
+        "-0.00224974690347336",
+        "-0.14998312689822396",
+        "-0.2909007936397179"
+      ],
+      [
+        "0.14998312689822396",
+        "-0.00112487345173668",
+        "-0.30439775665221913"
+      ],
+      [
+        "-0.0",
+        "-0.0",
+        "-6.666666666666666"
+      ]
+    ]
+  },
+  "box": {
+    "center": [
+      "-0.14773337999475059",
+      "-0.15110800034996064",
+      "3.333333333333333"
+    ],
+    "radius": "0.1898125312485032"
+  },
+  "radius_schedule": {
+    "r0": "1e-09",
+    "r_cap": "0.25",
+    "factor": "1.4142135623730951",
+    "n_steps": 56,
+    "chosen_index": 55
+  },
+  "krawczyk": {
+    "F_z": [
+      [
+        "3.023866689997376e-17",
+        "3.023866689997376e-17"
+      ],
+      [
+        "-1.0115558666316705e-16",
+        "-1.0115558666316705e-16"
+      ],
+      [
+        "5e-17",
+        "5e-17"
+      ]
+    ],
+    "y0_hi": "3.3333333333333326e-16",
+    "K": [
+      [
+        "-0.16967244923401026",
+        "-0.1257943107554909"
+      ],
+      [
+        "-0.17288495824016173",
+        "-0.12933104245975952"
+      ],
+      [
+        "3.333333333333333",
+        "3.333333333333333"
+      ]
+    ],
+    "U": [
+      [
+        "-0.3375459112432538",
+        "0.042079151253752604"
+      ],
+      [
+        "-0.3409205315984638",
+        "0.038704530898542554"
+      ],
+      [
+        "3.1435208020848298",
+        "3.523145864581836"
+      ]
+    ],
+    "margins": [
+      "0.16787346200924352",
+      "0.16803557335830208",
+      "0.18981253124850284"
+    ],
+    "min_margin": "0.16787346200924352",
+    "rho_hi": "0.1155828284621365"
+  },
+  "interval_engine": {
+    "name": "mpmath.iv",
+    "precision": "dps=50",
+    "rounding": "outward"
+  },
+  "verdict": {
+    "existence": true,
+    "uniqueness": true,
+    "status": "PASS"
+  },
+  "note": "中等组：ν=5e-2、非对称 A",
+  "generator": {
+    "script": "ci/krawczyk_ns_gen.py",
+    "sha256": "f63d6a5cd6f9a36a6f22c8a652fd7e1dbc48ccea8cd035ffbf7dfce8df2514da"
+  },
+  "verifier": {
+    "script": "ci/krawczyk_ns_verify.py",
+    "sha256": "f69a50d521e6f605ea41977207392a9994dfd882d461f8787e0692e9fec82cf8"
+  },
+  "provenance": {
+    "generator_line": "PIVOT-01 计算线",
+    "source_anchors": [
+      "/mnt/agents/output/ws42-report.md",
+      "/mnt/agents/output/ws51-report.md §4",
+      "ci/krawczyk_ns_gen.py",
+      "artifacts/witnesses-cap/run-log.json"
+    ]
+  },
+  "cert_sha256": "99d5d9f58330d7c8da8b517cb765da4b954ed11c3c009c6d9f0e1fd4d7f7105b"
+}
