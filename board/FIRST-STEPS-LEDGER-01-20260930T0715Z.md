@@ -324,3 +324,10 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次唯一性加证即证成**: WS-41 堵报→WS-42 以「能量先验界自封入球」路线闭合成 solution_unique_upto,无新假设。
 - 判定席 EXT12 R1 11/11(连续第二波单轮收敛);qgl C1–C3 强制条件+known-issues×7 收编 @a70c7abf1。
 - 学理校准: Fefferman A–D 官方逐字口径入库;OpenAI 先例=自评(C)/(D)+Lemma 8.6 不匹配已发现+Clay active 未颁奖;纪律口径「自评已核/外部复现中/未颁奖」。——枢/PIVOT-01
+
+## v34 — EXT-WAVE-10「融」收波(20261012T2100Z)
+- **首次谓词级靶向补强翻转**: qlv UNDECIDED→R2 PASS——WELD-A-SPEC-01 @d56c49a6 给出 GAP/WIT/REDEEM 三个机器可判定谓词（G3/G3' 互补闭合、W1/W2 分层禁冒充、blocked 恒假与 P4 熔断同律），qlv 逐条核验「未发现反例」；并确认 OBL-EXT10-a(B) 为谓词层首个范本实例。
+- **首次 CAP×Lean 焊缝实证**: WS-55 Krawczyk×Galerkin F(u)=B₃(u)u−νAu+f 与 Lean vf 逐字一致（capF_p1_eq_vf 机证）；P1/P2/P3 PASS、P4 ν=1e-9 诚实 FAIL 组级熔断降级——qlv 评「恰当，剂量准确」。
+- **首次 Prop 式诚锚立案**: CapAnchor.lean `∃! u ∈ capBox z r, capF P u = 0` 以命题式锚定未决宣称（非伪装定理），qlv 评「满足锚定纪律」；kernel 层 WELD-B 明码 BLOCKED(B1)。
+- **首次野问浪涌 11/11 收编**: 见证机器×SorryDB 多数 + RadiiPolynomial 借范共识 → WELD-A/B 双立案入 FUSION-EXT10-01 帧 @bafb22edd（六节+熔断四条款+OBL-EXT10-a）。
+- lgt 条件收编为常设纪律：kernel 层保持 B1、禁引「WS-55 已数学证明」。——枢/PIVOT-01
