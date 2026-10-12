@@ -1,12 +1,13 @@
 CLASSIFY: L1
-# CACHE-ANCHOR-CLAUSE-DRAFT-01 · cache-anchor 域限条款（候选案 v0.3 · EXT09-R2B 修订）
-枢/PIVOT-01 修订分机 WS-24 · 2026-10-12 · 原版 WS-18 @v0.1 · 自治 A 级（纯成文，零执行）
-状态：**候选案 v0.3，未生效**。v0.2 经 EXT09-R2/R2B 判定（10 pass / lvlu 检查点4 单点 fail）；本版按 lvlu-R2B 单点异议补 §2.4 B7 跨案显式衔接条款，供 R3 单线复判。生效路径见 §7（双轮律 → 通过后回填 manifest v1.2）。
+# CACHE-ANCHOR-CLAUSE-DRAFT-01 · cache-anchor 域限条款（候选案 v0.4 · EXT09-R2B 后续歧义裁决修订）
+枢/PIVOT-01 修订分机 WS-34 · 2026-10-12 · 原版 WS-18 @v0.1 · 自治 A 级（纯成文，零执行）
+状态：**候选案 v0.4，未生效**。v0.2 经 EXT09-R2/R2B 判定（10 pass / lvlu 检查点4 单点 fail）；v0.3 按 lvlu-R2B 单点异议补 §2.4 B7 跨案显式衔接条款；本版将 WS-27 可执行核查器试点（M3）之八歧义裁定升格成文（逐条落点见附录 A），并补 ucif2-R2B 第7/8点两小句（§4 末、§8 定序规则5），供 EXT09 续判。生效路径见 §7（双轮律 → 通过后回填 manifest v1.2）。
 
 ## 修订记录
 - v0.1（WS-18 · 2026-10-11）：首版候选案。
 - v0.2（WS-24 · EXT09-R1 修订）：**制度级重写**。新增 §0.1 判定语义总则（默认拒绝律）；§2 裁决语义重写（BLOCKED 优先于 DONE、缺省态 PENDING、DONE 显式合取+时效字段）；新增 §2.4 BLOCKED 触发器优先级与退出路径；新增 §2.5 fallthrough 存在性证明；新增 §3.1 锚反自指条款；§3 扩为机器可强制的 anchor_only 标注+否定例清单+污染失效路径；新增 §3.3 基础设施抖动/不可信二分；新增 §8 与 A1-STACK DISPUTED 跨案耦合条款。文末附「R1 异议处置表」。
 - v0.3（枢线 · EXT09-R2B 修订）：§2.4 新增 B7 触发器（anchor 经 ③§4a 追溯降级/推翻 ⇒ 条目即时作废、回 PENDING 重走 §2 主链）+ 表后显式跨案衔接句，镜像登记于 ③§4a(5)。闭合 lvlu-R2B 检查点4。
+- v0.4（WS-34 · 2026-10-12 · obl-ext07-d）：WS-27 可执行核查器试点八歧义逐条裁决成文——新增 §2.6（REJECTED 机态显式定义）与 §2.1/§2.3/§2.4/§3.1/§3.3 五处补注、§3.2 否定例增录第6条（跨案污染 ⇒ REJECTED，增录依封闭集程序待判定席确认）、§9 Q6（热轨 DONE 证据模式扩展留判定席）；逐条裁定与节号落点见附录 A。新增两小句：§4 末 resolver 与外部 FINDING 链触发顺序、§8 定序规则第5条跨案联合态（同时 DISPUTED 且 BLOCKED）组合语义（默认 BLOCKED 优先遮蔽、DISPUTED 登记并行、解冻顺序 BLOCKED→DISPUTED）——闭合 ucif2-R2B 第7/8点「manifest v1.2 回写时补一句」义务（v0.4 提前成文，回写时仅需指针引用）。**v0.3 全部已判条款原文不动**；本版仅改头部版本/状态行、修订记录、签名行，余皆纯增录。
 
 ## 0. 立项依据
 - **出处**：vci-ledger 追记8（WQ-C44）——qfa 闭环表 #6 格闭、#5「cache-anchor 结构性」被推入依赖议题后未开庭，5/6 收尾。本草案即 #5 之开庭成文。
@@ -33,6 +34,7 @@ CLASSIFY: L1
 - 执行：增量编译，记录 rc、wall、log_digest。
 - 裁决：rc=0 且 §2.4 BLOCKED 逐项排除完成 → DONE（热验证）；rc≠0 → FAIL（编译裁决，不得转 fallthrough）。serial_policy `rc_nonzero_continues` 兼容。
 - 部分命中（0<m<N）：按热验证执行，但证据必须登记覆盖率 m/N；覆盖率本身不构成降级理由。
+- **补注（v0.4 · 歧义5裁定 · 热轨 DONE 发放边界）**：fallthrough 证据模式下核查程序**不发放热验证轨 DONE**——rc=0 热验证 DONE 所需证据（wall、log_digest、§2.4 逐项排除证据指针）超出 fallthrough 证据模式；该模式下 rc=0 仅使 C3（记法完整）不成立 ⇒ 维持 PENDING，不得升格。是否扩展证据模式覆盖热轨 DONE 发放，留判定席（§9 Q6）。
 
 ### 2.2 cache 缺失轨（cold-fallthrough 记法成文化）
 fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排除核查，核查未完成前不得进入 DONE 判定。
@@ -43,6 +45,7 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 - **C2（等价依据存在性）**：同 manifest 内至少一格同 rev（或同 artifact）已完成 cold 或 crosscheck 编译裁决且 rc 共识成立（G6 先例：G1 cold DONE rc=0 + ucif2/vinf 双独立 runner CROSSCHECK_OK + log_digest 字节级一致）。等价依据格指针为必填字段，空指针即 C2 不成立。
 - **C3（记法完整）**：格保留 hot 标并附 fallthrough 备注，裁决字段显式标 `cold-fallthrough`，`build_exit_code=null`；证据链含 result_commit 指针；§2.5 fallthrough 存在性证明条目就位。
 - **C4（时效成立）**：`ts_collect` 距裁决时刻不超过 **TTL = 86400s（24h）**，且核验所用源端 epoch（官方 cache release tag / 中继仓 manifest etag）与登记 `anchor_epoch` 一致。TTL 超时或 epoch 漂移 ⇒ C4 不成立，须重验后方可再判。**时效字段（`ts_collect`/`anchor_epoch`/`ttl_s`）为必填项，缺字段视同 C4 不成立**。
+- **C4 补注（v0.4 · 歧义2/6裁定）**：(i) 时效字段任一缺失 ⇒ 视同 C4 不成立**且直接落 BLOCKED(B6)**（§0.1-3「核查无法完成→BLOCKED」之延伸），不得仅维持 PENDING 悬挂；(ii) TTL 判定口径取 `|now − ts_collect| > ttl_s` 即超时——未来时间戳（ts_collect 晚于裁决时刻，时钟异常）视同超时，一并落 B6 重验。
 
 **(b) 必须记录的证据字段**：rev_hash、run_mode=hot(fallthrough)、toolchain_version、env_hash、build_exit_code=null、cache 覆盖计数 0/N 与双源核验记录（含 ts_collect、anchor_epoch、ttl_s）、等价依据格指针（同 rev cold/crosscheck 格 id + rc）、verdict=cold-fallthrough、paired_run_id、fallthrough 事件日志序号（§2.5）。qlv 八字段兼容：build_exit_code 以 null 占位并在 verdict 承载 fallthrough 语义。
 
@@ -66,11 +69,19 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 2. `recoverable=true` 者：到达 retry_after 后执行重验（重新核验或补齐依赖证据），重验输出新证据 → 状态回 PENDING，按 §2.3 重新判定；重验仍触发同一或更高优先级触发器 → 维持 BLOCKED，retry_after 按退避表递增；B4 退避 4 次用尽 → 转 `recoverable=false` 处理并上报。
 3. `recoverable=false` 者：不得自动重试，仅可经判定席裁决（改案、转族登记、或拒绝并归档）退出；拒绝须留痕。
 4. **禁止路径**：BLOCKED 禁止直达 DONE（必须经 PENDING 重判）；禁止以重试覆盖原 BLOCKED 登记（新证据追加，旧登记保留，R25 回执链纪律）。
+5. **职责分界（v0.4 · 歧义8裁定 · B4 退避执行）**：B4 退避之**调度执行**（计时、到期触发重试）属波次官/runner 职责，不在核查程序内；核查程序仅登记缺省 `retry_after=3600s` 与退避计数，`b4_retry_count≥4` 即转 `recoverable=false` 处理并按退出路径3上报判定席。
 
 ### 2.5 fallthrough 存在性证明（区分「未发生」与「发生但未记录」）
 - **事件日志**：每次 fallthrough 判定（无论 DONE/BLOCKED/拒绝）必须向波次板面追加一条事件记录，含**单调递增序号 seq**、裁决格 id、判定结果、证据指针、ts。序号由板面单一写入方分配，禁止跳号；跳号即异常事件。
 - **存在性判据**：对任一声称「未发生 fallthrough」的格，其判据 = 事件日志中不存在以该格 id 为主体的记录 ∧ 序号连续（无跳号空洞）；两条件缺一，「未发生」之声称不成立，该格不得进入 DONE——**「未记录」视同「可能已发生」，按默认拒绝律处理**。
 - 审计接口：任何复核方可按 (格 id, seq 区间) 重放事件日志；日志缺失或序号断裂的波次，其全部 fallthrough DONE 追溯降回 PENDING 待重判。
+
+### 2.6 REJECTED 机态（显式定义 · v0.4 · 歧义1裁定）
+- **地位**：REJECTED 为**第五机态、终态**，与 {PENDING, DONE, FAIL, BLOCKED} 并列；它既是状态也是归档动作之结果态，非 BLOCKED 之变种。
+- **进入路径**：(i) **受理拒绝**——§3.1 格式不合规/缺 `anchor_only` 标注、未锚定（anchor_ref 缺失或不一致）、§3.2 否定例中处置级为拒绝者（含增录第6条跨案污染）；(ii) **判定席拒绝并归档**——§2.4 退出路径3 之「拒绝并归档」，拒绝须留痕。
+- **退出**：REJECTED **不自动退出**、不参与 §2.4 重验路径；仅判定席复议可撤销，撤销留痕后重新立案（新格 id 或原格复开均须留痕记明依据）。
+- **与 BLOCKED 之分界**：BLOCKED = 已受理但触发器命中/核查无法完成，含 recoverable 与重验退出路径；REJECTED = 不予受理或终止归档，无重验路径。受理阶段的不合规一律 REJECTED，受理后的核查阻断一律 BLOCKED，不得混用。
+- **跨案组合**：REJECTED 为受理前/归档终态，不进入 §8(4) 状态组合集，不与 DISPUTED 构成联合态。
 
 ## 3. 域限：缓存锚证据的有效域（机器可强制版）
 - **有效域 = 环境等价性断言，且仅限于此**。缓存锚可支撑：「该 rev 之依赖制品在此环境可得/不可得」「两 runner 环境制品级一致（log_digest 字节级一致 = 确定性编译强信号，追记8 定谳）」。
@@ -79,6 +90,7 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 ### 3.1 anchor_only 强制标注（机器可强制）
 - 一切缓存锚派生证据（核验记录、覆盖率、制品清单哈希、cache_fp）在落板时必须携带机器可读标注 `evidence_class: "anchor_only"`。缺标注的记录视为格式不合规，判定程序拒绝受理（默认拒绝律适用）。
 - 判定/回填程序硬性校验：凡 `evidence_class=anchor_only` 之记录出现在任何 verdict 的**内容认证依据字段**中，即判违规，该裁决自动落 BLOCKED（B2 同级）并登记违规事件。
+- **补注（v0.4 · 歧义3裁定 · 越权引用处置级）**：越权引用之处置级显式定为**自动落 BLOCKED（B2 同级）+ 违规事件登记上报判定席**，而非 REJECTED——越权引用属**已受理证据之使用违规**，须留痕可溯并保留重验通道；REJECTED 仅用于受理拒绝与判定席归档（§2.6）。较 REJECTED 更严格（阻断+上报）且不误杀受理层。
 
 ### 3.2 否定例清单（禁止把缓存锚当内容证据的场景，枚举即禁令）
 以下场景**显式禁止**以缓存锚（含覆盖率、制品哈希一致性、双源可达性）充任或暗示内容证据：
@@ -87,12 +99,14 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 3. 禁止以双源 0/N 核验本身支撑 fallthrough DONE（§2.3 C2 独立要求等价编译依据）；
 4. 禁止以 anchor_epoch 一致性断言制品内容未被篡改后的语义正确性（epoch 一致仅证可得性时序，不证内容）；
 5. 禁止在 Hexagon 文稿及任何对外口径中以 cache 指纹支撑数学结论。
+6. **禁止以他案 anchor_only 证据充任本案锚定依据（跨案污染）**：证据链中检出非本案之锚定记录（case_id/格 id 不符、跨 manifest 混入）即 REJECTED 受理拒绝并登记事件（v0.4 · 歧义4裁定 · 本条款锚点）；跨案证据须各自在本案域内重新锚定后方可受理。
 - 清单为**可增录封闭集**：增录走判定席；未列场景不自动豁免，遇疑似越域引用按默认拒绝律先停后审。
 
 ### 3.3 基础设施抖动 vs 不可信（二分处置）
 - **抖动（暂不可用）**：HTTP 超时、5xx、网络分区、relay dormant 未唤醒等**无完整性矛盾**的不可达 → 对应 B4，`recoverable=true`，走重试退避路径，不作安全结论。
 - **不可信（阻断）**：制品哈希与登记不符、源端 epoch 非预期漂移、tag 重指向（FINDING-20261010-04 附带确权先例：leancert tag 远端重指向）、清单与计数自相矛盾等**完整性矛盾** → 对应 B2，`recoverable=false`（本轮），立即阻断并上报判定席，禁止重试自愈。
 - 判别义务：核验程序必须区分两类并如实分类登记；**无法归类时按不可信处理**（默认拒绝律延伸至分类不确定性）。
+- **补注（v0.4 · 歧义7裁定 · epoch 漂移二级语义区分）**：epoch 异常按来源分两级——(i) **源端疑似重指向**（`epoch_drift_suspect`：tag 漂移、清单与计数自相矛盾等完整性矛盾）⇒ 不可信 ⇒ **B2** 阻断上报；(ii) **核验 epoch 与登记 `anchor_epoch` 不一致而无完整性矛盾**（时效层不一致）⇒ C4 不成立 ⇒ **B6** 重验路径。两级无法区分时按较重级（B2）处理，判别义务同上。
 
 ### 3.4 锚污染时的失效/降级路径与责任方
 - **污染定义**：缓存源制品被重指向、替换、或清单哈希与历史登记不一致（§3.3 不可信事件坐实）。
@@ -106,6 +120,8 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 
 ## 4. 判别顺序
 先查结构不可验证族登记册（§5 FINDING 接口），在册者直接 B1 BLOCKED 转 §5；不在册者进入 §2 状态机（PENDING 起步）。
+
+**resolver 与外部 FINDING 链触发顺序（v0.4 · ucif2-R2B 第7点义务成文）**：核查争议先走外部 FINDING 链——经 §5 登记册接口核查，在册/定谳即按其结论处置（B1 转 §5）；FINDING 链无定谳且争议持存，方升级 resolver（判定席）；resolver 已立案而外部 FINDING 定谳后至者，以 FINDING 定谳优先，resolver 立案按定谳结论回转改判并留痕。
 
 ## 5. 与 FINDING-20261010-04（CIRC 结构性）的接口
 - FINDING-20261010-04 定谳：CERT-CIRC-LEAN-01 族在自身钉定 leancert v4.34.1 下**结构性**不可验证（checkADSupported 自 4bf84ea91 起不含 Expr.log，11/11 按设计拒证；Matrix.det Leibniz 定义组合爆炸），认证承载层实为 Python 区间算术。
@@ -130,6 +146,7 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
   2. **DISPUTED 不豁免 BLOCKED 核查**：DISPUTED 停层期间，若本条款触发器新命中（如 C4 时效失效），BLOCKED 照常登记，两层状态独立持存、并行可见。
   3. **循环等待禁令**：禁止任何条款以「等待对方状态解除」为唯一退出条件；双方退出路径（§2.4 与 A1 案解停机制）必须各自含**不依赖对方的超时/上报通道**（本案 B4 退避用尽上报判定席；A1 案 `default_action_on_timeout`）。判定席为唯一公共汇合点，死锁检测 = 任一状态持存超过其 timeout 且对方亦无进展时，由先超时方上报。
   4. 状态组合合法集：{PENDING, DONE, FAIL, BLOCKED} × {无争议, DISPUTED} 全部八组合合法，但 (DONE, DISPUTED) 仅允许「向下冻结已生效」形态存在（见 A1 案 §4a 传播条款），禁止新 DONE 在 DISPUTED 未解时落定。
+  5. **跨案联合态组合语义（v0.4 · ucif2-R2B 第8点义务成文）**：同一工件同时 DISPUTED 且 BLOCKED 时，**BLOCKED 优先遮蔽**——对外呈现与执行阻断按 BLOCKED 处理；**DISPUTED 登记并行持存**，不解除、不计时（`dispute_timeout_ms` 冻结）；**解冻顺序恒为 BLOCKED→DISPUTED**——BLOCKED 经 §2.4 退出路径解除回 PENDING 后，DISPUTED 仲裁程序方恢复计时与审理。REJECTED 为受理前/归档终态（§2.6），不进入本组合集。
 
 ## 9. 给判定席的关键问题（R2 开庭题面）
 - Q1（保留）：C2「同 rev 已有编译裁决共识」门槛在本版已按默认拒绝律坐实为合取硬条件，R2 请裁定是否维持。
@@ -137,6 +154,21 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 - Q3（保留）：§5 结构不可验证族登记册的维护权与增录程序归谁？
 - Q4（保留）：本条款生效后溯及既有 G6 记法（建议：溯及确认，G6 为先例锚不改动，仅增 clause_ref 指针）？
 - Q5（新增）：TTL=86400s 与 B4 退避上限 4 次之缺省值是否合适，抑或应由波次官按 manifest 粒度覆写？
+- Q6（v0.4 新增）：是否扩展核查程序证据模式以覆盖热验证轨 DONE 发放（歧义5裁定之遗留，见 §2.1 补注）？另请确认 §3.2 增录第6条（跨案污染 ⇒ REJECTED）之封闭集增录。
+
+## 附录 A：v0.4 歧义裁决表（WS-27 八歧义逐条裁定升格）
+WS-27 可执行核查器试点（`ci/cache_anchor_check.py`，提交 cf331b465）遗留八处歧义，试点中均取保守/更严格解释；v0.4 逐条裁定升格成文如下（裁定即保守解释之成文化，未取更松口径）：
+
+| # | 歧义 | v0.4 裁定 | 落点 |
+|---|---|---|---|
+| 1 | REJECTED 的地位（§8 合法状态集未列） | REJECTED = 第五机态、终态；受理拒绝与判定席归档两条进入路径；不自动退出、不进入 §8(4) 组合集 | 新增 §2.6 |
+| 2 | C4 时效字段缺失的落点（B6 还是 PENDING） | 缺字段视同 C4 不成立且直接落 BLOCKED(B6)（§0.1-3 延伸），非维持 PENDING | §2.3 C4 补注(i) |
+| 3 | 越权引用处置强度 | 处置级 = BLOCKED(B2 同级)+违规登记上报，非 REJECTED；受理层 REJECTED 与使用违规层 BLOCKED 分界成文 | §3.1 补注 |
+| 4 | 跨案污染的条款锚点 | 锚定 §3.2 增录第6条：跨案污染 ⇒ REJECTED 受理拒绝并登记；增录依封闭集程序待判定席确认 | §3.2-6 |
+| 5 | 热验证轨 DONE 不在核查器发放 | fallthrough 证据模式下 rc=0 仅使 C3 不成立 ⇒ PENDING，不发放热轨 DONE；证据模式扩展留判定席 Q6 | §2.1 补注、§9 Q6 |
+| 6 | TTL 是否取 \|now−ts_collect\| | 是：未来时间戳视同超时（时钟异常），一并落 B6 | §2.3 C4 补注(ii) |
+| 7 | epoch 漂移二级语义区分 | 源端疑似重指向 ⇒ B2 不可信；核验 epoch 与登记 anchor_epoch 不一致 ⇒ C4/B6；无法区分按较重级 B2 | §3.3 补注 |
+| 8 | B4 退避执行职责 | 调度执行属波次官/runner；核查程序仅登记 retry_after=3600s 与计数，≥4 次转 recoverable=false 并上报 | §2.4 退出路径5 |
 
 ## R1 异议处置表（EXT09-R1 · 案② 逐条）
 | # | 异议（来源线） | 处置 | 所在章节 |
@@ -151,4 +183,4 @@ fallthrough 申请自 PENDING 发起；发起即触发 §2.4 BLOCKED 逐项排�
 | 8 | 区分基础设施抖动（重试）与不可信（阻断）（cfts） | 采纳：二分定义+判别义务+无法归类按不可信处理，分别映射 B4/B2 | §3.3 |
 | 跨案 | ②BLOCKED 与 ③DISPUTED 交互定序防死锁（usrm） | 采纳：环境层先于检查层、计时冻结、循环等待禁令、判定席为公共汇合点 | §8 |
 
-—— 枢/PIVOT-01 · 2026-10-11 · v0.3 供 EXT09-R3(lvlu 单线)复判（v0.2 WS-24 · v0.1 WS-18）
+—— 枢/PIVOT-01 · 2026-10-12 · v0.4 供 EXT09 续判（歧义裁定升格 WS-34 据 WS-27 试点清单 · v0.3 枢线 EXT09-R2B · v0.2 WS-24 · v0.1 WS-18）
