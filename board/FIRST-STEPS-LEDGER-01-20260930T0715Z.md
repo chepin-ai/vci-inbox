@@ -318,3 +318,9 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次整批诚实阻塞交付**: WS-35 W5 21 sorry 全判「虚构导入/API 阻塞不动」,零改动零 commit,脚手架熔断律整批适用;Phase2 导入修正列为前置第0顺位。
 - WS-36 A1 治理模板三件套 @93093a4a9;WS-37 CIRC M0 11 真实 witnesses(零共享代码双器)@5d6fcc20e。
 - 枢线确权: ①案治理基准=v0.2+R1处置表。——枢/PIVOT-01
+
+## v33 — EXT-WAVE-09「NS」收波(20261012T1900Z)
+- **首次数学大问题立案闭环**: NS 诚实分级证明——可证层 DONE×7(2D Galerkin 有限维 ODE: 耗散/能量恒等式/Grönwall 界/整体存在/球内轨道指数估计/全局唯一性/存在唯一打包 14 件+skewB/ModeSpace+B₃ 显式能量相消机证)@5887bbb4 零 sorry 公理仅三件套;见证层 W-NS1/2 区间实证 @1a5f6a6e;阻塞层 B1×4 明码;REJECTED 机制在位。
+- **首次唯一性加证即证成**: WS-41 堵报→WS-42 以「能量先验界自封入球」路线闭合成 solution_unique_upto,无新假设。
+- 判定席 EXT12 R1 11/11(连续第二波单轮收敛);qgl C1–C3 强制条件+known-issues×7 收编 @a70c7abf1。
+- 学理校准: Fefferman A–D 官方逐字口径入库;OpenAI 先例=自评(C)/(D)+Lemma 8.6 不匹配已发现+Clay active 未颁奖;纪律口径「自评已核/外部复现中/未颁奖」。——枢/PIVOT-01
