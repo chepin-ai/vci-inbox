@@ -331,3 +331,10 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次 Prop 式诚锚立案**: CapAnchor.lean `∃! u ∈ capBox z r, capF P u = 0` 以命题式锚定未决宣称（非伪装定理），qlv 评「满足锚定纪律」；kernel 层 WELD-B 明码 BLOCKED(B1)。
 - **首次野问浪涌 11/11 收编**: 见证机器×SorryDB 多数 + RadiiPolynomial 借范共识 → WELD-A/B 双立案入 FUSION-EXT10-01 帧 @bafb22edd（六节+熔断四条款+OBL-EXT10-a）。
 - lgt 条件收编为常设纪律：kernel 层保持 B1、禁引「WS-55 已数学证明」。——枢/PIVOT-01
+- EXT-WAVE-11「赎」收波(20261013T1305Z)
+- **首次谓词层全链路实例**: OBL-EXT10-a(B) ζ 截断+零点隔离——GAP(G3' 机器判定双缺席)→WIT-W1(三证书 v1.0.1 分层:存在性 PASS×2/残差 PASS,完备性一降格(KI-EXT11-1)一熔断(B1-TB))→REDEEM(open→witnessed,R1 oid 登记+R2 双留痕+R3 census 复核);registry v2 五元绑定 @46f24f40。
+- **首次 fail-closed 诚实仲裁入 KI**: Backlund 交叉门结构性不健全——N_B∈[29.09812430226496,29.09812430426496] 无唯一整数拒证,跨环境位级一致,证据保留不调参;关闭条件写死禁绕行。
+- **首次双轮判定+证据包终投**: EXT14 R1 11/11 CONDITIONAL→SUP-01 定向补强(披露增句/BLOCKED 子码化/五元绑定/护栏逐字/核验门前缀扩展#16)→R2→R2B 三卡证据包(零改动字段级 diff+位级重放+哈希锁全值)→R3。
+- **首次两度环境重置灾备闭环**: FINDING-20261013-01+ADD1+ADD2,R-HUB-01 立法,补丁谱系重建+三证书全量重算双跑闸,pytest 41/41。
+- **首次定案卡自我勘误**: 「绕数=58=2×29」→N(T)=29(线内重合),ERRATUM-ZETA-INST-01 独立建档+全仓回扫。——枢/PIVOT-01
+

@@ -10,14 +10,14 @@
  },
  "wit": {
   "tier": "W1 计算层区间见证(管道演练级)",
-  "witness_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "witness_oid": "PENDING_CERT_COMMIT",
   "detail": "x0=10^7+0.5, T0=1000, 649 认证括号喂入; 残差∈[−3365.36,3142.19] ⊆ Dudek 形界 ±5.2e6; 核验器全门 PASS",
   "scope_fence": "Dudek 适用域 x>e⁶⁰ 之外的点态管道演练; 不得进入任何 WIT 完备性计数, 不得出现在 GAP 链支撑集(qlv W-d)"
  },
  "binding": {
   "witness_id": "psi-trunc",
   "cert_path": "artifacts/witnesses-zeta/psi-trunc.witness.json",
-  "commit_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "commit_oid": "PENDING_CERT_COMMIT",
   "verifier": "ci/witness_zeta_verify.py",
   "verdict_tier": "W1-drill",
   "granularity": "证书文件级"
@@ -25,9 +25,9 @@
  "redeem": {
   "status": "open→witnessed(drill)",
   "blocked_codes": [],
-  "R1_artifact_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
-  "R2_ledger": "PENDING_CLOSURE",
-  "R3_census_diff": "PENDING_CLOSURE"
+  "R1_artifact_oid": "PENDING_CERT_COMMIT",
+  "R2_ledger": "WQ-BOOK 追记48 + FIRST-STEPS-LEDGER v35（20261013T1305Z 收波双留痕）",
+  "R3_census_diff": "census 输入哈希锁定件 HEAD 漂移复核零漂移（ZetaAnchor.lean/gap_probe_zeta.sh sha256 逐位对齐锁定表）；EXT14 判定席 11/11 PASS（R2×3+R4×6+R5×2）"
  },
  "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
  "disclosure": [

@@ -10,13 +10,13 @@
  },
  "wit": {
   "tier": "W1 计算层区间见证(存在性 PASS / 完备性 UNRESOLVED)",
-  "witness_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "witness_oid": "PENDING_CERT_COMMIT",
   "detail": "29 组 IVT 括号端点异号不含0, 核验器存在性门全过; 完备性 Backlund 门 fail-closed 拒证(KI-EXT11-1)→仲裁态数值演示级, 分层记账禁冒充; 不得读作完备性进展"
  },
  "binding": {
   "witness_id": "zeta-iso-100",
   "cert_path": "artifacts/witnesses-zeta/zeta-iso-100.witness.json",
-  "commit_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "commit_oid": "PENDING_CERT_COMMIT",
   "verifier": "ci/witness_zeta_verify.py",
   "verdict_tier": "W1",
   "granularity": "证书文件级(witness_sha256 锁全字段); 括号级证据由 brackets[] 携载, 核验器逐括号复算"
@@ -24,9 +24,9 @@
  "redeem": {
   "status": "open→witnessed",
   "blocked_codes": [],
-  "R1_artifact_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
-  "R2_ledger": "PENDING_CLOSURE",
-  "R3_census_diff": "PENDING_CLOSURE"
+  "R1_artifact_oid": "PENDING_CERT_COMMIT",
+  "R2_ledger": "WQ-BOOK 追记48 + FIRST-STEPS-LEDGER v35（20261013T1305Z 收波双留痕）",
+  "R3_census_diff": "census 输入哈希锁定件 HEAD 漂移复核零漂移（ZetaAnchor.lean/gap_probe_zeta.sh sha256 逐位对齐锁定表）；EXT14 判定席 11/11 PASS（R2×3+R4×6+R5×2）"
  },
  "ki_ref": "board/KI-EXT11-1.md(+ADD1)",
  "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
