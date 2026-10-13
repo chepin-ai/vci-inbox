@@ -1,0 +1,21 @@
+{
+ "CLASSIFY": "L1",
+ "driver": "resign_v110_driver.py",
+ "wave": "EXT-WAVE-12「严」",
+ "ts_utc": "2026-10-13T18:10:00Z",
+ "precedent": "EXT14-SUP-01 术式（v1.0.0→v1.0.1）",
+ "reason": "OBL-EXT11-a 关闭：Backlund 门升级（枢线修补#17 锚点 t=0 + 结点紧区间 Δarg，±1e-9 容忍移除）；证书 v1.1.0 加性重签",
+ "field_diff": {
+  "zeta-iso-100.witness.json": "6 场（anchor/darg_method ADDED；note/disclosure 加性延伸；2 sha）",
+  "zeta-iso-1000.witness.json": "2 场（generator.sha256+witness_sha256）",
+  "psi-trunc.witness.json": "3 场（generator.sha256+witness_sha256+zero_source.sha256 交叉引用同步新 iso1000 b8aca692…）"
+ },
+ "gates": {
+  "double_run": "字节一致（snapA==snapB）",
+  "fast_pins": "22/22 PASS（sha 重算/disclosure 前缀/schema/classify/CLI fail-closed）",
+  "gen_crosscheck": "PASS 字节一致（3.12.12）：iso100 /tmp/rawC + iso1000&trunc /tmp/rawD （--emit-raw 产物与证书逐字节相同）",
+  "full_verify_pytest": "PASS 44/44（2432.67s，/usr/bin/python3 3.11.2+PYTHONPATH）",
+  "post_resign_fix": "trunc zero_source.sha256 交叉引用随重签同步（fix_trunc_zeroref.py，双跑字节一致 4a995647032ff536…）"
+ },
+ "math_zero_change": " brackets/winding/残差等数学字段零改动（延续 v1.0.0↔v1.0.1 零改动先例）"
+}
