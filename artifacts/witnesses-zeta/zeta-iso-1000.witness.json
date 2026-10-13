@@ -6599,7 +6599,7 @@
  "provenance": {
   "generator": {
    "script": "ci/witness_zeta_gen.py",
-   "sha256": "2cbc30f6913387baec35c4582af75f9d1dcf5c7378de736e99e9c25e93092b84"
+   "sha256": "4e6d0bf75c641ce1d6dd87af2e1433de03bebd1a9e7de1f3f887050dc97d8711"
   },
   "verifier": {
    "script": "ci/witness_zeta_verify.py"
@@ -6613,5 +6613,5 @@
   }
  },
  "notes": "存在性括号仅断言零点存在于括号内（IVT），完备性由围道绕数独立认证。",
- "witness_sha256": "36d08b55a4c49ec00b5fbf568de2ab1f88fe202ad8b16fd44c26a25bccfd017b"
+ "witness_sha256": "6bdd2c1cd20d7ee19e656f85a611771f37417c3235ddac7d23aba49d058950fe"
 }
