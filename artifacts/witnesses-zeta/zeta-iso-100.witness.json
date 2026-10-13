@@ -373,7 +373,9 @@
    "re_positive": true,
    "re_sign_changes_top_half": 0,
    "n_backlund": 29,
-   "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决"
+   "anchor": "t=0（arg ζ(2)=0 实正锚点；KI-EXT11-1-ADD2：旧 ε 起步缺锚段辐角）",
+   "darg_method": "junction_pointeval_interval（枢线修补#17：结点 CVZ/EM 紧区间 + 张角分支认证；±1e-9 浮点容忍已移除）",
+   "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决；OBL-EXT11-a 关闭后 Backlund 门 PASS（v1.1.0）"
   }
  },
  "negative_control": {
@@ -393,7 +395,7 @@
  },
  "disclosure": [
   "有限高度 T=100 截断",
-  "区间见证层 PASS、kernel 层未证、非 RH 证据；存在性 PASS ⊊ 计数 PASS（括号存在性≠括号数正确性，计数完备性见 verdict/ completeness 分层）"
+  "区间见证层 PASS、kernel 层未证、非 RH 证据；存在性 PASS ⊊ 计数 PASS（括号存在性≠括号数正确性，计数完备性见 verdict/ completeness 分层）；OBL-EXT11-a 已闭（枢线修补#17）：Backlund 门经锚点 t=0 修正+结点紧区间化后复算 PASS，±1e-9 浮点容忍移除"
  ],
  "deviation": "偏差逐字披露：(1) 定案卡所给 CVZ 余项界 3(3+√8)^(-n)(1+8|s|)/|1-2^(1-s)| 缺 1/|Γ(s)|~e^(π|t|/2) 因子，实测 |t|=50 处真误差 1e-124 已超该界（6e-151）27 个量级；本机采用文献正确形式 |γ_n|≤2(3+√8)^(-200)/(|1-2^(1-s)|·|Γ(s)|)（CVZ 2000 Prop.3 / Borwein 2000；|Γ| 下界由 Stirling 区间下界给出），仅在 σ≥1/2 且 |t|≤160 使用 CVZ。(2) t<200 段 RS 余项常数取 C_low=0.2·t^(-5/4)（非定理常数）：生成器侧稠密网格实测 max|R|·t^(5/4)≈0.0539（t∈[14,200]，2500 点+跳点加密），取 3.7× 安全放大；t≥200 段用 Gabcke 0.053·t^(-5/4)（定案卡给定，实测 max≈0.052 吻合）。(3) RS 公式带 Ψ+Ψ'''/(96π²√τ) 两个校正项（定案卡「余项用 Gabcke 显式界 |R₁|<0.053t^(-5/4)」对应两个校正项的余项阶，已实测核对：单 Ψ 项余项实为 O(t^(-3/4))，必须带第二校正项方与 0.053t^(-5/4) 匹配）。(4) 完备性围道矩形 σ∈[-1,2]×[ε,T] 的上半绕数为 N(T)（29/649）；定案卡所写「绕数=58」系上下两半对称合计 2N(T) 之口径，ρ↔1−ρ̄ 对同在上半矩形内，围道实得 29；等价完备性命题（绕数==括号数）已认证，winding_2NT 字段登记 58 以便对照。(5) T=1000 围道工作精度 dps=80（定案卡 dps≈220 系针对 CVZ 权重相消；实测归一化后相消比 ≤7×10⁴，dps=80 仍留 ≥10⁷⁰ 量级余量）；T=100 围道全程 dps=220 如卡。(6) σ<1/2 围道段经函数方程 ζ(s)=χ(s)ζ(1-s) 求值，χ 由初等因子+Stirling/WW 显式余项构成（不用 gamma）；σ=2 竖边用 Dirichlet 部分和（尾界 1/M）；|t|>160 且 σ≥1/2 段用 Euler–Maclaurin（K=5，显式余项，ζ(11)≤2 由初等望远镜界给出）。",
  "replay": {
@@ -403,7 +405,7 @@
  "provenance": {
   "generator": {
    "script": "ci/witness_zeta_gen.py",
-   "sha256": "2cbc30f6913387baec35c4582af75f9d1dcf5c7378de736e99e9c25e93092b84"
+   "sha256": "4e6d0bf75c641ce1d6dd87af2e1433de03bebd1a9e7de1f3f887050dc97d8711"
   },
   "verifier": {
    "script": "ci/witness_zeta_verify.py"
@@ -417,5 +419,5 @@
   }
  },
  "notes": "存在性括号仅断言零点存在于括号内（IVT），完备性由围道绕数独立认证。",
- "witness_sha256": "09bf3918174ebc2d04692fd27c959dcf081cb37406e5b9405d2576dcb7bd08c4"
+ "witness_sha256": "e7e02bbf05619e26f4e9d4e40b228b9ee0bd1024a774883af9014aa012bb789f"
 }
