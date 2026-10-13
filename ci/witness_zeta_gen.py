@@ -619,7 +619,9 @@ def build_iso_cert(T, expected, do_completeness, completeness_timeout, log, _pre
                      "backlund": {"re_positive": True,
                                   "re_sign_changes_top_half": _re_sign_changes_mp(T),
                                   "n_backlund": W,
-                                  "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决"}})
+                                  "anchor": "t=0（arg ζ(2)=0 实正锚点；KI-EXT11-1-ADD2：旧 ε 起步缺锚段辐角）",
+                                  "darg_method": "junction_pointeval_interval（枢线修补#17：结点 CVZ/EM 紧区间 + 张角分支认证；±1e-9 浮点容忍已移除）",
+                                  "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决；OBL-EXT11-a 关闭后 Backlund 门 PASS（v1.1.0）"}})
     else:
         comp.update({"status": "BLOCKED(B1-TB) time-box", "winding": None, "winding_2NT": None,
                      "blocked_subcode": ("B1-TB = time-box 资源熔断（区别于结构性 fail-closed 拒证"
@@ -643,7 +645,13 @@ def build_iso_cert(T, expected, do_completeness, completeness_timeout, log, _pre
     w["verdict"] = {"existence": True,
                     "completeness": bool(do_completeness),
                     "all_pass": bool(do_completeness)}
-    w["disclosure"] = [f"有限高度 T={T} 截断", DISCLOSURE_COMMON]
+    disc = [f"有限高度 T={T} 截断", DISCLOSURE_COMMON]
+    if do_completeness:
+        # OBL-EXT11-a 关闭加性附录（patch#16 前缀+；通道：只许增强不许减弱）
+        disc[1] = (DISCLOSURE_COMMON +
+                   "；OBL-EXT11-a 已闭（枢线修补#17）：Backlund 门经锚点 t=0 修正+"
+                   "结点紧区间化后复算 PASS，±1e-9 浮点容忍移除")
+    w["disclosure"] = disc
     w["deviation"] = DEVIATION
     w["replay"] = {"determinism": "double_run_gate: 同代码两次 --emit-raw 载荷字节一致",
                    "canonical_sha256_rule": "json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=False) 去 witness_sha256 后 sha256"}
