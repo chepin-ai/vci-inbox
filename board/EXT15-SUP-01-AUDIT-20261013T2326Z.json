@@ -1,0 +1,61 @@
+{
+ "anchor_audit": {
+  "method": "cvz_pt",
+  "re_interval": [
+   "1.64493406684822643647241516665",
+   "1.64493406684822643647241516665"
+  ],
+  "im_interval": [
+   "-3.10303767124234018489910874519e-153",
+   "3.10303767124234018489910874519e-153"
+  ],
+  "contains_pi2_over_6": true,
+  "contains_check_method": "区间相交（iv 层判定）：ζ(2) 区间 ∩ π²/6 区间 ≠ ∅",
+  "im_straddles_zero": true,
+  "arg_interval": [
+   "-1.88642069842222373804776034838e-153",
+   "1.88642069842222373804776034838e-153"
+  ],
+  "arg_width": "3.77284e-153",
+  "re_positive": true
+ },
+ "sector_margins": {
+  "n_segments": 232,
+  "max_span_rad": 0.8762108165716065,
+  "min_slack_to_pi": 2.265381837018187,
+  "all_below_pi": true
+ },
+ "A1_uniform_grid": {
+  "NR": 512,
+  "NH": 256,
+  "junctions": 769,
+  "nB_interval": [
+   "28.9999999999999999958558652436",
+   "29.000000000000000004418444223"
+  ],
+  "nB_width": "8.56258e-18",
+  "unique_integer": true,
+  "nB_int": 29,
+  "max_abs_segment_increment_rad": 0.10895417261094033,
+  "all_increments_below_pi": true
+ },
+ "A2_independent_float": {
+  "evaluator": "mpmath mp.zeta dps=60（非区间、非 CVZ 码路）",
+  "nB_float": 29.0,
+  "abs_err_vs_29": 0.0,
+  "max_abs_segment_increment_rad": 0.47361311852551097,
+  "float_increments_inside_interval_segments": "232/232",
+  "consistent_with_cert": true
+ },
+ "C_width_decomposition": {
+  "nB_cert_width": "8.562578979402883e-18",
+  "theta_width_dps50": "2.69001e-17",
+  "theta_width_dps80": "2.69001e-17",
+  "theta_width_precision_invariant_50_80": true,
+  "theta_width_analytic_check": "2×(5/66)/90×sechalf¹⁰×|1/4+50i|⁻⁹≈2.68e-17 与实测一致⇒解析余项主导",
+  "junction_arg_width_sum": "3.77284e-153",
+  "pi_division_factor": "1/π≈0.318",
+  "note": "宽度由 θ 的 Stirling/Brent 解析余项认证主导；mpmath iv 定向舍入只会外扩不会内缩——宽度是数学不确定度的上界,非浮点假象"
+ },
+ "verdict": "ALL_LEGS_PASS"
+}
