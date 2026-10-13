@@ -925,7 +925,11 @@ def _check_common(w, cl, witness_path):
     ok = bool(gfile and os.path.isfile(gfile) and _sha256_file(gfile) == gsha)
     cl.add("generator_sha256", ok, f"{gpath}")
     disc = w.get("disclosure", [])
-    cl.add("disclosure_kernel_honesty", REQUIRED_DISCLOSURES[0] in disc, str(disc))
+    _req = REQUIRED_DISCLOSURES[0]
+    # 枢线修补#13(SUP-01): 必载披露逐字在场——全等或「逐字前缀+；」加性强化句均受理(只许增强不许减弱)
+    cl.add("disclosure_kernel_honesty",
+           any(isinstance(d, str) and (d == _req or d.startswith(_req + "；")) for d in disc),
+           str(disc))
     rep = w.get("replay", {})
     cl.add("replay_rule", rep.get("canonical_sha256_rule") is not None, "")
 
@@ -992,12 +996,17 @@ def _verify_iso(w, cl):
            detail)
     # 完备性
     comp = w["completeness"]
-    if comp.get("status") == "BLOCKED(B1) time-box":
+    _st = comp.get("status")  # SUP-01(EXT14 R1 条件 qgl/lvlu): BLOCKED 子码分账——兼容 v1.0 "BLOCKED(B1) time-box" 与 v1.0.1 "BLOCKED(B1-TB) time-box"; 判据语义(熔断诚实性)不变
+    if isinstance(_st, str) and _st.startswith("BLOCKED(B1") and "time-box" in _st:
         cl.add("completeness_blocked_honest",
                w["verdict"].get("completeness") is False
                and comp.get("winding") is None
                and isinstance(comp.get("reason"), str) and len(comp["reason"]) > 20,
                "time-box 熔断明码登记")
+        cl.add("blocked_subcode_present",
+               ("B1-TB" in _st) and isinstance(comp.get("blocked_subcode"), str)
+               and isinstance(comp.get("retry_budget"), str),
+               "子码+重试预算登记(v1.0.1 起强制; 分账纪律防存在性误读为完备性进展)")
     elif comp.get("status") == "CERTIFIED":
         W, stats = winding_number(str(T), inp["eps"], int(inp["em_N"]), int(inp["dirichlet_M"]))
         cl.add("winding_recompute", W == comp.get("winding"), f"复算={W} 登记={comp.get('winding')}")

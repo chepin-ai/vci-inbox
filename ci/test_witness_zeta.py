@@ -85,29 +85,46 @@ def test_trunc_source_sha256_matches_iso1000():
 
 # ---------------------------------------------------------- 披露逐字
 
+_REQ_DISC = "区间见证层 PASS、kernel 层未证、非 RH 证据"
+
+
+def _has_req_disc(d):
+    # 枢线修补#13 同律: 逐字全等或「逐字前缀+；」加性强化
+    return any(x == _REQ_DISC or x.startswith(_REQ_DISC + "；") for x in d)
+
+
+def test_disclosure_prefix_extension_semantics():
+    # 枢线修补#13: 加性强化受理 / 减弱改写拒
+    assert _has_req_disc([_REQ_DISC])
+    assert _has_req_disc([_REQ_DISC + "；存在性 PASS ⊊ 计数 PASS"])
+    assert not _has_req_disc([_REQ_DISC.replace("非 RH 证据", "RH 证据")])
+    assert not _has_req_disc(["区间见证层 PASS"])
+
+
 def test_disclosure_verbatim_iso100():
     d = _load("iso100")["disclosure"]
     assert "有限高度 T=100 截断" in d
-    assert "区间见证层 PASS、kernel 层未证、非 RH 证据" in d
+    assert _has_req_disc(d)
 
 
 def test_disclosure_verbatim_iso1000():
     d = _load("iso1000")["disclosure"]
     assert "有限高度 T=1000 截断" in d
-    assert "区间见证层 PASS、kernel 层未证、非 RH 证据" in d
+    assert _has_req_disc(d)
 
 
 def test_disclosure_verbatim_trunc():
     d = _load("trunc")["disclosure"]
     assert "有限高度 T=1000 截断" in d
-    assert "区间见证层 PASS、kernel 层未证、非 RH 证据" in d
+    assert _has_req_disc(d)
     assert ("本证书为 Dudek 定理适用范围(x>e⁶⁰)之外的点态管道演练，非定理实例；"
             "零点输入由 ISO-1000 区间括号供给") in d
 
 
 def test_iso1000_completeness_blocked_honest():
     c = _load("iso1000")["completeness"]
-    assert c["status"] == "BLOCKED(B1) time-box"
+    assert c["status"] == "BLOCKED(B1-TB) time-box"  # SUP-01: 子码分账(B1-TB=time-box, 区别于结构性拒证)
+    assert "B1-TB" in c["blocked_subcode"] and "重试预算" in c["retry_budget"]
     assert c["winding"] is None
     assert "熔断" in c["reason"]
 

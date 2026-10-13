@@ -49,7 +49,8 @@ EM_N_1000 = 1200       # T=1000 围道 EM 项数
 BACKLUND_M = 10000     # Backlund Re ζ(2+it)>0 解析界部分和
 CONTOUR_DPS = {"cvz": 220, "em_dirichlet": 80}   # 见 deviation(5) 披露
 
-DISCLOSURE_COMMON = "区间见证层 PASS、kernel 层未证、非 RH 证据"
+DISCLOSURE_COMMON = ("区间见证层 PASS、kernel 层未证、非 RH 证据；"
+                    "存在性 PASS ⊊ 计数 PASS（括号存在性≠括号数正确性，计数完备性见 verdict/ completeness 分层）")
 TRUNC_DISCLOSURE = ("本证书为 Dudek 定理适用范围(x>e⁶⁰)之外的点态管道演练，非定理实例；"
                     "零点输入由 ISO-1000 区间括号供给")
 DEVIATION = (
@@ -620,7 +621,12 @@ def build_iso_cert(T, expected, do_completeness, completeness_timeout, log, _pre
                                   "n_backlund": W,
                                   "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决"}})
     else:
-        comp.update({"status": "BLOCKED(B1) time-box", "winding": None, "winding_2NT": None,
+        comp.update({"status": "BLOCKED(B1-TB) time-box", "winding": None, "winding_2NT": None,
+                     "blocked_subcode": ("B1-TB = time-box 资源熔断（区别于结构性 fail-closed 拒证"
+                                         "——iso100 完备性 Backlund 门属后者，见 KI-EXT11-1）；"
+                                         "分账纪律：存在性 649 括号不得被读作完备性进展"),
+                     "retry_budget": ("重试预算：≥4 核墙钟 2h 或绕数算法升级（盒级 argwidth 余量，"
+                                      "OBL-EXT11-a 关闭后）再评估；不得放宽熔断墙钟冒充进展"),
                      "reason": ("ISO-1000 完备性围道超出墙钟预算，触发定案卡熔断条款"
                                 "（CVZ 围道 >20 分钟允许降级为 BLOCKED(B1)）：可行性实测 "
                                 "T=14.5 围道需 1660 盒/87s，T=1000 量级 ~7×10⁴ 盒，"
