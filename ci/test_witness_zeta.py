@@ -8,6 +8,8 @@ import subprocess
 import sys
 from fractions import Fraction
 
+import re
+
 import pytest
 from mpmath import mp, mpf, iv
 
@@ -136,6 +138,43 @@ def test_iso100_completeness_certified():
 
 
 # ---------------------------------------------------------- 单元：数学内核
+
+def _ivlo(x):
+    return mpf(x._mpi_[0])  # mpmath 1.3.0: ivmpf._mpi_ 为裸端点元组对
+
+
+def _ivhi(x):
+    return mpf(x._mpi_[1])
+
+
+def test_patch17_point_eval_tight():
+    """枢线修补#17: 结点紧求值钉档——ζ(2)=π²/6、ζ(1/2+100i) 与 mp 高精密值吻合、区间宽≪1e-60。"""
+    mp.dps = 80
+    Q, meth = V._point_eval_zeta_iv(Fraction(2), Fraction(0), 400, 200)
+    assert meth == "cvz_pt"
+    tru = mp.pi ** 2 / 6
+    assert abs(_ivlo(Q[0]) - tru) < mpf("1e-60") and abs(_ivhi(Q[1])) < mpf("1e-60")
+    Q2, _ = V._point_eval_zeta_iv(Fraction(1, 2), Fraction(100), 400, 200)
+    z2 = mp.zeta(mp.mpc(mpf("0.5"), mpf(100)))
+    assert abs(_ivlo(Q2[0]) - z2.real) < mpf("1e-60")
+    assert abs(_ivlo(Q2[1]) - z2.imag) < mpf("1e-60")
+    a0 = V._iv_arg_tight(Q)
+    assert _ivlo(a0) <= 0 <= _ivhi(a0)
+    assert _ivhi(a0) - _ivlo(a0) < mpf("1e-60")  # 锚点 arg ζ(2)=0
+
+
+def test_patch17_wrap_pi():
+    """主值包裹：近 ±π 边界的紧增量回卷正确；域内增量不动。"""
+    iv.dps = 50
+    d = V._wrap_pi_iv(iv.mpf("3.13") - iv.mpf("-3.13"))   # 真值 +0.0031… 回卷 −2π 侧? 3.13−(−3.13)=6.26>π → −2π
+    assert abs(float(d.a) - (6.26 - 2 * float(mp.pi))) < 1e-12
+    d2 = V._wrap_pi_iv(iv.mpf("-3.13") - iv.mpf("3.13"))  # −6.26 → +2π
+    assert abs(float(d2.a) - (-6.26 + 2 * float(mp.pi))) < 1e-12
+    d3 = V._wrap_pi_iv(iv.mpf("0.5") - iv.mpf("0.1"))
+    assert abs(float(d3.a) - 0.4) < 1e-12
+
+
+
 
 def test_theta_contains_siegeltheta():
     mp.dps = 60
@@ -282,14 +321,25 @@ def full_results():
 
 
 def test_full_verify_all_pass(full_results):
-    # KI-EXT11-1 钉档(枢线修补#5): iso100 完备性 Backlund 门 fail-closed 拒证(盒中心多边形
-    # 未计张角余量,Σw=171.95rad 实测)——预期 FAIL 且败因恰为 Backlund;存在性层不受影响。
-    # iso1000(存在性)/trunc(残差) 应 PASS。完备性严格化挂号 OBL-EXT11-a。
+    # OBL-EXT11-a 关闭(枢线修补#17): Backlund 门升级——锚点 t=0 修正(KI-EXT11-1-ADD2 根因:
+    # ε 起步缺锚段辐角 −0.0794691791…rad)+结点紧区间 Δarg(张角余量以分支认证纳入,
+    # ±1e-9 浮点容忍移除)——三证全 PASS;KI-EXT11-1 关闭。
     assert full_results["iso1000"]["ok"], "iso1000"
     assert full_results["trunc"]["ok"], "trunc"
     r100 = full_results["iso100"]
-    assert not r100["ok"], "iso100 应因 KI-EXT11-1 拒证"
-    assert "Backlund" in str(r100), "iso100 败因须为 Backlund 门"
+    assert r100["ok"], f"iso100 应在 OBL-EXT11-a 关闭后 PASS: {r100}"
+
+
+def test_backlund_obl_ext11a_closure(full_results):
+    """OBL-EXT11-a 关闭钉档(逐字关闭条件): 张角余量纳入后 N_B 区间落入唯一整数窗;
+    不得以放宽区间宽度绕过——区间宽须 ≪1 且 detail 载明锚点/方法/结点数。"""
+    r = full_results["iso100"]
+    chk = {c["check"]: c for c in r["checks"]}
+    assert chk["backlund_unique_integer_window"]["ok"]
+    d = chk["backlund_unique_integer_window"]["detail"]
+    assert "锚点=t=0" in d and "junction_pointeval_interval" in d
+    m = re.search(r"宽\[?([0-9.eE+-]+)", d)
+    assert m and float(m.group(1)) < 1e-10
 
 
 def test_full_verify_iso100_winding(full_results):
