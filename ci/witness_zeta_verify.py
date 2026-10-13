@@ -649,8 +649,8 @@ def winding_number(T_str, eps_str, em_N, dir_M, dps=None):
     m = len(chain)
     pts = []
     for k in range(m):
-        Qa = chain[k]
-        Qb = chain[(k + 1) % m]
+        Qa = chain[k][2]      # 枢线修补#17: 链元组 (p0,p1,Q)
+        Qb = chain[(k + 1) % m][2]
         rx = (max(float(Qa[0].a), float(Qb[0].a)), min(float(Qa[0].b), float(Qb[0].b)))
         ry = (max(float(Qa[1].a), float(Qb[1].a)), min(float(Qa[1].b), float(Qb[1].b)))
         if not (rx[0] <= rx[1] and ry[0] <= ry[1]):
@@ -707,7 +707,7 @@ def _subdivide_edge_h(edge, p0, p1, em_N, dir_M, stats, depth=0):
     try:
         Q = _eval_arc_box_h(edge, s0, s1, p0[1], em_N, dir_M, stats)
         if _accept_box(Q, stats, depth):
-            return [Q]
+            return [(p0, p1, Q)]  # 枢线修补#17: 链元组携带参数域（Backlund 结点网格用）
     except StraddleError:
         pass
     if depth >= 60:
@@ -722,7 +722,7 @@ def _subdivide_edge_v(edge, p0, p1, em_N, dir_M, stats, depth=0):
     t0, t1 = p0[1], p1[1]
     Q = _eval_arc_box_v(edge, p0[0], t0, t1, em_N, dir_M, stats)
     if _accept_box(Q, stats, depth):
-        return [Q]
+        return [(p0, p1, Q)]  # 枢线修补#17: 同上
     if depth >= 60:
         raise VerifyError(f"围道细分超深（{edge} t∈[{t0},{t1}]）——拒证")
     mid = Fraction(t0 + t1) / 2
@@ -800,58 +800,126 @@ def arg_variation_and_re_sign_changes(chain_pts_range):
     return tot, m
 
 
+def _point_eval_zeta_iv(sig_f, t_f, em_N, dir_M):
+    """[S10b·枢线修补#17] 结点紧区间求值：退化零宽输入（dyadic 有理参数精确入盒）。
+    分发：|t|<=CVZ_T_MAX → CVZ（误差 ~1e-85 量级）；否则 EM（显式余项）。
+    不走 Dirichlet：其 1/M 尾界（~5e-3）对结点求值过松，累计宽度会淹没整数窗。
+    返回 ((re,im) iv.mpi 对（已含 E 包络对称加宽）, method)。"""
+    from mpmath import iv
+    sig = _iv_box_frac(sig_f, sig_f)
+    tt = _iv_box_frac(t_f, t_f)
+    if not (sig.a >= 0.5):
+        raise VerifyError("结点求值越出 σ>=1/2 域——拒证")
+    if max(abs(tt.a), abs(tt.b)) <= CVZ_T_MAX:
+        Z, E = _zeta_cvz_box(sig, tt)
+        meth = "cvz_pt"
+    else:
+        Z, E = _zeta_em_box(sig, tt, em_N)
+        meth = "em_pt"
+    Q = (iv.mpf((Z[0].a - E.b, Z[0].b + E.b)),
+         iv.mpf((Z[1].a - E.b, Z[1].b + E.b)))
+    return Q, meth
+
+
+def _iv_arg_tight(Q):
+    """紧点区间辐角主值（iv.atan2 象限感知）。0∈Q → 拒证（fail-closed）。"""
+    from mpmath import iv
+    if not (Q[0].b < 0 or Q[0].a > 0 or Q[1].b < 0 or Q[1].a > 0):
+        raise VerifyError("结点区间含 0——辐角无定义，拒证")
+    return iv.atan2(Q[1], Q[0])
+
+
+def _wrap_pi_iv(d):
+    """辐角增量主值包裹。链盒张角 <=1.2<π 认证每子段真实增量 ∈(−1.2,1.2)⊂(−π,π)，
+    故包裹唯一合法（张角余量以分支认证方式纳入，不进入区间宽度）。d 为紧区间。"""
+    from mpmath import iv
+    if d.a > iv.pi.b:
+        return d - 2 * iv.pi
+    if d.b < -iv.pi.b:
+        return d + 2 * iv.pi
+    return d
+
+
+def _iv_re_sign(Q):
+    """Re 区间严格符号：+1/−1；跨 0 → 拒证（fail-closed，不作启发式猜测）。"""
+    if Q[0].a > 0:
+        return 1
+    if Q[0].b < 0:
+        return -1
+    raise VerifyError("结点 Re 区间跨 0——变号计数无法严格裁决，拒证")
+
+
 def backlund_cross_check(T_str, eps_str, em_N, dir_M, winding, dps=None):
     """(b) Backlund：N_B(T) = (θ(T) + Δarg_L)/π + 1，
-    Δarg_L = 沿 2→2+iT→1/2+iT 折线的连续辐角增量（链盒多边形层认证）。
-    返回 (N_B_nearest_int, m_re_sign_changes, detail)。"""
-    from mpmath import iv
+    Δarg_L = 沿 2→2+iT→1/2+iT 折线的连续辐角增量。
+
+    OBL-EXT11-a 关闭版（枢线修补#17；KI-EXT11-1-ADD2 根因双层分解）：
+    - 锚点修正：L 折线自 t=0 起（arg ζ(2)=0 实正锚点）。旧版自 ε 起步，
+      缺失锚段辐角 arg ζ(2+iε)（ε=0.5 时 −0.0794691791… rad，为旧拒证主因）；
+      eps_str 形参保留仅为签名兼容，Backlund 层不再消费（winding 矩形仍用 ε）。
+    - Δarg_L 结点紧区间求值：链盒张角 ≤1.2<π 认证每子段真实增量 ∈(−π,π)；
+      结点（二分网格 dyadic 参数）处以零宽输入取 CVZ/EM 紧区间（~1e-85），
+      逐段增量取主值（包裹唯一合法）后区间求和——
+      取代旧盒心多边形 float 层（张角余量未计入，实测残余 ~0.016 rad）。
+    - N_B 区间 = (θ_iv + Δarg_iv)/π + 1：全程区间算术，旧 ±1e-9 浮点容忍移除；
+      区间须含唯一整数，否则 fail-closed 拒证（不得以放宽区间宽度绕过）。
+    返回 (N_B_int, m_re_sign_changes_top_half, detail)。"""
+    from mpmath import iv, mp
     iv.dps = dps or DPS_CVZ
-    eps = Fraction(eps_str)
     T = Fraction(T_str)
     stats = ContourStats()
-    # 右边：σ=2，t: ε→T（Dirichlet）
-    right = _subdivide_edge_v("right", (Fraction(2), eps), (Fraction(2), T), em_N, dir_M, stats)
+    zero = Fraction(0)
+    # 右边：σ=2，t: 0→T（锚点 arg ζ(2)=0）
+    right = _subdivide_edge_v("right", (Fraction(2), zero), (Fraction(2), T),
+                              em_N, dir_M, stats)
     # 顶右半：t=T，σ: 2→1/2
-    top_half = _subdivide_edge_h("top", (Fraction(2), T), (Fraction(1, 2), T), em_N, dir_M, stats)
-    chain = right + top_half
-    # 顶点：p_k = Q_k ∩ Q_{k+1} 中点（链内相邻；端点用盒中心）
-    pts = []
-
-    def center(Q):
-        return ((float(Q[0].a) + float(Q[0].b)) / 2, (float(Q[1].a) + float(Q[1].b)) / 2)
-    pts.append(center(chain[0]))
-    for k in range(len(chain) - 1):
-        Qa, Qb = chain[k], chain[k + 1]
-        rx = (max(float(Qa[0].a), float(Qb[0].a)), min(float(Qa[0].b), float(Qb[0].b)))
-        ry = (max(float(Qa[1].a), float(Qb[1].a)), min(float(Qa[1].b), float(Qb[1].b)))
-        if not (rx[0] <= rx[1] and ry[0] <= ry[1]):
-            raise VerifyError("Backlund 链相邻盒交集为空——拒证")
-        px = (rx[0] + rx[1]) / 2
-        py = (ry[0] + ry[1]) / 2
-        if px == 0.0:
-            px = math.nextafter(px, 1.0)
-        if py == 0.0:
-            py = math.nextafter(py, 1.0)
-        pts.append((px, py))
-    pts.append(center(chain[-1]))
-    darg, m_re = arg_variation_and_re_sign_changes(pts)
-    # θ(T)（dps=50 规范，余项内含）
+    top_half = _subdivide_edge_h("top", (Fraction(2), T), (Fraction(1, 2), T),
+                                 em_N, dir_M, stats)
+    segs = right + top_half
+    # 结点参数序列（有序）：竖边终点列接横边终点列
+    grid = [(Fraction(2), zero)]
+    grid += [(Fraction(2), p1[1]) for (p0, p1, Q) in right]
+    grid += [(p1[0], T) for (p0, p1, Q) in top_half]
+    # 结点紧求值 → 辐角主值 + Re 符号
+    args = []
+    re_signs = []
+    jmeth = {}
+    for (sf, tf) in grid:
+        Q, meth = _point_eval_zeta_iv(sf, tf, em_N, dir_M)
+        jmeth[meth] = jmeth.get(meth, 0) + 1
+        args.append(_iv_arg_tight(Q))
+        re_signs.append(_iv_re_sign(Q))
+    # 每子段增量主值求和（区间；张角认证分支唯一）
+    darg = iv.mpf(0)
+    for k in range(len(segs)):
+        darg = darg + _wrap_pi_iv(args[k + 1] - args[k])
+    # Re 变号数（顶右半段：结点下标 len(right)..len(grid)-1）
+    m_re = 0
+    for k in range(len(right), len(grid) - 1):
+        if re_signs[k] != re_signs[k + 1]:
+            m_re += 1
+    # θ(T) 区间（DPS_RS 规范，余项内含）
     iv.dps = DPS_RS
     th = theta_iv(_iv_frac(T))
-    nB_lo = (float(th.a) + darg) / math.pi + 1
-    nB_hi = (float(th.b) + darg) / math.pi + 1
-    # 增量累计 float 误差容忍 ±1e-9
-    nB_lo -= 1e-9
-    nB_hi += 1e-9
-    lo_int = math.ceil(nB_lo)
-    hi_int = math.floor(nB_hi)
-    if lo_int != hi_int:
-        raise VerifyError(f"Backlund N_B 区间 [{nB_lo},{nB_hi}] 不含唯一整数——拒证")
-    return lo_int, m_re, {"nB_interval": [nB_lo, nB_hi], "darg": darg,
-                          "boxes": stats.boxes, "methods": dict(stats.methods)}
+    nB = (th + darg) / iv.pi + 1
+    mp.dps = max(mp.dps, 60)
+    nB_lo_i = int(mp.ceil(nB.a))
+    nB_hi_i = int(mp.floor(nB.b))
+    if nB_lo_i != nB_hi_i:
+        raise VerifyError(
+            f"Backlund N_B 区间 [{mp.nstr(nB.a, 30)},{mp.nstr(nB.b, 30)}] "
+            "不含唯一整数——拒证（OBL-EXT11-a 未达：不得以放宽区间宽度绕过）")
+    return nB_lo_i, m_re, {
+        "nB_interval": [mp.nstr(nB.a, 30), mp.nstr(nB.b, 30)],
+        "nB_interval_width": mp.nstr(nB.b - nB.a, 6),
+        "darg_interval": [mp.nstr(darg.a, 30), mp.nstr(darg.b, 30)],
+        "darg_method": "junction_pointeval_interval_v1(枢线修补#17/OBL-EXT11-a)",
+        "anchor": "t=0（arg ζ(2)=0 实正锚点）",
+        "junctions": len(grid),
+        "boxes": stats.boxes,
+        "methods": dict(stats.methods),
+        "junction_methods": jmeth}
 
-
-# ------------------------------------------------------------------ [S10] TRUNC
 
 def sieve_prime_power_exponents(x_int):
     """精确筛：返回 [(p, m_p)]，p 升序，m_p = max{k: p^k ≤ x_int}（整数幂精确判定）。"""
@@ -1020,6 +1088,11 @@ def _verify_iso(w, cl):
                                                 int(inp["dirichlet_M"]), W)
         cl.add("backlund_N_equals_winding", nB == W == bk.get("n_backlund"),
                f"N_B={nB} W={W} 登记={bk.get('n_backlund')}")
+        # 枢线修补#17(OBL-EXT11-a): 唯一整数窗证据登记（拒证情形已在函数内 raise，此处恒真）
+        cl.add("backlund_unique_integer_window", True,
+               f"N_B区间=[{detail['nB_interval'][0]},{detail['nB_interval'][1]}] "
+               f"宽{detail['nB_interval_width']}；方法={detail['darg_method']}；"
+               f"锚点={detail['anchor']}；结点{detail['junctions']}")
         cl.add("backlund_re_sign_changes", m_re == bk.get("re_sign_changes_top_half"),
                f"{m_re} vs {bk.get('re_sign_changes_top_half')}")
     else:
