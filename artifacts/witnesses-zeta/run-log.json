@@ -1,0 +1,22 @@
+{
+ "driver": "hub_regen_driver",
+ "finding": "FINDING-20261013-01",
+ "ts_start": "2026-10-13T08:57:59Z",
+ "stages": {
+  "iso100": {
+   "brackets_s": 8.4,
+   "total_s": 736.2,
+   "synced": true
+  },
+  "iso1000": {
+   "brackets_s": 2588.4,
+   "total_s": 2588.4,
+   "synced": true
+  },
+  "trunc": {
+   "total_s": 43.1,
+   "synced": true
+  }
+ },
+ "ts_end": "2026-10-13T09:54:07Z"
+}

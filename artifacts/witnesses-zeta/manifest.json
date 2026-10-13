@@ -1,0 +1,37 @@
+{
+ "CLASSIFY": "L1",
+ "run_id": "ws63-ext-wave-11-zeta",
+ "ts_utc": "2026-10-13T09:54:07Z",
+ "files": {
+  "zeta-iso-100.witness.json": "b7e4366e18ec862935b0ffc13713d0146d64132e6140495464c4160e72fe184d",
+  "zeta-iso-1000.witness.json": "a9cf4636cb9b2572ad08c804b768629d65bda186215a123c59e54fb051faa244",
+  "psi-trunc.witness.json": "88bee491357d39ede3d0b5c9ee562f7f90f68c6ebaa380c086ffe2751a10d201",
+  "run-log.json": "1712946077787c1b7373e3447887fbafb9fcabb86bd4a5c80642b8a374366b17"
+ },
+ "phases_wall_s": {
+  "iso100": {
+   "brackets_s": 8.4,
+   "total_s": 736.2,
+   "synced": true
+  },
+  "iso1000": {
+   "brackets_s": 2588.4,
+   "total_s": 2588.4,
+   "synced": true
+  },
+  "trunc": {
+   "total_s": 43.1,
+   "synced": true
+  }
+ },
+ "rebuild_note": "FINDING-20261013-01 重建档：会话整盘重置后按补丁谱系(#1-#12)重建 ci×3 并全量重算；iso1000 完备性维持 generate() 默认诚实路径 BLOCKED(B1)；iso100 完备性 CERTIFIED(29) 生成侧、核验器 Backlund 门 fail-closed 拒证(KI-EXT11-1)；跨环境重放位级一致——N_B 区间 [29.09812430226496,29.09812430426496] 与 trunc 残差 [−3365.36,3142.19] 均与重置前逐位相同。",
+ "double_run_gate": "各证书进程内同代码两次构建字节一致",
+ "verification": {
+  "cli": {
+   "zeta-iso-100": "FAIL@Backlund(KI-EXT11-1 钉档预期)",
+   "zeta-iso-1000": "PASS",
+   "psi-trunc": "PASS"
+  },
+  "pytest": "40/40 passed in 963s"
+ }
+}
