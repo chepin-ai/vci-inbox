@@ -1,13 +1,14 @@
 {
  "CLASSIFY": "L1",
  "run_id": "ws63-ext-wave-11-zeta",
- "ts_utc": "2026-10-13T10:35:55Z",
+ "ts_utc": "2026-10-13T18:10:00Z",
  "files": {
-  "zeta-iso-100.witness.json": "bd4ff13c1e7af6f63a04a4d8a3abef9dc26a78385648f7ab3934b5d64d9b2b55",
-  "zeta-iso-1000.witness.json": "79efa59d9950b50d01ee00739991947d0502730beae8ed51fb5dbc7c2a11ab4f",
-  "psi-trunc.witness.json": "7c80367cbb8a0d7e06bf82ef87adf26ddaed4c626243e1e5a5dc1da6640a987d",
+  "zeta-iso-100.witness.json": "0921f449554b3aca8b4992a7fbb05ea9c8a46b35c7a6edb5a10d15ffc7acd619",
+  "zeta-iso-1000.witness.json": "b8aca692db9a32f544505cf0b4dbe8c5bf73ef7ad8e39311f27f8280a4c651e1",
+  "psi-trunc.witness.json": "4a995647032ff536a17dac0eeeeae6088a5e797ad77d3e1ad7f6ae0c41cfe5b7",
   "run-log.json": "1712946077787c1b7373e3447887fbafb9fcabb86bd4a5c80642b8a374366b17",
-  "run-log-sup01.json": "7d4e8195326ab57748ddb4a1765ca2d82a7fefbd922e7fb44a7f417c9efd2773"
+  "run-log-sup01.json": "7d4e8195326ab57748ddb4a1765ca2d82a7fefbd922e7fb44a7f417c9efd2773",
+  "run-log-resign-v110.json": "3f1568f107eed73c9ddf00329497e4c8bd08541e95514044d8c63c4961dbc413"
  },
  "phases_wall_s": {
   "iso100": {
@@ -29,11 +30,11 @@
  "double_run_gate": "各证书进程内同代码两次构建字节一致",
  "verification": {
   "cli": {
-   "zeta-iso-100": "FAIL@Backlund(KI-EXT11-1 钉档预期)",
+   "zeta-iso-100": "PASS（v1.1.0：OBL-EXT11-a 关闭后 Backlund 门通过）",
    "zeta-iso-1000": "PASS",
    "psi-trunc": "PASS"
   },
-  "pytest": "40/40 passed in 963s"
+  "pytest": "44/44 passed in 2432.67s（v1.1.0）"
  },
  "sup01_resign": {
   "driver": "hub_regen_driver2",
@@ -48,5 +49,19 @@
   "note": "EXT14 R1 条件 SUP-01 重签 v1.0.1：仅披露文增句、iso1000 BLOCKED(B1-TB) time-box 子码+retry_budget、claim 文；数学零改动，双跑字节级一致门全过；跨环境重放位级一致。",
   "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
   "ki_ref": "board/KI-EXT11-1.md (+ADD1)"
+ },
+ "v110_resign": {
+  "driver": "resign_v110_driver.py + fix_trunc_zeroref.py",
+  "wave": "EXT-WAVE-12「严」",
+  "ts_utc": "2026-10-13T22:20:00Z",
+  "reason": "OBL-EXT11-a 关闭（KI-EXT11-1+ADD1+ADD2）：Backlund 门锚点 t=0 修正+结点紧区间化，±1e-9 浮点容忍移除",
+  "field_diff": {
+   "zeta-iso-100.witness.json": "6 场（anchor/darg_method ADDED；note/disclosure 加性延伸；2 sha）",
+   "zeta-iso-1000.witness.json": "2 场（generator.sha256+witness_sha256）",
+   "psi-trunc.witness.json": "3 场（generator.sha256+witness_sha256+zero_source.sha256 交叉引用同步新 iso1000 b8aca692…）"
+  },
+  "math_zero_change": true,
+  "closure_evidence": "T=100 N_B∈[28.99999999999999999586,29.00000000000000000442] 宽8.6e-18 唯一整数窗29；T=20 对照 N_B=1",
+  "ki_ref": "board/KI-EXT11-1.md (+ADD1+ADD2)"
  }
 }
