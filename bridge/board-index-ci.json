@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2586,
+ "indexed": 2588,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -14750,6 +14750,15 @@
    ]
   },
   {
+   "file": "lvlu-nudge-WQB15-V02-L275-20261013T210501Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L275 | WQB15-V02 WQ-B15 v0.2（taskids至/Completed至则修）",
+   "at": [
+    "lvlu"
+   ]
+  },
+  {
    "file": "lvlu-nudge-WQB15-V02-L29-20260921T214956Z.md",
    "line": "lvlu",
    "ts": null,
@@ -16426,6 +16435,13 @@
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20261003T021518Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "仓亡警: ci-inbox",
+   "at": []
+  },
+  {
+   "file": "lvlu-仓亡警-ci-inbox-20261013T210511Z.md",
    "line": "lvlu",
    "ts": null,
    "title": "仓亡警: ci-inbox",
