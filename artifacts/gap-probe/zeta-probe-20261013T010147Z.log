@@ -1,0 +1,25 @@
+WS-64 G3' absence probe · 20261013T010147Z
+lib_dir=/home/kimi/ws64/vci-inbox/library/ns
+lean: Lean (version 4.10.0, x86_64-unknown-linux-gnu, commit c375e19f6b65, Release)
+
+===== probe: riemannZeta =====
+--- file ---
+import Mathlib.NumberTheory.LSeries.RiemannZeta
+import Mathlib.NumberTheory.LSeries.Dirichlet
+#check @riemannZeta
+--- rc=0 ---
+riemannZeta : ℂ → ℂ
+===== probe: riemannZeta_ne_zero_of_one_le_re =====
+--- file ---
+import Mathlib.NumberTheory.LSeries.RiemannZeta
+import Mathlib.NumberTheory.LSeries.Dirichlet
+#check @riemannZeta_ne_zero_of_one_le_re
+--- rc=1 ---
+/tmp/tmp.VxWMaBLW7B.lean:3:8: error: unknown identifier 'riemannZeta_ne_zero_of_one_le_re'
+===== probe: HardyZFunction =====
+--- file ---
+import Mathlib.NumberTheory.LSeries.RiemannZeta
+import Mathlib.NumberTheory.LSeries.Dirichlet
+#check @HardyZFunction
+--- rc=1 ---
+/tmp/tmp.MGBfdK5bDx.lean:3:8: error: unknown identifier 'HardyZFunction'
