@@ -12,7 +12,7 @@
   "zero_source": {
    "certificate_id": "zeta-iso-1000",
    "path": "artifacts/witnesses-zeta/zeta-iso-1000.witness.json",
-   "sha256": "79efa59d9950b50d01ee00739991947d0502730beae8ed51fb5dbc7c2a11ab4f",
+   "sha256": "b8aca692db9a32f544505cf0b4dbe8c5bf73ef7ad8e39311f27f8280a4c651e1",
    "brackets": [
     [
      "14109825141734693790457251965381914818743313427829/1000000000000000000000000000000000000000000000000",
@@ -2689,7 +2689,7 @@
  "provenance": {
   "generator": {
    "script": "ci/witness_zeta_gen.py",
-   "sha256": "2cbc30f6913387baec35c4582af75f9d1dcf5c7378de736e99e9c25e93092b84"
+   "sha256": "4e6d0bf75c641ce1d6dd87af2e1433de03bebd1a9e7de1f3f887050dc97d8711"
   },
   "verifier": {
    "script": "ci/witness_zeta_verify.py"
@@ -2703,5 +2703,5 @@
   }
  },
  "notes": "ψ(x0)=Σ_{p^k≤1e7} m_p·ln p（精确整数筛，区间对数和，升序）；残差=ψ−x0+S+log(2π)+½log(1−x0⁻²) ∈ iv。",
- "witness_sha256": "254318a9151012745f66dfc96b389e8e17fe922200cc00ccc09addefb9c5591c"
+ "witness_sha256": "a869b319fc96888ed6e4fc791b391b055b19e73954a41ce91985d6b525a0716c"
 }
