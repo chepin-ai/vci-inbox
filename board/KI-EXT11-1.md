@@ -31,3 +31,26 @@ WS-63 核验器 Backlund 交叉核验门（backlund_N_equals_winding）**结构�
 - #5 测试钉档本 KI：iso100 预期 FAIL 且败因恰为 Backlund
 - #6-#12 测试层 drift 修复（schema 签名/紧度界含 θ 余项内禀宽/FE 盒改包含断言/
   _certify_bracket 四元组/篡改测试改路径+ok=False/full_verify 返回结构/CLI --json 列表）
+
+---
+
+# KI-EXT11-1 · ADD1（EXT14 R1 条件落实，20261013T1900Z；上文原文零改动）
+
+## 降格挂账形式化（ucif2 W-g）
+- iso100 完备性：生成器侧 CERTIFIED(29) / 核验器 fail-closed 拒证 → 仲裁态「数值演示级」，
+  记账于 gap-registry/zeta/zeta-iso-100.json（tier「存在性 PASS / 完备性 UNRESOLVED」）。
+- 谓词映射披露逐字：ZetaAnchor 四锚为谓词映射，非 RH 蕴含；任何引用须带此限定。
+
+## OBL-EXT11-a 关闭条件（vinf W-c，逐字写死）
+「张角余量纳入后 N_B 区间落入唯一整数窗」方得关闭；明文禁止以放宽区间宽度/放大盒径/调参绕过（P4 同律）。
+
+## BLOCKED 分账（qgl W-b / lvlu W-e）
+- iso1000 完备性 = BLOCKED(B1-TB) time-box 资源熔断，与本 KI（结构性拒证）分账；
+  重试预算：≥4 核墙钟 2h 或 OBL-EXT11-a 关闭后算法升级再评估。
+- 存在性 649 括号不得被读作完备性进展。
+
+## 语义边界（cfts W-f / qfa W-i）
+G3' 探测域 = mathlib v4.10.0 符号表（lake env lean elaborator 层）；ABSENT 为工程层事实，非元数学结论。
+
+## 存续声明（lgt W-h）
+本 KI 与 BLOCKED(B1-TB) 存续至 OBL-EXT11-a 关闭；任何升格定理层动作以先清此两项为前置。

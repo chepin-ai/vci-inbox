@@ -2,25 +2,38 @@
  "CLASSIFY": "L1",
  "entry_id": "zeta-iso-100",
  "spec": "WELD-A-SPEC-01",
+ "schema": "1.0.1(EXT14-SUP-01)",
  "gap": {
-  "G1_census": "library/ns/NsGallean/ZetaAnchor.lean zetaIsolationAnchor 锚缺席→GAP 成立(WS-64 probe ABSENT×2)",
+  "G1_census": "library/ns/NsGalerkin/ZetaAnchor.lean zetaIsolationAnchor 锚缺席→GAP 成立(WS-64 probe ABSENT×2)",
   "G2_mapping_host": "zeta-isolation 证书族(zeta-iso-100)",
   "G3_axioms_or_absent": "G3' 路径: riemannZeta_ne_zero_of_one_le_re / Hardy Z 缺席(gap-probe VERDICT ABSENT=TRUE)"
  },
  "wit": {
-  "tier": "W1 计算层区间见证",
-  "witness_oid": "2053f49c46f62fb1391da15d6376ec5304e30096",
-  "detail": "29 组 IVT 括号端点异号不含0, 核验器存在性门全过; 完备性 Backlund 门 fail-closed 拒证(KI-EXT11-1)→存在性 PASS、完备性数值演示级, 分层记账禁冒充"
+  "tier": "W1 计算层区间见证(存在性 PASS / 完备性 UNRESOLVED)",
+  "witness_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "detail": "29 组 IVT 括号端点异号不含0, 核验器存在性门全过; 完备性 Backlund 门 fail-closed 拒证(KI-EXT11-1)→仲裁态数值演示级, 分层记账禁冒充; 不得读作完备性进展"
+ },
+ "binding": {
+  "witness_id": "zeta-iso-100",
+  "cert_path": "artifacts/witnesses-zeta/zeta-iso-100.witness.json",
+  "commit_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "verifier": "ci/witness_zeta_verify.py",
+  "verdict_tier": "W1",
+  "granularity": "证书文件级(witness_sha256 锁全字段); 括号级证据由 brackets[] 携载, 核验器逐括号复算"
  },
  "redeem": {
   "status": "open→witnessed",
   "blocked_codes": [],
-  "R1_artifact_oid": "2053f49c46f62fb1391da15d6376ec5304e30096",
+  "R1_artifact_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
   "R2_ledger": "PENDING_CLOSURE",
   "R3_census_diff": "PENDING_CLOSURE"
  },
+ "ki_ref": "board/KI-EXT11-1.md(+ADD1)",
+ "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
  "disclosure": [
   "有限高度 T=100 截断",
-  "区间见证层 PASS、kernel 层未证、非 RH 证据"
+  "区间见证层 PASS、kernel 层未证、非 RH 证据",
+  "存在性 PASS ⊊ 计数 PASS",
+  "G3' 探测域=mathlib v4.10.0 符号表; ABSENT 为工程层事实, 非元数学结论; 四锚为谓词映射, 非 RH 蕴含"
  ]
 }

@@ -2,26 +2,38 @@
  "CLASSIFY": "L1",
  "entry_id": "zeta-trunc-psi-1e7",
  "spec": "WELD-A-SPEC-01",
+ "schema": "1.0.1(EXT14-SUP-01)",
  "gap": {
   "G1_census": "ψ 显式公式截断见证锚缺席(同 WS-64 探测面)",
   "G2_mapping_host": "zeta-truncation 证书(psi-trunc)",
   "G3_axioms_or_absent": "G3' 路径同族缺席"
  },
  "wit": {
-  "tier": "W1 计算层区间见证",
-  "witness_oid": "2053f49c46f62fb1391da15d6376ec5304e30096",
-  "detail": "x0=10^7+0.5, T0=1000, 649 认证括号喂入; 残差∈[−3365,3142] ⊆ Dudek 形界 ±5.2e6; 核验器全门 PASS"
+  "tier": "W1 计算层区间见证(管道演练级)",
+  "witness_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "detail": "x0=10^7+0.5, T0=1000, 649 认证括号喂入; 残差∈[−3365.36,3142.19] ⊆ Dudek 形界 ±5.2e6; 核验器全门 PASS",
+  "scope_fence": "Dudek 适用域 x>e⁶⁰ 之外的点态管道演练; 不得进入任何 WIT 完备性计数, 不得出现在 GAP 链支撑集(qlv W-d)"
+ },
+ "binding": {
+  "witness_id": "psi-trunc",
+  "cert_path": "artifacts/witnesses-zeta/psi-trunc.witness.json",
+  "commit_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
+  "verifier": "ci/witness_zeta_verify.py",
+  "verdict_tier": "W1-drill",
+  "granularity": "证书文件级"
  },
  "redeem": {
-  "status": "open→witnessed",
+  "status": "open→witnessed(drill)",
   "blocked_codes": [],
-  "R1_artifact_oid": "2053f49c46f62fb1391da15d6376ec5304e30096",
+  "R1_artifact_oid": "46f24f40ee70972190a5ca18be34490b7f0f5f84",
   "R2_ledger": "PENDING_CLOSURE",
   "R3_census_diff": "PENDING_CLOSURE"
  },
+ "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
  "disclosure": [
   "有限高度 T=1000 截断",
   "区间见证层 PASS、kernel 层未证、非 RH 证据",
+  "存在性 PASS ⊊ 计数 PASS",
   "本证书为 Dudek 定理适用范围(x>e⁶⁰)之外的点态管道演练，非定理实例；零点输入由 ISO-1000 区间括号供给"
  ]
 }
