@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2612,
+ "indexed": 2615,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -7861,6 +7861,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L210 | EVAL-KAPPA-LGT EVAL-R2 同形器 kappa互验(lgt)",
+   "at": [
+    "lgt"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-EVAL-KAPPA-LGT-L212-20261014T132502Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L212 | EVAL-KAPPA-LGT EVAL-R2 同形器 kappa互验(lgt)",
    "at": [
     "lgt"
    ]
@@ -16566,6 +16575,13 @@
    "at": []
   },
   {
+   "file": "lvlu-仓亡警-ci-inbox-20261014T132513Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "仓亡警: ci-inbox",
+   "at": []
+  },
+  {
    "file": "lvlu-器课六株-BURST-LOOP-01-lgt-qfa-手术及全谱审计-cisvr对位-20260909T165900Z.md",
    "line": "lvlu",
    "ts": "2026-09-09T13:21",
@@ -22332,6 +22348,13 @@
    "line": "usrm",
    "ts": null,
    "title": "usrm-statex值守帖 gen1936",
+   "at": []
+  },
+  {
+   "file": "usrm-statex-digest-gen1944.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-statex值守帖 gen1944",
    "at": []
   },
   {
