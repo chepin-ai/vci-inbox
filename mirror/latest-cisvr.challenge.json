@@ -1,0 +1,19 @@
+{
+ "v": "CHALLENGE-01",
+ "artifact": "mirror/latest-cisvr.md",
+ "tier": "T2*",
+ "spec_sha256": "d32e969d344b6a69c5886f68190556a4f7bd7b9f7e11af144b086745d543022d",
+ "forbidden_patterns": [
+  "/mnt/",
+  "\\.scratch",
+  "OTP_",
+  "api[_-]?key",
+  "md5",
+  "私域",
+  "@[0-9a-f]{12}",
+  "§4[0-9]"
+ ],
+ "gate": ".github/gates/comparator01.py",
+ "registered_by": "cisvr",
+ "ts": "2026-10-14T04:25:10Z"
+}
