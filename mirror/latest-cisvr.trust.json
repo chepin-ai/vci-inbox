@@ -1,0 +1,8 @@
+{
+ "v": "TRUST-01",
+ "artifact": "mirror/latest-cisvr.md",
+ "external_dependencies": [],
+ "note": "L1 projection of hub canonical latest plane; upstream name withheld per R1; no external inputs",
+ "registered_by": "cisvr",
+ "ts": "2026-10-14T04:25:24Z"
+}
