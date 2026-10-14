@@ -1,0 +1,39 @@
+{
+ "CLASSIFY": "L1",
+ "entry_id": "zeta-iso-100",
+ "spec": "WELD-A-SPEC-01",
+ "schema": "1.1.1(EXT15-R2)",
+ "gap": {
+  "G1_census": "library/ns/NsGalerkin/ZetaAnchor.lean zetaIsolationAnchor 锚缺席→GAP 成立(WS-64 probe ABSENT×2)",
+  "G2_mapping_host": "zeta-isolation 证书族(zeta-iso-100)",
+  "G3_axioms_or_absent": "G3' 路径: riemannZeta_ne_zero_of_one_le_re / Hardy Z 缺席(gap-probe VERDICT ABSENT=TRUE)"
+ },
+ "wit": {
+  "tier": "W1 计算层区间见证(存在性 PASS / 完备性 CERTIFIED(29)·Backlund 门 v1.1.1 PASS)",
+  "witness_oid": "d8a046f20020d47c2d48479ba60651040a68a7a4",
+  "detail": "29 组 IVT 括号端点异号不含0, 存在性门全过; 完备性 Backlund 门经枢线修补#17(锚点 t=0 修正+结点紧区间)复算 PASS,v1.1.1(#18#19) 加性登记 nB_interval=[28.9999999999999999958558652436,29.000000000000000004418444223] 宽 8.56258e-18 唯一整数窗 29 + width_budget(w_NB=(w_θ+w_Δarg+w_wrap)/π 精确闭包)+ branch_exclusion_28_30; verify 双查 fail-closed 强制; EM 交叉校核腿(quasi-independent,SUP-04 定名)复核唯一 29 相交(SUP-02); 同源失败模式审计排除(SUP-04); iso1000 完备性仍 BLOCKED(B1-TB) 不越界声明"
+ },
+ "binding": {
+  "witness_id": "zeta-iso-100",
+  "cert_path": "artifacts/witnesses-zeta/zeta-iso-100.witness.json",
+  "commit_oid": "d8a046f20020d47c2d48479ba60651040a68a7a4",
+  "verifier": "ci/witness_zeta_verify.py",
+  "verdict_tier": "W1",
+  "granularity": "证书文件级(witness_sha256 锁全字段); 括号级证据由 brackets[] 携载, 核验器逐括号复算"
+ },
+ "redeem": {
+  "status": "open→witnessed(完备性由 BLOCKED 升 CERTIFIED@EXT15)",
+  "blocked_codes": [],
+  "R1_artifact_oid": "d8a046f20020d47c2d48479ba60651040a68a7a4",
+  "R2_ledger": "board/LAB-CLOSE-EXT12-01-20261014T0730Z.md + vci-ledger 追记49+追记49续",
+  "R3_census_diff": "EXT15 判定席十一线四轮全员收敛 11/11 PASS: R1 9/qfa REVISE→SUP-01→R2 qfa REVISE→SUP-02+v1.1.1→R3 全体重投 9 PASS+usrm REVISE+qlv REVISE→SUP-03→usrm R4 PASS; SUP-04(同源失败模式审计+EM腿定名交叉校核腿)→qlv R4 PASS; OBL-EXT11-a 关闭 @d8a046f2+0d900a07"
+ },
+ "ki_ref": "board/KI-EXT11-1.md(+ADD1+ADD2)",
+ "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
+ "disclosure": [
+  "有限高度 T=100 截断",
+  "区间见证层 PASS、kernel 层未证、非 RH 证据",
+  "存在性 PASS ⊊ 计数 PASS",
+  "G3' 探测域=mathlib v4.10.0 符号表; ABSENT 为工程层事实, 非元数学结论; 四锚为谓词映射, 非 RH 蕴含"
+ ]
+}
