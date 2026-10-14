@@ -1,0 +1,34 @@
+{
+ "A2_EM_interval_leg": {
+  "evaluator": "Euler–Maclaurin K=5 显式余项 iv 盒（N=1000, dps=80）——与主路 CVZ(修正 van der Corput, dps=220) 算法独立",
+  "junctions": 233,
+  "max_junction_arg_width": "9.61075e-19",
+  "nB_interval": [
+   "28.9999999999999999877574324241",
+   "29.0000000000000000124773520971"
+  ],
+  "nB_width": "2.47199e-17",
+  "floor_hi": 29,
+  "unique_integer_29": true,
+  "overlap_with_cvz_cert": true,
+  "shared_with_main": "仅共享 θ(T) 解析余项与 iv 算术内核；求值算法/余项模型/精度档位均不同",
+  "ceil_lo": 29,
+  "unique_window_semantics": "ceil(lo)==floor(hi)==29（与核验器 backlund_unique_integer_window 同义）"
+ },
+ "C_width_budget_closure": {
+  "w_theta_stirling_brent": "2.69001e-17",
+  "w_junction_args_total": "8.96721e-84",
+  "wraps_actually_applied": 0,
+  "w_wrap": "0.0",
+  "transfer_formula": "w_NB=(w_θ+w_Δarg+w_wrap)/π_lo",
+  "w_transfer": "8.56258e-18",
+  "w_cert_recomputed": "8.56258e-18",
+  "closure_holds": true,
+  "nB_cvz_interval": [
+   "28.9999999999999999958558652436",
+   "29.000000000000000004418444223"
+  ],
+  "w_junction_args_total_authoritative": "枢线修补#19 核验器复算权威值：233 结点辐角区间宽总和 8.96721e-84（锚点单点 3.77284e-153，余 232 结点各 ~4e-86；SUP-01 C_width_decomposition 同名字段 3.77284e-153 系锚点值误标，特此加性勘误；预算闭包不受影响：8.97e-84 ≪ w_θ=2.69e-17）"
+ },
+ "verdict": "ALL_LEGS_PASS"
+}

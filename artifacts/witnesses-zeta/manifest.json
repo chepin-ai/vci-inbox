@@ -3,12 +3,13 @@
  "run_id": "ws63-ext-wave-11-zeta",
  "ts_utc": "2026-10-13T18:10:00Z",
  "files": {
-  "zeta-iso-100.witness.json": "0921f449554b3aca8b4992a7fbb05ea9c8a46b35c7a6edb5a10d15ffc7acd619",
-  "zeta-iso-1000.witness.json": "b8aca692db9a32f544505cf0b4dbe8c5bf73ef7ad8e39311f27f8280a4c651e1",
-  "psi-trunc.witness.json": "4a995647032ff536a17dac0eeeeae6088a5e797ad77d3e1ad7f6ae0c41cfe5b7",
+  "zeta-iso-100.witness.json": "f85d73105d45de8ec707398c03bcad3e8d09b914135a3d6286e9d83fdf67431d",
+  "zeta-iso-1000.witness.json": "b2a8e5e668d3a6389dcc8acf89941f596e1350fb41eb0a724db8d545965ce4e1",
+  "psi-trunc.witness.json": "e4b27befd2c69dd19d508cd79c44b2cb49b6991efda1de596f22ff1ff0f33b06",
   "run-log.json": "1712946077787c1b7373e3447887fbafb9fcabb86bd4a5c80642b8a374366b17",
   "run-log-sup01.json": "7d4e8195326ab57748ddb4a1765ca2d82a7fefbd922e7fb44a7f417c9efd2773",
-  "run-log-resign-v110.json": "3f1568f107eed73c9ddf00329497e4c8bd08541e95514044d8c63c4961dbc413"
+  "run-log-resign-v110.json": "3f1568f107eed73c9ddf00329497e4c8bd08541e95514044d8c63c4961dbc413",
+  "run-log-resign-v111.json": "5f17d3d9d260afb90a35a64432a2c195b6db5deee2de250e00f77f47bcb178fd"
  },
  "phases_wall_s": {
   "iso100": {
@@ -30,11 +31,11 @@
  "double_run_gate": "各证书进程内同代码两次构建字节一致",
  "verification": {
   "cli": {
-   "zeta-iso-100": "PASS（v1.1.0：OBL-EXT11-a 关闭后 Backlund 门通过）",
+   "zeta-iso-100": "PASS（v1.1.1：nB_interval/width_budget/branch_exclusion_28_30 登记并与复算逐字一致）",
    "zeta-iso-1000": "PASS",
    "psi-trunc": "PASS"
   },
-  "pytest": "44/44 passed in 2432.67s（v1.1.0）"
+  "pytest": "45/45 passed in 3338.17s（v1.1.1）"
  },
  "sup01_resign": {
   "driver": "hub_regen_driver2",
@@ -63,5 +64,20 @@
   "math_zero_change": true,
   "closure_evidence": "T=100 N_B∈[28.99999999999999999586,29.00000000000000000442] 宽8.6e-18 唯一整数窗29；T=20 对照 N_B=1",
   "ki_ref": "board/KI-EXT11-1.md (+ADD1+ADD2)"
+ },
+ "v111_resign": {
+  "driver": "resign_v111.py",
+  "wave": "EXT-WAVE-12「严」",
+  "ts_utc": "2026-10-14T05:05:51Z",
+  "reason": "EXT15-SUP-02/qfa R2 修订项③：Backlund 证书加性登记 N_B 区间、宽度预算闭包、28/30 分支排除；verify patch#18 双查强制（v1.1.1 起必填）",
+  "field_diff": {
+   "zeta-iso-100.witness.json": "4 场加性（nB_interval/nB_interval_width/width_budget/branch_exclusion_28_30）+provenance.generator.sha256+witness_sha256 联动；数学零变更（纯登记层增强）",
+   "zeta-iso-1000.witness.json": "provenance.generator.sha256+witness_sha256 only",
+   "psi-trunc.witness.json": "provenance.generator.sha256+zero_source.sha256 交叉引用同步+witness_sha256"
+  },
+  "math_zero_change": true,
+  "additive_only": true,
+  "closure_evidence": "T=100 N_B∈[28.9999999999999999958558652436,29.000000000000000004418444223] 宽8.56258e-18 唯一整数窗29；w_NB=(w_θ+w_Δarg+w_wrap)/π 精确闭包 8.56258e-18",
+  "sup_ref": "board/EXT15-SUP-01-20261013T2326Z.md + ext15-sup02-audit.json（ALL_LEGS_PASS）"
  }
 }

@@ -1,0 +1,34 @@
+{
+ "CLASSIFY": "L1",
+ "run_id": "resign-v111-EXT15SUP02",
+ "ts_utc": "2026-10-14T05:05:51Z",
+ "wave": "EXT-WAVE-12「严」",
+ "action": "iso100 证书 v1.1.1 加性字段外科重签（EXT15-SUP-02/qfa R2 修订项③）",
+ "driver": "resign_v111.py（幂等；双跑字节闸 PASS）",
+ "math_zero_change": true,
+ "additive_only": true,
+ "fields_added": [
+  "completeness.backlund.nB_interval",
+  "completeness.backlund.nB_interval_width",
+  "completeness.backlund.width_budget",
+  "completeness.backlund.branch_exclusion_28_30"
+ ],
+ "nb_interval": [
+  "28.9999999999999999958558652436",
+  "29.000000000000000004418444223"
+ ],
+ "nb_interval_width": "8.56258e-18",
+ "width_budget_transfer": "w_NB=(w_θ+w_Δarg+w_wrap)/π",
+ "ci_patch": "枢线修补#18：verify 回卷计数/结点宽和/detail 四字段 + 双证书一致查；gen VZ 同款复算 + 诚实门；test +test_backlund_cert_fields（第 45 项）",
+ "gates": {
+  "double_run_byte": "PASS（resign_v111 A/B 两跑三证 sha 逐字一致）",
+  "gen_crosscheck": "PASS 字节一致：--emit-raw 全量产物与外科重签三证逐字节相同",
+  "full_verify_pytest": "PASS 45/45（3338.17s，/usr/bin/python3 3.11.2+PYTHONPATH）"
+ },
+ "field_diff": {
+  "zeta-iso-100.witness.json": "4 场加性（nB_interval/nB_interval_width/width_budget/branch_exclusion_28_30）+provenance.generator.sha256+witness_sha256 联动；数学零变更（纯登记层增强）",
+  "zeta-iso-1000.witness.json": "provenance.generator.sha256+witness_sha256 only",
+  "psi-trunc.witness.json": "provenance.generator.sha256+zero_source.sha256 交叉引用同步+witness_sha256"
+ },
+ "qfa_ref": "EXT15 R2 qfa 修订项③：证书 JSON 必填 N_B_interval/branch_exclusion_28_30/width_budget"
+}

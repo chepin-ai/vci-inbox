@@ -373,6 +373,21 @@
    "re_positive": true,
    "re_sign_changes_top_half": 0,
    "n_backlund": 29,
+   "nB_interval": [
+    "28.9999999999999999958558652436",
+    "29.000000000000000004418444223"
+   ],
+   "nB_interval_width": "8.56258e-18",
+   "width_budget": {
+    "w_theta_stirling_brent": "2.69001e-17",
+    "w_junction_args_total": "8.96721e-84",
+    "w_wrap": "0（0 次回卷平移：增量全在（−π,π）内，回卷恒等）",
+    "w_round": "0（全程 iv 区间算术；端点串化 30 位十进保守外扩）",
+    "transfer": "w_NB=(w_θ+w_Δarg+w_wrap)/π",
+    "total_equals_nB_width": "8.56258e-18",
+    "analytic_check": "θ(T) 宽解析上界 2×(5/66)/90×sechalf¹⁰×|1/4+50i|⁻⁹≈2.68e-17 与区间实测一致（dps=50/80 不变 ⇒ 余项主导、非浮点伪影）"
+   },
+   "branch_exclusion_28_30": "EXT15-SUP-01/02 审计：围道盒四角辐角张角 max 0.876 rad<π，分支余量≥2.265 rad，t∈[28,30] 邻域无非主支分支可能；锚点辐角区间宽 3.77e-153（≪π），锚段唯一性成立",
    "anchor": "t=0（arg ζ(2)=0 实正锚点；KI-EXT11-1-ADD2：旧 ε 起步缺锚段辐角）",
    "darg_method": "junction_pointeval_interval（枢线修补#17：结点 CVZ/EM 紧区间 + 张角分支认证；±1e-9 浮点容忍已移除）",
    "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决；OBL-EXT11-a 关闭后 Backlund 门 PASS（v1.1.0）"
@@ -405,7 +420,7 @@
  "provenance": {
   "generator": {
    "script": "ci/witness_zeta_gen.py",
-   "sha256": "4e6d0bf75c641ce1d6dd87af2e1433de03bebd1a9e7de1f3f887050dc97d8711"
+   "sha256": "95b33be65bec9141e18b4999596907078e3280ca12fa363bab3cf949fc0b3ed1"
   },
   "verifier": {
    "script": "ci/witness_zeta_verify.py"
@@ -419,5 +434,5 @@
   }
  },
  "notes": "存在性括号仅断言零点存在于括号内（IVT），完备性由围道绕数独立认证。",
- "witness_sha256": "e7e02bbf05619e26f4e9d4e40b228b9ee0bd1024a774883af9014aa012bb789f"
+ "witness_sha256": "2cf5bca216a3988388141629ef3ce95b2acfc0da23cee23e6453808f336c89fb"
 }

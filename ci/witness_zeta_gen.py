@@ -29,6 +29,7 @@ import math
 import os
 import platform
 import subprocess
+import witness_zeta_verify as VZ  # 枢线修补#18：nB_interval/width_budget 由核验器同款复算产出（EXT15-SUP-02/qfa）
 import sys
 import time
 from fractions import Fraction
@@ -611,6 +612,11 @@ def build_iso_cert(T, expected, do_completeness, completeness_timeout, log, _pre
         log[f"iso{T}_completeness_gen_s"] = time.time() - t0
         if W != expected:
             raise RuntimeError(f"生成器侧绕数 {W} ≠ {expected}——不得产出，诚实 FAIL")
+        # 枢线修补#18（EXT15-SUP-02/qfa）：nB_interval/width_budget 由核验器同款复算产出，
+        # 生成器侧断言一致（诚实门：复算 N_B 与绕数不符即拒产，不得产出）
+        _nB, _mre, _bd = VZ.backlund_cross_check(str(T), "0.5", EM_N_100, DIR_M, W)
+        if _nB != W:
+            raise RuntimeError(f"生成器侧 Backlund 复算 {_nB} ≠ 绕数 {W}——不得产出，诚实 FAIL")
         comp.update({"status": "CERTIFIED", "winding": W, "winding_2NT": 2 * W,
                      "gen_boxes": stats["boxes"],
                      "winding_note": ("上半矩形绕数=N(T)={}；定案卡「绕数=58」系上下对称合计 "
@@ -619,6 +625,22 @@ def build_iso_cert(T, expected, do_completeness, completeness_timeout, log, _pre
                      "backlund": {"re_positive": True,
                                   "re_sign_changes_top_half": _re_sign_changes_mp(T),
                                   "n_backlund": W,
+                                  "nB_interval": _bd["nB_interval"],
+                                  "nB_interval_width": _bd["nB_interval_width"],
+                                  "width_budget": {
+                                      "w_theta_stirling_brent": _bd["theta_width"],
+                                      "w_junction_args_total": _bd["junction_arg_width_sum"],
+                                      "w_wrap": (f"0（{_bd['wraps_applied']} 次回卷平移：增量全在（−π,π）内，回卷恒等）"
+                                                 if _bd["wraps_applied"] == 0 else
+                                                 f"{_bd['wraps_applied']} 次回卷平移（各 ±2π 精确整数倍平移，不引入宽度）"),
+                                      "w_round": "0（全程 iv 区间算术；端点串化 30 位十进保守外扩）",
+                                      "transfer": "w_NB=(w_θ+w_Δarg+w_wrap)/π",
+                                      "total_equals_nB_width": _bd["nB_interval_width"],
+                                      "analytic_check": ("θ(T) 宽解析上界 2×(5/66)/90×sechalf¹⁰×|1/4+50i|⁻⁹≈2.68e-17 "
+                                                         "与区间实测一致（dps=50/80 不变 ⇒ 余项主导、非浮点伪影）")},
+                                  "branch_exclusion_28_30": ("EXT15-SUP-01/02 审计：围道盒四角辐角张角 max 0.876 rad<π，"
+                                                             "分支余量≥2.265 rad，t∈[28,30] 邻域无非主支分支可能；"
+                                                             "锚点辐角区间宽 3.77e-153（≪π），锚段唯一性成立"),
                                   "anchor": "t=0（arg ζ(2)=0 实正锚点；KI-EXT11-1-ADD2：旧 ε 起步缺锚段辐角）",
                                   "darg_method": "junction_pointeval_interval（枢线修补#17：结点 CVZ/EM 紧区间 + 张角分支认证；±1e-9 浮点容忍已移除）",
                                   "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决；OBL-EXT11-a 关闭后 Backlund 门 PASS（v1.1.0）"}})

@@ -369,3 +369,24 @@ def test_cli_iso1000_pass():
     assert r.returncode == 0, r.stderr[-400:]
     out = json.loads(r.stdout)  # 枢线修补#12: --json 输出 [{file,ok,error,failed}]
     assert out[0]["ok"] and out[0]["failed"] == []
+
+
+def test_backlund_cert_fields(full_results):
+    """v1.1.1（EXT15-SUP-02/qfa 修订项③）：证书 backlund 必载 nB_interval /
+    nB_interval_width / width_budget / branch_exclusion_28_30；核验器复算逐字一致；
+    N_B 区间唯一整数窗 ceil(lo)==floor(hi)==29。"""
+    bk = _load("iso100")["completeness"]["backlund"]
+    for k in ("nB_interval", "nB_interval_width", "width_budget", "branch_exclusion_28_30"):
+        assert k in bk, f"证书缺字段 {k}"
+    wb = bk["width_budget"]
+    for k in ("w_theta_stirling_brent", "w_junction_args_total", "w_wrap", "w_round",
+              "transfer", "total_equals_nB_width", "analytic_check"):
+        assert k in wb, f"width_budget 缺子字段 {k}"
+    assert wb["total_equals_nB_width"] == bk["nB_interval_width"]
+    mp.dps = 60
+    lo, hi = mpf(bk["nB_interval"][0]), mpf(bk["nB_interval"][1])
+    assert int(mp.ceil(lo)) == int(mp.floor(hi)) == 29
+    assert hi - lo < mpf("1e-10")
+    chk = {c["check"]: c for c in full_results["iso100"]["checks"]}
+    assert chk["backlund_cert_nB_interval_match"]["ok"]
+    assert chk["backlund_cert_width_budget_match"]["ok"]

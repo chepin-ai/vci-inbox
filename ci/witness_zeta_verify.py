@@ -891,8 +891,17 @@ def backlund_cross_check(T_str, eps_str, em_N, dir_M, winding, dps=None):
         re_signs.append(_iv_re_sign(Q))
     # 每子段增量主值求和（区间；张角认证分支唯一）
     darg = iv.mpf(0)
+    wraps_applied = 0  # 枢线修补#18：回卷实际平移计数（宽度预算用）
     for k in range(len(segs)):
-        darg = darg + _wrap_pi_iv(args[k + 1] - args[k])
+        d0 = args[k + 1] - args[k]
+        d1 = _wrap_pi_iv(d0)
+        if d1.a != d0.a or d1.b != d0.b:
+            wraps_applied += 1
+        darg = darg + d1
+    # 枢线修补#18：结点辐角区间宽总和（宽度预算 w_Δarg 项）
+    w_args_sum = iv.mpf(0)
+    for a in args:
+        w_args_sum = w_args_sum + (a.b - a.a)
     # Re 变号数（顶右半段：结点下标 len(right)..len(grid)-1）
     m_re = 0
     for k in range(len(right), len(grid) - 1):
@@ -902,23 +911,38 @@ def backlund_cross_check(T_str, eps_str, em_N, dir_M, winding, dps=None):
     iv.dps = DPS_RS
     th = theta_iv(_iv_frac(T))
     nB = (th + darg) / iv.pi + 1
-    mp.dps = max(mp.dps, 60)
-    nB_lo_i = int(mp.ceil(nB.a))
-    nB_hi_i = int(mp.floor(nB.b))
+    mp.dps = max(mp.dps, 80)
+    # 枢线修补#19：iv 端点→mp 层精确提取。str(ivmpf) 系 '[x, x]' 展示格式而非十进串
+    # （初版#18 detail 字段曾携此伪格式——pytest#45 擒获）；_mpi_[0] 提取前须抬 mp.dps
+    # 防舍入并宽（低 dps 下双端点同值伪零宽）。宽度和取上端点（保守上界）。
+    def _mp_of(x):
+        return mp.mpf(x._mpi_[0])
+    nB_lo, nB_hi = _mp_of(nB.a), _mp_of(nB.b)
+    darg_lo, darg_hi = _mp_of(darg.a), _mp_of(darg.b)
+    th_w = _mp_of(th.b) - _mp_of(th.a)
+    darg_w = darg_hi - darg_lo
+    wsum_v = _mp_of(w_args_sum.b)
+    nB_lo_i = int(mp.ceil(nB_lo))
+    nB_hi_i = int(mp.floor(nB_hi))
     if nB_lo_i != nB_hi_i:
         raise VerifyError(
-            f"Backlund N_B 区间 [{mp.nstr(nB.a, 30)},{mp.nstr(nB.b, 30)}] "
+            f"Backlund N_B 区间 [{mp.nstr(nB_lo, 30)},{mp.nstr(nB_hi, 30)}] "
             "不含唯一整数——拒证（OBL-EXT11-a 未达：不得以放宽区间宽度绕过）")
     return nB_lo_i, m_re, {
-        "nB_interval": [mp.nstr(nB.a, 30), mp.nstr(nB.b, 30)],
-        "nB_interval_width": mp.nstr(nB.b - nB.a, 6),
-        "darg_interval": [mp.nstr(darg.a, 30), mp.nstr(darg.b, 30)],
+        "nB_interval": [mp.nstr(nB_lo, 30), mp.nstr(nB_hi, 30)],
+        "nB_interval_width": mp.nstr(nB_hi - nB_lo, 6),
+        "darg_interval": [mp.nstr(darg_lo, 30), mp.nstr(darg_hi, 30)],
         "darg_method": "junction_pointeval_interval_v1(枢线修补#17/OBL-EXT11-a)",
         "anchor": "t=0（arg ζ(2)=0 实正锚点）",
         "junctions": len(grid),
         "boxes": stats.boxes,
         "methods": dict(stats.methods),
-        "junction_methods": jmeth}
+        "junction_methods": jmeth,
+        # 枢线修补#18（EXT15-SUP-02/qfa 宽度预算闭包字段；#19 起 mp 层十进串）
+        "theta_width": mp.nstr(th_w, 6),
+        "darg_width": mp.nstr(darg_w, 6),
+        "junction_arg_width_sum": mp.nstr(wsum_v, 6),
+        "wraps_applied": wraps_applied}
 
 
 def sieve_prime_power_exponents(x_int):
@@ -1093,6 +1117,18 @@ def _verify_iso(w, cl):
                f"N_B区间=[{detail['nB_interval'][0]},{detail['nB_interval'][1]}] "
                f"宽{detail['nB_interval_width']}；方法={detail['darg_method']}；"
                f"锚点={detail['anchor']}；结点{detail['junctions']}")
+        # 枢线修补#18(EXT15-SUP-02/qfa): 证书 backlund.nB_interval 字段与复算逐字一致（v1.1.1 起必填）
+        nb_cert = bk.get("nB_interval")
+        cl.add("backlund_cert_nB_interval_match",
+               nb_cert == [detail["nB_interval"][0], detail["nB_interval"][1]],
+               f"证书={nb_cert} 复算={detail['nB_interval']}")
+        wb = bk.get("width_budget") or {}
+        cl.add("backlund_cert_width_budget_match",
+               bool(wb) and wb.get("w_theta_stirling_brent") == detail["theta_width"]
+               and wb.get("w_junction_args_total") == detail["junction_arg_width_sum"]
+               and wb.get("total_equals_nB_width") == detail["nB_interval_width"],
+               f"证书预算={ {k: wb.get(k) for k in ('w_theta_stirling_brent','w_junction_args_total','total_equals_nB_width')} } "
+               f"复算={ {'w_theta_stirling_brent': detail['theta_width'], 'w_junction_args_total': detail['junction_arg_width_sum'], 'total_equals_nB_width': detail['nB_interval_width']} }")
         cl.add("backlund_re_sign_changes", m_re == bk.get("re_sign_changes_top_half"),
                f"{m_re} vs {bk.get('re_sign_changes_top_half')}")
     else:
