@@ -1,7 +1,7 @@
 {
   "artifact": "mirror/latest-cisvr.md",
   "statement": "L1 latest projection plane: classification marker + canonical head + hub signature present; no private-plane leakage patterns",
-  "spec_sha256": "30baa9f2a1e0cebea8146b2770a28847b9c9be1b514133d60bb5422cc619ea49",
+  "spec_sha256": "4037f27aad6893fe18531d2611ab690d70b108c2ed9d5c87ac9317f20b3440ff",
   "forbidden_patterns": [
     "/m[n]t/",
     "\\.scr[a]tch",
