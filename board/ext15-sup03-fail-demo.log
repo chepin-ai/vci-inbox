@@ -1,0 +1,29 @@
+[
+ {
+  "file": "/tmp/iso100-stripped.witness.json",
+  "ok": false,
+  "error": null,
+  "failed": [
+   {
+    "check": "witness_sha256",
+    "ok": false,
+    "detail": "规范化序列化复算(枢线修补#3: 剥自字段)"
+   },
+   {
+    "check": "generator_sha256",
+    "ok": false,
+    "detail": "ci/witness_zeta_gen.py"
+   },
+   {
+    "check": "backlund_cert_nB_interval_match",
+    "ok": false,
+    "detail": "证书=None 复算=['28.9999999999999999958558652436', '29.000000000000000004418444223']"
+   },
+   {
+    "check": "backlund_cert_width_budget_match",
+    "ok": false,
+    "detail": "证书预算={'w_theta_stirling_brent': None, 'w_junction_args_total': None, 'total_equals_nB_width': None} 复算={'w_theta_stirling_brent': '2.69001e-17', 'w_junction_args_total': '8.96721e-84', 'total_equals_nB_width': '8.56258e-18'}"
+   }
+  ]
+ }
+]
