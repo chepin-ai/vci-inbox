@@ -1,0 +1,17 @@
+name: comparator01-gate
+on:
+  push:
+    paths:
+      - mirror/latest-cisvr.md
+      - mirror/latest-cisvr.challenge.json
+      - mirror/latest-cisvr.trust.json
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: kernel replay
+        run: python3 .github/gates/comparator01.py
