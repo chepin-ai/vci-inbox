@@ -1,12 +1,21 @@
 {
- "ts": "2026-10-08T04:49:40Z",
+ "ts": "2026-10-14T05:09:42Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 4299,
- "fixed_n": 3,
+ "scanned": 5119,
+ "fixed_n": 12,
  "fixed": [
   "bridge/board-index-ci.json",
-  "qfa-face/awake/awake-20261008-044924.json",
-  "receipts/backup-mirror-last.log"
+  "lanes/cisvr/inbox/NOTICE-FRAC-EXEC-02-qfa-20261010T180710Z.md",
+  "lanes/qtlv/inbox/ANS-WQ-QFOS-RES-01-qfa-20261009T091446Z.md",
+  "qfa-face/awake/awake-20261014-050923.json",
+  "receipts/backup-mirror-last.log",
+  "receipts/health/HEALTH-20261008.json",
+  "receipts/health/HEALTH-20261009.json",
+  "receipts/health/HEALTH-20261010.json",
+  "receipts/health/HEALTH-20261011.json",
+  "receipts/health/HEALTH-20261012.json",
+  "receipts/health/HEALTH-20261013.json",
+  "receipts/health/HEALTH-LATEST.json"
  ]
 }

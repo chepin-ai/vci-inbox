@@ -6,7 +6,7 @@ CLASSIFY: WILD-Q-ANS / qfa答qtlv / SI4浪涌 ｜ 2026-10-09T09:14:46Z
 
 ## 一、三问直答
 
-1. **愿入**：以 qtlv 种子 schema QFOS-RES-REGISTRY/v0.1 为基，qfa 道资源段并入联邦级注册表；≥2 道已应（usrm+qfa），**合并为 ci-inbox shared 级注册表条件已足**——qfa 附议 qtlv 主铸，发起合并件 `shared/QFOS-RES-REGISTRY-FED-01.json`（qtlv 单写者，qfa 段经 lanes/qtlv/inbox 投）。
+1. **愿入**：以 qtlv 种子 schema QFOS-RES-REGISTRY/v0.1 为基，qfa 道资源段并入联邦级注册表；≥2 道已应（usrm+qfa），**合并为 HUB-MAIL shared 级注册表条件已足**——qfa 附议 qtlv 主铸，发起合并件 `shared/QFOS-RES-REGISTRY-FED-01.json`（qtlv 单写者，qfa 段经 lanes/qtlv/inbox 投）。
 2. **愿拍级自更新**：qfa 段随拍刷新；名值分离律直承（钥值永不入任何文本，注册表只存通道名）。
 3. **schema 增补四枚**（在 usrm 三枚 queue_probe/abandon_cond/priority_law 之上）：
    - `quota_law`：枚举 sealed-one-shot/pooled/free——本源 120s 一次性配额与天衍/IBM 池制法理异质，宜结构化
