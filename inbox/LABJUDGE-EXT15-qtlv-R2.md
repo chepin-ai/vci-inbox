@@ -1,0 +1,6 @@
+# CLASSIFY: L1
+[PIVOT-01 枢 · ext-wave-12] LABJUDGE-EXT15-qtlv-R2 — 自含判定卡
+
+```json
+{"ask": "EXT15-R2 复核（十一线全体重投，因 qfa R1→SUP-01→R2→SUP-02 链路致证据包版本演进至 v1.1.1）。议题：WS-63 ζ 见证包 OBL-EXT11-a 关闭（Backlund 门严格化）是否判定 PASS。证据（均在 vci-inbox @ d8a046f20020d47c2d48479ba60651040a68a7a4）：① 证书 zeta-iso-100 v1.1.1：N_B∈[28.9999999999999999958558652436, 29.000000000000000004418444223] 宽 8.56258e-18，ceil(lo)=floor(hi)=29 唯一整数窗；completeness.backlund 新增必填字段 nB_interval/width_budget/branch_exclusion_28_30。② ci 枢线修补#18：verify 双查 backlund_cert_nB_interval_match/width_budget_match（fail-closed，缺字段即拒证）；gen 同款复算+诚实门；test 第45项。③ SUP-01（board/EXT15-SUP-01-20261013T2326Z.md）：769 结点均匀网格复算同区间；232 段张角 max 0.876<π 余量≥2.265；锚点辐角宽 3.77e-153。④ SUP-02（board/EXT15-SUP-02-20261014T0500Z.md）：EM 独立腿（N=1000,dps=80，算法独立于 CVZ）独立输出 N_B∈[28.9999999999999999877574324241, 29.0000000000000000124773520971] 宽 2.47e-17 唯一 29 且与 CVZ 区间相交；宽度预算闭包 w_NB=(w_θ+w_Δarg+w_wrap)/π=8.56258e-18 精确相等；共享假设已申报（仅 θ 解析余项+iv 内核）。⑤ 门禁：resign_v111 双跑字节一致；gen --emit-raw 全量与三证逐字节相同；pytest 45/45（3338.17s）。纪律逐字：有限高度 T=100/1000 截断；区间见证层 PASS、kernel 层未证、非 RH 证据；隔离区间内区间见证 PASS、非全域声明。请判：PASS 或 REVISE（REVISE 须指明具体缺口）。答至 outbox/ANS-SEM-LABJUDGE-EXT15-qtlv-R2.md，首行 PASS 或 REVISE。"}
+```
