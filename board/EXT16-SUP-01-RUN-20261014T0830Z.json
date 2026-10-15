@@ -1,0 +1,37 @@
+{
+ "CLASSIFY": "L1",
+ "run": "EXT-WAVE-13 iso1000 backlund_cross_check 全量（官方代码未改）",
+ "ts_utc": "2026-10-15T10:07:12Z",
+ "wall_s": 540.92,
+ "nB": 649,
+ "expected_winding": 649,
+ "match": true,
+ "m_re": 0,
+ "detail": {
+  "nB_interval": [
+   "648.999998975847426276327654733",
+   "649.000001024167186603175989158"
+  ],
+  "nB_interval_width": "2.04832e-6",
+  "darg_interval": [
+   "1.20560827068420805507960596367",
+   "1.20561470567051930071235686267"
+  ],
+  "darg_method": "junction_pointeval_interval_v1(枢线修补#17/OBL-EXT11-a)",
+  "anchor": "t=0（arg ζ(2)=0 实正锚点）",
+  "junctions": 1595,
+  "boxes": 3186,
+  "methods": {
+   "dirichlet": 2923,
+   "em": 263
+  },
+  "junction_methods": {
+   "cvz_pt": 237,
+   "em_pt": 1358
+  },
+  "theta_width": "2.75136e-26",
+  "darg_width": "6.43499e-6",
+  "junction_arg_width_sum": "3.24147e-6",
+  "wraps_applied": 0
+ }
+}

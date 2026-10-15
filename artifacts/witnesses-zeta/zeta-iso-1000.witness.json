@@ -6564,13 +6564,36 @@
    ]
   },
   "evaluators": "cvz(|t|≤160,σ≥1/2) / dirichlet(σ=2) / em(σ≥1/2,|t|>160) / fe(σ≤1/2)",
-  "status": "BLOCKED(B1-TB) time-box",
-  "winding": null,
-  "winding_2NT": null,
-  "blocked_subcode": "B1-TB = time-box 资源熔断（区别于结构性 fail-closed 拒证——iso100 完备性 Backlund 门属后者，见 KI-EXT11-1）；分账纪律：存在性 649 括号不得被读作完备性进展",
-  "retry_budget": "重试预算：≥4 核墙钟 2h 或绕数算法升级（盒级 argwidth 余量，OBL-EXT11-a 关闭后）再评估；不得放宽熔断墙钟冒充进展",
-  "reason": "ISO-1000 完备性围道超出墙钟预算，触发定案卡熔断条款（CVZ 围道 >20 分钟允许降级为 BLOCKED(B1)）：可行性实测 T=14.5 围道需 1660 盒/87s，T=1000 量级 ~7×10⁴ 盒，外推墙钟 ≫20 分钟；存在性 649 括号与 TRUNC 不受影响。诚实降级不升格（P4 律）",
-  "backlund": null
+  "status": "CERTIFIED",
+  "winding": 649,
+  "winding_2NT": 1298,
+  "winding_via": "backlund_junction_pointeval",
+  "gen_boxes": 3186,
+  "winding_note": "上半矩形绕数=N(1000)=649（Backlund 门直证：结点紧区间 L 折线 N_B 唯一整数窗 ⇒ 绕数=649；枢线修补#20）；旧盒包络多边形浮点路线已于 OBL-EXT11-a 关闭后退役（KI-EXT11-1-ADD2：张角余量结构性不闭合），不作为认证通道；2N=1298",
+  "backlund": {
+   "re_positive": true,
+   "re_sign_changes_top_half": 0,
+   "n_backlund": 649,
+   "nB_interval": [
+    "648.999998975847426276327654733",
+    "649.000001024167186603175989158"
+   ],
+   "nB_interval_width": "2.04832e-6",
+   "width_budget": {
+    "w_theta_stirling_brent": "2.75136e-26",
+    "w_junction_args_total": "3.24147e-6",
+    "w_wrap": "0（0 次回卷平移：增量全在（−π,π）内，回卷恒等）",
+    "w_round": "0（全程 iv 区间算术；端点串化 30 位十进保守外扩）",
+    "transfer": "w_NB=(w_θ+w_Δarg_segdiff+w_wrap)/π；w_Δarg_segdiff=2·Σw_junctions−w_首末（区间减法宽度可加：共享结点宽度在段差和中双计——T=100 处该项≪w_θ 不可见，T=1000 处为主导致项，EXT-WAVE-13 实测揭示并修正）",
+    "total_equals_nB_width": "2.04832e-6",
+    "w_darg_segdiff": "6.43499e-6",
+    "analytic_check": "θ(1000) 区间宽实测 2.75136e-26（dps=50/80/120 不变 ⇒ 余项主导、非浮点伪影；随 |z|⁻⁹ 律较 T=100 之 2.69001e-17 收缩 ~1e-9 倍）"
+   },
+   "branch_exclusion_global": "EXT-WAVE-13 分段级审计：全程 1594 段辐角主值增量实测 max 见 iso1000-em-leg.json（EM 交叉校核腿）max_segment_arg_increment_abs<π，分支余量>0；张角认证 ≤1.2 rad<π 由自适应二分逐段强制（围道盒四角张角门）；锚点 t=0 辐角区间宽 ≪π（锚段唯一性成立）",
+   "anchor": "t=0（arg ζ(2)=0 实正锚点；KI-EXT11-1-ADD2：旧 ε 起步缺锚段辐角）",
+   "darg_method": "junction_pointeval_interval（枢线修补#17：结点 CVZ/EM 紧区间 + 张角分支认证；±1e-9 浮点容忍已移除）",
+   "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决；OBL-EXT11-a 关闭后 Backlund 门 PASS（v1.1.0）"
+  }
  },
  "negative_control": {
   "description": "无零点区伪造括号 [16.0,16.04]：Z 两端同号，认证判据必拒",
@@ -6584,12 +6607,12 @@
  },
  "verdict": {
   "existence": true,
-  "completeness": false,
-  "all_pass": false
+  "completeness": true,
+  "all_pass": true
  },
  "disclosure": [
   "有限高度 T=1000 截断",
-  "区间见证层 PASS、kernel 层未证、非 RH 证据；存在性 PASS ⊊ 计数 PASS（括号存在性≠括号数正确性，计数完备性见 verdict/ completeness 分层）"
+  "区间见证层 PASS、kernel 层未证、非 RH 证据；存在性 PASS ⊊ 计数 PASS（括号存在性≠括号数正确性，计数完备性见 verdict/ completeness 分层）；OBL-EXT11-a 已闭（枢线修补#17）：Backlund 门经锚点 t=0 修正+结点紧区间化后复算 PASS，±1e-9 浮点容忍移除"
  ],
  "deviation": "偏差逐字披露：(1) 定案卡所给 CVZ 余项界 3(3+√8)^(-n)(1+8|s|)/|1-2^(1-s)| 缺 1/|Γ(s)|~e^(π|t|/2) 因子，实测 |t|=50 处真误差 1e-124 已超该界（6e-151）27 个量级；本机采用文献正确形式 |γ_n|≤2(3+√8)^(-200)/(|1-2^(1-s)|·|Γ(s)|)（CVZ 2000 Prop.3 / Borwein 2000；|Γ| 下界由 Stirling 区间下界给出），仅在 σ≥1/2 且 |t|≤160 使用 CVZ。(2) t<200 段 RS 余项常数取 C_low=0.2·t^(-5/4)（非定理常数）：生成器侧稠密网格实测 max|R|·t^(5/4)≈0.0539（t∈[14,200]，2500 点+跳点加密），取 3.7× 安全放大；t≥200 段用 Gabcke 0.053·t^(-5/4)（定案卡给定，实测 max≈0.052 吻合）。(3) RS 公式带 Ψ+Ψ'''/(96π²√τ) 两个校正项（定案卡「余项用 Gabcke 显式界 |R₁|<0.053t^(-5/4)」对应两个校正项的余项阶，已实测核对：单 Ψ 项余项实为 O(t^(-3/4))，必须带第二校正项方与 0.053t^(-5/4) 匹配）。(4) 完备性围道矩形 σ∈[-1,2]×[ε,T] 的上半绕数为 N(T)（29/649）；定案卡所写「绕数=58」系上下两半对称合计 2N(T) 之口径，ρ↔1−ρ̄ 对同在上半矩形内，围道实得 29；等价完备性命题（绕数==括号数）已认证，winding_2NT 字段登记 58 以便对照。(5) T=1000 围道工作精度 dps=80（定案卡 dps≈220 系针对 CVZ 权重相消；实测归一化后相消比 ≤7×10⁴，dps=80 仍留 ≥10⁷⁰ 量级余量）；T=100 围道全程 dps=220 如卡。(6) σ<1/2 围道段经函数方程 ζ(s)=χ(s)ζ(1-s) 求值，χ 由初等因子+Stirling/WW 显式余项构成（不用 gamma）；σ=2 竖边用 Dirichlet 部分和（尾界 1/M）；|t|>160 且 σ≥1/2 段用 Euler–Maclaurin（K=5，显式余项，ζ(11)≤2 由初等望远镜界给出）。",
  "replay": {
@@ -6599,7 +6622,7 @@
  "provenance": {
   "generator": {
    "script": "ci/witness_zeta_gen.py",
-   "sha256": "95b33be65bec9141e18b4999596907078e3280ca12fa363bab3cf949fc0b3ed1"
+   "sha256": "b9aa40c3d0020dafcb95a7e880726ea52957ab3beb6bf59ae8fbda0251b80822"
   },
   "verifier": {
    "script": "ci/witness_zeta_verify.py"
@@ -6613,5 +6636,5 @@
   }
  },
  "notes": "存在性括号仅断言零点存在于括号内（IVT），完备性由围道绕数独立认证。",
- "witness_sha256": "6f38254ffa9aba6e2f86f6c0e2d6d3a2f832d99deb3f27ce22154fd3dab8bfba"
+ "witness_sha256": "9210bf41221ad2a10f1736ba6090b5353870f11325aa7462b708eba8817460e8"
 }

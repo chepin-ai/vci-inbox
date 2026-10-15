@@ -3,13 +3,14 @@
  "run_id": "ws63-ext-wave-11-zeta",
  "ts_utc": "2026-10-13T18:10:00Z",
  "files": {
-  "zeta-iso-100.witness.json": "f85d73105d45de8ec707398c03bcad3e8d09b914135a3d6286e9d83fdf67431d",
-  "zeta-iso-1000.witness.json": "b2a8e5e668d3a6389dcc8acf89941f596e1350fb41eb0a724db8d545965ce4e1",
-  "psi-trunc.witness.json": "e4b27befd2c69dd19d508cd79c44b2cb49b6991efda1de596f22ff1ff0f33b06",
+  "zeta-iso-100.witness.json": "ab3d1941a2dbf5cffafc15f87b12320fd40b900ae0063f0098b13cd6049d069a",
+  "zeta-iso-1000.witness.json": "0a0452ff4fdff249565b212f1790b1fe0fb0431918e86f384251688f648214dd",
+  "psi-trunc.witness.json": "ef58917920c5ae9dad636e41536bb1e173c2a4ab2382b39a4bf43385601bcb77",
   "run-log.json": "1712946077787c1b7373e3447887fbafb9fcabb86bd4a5c80642b8a374366b17",
   "run-log-sup01.json": "7d4e8195326ab57748ddb4a1765ca2d82a7fefbd922e7fb44a7f417c9efd2773",
   "run-log-resign-v110.json": "3f1568f107eed73c9ddf00329497e4c8bd08541e95514044d8c63c4961dbc413",
-  "run-log-resign-v111.json": "5f17d3d9d260afb90a35a64432a2c195b6db5deee2de250e00f77f47bcb178fd"
+  "run-log-resign-v111.json": "5f17d3d9d260afb90a35a64432a2c195b6db5deee2de250e00f77f47bcb178fd",
+  "run-log-iso1000-cert-v120.json": "c040344a01b203ba6b75f601e48393887bca7938443148687194d1c0cc69df7a"
  },
  "phases_wall_s": {
   "iso100": {
@@ -32,10 +33,10 @@
  "verification": {
   "cli": {
    "zeta-iso-100": "PASS（v1.1.1：nB_interval/width_budget/branch_exclusion_28_30 登记并与复算逐字一致）",
-   "zeta-iso-1000": "PASS",
+   "zeta-iso-1000": "PASS（v1.2.0：Backlund 门直证 CERTIFIED——N_B∈[648.999998975847426276327654733,649.000001024167186603175989158] 宽2.04832e-6 唯一整数窗 649；winding_via=backlund_junction_pointeval）",
    "psi-trunc": "PASS"
   },
-  "pytest": "45/45 passed in 3338.17s（v1.1.1）"
+  "pytest": "45/45 passed in 1906.38s（v1.2.0·EXT-WAVE-13）"
  },
  "sup01_resign": {
   "driver": "hub_regen_driver2",
@@ -79,5 +80,16 @@
   "additive_only": true,
   "closure_evidence": "T=100 N_B∈[28.9999999999999999958558652436,29.000000000000000004418444223] 宽8.56258e-18 唯一整数窗29；w_NB=(w_θ+w_Δarg+w_wrap)/π 精确闭包 8.56258e-18",
   "sup_ref": "board/EXT15-SUP-01-20261013T2326Z.md + ext15-sup02-audit.json（ALL_LEGS_PASS）"
+ },
+ "v120_iso1000_certified": {
+  "wave": "EXT-WAVE-13「拓」",
+  "ts_utc": "2026-10-15T12:25:16Z",
+  "reason": "retry_budget 复评达成：iso1000 完备性 BLOCKED(B1-TB)→CERTIFIED（Backlund 门直证）",
+  "field_diff": {
+   "zeta-iso-1000.witness.json": "completeness: BLOCKED(B1-TB)→CERTIFIED 全块换代（winding/winding_2NT/winding_via/gen_boxes/winding_note/backlund 字段族）+provenance+witness_sha256 联动",
+   "zeta-iso-100.witness.json": "仅 provenance.generator.sha256 随 gen 修补#20 联动（v110 先例）；数学零变更",
+   "psi-trunc.witness.json": "provenance 联动 + zero_source.sha256 随新 iso1000 文件哈希同步"
+  },
+  "closure_evidence": "T=1000 N_B∈[648.999998975847426276327654733,649.000001024167186603175989158] 宽2.04832e-6 唯一整数窗 649；EM 交叉校核腿唯一 649 相交"
  }
 }

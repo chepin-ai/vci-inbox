@@ -420,7 +420,7 @@
  "provenance": {
   "generator": {
    "script": "ci/witness_zeta_gen.py",
-   "sha256": "95b33be65bec9141e18b4999596907078e3280ca12fa363bab3cf949fc0b3ed1"
+   "sha256": "b9aa40c3d0020dafcb95a7e880726ea52957ab3beb6bf59ae8fbda0251b80822"
   },
   "verifier": {
    "script": "ci/witness_zeta_verify.py"
@@ -434,5 +434,5 @@
   }
  },
  "notes": "存在性括号仅断言零点存在于括号内（IVT），完备性由围道绕数独立认证。",
- "witness_sha256": "2cf5bca216a3988388141629ef3ce95b2acfc0da23cee23e6453808f336c89fb"
+ "witness_sha256": "7d9e6fb6964892ec76b4df780b14db91ca2cac6e56199fe06c7331720394e0ff"
 }

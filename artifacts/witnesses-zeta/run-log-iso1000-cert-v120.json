@@ -1,0 +1,56 @@
+{
+ "CLASSIFY": "L1",
+ "run_id": "iso1000-cert-v120-EXT-WAVE-13",
+ "ts_utc": "2026-10-15T12:25:16Z",
+ "wave": "EXT-WAVE-13「拓」",
+ "action": "iso1000 完备性自 BLOCKED(B1-TB) 升 CERTIFIED——retry_budget 第二条件成就复评，Backlund 门直证（枢线修补#20；旧盒包络多边形路线退役）",
+ "math_core": {
+  "nB_interval": [
+   "648.999998975847426276327654733",
+   "649.000001024167186603175989158"
+  ],
+  "nB_interval_width": "2.04832e-6",
+  "unique_integer_window": 649,
+  "junctions": 1595,
+  "boxes": 3186,
+  "junction_methods": {
+   "cvz_pt": 237,
+   "em_pt": 1358
+  },
+  "wall_s_official_run": 540.92,
+  "width_budget": {
+   "w_theta_stirling_brent": "2.75136e-26",
+   "w_junction_args_total": "3.24147e-6",
+   "w_wrap": "0（0 次回卷平移：增量全在（−π,π）内，回卷恒等）",
+   "w_round": "0（全程 iv 区间算术；端点串化 30 位十进保守外扩）",
+   "transfer": "w_NB=(w_θ+w_Δarg_segdiff+w_wrap)/π；w_Δarg_segdiff=2·Σw_junctions−w_首末（区间减法宽度可加：共享结点宽度在段差和中双计——T=100 处该项≪w_θ 不可见，T=1000 处为主导致项，EXT-WAVE-13 实测揭示并修正）",
+   "total_equals_nB_width": "2.04832e-6",
+   "w_darg_segdiff": "6.43499e-6",
+   "analytic_check": "θ(1000) 区间宽实测 2.75136e-26（dps=50/80/120 不变 ⇒ 余项主导、非浮点伪影；随 |z|⁻⁹ 律较 T=100 之 2.69001e-17 收缩 ~1e-9 倍）"
+  },
+  "em_crosscheck_leg": {
+   "nB_interval": [
+    "648.999999999328765158774906114",
+    "649.000000000671210681906509519"
+   ],
+   "nB_width": "1.34245e-9",
+   "max_junction_arg_width": "3.31074e-11",
+   "max_segment_arg_increment_abs": "0.391171",
+   "unique_integer_649": true,
+   "positioning": "交叉校核腿（quasi-independent，SUP-04 定名）"
+  }
+ },
+ "ext13_audit_finding": "宽度预算传递公式修正：区间减法宽度可加性使共享结点宽度在段差和中双计（w_Δarg_segdiff=2·Σw_junctions−w_首末）——T=100 处该项≪w_θ 不可见，T=1000 处为主导致项；iso100 证书恒等式在登记精度下仍成立（无需勘误），iso1000 起按双计修正传递",
+ "ci_patch": "枢线修补#20：gen T 条件化（EM_N_100/1000）+ iso1000 完备性 Backlund 门直证默认开启 + verify winding_via=backlund_junction_pointeval 路线（polygon 复算退役）+ test test_iso1000_completeness_certified 换代（BLOCKED 纪元测试退役）",
+ "gates": {
+  "double_run_byte": "PASS（gen --emit-raw 双跑字节一致）",
+  "gen_crosscheck": "PASS：emit-raw 三证与仓内证书逐字节一致",
+  "full_verify_pytest": "PASS 45/45（1906.38s）"
+ },
+ "field_diff": {
+  "zeta-iso-1000.witness.json": "completeness: BLOCKED(B1-TB)→CERTIFIED 全块换代（winding/winding_2NT/winding_via/gen_boxes/winding_note/backlund 字段族）+provenance+witness_sha256 联动",
+  "zeta-iso-100.witness.json": "仅 provenance.generator.sha256 随 gen 修补#20 联动（v110 先例）；数学零变更",
+  "psi-trunc.witness.json": "provenance 联动 + zero_source.sha256 随新 iso1000 文件哈希同步"
+ },
+ "retry_budget_closure": "retry_budget 逐字条件「绕数算法升级（OBL-EXT11-a 关闭后）再评估」达成并复评通过"
+}

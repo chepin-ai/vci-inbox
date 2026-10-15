@@ -1,0 +1,31 @@
+{
+ "CLASSIFY": "L1",
+ "run": "EXT-WAVE-13 iso1000 EM 交叉校核腿",
+ "ts_utc": "2026-10-15T10:28:31Z",
+ "grid": {
+  "junctions": 1595,
+  "boxes": 3186,
+  "gen_wall_s": 181.32
+ },
+ "em_trunc_calibration_worst_junction": {
+  "N=1200": "3.70506e-8",
+  "N=2400": "2.55847e-11"
+ },
+ "EM_crosscheck_leg": {
+  "evaluator": "Euler–Maclaurin K=5 显式余项 iv 盒（N=2400, dps=80）——quasi-independent：算法/余项/精度三维独立于主路 CVZ(dps=220)；共享 iv 内核+θ 余项定理（SUP-04 已审计）",
+  "junctions": 1595,
+  "max_junction_arg_width": "3.31074e-11",
+  "nB_interval": [
+   "648.999999999328765158774906114",
+   "649.000000000671210681906509519"
+  ],
+  "nB_width": "1.34245e-9",
+  "ceil_lo": 649,
+  "floor_hi": 649,
+  "unique_integer_649": true,
+  "max_segment_arg_increment_abs": "0.391171",
+  "branch_margin": "2.75042",
+  "leg_wall_s": 774.33
+ },
+ "verdict": "LEG_PASS"
+}
