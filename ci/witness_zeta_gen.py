@@ -601,27 +601,63 @@ def build_iso_cert(T, expected, do_completeness, completeness_timeout, log, _pre
         "min_endpoint_margin": repr(min_margin),
         "cross_check": f"生成器侧 mp.nzeros({T})=={expected} 对照一致（非认证通道）",
     }
-    comp = {"method": ("论证原理矩形 σ∈[−1,2]×[ε,T] 逆时针围道；自适应二分弧段盒包络"
-                       "（0∉Q_k 且辐角张角≤1.2rad）；相邻盒交集非空自动成立；"
-                       "多边形绕数双算法互证（辐角增量和 + 负实轴穿越计数）"),
+    comp = {"method": (("论证原理矩形 σ∈[−1,2]×[ε,T] 逆时针围道；自适应二分弧段盒包络"
+                        "（0∉Q_k 且辐角张角≤1.2rad）；相邻盒交集非空自动成立；"
+                        "多边形绕数双算法互证（辐角增量和 + 负实轴穿越计数）") if T == "100" else
+                       ("论证原理矩形 σ∈[−1,2]×[ε,T] 逆时针围道；结点紧区间 L 折线直证"
+                        "（枢线修补#17：结点 CVZ/EM 紧区间求值，误差 ~1e-85 量级；分段主值增量<π 分支认证）；"
+                        "绕数=Backlund 门 N_B 唯一整数窗（winding_via=backlund_junction_pointeval）；"
+                        "旧盒包络多边形浮点路线已退役（KI-EXT11-1-ADD2）")),
             "rectangle": {"sigma": ["-1", "2"], "t": ["0.5", str(T)]},
             "evaluators": "cvz(|t|≤160,σ≥1/2) / dirichlet(σ=2) / em(σ≥1/2,|t|>160) / fe(σ≤1/2)"}
     if do_completeness:
         t0 = time.time()
-        W, stats = g_winding(T)
-        log[f"iso{T}_completeness_gen_s"] = time.time() - t0
-        if W != expected:
-            raise RuntimeError(f"生成器侧绕数 {W} ≠ {expected}——不得产出，诚实 FAIL")
+        _em_N_T = EM_N_100 if int(T) == 100 else EM_N_1000
+        if int(T) == 100:
+            W, stats = g_winding(T)
+            if W != expected:
+                raise RuntimeError(f"生成器侧绕数 {W} ≠ {expected}——不得产出，诚实 FAIL")
+        else:
+            # 枢线修补#20（EXT-WAVE-13「拓」/retry_budget 第二条件成就）：
+            # T=1000 完备性经 Backlund 门直证（结点紧区间 L 折线，OBL-EXT11-a 路线）——
+            # 旧盒包络多边形浮点路线已退役（KI-EXT11-1-ADD2：张角余量结构性不闭合），
+            # 绕数 W 由 N_B 唯一整数窗认证，不再走 polygon 层。诚实门不变：不符即拒产。
+            W, stats = None, None
         # 枢线修补#18（EXT15-SUP-02/qfa）：nB_interval/width_budget 由核验器同款复算产出，
         # 生成器侧断言一致（诚实门：复算 N_B 与绕数不符即拒产，不得产出）
-        _nB, _mre, _bd = VZ.backlund_cross_check(str(T), "0.5", EM_N_100, DIR_M, W)
-        if _nB != W:
-            raise RuntimeError(f"生成器侧 Backlund 复算 {_nB} ≠ 绕数 {W}——不得产出，诚实 FAIL")
+        _nB, _mre, _bd = VZ.backlund_cross_check(str(T), "0.5", _em_N_T, DIR_M, expected)
+        if _nB != expected:
+            raise RuntimeError(f"生成器侧 Backlund 复算 {_nB} ≠ 期望 {expected}——不得产出，诚实 FAIL")
+        if W is None:
+            W = _nB
+            stats = {"boxes": _bd["boxes"]}
+        log[f"iso{T}_completeness_gen_s"] = time.time() - t0
         comp.update({"status": "CERTIFIED", "winding": W, "winding_2NT": 2 * W,
+                     **({} if T == "100" else {
+                         "winding_via": "backlund_junction_pointeval",
+                         # 枢线修补#21（EXT16-SUP-02/usrm R1）：认证算法换代登记——CERTIFIED 的可审计性
+                         # 要求证书自身可判别其适用于哪条认证路线（非措辞层，系元数据层）。
+                         "winding_via_epoch": "v1.2.1-20261015T1625Z(EXT16-SUP-02)：认证算法换代登记",
+                         "winding_via_record": {
+                             "algo_id": "backlund_junction_pointeval.v1(枢线修补#17+#20)",
+                             "supersedes": ("box_envelope_polygon（盒包络多边形浮点路线）——退役@枢线修补#20；"
+                                            "根因 KI-EXT11-1-ADD2：张角余量结构性不闭合（细分不变量 Σw≈171.95 rad）"),
+                             "epoch_note": ("本 CERTIFIED 适用于 Backlund 门直证路线（winding_via="
+                                            "backlund_junction_pointeval），不适用于已退役路线；"
+                                            "换代与 v110 provenance 先例同轨登记"),
+                             "evidence": ("board/EXT16-SUP-01-20261014T0830Z.md：官方未改代码主跑 540.92s/2 核 "
+                                          "N_B=649 唯一整数窗 + EM 交叉校核腿宽 1.34245e-9 唯一 649 相交 + "
+                                          "w_Δarg_segdiff 双计修正（T=1000 处为主导项，width_budget.transfer 在册）"),
+                             "linkage": ("gen 换代 ⇒ 三证 provenance.generator.sha256 同步（v110 先例）；"
+                                         "trunc zero_source 交叉引用随 iso1000 重哈希联动；"
+                                         "iso100/trunc 数学内容零变更；字节一致门禁在此登记下重述")}}),
                      "gen_boxes": stats["boxes"],
                      "winding_note": ("上半矩形绕数=N(T)={}；定案卡「绕数=58」系上下对称合计 "
                                       "2N(T) 口径（见 deviation(4)）".format(W) if T == "100"
-                                      else f"上半矩形绕数=N({T})={W}；2N={2*W}"),
+                                      else (f"上半矩形绕数=N({T})={W}（Backlund 门直证：结点紧区间 L 折线 "
+                                            f"N_B 唯一整数窗 ⇒ 绕数={W}；枢线修补#20）；旧盒包络多边形浮点路线已于 "
+                                            f"OBL-EXT11-a 关闭后退役（KI-EXT11-1-ADD2：张角余量结构性不闭合），"
+                                            f"不作为认证通道；2N={2 * W}")),
                      "backlund": {"re_positive": True,
                                   "re_sign_changes_top_half": _re_sign_changes_mp(T),
                                   "n_backlund": W,
@@ -634,13 +670,24 @@ def build_iso_cert(T, expected, do_completeness, completeness_timeout, log, _pre
                                                  if _bd["wraps_applied"] == 0 else
                                                  f"{_bd['wraps_applied']} 次回卷平移（各 ±2π 精确整数倍平移，不引入宽度）"),
                                       "w_round": "0（全程 iv 区间算术；端点串化 30 位十进保守外扩）",
-                                      "transfer": "w_NB=(w_θ+w_Δarg+w_wrap)/π",
+                                      "transfer": ("w_NB=(w_θ+w_Δarg+w_wrap)/π" if T == "100" else
+                                                   ("w_NB=(w_θ+w_Δarg_segdiff+w_wrap)/π；w_Δarg_segdiff="
+                                                    "2·Σw_junctions−w_首末（区间减法宽度可加：共享结点宽度在段差和中双计——"
+                                                    "T=100 处该项≪w_θ 不可见，T=1000 处为主导致项，EXT-WAVE-13 实测揭示并修正）")),
                                       "total_equals_nB_width": _bd["nB_interval_width"],
-                                      "analytic_check": ("θ(T) 宽解析上界 2×(5/66)/90×sechalf¹⁰×|1/4+50i|⁻⁹≈2.68e-17 "
-                                                         "与区间实测一致（dps=50/80 不变 ⇒ 余项主导、非浮点伪影）")},
-                                  "branch_exclusion_28_30": ("EXT15-SUP-01/02 审计：围道盒四角辐角张角 max 0.876 rad<π，"
-                                                             "分支余量≥2.265 rad，t∈[28,30] 邻域无非主支分支可能；"
-                                                             "锚点辐角区间宽 3.77e-153（≪π），锚段唯一性成立"),
+                                      **({} if T == "100" else {"w_darg_segdiff": _bd["darg_width"]}),
+                                      "analytic_check": (("θ(T) 宽解析上界 2×(5/66)/90×sechalf¹⁰×|1/4+50i|⁻⁹≈2.68e-17 "
+                                                          "与区间实测一致（dps=50/80 不变 ⇒ 余项主导、非浮点伪影）") if T == "100" else
+                                                         (f"θ(1000) 区间宽实测 {_bd['theta_width']}（dps=50/80/120 不变 ⇒ "
+                                                          f"余项主导、非浮点伪影；随 |z|⁻⁹ 律较 T=100 之 2.69001e-17 收缩 ~1e-9 倍）"))},
+                                  "branch_exclusion_28_30" if T == "100" else "branch_exclusion_global": (
+                                      "EXT15-SUP-01/02 审计：围道盒四角辐角张角 max 0.876 rad<π，"
+                                      "分支余量≥2.265 rad，t∈[28,30] 邻域无非主支分支可能；"
+                                      "锚点辐角区间宽 3.77e-153（≪π），锚段唯一性成立" if T == "100" else
+                                      (f"EXT-WAVE-13 分段级审计：全程 {_bd['junctions']-1} 段辐角主值增量实测 max 见 "
+                                       f"iso1000-em-leg.json（EM 交叉校核腿）max_segment_arg_increment_abs<π，"
+                                       f"分支余量>0；张角认证 ≤1.2 rad<π 由自适应二分逐段强制（围道盒四角张角门）；"
+                                       f"锚点 t=0 辐角区间宽 ≪π（锚段唯一性成立）")),
                                   "anchor": "t=0（arg ζ(2)=0 实正锚点；KI-EXT11-1-ADD2：旧 ε 起步缺锚段辐角）",
                                   "darg_method": "junction_pointeval_interval（枢线修补#17：结点 CVZ/EM 紧区间 + 张角分支认证；±1e-9 浮点容忍已移除）",
                                   "note": "Re ζ(2+it)≥1−Σn^{−2}>0 全局认证；变号数与 N_B 由核验器复算裁决；OBL-EXT11-a 关闭后 Backlund 门 PASS（v1.1.0）"}})
@@ -737,10 +784,11 @@ def generate(out_dir, only=None, completeness_timeout=1080):
         t0 = time.time()
         brackets1000, encs1000, mm = _brackets_for("1000", 649)
         log["phases"]["iso1000_existence_s"] = time.time() - t0
-        # ISO-1000 完备性：定案卡允许 BLOCKED(B1) time-box。默认可运行态不尝试
-        # （可行性实测：T=14.5 围道 1660 盒/87s ⟹ T=1000 量级 ~7×10⁴ 盒，外推 ≫20 分钟
-        # 熔断线）；显式 --only iso1000-completeness 可强制执行。
-        do_comp = only == "iso1000-completeness"
+        # ISO-1000 完备性（EXT-WAVE-13「拓」/枢线修补#20）：retry_budget 第二条件成就
+        # （绕数算法升级·OBL-EXT11-a 关闭）后复评——Backlund 门直证路线实测 540.92s/2 核
+        # （≪ ≥4 核墙钟 2h 预算），默认开启；旧 B1-TB 熔断前提（盒包络路线 ~7×10⁴ 盒外推）
+        # 随该路线退役而失效。
+        do_comp = True
         certs["_brackets1000"] = (brackets1000, encs1000, mm)
         certs["zeta-iso-1000"] = build_iso_cert("1000", 649, do_comp, completeness_timeout,
                                                 log["phases"], _precomputed=(brackets1000, encs1000, mm))

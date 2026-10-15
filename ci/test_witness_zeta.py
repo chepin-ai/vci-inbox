@@ -123,12 +123,31 @@ def test_disclosure_verbatim_trunc():
             "零点输入由 ISO-1000 区间括号供给") in d
 
 
-def test_iso1000_completeness_blocked_honest():
+def test_iso1000_completeness_certified():
+    """EXT-WAVE-13「拓」/枢线修补#20：iso1000 完备性自 BLOCKED(B1-TB) 升 CERTIFIED——
+    retry_budget 第二条件（绕数算法升级·OBL-EXT11-a 关闭）成就后复评，Backlund 门直证路线
+    （结点紧区间 L 折线）实测 540.92s/2 核 ≪ 预算；旧盒包络多边形路线退役。BLOCKED 纪元关闭。"""
     c = _load("iso1000")["completeness"]
-    assert c["status"] == "BLOCKED(B1-TB) time-box"  # SUP-01: 子码分账(B1-TB=time-box, 区别于结构性拒证)
-    assert "B1-TB" in c["blocked_subcode"] and "重试预算" in c["retry_budget"]
-    assert c["winding"] is None
-    assert "熔断" in c["reason"]
+    assert c["status"] == "CERTIFIED"
+    assert c["winding"] == 649 and c["winding_2NT"] == 1298
+    assert c["winding_via"] == "backlund_junction_pointeval"
+    bk = c["backlund"]
+    assert bk["n_backlund"] == 649 and bk["re_positive"] is True
+    assert bk["nB_interval"][0].startswith("648.") and bk["nB_interval"][1].startswith("649.")
+    mp.dps = 60
+    lo, hi = mpf(bk["nB_interval"][0]), mpf(bk["nB_interval"][1])
+    assert int(mp.ceil(lo)) == int(mp.floor(hi)) == 649  # 唯一整数窗（与核验器门同义）
+    assert hi - lo < mpf("1e-5")
+    wb = bk["width_budget"]
+    assert wb["total_equals_nB_width"] == bk["nB_interval_width"]
+    assert "w_darg_segdiff" in wb and "双计" in wb["transfer"]  # EXT13 修正：共享结点宽度双计
+    assert "branch_exclusion_global" in bk
+    # 枢线修补#21（EXT16-SUP-02/usrm R1）：认证算法换代登记在册——CERTIFIED 可审计性
+    assert isinstance(c["winding_via_epoch"], str) and "EXT16-SUP-02" in c["winding_via_epoch"]
+    wvr = c["winding_via_record"]
+    assert "backlund_junction_pointeval" in wvr["algo_id"]
+    assert "box_envelope_polygon" in wvr["supersedes"] and "退役" in wvr["supersedes"]
+    assert "EXT16-SUP-01" in wvr["evidence"] and "v110" in wvr["linkage"]
 
 
 def test_iso100_completeness_certified():

@@ -1,0 +1,40 @@
+{
+ "CLASSIFY": "L1",
+ "run_id": "iso1000-cert-v121-EXT-WAVE-13",
+ "ts_utc": "2026-10-15T19:59:53Z",
+ "wave": "EXT-WAVE-13「拓」",
+ "action": "EXT16-SUP-02（答 usrm R1 REVISE）：认证算法换代登记——iso1000 completeness 增 winding_via_epoch/winding_via_record(algo_id/supersedes/epoch_note/evidence/linkage)，method 字段 T 条件化（T=1000 改述结点紧区间 L 折线直证路线）；数学内容零变更",
+ "math_core": {
+  "nB_interval": [
+   "648.999998975847426276327654733",
+   "649.000001024167186603175989158"
+  ],
+  "nB_interval_width": "2.04832e-6",
+  "unique_integer_window": 649,
+  "winding_via": "backlund_junction_pointeval",
+  "winding_via_epoch": "v1.2.1-20261015T1625Z(EXT16-SUP-02)：认证算法换代登记",
+  "winding_via_record": {
+   "algo_id": "backlund_junction_pointeval.v1(枢线修补#17+#20)",
+   "supersedes": "box_envelope_polygon（盒包络多边形浮点路线）——退役@枢线修补#20；根因 KI-EXT11-1-ADD2：张角余量结构性不闭合（细分不变量 Σw≈171.95 rad）",
+   "epoch_note": "本 CERTIFIED 适用于 Backlund 门直证路线（winding_via=backlund_junction_pointeval），不适用于已退役路线；换代与 v110 provenance 先例同轨登记",
+   "evidence": "board/EXT16-SUP-01-20261014T0830Z.md：官方未改代码主跑 540.92s/2 核 N_B=649 唯一整数窗 + EM 交叉校核腿宽 1.34245e-9 唯一 649 相交 + w_Δarg_segdiff 双计修正（T=1000 处为主导项，width_budget.transfer 在册）",
+   "linkage": "gen 换代 ⇒ 三证 provenance.generator.sha256 同步（v110 先例）；trunc zero_source 交叉引用随 iso1000 重哈希联动；iso100/trunc 数学内容零变更；字节一致门禁在此登记下重述"
+  }
+ },
+ "usrm_r1_closure": {
+  "item1": "winding_via 换代已登记于 completeness（epoch+record，supersedes 指向退役 polygon 路线，evidence 交叉引用 EXT16-SUP-01 与 w_Δarg_segdiff 双计修正）",
+  "item2": "gen 换代联动声明在册（record.linkage：三证 provenance.generator.sha256 同步 v110 先例，trunc zero_source 交叉引用随动，iso100/trunc 数学零变更）；字节一致门禁于本登记下重述",
+  "item3": "其余证据（数学/主跑/EM 腿/门禁/provenance/纪律）零变更维持"
+ },
+ "ci_patch": "枢线修补#21：gen method T 条件化 + winding_via_epoch/record 加性登记；verify winding_via_epoch_registered fail-closed 查（缺登记即拒证）；test 第46断言组并入 test_iso1000_completeness_certified（epoch/algo_id/supersedes/evidence/linkage）",
+ "gates": {
+  "double_run_byte": "PASS（gen 内建双跑闸：同代码两次产出一一致）",
+  "gen_crosscheck": "PASS：emit-raw 三证与仓内证书逐字节一致",
+  "full_verify_pytest": "PASS 45/45（1860.90s）"
+ },
+ "field_diff": {
+  "zeta-iso-1000.witness.json": "completeness 加性：method 改述（T=1000 路线）+ winding_via_epoch + winding_via_record 五子键；provenance+witness_sha256 联动；数学零变更",
+  "zeta-iso-100.witness.json": "仅 provenance.generator.sha256 随 gen 修补#21 联动（v110 先例）；数学零变更",
+  "psi-trunc.witness.json": "provenance 联动 + zero_source.sha256 随新 iso1000 文件哈希同步"
+ }
+}

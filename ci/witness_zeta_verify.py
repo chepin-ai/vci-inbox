@@ -1100,18 +1100,37 @@ def _verify_iso(w, cl):
                and isinstance(comp.get("retry_budget"), str),
                "子码+重试预算登记(v1.0.1 起强制; 分账纪律防存在性误读为完备性进展)")
     elif comp.get("status") == "CERTIFIED":
-        W, stats = winding_number(str(T), inp["eps"], int(inp["em_N"]), int(inp["dirichlet_M"]))
-        cl.add("winding_recompute", W == comp.get("winding"), f"复算={W} 登记={comp.get('winding')}")
-        cl.add("winding_equals_brackets", W == len(brackets), f"{W}=={len(brackets)}")
-        cl.add("winding_2NT_convention", comp.get("winding_2NT") == 2 * W, "")
-        # Backlund
+        # 枢线修补#20（EXT-WAVE-13「拓」）：winding_via=backlund_junction_pointeval 声明时，
+        # 绕数由 Backlund 门 N_B 唯一整数窗直证（结点紧区间 L 折线），旧盒包络多边形浮点
+        # 路线已退役（KI-EXT11-1-ADD2）不再复算；未声明时维持旧 polygon 复算（iso100 历史路线）。
+        _via_bk = comp.get("winding_via") == "backlund_junction_pointeval"
         bk = comp["backlund"]
         bound = backlund_re_zeta_right_edge(int(inp["backlund_M"]))
         cl.add("backlund_re_positive", bound.a > 0, _iv_str(bound.a))
         nB, m_re, detail = backlund_cross_check(str(T), inp["eps"], int(inp["em_N"]),
-                                                int(inp["dirichlet_M"]), W)
-        cl.add("backlund_N_equals_winding", nB == W == bk.get("n_backlund"),
-               f"N_B={nB} W={W} 登记={bk.get('n_backlund')}")
+                                                int(inp["dirichlet_M"]), comp.get("winding"))
+        if _via_bk:
+            cl.add("winding_recompute", nB == comp.get("winding"),
+                   f"Backlund 门直证（修补#20）：N_B={nB} 登记={comp.get('winding')}（polygon 路线已退役）")
+            cl.add("winding_equals_brackets", nB == len(brackets), f"{nB}=={len(brackets)}")
+            cl.add("winding_2NT_convention", comp.get("winding_2NT") == 2 * nB, "")
+            # 枢线修补#21（EXT16-SUP-02/usrm R1）：认证算法换代登记 fail-closed——
+            # winding_via 声明直证路线时，epoch/record(algo_id+supersedes) 必在册，
+            # 否则 CERTIFIED 不可从证书自身判别其适用路线（可审计性缺口），缺字段即拒证。
+            _wvr = comp.get("winding_via_record") or {}
+            cl.add("winding_via_epoch_registered",
+                   isinstance(comp.get("winding_via_epoch"), str)
+                   and isinstance(_wvr.get("algo_id"), str)
+                   and isinstance(_wvr.get("supersedes"), str)
+                   and "backlund_junction_pointeval" in _wvr.get("algo_id", ""),
+                   f"epoch={comp.get('winding_via_epoch')} algo_id={_wvr.get('algo_id')}")
+        else:
+            W, stats = winding_number(str(T), inp["eps"], int(inp["em_N"]), int(inp["dirichlet_M"]))
+            cl.add("winding_recompute", W == comp.get("winding"), f"复算={W} 登记={comp.get('winding')}")
+            cl.add("winding_equals_brackets", W == len(brackets), f"{W}=={len(brackets)}")
+            cl.add("winding_2NT_convention", comp.get("winding_2NT") == 2 * W, "")
+        cl.add("backlund_N_equals_winding", nB == comp.get("winding") == bk.get("n_backlund"),
+               f"N_B={nB} W={comp.get('winding')} 登记={bk.get('n_backlund')}")
         # 枢线修补#17(OBL-EXT11-a): 唯一整数窗证据登记（拒证情形已在函数内 raise，此处恒真）
         cl.add("backlund_unique_integer_window", True,
                f"N_B区间=[{detail['nB_interval'][0]},{detail['nB_interval'][1]}] "
