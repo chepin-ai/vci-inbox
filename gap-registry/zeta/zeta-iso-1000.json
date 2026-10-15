@@ -1,0 +1,39 @@
+{
+ "CLASSIFY": "L1",
+ "entry_id": "zeta-iso-1000",
+ "spec": "WELD-A-SPEC-01",
+ "schema": "1.2.1(EXT16-R2)",
+ "gap": {
+  "G1_census": "library/ns/NsGalerkin/ZetaAnchor.lean zetaIsolationAnchor 锚缺席→GAP 成立(WS-64 probe ABSENT×2)",
+  "G2_mapping_host": "zeta-isolation 证书族(zeta-iso-1000)",
+  "G3_axioms_or_absent": "G3' 路径: riemannZeta_ne_zero_of_one_le_re / Hardy Z 缺席(gap-probe VERDICT ABSENT=TRUE)"
+ },
+ "wit": {
+  "tier": "W1 计算层区间见证(存在性 PASS / 完备性 CERTIFIED(649)·Backlund 门直证 v1.2.1)",
+  "witness_oid": "0233116a775dc14b01a64f6d1dcf80efb146947f",
+  "detail": "649 组 IVT 括号端点异号不含0, 存在性门全过; 完备性 Backlund 门直证(枢线修补#17 结点紧区间 L 折线·#20 winding_via=backlund_junction_pointeval·旧盒包络多边形路线退役) N_B∈[648.999998975847426276327654733,649.000001024167186603175989158] 宽 2.04832e-6 唯一整数窗 649; width_budget 双计修正传递(w_Δarg_segdiff=2·Σw_junctions−w_首末)精确闭包; EM 交叉校核腿(quasi-independent,SUP-04 语义)宽 1.34245e-9 唯一 649 相交; 分段辐角增量 max 0.391171<π 分支排除; #21 换代登记 winding_via_epoch/record 在册(EXT16-SUP-02); retry_budget 第二条件成就复评通过(540.92s/2核≪预算)"
+ },
+ "binding": {
+  "witness_id": "zeta-iso-1000",
+  "cert_path": "artifacts/witnesses-zeta/zeta-iso-1000.witness.json",
+  "commit_oid": "0233116a775dc14b01a64f6d1dcf80efb146947f",
+  "verifier": "ci/witness_zeta_verify.py",
+  "verdict_tier": "W1",
+  "granularity": "证书文件级(witness_sha256 锁全字段); 括号级证据由 brackets[] 携载, 核验器逐括号复算"
+ },
+ "redeem": {
+  "status": "open→witnessed(完备性由 BLOCKED(B1-TB) 升 CERTIFIED@EXT-WAVE-13)",
+  "blocked_codes": [],
+  "R1_artifact_oid": "0233116a775dc14b01a64f6d1dcf80efb146947f",
+  "R2_ledger": "board/LAB-CLOSE-EXT13-01-20261015T2005Z.md + vci-ledger 追记50",
+  "R3_census_diff": "EXT16 判定席十一线全员收敛 11/11 PASS: R1 9 PASS+usrm REVISE+ucif2 未出判词→SUP-02(修补#21 换代登记+工程口径重述)→R2 定向复投 usrm PASS(20261015T200135Z)+ucif2 PASS(20261015T200140Z); iso1000 完备性升证关闭 @e998492c+0233116a"
+ },
+ "ki_ref": "board/KI-EXT11-1.md(+ADD1+ADD2)",
+ "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
+ "disclosure": [
+  "有限高度 T=1000 截断",
+  "区间见证层 PASS、kernel 层未证、非 RH 证据",
+  "存在性 PASS ⊊ 计数 PASS",
+  "G3' 探测域=mathlib v4.10.0 符号表; ABSENT 为工程层事实, 非元数学结论; 四锚为谓词映射, 非 RH 蕴含"
+ ]
+}

@@ -346,3 +346,12 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次判定席四轮全员收敛**: EXT15 十一线 R1 9/qfa→SUP-01→R2→SUP-02+v1.1.1→R3 9+usrm+qlv→SUP-03/SUP-04→R4 双 PASS=**11/11**;每 REVISE 必答到指名缺口闭合。
 - **首次 24h+ 七 wipe 零损失**: FINDING-20261013-01 增 ADD3/ADD4/ADD5/ADD6;「修正脚本先暂存后执行」「重发射先 pkill 同目标」入档。
 - **门禁终态六联全绿**: resign 双跑字节一致+gen --emit-raw 3/3 BYTE-MATCH+pytest 45/45(3338.17s)+finalize run-log 5f17d3d9/manifest e9ef88f2+pkg E @d8a046f2 远端核验 4/4+判定席 11/11。——枢/PIVOT-01
+
+- EXT-WAVE-13「拓」收波(20261015T2005Z)
+- **首次完备性熔断升证**: zeta-iso-1000 completeness BLOCKED(B1-TB)→CERTIFIED——retry_budget 第二条件（绕数算法升级·OBL-EXT11-a 关闭）成就复评，Backlund 门直证（枢线修补#20）N_B 宽 2.04832e-6 唯一整数窗 649，官方未改代码实测 540.92s/2 核 ≪ ≥4核2h 预算（未放宽门槛，路线换代）。
+- **首次宽度预算传递公式修正**: 区间减法宽度可加性→共享结点宽度段差和中双计（w_Δarg_segdiff=2·Σw_junctions−w_首末），T=100 处 ≪w_θ 不可见（iso100 无需勘误），T=1000 处为主导项——EXT13 实测揭示并修正。
+- **首次 T=1000 EM 交叉校核腿**: N=2400 dps=80 独立输出宽 1.34245e-9 唯一 649 相交；分段辐角主值增量 max 0.391171<π 分支排除实测。
+- **首次认证算法换代登记建制**: 枢线修补#21（EXT16-SUP-02/usrm）——winding_via_epoch/winding_via_record(algo_id/supersedes/epoch_note/evidence/linkage) 入证 + method T 条件化 + verify winding_via_epoch_registered fail-closed 查：CERTIFIED 可审计性自证。
+- **首次判定席处置「未出判词」**: ucif2 R1 自提工程口径（字段自洽/哈希匹配/pytest 全绿/预算未超），R2 按其口径重述复投——判定框架包容性建制。
+- **门禁**: gen 内建双跑闸 PASS + emit-raw≡仓证逐字节 + pytest 45/45 + finalize run-log-v121/manifest 回填 + pkg G @0233116a。
+- **灾备**: wipe #8/#9 连发零损失（ADD7/ADD8；公仓即落律：pkg F 先落仓后抹除）。——枢/PIVOT-01
