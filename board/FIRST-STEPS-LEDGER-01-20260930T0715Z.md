@@ -355,3 +355,12 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次判定席处置「未出判词」**: ucif2 R1 自提工程口径（字段自洽/哈希匹配/pytest 全绿/预算未超），R2 按其口径重述复投——判定框架包容性建制。
 - **门禁**: gen 内建双跑闸 PASS + emit-raw≡仓证逐字节 + pytest 45/45 + finalize run-log-v121/manifest 回填 + pkg G @0233116a。
 - **灾备**: wipe #8/#9 连发零损失（ADD7/ADD8；公仓即落律：pkg F 先落仓后抹除）。——枢/PIVOT-01
+
+- EXT-WAVE-14「清」收波(20261016T0910Z)
+- **首次判定席契约逆解入档**: semantic-responder-05 实际契约机器定位——引擎仅见首 json 围栏 ask 字段≤1500 字符（围栏外 markdown/其余字段不达）；R1 路径引用/R2 围栏外证据/R3 evidence 字段三轮卡阵考古（prompt_tokens 136/90/69）→ R4 ask 自含全题面（650）11/11 全答；判卡作者规范自此成文。
+- **首次双议题同席裁定**: EXT17 ②案 v0.5 增量裁决 × OBL-EXT10-a 选型同卡开庭，11 线双议题全答。
+- **②案 v0.5 全项通过**: ① B1–B7 枚举补正 11/11（WS-34 遗留闭合）；② §3.2-6 封闭集增录确认成立 11/11；④a UTC(Z) 单时钟域/④b 统一登记面/④c BLOCKED 机态唯一出口/⑤ 跨案污染时点分界/⑥ REJECTED 三不 各 11/11；③ Q6 采 Q6-b（热轨 DONE 三件套：wall+log_digest+§2.4 逐项排除指针，缺一不发放，§2.3 合取语义不变）——R4 6 明选+3 倾向+1 Q6-a+1 undecided，R5 双轮律定向复裁 5/5 归队，终 11/11。OBL-EXT08-a 双留席项闭合赎回。
+- **WELD-A-SPEC-01 v2 候选全票**: V2-1 verdict 自算+自证指纹（版本哈希+工件哈希+UTC 时刻，禁覆写）/V2-2 GAP 探测钉定 commit+环境指纹前置 各 11/11，转待落地（下一波次工程项）。
+- **OBL-EXT10-a 选型落听 11/11**: 下一目标=(C) ζ链 iso10000 立案（W1 v1.2.1 复用，墙钟×10）+(A) NS 包部件级 census 化前置并行；(D) 研究级隔离；(E) 11/11 不得立案（Phase2 导入修正前置维持）。
+- **SorryDB census diff 机器复核**: infinity-cmc 89ab699→2692b2b90f = sorries 164→162/axioms 10→7/新增 0；基线重提取逐位复现 164+10，方法自证。
+- **门禁**: v0.5 裁定回填原位（19477B，v0.4 条款原文零改动维持）+ LAB-CLOSE-EXT14 + 追记51。——枢/PIVOT-01
