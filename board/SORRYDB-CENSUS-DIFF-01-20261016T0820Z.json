@@ -1,0 +1,89 @@
+{
+ "CLASSIFY": "L1",
+ "doc": "SORRYDB-CENSUS-DIFF-01",
+ "ts": "20261016T0820Z",
+ "author": "枢/PIVOT-01 · EXT-WAVE-14「清」WS-39a",
+ "spec": "WELD-A-SPEC-01 REDEEM-R3(census diff 复核) 口径",
+ "repo": "chepin-ai/infinity-cmc",
+ "baseline": {
+  "commit": "89ab69991214540c35fb30ad3af8cc4920056a94",
+  "note": "W3 完成态(Phase5 清零后、W4 Main 降格前)",
+  "sorries": 164,
+  "axioms": 10,
+  "census_anchor": "formal-attack-framework/data/sorrydb/infinity_cmc_census.json"
+ },
+ "head": {
+  "commit": "2692b2b90f",
+  "committed": "2026-10-11T12:10Z",
+  "note": "W4/S3 降格批次: Main.lean 2 sorry 降格清除",
+  "sorries": 162,
+  "axioms": 7
+ },
+ "method": "verify.py 同口径(去注释后 \\bsorry\\b/\\badmit\\b 计数) + 保位注释剥离条目级定位(行/列映射原文件) + 宿主声明向上回溯; 复提取于旧锚逐位复现 164+10 基线(逐位吻合后方做 diff)",
+ "diff": {
+  "removed": [
+   {
+    "file": "Main.lean",
+    "decl_name": "CICY58_HomotopyInvariants",
+    "token": "sorry",
+    "count": 2
+   }
+  ],
+  "added": [],
+  "moved_or_renamed": [],
+  "axiom_removed": [
+   {
+    "file": "Main.lean",
+    "name": "MirrorSymmetryProof"
+   },
+   {
+    "file": "Main.lean",
+    "name": "SpectralSequenceComputation"
+   },
+   {
+    "file": "Main.lean",
+    "name": "AIFormalizationComplete"
+   }
+  ],
+  "per_file": {
+   "InfinityCMC/InfinityCMC_Framework.lean": {
+    "old": 61,
+    "new": 61
+   },
+   "InfinityCMC/Phase2_3_Continuation.lean": {
+    "old": 16,
+    "new": 16
+   },
+   "InfinityCMC/Phase2_Physics.lean": {
+    "old": 28,
+    "new": 28
+   },
+   "InfinityCMC/Phase3_Advanced.lean": {
+    "old": 13,
+    "new": 13
+   },
+   "InfinityCMC/Phase3_Deep_Continuation.lean": {
+    "old": 19,
+    "new": 19
+   },
+   "InfinityCMC/Phase3_Deep_Dive.lean": {
+    "old": 13,
+    "new": 13
+   },
+   "InfinityCMC/Phase4_Final_Push.lean": {
+    "old": 12,
+    "new": 12
+   },
+   "Main.lean": {
+    "old": 2,
+    "new": 0
+   }
+  }
+ },
+ "conclusions": [
+  "164→162: 净减 2, 全部位于 Main.lean(CICY58_HomotopyInvariants), 与 W4/S3 降格批次提交题逐字吻合",
+  "Main.lean 现为 sorry-free 且 axiom-free(3 条公理随降格移除): 降格动作无残留缺口",
+  "InfinityCMC/ 库七文件 sorry 分布 61/16/28/13/19/13/12 零变动——W5 清除集 21 项(Phase2 导入修正前置)之外亦无漂移",
+  "census diff 复核(R3)机器判定: PASS——基线复提取逐位吻合(164+10), diff 集最小且与提交题一致, 无隐匿变动"
+ ]
+}
