@@ -1,0 +1,151 @@
+{
+ "CLASSIFY": "L1",
+ "doc": "NS-PACKAGE-CENSUS-01 · EXT-WAVE-15「构」WS-41 内部盘点（机器普查）",
+ "ts": "20261017T0444Z",
+ "method": "strip_preserve(Lean4 块注释 /- 与文档注释 /-- 全覆盖·嵌套深度计数·保位剥离) + DECL_RE/TOK_RE 普查;解析器修正后 SorryDB 基线 89ab699912 逐位复现 164+10(方法自证)",
+ "parser_fix": "WS-39 版仅识别 /-- 开块;本版 /- 通配开块。基线复验 PASS(164 sorries/10 axioms 逐位一致),故 WS-39 SORRYDB-CENSUS-DIFF-01 结论不受修正影响。",
+ "provable_core": {
+  "repo": "vci-inbox",
+  "path": "library/ns/",
+  "at": "main HEAD",
+  "registered_anchor": "5887bbb4730f7fcfeaa9e7bf90308f8340824531 (EXT-WAVE-09 帧)",
+  "files": {
+   "NsGalerkin.lean": {
+    "bytes": 295,
+    "sha": "d85486876f5ea0a7",
+    "decls": 0,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   },
+   "Basic.lean": {
+    "bytes": 7328,
+    "sha": "0e9d0014fdd802ec",
+    "decls": 7,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   },
+   "CapAnchor.lean": {
+    "bytes": 6973,
+    "sha": "6081b26e4da23a32",
+    "decls": 11,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   },
+   "Concrete.lean": {
+    "bytes": 7393,
+    "sha": "e7901e61d5c25f95",
+    "decls": 9,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   },
+   "Existence.lean": {
+    "bytes": 13549,
+    "sha": "28a4cc482f9a6ff5",
+    "decls": 6,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   },
+   "ExplicitB.lean": {
+    "bytes": 8226,
+    "sha": "cf013d010431934b",
+    "decls": 10,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   },
+   "Uniqueness.lean": {
+    "bytes": 6506,
+    "sha": "7cf03c7a64b3695e",
+    "decls": 4,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   },
+   "ZetaAnchor.lean": {
+    "bytes": 1629,
+    "sha": "5a046673116b404d",
+    "decls": 4,
+    "axioms": 0,
+    "sorries": 0,
+    "sorry_lines": [],
+    "axiom_names": []
+   }
+  },
+  "totals": {
+   "files": 8,
+   "decls": 51,
+   "sorries": 0,
+   "axioms": 0
+  },
+  "drift_vs_frame": "帧登记 5 模块(Basic/Existence/Uniqueness/Concrete/ExplicitB);HEAD 实有 7 模块——CapAnchor(EXT-WAVE-10 融·Krawczyk 证书锚,11 decls)与 ZetaAnchor(4 decls)系后续波次增录,本次普查首次入总账。"
+ },
+ "witness_tier": {
+  "repo": "vci-inbox",
+  "ns": [
+   "ns-energy-cancellation-20261012(288例 DONE)",
+   "ns-galerkin-energy-bound-20261012(3640点 DONE·非轨道包络)",
+   "ns-trajectory-envelope-blocked-20261012(BLOCKED B1)"
+  ],
+  "cap": [
+   "cap-b3-p1-mild PASS",
+   "cap-b3-p2-medium PASS",
+   "cap-b3-p3-stiff PASS",
+   "cap-b3-p4-hardfail FAIL(诚实负结果登记)"
+  ],
+  "engines": [
+   "ci/witness_ns_gen.py",
+   "ci/witness_ns_verify.py",
+   "ci/krawczyk_ns_gen.py",
+   "ci/krawczyk_ns_verify.py"
+  ],
+  "registered_anchor": "1a5f6a6eff5e4896e9c171fbdfbac48125ee7c6c"
+ },
+ "aspiration_layer_ucif2": {
+  "repo": "ucif2-formalization-kernel",
+  "po_d3_stubs": {
+   "files": 10,
+   "pattern": "PO_D3_9481–9490 NavierStokes 系列",
+   "each": "1 decl + 1 sorry(L33)",
+   "origin": "UCIF2-OS v0.6.5 PO填充 2026-08-23",
+   "nature": "通用占位定理(ε-δ 模板),非 NS 实内容"
+  },
+  "knowledge_files": {
+   "Physics/FluidDynamics.lean": "20 decls / 20 sorries(halluc-import 标注在案)",
+   "Analysis/PDEAdvanced.lean": "12 decls / 12 sorries",
+   "Analysis/StochasticPDE.lean": "17 decls / 17 sorries",
+   "Analysis/PartialDifferentialEquationsV2.lean": "20 decls / 40 sorries"
+  },
+  "nature": "问题空间登记层·非核证件·不得作证据引用"
+ },
+ "governance_frame": "board/NS-PROOF-FRAME-01.md(EXT12 11/11 PASS 收编·C1–C3 强制条件·known-issues×8)",
+ "blocked_register": [
+  "BLOCKED-NS-1 N→∞ PDE 接缝",
+  "BLOCKED-NS-2 3D 正则性/破裂本体",
+  "BLOCKED-NS-3 弱解唯一性",
+  "BLOCKED-NS-4 Fefferman A/B",
+  "W-NS-03 轨道包络"
+ ],
+ "obl_register": {
+  "OBL-NS-01": "mathlib Sobolev/Stokes 基础设施长程(社区外推2027–2030)",
+  "OBL-NS-02": "OpenAI Lean 仓独立审计(下一见证窗口)",
+  "OBL-NS-03": "RadiiPolynomial Fourier 系数代数扩展评估(W-NS-03 退出前置)"
+ },
+ "conclusions": [
+  "NS 包核证核在 HEAD 零 sorry/零 axiom——帧登记完整性经机器复证(51 decls/8 files)。",
+  "CapAnchor/ZetaAnchor 两模块系帧后增录,重构图谱必须收录。",
+  "ucif2  aspirational 层(89+10 sorries)与核证核严格分轨:重构不得混引。",
+  "阻塞五格+OBL 三项=重构设计书的正面攻坚清单。"
+ ]
+}
