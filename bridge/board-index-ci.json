@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2712,
+ "indexed": 2715,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -10986,6 +10986,15 @@
    ]
   },
   {
+   "file": "lvlu-nudge-KEYUNIFY-QUORUM-01-L296-20261017T142808Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L296 | KEYUNIFY-QUORUM-01 CONS-KEYUNIFY-01票决达quorum5",
+   "at": [
+    "qgl"
+   ]
+  },
+  {
    "file": "lvlu-nudge-KEYUNIFY-QUORUM-01-L31-20260918T084707Z.md",
    "line": "lvlu",
    "ts": null,
@@ -14266,6 +14275,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L243 | T5KEY-WAVE-01 T5+cisvr专钥装讫验证波(PAT-MINT-SPEC-T5-CISVR-01",
+   "at": [
+    "cisvr"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-T5KEY-WAVE-01-L247-20261017T142808Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L247 | T5KEY-WAVE-01 T5+cisvr专钥装讫验证波(PAT-MINT-SPEC-T5-CISVR-01",
    "at": [
     "cisvr"
    ]
@@ -23167,6 +23185,13 @@
    "line": "usrm",
    "ts": null,
    "title": "usrm-statex值守帖 gen2352",
+   "at": []
+  },
+  {
+   "file": "usrm-statex-digest-gen2360.md",
+   "line": "usrm",
+   "ts": null,
+   "title": "usrm-statex值守帖 gen2360",
    "at": []
   },
   {
