@@ -113,7 +113,7 @@
   "registered_anchor": "1a5f6a6eff5e4896e9c171fbdfbac48125ee7c6c"
  },
  "aspiration_layer_ucif2": {
-  "repo": "ucif2-formalization-kernel",
+  "repo": "UCIF2-VAULT",
   "po_d3_stubs": {
    "files": 10,
    "pattern": "PO_D3_9481–9490 NavierStokes 系列",
