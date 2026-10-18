@@ -1,6 +1,7 @@
 CLASSIFY: L1
 
 # NS-PROOF-FRAME-01 · Navier–Stokes 证明包治理帧（EXT-WAVE-09「NS」波 · 成文 v1.0）
+# 修订 v1.1（2026-10-17 · EXT-WAVE-15 / EXT18 卡6）：§3.3-A 修订条（NS-1 勘误/NS-2 锚更新/NS-3 登记改写）+ §4.1-A 忠诚审计条 原位追加；v1.0 原文零改动。
 
 枢/PIVOT-01 波分机 WS-44 成文 · 2026-10-12 · 自治性质：**纯成文，零执行**（本文不产生任何新编译/新见证，仅对既有证据做治理登记）
 上游分机：WS-40（学理精确化）→ WS-41（Galerkin 有限维 ODE 可行性 GO）→ WS-42（入库 @5887bbb4）→ WS-43（见证层 @1a5f6a6e）→ **WS-44（本帧）**
@@ -82,6 +83,29 @@ CLASSIFY: L1
 | BLOCKED-NS-3 | **弱解唯一性（Leray–Hopf 类）** | **BLOCKED(B1)** | 3D Leray 弱解唯一性未解决（Fefferman 原文明示）；超临界空间非唯一性已由 Buckmaster–Vicol (2019)、Albritton–Brué–Colombo (2022) 证成——唯一性方向的「已知结果」本身是反例；形式化依赖 Stokes semigroup / Littlewood–Paley 等缺失基础设施 | WS-40 §② 表 #1/#9 |
 | BLOCKED-NS-4 | **Fefferman (A)/(B)（零外力整体光滑性）** | **BLOCKED(B1)** | 即千禧问题正命题方向；无任何方法学通道（§2 单向蕴含格局下 C/D 进展不蕴含 A/B）；OpenAI 路线对无外力不适用（Constantin–Ignatova–Vicol 口径） | WS-40 §①/§3.3；Clay 截至 2026-10 仍将该问题列为 **active**、未颁奖 |
 
+### 3.3-A 修订条（2026-10-17 · EXT-WAVE-15 / 判定席 EXT18 卡6 终裁落地 · 原表文字不覆写，本条原位追加，效力优先于原表冲突处）
+
+**修订授权**：EXT18 R2 三席 3/3 全准（卡6 合成终裁）。语言钉（乙席模板，强制执行）：HWY 一律标「待评审预印本，结论未确立」；禁作规范性（normative）依据，仅作旁证/动机引注；禁用「证明了/确立了」，限用「报告了/提出」；HWY 若撤稿/拒稿，本登记自动降级。全部日期钉版本；「评审进行中」带负责人与复核截止日；NS-3 措辞带「截至 2026-10-17」时间戳。
+
+**NS-3 格·登记改写（替换语义，截至 2026-10-17）**
+三维不可压缩 Navier–Stokes 弱解唯一性：状态由「未解决」改写为「**已被否决主张（多路线、多解类），独立复核/评审进行中**」。证据指针：
+- (a) wild/超临界类：Buckmaster–Vicol, Ann. of Math. 189 (2019) 101–144（凸积分，已刊）；Cheskidov–Luo, Invent. Math. 229 (2022) 987–1054（已刊）；Cheskidov–Dai–Palasek, arXiv:2511.09556 v2（2026-01-12；wild 类瞬时 Type I 爆裂，预印本）。
+- (b) Leray–Hopf 类（有限能量，无外力）：Hou–Wang–Yang, arXiv:2509.25116 v2（2026-03-19；v1 2025-09-29）——**报告了**首个严格计算机辅助证明：ℝ³ 上同一紧支 L² 初值（u_in∈L^q, q<3）生成无穷多 suitable Leray–Hopf 解，「恰好错过 Prodi–Serrin 条件」；区间算术验证（25 模本征问题、~1200×1200 矩阵、600×300 谱截断）；代码公开（github.com/HouGroup2026/3d-navier-stokes-nonuniqueness，Julia，~800GB RAM 门槛）。**待评审预印本，结论未确立**；学界通行措辞「announced」；独立复跑/评审进行中（负责人：枢/PIVOT-01；复核截止：2027-01-17，逾期自动转状态复审）。
+- (c) 临界空间类：Coiculescu–Palasek, Invent. Math. 244 (2026) no. 1, 165–219, DOI 10.1007/s00222-025-01396-z（BMO⁻¹(𝕋³) 大初值两光滑全局解；**已正式刊出**——本批次唯一完成同行评审者）；Fujii, arXiv:2602.19846 v4（临界 Besov 唯一性全 (p,q) 分类，预印本）。
+- (d) 受迫/变体谱系：Albritton–Brué–Colombo, Ann. of Math. 196 (2022) 415–455；及其 Ann. PDE 9:17 (2023)、CMP 402:429–446 (2023) 等。
+退出判据改写：(i) HWY 之 CAP 经同行评审刊出**且** Julia 验证代码经独立复跑确认；(ii) 或公开勘误/反驳推翻 (b)。在此之前，任何下游登记不得以「Leray–Hopf 弱解唯一性可能成立」为前提。边界警示：本段**不**断言光滑初值 3D NS 有限时间爆裂已证，亦不断言 Clay 正则性问题已解决；HWY 初值非光滑 Schwartz 类。
+
+**NS-2 格·锚更新（截至 2026-10-17）**
+- (1) Tao 2016 超临界障碍（J. Amer. Math. Soc. 29 (2016) 601–674；arXiv:1402.0290）零修订维持。
+- (2) CIV 锚由「不可外推」增量更新为 2026 双篇：(a) arXiv:2609.20803 v2（2026-09-29；v1 2026-09-17）——实解析外力+各向异性 Type II 角平均界+坍缩核轴对称 ⇒ 假想奇点正则；推论：凡满足其 (i)(ii) 且外力 C² 有界的构造，外力在奇点附近既不能恒为零、也不能空间实解析；(b) arXiv:2609.20762 v2（2026-09-29）——Euler 长度 ℓ=(−t)^γ, γ<1/2 ⇒ 正则（自相似-黏性自举通道封死）。**CIV 双篇均为条件性定理**：作者逐字声明「We do not claim to have verified the correctness of the construction in [OpenAI 手稿]」。
+- (3) arXiv:2602.17570 v3（2026-07-20）：轴对称 C² 自相似 Euler 剖面 ⇒ γ≥1/2；与 (2b) 在 γ=1/2 处夹逼。
+- (4) Lei–Ren, Adv. Math. 445 (2024) 109654：奇异集 P^f=0，f(r)=r|ln r|（Remark 7 加严至 ln ln 级）。
+- (5) 形式化佐证：scottnarmstrong/CIVAxisymmetric（2026-10-02，零 sorry，Lean4+mathlib v4.35.0-rc2）完整形式化 (2a) 定理链。
+- **「不可外推」纪律加严**：凡在 NS-2 语境引用关联模型/构造，必须同列三项——(i) α₀≈0.093→2 缺口（**出处未核定，挂 C3 监测**）；(ii) CIV γ<1/2 双向夹逼；(iii) Córdoba 原句（受力爆破≠无外力爆破）："It is distinct from unforced Navier–Stokes blow-up."（Córdoba & Martínez-Zoroa，Tao 博客客座贴，2026-10-04）。缺一即不合格引用。
+
+**NS-1 格·依据勘误（EXT-WAVE-15 Phase 4④ 双纠错）**
+原表「Sobolev-on-tori、Stokes 算子、Leray 投影、Rellich–Kondrachov、Aubin–Lions 在 mathlib **全部缺席**」与「外推社区时间表 2027–2030」两处**过时**：(i) mathlib v4.10.0 实已含 GNS 不等式（PR #14165）、TemperedDistribution、Bessel–Sobolev、Schwartz、Lax–Milgram、Fourier（master 上 Rellich/Aubin/Leray/Kondrachov/Ladyzhenskaya/Gårding 六件仍缺席）；(ii) arXiv:2609.33033（Wang；FluidGalerkinLean @4d023ac，109 .lean 文件，零 sorry，**无许可证**）以图空间+J*J 谱坐标完成 2D 有限 Galerkin→Leray–Hopf 弱解全接缝，绕开 Stokes/Leray/Aubin–Lions 传统路线。**BLOCKED-NS-1 定性改写：由「基础设施级结构性缺失」改写为「工程移植问题」**（D01 九项 24–39 人周路径在案；OBL-NS-01 由「逐件移植」改写为「mathlib 版本升级」总路线）。机态 BLOCKED(B1) 维持至移植落地，不自动升档。
+
 ### 3.4 REJECTED 格（否定例登记，v0.4 §2.6 终态口径）
 
 | 格 id | 内容 | state | 依据 |
@@ -97,6 +121,17 @@ CLASSIFY: L1
 - **独立审计发现**：arXiv:2610.08144《Navier–Stokes lost in translation》（2026-10-07，L1）指出 **Lemma 8.6 与 pressure-flux bound (10.19) 的自然语言表述与其 Lean 对应物存在实质性不匹配**（导数计数差一阶）——即 Lean 核验证过的命题未必等于论文命题。另有 GitHub `francescoantoniodeluca/navier-stokes-formal-audit` 复现管线。
 - **不可外推性**：Constantin–Ignatova–Vicol 预印本（2026-09-17）称该方法不能推广到 real-analytic 外力情形，对无外力 (A)/(B) 不适用。
 - **Clay 状态**：截至 2026-10-12 Clay 仍将该问题列为 **active、未颁奖**；Clay 9/11 声明称评估流程 "deliberately unhurried"。Clay 评奖规则：解须发表、经 ≥2 年 scrutiny、获学界 general acceptance。
+
+### 4.1-A 忠诚审计条（2026-10-17 · EXT-WAVE-15 M0-2 · verifier 席八项全核）
+
+§4.1 转述与文献锚经一手比对，结论如下（原段文字不覆写，本条为审定注记）：
+- **Theorem 1.1 / Corollary 10.6 中文转述：属实**。逐项核验通过——ν 量词「For every ν>0」、从静止 u(·,0)=0、光滑时空紧支外力 f∈C_c^∞(ℝ³×(0,∞))、能量有界 sup‖u‖_{L²}<∞、速度有限时间无界 lim sup‖u‖_{L∞}=∞、(C)/(D) 归属与 Corollary 10.6 编号，均与手稿（166 页 PDF）原文一致。
+- **2610.08144 日期勘误**：§4.1 记「2026-10-07」→ 实为 **2026-10-06**（arXiv 提交史 [v1] Tue, 6 Oct 2026 10:58:01 UTC）。
+- **文献锚属实**：Buckmaster–Vicol, Ann. of Math. 189(1) (2019) 101–144；Albritton–Brué–Colombo, Ann. of Math. 196(1) (2022) 415–455；Tao, J. Amer. Math. Soc. 29 (2016) 601–674；CIV arXiv:2609.20803 v1 2026-09-17 均经期刊/AMS/arXiv 官页逐字核验。
+- **CIV 语义精度注**：其结论为**条件性定理**（假设 (i)(ii) 下实解析/恒零外力不可能），作者逐字声明未验证 OpenAI 构造（"We do not claim to have verified the correctness of the construction in [43]"）；§4.1「不可外推」表述方向成立，引用时须同载此条件性。
+- **NS-1 表内 philarchive 锚精度偏差双点**：FIEBQA（Fields, v1 2026-04-30）§4.4 外推区间实为 **2027–2032**（非 2027–2030），且其对象为其 Coq 形式化 17 条公理在「某一证明助手」中的闭合预测，非专属 mathlib/Lean；引用已随 §3.3-A NS-1 勘误条改写。
+- **iDNS 仓库名钉全**：`jcamlin/iDNS-Lean4-Mathlib4`（Roadmap 三项 Sobolev/Galerkin/Energy 确为 Planned）。
+审计方法：八项全一手（期刊官页/AMS/arXiv 元数据/PDF 逐字/仓库 README）；无凭记忆项。——verifier 席 & 枢/PIVOT-01
 
 ### 4.2 联邦纪律口径
 
