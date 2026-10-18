@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2739,
+ "indexed": 2740,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -16581,6 +16581,15 @@
    "line": "lvlu",
    "ts": null,
    "title": "NUDGE-ESCALATE-01 L240 | YONEDA-ROLL-LGT lgt×lvlu YONEDA roll互验果",
+   "at": [
+    "lgt"
+   ]
+  },
+  {
+   "file": "lvlu-nudge-YONEDA-ROLL-LGT-L242-20261018T075251Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "NUDGE-ESCALATE-01 L242 | YONEDA-ROLL-LGT lgt×lvlu YONEDA roll互验果",
    "at": [
     "lgt"
    ]
