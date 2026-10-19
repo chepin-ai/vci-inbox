@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 # CLASSIFY: L1 — 纯数据自述，不含可执行内容与外部指令
 # M1-5 / L4-1 · EXT-WAVE-15「构」 · EXT18 卡4 条件载：G1 定级、三槽哈希于发放时填、禁领先语
-version: "v0.4"
+version: "v0.5"
 
 project:
   name: "NsGalerkin — finite-dimensional Galerkin ODE truncation layer (2D Navier–Stokes)"
@@ -10,8 +10,10 @@ project:
     layer for 2D Navier–Stokes: abstract truncated system (coercive Stokes
     operator A, bilinear nonlinearity B with energy cancellation), local
     existence/uniqueness of the truncated ODE, explicit three-mode instance,
-    explicit B bounds, and two certificate anchors (CAP anchor, zeta anchor).
-    8 files, 51 declarations. Scope is strictly the finite-dimensional ODE
+    explicit B bounds, two certificate anchors (CAP anchor, zeta anchor),
+    and the skew-symmetry packaging module (SkewB: strengthened diagonal
+    hypothesis hskew and polarization to full (2,3)-skew-symmetry).
+    9 files, 56 declarations. Scope is strictly the finite-dimensional ODE
     truncation layer; no infinite-dimensional PDE seam is claimed here.
   authors: ["QF-OS Federation (枢/PIVOT-01 line)"]
   responsible_maintainers: ["枢/PIVOT-01"]
@@ -96,13 +98,23 @@ status:
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
       literature_dependencies: []
+    - declaration: "NSGalerkin.inner_B_antisymm"
+      file: "NsGalerkin/SkewB.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "NSGalerkin.SkewNonlinearity.antisymm"
+      file: "NsGalerkin/SkewB.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
 
 automation:
   methods:
     - method: "agent"
       models: ["QF-OS 联邦产线（多 agent 协同；具体模型 id 于发放时登记）"]
       framework: "QF-OS EXT-WAVE harness"
-      tool_setup: "lake build（Lean 4.10.0 + mathlib v4.10.0）；v4.35.0 迁移 spike 进行中（M1-1）"
+      tool_setup: "lake build（Lean 4.35.0 + mathlib v4.35.0 @56a00585；M1-1 迁移已转正，三项全绿：build/sorry-scan/axiom-audit —— runs 39211461961, 39214080542）"
       cost:
         wall_time: "见各波 LAB-CLOSE 登记"
         spend_usd: "n/a（公域 CI 免费计算面）"
@@ -111,16 +123,18 @@ automation:
 
 fidelity:
   divergences: >-
-    NS-PROOF-FRAME-01 §3.1 与本包 8 文件 51 decl 一一对应（普查
+    NS-PROOF-FRAME-01 §3.1 与本包 51 decl 一一对应（普查
     NS-PACKAGE-CENSUS-01-20261017T0444Z，同制 sha256 核验零漂移）；
-    无弱化。已知接缝缺口四项于 §3.3 登记，不在本包 scope。
+    M1-1 转正后普查 9 文件 56 decl（+SkewB 5 decl，纯增量加性件，
+    不改变帧对应关系）；无弱化。已知接缝缺口四项于 §3.3 登记，不在本包 scope。
 
 review:
   status: "self-assessed"
   reviewers: ["判定席 EXT12（2026-10-12，11/11）", "判定席 EXT18（2026-10-17，R2 3/3）"]
   notes: >-
-    机器检查：lake build 零 sorry（Lean 4.10.0）；v4.35.0 + lake comparator
-    并轨为 M1 在途项。语义评审：判定席双轮律，R2 定向复裁。
+    机器检查：lake build 零 sorryAx（Lean 4.35.0 + mathlib v4.35.0，run
+    39214080542：sorry_count=0，五 decl 公理审计仅
+    [propext, Classical.choice, Quot.sound]）。语义评审：判定席双轮律，R2 定向复裁。
     尚无联邦外第三方评审（G3 候选评估随 M4）。
 
 alignment:
@@ -162,15 +176,15 @@ federation:
     grade: "G1"                     # G0 declared / G1 machine-attested / G2 registry-witnessed / G3 externally-audited / G4 author-endorsed
     issued_at: "2026-10-17T07:00Z"  # Q6-b wall（UTC(Z) 单时钟域）
     artifact_digests:               # Q6-b log_digest（Palomar 三槽位式，发放时实测回填）
-      log_sha256: "PENDING-AT-ISSUANCE"
-      statement_sha256: "PENDING-AT-ISSUANCE"
-      proof_sha256: "PENDING-AT-ISSUANCE"
-    self_fingerprint_sha256: "PENDING-AT-ISSUANCE"   # WELD V2-1：verdict+yaml+config 联合哈希
+      log_sha256: "d545d60d9cf0c80a6e82783044d7aab1fe4bbf73c9178180d64ed0e7e6ef8e32"
+      statement_sha256: "6ac0bb1f1bdbdd3fcdf8028f09811d708d2faddd3a5ea63ca3c20703d8599950"
+      proof_sha256: "0facac49b51bd8dbc031eb6c265296b3e84def3d2d591e1658155e705b00ff24"
+    self_fingerprint_sha256: "96a2e74d14b1f0375abbc6702e2eef5df4113bd37b18a21bb97b002ce1ec5f34"   # WELD V2-1：verdict+yaml+config 联合哈希
   exclusion_pointers:               # Q6-b §2.4 逐项排除指针（同址原则：本体留仓内，指针入册）
     - item: "sorry-free"
-      verdict_ref: "spike/M1-1 buildA.log（sorry scan = 0）"
+      verdict_ref: "m1-1-toolchain-spike run 39214080542 产物 sorryA.txt（sorry_count=0）"
     - item: "axiom-bounded（仅 propext/Classical.choice/Quot.sound）"
-      verdict_ref: "spike/M1-1 axiomsA.log（#print axioms 输出）"
+      verdict_ref: "m1-1-toolchain-spike run 39214080542 产物 axiomsA.log（五 decl，仅 propext/Classical.choice/Quot.sound）"
     - item: "scope-exclusion（§3.3 四项 BLOCKED 不在 scope）"
       verdict_ref: "board/NS-PROOF-FRAME-01.md §3.3 + §3.3-A"
     - item: "no-Clay-chain（C3：本包非 Clay NS 证据链一环）"
@@ -182,4 +196,7 @@ federation:
     - id: "EXT18"
       date: "2026-10-17"
       result: "R1 三席八卡全条件准 → R2 3/3 收敛（重构设计书生效）"
+    - id: "EXT16-M1-1"
+      date: "2026-10-19"
+      result: "卡2 闭环：spike 12 迭代 ≤2人周闸内；v4.35.0 三项全绿（runs 39211461961/39214080542）；SkewB 转正 9 文件 56 decl"
   upgrade_path: "G1 → G2（Palomar 式注册表登记，OBL-EXT-06 激活后）→ G3（外部审计）→ G4（作者背书）"
