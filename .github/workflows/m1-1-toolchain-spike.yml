@@ -82,7 +82,7 @@ jobs:
           cd /tmp/ns-spike
           SORRY=$(grep -RIn --include='*.lean' -E '\bsorry\b' NsGalerkin NsGalerkin.lean | wc -l)
           echo "sorry_count=$SORRY" | tee sorryA.txt
-          printf 'import NsGalerkin\n#print axioms NSGalerkin.GalerkinNS.inner_vf\n#print axioms NSGalerkin.GalerkinNS.inner_vf_le\n#print axioms NSGalerkin.GalerkinNS.norm_vf_le\n' > PrintAxioms.lean
+          printf 'import NsGalerkin\n#print axioms NSGalerkin.GalerkinNS.inner_vf\n#print axioms NSGalerkin.GalerkinNS.inner_vf_le\n#print axioms NSGalerkin.GalerkinNS.norm_vf_le\n#print axioms NSGalerkin.inner_B_antisymm\n#print axioms NSGalerkin.SkewNonlinearity.antisymm\n' > PrintAxioms.lean
           lake env lean PrintAxioms.lean > axiomsA.log 2>&1 || true
           echo "- sorry scan: $SORRY" >> "$GITHUB_STEP_SUMMARY"
           echo '- axioms:' >> "$GITHUB_STEP_SUMMARY"
