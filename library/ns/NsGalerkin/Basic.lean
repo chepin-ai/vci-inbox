@@ -18,6 +18,7 @@ import Mathlib.Analysis.ODE.PicardLindelof
 import Mathlib.Analysis.ODE.Gronwall
 import Mathlib.Analysis.InnerProductSpace.Calculus
 import Mathlib.Analysis.InnerProductSpace.PiL2
+open scoped InnerProductSpace
 
 open Set Filter
 open scoped NNReal Topology
@@ -70,7 +71,7 @@ theorem inner_vf_le (x : E) : ⟪D.vf x, x⟫_ℝ ≤ -D.ν * ‖x‖ ^ 2 + ‖D
 /-- `B (x-y) x + B y (x-y) = B x x - B y y` (bilinearity splitting). -/
 theorem B_split (x y : E) : D.B (x - y) x + D.B y (x - y) = D.B x x - D.B y y := by
   have h1 : D.B (x - y) x = D.B x x - D.B y x := by
-    rw [map_sub, ContinuousLinearMap.sub_apply]
+    rw [map_sub, sub_apply]
   have h2 : D.B y (x - y) = D.B y x - D.B y y := map_sub _ _ _
   rw [h1, h2]
   abel
@@ -90,7 +91,7 @@ theorem norm_vf_le (x : E) :
   have h2 := norm_add_le (-(D.ν • D.A x)) (D.B x x)
   have : ‖D.vf x‖ ≤ ‖-(D.ν • D.A x)‖ + ‖D.B x x‖ + ‖D.f‖ := by
     calc ‖D.vf x‖ ≤ ‖-(D.ν • D.A x) + D.B x x‖ + ‖D.f‖ := h1
-      _ ≤ (‖-(D.ν • D.A x)‖ + ‖D.B x x‖) + ‖D.f‖ := add_le_add_right h2 _
+      _ ≤ (‖-(D.ν • D.A x)‖ + ‖D.B x x‖) + ‖D.f‖ := add_le_add_left h2 _
   linarith
 
 /-- The vector field is Lipschitz on any closed ball, with explicit constant
@@ -102,7 +103,7 @@ theorem lipschitzOnWith_vf (x₁ : E) {R : ℝ} (hR : 0 ≤ R) :
         have h3 : (0:ℝ) ≤ ‖x₁‖ + R := add_nonneg (norm_nonneg _) hR
         nlinarith [mul_nonneg D.hν.le h1, mul_nonneg h2 h3]⟩ : ℝ≥0)
       D.vf (Metric.closedBall x₁ R) := by
-  rw [lipschitzOnWith_iff_dist_le_mul]
+  refine LipschitzOnWith.of_dist_le_mul ?_
   intro x hx y hy
   have hxb : ‖x‖ ≤ ‖x₁‖ + R := by
     have h : ‖x - x₁‖ ≤ R := by rwa [Metric.mem_closedBall, dist_eq_norm] at hx
@@ -139,7 +140,7 @@ theorem lipschitzOnWith_vf (x₁ : E) {R : ℝ} (hR : 0 ≤ R) :
       calc _ ≤ ‖-(D.ν • D.A (x - y))‖ + ‖D.B (x - y) x + D.B y (x - y)‖ := h4
         _ = ‖D.B (x - y) x + D.B y (x - y)‖ + ‖-(D.ν • D.A (x - y))‖ := by ring
         _ ≤ (‖D.B (x - y) x‖ + ‖D.B y (x - y)‖) + ‖-(D.ν • D.A (x - y))‖ :=
-            add_le_add_right h5 _
+            add_le_add_left h5 _
         _ = ‖-(D.ν • D.A (x - y))‖ + ‖D.B (x - y) x‖ + ‖D.B y (x - y)‖ := by ring
     have hB0 : (0:ℝ) ≤ ‖D.B‖ := D.B.opNorm_nonneg
     have hxy := norm_nonneg (x - y)

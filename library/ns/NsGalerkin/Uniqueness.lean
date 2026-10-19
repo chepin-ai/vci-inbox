@@ -38,8 +38,7 @@ theorem dist_le_of_trajectories_in_ball (D : GalerkinNS E) {x₁ : E} {R : ℝ} 
     ∀ t ∈ Icc a b, dist (x t) (y t) ≤
       dist (x a) (y a) *
         Real.exp ((D.ν * ‖D.A‖ + 2 * ‖D.B‖ * (‖x₁‖ + R)) * (t - a)) := by
-  have hL := D.lipschitzOnWith_vf x₁ hR
-  rw [lipschitzOnWith_iff_dist_le_mul] at hL
+  have hL := (D.lipschitzOnWith_vf x₁ hR).dist_le_mul
   have hcont : ContinuousOn (fun s => x s - y s) (Icc a b) :=
     fun s hs => (hx s hs).continuousWithinAt.sub (hy s hs).continuousWithinAt
   have hderiv : ∀ s ∈ Ico a b,
@@ -47,8 +46,8 @@ theorem dist_le_of_trajectories_in_ball (D : GalerkinNS E) {x₁ : E} {R : ℝ} 
     intro s hs
     have hmem : Icc a b ∈ 𝓝[Ici s] s := mem_nhdsWithin.mpr
       ⟨Iio b, isOpen_Iio, hs.2, fun u hu => ⟨hs.1.trans hu.2, le_of_lt hu.1⟩⟩
-    exact ((hx s (Ico_subset_Icc_self hs)).mono_of_mem hmem).sub
-      ((hy s (Ico_subset_Icc_self hs)).mono_of_mem hmem)
+    exact ((hx s (Ico_subset_Icc_self hs)).mono_of_mem_nhdsWithin hmem).sub
+      ((hy s (Ico_subset_Icc_self hs)).mono_of_mem_nhdsWithin hmem)
   have hδ : ‖x a - y a‖ ≤ dist (x a) (y a) := (dist_eq_norm _ _).ge
   have hbound : ∀ s ∈ Ico a b, ‖D.vf (x s) - D.vf (y s)‖ ≤
       (D.ν * ‖D.A‖ + 2 * ‖D.B‖ * (‖x₁‖ + R)) * ‖x s - y s‖ + 0 := by
@@ -56,7 +55,9 @@ theorem dist_le_of_trajectories_in_ball (D : GalerkinNS E) {x₁ : E} {R : ℝ} 
     have hmem : s ∈ Icc a b := Ico_subset_Icc_self hs
     have e := hL (x s) (hxb s hmem) (y s) (hyb s hmem)
     rw [dist_eq_norm, dist_eq_norm] at e
-    simpa using e
+    have e' : ‖D.vf (x s) - D.vf (y s)‖ ≤
+        (D.ν * ‖D.A‖ + 2 * ‖D.B‖ * (‖x₁‖ + R)) * ‖x s - y s‖ := e
+    simpa using e'
   intro t ht
   have hG := norm_le_gronwallBound_of_norm_deriv_right_le hcont hderiv hδ hbound t ht
   rw [dist_eq_norm]
@@ -98,7 +99,7 @@ theorem solution_unique_upto (D : GalerkinNS E) {T : ℝ} (hT : 0 ≤ T) {x₀ :
     by_cases h1 : ‖z‖ ≤ 1
     · rw [hRB]; linarith
     · have h2 : ‖z‖ * 1 ≤ ‖z‖ * ‖z‖ :=
-        mul_le_mul_of_nonneg_left (le_of_not_le h1) (norm_nonneg z)
+        mul_le_mul_of_nonneg_left ((not_le.mp h1).le) (norm_nonneg z)
       rw [hRB]
       nlinarith [h2, hz, hM0]
   have hxb : ∀ t ∈ Icc 0 T, x t ∈ Metric.closedBall (0 : E) RB := by

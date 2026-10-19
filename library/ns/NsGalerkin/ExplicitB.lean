@@ -18,6 +18,7 @@ This yields `explicitData3 : GalerkinNS (ModeSpace 1)` with no hypotheses left
 unproven, and hence fully explicit existence/energy/uniqueness corollaries.
 -/
 import NsGalerkin.Concrete
+open scoped InnerProductSpace
 
 open Set Filter
 open scoped NNReal Topology
@@ -28,30 +29,30 @@ namespace NSGalerkin
 
 /-- The explicit three-mode bilinear form on `ModeSpace 1` (coordinate view). -/
 def B3fun (u v : ModeSpace 1) : ModeSpace 1 :=
-  ![u 1 * v 2 + u 2 * v 1, -(u 0 * v 2 + u 2 * v 0), 0]
+  WithLp.toLp 2 ![u 1 * v 2 + u 2 * v 1, -(u 0 * v 2 + u 2 * v 0), 0]
 
 /-- `B3fun` as a bilinear map. -/
 def B3lin : ModeSpace 1 →ₗ[ℝ] ModeSpace 1 →ₗ[ℝ] ModeSpace 1 :=
   LinearMap.mk₂ ℝ B3fun
     (fun u₁ u₂ v => by
-      funext i
+      ext i
       fin_cases i <;>
-        simp [B3fun, PiLp.add_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+        simp [B3fun, PiLp.toLp_apply, PiLp.add_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
           Matrix.cons_val_two, Matrix.head_cons, Pi.add_apply] <;> ring)
     (fun c u v => by
-      funext i
+      ext i
       fin_cases i <;>
-        simp [B3fun, PiLp.smul_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+        simp [B3fun, PiLp.toLp_apply, PiLp.smul_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
           Matrix.cons_val_two, Matrix.head_cons, smul_eq_mul] <;> ring)
     (fun u v₁ v₂ => by
-      funext i
+      ext i
       fin_cases i <;>
-        simp [B3fun, PiLp.add_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+        simp [B3fun, PiLp.toLp_apply, PiLp.add_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
           Matrix.cons_val_two, Matrix.head_cons, Pi.add_apply] <;> ring)
     (fun c u v => by
-      funext i
+      ext i
       fin_cases i <;>
-        simp [B3fun, PiLp.smul_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+        simp [B3fun, PiLp.toLp_apply, PiLp.smul_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
           Matrix.cons_val_two, Matrix.head_cons, smul_eq_mul] <;> ring)
 
 /-- Every coordinate of a Euclidean vector is bounded by its norm. -/
@@ -68,25 +69,25 @@ def B3 : ModeSpace 1 →L[ℝ] ModeSpace 1 →L[ℝ] ModeSpace 1 :=
   LinearMap.mkContinuous₂ B3lin 4 (fun u v => by
     have h0 : |B3fun u v 0| ≤ 2 * (‖u‖ * ‖v‖) := by
       have e : B3fun u v 0 = u 1 * v 2 + u 2 * v 1 := by
-        simp [B3fun, Matrix.cons_val_zero]
+        simp [B3fun, PiLp.toLp_apply, Matrix.cons_val_zero]
       rw [e]
-      calc |u 1 * v 2 + u 2 * v 1| ≤ |u 1 * v 2| + |u 2 * v 1| := abs_add _ _
+      calc |u 1 * v 2 + u 2 * v 1| ≤ |u 1 * v 2| + |u 2 * v 1| := abs_add_le _ _
         _ = |u 1| * |v 2| + |u 2| * |v 1| := by rw [abs_mul, abs_mul]
         _ ≤ ‖u‖ * ‖v‖ + ‖u‖ * ‖v‖ := by
             gcongr <;> exact abs_coord_le_norm _ _
         _ = 2 * (‖u‖ * ‖v‖) := by ring
     have h1 : |B3fun u v 1| ≤ 2 * (‖u‖ * ‖v‖) := by
       have e : B3fun u v 1 = -(u 0 * v 2 + u 2 * v 0) := by
-        simp [B3fun, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_zero]
+        simp [B3fun, PiLp.toLp_apply, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_zero]
       rw [e, abs_neg]
-      calc |u 0 * v 2 + u 2 * v 0| ≤ |u 0 * v 2| + |u 2 * v 0| := abs_add _ _
+      calc |u 0 * v 2 + u 2 * v 0| ≤ |u 0 * v 2| + |u 2 * v 0| := abs_add_le _ _
         _ = |u 0| * |v 2| + |u 2| * |v 0| := by rw [abs_mul, abs_mul]
         _ ≤ ‖u‖ * ‖v‖ + ‖u‖ * ‖v‖ := by
             gcongr <;> exact abs_coord_le_norm _ _
         _ = 2 * (‖u‖ * ‖v‖) := by ring
     have h2 : |B3fun u v 2| ≤ 2 * (‖u‖ * ‖v‖) := by
       have e : B3fun u v 2 = 0 := by
-        simp [B3fun, Matrix.cons_val_two, Matrix.head_cons, Matrix.cons_val_one,
+        simp [B3fun, PiLp.toLp_apply, Matrix.cons_val_two, Matrix.head_cons, Matrix.cons_val_one,
           Matrix.cons_val_zero]
       rw [e, abs_zero]
       positivity
@@ -127,9 +128,8 @@ theorem B3_inner_self (u : ModeSpace 1) : ⟪B3 u u, u⟫_ℝ = 0 := by
   simp_rw [RCLike.inner_apply, conj_trivial, B3_apply]
   simp only [Fin.sum_univ_succ, Fin.sum_univ_one, Finset.univ_eq_empty, Finset.sum_empty,
     Fin.succ_zero_eq_one', Fin.succ_one_eq_two', add_zero,
-    B3fun, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
+    PiLp.toLp_apply, B3fun, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
     Matrix.cons_val_two, Matrix.tail_cons]
-  rw [Fin.succ_zero_eq_one', Fin.succ_zero_eq_one', Fin.succ_one_eq_two']
   ring
 
 /-- Explicit Galerkin NS data on `ModeSpace 1`: viscosity 1, `A = id`,

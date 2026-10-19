@@ -9,6 +9,7 @@ space of the `N`-th order truncation. Carried over from WS-41; WS-42 adds the
 instantiated uniqueness corollaries.
 -/
 import NsGalerkin.Uniqueness
+open scoped InnerProductSpace
 
 open Set Filter
 open scoped NNReal Topology

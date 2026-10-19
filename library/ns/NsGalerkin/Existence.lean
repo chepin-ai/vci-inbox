@@ -6,6 +6,8 @@ Uniform-step Picard–Lindelöf continuation driven by the Grönwall energy
 a priori bound `‖x t‖² ≤ max ‖x a‖² (‖f‖²/ν²)`. Carried over from WS-41.
 -/
 import NsGalerkin.Basic
+import Mathlib.Analysis.ODE.ExistUnique
+open scoped InnerProductSpace
 
 open Set Filter
 open scoped NNReal Topology
@@ -43,43 +45,52 @@ theorem solution_step (D : GalerkinNS E) [FiniteDimensional ℝ E] {RB : ℝ} (_
   have hC1 : (0:ℝ) <
       max (D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖) 1 :=
     lt_of_lt_of_le zero_lt_one (le_max_right _ _)
-  have hpl : IsPicardLindelof (fun _ => D.vf) t₀ t₀ (t₀ + D.δC RB) x₁
+  have hpl : IsPicardLindelof (fun _ => D.vf) (tmin := t₀) (tmax := t₀ + D.δC RB)
+      ⟨t₀, mem_Icc.mpr ⟨le_refl _, le_add_of_nonneg_right hδ.le⟩⟩ x₁
+      1 0 ⟨D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖, by
+        have h1 : (0:ℝ) ≤ ‖D.A‖ := D.A.opNorm_nonneg
+        have h2 : (0:ℝ) ≤ ‖D.B‖ := D.B.opNorm_nonneg
+        have hRB1 : (0:ℝ) ≤ RB + 1 := add_nonneg (le_trans (norm_nonneg _) hx₁) zero_le_one
+        exact add_nonneg (add_nonneg (mul_nonneg (mul_nonneg D.hν.le h1) hRB1)
+          (mul_nonneg h2 (pow_nonneg hRB1 2))) (norm_nonneg _)⟩
       ⟨D.ν * ‖D.A‖ + 2 * ‖D.B‖ * (‖x₁‖ + 1), by
         have h1 : (0:ℝ) ≤ ‖D.A‖ := D.A.opNorm_nonneg
         have h2 : (0:ℝ) ≤ ‖D.B‖ := D.B.opNorm_nonneg
         have h3 : (0:ℝ) ≤ ‖x₁‖ + 1 := add_nonneg (norm_nonneg _) zero_le_one
-        nlinarith [mul_nonneg D.hν.le h1, mul_nonneg h2 h3]⟩
-      1 (D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖) :=
-  { ht₀ := mem_Icc.mpr ⟨le_refl _, le_add_of_nonneg_right hδ.le⟩
-    hR := zero_le_one
-    lipschitz := fun t _ => D.lipschitzOnWith_vf x₁ zero_le_one
-    cont := fun x _ => continuousOn_const
-    norm_le := by
-      intro t _ x hx
-      have hxb : ‖x‖ ≤ RB + 1 := by
-        have h : ‖x - x₁‖ ≤ (1:ℝ) := by rwa [Metric.mem_closedBall, dist_eq_norm] at hx
-        have hx' : ‖x‖ ≤ ‖x₁‖ + 1 := by
-          calc ‖x‖ = ‖x - x₁ + x₁‖ := by simp
-            _ ≤ ‖x - x₁‖ + ‖x₁‖ := norm_add_le _ _
-            _ ≤ 1 + ‖x₁‖ := by linarith
-            _ = ‖x₁‖ + 1 := by ring
-        linarith
-      have e := D.norm_vf_le x
-      have h1 : (0:ℝ) ≤ ‖D.A‖ := D.A.opNorm_nonneg
-      have h2 : (0:ℝ) ≤ ‖D.B‖ := D.B.opNorm_nonneg
-      have hsq : ‖x‖ ^ 2 ≤ (RB + 1) ^ 2 := by gcongr
-      nlinarith [e, mul_le_mul_of_nonneg_left hxb (mul_nonneg D.hν.le h1),
-        mul_le_mul_of_nonneg_left hsq h2]
-    C_mul_le_R := by
-      have hmax : max (t₀ + D.δC RB - t₀) (t₀ - t₀) = D.δC RB := by
-        rw [add_sub_cancel_left, sub_self, max_eq_left hδ.le]
-      rw [hmax, δC, mul_one_div]
-      rw [div_le_iff hC1]
-      calc D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖
-          ≤ max (D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖) 1 := le_max_left _ _
-        _ = 1 * max (D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖) 1 :=
-            (one_mul _).symm }
-  obtain ⟨x, hx0, hx⟩ := hpl.exists_forall_hasDerivWithinAt_Icc_eq x₁
+        nlinarith [mul_nonneg D.hν.le h1, mul_nonneg h2 h3]⟩ :=
+    { lipschitzOnWith := fun t _ => D.lipschitzOnWith_vf x₁ zero_le_one
+      continuousOn := fun x _ => continuousOn_const
+      norm_le := by
+        intro t _ x hx
+        have hxb : ‖x‖ ≤ RB + 1 := by
+          have h : ‖x - x₁‖ ≤ (1:ℝ) := by
+            rw [Metric.mem_closedBall, dist_eq_norm] at hx
+            simpa using hx
+          have hx' : ‖x‖ ≤ ‖x₁‖ + 1 := by
+            calc ‖x‖ = ‖x - x₁ + x₁‖ := by simp
+              _ ≤ ‖x - x₁‖ + ‖x₁‖ := norm_add_le _ _
+              _ ≤ 1 + ‖x₁‖ := by linarith
+              _ = ‖x₁‖ + 1 := by ring
+          linarith
+        have e := D.norm_vf_le x
+        have h1 : (0:ℝ) ≤ ‖D.A‖ := D.A.opNorm_nonneg
+        have h2 : (0:ℝ) ≤ ‖D.B‖ := D.B.opNorm_nonneg
+        have hsq : ‖x‖ ^ 2 ≤ (RB + 1) ^ 2 := by gcongr
+        show ‖D.vf x‖ ≤ D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖
+        nlinarith [e, mul_le_mul_of_nonneg_left hxb (mul_nonneg D.hν.le h1),
+          mul_le_mul_of_nonneg_left hsq h2]
+      mul_max_le := by
+        show (D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖) *
+            max (t₀ + D.δC RB - t₀) (t₀ - t₀) ≤ (1:ℝ) - 0
+        rw [sub_zero]
+        have hmax : max (t₀ + D.δC RB - t₀) (t₀ - t₀) = D.δC RB := by
+          rw [add_sub_cancel_left, sub_self, max_eq_left hδ.le]
+        rw [hmax, δC, mul_one_div, div_le_iff₀ hC1]
+        calc D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖
+            ≤ max (D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖) 1 := le_max_left _ _
+          _ = 1 * max (D.ν * ‖D.A‖ * (RB + 1) + ‖D.B‖ * (RB + 1) ^ 2 + ‖D.f‖) 1 :=
+              (one_mul _).symm }
+  obtain ⟨x, hx0, hx⟩ := hpl.exists_eq_forall_mem_Icc_hasDerivWithinAt₀
   exact ⟨x, hx0, hx⟩
 
 /-- Energy identity (differential form) along a solution. -/
@@ -109,14 +120,14 @@ theorem norm_sq_le_of_solution (D : GalerkinNS E) {a b : ℝ} (hab : a ≤ b) {x
     have h1 : HasDerivWithinAt x (D.vf (x t)) (Icc a b) t := hx t (Ico_subset_Icc_self ht)
     have hmem : Icc a b ∈ 𝓝[Ici t] t := mem_nhdsWithin.mpr
       ⟨Iio b, isOpen_Iio, ht.2, fun s hs => ⟨ht.1.trans hs.2, le_of_lt hs.1⟩⟩
-    have h2 := (h1.mono_of_mem hmem).norm_sq
+    have h2 := (h1.mono_of_mem_nhdsWithin hmem).norm_sq
     rw [hg, hg']
     exact h2
   have hlim : ∀ t ∈ Ico a b, ∀ r, g' t < r →
       ∃ᶠ z in 𝓝[>] t, (z - t)⁻¹ * (g z - g t) < r := by
     intro t ht r hr
     have h := (hdg t ht).liminf_right_slope_le hr
-    simpa only [slope, smul_eq_mul] using h
+    simpa only [slope, smul_eq_mul, vsub_eq_sub] using h
   have hbound : ∀ t ∈ Ico a b, g' t ≤ -D.ν * g t + ‖D.f‖ ^ 2 / D.ν := by
     intro t ht
     have h := D.inner_vf_le (x t)
@@ -181,7 +192,7 @@ theorem exists_solution_upto (D : GalerkinNS E) [FiniteDimensional ℝ E] (x₀ 
     by_cases h1 : ‖y‖ ≤ 1
     · rw [hRB]; linarith
     · have h2 : ‖y‖ * 1 ≤ ‖y‖ * ‖y‖ :=
-        mul_le_mul_of_nonneg_left (le_of_not_le h1) (norm_nonneg y)
+        mul_le_mul_of_nonneg_left ((not_le.mp h1).le) (norm_nonneg y)
       rw [hRB]
       nlinarith [h2, hy, hM0]
   have key : ∀ n : ℕ, ∃ x : ℝ → E, x 0 = x₀ ∧
@@ -237,7 +248,7 @@ theorem exists_solution_upto (D : GalerkinNS E) [FiniteDimensional ℝ E] (x₀ 
             rw [← hzxn t ⟨ht.1, htj⟩] at hL
             have hmem : Icc 0 j ∈ 𝓝[Icc 0 (j + δ)] t := mem_nhdsWithin.mpr
               ⟨Iio j, isOpen_Iio, hlt, fun s hs => ⟨hs.2.1, le_of_lt hs.1⟩⟩
-            exact hL.mono_of_mem hmem
+            exact hL.mono_of_mem_nhdsWithin hmem
           · have hL : HasDerivWithinAt z (D.vf (xn j)) (Icc 0 j) j :=
               (hd j ⟨hj0, le_refl _⟩).congr (fun s hs => hzxn s hs) hzj
             rw [← hzj] at hL
@@ -254,7 +265,7 @@ theorem exists_solution_upto (D : GalerkinNS E) [FiniteDimensional ℝ E] (x₀ 
           rw [← hzy t ⟨hgt.le, ht.2⟩] at hR
           have hmem : Icc j (j + δ) ∈ 𝓝[Icc 0 (j + δ)] t := mem_nhdsWithin.mpr
             ⟨Ioi j, isOpen_Ioi, hgt, fun s hs => ⟨le_of_lt hs.1, hs.2.2⟩⟩
-          exact hR.mono_of_mem hmem
+          exact hR.mono_of_mem_nhdsWithin hmem
       refine ⟨z, hz0, hzsol, fun t ht => ?_⟩
       have hB := D.norm_sq_le_of_solution (by linarith [hj0, hδ0.le]) hzsol t ht
       rw [hz0] at hB

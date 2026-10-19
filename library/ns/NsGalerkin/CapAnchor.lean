@@ -43,7 +43,7 @@ Evidence-level annotation (honest grading, federation discipline):
         failure registration — existence window r>ε disjoint from uniqueness
         window r<ν/6; downgrade registered, no precision upgrade forced)
   · KERNEL PROOF LAYER: **BLOCKED (B1)** — this file registers the *statement*
-    only (zero `sorry`, zero `axiom`, zero new assumptions; the statements are
+    only (zero `sorryAx`, zero extra axioms, zero new assumptions; the statements are
     plain `Prop`-valued definitions). A kernel-checked Krawczyk–contraction
     theorem needs interval-arithmetic infrastructure in Lean
     (FloatLib `interval` tactic / lean-interval-bounds `approx`, or a
@@ -72,7 +72,7 @@ structure CapParams where
 /-- The diagonal linear part `ν·diag(a)·u` (coordinate view, same elaboration
 style as `B3fun`). -/
 def capLin (P : CapParams) (u : ModeSpace 1) : ModeSpace 1 :=
-  ![P.ν * (P.a 0 * u 0), P.ν * (P.a 1 * u 1), P.ν * (P.a 2 * u 2)]
+  WithLp.toLp 2 ![P.ν * (P.a 0 * u 0), P.ν * (P.a 1 * u 1), P.ν * (P.a 2 * u 2)]
 
 /-- The stationary residual `F(u) = B₃(u,u) − ν·diag(a)·u + f`, built from the
 machine-checked explicit `B3fun` of `ExplicitB.lean`. Zeros of `capF` are exactly
@@ -83,12 +83,12 @@ def capF (P : CapParams) (u : ModeSpace 1) : ModeSpace 1 :=
 /-- Coordinate expansion of `capF` — the exact formula the external interval
 verifier recomputes (certificate schema field `system.components`). -/
 theorem capF_apply (P : CapParams) (u : ModeSpace 1) :
-    capF P u = ![u 1 * u 2 + u 2 * u 1 - P.ν * (P.a 0 * u 0) + P.f 0,
+    capF P u = WithLp.toLp 2 ![u 1 * u 2 + u 2 * u 1 - P.ν * (P.a 0 * u 0) + P.f 0,
                 -(u 0 * u 2 + u 2 * u 0) - P.ν * (P.a 1 * u 1) + P.f 1,
                 -P.ν * (P.a 2 * u 2) + P.f 2] := by
-  funext i
+  ext i
   fin_cases i <;>
-    simp [capF, capLin, B3fun, PiLp.sub_apply, PiLp.add_apply,
+    simp [capF, capLin, B3fun, PiLp.toLp_apply, PiLp.sub_apply, PiLp.add_apply,
       Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
       Matrix.head_cons, Pi.sub_apply, Pi.add_apply] <;> ring
 
@@ -115,11 +115,11 @@ def capParamsP1 : CapParams where
     fin_cases i <;>
       simp [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
         Matrix.head_cons]
-  f := ![1, 0.5, -0.25]
+  f := WithLp.toLp 2 ![1, 0.5, -0.25]
 
 /-- Box center of certificate `cap-b3-p1-mild` (float64 candidate `z`,
 registered as exact decimal rationals in the certificate). -/
-def capCenterP1 : ModeSpace 1 := ![0.6, 0.8, -0.25]
+def capCenterP1 : ModeSpace 1 := WithLp.toLp 2 ![0.6, 0.8, -0.25]
 
 /-- Box radius of certificate `cap-b3-p1-mild`. -/
 def capRadiusP1 : ℝ := 0.0474531328121258
@@ -135,9 +135,10 @@ def capAnchorP1 : Prop := capAnchorStatement capParamsP1 capCenterP1 capRadiusP1
 machine-checked ODE are exactly zeros of the certified map. -/
 theorem capF_p1_eq_vf (u : ModeSpace 1) :
     capF capParamsP1 u = (explicitData3 capParamsP1.f).vf u := by
-  funext i
+  ext i
   fin_cases i <;>
     simp [capF, capLin, GalerkinNS.vf, explicitData3, capParamsP1, B3fun, B3_apply,
+      PiLp.toLp_apply,
       ContinuousLinearMap.id_apply, one_smul, PiLp.neg_apply, PiLp.add_apply,
       PiLp.sub_apply, PiLp.smul_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons] <;> ring
