@@ -1,5 +1,5 @@
 # CLASSIFY: L1
-"""M1-1 spike migration-candidate patcher v7: Lean/mathlib v4.10.0 -> v4.35.0.
+"""M1-1 spike migration-candidate patcher v8: Lean/mathlib v4.10.0 -> v4.35.0.
 v1: BC-1 scoped inner notation / BC-2 sub_apply / BC-3 add_le_add flip / BC-4 LipschitzOnWith alias.
 v4 reorder: BC-5 block FIRST (BC-10 substring sits inside BC-5 old block, v3 ordering shadowed it); v3 added BC-5b (ExistUnique import — decls moved file) + BC-10 (div_le_iff → div_le_iff₀); v2 added Existence.lean layer (surfaced after Basic cleared):
   BC-5  IsPicardLindelof API redesign (t0 : Icc subtype; (a r L K : R>=0);
@@ -8,6 +8,12 @@ v4 reorder: BC-5 block FIRST (BC-10 substring sits inside BC-5 old block, v3 ord
   BC-7  HasFDerivWithinAt.mono_of_mem -> mono_of_mem_nhdsWithin (x3)
   BC-8  slope simp set needs vsub_eq_sub
   BC-9  le_of_not_le removed -> (not_le.mp h1).le
+v8 adds ExplicitB layer (surfaced iter-9): WithLp became a structure in v4.35.0
+  BC-12a PiLp construction: ![...] literal needs WithLp.toLp 2 wrapper
+  BC-12b funext i fails on structure equality -> ext i (PiLp.ext)
+  BC-12c simp sets need PiLp.toLp_apply to reduce (toLp p f) i (CoeFun via ofLp)
+  BC-12d B3_inner_self simp only set likewise +PiLp.toLp_apply
+  BC-13  abs_add removed -> abs_add_le (x2)
 Each applied edit is printed for the breaking-change ledger."""
 import pathlib, sys
 
@@ -25,7 +31,20 @@ TEXT_EDITS = [
     ("Uniqueness", "    simpa using e", "    have e' : ‖D.vf (x s) - D.vf (y s)‖ ≤\n        (D.ν * ‖D.A‖ + 2 * ‖D.B‖ * (‖x₁‖ + R)) * ‖x s - y s‖ := e\n    simpa using e'", "BC-11b"),
     (".mono_of_mem ", ".mono_of_mem_nhdsWithin ", 'BC-7'),
     ("simpa only [slope, smul_eq_mul] using h", "simpa only [slope, smul_eq_mul, vsub_eq_sub] using h", 'BC-8'),
-    ("le_of_not_le h1", "(not_le.mp h1).le", 'BC-9')
+    ("le_of_not_le h1", "(not_le.mp h1).le", 'BC-9'),
+    ("ExplicitB", "def B3fun (u v : ModeSpace 1) : ModeSpace 1 :=\n  ![u 1 * v 2 + u 2 * v 1, -(u 0 * v 2 + u 2 * v 0), 0]",
+     "def B3fun (u v : ModeSpace 1) : ModeSpace 1 :=\n  WithLp.toLp 2 ![u 1 * v 2 + u 2 * v 1, -(u 0 * v 2 + u 2 * v 0), 0]", "BC-12a"),
+    ("ExplicitB", "funext i", "ext i", "BC-12b"),
+    ("ExplicitB", "simp [B3fun, PiLp.add_apply,", "simp [B3fun, PiLp.toLp_apply, PiLp.add_apply,", "BC-12c"),
+    ("ExplicitB", "simp [B3fun, PiLp.smul_apply,", "simp [B3fun, PiLp.toLp_apply, PiLp.smul_apply,", "BC-12c"),
+    ("ExplicitB", "simp [B3fun, Matrix.cons_val_zero]", "simp [B3fun, PiLp.toLp_apply, Matrix.cons_val_zero]", "BC-12c"),
+    ("ExplicitB", "simp [B3fun, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_zero]",
+     "simp [B3fun, PiLp.toLp_apply, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_zero]", "BC-12c"),
+    ("ExplicitB", "simp [B3fun, Matrix.cons_val_two, Matrix.head_cons, Matrix.cons_val_one,",
+     "simp [B3fun, PiLp.toLp_apply, Matrix.cons_val_two, Matrix.head_cons, Matrix.cons_val_one,", "BC-12c"),
+    ("ExplicitB", ":= abs_add _ _", ":= abs_add_le _ _", "BC-13"),
+    ("ExplicitB", "    B3fun, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,\n    Matrix.cons_val_two, Matrix.tail_cons]",
+     "    PiLp.toLp_apply, B3fun, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,\n    Matrix.cons_val_two, Matrix.tail_cons]", "BC-12d")
 ]
 
 def patch(path):
