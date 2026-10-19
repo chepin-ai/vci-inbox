@@ -1,0 +1,92 @@
+# CLASSIFY: L1
+# M1-1 / L0-1 · 工具链跳跃 spike（Lean 4.10.0 → v4.35.0）
+# EXT-WAVE-15「构」 · EXT18 卡2 放行件：spike ≤2 人周闸、破坏性变更清单、冷缓存计时
+# W30 合规：workflow_dispatch 一次性事件驱动，非定时
+name: M1-1 toolchain spike v4.35.0
+on:
+  workflow_dispatch:
+
+jobs:
+  spike:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+      - name: Stage A — baseline 8f/51decl @ v4.35.0
+        id: stageA
+        run: |
+          set -o pipefail
+          rm -rf /tmp/ns-spike && mkdir -p /tmp/ns-spike
+          cp -r "$GITHUB_WORKSPACE/library/ns/." /tmp/ns-spike/
+          cd /tmp/ns-spike
+          sed -i 's/@"v4.10.0"/@"v4.35.0"/' lakefile.lean
+          echo 'leanprover/lean4:v4.35.0' > lean-toolchain
+          rm -f lake-manifest.json
+          { /usr/bin/time -v lake exe cache get ; } > cacheA.log 2>&1 || true
+          START=$(date +%s)
+          { /usr/bin/time -v lake build ; } > buildA.log 2>&1
+          RC=$?
+          END=$(date +%s)
+          echo "stageA_rc=$RC" >> "$GITHUB_OUTPUT"
+          echo "## Stage A (baseline @ v4.35.0)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- exit=$RC, wall=$((END-START))s (cold)" >> "$GITHUB_STEP_SUMMARY"
+          if [ $RC -ne 0 ]; then
+            echo '- BREAKING CHANGES (first 120 error lines):' >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            grep -E 'error' buildA.log | head -120 >> "$GITHUB_STEP_SUMMARY" || true
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit 0
+
+      - name: Stage A — sorry scan + axiom audit
+        if: steps.stageA.outputs.stageA_rc == '0'
+        run: |
+          cd /tmp/ns-spike
+          SORRY=$(grep -RIn --include='*.lean' -E '\bsorry\b' NsGalerkin NsGalerkin.lean | wc -l)
+          echo "sorry_count=$SORRY" | tee sorryA.txt
+          printf 'import NsGalerkin\n#print axioms NSGalerkin.GalerkinNS.inner_vf\n#print axioms NSGalerkin.GalerkinNS.inner_vf_le\n#print axioms NSGalerkin.GalerkinNS.norm_vf_le\n' > PrintAxioms.lean
+          lake env lean PrintAxioms.lean > axiomsA.log 2>&1 || true
+          echo "- sorry scan: $SORRY" >> "$GITHUB_STEP_SUMMARY"
+          echo '- axioms:' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat axiomsA.log >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Stage B — baseline + SkewB candidate @ v4.35.0
+        id: stageB
+        run: |
+          set -o pipefail
+          cd /tmp/ns-spike
+          cp "$GITHUB_WORKSPACE/spike/M1-1/SkewB.lean" NsGalerkin/SkewB.lean
+          printf 'import NsGalerkin.SkewB\n' >> NsGalerkin.lean
+          START=$(date +%s)
+          { lake build ; } > buildB.log 2>&1
+          RC=$?
+          END=$(date +%s)
+          echo "stageB_rc=$RC" >> "$GITHUB_OUTPUT"
+          echo "## Stage B (+SkewB @ v4.35.0)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- exit=$RC, wall=$((END-START))s" >> "$GITHUB_STEP_SUMMARY"
+          if [ $RC -ne 0 ]; then
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            grep -E 'error' buildB.log | head -80 >> "$GITHUB_STEP_SUMMARY" || true
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit 0
+
+      - name: Upload spike logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m1-1-spike-logs
+          path: |
+            /tmp/ns-spike/cacheA.log
+            /tmp/ns-spike/buildA.log
+            /tmp/ns-spike/buildB.log
+            /tmp/ns-spike/axiomsA.log
+            /tmp/ns-spike/sorryA.txt
+          if-no-files-found: ignore
