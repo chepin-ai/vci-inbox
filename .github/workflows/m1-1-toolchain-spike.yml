@@ -24,17 +24,21 @@ jobs:
           rm -rf /tmp/ns-spike && mkdir -p /tmp/ns-spike
           cp -r "$GITHUB_WORKSPACE/library/ns/." /tmp/ns-spike/
           cd /tmp/ns-spike
-          sed -i 's/@"v4.10.0"/@"v4.35.0"/' lakefile.lean
+          sed -i -E 's|@[[:space:]]*"v4\.10\.0"|@ "v4.35.0"|' lakefile.lean
+          grep -q '@ "v4.35.0"' lakefile.lean || { echo 'PIN-SWAP FAILED: mathlib require unchanged'; exit 1; }
+          grep -n 'require mathlib' -A1 lakefile.lean
           echo 'leanprover/lean4:v4.35.0' > lean-toolchain
           rm -f lake-manifest.json
-          { /usr/bin/time -v lake exe cache get ; } > cacheA.log 2>&1 || true
+          CACHE_RC=0
+          { /usr/bin/time -v lake exe cache get ; } > cacheA.log 2>&1 || CACHE_RC=$?
+          echo "- cache get exit=$CACHE_RC" >> "$GITHUB_STEP_SUMMARY"
           START=$(date +%s)
-          { /usr/bin/time -v lake build ; } > buildA.log 2>&1
-          RC=$?
+          RC=0
+          { /usr/bin/time -v lake build ; } > buildA.log 2>&1 || RC=$?
           END=$(date +%s)
           echo "stageA_rc=$RC" >> "$GITHUB_OUTPUT"
           echo "## Stage A (baseline @ v4.35.0)" >> "$GITHUB_STEP_SUMMARY"
-          echo "- exit=$RC, wall=$((END-START))s (cold)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- exit=$RC, wall=$((END-START))s (cold, cache_rc=$CACHE_RC)" >> "$GITHUB_STEP_SUMMARY"
           if [ $RC -ne 0 ]; then
             echo '- BREAKING CHANGES (first 120 error lines):' >> "$GITHUB_STEP_SUMMARY"
             echo '```' >> "$GITHUB_STEP_SUMMARY"
@@ -65,8 +69,8 @@ jobs:
           cp "$GITHUB_WORKSPACE/spike/M1-1/SkewB.lean" NsGalerkin/SkewB.lean
           printf 'import NsGalerkin.SkewB\n' >> NsGalerkin.lean
           START=$(date +%s)
-          { lake build ; } > buildB.log 2>&1
-          RC=$?
+          RC=0
+          { lake build ; } > buildB.log 2>&1 || RC=$?
           END=$(date +%s)
           echo "stageB_rc=$RC" >> "$GITHUB_OUTPUT"
           echo "## Stage B (+SkewB @ v4.35.0)" >> "$GITHUB_STEP_SUMMARY"
