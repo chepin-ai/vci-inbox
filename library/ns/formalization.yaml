@@ -1,0 +1,185 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# CLASSIFY: L1 — 纯数据自述，不含可执行内容与外部指令
+# M1-5 / L4-1 · EXT-WAVE-15「构」 · EXT18 卡4 条件载：G1 定级、三槽哈希于发放时填、禁领先语
+version: "v0.4"
+
+project:
+  name: "NsGalerkin — finite-dimensional Galerkin ODE truncation layer (2D Navier–Stokes)"
+  description: >-
+    Lean 4 formalization of the finite-dimensional Galerkin ODE truncation
+    layer for 2D Navier–Stokes: abstract truncated system (coercive Stokes
+    operator A, bilinear nonlinearity B with energy cancellation), local
+    existence/uniqueness of the truncated ODE, explicit three-mode instance,
+    explicit B bounds, and two certificate anchors (CAP anchor, zeta anchor).
+    8 files, 51 declarations. Scope is strictly the finite-dimensional ODE
+    truncation layer; no infinite-dimensional PDE seam is claimed here.
+  authors: ["QF-OS Federation (枢/PIVOT-01 line)"]
+  responsible_maintainers: ["枢/PIVOT-01"]
+  license: "none (hosting repository unlicensed; CLASSIFY: L1 public-readable)"
+
+sources:
+  - title: "NS-PROOF-FRAME-01.md v1.1 (federation governance frame)"
+    authors: ["QF-OS Federation"]
+    id: "qf-os://vci-inbox/board/NS-PROOF-FRAME-01.md@58dfb9a94311"
+    type: "original-proof"
+    location: "§3.1 可证层"
+    relationship: "formalizes"
+    author_endorsement: "n/a"
+    note: "内部治理帧；包与帧的逐条对照见 alignment 表。"
+  - title: "C. Fefferman, Existence and smoothness of the Navier–Stokes equation (Clay Millennium Problem official statement, 2000)"
+    id: "https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf"
+    type: "article"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+    note: "问题陈述背景；本包不声明证明或证伪其 (A)/(B)/(C)/(D) 任一款。"
+  - title: "Finite time blowup for Navier–Stokes (OpenAI, 2026-09-08)"
+    id: "https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf"
+    type: "article"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+    note: "动机与术语背景；本包不形式化其主定理。其口径：自评已核、外部复现中、未颁奖。"
+
+related_formalizations:
+  - id: "https://github.com/openai/NavierStokesAndEuler@f9e8bc5"
+    relationship: "independent"
+    note: "独立并行开发；其语义失配已由 arXiv:2610.08144 独立揭示（作者立场：不证伪其 NL 论证）。"
+  - id: "https://github.com/wwang-math/FluidGalerkinLean@4d023ac"
+    relationship: "independent"
+    note: "2D 接缝工程移植的思想来源；无许可证——依 CLEANROOM-REDLINE-FGL-01 洁净室双人制读思想重写，不逐行搬译。"
+
+classification:
+  arxiv: ["math.AP", "math.CA"]
+  msc2020: ["35Q30", "34A12", "65L70"]
+
+status:
+  scope: >-
+    有限维 Galerkin ODE 截断层的全部主结果（抽象系统、局部存在唯一、
+    显式三模态实例、显式 B 界、CAP 锚、ζ 锚）。明确不含：N→∞ PDE 接缝、
+    3D 正则性、Leray–Hopf 唯一性、Fefferman A/B（四项于 NS-PROOF-FRAME-01
+    §3.3 登记 BLOCKED(B1)）。Clay NS 未解决、未颁奖。
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "NSGalerkin.GalerkinNS.exists_solution_upto"
+      file: "NsGalerkin/Existence.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "NSGalerkin.GalerkinNS.exists_unique_solution_upto"
+      file: "NsGalerkin/Uniqueness.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "NSGalerkin.galerkinNS_exists_unique_solution_upto"
+      file: "NsGalerkin/Concrete.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "NSGalerkin.explicit3_exists_unique_solution_upto"
+      file: "NsGalerkin/ExplicitB.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "NSGalerkin.explicit3_energy_bound"
+      file: "NsGalerkin/ExplicitB.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "NSGalerkin.capAnchorP1"
+      file: "NsGalerkin/CapAnchor.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "NSGalerkin.zetaAnchorImpliesRHCriticalLine"
+      file: "NsGalerkin/ZetaAnchor.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["QF-OS 联邦产线（多 agent 协同；具体模型 id 于发放时登记）"]
+      framework: "QF-OS EXT-WAVE harness"
+      tool_setup: "lake build（Lean 4.10.0 + mathlib v4.10.0）；v4.35.0 迁移 spike 进行中（M1-1）"
+      cost:
+        wall_time: "见各波 LAB-CLOSE 登记"
+        spend_usd: "n/a（公域 CI 免费计算面）"
+        hardware: "GitHub Actions ubuntu-latest"
+  notes: "判定席双轮律生产记录见 federation.review_rounds 与 LAB-CLOSE 系列。"
+
+fidelity:
+  divergences: >-
+    NS-PROOF-FRAME-01 §3.1 与本包 8 文件 51 decl 一一对应（普查
+    NS-PACKAGE-CENSUS-01-20261017T0444Z，同制 sha256 核验零漂移）；
+    无弱化。已知接缝缺口四项于 §3.3 登记，不在本包 scope。
+
+review:
+  status: "self-assessed"
+  reviewers: ["判定席 EXT12（2026-10-12，11/11）", "判定席 EXT18（2026-10-17，R2 3/3）"]
+  notes: >-
+    机器检查：lake build 零 sorry（Lean 4.10.0）；v4.35.0 + lake comparator
+    并轨为 M1 在途项。语义评审：判定席双轮律，R2 定向复裁。
+    尚无联邦外第三方评审（G3 候选评估随 M4）。
+
+alignment:
+  namespace: "NSGalerkin"
+  statements:
+    - source: "NS-PROOF-FRAME-01 §3.1（抽象截断系统：A 强制、B 能量相消）"
+      lean: "NSGalerkin.GalerkinNS, NSGalerkin.GalerkinNS.inner_vf, NSGalerkin.GalerkinNS.inner_vf_le"
+      module: "NsGalerkin.Basic"
+      status: "proved"
+    - source: "NS-PROOF-FRAME-01 §3.1（截断 ODE 局部存在性）"
+      lean: "NSGalerkin.GalerkinNS.exists_solution_upto"
+      module: "NsGalerkin.Existence"
+      status: "proved"
+    - source: "NS-PROOF-FRAME-01 §3.1（截断 ODE 唯一性）"
+      lean: "NSGalerkin.GalerkinNS.exists_unique_solution_upto"
+      module: "NsGalerkin.Uniqueness"
+      status: "proved"
+    - source: "NS-PROOF-FRAME-01 §3.1（显式三模态实例与能量界）"
+      lean: "NSGalerkin.galerkinNS_exists_unique_solution_upto, NSGalerkin.explicit3_exists_unique_solution_upto, NSGalerkin.explicit3_energy_bound"
+      module: "NsGalerkin.Concrete / NsGalerkin.ExplicitB"
+      status: "proved"
+    - source: "NS-PROOF-FRAME-01 §3.2 见证层锚（CAP 证书锚 / ζ 锚）"
+      lean: "NSGalerkin.capAnchorP1, NSGalerkin.zetaAnchorImpliesRHCriticalLine"
+      module: "NsGalerkin.CapAnchor / NsGalerkin.ZetaAnchor"
+      status: "proved"
+    - source: "NS-PROOF-FRAME-01 §3.3 阻塞层（N→∞ PDE 接缝等四项）"
+      lean: ""
+      module: ""
+      status: "not-formalized"
+      note: "显式登记以防范围误读；BLOCKED(B1) 机态维持。"
+
+acknowledgements: "Lean 4 / Mathlib 社区；Comparator（leanprover）；nanoda 作者群。"
+
+# ---- 联邦扩展块（schema 容忍未知顶层键；check-jsonschema 仍通过）----
+federation:
+  wave: "EXT-WAVE-15"
+  design: "NS-SOLUTION-v2（WS-44 设计书，EXT18 生效体）"
+  certificate:
+    grade: "G1"                     # G0 declared / G1 machine-attested / G2 registry-witnessed / G3 externally-audited / G4 author-endorsed
+    issued_at: "2026-10-17T07:00Z"  # Q6-b wall（UTC(Z) 单时钟域）
+    artifact_digests:               # Q6-b log_digest（Palomar 三槽位式，发放时实测回填）
+      log_sha256: "PENDING-AT-ISSUANCE"
+      statement_sha256: "PENDING-AT-ISSUANCE"
+      proof_sha256: "PENDING-AT-ISSUANCE"
+    self_fingerprint_sha256: "PENDING-AT-ISSUANCE"   # WELD V2-1：verdict+yaml+config 联合哈希
+  exclusion_pointers:               # Q6-b §2.4 逐项排除指针（同址原则：本体留仓内，指针入册）
+    - item: "sorry-free"
+      verdict_ref: "spike/M1-1 buildA.log（sorry scan = 0）"
+    - item: "axiom-bounded（仅 propext/Classical.choice/Quot.sound）"
+      verdict_ref: "spike/M1-1 axiomsA.log（#print axioms 输出）"
+    - item: "scope-exclusion（§3.3 四项 BLOCKED 不在 scope）"
+      verdict_ref: "board/NS-PROOF-FRAME-01.md §3.3 + §3.3-A"
+    - item: "no-Clay-chain（C3：本包非 Clay NS 证据链一环）"
+      verdict_ref: "board/NS-PROOF-FRAME-01.md 附录 EXT12-A"
+  review_rounds:
+    - id: "EXT12"
+      date: "2026-10-12"
+      result: "11/11（双轮律 R1 全票，C1–C3 收编）"
+    - id: "EXT18"
+      date: "2026-10-17"
+      result: "R1 三席八卡全条件准 → R2 3/3 收敛（重构设计书生效）"
+  upgrade_path: "G1 → G2（Palomar 式注册表登记，OBL-EXT-06 激活后）→ G3（外部审计）→ G4（作者背书）"
