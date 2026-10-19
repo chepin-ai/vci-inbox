@@ -21,6 +21,7 @@ follow-up card (requires re-proving Concrete instances; not in this spike).
 Toolchain target: leanprover/lean4:v4.35.0 + mathlib v4.35.0 (spike).
 -/
 import NsGalerkin.Basic
+open scoped InnerProductSpace
 
 open scoped NNReal Topology
 
