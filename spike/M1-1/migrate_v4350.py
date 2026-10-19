@@ -1,7 +1,7 @@
 # CLASSIFY: L1
-"""M1-1 spike migration-candidate patcher v2: Lean/mathlib v4.10.0 -> v4.35.0.
+"""M1-1 spike migration-candidate patcher v3: Lean/mathlib v4.10.0 -> v4.35.0.
 v1: BC-1 scoped inner notation / BC-2 sub_apply / BC-3 add_le_add flip / BC-4 LipschitzOnWith alias.
-v2 adds Existence.lean layer (surfaced after Basic cleared):
+v3 adds BC-5b (ExistUnique import — decls moved file) + BC-10 (div_le_iff → div_le_iff₀); v2 added Existence.lean layer (surfaced after Basic cleared):
   BC-5  IsPicardLindelof API redesign (t0 : Icc subtype; (a r L K : R>=0);
         fields lipschitzOnWith/continuousOn/norm_le/mul_max_le;
         exists_forall_hasDerivWithinAt_Icc_eq -> exists_eq_forall_mem_Icc_hasDerivWithinAt0)
@@ -11,7 +11,11 @@ v2 adds Existence.lean layer (surfaced after Basic cleared):
 Each applied edit is printed for the breaking-change ledger."""
 import pathlib, sys
 
+# entries: (substr, repl, tag) global, or (file_substr, substr, repl, tag) file-scoped
 TEXT_EDITS = [
+    ("Existence", "import NsGalerkin.Basic",
+     "import NsGalerkin.Basic\nimport Mathlib.Analysis.ODE.ExistUnique", "BC-5b"),
+    ("Existence", "div_le_iff hC1", "div_le_iff₀ hC1", "BC-10"),
     ("ContinuousLinearMap.sub_apply", "sub_apply", 'BC-2'),
     ("add_le_add_right h2 _", "add_le_add_left h2 _", 'BC-3'),
     ("add_le_add_right h5 _", "add_le_add_left h5 _", 'BC-3'),
@@ -27,10 +31,17 @@ def patch(path):
     p = pathlib.Path(path)
     t = p.read_text()
     orig = t
-    for old, new, tag in TEXT_EDITS:
-        if old in t:
-            t = t.replace(old, new)
-            print(f'{tag} applied  {p}')
+    for ent in TEXT_EDITS:
+        if len(ent) == 4:
+            fscope, old, new, tag = ent
+            if fscope not in str(p) or old not in t:
+                continue
+        else:
+            old, new, tag = ent
+            if old not in t:
+                continue
+        t = t.replace(old, new)
+        print(f'{tag} applied  {p}')
     if '⟪' in t and 'open scoped InnerProductSpace' not in t:
         lines = t.split('\n')
         imp = [i for i, l in enumerate(lines) if l.startswith('import ')]
