@@ -1,5 +1,5 @@
 # CLASSIFY: L1
-"""M1-1 spike migration-candidate patcher v8: Lean/mathlib v4.10.0 -> v4.35.0.
+"""M1-1 spike migration-candidate patcher v9b: Lean/mathlib v4.10.0 -> v4.35.0.
 v1: BC-1 scoped inner notation / BC-2 sub_apply / BC-3 add_le_add flip / BC-4 LipschitzOnWith alias.
 v4 reorder: BC-5 block FIRST (BC-10 substring sits inside BC-5 old block, v3 ordering shadowed it); v3 added BC-5b (ExistUnique import — decls moved file) + BC-10 (div_le_iff → div_le_iff₀); v2 added Existence.lean layer (surfaced after Basic cleared):
   BC-5  IsPicardLindelof API redesign (t0 : Icc subtype; (a r L K : R>=0);
@@ -14,6 +14,14 @@ v8 adds ExplicitB layer (surfaced iter-9): WithLp became a structure in v4.35.0
   BC-12c simp sets need PiLp.toLp_apply to reduce (toLp p f) i (CoeFun via ofLp)
   BC-12d B3_inner_self simp only set likewise +PiLp.toLp_apply
   BC-13  abs_add removed -> abs_add_le (x2)
+v9 pre-staged CapAnchor layer (same WithLp-structure family; pushed only after iter-10 confirms):
+  BC-14a capLin def literal -> WithLp.toLp 2 wrap
+  BC-14b capF_apply stmt literal -> wrap; funext->ext; simp +PiLp.toLp_apply
+  BC-14c capParamsP1.f / capCenterP1 literals -> wrap
+  BC-14d capF_p1_eq_vf funext->ext + simp +PiLp.toLp_apply
+v9b (iter-10 harvest): ExplicitB fully clean except B3_inner_self tail —
+  BC-15  simp only now fully normalizes Fin indices; trailing
+         rw [Fin.succ_zero_eq_one', ...] finds no pattern -> delete the rw, ring closes
 Each applied edit is printed for the breaking-change ledger."""
 import pathlib, sys
 
@@ -44,7 +52,20 @@ TEXT_EDITS = [
      "simp [B3fun, PiLp.toLp_apply, Matrix.cons_val_two, Matrix.head_cons, Matrix.cons_val_one,", "BC-12c"),
     ("ExplicitB", ":= abs_add _ _", ":= abs_add_le _ _", "BC-13"),
     ("ExplicitB", "    B3fun, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,\n    Matrix.cons_val_two, Matrix.tail_cons]",
-     "    PiLp.toLp_apply, B3fun, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,\n    Matrix.cons_val_two, Matrix.tail_cons]", "BC-12d")
+     "    PiLp.toLp_apply, B3fun, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,\n    Matrix.cons_val_two, Matrix.tail_cons]", "BC-12d"),
+    ("CapAnchor", "def capLin (P : CapParams) (u : ModeSpace 1) : ModeSpace 1 :=\n  ![P.ν * (P.a 0 * u 0), P.ν * (P.a 1 * u 1), P.ν * (P.a 2 * u 2)]",
+     "def capLin (P : CapParams) (u : ModeSpace 1) : ModeSpace 1 :=\n  WithLp.toLp 2 ![P.ν * (P.a 0 * u 0), P.ν * (P.a 1 * u 1), P.ν * (P.a 2 * u 2)]", "BC-14a"),
+    ("CapAnchor", "    capF P u = ![u 1 * u 2 + u 2 * u 1 - P.ν * (P.a 0 * u 0) + P.f 0,\n                -(u 0 * u 2 + u 2 * u 0) - P.ν * (P.a 1 * u 1) + P.f 1,\n                -P.ν * (P.a 2 * u 2) + P.f 2] := by\n  funext i",
+     "    capF P u = WithLp.toLp 2 ![u 1 * u 2 + u 2 * u 1 - P.ν * (P.a 0 * u 0) + P.f 0,\n                -(u 0 * u 2 + u 2 * u 0) - P.ν * (P.a 1 * u 1) + P.f 1,\n                -P.ν * (P.a 2 * u 2) + P.f 2] := by\n  ext i", "BC-14b"),
+    ("CapAnchor", "simp [capF, capLin, B3fun, PiLp.sub_apply, PiLp.add_apply,",
+     "simp [capF, capLin, B3fun, PiLp.toLp_apply, PiLp.sub_apply, PiLp.add_apply,", "BC-14b"),
+    ("CapAnchor", "  f := ![1, 0.5, -0.25]", "  f := WithLp.toLp 2 ![1, 0.5, -0.25]", "BC-14c"),
+    ("CapAnchor", "def capCenterP1 : ModeSpace 1 := ![0.6, 0.8, -0.25]",
+     "def capCenterP1 : ModeSpace 1 := WithLp.toLp 2 ![0.6, 0.8, -0.25]", "BC-14c"),
+    ("CapAnchor", "  funext i\n  fin_cases i <;>\n    simp [capF, capLin, GalerkinNS.vf, explicitData3, capParamsP1, B3fun, B3_apply,",
+     "  ext i\n  fin_cases i <;>\n    simp [capF, capLin, GalerkinNS.vf, explicitData3, capParamsP1, B3fun, B3_apply,\n      PiLp.toLp_apply,", "BC-14d"),
+    ("ExplicitB", "\n  rw [Fin.succ_zero_eq_one', Fin.succ_zero_eq_one', Fin.succ_one_eq_two']\n  ring",
+     "\n  ring", "BC-15")
 ]
 
 def patch(path):
