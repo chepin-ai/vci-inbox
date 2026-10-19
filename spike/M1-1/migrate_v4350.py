@@ -21,8 +21,8 @@ TEXT_EDITS = [
     ("add_le_add_right h2 _", "add_le_add_left h2 _", 'BC-3'),
     ("add_le_add_right h5 _", "add_le_add_left h5 _", 'BC-3'),
     ("  rw [lipschitzOnWith_iff_dist_le_mul]\n  intro x hx y hy", "  refine LipschitzOnWith.of_dist_le_mul ?_\n  intro x hx y hy", 'BC-4'),
-    ("  have hL := D.lipschitzOnWith_vf x₁ hR\n  rw [lipschitzOnWith_iff_dist_le_mul] at hL", "  have hL := (D.lipschitzOnWith_vf x₁ hR).dist_le_mul", 'BC-4'
-    ("Uniqueness", "    simpa using e", "    simpa only [NNReal.coe_mk, add_zero] using e", "BC-11"),),
+    ("  have hL := D.lipschitzOnWith_vf x₁ hR\n  rw [lipschitzOnWith_iff_dist_le_mul] at hL", "  have hL := (D.lipschitzOnWith_vf x₁ hR).dist_le_mul", 'BC-4'),
+    ("Uniqueness", "    simpa using e", "    simpa only [NNReal.coe_mk, add_zero] using e", "BC-11"),
     (".mono_of_mem ", ".mono_of_mem_nhdsWithin ", 'BC-7'),
     ("simpa only [slope, smul_eq_mul] using h", "simpa only [slope, smul_eq_mul, vsub_eq_sub] using h", 'BC-8'),
     ("le_of_not_le h1", "(not_le.mp h1).le", 'BC-9')
