@@ -1,5 +1,5 @@
 # CLASSIFY: L1
-"""M1-1 spike migration-candidate patcher v5: Lean/mathlib v4.10.0 -> v4.35.0.
+"""M1-1 spike migration-candidate patcher v6: Lean/mathlib v4.10.0 -> v4.35.0.
 v1: BC-1 scoped inner notation / BC-2 sub_apply / BC-3 add_le_add flip / BC-4 LipschitzOnWith alias.
 v4 reorder: BC-5 block FIRST (BC-10 substring sits inside BC-5 old block, v3 ordering shadowed it); v3 added BC-5b (ExistUnique import — decls moved file) + BC-10 (div_le_iff → div_le_iff₀); v2 added Existence.lean layer (surfaced after Basic cleared):
   BC-5  IsPicardLindelof API redesign (t0 : Icc subtype; (a r L K : R>=0);
@@ -21,7 +21,8 @@ TEXT_EDITS = [
     ("add_le_add_right h2 _", "add_le_add_left h2 _", 'BC-3'),
     ("add_le_add_right h5 _", "add_le_add_left h5 _", 'BC-3'),
     ("  rw [lipschitzOnWith_iff_dist_le_mul]\n  intro x hx y hy", "  refine LipschitzOnWith.of_dist_le_mul ?_\n  intro x hx y hy", 'BC-4'),
-    ("  have hL := D.lipschitzOnWith_vf x₁ hR\n  rw [lipschitzOnWith_iff_dist_le_mul] at hL", "  have hL := (D.lipschitzOnWith_vf x₁ hR).dist_le_mul", 'BC-4'),
+    ("  have hL := D.lipschitzOnWith_vf x₁ hR\n  rw [lipschitzOnWith_iff_dist_le_mul] at hL", "  have hL := (D.lipschitzOnWith_vf x₁ hR).dist_le_mul", 'BC-4'
+    ("Uniqueness", "    simpa using e", "    simpa only [NNReal.coe_mk, add_zero] using e", "BC-11"),),
     (".mono_of_mem ", ".mono_of_mem_nhdsWithin ", 'BC-7'),
     ("simpa only [slope, smul_eq_mul] using h", "simpa only [slope, smul_eq_mul, vsub_eq_sub] using h", 'BC-8'),
     ("le_of_not_le h1", "(not_le.mp h1).le", 'BC-9')
