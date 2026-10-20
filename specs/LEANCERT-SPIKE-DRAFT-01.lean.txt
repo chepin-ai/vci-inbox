@@ -1,0 +1,189 @@
+-- CLASSIFY: L1
+/-!
+WS-I · EXT-WAVE-18「攻」· LEANCERT-SPIKE-DRAFT-01
+S1 spike 最小 Lean 草稿骨架 —— 证书 cap-b3-p1-mild × LeanCert（trust := kernel）
+
+状态钉：**未编译验证，压测门待定**。本文件以 .txt 存放＝未接线、不入库构建；
+压测由中枢统一经公域 CI 通道执行（本波不做本地 build 验证）。
+
+版本钉（接线时锁死，与设计文档 research/leancert_integration_01.md §〇 同源）：
+  · LeanCert  = v4.35.0，commit d3e7f686eb6bfdcbb987eeb931c0bab953e8f43e
+                （annotated tag object 91a56a72629ce5f274712e594683bbd4fd8e9958）
+  · toolchain = leanprover/lean4:v4.35.0
+  · mathlib   = v4.35.0 @ 56a005855ea17e0b0958f73ec801ae140b0a1679
+证书钉：artifacts/witnesses-cap/cap-b3-p1-mild.cap.json
+  · run_id = ws55-cap-20261012T201100Z；cert_sha256 = a54b6ea1d140cffd…（全钉在册）
+  · z = (0.6, 0.8, -0.25)（证书自标 exact decimal rationals → ℚ (3/5, 4/5, -1/4)）
+  · r = 0.0474531328121258（精确 decimal ℚ）
+  · ρ_hi = 0.22777503749820385；min_margin = 0.03664449370643659；verdict = PASS
+
+纪律钉：
+  · 零证明占位符——本骨架**不出现** Lean 证明占位关键字（防入库占位符扫描 grep 误报）；
+    未完成的桥接义务一律以注释 `TBD-B*` 标注（见 §4），不以任何占位 tactic 承载。
+  · 复算一律 kernel 档：裸 `decide` 或 `(trust := kernel)`；禁用 native_decide 充当
+    验收证据（native 探针只允许出现在显式标注的对拍副本中，信任基差异在册）。
+  · 本文件不改变我方对外口径：OpenAI 成果「自评已核、外部复现中、未颁奖」；
+    Clay NS 未解决、未颁奖；本骨架不构成任何 PDE 层主张。
+
+接线方式（接线时执行，本波不动任何库文件）：
+  lakefile.lean 追加：
+    require leancert from git
+      "https://github.com/alerad/leancert" @ "d3e7f686eb6bfdcbb987eeb931c0bab953e8f43e"
+  本文件改后缀 .lean 移入试点 target，`lake update leancert && lake build`，
+  lake-manifest.json 全文件 sha256 入册仓 ledger。
+-/
+
+-- 预期导入（接线时启用；.txt 存放期间保持注释之外的语法有效形态）：
+import LeanCert.Validity.Krawczyk
+-- import LeanCert.Tactic            -- 可选：system_unique_root 前门 + inspectKrawczyk 诊断
+-- import NsGalerkin.CapAnchor       -- §4 桥接二期启用；一期默认不引（防误接线入库）
+
+open LeanCert.Core LeanCert.Engine LeanCert.Validity
+
+namespace CapAnchorSpike
+
+/-!
+## §1 证书数据的 Lean 表达（cap-b3-p1-mild，逐字段映射见设计文档 §三）
+
+系统（ν = 1，A = I，f = (1, 1/2, -1/4)，坐标与 CapAnchor.lean `capF_apply` 同形）：
+  F₀ = 2·u₁·u₂ − u₀ + 1
+  F₁ = −2·u₀·u₂ − u₁ + 1/2
+  F₂ = −u₂ − 1/4
+精确有理稳态 u* = (3/5, 4/5, -1/4)（三式逐一代入均归零，证书 note 字段在册）。
+只用 ADSupported 受检片段核心支：const / var / add / mul / neg。
+-/
+
+/-- P1 系统的 LeanCert `Expr` 编码（3 分量，var 0/1/2 = u₀/u₁/u₂）。
+双写对拍义务（注释登记）：与 `capF_apply`（CapAnchor.lean 行 85–93）的坐标展开
+逐项同形；S1 二期桥接引理 TBD-B2 承载语义等同证明。 -/
+def capB3SystemP1 : Fin 3 → Expr :=
+  let u0 := Expr.var 0
+  let u1 := Expr.var 1
+  let u2 := Expr.var 2
+  ![-- F₀ = 2·u₁·u₂ − u₀ + 1
+    Expr.add (Expr.add (Expr.mul (Expr.const 2) (Expr.mul u1 u2)) (Expr.neg u0))
+      (Expr.const 1),
+    -- F₁ = −2·u₀·u₂ − u₁ + 1/2
+    Expr.add (Expr.add (Expr.neg (Expr.mul (Expr.const 2) (Expr.mul u0 u2))) (Expr.neg u1))
+      (Expr.const (1 / 2)),
+    -- F₂ = −u₂ − 1/4
+    Expr.add (Expr.neg u2) (Expr.const (-1 / 4))]
+
+/-- 盒中心 z（证书 candidate.z / box.center，exact decimal rationals）。 -/
+def capB3CenterP1 : Fin 3 → ℚ := ![3 / 5, 4 / 5, -1 / 4]
+
+/-- 盒半径 r = 0.0474531328121258（精确 decimal ℚ；
+= 237265664060629 / 5000000000000000，接线时 norm_num 可核）。 -/
+def capB3RadiusP1 : ℚ := 0.0474531328121258
+
+/-- 测试盒 U = z + [−r, r]³（证书规范字段 center ± radius 构造；
+派生显示字段 krawczyk.U 的第 3 端点 -0.29745313281212576 为 float64 显示尾迹，
+一致性门 G2 按 ≤1e-12 容差对拍）。 -/
+def capB3BoxP1 : Fin 3 → IntervalRat :=
+  fun i =>
+    { lo := capB3CenterP1 i - capB3RadiusP1
+      hi := capB3CenterP1 i + capB3RadiusP1
+      le := by fin_cases i <;> norm_num [capB3CenterP1, capB3RadiusP1] }
+
+/-- Krawczyk 证书（不可信候选数据；证书可靠性由检查器承载，不仰赖候选质量）。
+preconditioner 逐字段对拍证书 preconditioner.Y：
+  -4/5 ↔ "-0.8"；2/5 ↔ "0.4"；-44/25 ↔ "-1.76"；-2/5 ↔ "-0.4"；-1 ↔ "-1"。
+Y[1][2] 证书原值 "0.31999999999999995"（float64 尾迹，精确逆为 8/25 = 0.32）：
+主对拍用证书原值（下），备选探针副本以 8/25 替换重跑（门 R5 两轨入册）。 -/
+def capB3CertP1 : KrawczykCert 3 where
+  center := ![3 / 5, 4 / 5, -1 / 4]
+  preconditioner := !![-4 / 5, 2 / 5, -44 / 25;
+                       -2 / 5, -4 / 5, 0.31999999999999995;
+                       0,      0,   -1]
+
+/-- 备选探针（门 R5）：Y[1][2] 以精确 8/25 替换 float64 尾迹值。 -/
+def capB3CertP1_exactY : KrawczykCert 3 where
+  center := ![3 / 5, 4 / 5, -1 / 4]
+  preconditioner := !![-4 / 5, 2 / 5, -44 / 25;
+                       -2 / 5, -4 / 5, 8 / 25;
+                       0,      0,   -1]
+
+/-!
+## §2 LeanCert 复算调用骨架（kernel 档＝裸 `decide`）
+
+`krawczykCheck` 五分量（源码 v4.35.0 实读）：
+  ① 每分量 checkADSupported；② centerInside；③ preconditioner.det ≠ 0（ℚ 精确）；
+  ④ intervalMatrixBound (preconditionedJacobian Y (intervalJacobian F X)) < 1；
+  ⑤ 每分量 intervalStrictInside (newtonImageEnclosure …) (X i)。
+-/
+
+/-- **门 G1 承载定理（kernel 档）**：证书 PASS ⟺ 本检查为真。
+预期输出断言（注释）：
+  · 预期 `krawczykCheck … = true`（与 verdict.status = "PASS" 布尔精确一致）；
+  · 若为 false：以 `LeanCert.Tactic.inspectKrawczyk` 分段诊断
+    （KrawczykCheckStage：unsupportedAD / centerOutside / singularPreconditioner /
+    contractionNotStrict / imageNotStrictlyInside），按门 G0 定位失败分量；
+  · kernel 档超时/爆内存：按门 G5 记「能力面负发现」（阈值钉 wall-time > 30 min
+    或 max RSS > 16 GB），降级 auto 档重试并在证据目录明示信任基——
+    **负结果亦为交付**，禁以 native_decide 静默替换本条。 -/
+theorem capB3P1_krawczykCheck_kernel :
+    krawczykCheck capB3SystemP1 capB3BoxP1 capB3CertP1 = true := by
+  decide
+
+/-- golden 定理桥：`krawczykCheck_sound` 的稳定 Validity 层更名。
+产出 fin 坐标版存在唯一性——**注意边界**：此结论对象是 `Fin 3 → ℝ`，
+到 `capAnchorStatement`（ModeSpace 1 上 ∃!）的桥接为二期义务（§4 TBD-B1..B3），
+一期不越界表述。 -/
+theorem capB3P1_unique_root_fin :
+    ∃! x, FinBoxMem x capB3BoxP1 ∧ SystemZero capB3SystemP1 x :=
+  verify_unique_system_root capB3SystemP1 capB3BoxP1 capB3CertP1 {}
+    capB3P1_krawczykCheck_kernel
+
+/-- **门 G3 对拍量**：LeanCert 精确有理收缩上界 q（ℚ）。
+预期输出断言（注释）：
+  · 硬条件一：q < 1（数学判据本身）；
+  · 硬条件二：|q − 0.22777503749820385| ≤ 5×10⁻²（跨引擎包络差容差，门 G3）；
+  · 参考级：q ≤ ρ_hi + 1e-9 是否成立（mpmath dps=50 包络理论更紧；反向超差记异常
+    不判 FAIL）。接线时以 `#eval capB3P1_contractionBound` 取 ℚ 精确值入册。 -/
+def capB3P1_contractionBound : ℚ :=
+  intervalMatrixBound
+    (preconditionedJacobian capB3CertP1.preconditioner
+      (intervalJacobian capB3SystemP1 capB3BoxP1 {}))
+
+/-- **门 G4 参考级对拍量**：LeanCert 自映射包络（Newton 中心 ± q·r 对称区间）。
+预期输出断言（注释）：
+  · 硬部分已含于 G1：每分量 intervalStrictInside = true；
+  · 端点对拍仅记录不判定（与证书 krawczyk.K 结构不同构——mpmath 直接求值 K(U)，
+    LeanCert 为对称包络；证书 K ≈ [[0.5892,0.6108],[0.7892,0.8108],[-0.25,-0.25]]，
+    min_margin = 0.03664449370643659 仅作量级参照）。 -/
+def capB3P1_newtonImage : Fin 3 → IntervalRat :=
+  newtonImageEnclosure capB3SystemP1 capB3BoxP1 capB3CertP1.center
+    capB3CertP1.preconditioner {}
+
+/-!
+## §3 复跑/资源实测钉（门 G5）
+
+  · 命令形态（中枢公域 CI 通道执行）：
+      /usr/bin/time -v lake env lean LEANCERT-SPIKE-DRAFT-01.lean
+    记录 wall-time / max RSS / kernel 档 decide 归约规模，入册补 dim08 Gaps 2。
+  · 阈值钉：wall-time > 30 min 或 max RSS > 16 GB ⇒ 能力面负发现，激活降级路径。
+  · 公理审计钉：接线后对 `capB3P1_unique_root_fin` 跑 `#print axioms`，
+    预期仅 propext / Classical.choice / Quot.sound（kernel 档 decide 不引入
+    trustCompiler；与 native_decide 的公理差在册对比说明，TB-08 更新建议同源）。
+-/
+
+/-!
+## §4 桥接义务（二期；TBD-B* 注释登记，不以任何占位证明承载）
+
+TBD-B1（∃! 转移）：`ModeSpace 1 = WithLp 2 (Fin 3 → ℝ)` 与 `Fin 3 → ℝ` 之间的
+  存在唯一性转移——`WithLp.toLp 2` 为双射，∃! 沿双射往返；预期 ≤15 行。
+
+TBD-B2（零点语义）：`SystemZero capB3SystemP1 x ↔ capF capParamsP1 (WithLp.toLp 2 x) = 0`
+  ——左路 `capF_apply` 坐标展开；右路 `evalFin` 对 Expr 树归纳（const/var/add/mul/neg
+  五支逐支 `simp [evalFin, finEnv]` 后 `ring`）；预期 ≤40 行。
+
+TBD-B3（盒语义）：`FinBoxMem x capB3BoxP1 ↔ WithLp.toLp 2 x ∈ capBox capCenterP1 capRadiusP1`
+  ——两端同为分量端点不等式展开（capBox 为 Icc 逐坐标），`Finset/Fin` 琐碎；预期 ≤10 行。
+
+TBD-B4（收口定理，二期目标形态登记）：
+  theorem capAnchorP1_certified : capAnchorP1
+  ——由 capB3P1_unique_root_fin 经 TBD-B1..B3 收口；届时 CapAnchor.lean 本体
+  **仍零漂移**（桥接件落新文件，CapAnchor 只读纪律不动）。
+-/
+
+end CapAnchorSpike
