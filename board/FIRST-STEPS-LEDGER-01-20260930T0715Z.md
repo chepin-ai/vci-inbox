@@ -388,3 +388,11 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次调度瘀塞确诊并立法**: 瓶颈在 18 个 IDLE 旧代理占槽而非检索能力——清槽+前台成对调度制定为瘀塞场景标准战法(26 存活席→20 席全交付)。
 - **首次前沿狩猎产出旗舰级行动转化**: OBL-EXT-06 升级旗舰候选(sidecar T0–T4+MVP 16–20pw);CapAnchor 预研三资产;M2 判 GO(10–19pw;FGL≈85–90% 同构,净室移植 24–39pw);监测 10 项移交(B1–B10)。
 - **门禁终态**: 仓面 LAB-CLOSE-EXT17 @本提交/册面追记54/本录 v41;报告制品 frontier_report.agent.final.md+frontier_report.docx(104 页)落 /mnt/agents/output/。——枢/PIVOT-01
+- EXT-WAVE-18「攻」收波(20261020T2304Z)
+- **首次十线工程攻坚同波全交付**: WS-A..WS-J 十条攻坚线一波落地——M1-4 hB→hskew 迁移收口(commit ca67c8699)/M2 条件 GO(降级 5–7.25pw、GO 10.5–15.5pw⊂10–19pw)/sidecar schema T0–T4+Palomar 注册表 v1/CapAnchor 预研三对象坐实/FGL 净室 Reader 规格/W-NS-03 立案书+30 单元 diff/L3-4 三层审计规程+忠诚审计 2 件 CLOSED/信任边界 12 条明轨登记/LeanCert 接入 14 字段全映射/Lorenz-96 批准线立案;前台成对制 5+2+2 轮 17 席次零瘀塞。
+- **首次判定席技术席独立实证压测**: 技术席自建 v4.35.0 链对迁移后 NsGalerkin 全量 lake build EXIT=0/3291 目标/零 sorry/三公理——判定席从「文书审查」升格「构建实证」;inner_vf 单点风险由构建证据闭合;WS-A 强化口径否决经独立验证为真。
+- **首次判定席双轮律全程实弹**: EXT19 R1 三席(甲 PASS2/REVISE6 令 R-01~R-06;乙 补强后可,独立复算三槽哈希全中;技术 全 SOUND)→六席定向补强→R2 双席复投(5PASS+R-03b/5CLOSED+1 残留)→字级残留闭合(e0e45b0d9);估算散布 ≤1.5× 席规首次全行实算执法。
+- **首次净室链全环闭合**: Reader 规格(219 行)→非转写人复核四清单(数学 12 构件抽查/红线/哈希/充分性)→哈希重钉精确约定(b810abfb…)→CLEANROOM-REDLINE-FGL-01 §3 硬闸解除,Writer 轨可交付。
+- **首次注册表勘误与重登记仪式**: PAL-0001 G1→PAL-0001-CORR 钉漂移勘误→PAL-0001-A 机器佐证字段补齐→PAL-0003 迁移体重登记(supersedes 链,1217 行三 SHA-256)——append-only 零删除(+130/−0),D05 只升不降实轨。
+- **首次环境对抗裁定入册**: 本地工具链四重结构阻断(无 root/无 zstd/overlay 周期清空/portal 百兆写限+reaper)——依「公域CI通道驱动私域CI」架构律裁定 CI 典范验证路径,本地安装降 best-effort;portal 构建禁令随 OS FINDING 登记。
+- **门禁终态**: 仓面 LAB-CLOSE-EXT18 @本提交/册面追记55/本录 v42;判定席 EXT19 双轮 CLOSED;压测门静态+build 双段绿;结转挂账(卡4 MVP 三要件/log_sha256 回填/diff 无证据 6 项/spike 截止钉网)随收波登记。——枢/PIVOT-01
