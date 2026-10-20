@@ -161,6 +161,109 @@ entries:
       窗口未排定具体日期——未定+理由：窗口排期权属判定席）。
     superseded_by: null
 
+  # ----------------------------------------------------------------
+  # 条目 3：PAL-0001-A —— 机器佐证字段补齐条（甲席 R-06；字段补齐，非改条）
+  # ----------------------------------------------------------------
+  - id: "PAL-0001-A"
+    type: "field-supplement"
+    registered_at: "2026-10-21"
+    as_of: "截至 2026-10-21"
+    concerns: "PAL-0001"
+    relation: "supplements: PAL-0001（字段补齐，非改条）"
+    transcription_source: "library/ns/formalization.yaml automation.methods 段（2026-10-21 转录）；tool_setup 逐字：「lake build（Lean 4.35.0 + mathlib v4.35.0 @56a00585；M1-1 迁移已转正，三项全绿：build/sorry-scan/axiom-audit —— runs 39211461961, 39214080542）」"
+
+    machine_checks:                 # SIDECAR-SCHEMA-T0T4-01 §二 六字段制：tool/tool_version/run_id/verdict/log_sha256/as_of
+      - tool: "lake build"
+        tool_version: "Lean 4.35.0 + mathlib v4.35.0 (@56a00585)"
+        run_id: "39211461961"
+        run_metadata: "api.github.com/repos/chepin-ai/vci-inbox/actions/runs/39211461961（2026-10-21 实测 HTTP 200）：name=「M1-1 toolchain spike v4.35.0」；head_sha=a58270bffddc7a7f9b80b1ac0b08929ab19c28fa；conclusion=success；created_at=2026-10-19T06:42:28Z；event=workflow_dispatch"
+        verdict: "success（以 API 返回 conclusion 为准）"
+        log_sha256: "未定——理由：CI 日志端点需授权访问（/logs 实测 HTTP 403「Must have admin rights to Repository」，沙箱名值分离律下不取）；待公域CI通道下次见证窗口回填"
+        as_of: "截至 2026-10-21"
+      - tool: "lake build"
+        tool_version: "Lean 4.35.0 + mathlib v4.35.0 (@56a00585)"
+        run_id: "39214080542"
+        run_metadata: "api.github.com/repos/chepin-ai/vci-inbox/actions/runs/39214080542（2026-10-21 实测 HTTP 200）：name=「M1-1 toolchain spike v4.35.0」；head_sha=1d48db73941af549ef4e458e99d5e9121e1c08b1；conclusion=success；created_at=2026-10-19T07:08:34Z；event=workflow_dispatch"
+        verdict: "success（以 API 返回 conclusion 为准）"
+        log_sha256: "未定——理由：CI 日志端点需授权访问（/logs 实测 HTTP 403「Must have admin rights to Repository」，沙箱名值分离律下不取）；待公域CI通道下次见证窗口回填"
+        as_of: "截至 2026-10-21"
+
+    g1_disposition: >-
+      六字段实取结果：tool / tool_version / run_id×2 / verdict / as_of 五字段已实测补齐
+      （verdict 以 GitHub API conclusion 为准，两 run 均 success）；log_sha256 按规标
+      「未定+理由」。按甲席令备选路径一落实：字段补齐后 PAL-0001 的 G1 结论句维持
+      ——「G1 判据 6/6 满足，登记成立」继续有效。本条为字段补齐登记，不构成改条、
+      不构成升降级裁定；OpenAI 相关成果口径维持「自评已核、外部复现中、未颁奖」。
+    superseded_by: null
+
+  # ----------------------------------------------------------------
+  # 条目 4：PAL-0003 —— M1-4 迁移后包体 G1 重新登记（supersedes PAL-0001）
+  # ----------------------------------------------------------------
+  - id: "PAL-0003"
+    type: "grade-registration"
+    registered_at: "2026-10-21"
+    as_of: "截至 2026-10-21"
+    subject:
+      name: "NsGalerkin — finite-dimensional Galerkin ODE truncation layer (2D Navier–Stokes)（M1-4 hB→hskew 迁移后包体）"
+      location: "library/ns/（vci-inbox 仓内路径）"
+      scope: >-
+        有限维 Galerkin ODE 截断层全部主结果（9 文件 56 decl）。明确不含：N→∞
+        PDE 接缝、3D 正则性、Leray–Hopf 唯一性、Fefferman A/B（四项于
+        NS-PROOF-FRAME-01 §3.3 登记 BLOCKED(B1)）。Clay NS 未解决、未颁奖。
+      migration: "WS-A M1-4：GalerkinNS hB→hskew 迁移 + Concrete 重证（5 文件 +74/−49：Basic / Concrete / Existence / ExplicitB / SkewB）"
+    grade: "G1"
+    grade_name: "machine-attested"
+    relation: "supersedes: PAL-0001（D05 只升不降：G1 维持，钉与证据刷新）"
+
+    commit_pin:
+      head_40hex: "ca67c869988a2123937c5d696b746399703becdf"
+      head_title: "WS-A M1-4: GalerkinNS hB→hskew migration + Concrete re-proof (EXT-WAVE-18)"
+      tree_library_ns: "eb5b89cfc81ced6f097fa392bc34d085547648d3"   # git rev-parse ca67c8699:library/ns（2026-10-21 实测）
+      note: "登记时点工作区对 library/ns 与该提交零差异（git diff ca67c8699 -- library/ns 空，2026-10-21 实测）"
+
+    artifact_sha256:                # 按 PAL-0001 在册 recipe 对迁移后包体重算（2026-10-21 实测）
+      - slot: "toolchain"
+        object: "library/ns/lean-toolchain"
+        sha256: "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+        rationale: "工具链身份钉（内容＝leanprover/lean4:v4.35.0，2026-10-21 实测逐字核对）；迁移未触碰，值与 PAL-0001 同槽一致"
+      - slot: "dependencies"
+        object: "library/ns/lake-manifest.json"
+        sha256: "c3981e3ee1f71c18472c393aad0e760b4bc23c0783a7fdfd1df67876a1628d07"
+        rationale: "依赖冻结钉（mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679）；迁移未触碰，值与 PAL-0001 同槽一致"
+      - slot: "source-stream"
+        object: "全 9 个 .lean 文件合并流（1217 行）"
+        sha256: "624cf2e044a4163bd1d338ee16da55c80da325d62ed870206c5942c177e331be"
+        recipe: "按 PAL-0001 在册 recipe 重算：NsGalerkin.lean → NsGalerkin/{Basic,CapAnchor,Concrete,Existence,ExplicitB,SkewB,Uniqueness,ZetaAnchor}.lean（字典序）cat 直接合并后 sha256sum；.lake/ 依赖目录不入流"
+        rationale: "源码真身钉；迁移后行数 1192 → 1217（+25，hB→hskew 重构净增量）"
+
+    evidence:
+      tech_seat_attestation: >-
+        压测门已由判定席技术席 EXT19 R1 独立实证关闭，裁决书原文句（经甲席
+        EXT-WAVE-18 R1-fix 令转录；裁决书原件未入仓，故标转录钉）：「在原 v4.35.0
+        链对迁移后 NsGalerkin 全量 lake build EXIT=0、3291 目标、零 sorry、公理审计
+        =[propext, Classical.choice, Quot.sound]」。
+      local_static_audit: >-
+        截至 2026-10-21 本席本地静态审计：全 9 文件 grep 无 sorry 令牌
+        （CapAnchor.lean L46 之「sorryAx」字样为文档注释，非 sorry）；零 axiom 声明
+        （零新增公理）；CLASSIFY 头 9/9；lean-toolchain＝leanprover/lean4:v4.35.0 在轨。
+      scope_limit: "本条为有限维 ODE 截断层登记；不构成任何 PDE / 3D 正则性 / Fefferman A/B 档位变更；OpenAI 相关成果口径维持「自评已核、外部复现中、未颁奖」。"
+
+    machine_checks:                 # SIDECAR-SCHEMA-T0T4-01 §二 六字段制
+      - tool: "lake / lean"
+        tool_version: "Lake 5.0.0-src / Lean 4.35.0"
+        run_id: "EXT19-R1-TECHSEAT-BUILD"
+        verdict: "PASS"
+        log_sha256: "未定——理由：技术席构建于 /tmp 易失层，日志未归档；公域CI通道复跑后回填"
+        as_of: "截至 2026-10-21"
+
+    conclusion: >-
+      G1 重新登记成立：迁移后包体三绿基线经判定席技术席 EXT19 R1 独立实证
+      （build EXIT=0 / 3291 目标 / 零 sorry / 公理白名单），本席静态审计复核一致；
+      D05 只升不降——定级维持 G1，commit 钉、tree 钉、source-stream 哈希与证据
+      随迁移刷新。本条以 supersedes 指针链回 PAL-0001；PAL-0001 本文一字不改。
+    upgrade_path: "G1 → G2：OBL-NS-02 下一见证窗口执行复跑 + 双核 + LLM 二审后按八步升级仪式申请；公域CI通道复跑后回填 log_sha256"
+    superseded_by: null
+
 # ============================================================
 # 勘误段（append-only，不改既有条目一字）
 # ============================================================

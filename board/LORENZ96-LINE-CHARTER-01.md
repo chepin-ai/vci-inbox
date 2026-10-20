@@ -76,7 +76,7 @@ CLASSIFY: L1
 - **复用面**：证书声明形态复用 CapAnchor.lean（`CapParams/capLin/capF/capBox/capAnchorStatement`，P1 先例 center ![0.6, 0.8, -0.25] / r 0.0474531328121258）；见证栈复用 witness_ns_gen/verify.py 制（python 3.12 + mpmath 1.3.0 + numpy + scipy 1.16，TB-07）；kernel 侧复算路径 = LeanCert（WS-44 L2-2，注意论文钉 4.33.0 版本漂移、接入以 v4.35.0 释出版为准）。
 - **交付定义**：证书 JSON 两件 + 负控必拒记录 + replay 复跑哈希（§1.4 钉）；LeanCert 复算一致或不一致实报（不一致即 FINDING 立案，禁静默）。
 - **人周估算**：4–5 pd（散布 1.25×，合规）。依据：LeanCert 接入估 2–4 pd（WS-44 L2-2）+ 见证栈存量零新造成本（TB-07）− spike 范围裁减（仅平衡态 + 单盒）。
-- **版本钉**：见证栈钉如上（TB-07 行位钉）；LeanCert 版本钉 **未定+理由：接入窗未开**，执行启动时以当窗释出版全钉入册。
+- **版本钉**：见证栈钉如上（TB-07 行位钉）；LeanCert 版本钉 **默认钉 `v4.35.0 @ d3e7f686eb6bfdcbb987eeb931c0bab953e8f43e`**（WS-I 2026-10-21 官源实测）；启动窗若已释出更新则按 append-only 新条目重钉并登记漂移。
 - **截止钉**：2026-11-25。
 
 ### 2.4 M3 — 包络声明与登记（schema T 级）
