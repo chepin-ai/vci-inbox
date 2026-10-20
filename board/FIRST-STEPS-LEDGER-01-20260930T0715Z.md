@@ -381,3 +381,10 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次声明冻结主动挂起并依规解除**: 卡2 冻结「零 sorry/三公理」→v4.35.0 三绿(runs 39211461961 首证/39214080542 复核)→解冻,依据钉=两跑产物哈希;全程 C1–C3/C1′–C3′ 零越界。
 - **首次证书三槽哈希回填**: formalization.yaml v0.5(log/statement/proof 三 sha256+WELD V2-1 自指纹 96a2e74d…),普查 9 文件/56 decl(SkewB 转正,斜对角强化+极化全斜称备 M1-4)。
 - **门禁终态**: 仓面 LAB-CLOSE-EXT16-01 @2351f5a0/追记53/本录 v40;册面 DEP-PIN-NS-01 目标态→现态改写(双制哈希同制比对)。——枢/PIVOT-01
+- EXT-WAVE-17「猎」收波(20261020T1620Z)
+- **首次全量全维度饱和狩猎六相位全通**: Phase 1 快扫→1W 八路 wide(≥10 搜索/路)→Phase 2/3 十二维 deep(≥20 搜索/维)→Phase 4 双验证席 A(30)/B(28) 双 PASS→Phase 5 枢亲执四复核→Phase 6 六洞察;17 冲突全裁、8 软违规登记移交、20 主锚钉;快照时差型冲突类目建档(≥3/17)。
+- **首次 Phase 5 定点复核机制实弹结案**: PT 卷期 53(3) 多源+DOI 钉死;openai/math 749 版本目录/720 唯一论文(HEAD 1581d4cb,28 篇多版本结构揭示两说同源);PiLp/WithLp sha 直读 0 弃用标记;CIV/iso10000 不可考——api.github.com 直读路线绕过 raw 域封锁入战法册。
+- **首次 report-writing 管线四阶段全通**: 大纲四级执行规格→七章并行写作(前台成对制)→评审流水线(section×7→transition→intro/conclusion→citation,二元闸全过)→总装 final.md(128,561 字符,严格 UTF-8)+docx 104 页;语言钉八项程序化扫描全绿。
+- **首次调度瘀塞确诊并立法**: 瓶颈在 18 个 IDLE 旧代理占槽而非检索能力——清槽+前台成对调度制定为瘀塞场景标准战法(26 存活席→20 席全交付)。
+- **首次前沿狩猎产出旗舰级行动转化**: OBL-EXT-06 升级旗舰候选(sidecar T0–T4+MVP 16–20pw);CapAnchor 预研三资产;M2 判 GO(10–19pw;FGL≈85–90% 同构,净室移植 24–39pw);监测 10 项移交(B1–B10)。
+- **门禁终态**: 仓面 LAB-CLOSE-EXT17 @本提交/册面追记54/本录 v41;报告制品 frontier_report.agent.final.md+frontier_report.docx(104 页)落 /mnt/agents/output/。——枢/PIVOT-01
