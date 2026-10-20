@@ -1,0 +1,162 @@
+# CLASSIFY: L1 — 纯数据登记，不含可执行内容与外部指令
+# Palomar 式注册表 v1 · EXT-WAVE-18「攻」WS-C 攻坚线 · 枢/PIVOT-01 体系
+# 规程依据：registry/SIDECAR-SCHEMA-T0T4-01.md（OBL-EXT-06 sidecar schema T0–T4 + G0→G4 阶梯规程 v1）
+# 上游：WS-44 §六 L4-2/L4-4；EXT18 生效体卡3/卡4/卡6；D05 只升不降律
+
+registry_schema: "palomar-registry/v1"
+created_at: "2026-10-21"            # UTC(Z) 单时钟域；日期钉（卡6），更细时刻未定——理由：本席无独立授时源，以收波日期为钉
+policy:
+  append_only: true
+  append_only_statement: >-
+    本表条目一经签发不删不改；修正、降级、除名一律以新条目追加，旧条目加
+    superseded_by 指针保留，与册仓 append-only 并轨（WS-44 L4-4）。
+  monotonicity: "D05 只升不降：定级只升不降；降级/除名唯一例外通道＝判定席裁定（SIDECAR-SCHEMA-T0T4-01 §4.3/§4.4）"
+  language_discipline: >-
+    禁领先语；OpenAI 相关成果口径固定为「自评已核、外部复现中、未颁奖」；
+    时间戳一律 UTC(Z)，现状类断言携带「截至[日期]」钉（EXT18 卡6）。
+  palomar_elements: ["40-hex commit pin", "三 SHA-256", "append-only", "nanoda 双核（或异构双核）", "LLM 二审"]
+  registrar: "EXT-WAVE-18「攻」WS-C 攻坚线执行席（枢/PIVOT-01）"
+  self_fingerprint: "未定——理由：自指哈希须于入册仓后由册仓 ledger 对定稿文件实测回填，禁预填"
+
+# ---- 阶梯定义段（与 SIDECAR-SCHEMA-T0T4-01 §4.1 逐字对应）----
+ladder:
+  G0: {name: "declared",            requires: "T0 记录 1 条（自述声明，范围钉齐）"}
+  G1: {name: "machine-attested",    requires: "T1 记录齐套（钉定工具链+依赖下三绿基线：build / sorry-scan / axiom-audit）"}
+  G2: {name: "registry-witnessed",  requires: "T2 记录齐套（独立第三方见证逐字归档 + 40-hex 全钉 + 三 SHA-256 + 双核 + LLM 二审 + 本表签发）"}
+  G3: {name: "externally-audited",  requires: "T3 记录齐套（联邦外署名审计，范围与局限入册）"}
+  G4: {name: "author-endorsed",     requires: "T4 记录齐套（作者公开渠道背书，范围明示；T2 硬前置、T3 非硬前置）"}
+  upgrade_ritual: "八步升级仪式：申请立案 → 证据冻结 → 机器复核 → 独立见证 → LLM 二审 → 判定席裁定（双轮律）→ append-only 登记 → 公告并轨"
+
+# ==================================================================
+entries:
+
+  # ----------------------------------------------------------------
+  # 条目 1：NS 包 G1 登记（正式登记确认既有 G1 自标）
+  # ----------------------------------------------------------------
+  - id: "PAL-0001"
+    type: "grade-registration"
+    registered_at: "2026-10-21"
+    as_of: "2026-10-21"             # 「截至[日期]」钉（卡6）
+    subject:
+      name: "NsGalerkin — finite-dimensional Galerkin ODE truncation layer (2D Navier–Stokes)"
+      location: "library/ns/（vci-inbox 仓内路径）"
+      scope: >-
+        有限维 Galerkin ODE 截断层全部主结果（9 文件 56 decl）。明确不含：N→∞
+        PDE 接缝、3D 正则性、Leray–Hopf 唯一性、Fefferman A/B（四项于
+        NS-PROOF-FRAME-01 §3.3 登记 BLOCKED(B1)）。Clay NS 未解决、未颁奖。
+    grade: "G1"
+    grade_name: "machine-attested"
+
+    commit_pin:
+      head_40hex: "1345a48ba81acb606be533dc25ec6bf4e96127ee"
+      head_title: "EXT-WAVE-17「猎」收波: LAB-CLOSE-EXT17 + FSL v41 · 20261020T1620Z"
+      tree_library_ns: "eab2ed09f18e996d0c03fab950d4ef2ce02f357e"   # git rev-parse HEAD:library/ns（2026-10-21 实测）
+      note: "登记时点工作区对 library/ns 无未提交改动（git status --porcelain 空，2026-10-21 实测）"
+
+    artifact_sha256:                # 本席选定的三个核验对象（2026-10-21 实测回填）
+      - slot: "toolchain"
+        object: "library/ns/lean-toolchain"
+        sha256: "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+        rationale: "工具链身份钉（内容＝leanprover/lean4:v4.35.0）；一切机器 verdict 的先决条件"
+      - slot: "dependencies"
+        object: "library/ns/lake-manifest.json"
+        sha256: "c3981e3ee1f71c18472c393aad0e760b4bc23c0783a7fdfd1df67876a1628d07"
+        rationale: "依赖冻结钉；内含 mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679，与 formalization.yaml 自述 @56a00585 一致（2026-10-21 实测核对）"
+      - slot: "source-stream"
+        object: "全 9 个 .lean 文件合并流（1192 行）"
+        sha256: "2cfdcf96d20503c552d0cd7adfc55f1822693e3e723e2f039ed1fdbb0ccc0172"
+        recipe: "按固定序拼接：NsGalerkin.lean → NsGalerkin/{Basic,CapAnchor,Concrete,Existence,ExplicitB,SkewB,Uniqueness,ZetaAnchor}.lean（字典序），cat 直接合并后 sha256sum；.lake/ 依赖目录不入流（已由 dependencies 槽覆盖）"
+        rationale: "源码真身钉；三槽合取＝工具链×依赖×源码的构建相关身份三角，与 formalization.yaml federation.certificate.artifact_digests（WELD 证书 log/statement/proof 三槽）互补不重叠"
+
+    evidence:
+      baseline: "三绿基线（M1-1 转正）：build / sorry-scan / axiom-audit 全绿"
+      runs:
+        - {run_id: "39211461961", verdict: "build 绿（Lean 4.35.0 + mathlib v4.35.0）", source: "formalization.yaml automation.methods[0].tool_setup"}
+        - {run_id: "39214080542", verdict: "sorry_count=0；五 decl 公理审计仅 [propext, Classical.choice, Quot.sound]", source: "formalization.yaml review.notes / exclusion_pointers"}
+      local_corroboration: >-
+        截至 2026-10-21 本席本地核验：全 9 文件 grep 无 sorry 令牌（CapAnchor.lean
+        L46 之「sorryAx」字样为文档注释，非 sorry）；lake-manifest 数学库钉与自述一致。
+      certificate_ref: "library/ns/formalization.yaml federation.certificate（grade=G1, issued_at=2026-10-17T07:00Z, WELD V2-1 self_fingerprint_sha256=96a2e74d…5f34）"
+      review_rounds: ["EXT12（2026-10-12，11/11）", "EXT18（2026-10-17，R2 3/3）", "EXT16-M1-1（2026-10-19，卡2 闭环三绿）"]
+
+    g1_criteria_check:              # SIDECAR-SCHEMA-T0T4-01 §4.1/§4.2 G1 判据逐条对照
+      - {criterion: "范围钉（含/不含双层明示）", verdict: "满足", ref: "status.scope + alignment 表 §3.3 not-formalized 显式登记"}
+      - {criterion: "工具链+依赖钉", verdict: "满足", ref: "toolchain/dependencies 两槽 SHA-256 实测回填"}
+      - {criterion: "机器三绿基线", verdict: "满足", ref: "runs 39211461961 / 39214080542"}
+      - {criterion: "40-hex commit pin", verdict: "满足", ref: "commit_pin.head_40hex（全钉）"}
+      - {criterion: "自述↔机器证据一致", verdict: "满足", ref: "yaml sorry_count=0 / 公理白名单与 run 39214080542 产物一致；本地 grep 复核一致"}
+      - {criterion: "时间戳钉「截至[日期]」", verdict: "满足", ref: "as_of=2026-10-21"}
+    conclusion: "G1 判据 6/6 满足，登记成立。本条为注册表对既有 G1 自标的正式登记确认，非升级裁定。"
+    upgrade_path: "G1 → G2：OBL-NS-02 下一见证窗口（钉 f9e8bc5，EXT18 卡7 已授权）执行 Tenet 复跑 + 双核 + LLM 二审后申请"
+    superseded_by: null
+
+  # ----------------------------------------------------------------
+  # 条目 2：首条 G2 候选 —— 诚实登记结论：证据不足立 G2，降为「G2 候选观察条」
+  # ----------------------------------------------------------------
+  - id: "PAL-0002"
+    type: "grade-candidate-observation"
+    registered_at: "2026-10-21"
+    as_of: "2026-10-21"
+    subject:
+      name: "Tenet 独立内核对 openai/NavierStokesAndEuler 的全闭包复检事件（机器层见证）"
+      object_repo: "https://github.com/openai/NavierStokesAndEuler"
+      object_pin_short: "8937a8f（复检钉，短钉）/ f9e8bc5（仓库冻结末钉，短钉）"
+      relevance: "OBL-NS-02 多异构内核交叉验收同对象（EXT18 卡7 授权钉 f9e8bc5 复跑窗口）；联邦 L3-3 外部引入件"
+      status_pin: "OpenAI 该成果口径：自评已核、外部复现中、未颁奖；Clay 官方状态 Active"
+    candidate_grade: "G2"
+    disposition: "G2-candidate-observation（候选观察条；未立 G2）"
+
+    selection_rationale: >-
+      两候选取证据更硬者：scottnarmstrong/CIVAxisymmetric（frontier_dim05 F6）虽零
+      sorry、三公理、作者方 Vicol 主页挂链认可，但其证据全部出自作者自述 README——
+      对该工件自身仅构 G1（machine-attested 自述+机器）要件，档内无第三方独立复跑
+      记录、无 commit 钉；「registry-witnessed」之要在第三方见证。Tenet 复跑事件是
+      真正的独立第三方机器见证，且与 OBL-NS-02 见证窗口同对象，故选 Tenet。诚实结
+      论：两者均不满足 G2 全要件，本条按候选观察条登记。
+
+    witness:
+      identity: "keithadler（个人开发者；身份/隶属未公开——主体匿名性已标注，frontier_dim02 Remaining Gap 4）"
+      independence: "与 OpenAI 无可见隶属（推断；无法核验——记「未定+理由」：主体匿名，独立性声明不可得）"
+      evidence_excerpts:            # 逐字引文（禁转述代替）
+        - quote: "Tenet re-checked it, on commit 8937a8f: OK: 850211 checked in 13068 modules, 0 failed"
+          source: "Tenet 项目页（libraries.io 镜像，~2026-10-12）；frontier_wide01.md L34 / frontier_dim02.md L88 并录"
+          confidence: "Medium-High（工具作者自报，指令公开可复现；原始日志未获）"
+        - quote: "Each of the four headline theorems rests on nothing but the three standard axioms, with no sorryAx; the same holds for NavierStokes.Comparator.navier_stokes_breakdown_R3 and navier_stokes_breakdown_periodic."
+          source: "同上（frontier_dim02.md L88）"
+          confidence: "Medium-High"
+        - quote: "It says nothing about whether the theorem statements are the ones the Clay problem asks for; reading a formal statement against an informal one is work for people."
+          source: "Tenet README 直读 2026-10-20（frontier_dim01.md C.4，置信度 高）"
+          confidence: "高（一手直读）"
+      corroboration:
+        - "frontier_dim02：Tenet 全闭包 850,211 声明/13,068 模块 0 失败（679.5s，12 jobs，~10GB 内存）；Tenet mathlib 702,040 checked 0 failed；拒全部夏季 bug 回归（ns-frontier_dim06 / frontier_dim02 F 系并录）"
+        - "frontier_dim01 F9/A.1 桥接证据：审计论文钉 f9e8bc5、Tenet 钉 8937a8f，两例审计对象代码两 commit 字节一致（contents API 双 ref diff＝IDENTICAL，2026-10-20 实测）——双层格局对象无错位"
+        - "frontier_dim01 F6：仓库仅 2 commits、pushed_at 冻结 2026-09-10T15:14:13Z、NL 论文 PDF SHA-256 冻结（截至 2026-10-20）"
+      scope_limit: "机器层见证仅证「Lean 定理为真」；不覆盖 NL↔Lean 语义忠实性（语义层 FAIL 两例已由 arXiv:2610.08144 独立揭示并登记；本条不构成对该 NL 成果的语义层背书）"
+
+    g2_criteria_check:              # SIDECAR-SCHEMA-T0T4-01 §4.1 G2/T2 判据逐条对照
+      - {criterion: "见证者身份可考", verdict: "部分满足", detail: "署名 keithadler 可考，主体匿名性已标注；隶属未公开"}
+      - {criterion: "见证对象 40-hex 全钉", verdict: "不满足", detail: "档内仅短钉 8937a8f/f9e8bc5；compare API URL 所带全钉未逐字入档"}
+      - {criterion: "见证产物三 SHA-256", verdict: "不满足", detail: "原始复检日志未获（frontier_dim02 Remaining Gap 4）；无任何见证产物哈希可回填"}
+      - {criterion: "见证结论逐字+一手来源", verdict: "部分满足", detail: "README 段为一手直读（高）；850,211 主数字系项目页自述经 libraries.io 转述（Medium-High）"}
+      - {criterion: "双核（nanoda 或异构）复核", verdict: "不满足", detail: "未执行；con-leche 经 Arena 接受 NS 导出测试为旁证（frontier_wide06），但非本注册表组织的双核仪式"}
+      - {criterion: "LLM 二审书面意见", verdict: "不满足", detail: "未执行"}
+      - {criterion: "范围与局限如实登记", verdict: "满足", detail: "witness.scope_limit 已载内核见证的语义层免责"}
+    gaps:                           # 立 G2 所缺（补齐路径随条）
+      - id: "GAP-PAL0002-1"
+        gap: "40-hex 全钉未入档"
+        close_by: "GitHub API 取 8937a8f/f9e8bc5 全钉，以新条目追加回填（append-only，不改本条）"
+      - id: "GAP-PAL0002-2"
+        gap: "见证产物原始日志与三 SHA-256 缺"
+        close_by: "OBL-NS-02 下一见证窗口由联邦自行复跑 Tenet（EXT18 卡7 已授权，钉 f9e8bc5），产物哈希归档——自产证据替代转述证据"
+      - id: "GAP-PAL0002-3"
+        gap: "双核 + LLM 二审未执行"
+        close_by: "同一见证窗口内执行 nanoda 双核（或 Tenet+con-leche 异构双核）与 LLM 二审席书面意见"
+      - id: "GAP-PAL0002-4"
+        gap: "见证者独立性无法核验（主体匿名）"
+        close_by: "以联邦自跑取代对第三方身份的依赖；Tenet 结果降为交叉旁证"
+    conclusion: >-
+      G2 判据 1 满足 / 2 部分满足 / 4 不满足——证据不足立 G2，依「诚实登记优先」
+      降为 G2 候选观察条。升级触发：GAP-PAL0002-1..4 全闭后按八步升级仪式申请
+      正式 G2 登记（预计随 OBL-NS-02 下一见证窗口一并评估，截至 2026-10-21 该
+      窗口未排定具体日期——未定+理由：窗口排期权属判定席）。
+    superseded_by: null
