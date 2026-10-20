@@ -5,12 +5,14 @@ WS-42 · 2D Navier–Stokes Galerkin truncation: proof kernel (abstract layer).
 Finite-dimensional ODE layer:
 `F(x) = -ν • A x + B x x + f` on a real inner product space `E`, with
 `A` coercive (Stokes operator, `‖x‖² ≤ ⟪A x, x⟫`) and `B` the projected
-bilinear nonlinearity satisfying the Galerkin energy cancellation
-`⟪B u u, u⟫ = 0`.
+bilinear nonlinearity carrying the skew-symmetric energy cancellation
+field `hskew : ⟪B u u, u⟫ = 0` (M1-4/L1-1 migration: the former field
+`hB` is repackaged as `hskew`, same diagonal content — see
+`NsGalerkin/SkewB.lean` for the seam-facing strengthened interface).
 
 Proven kernel carried over from WS-41 (feasibility skeleton, GO verdict);
 module split and proof extensions (uniqueness, explicit three-mode `B`)
-are WS-42 work.
+are WS-42 work; the `hB → hskew` field migration is WS-A M1-4 work.
 
 Toolchain: Lean 4.10.0 + mathlib v4.10.0.
 -/
@@ -31,16 +33,26 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- Data of a Galerkin-truncated 2D Navier–Stokes system on the energy space `E`:
 viscosity `ν > 0`, coercive Stokes operator `A` (`‖x‖² ≤ ⟪A x, x⟫`),
-projected bilinear nonlinearity `B` with the energy cancellation
-`⟪B u u, u⟫ = 0` (skew-symmetry of the trilinear form `b(u,u,u) = 0`,
-a standard identity for any divergence-free Galerkin basis), and forcing `f`. -/
+projected bilinear nonlinearity `B` with the skew-symmetric energy
+cancellation field `hskew : ∀ u, ⟪B u u, u⟫ = 0` (the diagonal of the
+skew-symmetry of the trilinear form `b(u,u,u) = 0`, a standard identity
+for any divergence-free Galerkin basis), and forcing `f`.
+
+M1-4/L1-1 (EXT-WAVE-18): the field is named `hskew` to expose the
+skew-symmetric cancellation interface at downstream seams; its content is
+exactly the diagonal cancellation that the kernel consumes (`inner_vf`).
+The strengthened uniform diagonal `∀ u v, ⟪B u v, v⟫ = 0` (polarizing to
+full `(2,3)`-skew-symmetry) lives in `NsGalerkin/SkewB.lean` as
+`SkewNonlinearity.hskew_full`; it is strictly stronger and is *not*
+satisfied by the machine-checked instances `skewB`/`B₃`, hence is not the
+field semantics (code-fact decision, registered deviation). -/
 structure GalerkinNS (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℝ E] where
   ν : ℝ
   hν : 0 < ν
   A : E →L[ℝ] E
   hA : ∀ x : E, ‖x‖ ^ 2 ≤ ⟪A x, x⟫_ℝ
   B : E →L[ℝ] E →L[ℝ] E
-  hB : ∀ u : E, ⟪B u u, u⟫_ℝ = 0
+  hskew : ∀ u : E, ⟪B u u, u⟫_ℝ = 0
   f : E
 
 namespace GalerkinNS
@@ -51,10 +63,10 @@ variable (D : GalerkinNS E)
 def vf (D : GalerkinNS E) (x : E) : E := -(D.ν • D.A x) + D.B x x + D.f
 
 /-- Energy form of the vector field: `⟪F x, x⟫ = -ν ⟪A x, x⟫ + ⟪f, x⟫`
-(the nonlinear term drops out by the cancellation hypothesis). -/
+(the nonlinear term drops out by the skew-cancellation field `hskew`). -/
 theorem inner_vf (x : E) : ⟪D.vf x, x⟫_ℝ = -D.ν * ⟪D.A x, x⟫_ℝ + ⟪D.f, x⟫_ℝ := by
   unfold vf
-  rw [inner_add_left, inner_add_left, inner_neg_left, real_inner_smul_left, D.hB]
+  rw [inner_add_left, inner_add_left, inner_neg_left, real_inner_smul_left, D.hskew x]
   ring
 
 /-- Dissipativity: `⟪F x, x⟫ ≤ -ν ‖x‖² + ‖f‖ ‖x‖`. -/

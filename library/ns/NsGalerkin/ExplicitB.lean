@@ -121,8 +121,8 @@ theorem B3_apply (u v : ModeSpace 1) : B3 u v = B3fun u v := rfl
 
 /-- **Machine-checked energy cancellation for the explicit three-mode `B₃`**:
 `⟪B₃ u u, u⟫ = 0` by explicit finite computation over the three coordinates.
-This is the "abstract → explicit" seam: the hypothesis `hB` of `GalerkinNS`
-is a theorem here, not an assumption. -/
+This is the "abstract → explicit" seam: the skew-cancellation field `hskew`
+of `GalerkinNS` is a theorem here, not an assumption. -/
 theorem B3_inner_self (u : ModeSpace 1) : ⟪B3 u u, u⟫_ℝ = 0 := by
   rw [PiLp.inner_apply]
   simp_rw [RCLike.inner_apply, conj_trivial, B3_apply]
@@ -143,7 +143,7 @@ def explicitData3 (f : ModeSpace 1) : GalerkinNS (ModeSpace 1) where
     rw [ContinuousLinearMap.id_apply]
     exact (real_inner_self_eq_norm_sq x).symm.le
   B := B3
-  hB := B3_inner_self
+  hskew := B3_inner_self
   f := f
 
 /-- Global existence for the explicit three-mode truncation. -/
@@ -168,9 +168,9 @@ theorem explicit3_energy_bound (f x₀ : ModeSpace 1) {T : ℝ} (hT : 0 ≤ T) :
       ∀ t ∈ Icc 0 T, ‖x t‖ ^ 2 ≤ max (‖x₀‖ ^ 2) (‖f‖ ^ 2 / (1 : ℝ) ^ 2) := by
   obtain ⟨x, hx0, hx⟩ := explicit3_exists_solution_upto f x₀ hT
   refine ⟨x, hx0, hx, fun t ht => ?_⟩
-  have hB := (explicitData3 f).norm_sq_le_of_solution hT hx t ht
-  rw [hx0] at hB
-  exact hB
+  have hEn := (explicitData3 f).norm_sq_le_of_solution hT hx t ht
+  rw [hx0] at hEn
+  exact hEn
 
 -- Axiom audit (printed at build time).
 #print axioms B3_inner_self

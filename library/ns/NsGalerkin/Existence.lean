@@ -208,10 +208,10 @@ theorem exists_solution_upto (D : GalerkinNS E) [FiniteDimensional ℝ E] (x₀ 
         (hnorm_of_sq x₀ (hM ▸ le_max_left _ _))
       rw [← hδ] at hx
       refine ⟨x, hx0, hx, fun t ht => ?_⟩
-      have hB := D.norm_sq_le_of_solution (show (0:ℝ) ≤ 0 + δ from by linarith [hδ0.le])
+      have hEn := D.norm_sq_le_of_solution (show (0:ℝ) ≤ 0 + δ from by linarith [hδ0.le])
         hx t ht
-      rw [hx0] at hB
-      calc ‖x t‖ ^ 2 ≤ max (‖x₀‖ ^ 2) (‖D.f‖ ^ 2 / D.ν ^ 2) := hB
+      rw [hx0] at hEn
+      calc ‖x t‖ ^ 2 ≤ max (‖x₀‖ ^ 2) (‖D.f‖ ^ 2 / D.ν ^ 2) := hEn
         _ = M := by rw [← hm, ← hM]
     | succ n ih =>
       push_cast
@@ -267,9 +267,9 @@ theorem exists_solution_upto (D : GalerkinNS E) [FiniteDimensional ℝ E] (x₀ 
             ⟨Ioi j, isOpen_Ioi, hgt, fun s hs => ⟨le_of_lt hs.1, hs.2.2⟩⟩
           exact hR.mono_of_mem_nhdsWithin hmem
       refine ⟨z, hz0, hzsol, fun t ht => ?_⟩
-      have hB := D.norm_sq_le_of_solution (by linarith [hj0, hδ0.le]) hzsol t ht
-      rw [hz0] at hB
-      calc ‖z t‖ ^ 2 ≤ max (‖x₀‖ ^ 2) (‖D.f‖ ^ 2 / D.ν ^ 2) := hB
+      have hEn := D.norm_sq_le_of_solution (by linarith [hj0, hδ0.le]) hzsol t ht
+      rw [hz0] at hEn
+      calc ‖z t‖ ^ 2 ≤ max (‖x₀‖ ^ 2) (‖D.f‖ ^ 2 / D.ν ^ 2) := hEn
         _ = M := by rw [← hm, ← hM]
   -- final assembly: pick n with T ≤ (n+1)δ and restrict
   obtain ⟨n, hn⟩ := exists_nat_ge (T / δ)

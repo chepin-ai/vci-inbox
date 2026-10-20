@@ -24,7 +24,7 @@ namespace GalerkinNS
 
 /-- A concrete skew bilinear nonlinearity on any real inner product space:
 `skewB a u v = ⟪a,u⟫ • v - ⟪a,v⟫ • u`. It satisfies `skewB a u u = 0`,
-hence the Galerkin energy cancellation hypothesis. (This is the finite-model
+hence the Galerkin skew-cancellation field `hskew`. (This is the finite-model
 analogue of `b(u,u,u) = 0`; the explicit Fourier-mode `B` is `NsGalerkin/ExplicitB.lean`.) -/
 def skewB (a : E) : E →L[ℝ] E →L[ℝ] E :=
   LinearMap.mkContinuous₂
@@ -76,7 +76,9 @@ theorem skewB_self (a u : E) : skewB a u u = 0 := by
   exact sub_self _
 
 /-- Concrete Galerkin NS data on `E` with viscosity 1, Stokes operator `A = id`
-(coercive with constant 1), nonlinearity `skewB a`, forcing `f`. -/
+(coercive with constant 1), nonlinearity `skewB a`, forcing `f`.
+The `hskew` evidence (M1-4 re-proof): on the diagonal, `skewB a u u = 0`
+(`skewB_self`), so `⟪skewB a u u, u⟫ = 0` by `inner_zero_left`. -/
 def concreteData (a f : E) : GalerkinNS E where
   ν := 1
   hν := one_pos
@@ -85,7 +87,7 @@ def concreteData (a f : E) : GalerkinNS E where
     rw [ContinuousLinearMap.id_apply]
     exact (real_inner_self_eq_norm_sq x).symm.le
   B := skewB a
-  hB := fun u => by rw [skewB_self]; exact inner_zero_left _
+  hskew := fun u => by rw [skewB_self]; exact inner_zero_left _
   f := f
 
 end GalerkinNS
@@ -114,9 +116,9 @@ theorem galerkinNS_energy_bound (N : ℕ) (a f x₀ : ModeSpace N) {T : ℝ} (hT
       ∀ t ∈ Icc 0 T, ‖x t‖ ^ 2 ≤ max (‖x₀‖ ^ 2) (‖f‖ ^ 2 / (1 : ℝ) ^ 2) := by
   obtain ⟨x, hx0, hx⟩ := galerkinNS_exists_solution_upto N a f x₀ hT
   refine ⟨x, hx0, hx, fun t ht => ?_⟩
-  have hB := (GalerkinNS.concreteData a f).norm_sq_le_of_solution hT hx t ht
-  rw [hx0] at hB
-  exact hB
+  have hEn := (GalerkinNS.concreteData a f).norm_sq_le_of_solution hT hx t ht
+  rw [hx0] at hEn
+  exact hEn
 
 /-- Global uniqueness for the concrete `N`-th order truncation (WS-42). -/
 theorem galerkinNS_solution_unique (N : ℕ) (a f x₀ : ModeSpace N) {T : ℝ} (hT : 0 ≤ T)
