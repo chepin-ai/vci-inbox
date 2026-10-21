@@ -10,3 +10,4 @@ import NsGalerkin.ExplicitB
 import NsGalerkin.CapAnchor
 import NsGalerkin.ZetaAnchor
 import NsGalerkin.SkewB
+import NsGalerkin.OpenDomain
