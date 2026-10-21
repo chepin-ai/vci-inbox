@@ -20,6 +20,7 @@ import Mathlib.Analysis.ODE.PicardLindelof
 import Mathlib.Analysis.ODE.Gronwall
 import Mathlib.Analysis.InnerProductSpace.Calculus
 import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Analysis.InnerProductSpace.Dual
 open scoped InnerProductSpace
 
 open Set Filter
@@ -160,6 +161,106 @@ theorem lipschitzOnWith_vf (x₁ : E) {R : ℝ} (hR : 0 ≤ R) :
       mul_le_mul_of_nonneg_left hxb (mul_nonneg hB0 hxy),
       mul_le_mul_of_nonneg_left hyb (mul_nonneg hB0 hxy)]
   exact key
+
+section DAWaveB
+/-! ### WS-B 降级档 · D-A（E9 逐项同构改写，EXT-WAVE-18 续执行批）
+
+以下 decl 是本有限维 ODE 截断层（E9，联邦口径）对 FGL-SEAM-SPEC-01
+单元① 1.1 的**同构对齐改写**（改写非新证，不引入任何新假设）：
+
+1. **显式对流界 `C_b` 数据化**：`Cb := ‖B‖` 以显式常数携带对流界
+   `‖B u v‖ ≤ Cb·‖u‖·‖v‖`（规格「配显式常数 `C_b`，
+   `‖c(u,v,·)‖ ≤ C_b‖u‖‖v‖`」口径；既有算子范数两步界的逐项数据化）。
+2. **时间依赖对偶外力变体（Riesz 组装模式）**：`vfT`/`rieszRhs`——
+   对偶外力 `F : ℝ → E →L[ℝ] ℝ` 经 Riesz 表示元组装右端
+   （规格「`r(t,u)` 为泛函 `v ↦ -d(u,v)-c(u,u,v)+F(t)v` 的 Riesz 表示元」
+   口径；本层 `d(u,v) = ν⟪A u, v⟫`、`c(u,u,v) = ⟪B u u, v⟫`）。
+   常值外力 `F t = toDual D.f` 逐项退化回既有 `vf`
+   （`rieszRhs_const`/`vfT_const`），故既有存在/唯一/先验界定理
+   经此同构逐字迁移，常值向量外力是对偶外力的数学特例。 -/
+
+/-- 显式对流界常数（数据化）：`Cb := ‖B‖`。 -/
+def Cb (D : GalerkinNS E) : ℝ := ‖D.B‖
+
+/-- 显式对流界常数非负。 -/
+theorem Cb_nonneg (D : GalerkinNS E) : 0 ≤ D.Cb := D.B.opNorm_nonneg
+
+/-- 显式对流界：`‖B u v‖ ≤ Cb·‖u‖·‖v‖`
+（既有 `norm_vf_le` 内部两步算子范数界的逐项数据化形式）。 -/
+theorem norm_B_apply_le (D : GalerkinNS E) (u v : E) :
+    ‖D.B u v‖ ≤ D.Cb * ‖u‖ * ‖v‖ := by
+  calc ‖D.B u v‖ ≤ ‖D.B u‖ * ‖v‖ := (D.B u).le_opNorm v
+    _ ≤ ‖D.B‖ * ‖u‖ * ‖v‖ :=
+        mul_le_mul_of_nonneg_right (D.B.le_opNorm u) (norm_nonneg _)
+    _ = D.Cb * ‖u‖ * ‖v‖ := rfl
+
+/-- 时间依赖外力（向量形式）的右端变体：
+`vfT F t x = -(ν • A x) + B x x + F t`。 -/
+def vfT (D : GalerkinNS E) (F : ℝ → E) (t : ℝ) (x : E) : E :=
+  -(D.ν • D.A x) + D.B x x + F t
+
+/-- 常值外力特例：`vfT (fun _ => D.f)` 与既有 `vf` 定义性相等（同构对齐）。 -/
+theorem vfT_const (D : GalerkinNS E) (t : ℝ) (x : E) :
+    D.vfT (fun _ => D.f) t x = D.vf x := rfl
+
+/-- `vfT` 的能量形式：`⟪vfT F t x, x⟫ = -ν⟪A x, x⟫ + ⟪F t, x⟫`
+（与 `inner_vf` 逐项同构；对流项仍由 `hskew` 严格抵消）。 -/
+theorem inner_vfT (D : GalerkinNS E) (F : ℝ → E) (t : ℝ) (x : E) :
+    ⟪D.vfT F t x, x⟫_ℝ = -D.ν * ⟪D.A x, x⟫_ℝ + ⟪F t, x⟫_ℝ := by
+  unfold vfT
+  rw [inner_add_left, inner_add_left, inner_neg_left, real_inner_smul_left, D.hskew x]
+  ring
+
+-- Riesz 表示（`InnerProductSpace.toDual`）需底空间完备；
+-- 本截断层的应用场景均为有限维（自动完备），此处按需局部引入。
+variable [CompleteSpace E]
+
+/-- Riesz 组装的右端：时间依赖**对偶**外力 `F : ℝ → E →L[ℝ] ℝ` 下，
+`r(t, x)` 定义为泛函 `v ↦ -ν⟪A x, v⟫ + ⟪B x x, v⟫ + F t v` 的 Riesz 表示元
+（规格单元① 1.1 的组装模式：全程只需弱型，无需把 Stokes 算子当作
+能量空间上的有界算子）。 -/
+def rieszRhs (D : GalerkinNS E) (F : ℝ → E →L[ℝ] ℝ) (t : ℝ) (x : E) : E :=
+  (InnerProductSpace.toDual ℝ E).symm
+    ((-D.ν) • InnerProductSpace.toDual ℝ E (D.A x) +
+      InnerProductSpace.toDual ℝ E (D.B x x) + F t)
+
+/-- Riesz 组装的向量形式展开：Riesz 表示元逐项回到算子值。 -/
+theorem rieszRhs_eq (D : GalerkinNS E) (F : ℝ → E →L[ℝ] ℝ) (t : ℝ) (x : E) :
+    D.rieszRhs F t x =
+      -(D.ν • D.A x) + D.B x x + (InnerProductSpace.toDual ℝ E).symm (F t) := by
+  unfold rieszRhs
+  rw [map_add, map_add, map_smulₛₗ, LinearIsometryEquiv.symm_apply_apply,
+    LinearIsometryEquiv.symm_apply_apply, starRingEnd_apply, star_trivial, neg_smul]
+
+/-- Riesz 组装与向量形式一致：对偶外力取 `F t = toDual (fvec t)` 时
+`rieszRhs` 逐项回到 `vfT`（同构对齐，非新证）。 -/
+theorem rieszRhs_eq_vfT (D : GalerkinNS E) (fvec : ℝ → E) (t : ℝ) (x : E) :
+    D.rieszRhs (fun t => InnerProductSpace.toDual ℝ E (fvec t)) t x =
+      D.vfT fvec t x := by
+  rw [rieszRhs_eq, LinearIsometryEquiv.symm_apply_apply]
+  rfl
+
+/-- 常值对偶外力特例：`rieszRhs (fun _ => toDual D.f)` 逐项回到既有 `vf`。 -/
+theorem rieszRhs_const (D : GalerkinNS E) (t : ℝ) (x : E) :
+    D.rieszRhs (fun _ => InnerProductSpace.toDual ℝ E D.f) t x = D.vf x := by
+  rw [rieszRhs_eq_vfT, vfT_const]
+
+/-- Riesz 组装右端的能量形式：
+`⟪r(t, x), x⟫ = -ν⟪A x, x⟫ + F t x`（对流项由 `hskew` 严格抵消；
+与 `inner_vf` 逐项同构，对偶外力经 `toDual_symm_apply` 展开）。 -/
+theorem inner_rieszRhs (D : GalerkinNS E) (F : ℝ → E →L[ℝ] ℝ) (t : ℝ) (x : E) :
+    ⟪D.rieszRhs F t x, x⟫_ℝ = -D.ν * ⟪D.A x, x⟫_ℝ + F t x := by
+  rw [rieszRhs_eq, inner_add_left, inner_add_left, inner_neg_left,
+    real_inner_smul_left, D.hskew x, InnerProductSpace.toDual_symm_apply]
+  ring
+
+-- D-A 件公理审计（构建期打印）。
+#print axioms GalerkinNS.norm_B_apply_le
+#print axioms GalerkinNS.inner_vfT
+#print axioms GalerkinNS.rieszRhs_eq_vfT
+#print axioms GalerkinNS.inner_rieszRhs
+
+end DAWaveB
 
 end GalerkinNS
 

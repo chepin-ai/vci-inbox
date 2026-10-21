@@ -84,7 +84,41 @@ cancellation `GalerkinNS.hskew`. -/
 theorem diag (u : E) : ⟪S.B u u, u⟫_ℝ = 0 :=
   diag_of_hskew_full S.B S.hskew_full u
 
+/-- The trilinear form `b(u,v,w) = ⟪B u v, w⟫` of a `SkewNonlinearity`
+satisfies full (2,3)-skew-symmetry `b(u,v,w) = -b(u,w,v)` — the abstract
+form of the fluid identity consumed at the PDE seam (FGL-SEAM-SPEC-01
+单元① 1.1「斜对称强于抵消」口径;本有限维 ODE 截断层的对齐件)。 -/
+theorem trilinear_antisymm (u v w : E) :
+    ⟪S.B u v, w⟫_ℝ = -⟪S.B u w, v⟫_ℝ :=
+  S.antisymm u v w
+
 end SkewNonlinearity
+
+/-- **skew⇒cancel 桥的消费端**（WS-B 降级档 D-A，E9 逐项同构改写）：
+由强化斜对称接口 `SkewNonlinearity` 直接组装 `GalerkinNS` 数据——
+`hskew` 字段证据由桥定理 `SkewNonlinearity.diag` 供给。
+同构对齐：与 `GalerkinNS.mk` 语义全等，非新证；
+凡具物理斜对称律的实例（下游接缝）均可经此构造进入本有限维 ODE
+截断层的既有存在/唯一/先验界机制。 -/
+def GalerkinNS.ofSkewNonlinearity (ν : ℝ) (hν : 0 < ν) (A : E →L[ℝ] E)
+    (hA : ∀ x : E, ‖x‖ ^ 2 ≤ ⟪A x, x⟫_ℝ) (S : SkewNonlinearity E) (f : E) :
+    GalerkinNS E where
+  ν := ν
+  hν := hν
+  A := A
+  hA := hA
+  B := S.B
+  hskew := S.diag
+  f := f
+
+/-- 桥消费端的非线性项对齐：组装后的 `B` 即接口携带的 `S.B`（定义性相等）。 -/
+theorem GalerkinNS.ofSkewNonlinearity_B (ν : ℝ) (hν : 0 < ν) (A : E →L[ℝ] E)
+    (hA : ∀ x : E, ‖x‖ ^ 2 ≤ ⟪A x, x⟫_ℝ) (S : SkewNonlinearity E) (f : E) :
+    (GalerkinNS.ofSkewNonlinearity ν hν A hA S f).B = S.B := rfl
+
+-- D-A 桥件公理审计（构建期打印）。
+#print axioms SkewNonlinearity.trilinear_antisymm
+#print axioms GalerkinNS.ofSkewNonlinearity
 
 end NSGalerkin
 
