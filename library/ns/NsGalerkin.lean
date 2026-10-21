@@ -12,3 +12,4 @@ import NsGalerkin.ZetaAnchor
 import NsGalerkin.Ladyzhenskaya
 import NsGalerkin.SkewB
 import NsGalerkin.OpenDomain
+import NsGalerkin.Lorenz96
