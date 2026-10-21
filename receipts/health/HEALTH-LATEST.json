@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-20T10:22:37Z",
+ "ts": "2026-10-21T10:31:46Z",
  "repos": {
   "ci-build": {
    "pushed_at": "2026-09-30T07:41:17Z",
@@ -17,17 +17,17 @@
    "wf": 1
   },
   "ci-control": {
-   "pushed_at": "2026-10-20T08:57:16Z",
+   "pushed_at": "2026-10-21T08:59:34Z",
    "archived": false,
    "wf": 9
   },
   "ci-control-backup": {
-   "pushed_at": "2026-10-20T09:35:38Z",
+   "pushed_at": "2026-10-21T09:32:31Z",
    "archived": false,
    "wf": 9
   },
   "ci-inbox": {
-   "pushed_at": "2026-10-20T10:13:15Z",
+   "pushed_at": "2026-10-21T10:27:11Z",
    "archived": false,
    "wf": 10
   },
@@ -37,7 +37,7 @@
    "wf": 1
   },
   "ci-logs": {
-   "pushed_at": "2026-10-19T11:12:20Z",
+   "pushed_at": "2026-10-20T10:23:55Z",
    "archived": false,
    "wf": 0
   },
@@ -82,17 +82,17 @@
    "wf": 4
   },
   "vci-cfts": {
-   "pushed_at": "2026-10-20T10:21:43Z",
+   "pushed_at": "2026-10-21T10:29:44Z",
    "archived": false,
    "wf": 12
   },
   "vci-inbox": {
-   "pushed_at": "2026-10-20T10:13:26Z",
+   "pushed_at": "2026-10-21T10:27:21Z",
    "archived": false,
    "wf": 54
   },
   "vci-lgt": {
-   "pushed_at": "2026-10-20T10:21:43Z",
+   "pushed_at": "2026-10-21T10:27:57Z",
    "archived": false,
    "wf": 17
   },
@@ -102,37 +102,37 @@
    "wf": 1
   },
   "vci-qfa": {
-   "pushed_at": "2026-10-20T06:31:08Z",
+   "pushed_at": "2026-10-21T07:28:05Z",
    "archived": false,
    "wf": 10
   },
   "vci-qgl": {
-   "pushed_at": "2026-10-20T10:21:59Z",
+   "pushed_at": "2026-10-21T10:28:28Z",
    "archived": false,
    "wf": 13
   },
   "vci-qlv": {
-   "pushed_at": "2026-10-20T10:21:40Z",
+   "pushed_at": "2026-10-21T10:27:44Z",
    "archived": false,
    "wf": 15
   },
   "vci-qtlv": {
-   "pushed_at": "2026-10-20T10:21:36Z",
+   "pushed_at": "2026-10-21T10:27:42Z",
    "archived": false,
-   "wf": 52
+   "wf": 53
   },
   "vci-ucif2": {
-   "pushed_at": "2026-10-20T10:21:21Z",
+   "pushed_at": "2026-10-21T10:27:25Z",
    "archived": false,
    "wf": 12
   },
   "vci-usrm": {
-   "pushed_at": "2026-10-20T10:21:47Z",
+   "pushed_at": "2026-10-21T10:27:29Z",
    "archived": false,
    "wf": 38
   },
   "vci-vinf": {
-   "pushed_at": "2026-10-20T10:21:56Z",
+   "pushed_at": "2026-10-21T10:27:33Z",
    "archived": false,
    "wf": 33
   },
@@ -188,7 +188,7 @@
    "x-fire-receiver": 4
   },
   "ci-worker-01": {
-   "hub-tower": 29
+   "hub-tower": 30
   },
   "ci-worker-02": {
    "hub-failover": 2
@@ -217,17 +217,17 @@
    "KEY-RELAY-QC-02 (拍47·本仓量子钥→vci-qtlv seal接力·名级回执)": 1,
    "miniprobe": 6
   },
-  "vci-lgt": {
-   "key-sentinel-01": 3
+  "vci-inbox": {
+   "board-indexer-bridge": 1
   },
-  "vci-qgl": {
-   "qgl-heartbeat": 1
+  "vci-lgt": {
+   "key-sentinel-01": 5
   },
   "vci-qlv": {
    "key-sentinel-01": 6
   },
   "vci-qtlv": {
-   "key-sentinel-01": 5
+   "key-sentinel-01": 3
   },
   "vinf-market-kernel": {
    "inbox-relay-vinf": 5,
@@ -242,6 +242,7 @@
   "ci-code",
   "ci-playground",
   "ci-root",
+  "ucif2-formalization-kernel",
   "usrm-repo",
   "vinf-market-kernel"
  ],
@@ -255,13 +256,13 @@
  ],
  "line_backlog": {
   "usrm": {
-   "inbox_files": 490
+   "inbox_files": 491
   },
   "cfts": {
-   "inbox_files": 179
+   "inbox_files": 180
   },
   "qgl": {
-   "inbox_files": 160
+   "inbox_files": 161
   },
   "ucif2": {
    "inbox_files": 204
@@ -284,7 +285,7 @@
  },
  "ci_control_runner": "DEAD(zero-runner)",
  "severity": [
-  "fail24:ci-build,ci-bus,ci-control,ci-control-backup,ci-inbox,ci-logs,ci-playground,ci-root,ci-worker-01,ci-worker-02,github-repo-cfts,quantum-go-ledger,ucif2-formalization-kernel,usrm-repo,vci-lgt,vci-qgl,vci-qlv,vci-qtlv,vinf-market-kernel",
+  "fail24:ci-build,ci-bus,ci-control,ci-control-backup,ci-inbox,ci-logs,ci-playground,ci-root,ci-worker-01,ci-worker-02,github-repo-cfts,quantum-go-ledger,ucif2-formalization-kernel,usrm-repo,vci-inbox,vci-lgt,vci-qlv,vci-qtlv,vinf-market-kernel",
   "ci-control-runner-dead"
  ]
 }
