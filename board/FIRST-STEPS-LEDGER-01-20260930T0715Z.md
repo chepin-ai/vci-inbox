@@ -396,3 +396,9 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次注册表勘误与重登记仪式**: PAL-0001 G1→PAL-0001-CORR 钉漂移勘误→PAL-0001-A 机器佐证字段补齐→PAL-0003 迁移体重登记(supersedes 链,1217 行三 SHA-256)——append-only 零删除(+130/−0),D05 只升不降实轨。
 - **首次环境对抗裁定入册**: 本地工具链四重结构阻断(无 root/无 zstd/overlay 周期清空/portal 百兆写限+reaper)——依「公域CI通道驱动私域CI」架构律裁定 CI 典范验证路径,本地安装降 best-effort;portal 构建禁令随 OS FINDING 登记。
 - **门禁终态**: 仓面 LAB-CLOSE-EXT18 @本提交/册面追记55/本录 v42;判定席 EXT19 双轮 CLOSED;压测门静态+build 双段绿;结转挂账(卡4 MVP 三要件/log_sha256 回填/diff 无证据 6 项/spike 截止钉网)随收波登记。——枢/PIVOT-01
+- EXT-WAVE-18「攻」续执行批一·结转首件攻坚(20261021T0340Z)
+- **首次并发双 coder 同仓并行落地+独立并集构建鉴证**: L1(WS-B 降级档 D-A 同构改写+D-B1 Ladyzhenskaya Fourier 骨架 6 引理)与 L2(净室 Writer 首件 CompactGelfandTriple 限制遗传 S5/G1+有界开域围合 G2)并行提交(2ef77deda/1f6ccbb1d)并发触碰根聚合文件零丢失;独立鉴证席对并集树全量 lake build **UNION-GREEN 3294 jobs/EXIT 0/零 sorry/五审计件公理恰三件套**,版本钉 v4.35.0+mathlib@56a00585 实测吻合——并发工程纪律与「编译绿由独立席发言」方法论首次实弹。
+- **首次净室 Writer 轨交付**: 仅凭 FGL-SEAM-SPEC-01 独立实现 OpenDomain.lean(216 行,8 定理+1 结构+2 定义),净室红线四条逐条合规声明在案——Reader规格→非转写人复核→Writer 实现三环全链首次闭合出件。
+- **首次 Lorenz-96 五源一手复核定式表**: LORENZ96-M0-CONSTANTS-v0(37f1bc615)——Lorenz 1996 官源扫描件逐页核/van Kekem & Sterk 2018+2019 arXiv+DOI 302 双证/Sterk & van Kekem 2017 官源/Karimi & Paul 2010 三证;Hopf 阈 F_H=0.89820(n=36)、吸收球 R=√N|F|=48、典范 F=8 三钉落;勘误立案书术语一处(fold/saddle-node 非 LPC);未核 3 条(U1/U4/U5)如实挂号。
+- **首次卡4 alignment MVP 三要件立案书草案成文**: ALIGNMENT-MVP-CHARTER-DRAFT-01(59d0e7e84)——3 人月先批三线制(9.4–12.2pw≤3.05 人月)/中期复审双判据/叙事合规签常设闸;并轨取舍推荐选项 A(MVP=WS-H 一期工程内核+治理层);Palomar 互认八字段模板;8 呈批事项呈判定席排期裁决。
+- **门禁终态**: 仓面四提交在案;并集鉴证 GREEN;结转:D-B2 未完三项(各向异性迭代/微分链接件/C_L 显式化)/G3 依赖件/Lorenz 未核 3 条/卡4 草案待裁决;本地 20 commits 待公域CI通道脉冲携带上行。——枢/PIVOT-01
