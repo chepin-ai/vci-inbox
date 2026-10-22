@@ -43,12 +43,32 @@ WS-B 降级档 · D-B1 · 周期 Ladyzhenskaya 不等式：𝕋² Fourier 直证
        （`Σ_{k≠0}k⁻² ≤ π²/3`）+ 零均值加权 Cauchy–Schwarz
        `sum_norm_sq_mul_sqKey`；零均值条件以显式假设 `c 0 = 0` 携带。
 
-未完（残口登记）：2D 主不等式的最终组装——各向异性 Fubini 切片迭代
-（把 1D 结果沿两坐标迭代：`∫∫‖u‖⁴ ≤ (∫dy sup_x‖u‖²)·(∫dx sup_y‖u‖²)`
-通道需 `Measure.pi` 的 Fubini/切片多项式机制与积分型 Cauchy–Schwarz，
-本会话内未完成）。2D 朴素谱线 `Σ|k|⁻²` 对数发散（不可走）；
-各向异性可乘型 1D 嵌入（阈值截断内插）同列未完。按 CapAnchor 先例，
-主陈述以 Prop 级定义 `periodicLadyzhenskayaStatement` 登记，不断言证明。
+已完（续，EXT-WAVE-18 cont.3 · L5 席批三）：
+  (vii) 2D 周期 Ladyzhenskaya 主不等式（可乘型各向异性切片路线，证毕，
+       详见 TwoDim 节头注；𝕋² 取乘积形式 UnitAddCircle × UnitAddCircle，
+       测度 `torus2Measure = circleMeasure.prod circleMeasure`）：
+       点态可乘型切片嵌入 `norm_sq_fourierPoly2_le_sliceY/sliceX`
+       （1D 阈值加权 CS `sum_norm_sq_le_weighted` 逐片化，常数 1+π²/3）
+       ⇒ 点态主界 `norm_pow_four_fourierPoly2_le`（‖u‖⁴ ≤ (1+π²/3)²·P₂(x)P₁(y)）
+       ⇒ 乘积测度分离 `integral_prod_mul` + 注入指标 1D Parseval
+       `integral_norm_sq_sum_fourier_injOn` 收拢
+       ⇒ 可乘张量因子形 `ladyzhenskaya_twoD_tensor`（谱坐标，显式常数
+       (1+π²/3)²）、H¹ 收边积分形 `ladyzhenskaya_twoD` 与平方收边
+       `ladyzhenskaya_twoD_h1_sq`（免均值）、零均值梯度平方形
+       `ladyzhenskaya_twoD_zero_mean`（显式常数 (1+π²/3)²/(4π⁴)）。
+       乘积侧 Parseval/Poincaré 镜像件：
+       `integral_norm_sq_fourierPoly2` / `integral_norm_sq_pderivPoly2` /
+       `integral_norm_sq_le_integral_pderiv2`。
+
+未完（残口登记，诚实标注）：主陈述登记件 `periodicLadyzhenskayaStatement`
+的纯可乘形 `∫‖u‖⁴ ≤ C·(∫‖u‖²)·(specGradEnergy)`（C·X·Y 形）本批仍未断开：
+切片路线在片侧使用 Agmon 阈值界（高频端损失 1/|k|² 阶；张量积反例
+u = f(x)·g(y) 双高频显示乘积形上界 K(X+b₀²)(X+b₁²) 不被 C·X·(X+b²)
+一致控制——混合频率平方增长在案），断开 C·X·Y 形需片内保留支集结构的
+精细逐模求和（Σ_{m∈supp}(λ²+m²)⁻¹ 而非全 ℤ 闭式界）或等价机制，
+留待后续批次。2D 朴素谱线 `Σ|k|⁻²` 对数发散（可加型死路，判词保留）；
+本批路线为可乘型（张量权 (1+k₀²)(1+k₁²) 的倒数和收敛，值 (1+π²/3)²）。
+按 CapAnchor 先例，主陈述 Prop 级定义维持登记、不断言证明。
 全文件零 sorry、零新增 axiom（仅 propext/Classical.choice/Quot.sound 三件套）。
 
 版本钉：leanprover/lean4:v4.35.0 + mathlib v4.35.0（@56a00585）。
@@ -1076,6 +1096,582 @@ theorem ladyzhenskaya_oneD_general (c : ℤ →₀ ℂ) :
 
 end OneDim
 
+section TwoDim
+/-! ### (vii) 2D 周期 Ladyzhenskaya：可乘型各向异性切片路线（L5 批三，证毕）
+
+【路线】（禁走 2D 朴素谱线 `Σ|k|⁻²`——对数发散，可加型死路判词保留）
+可乘型（张量权）切片路线，全程**点态**估计（三角多项式连续，免 a.e. 限定）
++ 乘积测度 Fubini 分离：
+
+  (a) 片分解：`u(x,y) = Σ_m d_m(x)·fourier m y`，
+      `d_m(x) = Σ_{k, k₂=m} c_k·fourier (k₀) x`（`sliceSumY`，纤维重组
+      `sum_fiberwise_of_maps_to`）；x 向对称件 `sliceSumX`；
+  (b) 点态可乘型切片嵌入（1D 阈值加权 CS 的逐片化，常数 1+π²/3，
+      巴塞尔截断 `sum_inv_sq_le` 经 `sum_inv_weight_sq_le` 供给）：
+      `‖u(x,y)‖² ≤ (1+π²/3)·Σ_m(1+m²)‖d_m(x)‖²` ——两向相乘得点态主界
+      `‖u‖⁴ ≤ (1+π²/3)²·P₂(x)·P₁(y)`（`norm_pow_four_fourierPoly2_le`）；
+  (c) 乘积测度分离（`torus2Measure = circleMeasure.prod circleMeasure`，
+      `integral_prod_mul`）+ 注入指标 1D Parseval
+      （`integral_norm_sq_sum_fourier_injOn`：片系数 `d_m` 本身作为 x 的
+      1D 三角多项式，其 L² 能量恰为第 m 纤维的谱能量）收拢：
+      `∫‖u‖⁴ ≤ (1+π²/3)²·(Σ_k(1+k₀²)‖c_k‖²)·(Σ_k(1+k₁²)‖c_k‖²)`；
+  (d) 乘积侧 Parseval（`integral_prod_norm_sq_sum`，双重 1D Parseval
+      迭代，免 `Measure.pi` 桥）把谱和回代为 `∫‖u‖²` 与 `∫‖∂ᵢu‖²`。
+
+【可乘型注记】权 (1+k₀²)(1+k₁²) 的倒数和 `Σ_{ℤ²}[(1+k₀²)(1+k₁²)]⁻¹`
+= (1+π²/3)² **收敛**（张量因子化），与可加型权 (1+|k|²)⁻¹ 的 2D 对数发散
+形成对照——这是本路线可行而朴素谱线不可行的原因。逐片只用单向权，
+混合导数项 k₀²k₁² 不出现（混合导数问题的本路线处理：由各向异性
+因子乘积吸收，见头注未完登记对 C·X·Y 纯可乘形的限制说明）。 -/
+
+/-- 2D 测度钉：圆周归一化 Haar 测度的乘积
+（𝕋² 取任务口径的乘积形式 `UnitAddCircle × UnitAddCircle`）。 -/
+abbrev torus2Measure : Measure (UnitAddCircle × UnitAddCircle) :=
+  circleMeasure.prod circleMeasure
+
+/-- 紧空间有限测度上连续实值函数可积（圆周版）。 -/
+theorem integrable_continuous_circle {f : UnitAddCircle → ℝ} (hf : Continuous f) :
+    Integrable f circleMeasure :=
+  integrableOn_univ.mp (ContinuousOn.integrableOn_compact isCompact_univ hf.continuousOn)
+
+/-- 紧空间有限测度上连续实值函数可积（乘积环面版）。 -/
+theorem integrable_continuous_torus2 {f : UnitAddCircle × UnitAddCircle → ℝ}
+    (hf : Continuous f) : Integrable f torus2Measure :=
+  integrableOn_univ.mp (ContinuousOn.integrableOn_compact isCompact_univ hf.continuousOn)
+
+/-- 2D 三角多项式（乘积形式）：`u(x,y) = Σ_k c_k·fourier (k 0) x·fourier (k 1) y`。 -/
+def fourierPoly2 (c : WaveIdx →₀ ℂ) (z : UnitAddCircle × UnitAddCircle) : ℂ :=
+  ∑ k ∈ c.support, c k * (fourier (k 0) z.1 * fourier (k 1) z.2)
+
+/-- 2D 偏导多项式（乘积形式，第 `i` 坐标）：系数逐项乘 `2πi·kᵢ`。 -/
+def pderivPoly2 (i : Fin 2) (c : WaveIdx →₀ ℂ) (z : UnitAddCircle × UnitAddCircle) : ℂ :=
+  ∑ k ∈ c.support, (2 * Real.pi * Complex.I * (k i : ℂ) * c k) *
+    (fourier (k 0) z.1 * fourier (k 1) z.2)
+
+/-- 2D 三角多项式连续。 -/
+theorem continuous_fourierPoly2 (c : WaveIdx →₀ ℂ) : Continuous (fourierPoly2 c) :=
+  continuous_finsetSum _ fun k _ => continuous_const.mul
+    (((fourier (k 0)).continuous.comp continuous_fst).mul
+      ((fourier (k 1)).continuous.comp continuous_snd))
+
+/-- y-片系数（通用支集/系数版）：固定 `x` 后 `y ↦ u(x,y)` 的第 `m` 个
+Fourier 系数 `d_m(x) = Σ_{k∈s, k 1 = m} a_k·fourier (k 0) x`。 -/
+def sliceSumY (s : Finset WaveIdx) (a : WaveIdx → ℂ) (x : UnitAddCircle) (m : ℤ) : ℂ :=
+  ∑ k ∈ s.filter (fun k => k 1 = m), a k * fourier (k 0) x
+
+/-- x-片系数（通用支集/系数版）：固定 `y` 后 `x ↦ u(x,y)` 的第 `n` 个
+Fourier 系数。 -/
+def sliceSumX (s : Finset WaveIdx) (a : WaveIdx → ℂ) (y : UnitAddCircle) (n : ℤ) : ℂ :=
+  ∑ k ∈ s.filter (fun k => k 0 = n), a k * fourier (k 1) y
+
+/-- 片系数关于片参数的连续性（y 向）。 -/
+theorem continuous_sliceSumY (s : Finset WaveIdx) (a : WaveIdx → ℂ) (m : ℤ) :
+    Continuous (fun x : UnitAddCircle => sliceSumY s a x m) :=
+  continuous_finsetSum _ fun k _ => continuous_const.mul (fourier (k 0)).continuous
+
+/-- 片系数关于片参数的连续性（x 向）。 -/
+theorem continuous_sliceSumX (s : Finset WaveIdx) (a : WaveIdx → ℂ) (n : ℤ) :
+    Continuous (fun y : UnitAddCircle => sliceSumX s a y n) :=
+  continuous_finsetSum _ fun k _ => continuous_const.mul (fourier (k 1)).continuous
+
+/-- **y-片重组**：双指标三角和按第二坐标波数 `k 1 = m` 的纤维分组，
+即 `u(x,y) = Σ_m d_m(x)·fourier m y`。 -/
+theorem sum_fourier_prod_eq_sum_sliceY (s : Finset WaveIdx) (a : WaveIdx → ℂ)
+    (x y : UnitAddCircle) :
+    (∑ k ∈ s, a k * (fourier (k 0) x * fourier (k 1) y)) =
+      ∑ m ∈ s.image (fun k => k 1), sliceSumY s a x m * fourier m y := by
+  classical
+  rw [← Finset.sum_fiberwise_of_maps_to (g := fun k : WaveIdx => k 1)
+    (t := s.image fun k => k 1) (fun k hk => Finset.mem_image_of_mem _ hk)
+    (f := fun k => a k * (fourier (k 0) x * fourier (k 1) y))]
+  apply Finset.sum_congr rfl; intro m _
+  unfold sliceSumY
+  rw [Finset.sum_mul]
+  apply Finset.sum_congr rfl; intro k hk
+  rw [Finset.mem_filter] at hk
+  rw [hk.2]; ring
+
+/-- **x-片重组**：按第一坐标波数 `k 0 = n` 的纤维分组，
+即 `u(x,y) = Σ_n e_n(y)·fourier n x`。 -/
+theorem sum_fourier_prod_eq_sum_sliceX (s : Finset WaveIdx) (a : WaveIdx → ℂ)
+    (x y : UnitAddCircle) :
+    (∑ k ∈ s, a k * (fourier (k 0) x * fourier (k 1) y)) =
+      ∑ n ∈ s.image (fun k => k 0), sliceSumX s a y n * fourier n x := by
+  classical
+  rw [← Finset.sum_fiberwise_of_maps_to (g := fun k : WaveIdx => k 0)
+    (t := s.image fun k => k 0) (fun k hk => Finset.mem_image_of_mem _ hk)
+    (f := fun k => a k * (fourier (k 0) x * fourier (k 1) y))]
+  apply Finset.sum_congr rfl; intro n _
+  unfold sliceSumX
+  rw [Finset.sum_mul]
+  apply Finset.sum_congr rfl; intro k hk
+  rw [Finset.mem_filter] at hk
+  rw [hk.2]; ring
+
+/-- 阈值权倒数平方和界（免均值）：`Σ_{k∈s} w_k⁻² ≤ 1 + π²/3`，
+`w₀ = 1`、`w_k = |k|`（k≠0）；零模贡献 1，非零模由巴塞尔截断
+`sum_inv_sq_le` 供给 `π²/3`。 -/
+theorem sum_inv_weight_sq_le (s : Finset ℤ) :
+    ∑ k ∈ s, (if k = 0 then (1 : ℝ) else 1 / |(k : ℝ)|) ^ 2 ≤ 1 + Real.pi ^ 2 / 3 := by
+  classical
+  have hbb : ∀ k : ℤ, (if k = 0 then (1 : ℝ) else 1 / |(k : ℝ)|) ^ 2 =
+      (if k = 0 then (1 : ℝ) else 0) + (if k = 0 then (0 : ℝ) else 1 / (k : ℝ) ^ 2) := by
+    intro k
+    by_cases hk : k = 0
+    · simp [hk]
+    · rw [if_neg hk, if_neg hk, if_neg hk, div_pow, one_pow, sq_abs, zero_add]
+  rw [Finset.sum_congr rfl (fun k _ => hbb k), Finset.sum_add_distrib]
+  have hind : (∑ k ∈ s, if k = 0 then (1 : ℝ) else 0) ≤ 1 := by
+    rw [← Finset.sum_filter, Finset.filter_eq']
+    by_cases h0s : (0 : ℤ) ∈ s <;> simp [h0s]
+  linarith [hind, sum_inv_sq_le s]
+
+/-- **1D 阈值加权 Cauchy–Schwarz（通用系数版）**：
+`(Σ‖a‖)² ≤ (1+π²/3)·Σ(1+k²)‖a‖²`（任意系数函数、任意有限求和集；
+`sum_norm_sq_weighted_general` 的同形推广，供片系数逐点使用）。 -/
+theorem sum_norm_sq_le_weighted (s : Finset ℤ) (a : ℤ → ℂ) :
+    (∑ k ∈ s, ‖a k‖) ^ 2 ≤
+      (1 + Real.pi ^ 2 / 3) * ∑ k ∈ s, ‖a k‖ ^ 2 * (1 + (k : ℝ) ^ 2) := by
+  classical
+  have hCS := sum_mul_sq_le_sq_mul_sq s
+    (fun k => (if k = 0 then (1 : ℝ) else |(k : ℝ)|) * ‖a k‖)
+    (fun k => if k = 0 then (1 : ℝ) else 1 / |(k : ℝ)|)
+  have hab : ∀ k ∈ s,
+      (if k = 0 then (1 : ℝ) else |(k : ℝ)|) * ‖a k‖ *
+        (if k = 0 then (1 : ℝ) else 1 / |(k : ℝ)|) = ‖a k‖ := by
+    intro k _
+    by_cases hk : k = 0
+    · subst hk; simp
+    · rw [if_neg hk, if_neg hk]
+      have hkn : |(k : ℝ)| ≠ 0 := abs_ne_zero.mpr (by exact_mod_cast hk : (k : ℝ) ≠ 0)
+      field_simp
+  rw [Finset.sum_congr rfl hab] at hCS
+  have hA : (∑ k ∈ s, ((if k = 0 then (1 : ℝ) else |(k : ℝ)|) * ‖a k‖) ^ 2) ≤
+      ∑ k ∈ s, (1 + (k : ℝ) ^ 2) * ‖a k‖ ^ 2 := by
+    apply Finset.sum_le_sum
+    intro k _
+    rw [mul_pow]
+    by_cases hk : k = 0
+    · subst hk; simp
+    · rw [if_neg hk, sq_abs]
+      apply mul_le_mul_of_nonneg_right _ (sq_nonneg _)
+      linarith [sq_nonneg (k : ℝ)]
+  have hB := sum_inv_weight_sq_le s
+  calc (∑ k ∈ s, ‖a k‖) ^ 2
+      ≤ (∑ k ∈ s, ((if k = 0 then (1 : ℝ) else |(k : ℝ)|) * ‖a k‖) ^ 2) *
+          ∑ k ∈ s, (if k = 0 then (1 : ℝ) else 1 / |(k : ℝ)|) ^ 2 := hCS
+    _ ≤ (∑ k ∈ s, (1 + (k : ℝ) ^ 2) * ‖a k‖ ^ 2) * (1 + Real.pi ^ 2 / 3) :=
+        mul_le_mul hA hB (Finset.sum_nonneg fun k _ => sq_nonneg _)
+          (Finset.sum_nonneg fun k _ => mul_nonneg
+            (add_nonneg zero_le_one (sq_nonneg _)) (sq_nonneg _))
+    _ = (1 + Real.pi ^ 2 / 3) * ∑ k ∈ s, ‖a k‖ ^ 2 * (1 + (k : ℝ) ^ 2) := by
+        rw [Finset.sum_congr rfl (fun k _ => mul_comm _ _), mul_comm]
+
+/-- y 向片能量密度：`P₂(x) = Σ_m ‖d_m(x)‖²·(1+m²)`
+（乘积序取「应用在前」：`sliceSumY … m` 先把 `m` 钉为 `ℤ`，规避
+裸变量类型标注 `(m : ℝ)` 的推断陷阱）。 -/
+def sliceEnergyY (c : WaveIdx →₀ ℂ) (x : UnitAddCircle) : ℝ :=
+  ∑ m ∈ c.support.image (fun k => k 1), ‖sliceSumY c.support c x m‖ ^ 2 * (1 + (m : ℝ) ^ 2)
+
+/-- x 向片能量密度：`P₁(y) = Σ_n ‖e_n(y)‖²·(1+n²)`。 -/
+def sliceEnergyX (c : WaveIdx →₀ ℂ) (y : UnitAddCircle) : ℝ :=
+  ∑ n ∈ c.support.image (fun k => k 0), ‖sliceSumX c.support c y n‖ ^ 2 * (1 + (n : ℝ) ^ 2)
+
+/-- 片能量密度连续（y 向）。 -/
+theorem continuous_sliceEnergyY (c : WaveIdx →₀ ℂ) : Continuous (sliceEnergyY c) :=
+  continuous_finsetSum _ fun m _ =>
+    (((continuous_sliceSumY _ _ _).norm).pow 2).mul continuous_const
+
+/-- 片能量密度连续（x 向）。 -/
+theorem continuous_sliceEnergyX (c : WaveIdx →₀ ℂ) : Continuous (sliceEnergyX c) :=
+  continuous_finsetSum _ fun n _ =>
+    (((continuous_sliceSumX _ _ _).norm).pow 2).mul continuous_const
+
+/-- **点态可乘型切片嵌入（y 向）**：固定 `x` 的 y-片视为 1D 三角多项式，
+逐点三角不等式（字符模长 1）+ 阈值加权 CS：
+`‖u(x,y)‖² ≤ (1+π²/3)·P₂(x)`（`P₂` 即 `sliceEnergyY`）。 -/
+theorem norm_sq_fourierPoly2_le_sliceY (c : WaveIdx →₀ ℂ) (x y : UnitAddCircle) :
+    ‖fourierPoly2 c (x, y)‖ ^ 2 ≤ (1 + Real.pi ^ 2 / 3) * sliceEnergyY c x := by
+  classical
+  have h1 : ‖fourierPoly2 c (x, y)‖ ≤
+      ∑ m ∈ c.support.image (fun k => k 1), ‖sliceSumY c.support c x m‖ := by
+    rw [show fourierPoly2 c (x, y) =
+        ∑ k ∈ c.support, c k * (fourier (k 0) x * fourier (k 1) y) from rfl,
+      sum_fourier_prod_eq_sum_sliceY]
+    calc ‖∑ m ∈ c.support.image (fun k => k 1), sliceSumY c.support c x m * fourier m y‖
+        ≤ ∑ m ∈ c.support.image (fun k => k 1),
+            ‖sliceSumY c.support c x m * fourier m y‖ := norm_sum_le _ _
+      _ = ∑ m ∈ c.support.image (fun k => k 1), ‖sliceSumY c.support c x m‖ := by
+          apply Finset.sum_congr rfl; intro m _
+          rw [norm_mul, show ‖fourier m y‖ = 1 by
+            rw [fourier_apply]; exact Circle.norm_coe _, mul_one]
+  calc ‖fourierPoly2 c (x, y)‖ ^ 2
+      ≤ (∑ m ∈ c.support.image (fun k => k 1), ‖sliceSumY c.support c x m‖) ^ 2 :=
+        pow_le_pow_left₀ (norm_nonneg _) h1 _
+    _ ≤ (1 + Real.pi ^ 2 / 3) * sliceEnergyY c x := by
+        unfold sliceEnergyY
+        exact sum_norm_sq_le_weighted _ _
+
+/-- **点态可乘型切片嵌入（x 向）**：`‖u(x,y)‖² ≤ (1+π²/3)·Σ_n(1+n²)‖e_n(y)‖²`。 -/
+theorem norm_sq_fourierPoly2_le_sliceX (c : WaveIdx →₀ ℂ) (x y : UnitAddCircle) :
+    ‖fourierPoly2 c (x, y)‖ ^ 2 ≤ (1 + Real.pi ^ 2 / 3) * sliceEnergyX c y := by
+  classical
+  have h1 : ‖fourierPoly2 c (x, y)‖ ≤
+      ∑ n ∈ c.support.image (fun k => k 0), ‖sliceSumX c.support c y n‖ := by
+    rw [show fourierPoly2 c (x, y) =
+        ∑ k ∈ c.support, c k * (fourier (k 0) x * fourier (k 1) y) from rfl,
+      sum_fourier_prod_eq_sum_sliceX]
+    calc ‖∑ n ∈ c.support.image (fun k => k 0), sliceSumX c.support c y n * fourier n x‖
+        ≤ ∑ n ∈ c.support.image (fun k => k 0),
+            ‖sliceSumX c.support c y n * fourier n x‖ := norm_sum_le _ _
+      _ = ∑ n ∈ c.support.image (fun k => k 0), ‖sliceSumX c.support c y n‖ := by
+          apply Finset.sum_congr rfl; intro n _
+          rw [norm_mul, show ‖fourier n x‖ = 1 by
+            rw [fourier_apply]; exact Circle.norm_coe _, mul_one]
+  calc ‖fourierPoly2 c (x, y)‖ ^ 2
+      ≤ (∑ n ∈ c.support.image (fun k => k 0), ‖sliceSumX c.support c y n‖) ^ 2 :=
+        pow_le_pow_left₀ (norm_nonneg _) h1 _
+    _ ≤ (1 + Real.pi ^ 2 / 3) * sliceEnergyX c y := by
+        unfold sliceEnergyX
+        exact sum_norm_sq_le_weighted _ _
+
+/-- **点态可乘型主界**：`‖u(x,y)‖⁴ ≤ (1+π²/3)²·P₂(x)·P₁(y)`
+（两向切片嵌入逐点相乘；各项非负，可乘）。 -/
+theorem norm_pow_four_fourierPoly2_le (c : WaveIdx →₀ ℂ) (x y : UnitAddCircle) :
+    ‖fourierPoly2 c (x, y)‖ ^ 4 ≤
+      (1 + Real.pi ^ 2 / 3) ^ 2 * (sliceEnergyY c x * sliceEnergyX c y) := by
+  have hY := norm_sq_fourierPoly2_le_sliceY c x y
+  have hX := norm_sq_fourierPoly2_le_sliceX c x y
+  have hK : (0 : ℝ) ≤ 1 + Real.pi ^ 2 / 3 :=
+    add_nonneg zero_le_one (div_nonneg (sq_nonneg _) (by norm_num))
+  have hP2 : (0 : ℝ) ≤ sliceEnergyY c x :=
+    Finset.sum_nonneg fun m _ => mul_nonneg (sq_nonneg _)
+      (add_nonneg zero_le_one (sq_nonneg _))
+  have hP1 : (0 : ℝ) ≤ sliceEnergyX c y :=
+    Finset.sum_nonneg fun n _ => mul_nonneg (sq_nonneg _)
+      (add_nonneg zero_le_one (sq_nonneg _))
+  have h4 : ‖fourierPoly2 c (x, y)‖ ^ 4 =
+      ‖fourierPoly2 c (x, y)‖ ^ 2 * ‖fourierPoly2 c (x, y)‖ ^ 2 := by ring
+  rw [h4]
+  calc ‖fourierPoly2 c (x, y)‖ ^ 2 * ‖fourierPoly2 c (x, y)‖ ^ 2
+      ≤ ((1 + Real.pi ^ 2 / 3) * sliceEnergyY c x) *
+          ((1 + Real.pi ^ 2 / 3) * sliceEnergyX c y) :=
+        mul_le_mul hY hX (pow_nonneg (norm_nonneg _) _) (mul_nonneg hK hP2)
+    _ = (1 + Real.pi ^ 2 / 3) ^ 2 * (sliceEnergyY c x * sliceEnergyX c y) := by ring
+
+/-- **注入指标的 1D Parseval 变体**：指标经单射 `g : ι → ℤ` 嵌入时，
+`∫‖Σ_{k∈s} a_k·fourier (g k)‖² = Σ‖a_k‖²`（纤维单例化归约到
+`integral_norm_sq_sum_fourier`；片系数作为 x 的 1D 多项式解析所需）。 -/
+theorem integral_norm_sq_sum_fourier_injOn {ι : Type*} [DecidableEq ι]
+    (s : Finset ι) (g : ι → ℤ) (hg : Set.InjOn g s) (a : ι → ℂ) :
+    ∫ x : UnitAddCircle, ‖∑ k ∈ s, a k * fourier (g k) x‖ ^ 2 ∂circleMeasure =
+      ∑ k ∈ s, ‖a k‖ ^ 2 := by
+  classical
+  have hreg : ∀ x : UnitAddCircle, (∑ k ∈ s, a k * fourier (g k) x) =
+      ∑ j ∈ s.image g, (∑ k ∈ s.filter (fun k => g k = j), a k) * fourier j x := by
+    intro x
+    rw [← Finset.sum_fiberwise_of_maps_to (g := g) (t := s.image g)
+      (fun k hk => Finset.mem_image_of_mem _ hk) (f := fun k => a k * fourier (g k) x)]
+    apply Finset.sum_congr rfl; intro j _
+    rw [Finset.sum_mul]
+    apply Finset.sum_congr rfl; intro k hk
+    rw [Finset.mem_filter] at hk
+    rw [hk.2]
+  rw [integral_congr_ae (ae_of_all _ fun x => by rw [hreg x])]
+  rw [integral_norm_sq_sum_fourier]
+  rw [← Finset.sum_fiberwise_of_maps_to (g := g) (t := s.image g)
+    (fun k hk => Finset.mem_image_of_mem _ hk) (f := fun k => ‖a k‖ ^ 2)]
+  apply Finset.sum_congr rfl; intro j hj
+  rcases Finset.mem_image.mp hj with ⟨k₀, hk₀, rfl⟩
+  have hfilter : s.filter (fun k => g k = g k₀) = {k₀} := by
+    apply Finset.eq_singleton_iff_unique_mem.mpr
+    refine ⟨Finset.mem_filter.mpr ⟨hk₀, rfl⟩, ?_⟩
+    intro k hk
+    rw [Finset.mem_filter] at hk
+    exact hg (Finset.mem_coe.mpr hk.1) (Finset.mem_coe.mpr hk₀) hk.2
+  rw [hfilter]
+  simp
+
+/-- y-片能量的 x 积分 = 第 `m` 纤维的谱能量（注入指标 Parseval；
+指标映射 `k ↦ k 0` 在纤维 `k 1 = m` 上单射：两坐标共同决定波数）。 -/
+theorem integral_norm_sq_sliceSumY_gen (s : Finset WaveIdx) (a : WaveIdx → ℂ) (m : ℤ) :
+    ∫ x : UnitAddCircle, ‖sliceSumY s a x m‖ ^ 2 ∂circleMeasure =
+      ∑ k ∈ s.filter (fun k => k 1 = m), ‖a k‖ ^ 2 := by
+  classical
+  unfold sliceSumY
+  refine integral_norm_sq_sum_fourier_injOn _ _ ?_ _
+  intro k₁ hk₁ k₂ hk₂ h
+  rw [Finset.mem_coe, Finset.mem_filter] at hk₁ hk₂
+  funext i
+  fin_cases i
+  · exact h
+  · exact hk₁.2.trans hk₂.2.symm
+
+/-- x-片能量的 y 积分 = 第 `n` 纤维的谱能量（同构对称件）。 -/
+theorem integral_norm_sq_sliceSumX_gen (s : Finset WaveIdx) (a : WaveIdx → ℂ) (n : ℤ) :
+    ∫ y : UnitAddCircle, ‖sliceSumX s a y n‖ ^ 2 ∂circleMeasure =
+      ∑ k ∈ s.filter (fun k => k 0 = n), ‖a k‖ ^ 2 := by
+  classical
+  unfold sliceSumX
+  refine integral_norm_sq_sum_fourier_injOn _ _ ?_ _
+  intro k₁ hk₁ k₂ hk₂ h
+  rw [Finset.mem_coe, Finset.mem_filter] at hk₁ hk₂
+  funext i
+  fin_cases i
+  · exact hk₁.2.trans hk₂.2.symm
+  · exact h
+
+/-- **片能量密度的全积分（y 向）**：`∫P₂ = Σ_k(1+(k 1)²)‖c_k‖²`
+（逐项积分 + 纤维 Parseval + 纤维重组回并）。 -/
+theorem integral_sliceEnergyY (c : WaveIdx →₀ ℂ) :
+    ∫ x : UnitAddCircle, sliceEnergyY c x ∂circleMeasure =
+      ∑ k ∈ c.support, (1 + (k 1 : ℝ) ^ 2) * ‖c k‖ ^ 2 := by
+  classical
+  unfold sliceEnergyY
+  rw [integral_finsetSum (c.support.image fun k => k 1)
+    (f := fun m x => ‖sliceSumY c.support c x m‖ ^ 2 * (1 + (m : ℝ) ^ 2))
+    (fun m _ => integrable_continuous_circle
+      (((continuous_sliceSumY _ _ _).norm.pow 2).mul continuous_const))]
+  conv_rhs => rw [← Finset.sum_fiberwise_of_maps_to (g := fun k : WaveIdx => k 1)
+    (t := c.support.image fun k => k 1) (fun k hk => Finset.mem_image_of_mem _ hk)
+    (f := fun k => (1 + (k 1 : ℝ) ^ 2) * ‖c k‖ ^ 2)]
+  apply Finset.sum_congr rfl; intro m _
+  rw [integral_mul_const, integral_norm_sq_sliceSumY_gen, Finset.sum_mul]
+  apply Finset.sum_congr rfl; intro k hk
+  rw [Finset.mem_filter] at hk
+  rw [hk.2]; ring
+
+/-- **片能量密度的全积分（x 向）**：`∫P₁ = Σ_k(1+(k 0)²)‖c_k‖²`。 -/
+theorem integral_sliceEnergyX (c : WaveIdx →₀ ℂ) :
+    ∫ y : UnitAddCircle, sliceEnergyX c y ∂circleMeasure =
+      ∑ k ∈ c.support, (1 + (k 0 : ℝ) ^ 2) * ‖c k‖ ^ 2 := by
+  classical
+  unfold sliceEnergyX
+  rw [integral_finsetSum (c.support.image fun k => k 0)
+    (f := fun n y => ‖sliceSumX c.support c y n‖ ^ 2 * (1 + (n : ℝ) ^ 2))
+    (fun n _ => integrable_continuous_circle
+      (((continuous_sliceSumX _ _ _).norm.pow 2).mul continuous_const))]
+  conv_rhs => rw [← Finset.sum_fiberwise_of_maps_to (g := fun k : WaveIdx => k 0)
+    (t := c.support.image fun k => k 0) (fun k hk => Finset.mem_image_of_mem _ hk)
+    (f := fun k => (1 + (k 0 : ℝ) ^ 2) * ‖c k‖ ^ 2)]
+  apply Finset.sum_congr rfl; intro n _
+  rw [integral_mul_const, integral_norm_sq_sliceSumX_gen, Finset.sum_mul]
+  apply Finset.sum_congr rfl; intro k hk
+  rw [Finset.mem_filter] at hk
+  rw [hk.2]; ring
+
+/-- **乘积侧一般 Parseval**：双指标有限三角和的 L² 能量 = 系数平方和
+（`integral_prod` 迭代 + 片重组 + 1D Parseval；免 `Measure.pi` 桥）。 -/
+theorem integral_prod_norm_sq_sum (s : Finset WaveIdx) (a : WaveIdx → ℂ) :
+    ∫ z : UnitAddCircle × UnitAddCircle,
+        ‖∑ k ∈ s, a k * (fourier (k 0) z.1 * fourier (k 1) z.2)‖ ^ 2 ∂torus2Measure =
+      ∑ k ∈ s, ‖a k‖ ^ 2 := by
+  classical
+  have hcont : Continuous (fun z : UnitAddCircle × UnitAddCircle =>
+      ‖∑ k ∈ s, a k * (fourier (k 0) z.1 * fourier (k 1) z.2)‖ ^ 2) :=
+    ((continuous_finsetSum _ fun k _ => continuous_const.mul
+      (((fourier (k 0)).continuous.comp continuous_fst).mul
+        ((fourier (k 1)).continuous.comp continuous_snd))).norm).pow 2
+  rw [integral_prod _ (integrable_continuous_torus2 hcont)]
+  have hin : ∀ x : UnitAddCircle,
+      ∫ y : UnitAddCircle,
+          ‖∑ k ∈ s, a k * (fourier (k 0) x * fourier (k 1) y)‖ ^ 2 ∂circleMeasure =
+        ∑ m ∈ s.image (fun k => k 1), ‖sliceSumY s a x m‖ ^ 2 := by
+    intro x
+    rw [integral_congr_ae (ae_of_all _ fun y => by rw [sum_fourier_prod_eq_sum_sliceY])]
+    exact integral_norm_sq_sum_fourier _ _
+  rw [integral_congr_ae (ae_of_all _ hin)]
+  rw [integral_finsetSum (s.image fun k => k 1)
+    (f := fun m x => ‖sliceSumY s a x m‖ ^ 2)
+    (fun m _ => integrable_continuous_circle ((continuous_sliceSumY _ _ _).norm.pow 2))]
+  rw [← Finset.sum_fiberwise_of_maps_to (g := fun k : WaveIdx => k 1)
+    (t := s.image fun k => k 1) (fun k hk => Finset.mem_image_of_mem _ hk)
+    (f := fun k => ‖a k‖ ^ 2)]
+  apply Finset.sum_congr rfl; intro m _
+  exact integral_norm_sq_sliceSumY_gen s a m
+
+/-- **乘积侧 L² Parseval（fourierPoly2 版）**：`∫‖u‖² = Σ‖c_k‖²`。 -/
+theorem integral_norm_sq_fourierPoly2 (c : WaveIdx →₀ ℂ) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure =
+      ∑ k ∈ c.support, ‖c k‖ ^ 2 := by
+  unfold fourierPoly2
+  exact integral_prod_norm_sq_sum c.support c
+
+/-- **乘积侧偏导能量（谱形式）**：`∫‖∂ᵢu‖² = (2π)²·Σ kᵢ²‖c_k‖²`。 -/
+theorem integral_norm_sq_pderivPoly2 (i : Fin 2) (c : WaveIdx →₀ ℂ) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 i c z‖ ^ 2 ∂torus2Measure =
+      (2 * Real.pi) ^ 2 * ∑ k ∈ c.support, (k i : ℝ) ^ 2 * ‖c k‖ ^ 2 := by
+  have hn : ∀ k : WaveIdx,
+      ‖2 * Real.pi * Complex.I * (k i : ℂ) * c k‖ =
+        2 * Real.pi * |(k i : ℝ)| * ‖c k‖ := by
+    intro k
+    have h2pi : ((2 : ℂ) * (Real.pi : ℂ)) = ((2 * Real.pi : ℝ) : ℂ) := by
+      push_cast; ring
+    rw [h2pi, norm_mul, norm_mul, norm_mul, Complex.norm_real, Complex.norm_I,
+      Complex.norm_intCast, mul_one, Real.norm_eq_abs,
+      abs_of_pos (mul_pos zero_lt_two Real.pi_pos)]
+  have hmain : ∫ z : UnitAddCircle × UnitAddCircle,
+      ‖pderivPoly2 i c z‖ ^ 2 ∂torus2Measure =
+      ∑ k ∈ c.support, ‖2 * Real.pi * Complex.I * (k i : ℂ) * c k‖ ^ 2 := by
+    unfold pderivPoly2
+    exact integral_prod_norm_sq_sum c.support _
+  rw [hmain, Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro k _
+  rw [hn k, mul_pow, mul_pow, sq_abs]
+  ring
+
+/-- **2D 周期 Ladyzhenskaya（可乘型张量因子形，免均值，显式常数 (1+π²/3)²）**：
+`∫‖u‖⁴ ≤ (1+π²/3)²·(Σ_k(1+k₀²)‖c_k‖²)·(Σ_k(1+k₁²)‖c_k‖²)。
+证明链：点态可乘型主界 ⇒ 积分单调性 ⇒ `integral_prod_mul` 分离
+⇒ 两向片能量引理收拢。可乘型本质：张量权倒数和收敛（(1+π²/3)²）。 -/
+theorem ladyzhenskaya_twoD_tensor (c : WaveIdx →₀ ℂ) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure ≤
+      (1 + Real.pi ^ 2 / 3) ^ 2 *
+        (∑ k ∈ c.support, (1 + (k 0 : ℝ) ^ 2) * ‖c k‖ ^ 2) *
+        (∑ k ∈ c.support, (1 + (k 1 : ℝ) ^ 2) * ‖c k‖ ^ 2) := by
+  classical
+  have hpt : ∀ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ≤
+      (1 + Real.pi ^ 2 / 3) ^ 2 * (sliceEnergyY c z.1 * sliceEnergyX c z.2) :=
+    fun z => norm_pow_four_fourierPoly2_le c z.1 z.2
+  have hL : Integrable (fun z : UnitAddCircle × UnitAddCircle =>
+      ‖fourierPoly2 c z‖ ^ 4) torus2Measure :=
+    integrable_continuous_torus2 (((continuous_fourierPoly2 c).norm).pow 4)
+  have hR : Integrable (fun z : UnitAddCircle × UnitAddCircle =>
+      (1 + Real.pi ^ 2 / 3) ^ 2 * (sliceEnergyY c z.1 * sliceEnergyX c z.2))
+      torus2Measure :=
+    integrable_continuous_torus2 (continuous_const.mul
+      (((continuous_sliceEnergyY c).comp continuous_fst).mul
+        ((continuous_sliceEnergyX c).comp continuous_snd)))
+  calc ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure
+      ≤ ∫ z : UnitAddCircle × UnitAddCircle,
+          (1 + Real.pi ^ 2 / 3) ^ 2 * (sliceEnergyY c z.1 * sliceEnergyX c z.2)
+          ∂torus2Measure :=
+        integral_mono hL hR hpt
+    _ = (1 + Real.pi ^ 2 / 3) ^ 2 *
+          (∫ x : UnitAddCircle, sliceEnergyY c x ∂circleMeasure) *
+          (∫ y : UnitAddCircle, sliceEnergyX c y ∂circleMeasure) := by
+        rw [integral_const_mul, integral_prod_mul]; ring
+    _ = (1 + Real.pi ^ 2 / 3) ^ 2 *
+          (∑ k ∈ c.support, (1 + (k 0 : ℝ) ^ 2) * ‖c k‖ ^ 2) *
+          (∑ k ∈ c.support, (1 + (k 1 : ℝ) ^ 2) * ‖c k‖ ^ 2) := by
+        rw [integral_sliceEnergyY, integral_sliceEnergyX]; ring
+
+/-- 谱坐标 H¹ 权分解：`Σ(1+kᵢ²)‖c‖² = Σ‖c‖² + (2π)⁻²·(2π)²Σkᵢ²‖c‖²`。 -/
+theorem sum_weighted_eq_h1 (i : Fin 2) (c : WaveIdx →₀ ℂ) :
+    ∑ k ∈ c.support, (1 + (k i : ℝ) ^ 2) * ‖c k‖ ^ 2 =
+      (∑ l ∈ c.support, ‖c l‖ ^ 2) +
+        (1 / (2 * Real.pi) ^ 2) *
+          ((2 * Real.pi) ^ 2 * ∑ k ∈ c.support, (k i : ℝ) ^ 2 * ‖c k‖ ^ 2) := by
+  have hterm : ∀ k ∈ c.support, (1 + (k i : ℝ) ^ 2) * ‖c k‖ ^ 2 =
+      ‖c k‖ ^ 2 + (k i : ℝ) ^ 2 * ‖c k‖ ^ 2 := fun k _ => by ring
+  rw [Finset.sum_congr rfl hterm, Finset.sum_add_distrib, one_div, ← mul_assoc,
+    inv_mul_cancel₀ (ne_of_gt (pow_pos (mul_pos zero_lt_two Real.pi_pos) 2)), one_mul]
+
+/-- **2D 周期 Ladyzhenskaya（H¹ 收边形，免均值，显式常数 (1+π²/3)²）**：
+`∫‖u‖⁴ ≤ (1+π²/3)²·(∫‖u‖²+(2π)⁻²∫‖∂₀u‖²)·(∫‖u‖²+(2π)⁻²∫‖∂₁u‖²)`。
+张量因子形经乘积侧 Parseval/偏导能量回代。 -/
+theorem ladyzhenskaya_twoD (c : WaveIdx →₀ ℂ) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure ≤
+      (1 + Real.pi ^ 2 / 3) ^ 2 *
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+          (1 / (2 * Real.pi) ^ 2) *
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) *
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+          (1 / (2 * Real.pi) ^ 2) *
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) := by
+  refine (ladyzhenskaya_twoD_tensor c).trans ?_
+  rw [integral_norm_sq_fourierPoly2, integral_norm_sq_pderivPoly2,
+    integral_norm_sq_pderivPoly2, ← sum_weighted_eq_h1 0, ← sum_weighted_eq_h1 1]
+
+/-- **2D 周期 Ladyzhenskaya（H¹ 范数平方收边，免均值）**：
+`∫‖u‖⁴ ≤ (1+π²/3)²·(∫‖u‖² + (2π)⁻²(∫‖∂₀u‖²+∫‖∂₁u‖²))²`。 -/
+theorem ladyzhenskaya_twoD_h1_sq (c : WaveIdx →₀ ℂ) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure ≤
+      (1 + Real.pi ^ 2 / 3) ^ 2 *
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+          (1 / (2 * Real.pi) ^ 2) *
+            ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+              ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure)) ^ 2 := by
+  refine (ladyzhenskaya_twoD c).trans ?_
+  set X := ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure with hX
+  set Y₀ := ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure with hY₀
+  set Y₁ := ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure with hY₁
+  set q : ℝ := 1 / (2 * Real.pi) ^ 2 with hq
+  have hXn : 0 ≤ X := integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _)
+  have hY₀n : 0 ≤ Y₀ := integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _)
+  have hY₁n : 0 ≤ Y₁ := integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _)
+  have hqn : 0 ≤ q := by
+    rw [hq]
+    exact div_nonneg zero_le_one (sq_nonneg _)
+  have hF0 : X + q * Y₀ ≤ X + q * (Y₀ + Y₁) := by
+    have h := mul_nonneg hqn hY₁n; linarith
+  have hF1 : X + q * Y₁ ≤ X + q * (Y₀ + Y₁) := by
+    have h := mul_nonneg hqn hY₀n; linarith
+  have hT : 0 ≤ X + q * (Y₀ + Y₁) :=
+    add_nonneg hXn (mul_nonneg hqn (add_nonneg hY₀n hY₁n))
+  have hF1n : 0 ≤ X + q * Y₁ := add_nonneg hXn (mul_nonneg hqn hY₁n)
+  calc (1 + Real.pi ^ 2 / 3) ^ 2 * (X + q * Y₀) * (X + q * Y₁)
+      = (1 + Real.pi ^ 2 / 3) ^ 2 * ((X + q * Y₀) * (X + q * Y₁)) := by ring
+    _ ≤ (1 + Real.pi ^ 2 / 3) ^ 2 * ((X + q * (Y₀ + Y₁)) * (X + q * (Y₀ + Y₁))) :=
+        mul_le_mul_of_nonneg_left (mul_le_mul hF0 hF1 hF1n hT) (pow_nonneg
+          (add_nonneg zero_le_one (div_nonneg (sq_nonneg _) (by norm_num))) _)
+    _ = (1 + Real.pi ^ 2 / 3) ^ 2 * (X + q * (Y₀ + Y₁)) ^ 2 := by ring
+
+/-- **零均值 Poincaré（乘积侧）**：`∫‖u‖² ≤ (2π)⁻²·(∫‖∂₀u‖²+∫‖∂₁u‖²)`
+（谱级 `sum_norm_sq_le_specGradEnergy` 经乘积侧 Parseval 回代）。 -/
+theorem integral_norm_sq_le_integral_pderiv2 (c : WaveIdx →₀ ℂ) (h0 : c 0 = 0) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure ≤
+      (1 / (2 * Real.pi) ^ 2) *
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+          ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) := by
+  rw [integral_norm_sq_fourierPoly2, integral_norm_sq_pderivPoly2, integral_norm_sq_pderivPoly2]
+  have h := sum_norm_sq_le_specGradEnergy c h0
+  have hE : (2 * Real.pi) ^ 2 * ∑ k ∈ c.support, (k 0 : ℝ) ^ 2 * ‖c k‖ ^ 2 +
+      (2 * Real.pi) ^ 2 * ∑ k ∈ c.support, (k 1 : ℝ) ^ 2 * ‖c k‖ ^ 2 =
+      specGradEnergy c := by
+    rw [specGradEnergy, Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl; intro k _
+    simp only [kSq]; ring
+  rwa [hE]
+
+/-- **2D 周期 Ladyzhenskaya（零均值梯度平方形，显式常数 (1+π²/3)²/(4π⁴)）**：
+`∫‖u‖⁴ ≤ ((1+π²/3)²/(4π⁴))·(∫‖∂₀u‖²+∫‖∂₁u‖²)²`
+（H¹ 平方收边 + 零均值 Poincaré：`X ≤ (2π)⁻²Y` 把收边因子吸收为 `2(2π)⁻²Y`；
+即 2D 零均值 GNS/Ladyzhenskaya 梯度形 `‖u‖₄⁴ ≤ C_L·‖∇u‖₂⁴`）。 -/
+theorem ladyzhenskaya_twoD_zero_mean (c : WaveIdx →₀ ℂ) (h0 : c 0 = 0) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure ≤
+      ((1 + Real.pi ^ 2 / 3) ^ 2 / (4 * Real.pi ^ 4)) *
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+          ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) ^ 2 := by
+  refine (ladyzhenskaya_twoD_h1_sq c).trans ?_
+  set X := ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure with hX
+  set Y := (∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure with hY
+  set q : ℝ := 1 / (2 * Real.pi) ^ 2 with hq
+  have hYn : 0 ≤ Y :=
+    add_nonneg (integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _))
+      (integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _))
+  have hqn : 0 ≤ q := by
+    rw [hq]
+    exact div_nonneg zero_le_one (sq_nonneg _)
+  have hPo : X ≤ q * Y := integral_norm_sq_le_integral_pderiv2 c h0
+  have hXn : 0 ≤ X := integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _)
+  have hT : X + q * Y ≤ 2 * q * Y := by nlinarith [hPo, hqn, hYn]
+  have hT0 : 0 ≤ X + q * Y := add_nonneg hXn (mul_nonneg hqn hYn)
+  have hsq : (X + q * Y) ^ 2 ≤ (2 * q * Y) ^ 2 :=
+    pow_le_pow_left₀ hT0 hT _
+  have hKn : (0 : ℝ) ≤ (1 + Real.pi ^ 2 / 3) ^ 2 :=
+    pow_nonneg (add_nonneg zero_le_one (div_nonneg (sq_nonneg _) (by norm_num))) _
+  refine (mul_le_mul_of_nonneg_left hsq hKn).trans ?_
+  apply le_of_eq
+  have hπ : (0 : ℝ) < Real.pi := Real.pi_pos
+  rw [hq]
+  field_simp [hπ.ne']
+  ring
+
+end TwoDim
+
 -- D-B1/D-B2 件公理审计（构建期打印；应仅见 propext/Classical.choice/Quot.sound）。
 #print axioms sum_norm_sq_convC_le
 #print axioms fourierPoly_mul
@@ -1103,6 +1699,23 @@ end OneDim
 #print axioms ladyzhenskaya_oneD_h1
 #print axioms sum_norm_sq_weighted_general
 #print axioms ladyzhenskaya_oneD_general
+-- 2D 件（L5 批三 TwoDim 节）公理审计
+#print axioms sum_inv_weight_sq_le
+#print axioms sum_norm_sq_le_weighted
+#print axioms sum_fourier_prod_eq_sum_sliceY
+#print axioms norm_sq_fourierPoly2_le_sliceY
+#print axioms norm_pow_four_fourierPoly2_le
+#print axioms integral_norm_sq_sum_fourier_injOn
+#print axioms integral_sliceEnergyY
+#print axioms integral_sliceEnergyX
+#print axioms integral_prod_norm_sq_sum
+#print axioms integral_norm_sq_fourierPoly2
+#print axioms integral_norm_sq_pderivPoly2
+#print axioms ladyzhenskaya_twoD_tensor
+#print axioms ladyzhenskaya_twoD
+#print axioms ladyzhenskaya_twoD_h1_sq
+#print axioms integral_norm_sq_le_integral_pderiv2
+#print axioms ladyzhenskaya_twoD_zero_mean
 
 end Ladyzhenskaya
 
