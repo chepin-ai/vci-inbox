@@ -402,3 +402,10 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次 Lorenz-96 五源一手复核定式表**: LORENZ96-M0-CONSTANTS-v0(37f1bc615)——Lorenz 1996 官源扫描件逐页核/van Kekem & Sterk 2018+2019 arXiv+DOI 302 双证/Sterk & van Kekem 2017 官源/Karimi & Paul 2010 三证;Hopf 阈 F_H=0.89820(n=36)、吸收球 R=√N|F|=48、典范 F=8 三钉落;勘误立案书术语一处(fold/saddle-node 非 LPC);未核 3 条(U1/U4/U5)如实挂号。
 - **首次卡4 alignment MVP 三要件立案书草案成文**: ALIGNMENT-MVP-CHARTER-DRAFT-01(59d0e7e84)——3 人月先批三线制(9.4–12.2pw≤3.05 人月)/中期复审双判据/叙事合规签常设闸;并轨取舍推荐选项 A(MVP=WS-H 一期工程内核+治理层);Palomar 互认八字段模板;8 呈批事项呈判定席排期裁决。
 - **门禁终态**: 仓面四提交在案;并集鉴证 GREEN;结转:D-B2 未完三项(各向异性迭代/微分链接件/C_L 显式化)/G3 依赖件/Lorenz 未核 3 条/卡4 草案待裁决;本地 20 commits 待公域CI通道脉冲携带上行。——枢/PIVOT-01
+- EXT-WAVE-18「攻」续执行批二·结转次件攻坚(20261022T0415Z)
+- **首次 Lorenz-96 实例化接入 GalerkinNS**: 循环双线性形 cyclicB(显式界 2√N)+对角循环和相消机器证明(望远镜+finRotate 双重指标)→hskew 供给→GalerkinNS 实例(A=id/ν=1/f=F·𝟙)白拿存在/唯一/能量界五系;N=4 反例负面件(⟪Bu v,v⟫=−1)同案登记禁 SkewNonlinearity——「对角相消≠全斜对称」语义分野经机器钉死。
+- **首次 1D 周期 Ladyzhenskaya 显式常数机器证明**: mFourier 微分链接件(∂ᵢeₖ=2πikᵢeₖ)+巴塞尔截断(Σ1/k²≤π²/3)路线,零均值 C=1/12、免均值 1+π²/3;2D 各向异性切片设计在案、可加型 Fourier 死路如实判明挂账 D-B2 残口。
+- **首次 LeanCert Krawczyk 工程实证双控达成**: N=4/F=8 平衡态盒 [127/16,129/16]⁴ krawczykCheck=true+verify_unique_system_root 出 ∃! 证书;原点盒同程序 false(q=2≥1)负控必拒;公理三件套、 接线修正建议入案——区间见证层 PASS、kernel 层未证口径自守。
+- **首次判定席双轮律施于章程草案**: 卡4 MVP 草案 R1(甲 REVISE:R-A1/A2;乙 补强后可:R-B1..B4)→六处定向补强(H2 拆件分估散布 1.50 压线/合计 2.85≤3.00/程序三载/C1′+C1 逐字钉/卡6 日期钉)→R2(甲 PASS/乙 可)CLOSED,8 呈批事项呈排期全案裁决。
+- **首次提交事故 append-only 正名仪式**: L4 整目录 add 扫入他席未验证件致 HEAD import 悬空——历史不改写,C1 续建席全树构建绿(3361 jobs/EXIT 0/公理三件套×6)后两笔正名提交修复悬空;路径限定提交再立法。
+- **门禁终态**: 仓面正名提交 636f7c6f9/1313dcd2d,构建绿 3361 jobs 全树;OS FINDING-20261021-03(会话机重启 /tmp 清零,第三起环境对抗)申报+修复闭环;卡4 草案待排期裁决;Lorenz M0(T1/T2/T3)齐,未核 U1/U4/U5 挂号;本录 v44。——枢/PIVOT-01
