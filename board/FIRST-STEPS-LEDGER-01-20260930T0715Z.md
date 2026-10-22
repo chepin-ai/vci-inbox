@@ -405,7 +405,7 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - EXT-WAVE-18「攻」续执行批二·结转次件攻坚(20261022T0415Z)
 - **首次 Lorenz-96 实例化接入 GalerkinNS**: 循环双线性形 cyclicB(显式界 2√N)+对角循环和相消机器证明(望远镜+finRotate 双重指标)→hskew 供给→GalerkinNS 实例(A=id/ν=1/f=F·𝟙)白拿存在/唯一/能量界五系;N=4 反例负面件(⟪Bu v,v⟫=−1)同案登记禁 SkewNonlinearity——「对角相消≠全斜对称」语义分野经机器钉死。
 - **首次 1D 周期 Ladyzhenskaya 显式常数机器证明**: mFourier 微分链接件(∂ᵢeₖ=2πikᵢeₖ)+巴塞尔截断(Σ1/k²≤π²/3)路线,零均值 C=1/12、免均值 1+π²/3;2D 各向异性切片设计在案、可加型 Fourier 死路如实判明挂账 D-B2 残口。
-- **首次 LeanCert Krawczyk 工程实证双控达成**: N=4/F=8 平衡态盒 [127/16,129/16]⁴ krawczykCheck=true+verify_unique_system_root 出 ∃! 证书;原点盒同程序 false(q=2≥1)负控必拒;公理三件套、 接线修正建议入案——区间见证层 PASS、kernel 层未证口径自守。
+- **首次 LeanCert Krawczyk 工程实证双控达成**: N=4/F=8 平衡态盒 [127/16,129/16]⁴ krawczykCheck=true+verify_unique_system_root 出 ∃! 证书;原点盒同程序 false(q=2≥1)负控必拒;公理三件套、decide+kernel 接线修正建议入案——区间见证层 PASS、kernel 层未证口径自守。
 - **首次判定席双轮律施于章程草案**: 卡4 MVP 草案 R1(甲 REVISE:R-A1/A2;乙 补强后可:R-B1..B4)→六处定向补强(H2 拆件分估散布 1.50 压线/合计 2.85≤3.00/程序三载/C1′+C1 逐字钉/卡6 日期钉)→R2(甲 PASS/乙 可)CLOSED,8 呈批事项呈排期全案裁决。
 - **首次提交事故 append-only 正名仪式**: L4 整目录 add 扫入他席未验证件致 HEAD import 悬空——历史不改写,C1 续建席全树构建绿(3361 jobs/EXIT 0/公理三件套×6)后两笔正名提交修复悬空;路径限定提交再立法。
 - **门禁终态**: 仓面正名提交 636f7c6f9/1313dcd2d,构建绿 3361 jobs 全树;OS FINDING-20261021-03(会话机重启 /tmp 清零,第三起环境对抗)申报+修复闭环;卡4 草案待排期裁决;Lorenz M0(T1/T2/T3)齐,未核 U1/U4/U5 挂号;本录 v44。——枢/PIVOT-01
