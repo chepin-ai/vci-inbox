@@ -174,6 +174,18 @@ theorem fin_one_add_one : (1 : Fin N) + 1 = 2 := by
     rw [Fin.val_add, Fin.val_one', Fin.coe_ofNat_eq_mod,
       Nat.mod_eq_of_lt (show 1 < n + 2 by omega)]
 
+-- [L34a: 记号等价] NL「Σ_j (x_{j+1}−x_{j−2})·x_{j−1}·x_j = 0（下标 mod N）」
+--   （定式表 v0 §2.5；S1 式(1) 结构 + S2 §2.1 能量守恒的坐标形）↔ 本定理；
+--   论证指针：文献 1-based 循环下标 ↔ Fin N 0-based 模算术重指标，项序差由
+--   finRotate 置换下求和不变性吸收（见本定理证明头注：望远镜 + Equiv.sum_comp）。
+-- [L34a#量词]: NL「对任意状态 x」↔ 形参全称 `∀ x : State N` 一致。
+-- [L34a#常数]: 无常数项；求和域 `Finset.univ : Finset (Fin N)` ↔ NL「mod N
+--   全循环和」一致；要求 N ≥ 1（NeZero），NL 侧 N ≥ 4 的动力学门槛不入本恒等式。
+-- [L34a#谓词]: NL「和为零」↔ 结论 `= 0` 一致（无不等式弱化）。
+-- [L34b: 等价]
+-- [L34c: 未定+理由——T2 交付构建证据（CI run id + 日志 SHA-256）未随批三移交；
+--   本批为纯注释变更，L6 席环境无 Lean 工具链，未重跑构建（静态核验：仅新增
+--   行注释、证明体字节不动）；原 T2 证据锚待移交后回填本槽。]
 /-- **核心定理：Lorenz-96 对角循环和相消**（T2 验收钉）。
 `Σ_j (x_{j+1} − x_{j−2})·x_{j−1}·x_j = 0`（Fin N 模算术求和）。
 证明：被加项 = tele (j−1) − tele (j−2)（望远镜），而 j ↦ j−1 为
@@ -199,6 +211,17 @@ theorem cyclic_sum_diag (x : State N) :
     simpa only [finRotate_symm_apply] using h
   rw [hshift2, hshift1, sub_self]
 
+-- [L34a: 记号等价] NL「Lorenz-96 二次平流项不改变总能量 E = ½Σx_j²」
+--   （S1 p.5 "the quadratic terms … together conserve the total energy"；
+--   S2 §2.1 "the quadratic part does not affect the total energy"）之能量内积形
+--   ⟪B x x, x⟫ = 0 ↔ 本定理；论证指针：dE/dt 中二次项贡献恰为 ⟪B x x, x⟫
+--   （S2 Prop 7 证明式(38) 第一行，定式表 v0 §2.5），本定理即该项恒零的机器检验。
+-- [L34a#函数类]: NL N 维实值状态序列 ↔ `State N = EuclideanSpace ℝ (Fin N)`
+--   一致（有限维截断层，E9 口径）。
+-- [L34a#谓词]: NL「二次项能量贡献为零」↔ 内积等式 `= 0` 一致。
+-- [L34b: 等价]
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽（纯注释变更、未重跑构建，
+--   T2 原证据锚待移交回填）。]
 /-- **GalerkinNS.hskew 供给件**：`⟪cyclicB x x, x⟫_ℝ = 0`。
 循环双线性形在能量内积下的对角相消（= `cyclic_sum_diag` 经
 `PiLp.inner_apply` 的坐标展开）。 -/
@@ -211,6 +234,21 @@ theorem inner_cyclicB_self (x : State N) : ⟪cyclicB x x, x⟫_ℝ = 0 := by
 
 /-! ### 三、GalerkinNS 实例化（M1 裁定 A：数学内容走实例化继承） -/
 
+-- [L34a: 记号等价] NL 标准形「ẋ_j = (x_{j+1}−x_{j−2})·x_{j−1} − x_j + F，
+--   j mod N，N ≥ 4」（定式表 v0 §2.1，S1 式(1) / S2 式(1a)(1b)）↔ 本实例之
+--   `GalerkinNS.vf`；论证指针（接缝闭合证据）：`lorenz96_vf_coord` 逐坐标
+--   机器复现右端恒等。
+-- [L34a#常数]: **ν 槽位语义重映射（显式化，裁定书 §2.2 要求）**：ν := 1 承载
+--   Lorenz-96 线性阻尼系数 1（−x_j 项），**非**分子粘性；A = 恒等连续线性映射
+--   承载阻尼算子（**非** Laplacian 粘性算子），hA 强制性界取等号（饱和）；
+--   f = F·𝟙 ↔ NL 常值强迫一致。F_H = 0.89820 等文献分岔阈属动力学语义层，
+--   不入本映射对（防越层读）。
+-- [L34a#函数类]: NL N 维自治 ODE 向量场 ↔ `GalerkinNS (State N)`
+--   （E = 欧氏截断空间）一致。
+-- [L34a#隐式假设]: NL 循环边界条件 x_{j±N} = x_j ↔ Fin N 模算术（实例级）一致。
+-- [L34b: 等价]（右端逐坐标恒等见 lorenz96_vf_coord；结构槽位语义重映射已显式登记）
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽（纯注释变更、未重跑构建，
+--   T2 原证据锚待移交回填）。]
 /-- **Lorenz-96 的 GalerkinNS 实例**（常值外力强度 F）。
 alignment 注记（接缝显式登记，TRUSTBOUNDARY §4.3 约定）：
 * ν = 1 —— ν 槽位承载 Lorenz-96 的线性阻尼系数 1（非分子粘性）；
@@ -229,6 +267,10 @@ def lorenz96Galerkin (F : ℝ) : GalerkinNS (State N) where
   hskew := inner_cyclicB_self
   f := WithLp.toLp 2 fun _ => F
 
+-- [L34a: 一致] 本定理即 lorenz96Galerkin 映射对（见上 L34a 记号等价）的接缝
+--   闭合证据：实例 vf 逐坐标 = NL 标准形右端（定式表 v0 §2.1）。
+-- [L34b: 等价]（恒等式级，无强度差。）
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽。]
 /-- 实例向量场逐坐标复现 Lorenz-96 标准形右端：
 `(vf x) j = (x (j+1) − x (j−2)) · x (j−1) − x j + F`（定式表 v0 §2.1）。 -/
 theorem lorenz96_vf_coord (F : ℝ) (x : State N) (j : Fin N) :
@@ -242,6 +284,14 @@ theorem lorenz96_vf_coord (F : ℝ) (x : State N) (j : Fin N) :
 
 /-! ### 四、白拿系定理登记（有限维 ODE 截断层，C1 口径） -/
 
+-- [L34a: 一致] NL「有限维光滑 ODE 初值问题在任意有限时限 [0,T] 上存在解」
+--   （Cauchy–Lipschitz/Picard 经典结论之截断区间形；Lorenz-96 向量场为多项式、
+--   局部 Lipschitz，二次增长由能量先验排除爆破）↔ 本定理一致。
+-- [L34a#量词]: NL「∀ T ≥ 0, ∀ 初值」↔ 形参 `hT : 0 ≤ T`、`x₀ : State N` 一致。
+-- [L34b: 更弱] NL 教科书全局陈述为 t ∈ [0,∞) 上整体解流；Lean 侧为逐 T 截断
+--   区间解（HasDerivWithinAt on Icc 0 T），拼接为全局流未在本包内构造——
+--   CONDITIONAL-PASS：下游调用若需全局流语义，须先复核此接缝（义务指针挂此条）。
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽。]
 /-- Lorenz-96 截断 ODE **全局存在性**（白拿 `GalerkinNS.exists_solution_upto`）：
 任意 T ≥ 0，[0, T] 上存在解。 -/
 theorem lorenz96_exists_solution_upto (F : ℝ) (x₀ : State N) {T : ℝ} (hT : 0 ≤ T) :
@@ -249,6 +299,10 @@ theorem lorenz96_exists_solution_upto (F : ℝ) (x₀ : State N) {T : ℝ} (hT :
       ∀ t ∈ Icc 0 T, HasDerivWithinAt x ((lorenz96Galerkin F).vf (x t)) (Icc 0 T) t :=
   (lorenz96Galerkin F).exists_solution_upto x₀ hT
 
+-- [L34a: 一致] NL「Lipschitz 向量场初值问题解唯一」↔ 截断区间唯一性一致。
+-- [L34b: 更弱] 同存在性件口径：截断区间唯一 vs 全局流唯一；CONDITIONAL-PASS
+--   义务指针同上条（全局流接缝未闭合）。
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽。]
 /-- Lorenz-96 截断 ODE **唯一性**（白拿 `GalerkinNS.solution_unique_upto`）。 -/
 theorem lorenz96_solution_unique_upto (F : ℝ) {T : ℝ} (hT : 0 ≤ T) {x₀ : State N}
     {x y : ℝ → State N}
@@ -259,6 +313,9 @@ theorem lorenz96_solution_unique_upto (F : ℝ) {T : ℝ} (hT : 0 ≤ T) {x₀ :
     ∀ t ∈ Icc 0 T, x t = y t :=
   (lorenz96Galerkin F).solution_unique_upto hT hx0 hx hy0 hy
 
+-- [L34a: 一致] NL「初值问题存在唯一」（上两条之合取）↔ 本定理一致。
+-- [L34b: 更弱] 截断区间 vs 全局流，口径同上两条；CONDITIONAL-PASS 义务指针同上。
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽。]
 /-- Lorenz-96 截断 ODE **存在唯一性合取件**
 （白拿 `GalerkinNS.exists_unique_solution_upto`）。 -/
 theorem lorenz96_exists_unique_solution_upto (F : ℝ) (x₀ : State N) {T : ℝ} (hT : 0 ≤ T) :
@@ -269,6 +326,16 @@ theorem lorenz96_exists_unique_solution_upto (F : ℝ) (x₀ : State N) {T : ℝ
           ∀ t ∈ Icc 0 T, y t = x t :=
   (lorenz96Galerkin F).exists_unique_solution_upto x₀ hT
 
+-- [L34a: 记号等价] NL「dE/dt ≤ −‖x‖² + √N·|F|·‖x‖ 之积分信封」
+--   （S2 Prop 7 证明式(38) + Cauchy–Schwarz，定式表 v0 §2.5）↔
+--   ‖x t‖² ≤ max ‖x a‖² ‖f‖²（ν = 1）；论证指针：耗散不等式经 Grönwall/
+--   比较原理积分即得信封界（GalerkinNS.norm_sq_le_of_solution 已机器化此链）。
+-- [L34a#常数]: R = √N·|F|（典范 (N,F) = (36,8) 时 R = 48，定式表 v0 §2.5
+--   导出自算）在 Lean 侧由 ‖f‖ = √N·|F| 隐式承载，未另立数值常量——一致。
+-- [L34b: 更弱] NL 吸收球陈述为渐近界 limsup‖x‖ ≤ F√N；本定理为逐时信封
+--   max(初值能量, 外力范数平方)，蕴含 limsup 上界但 limsup 陈述本身未形式化
+--   （渐近/捕获语义归 M2/M3 区间见证层记账，kernel 层此处不预支）。
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽。]
 /-- Lorenz-96 **能量先验界**（白拿 `GalerkinNS.norm_sq_le_of_solution`）：
 沿任意解 `‖x t‖² ≤ max ‖x a‖² ‖f‖²`（ν = 1）。
 接口注记：‖f‖ = √N·|F|，即吸收球半径 R = √N·|F|（定式表 v0 §2.5，
@@ -280,6 +347,15 @@ theorem lorenz96_energy_bound (F : ℝ) {a b : ℝ} (hab : a ≤ b) {x : ℝ →
       ‖x t‖ ^ 2 ≤ max (‖x a‖ ^ 2) (‖(lorenz96Galerkin (N := N) F).f‖ ^ 2 / 1 ^ 2) :=
   fun t ht => (lorenz96Galerkin F).norm_sq_le_of_solution hab hx t ht
 
+-- [L34a: 记号等价] NL「V·dV/dt = ⟨x, Ax⟩ + F·Σ_j x_j ≤ −V² + √N·|F|·V」
+--   （S2 式(38) + Cauchy–Schwarz，定式表 v0 §2.5；V = ‖x‖）↔
+--   ⟪vf x, x⟫ ≤ −‖x‖² + ‖f‖·‖x‖；论证指针：对流项严格抵消即
+--   `inner_cyclicB_self`（对角相消，hskew 对角层），−x_j 项给出 −‖x‖²，
+--   常值强迫项经 Cauchy–Schwarz 给出 ‖f‖·‖x‖。
+-- [L34a#常数]: 阻尼系数 1（−‖x‖² 项）↔ NL −x_j 项一致（ν 槽位语义重映射，
+--   见 lorenz96Galerkin 之 L34a#常数）。
+-- [L34b: 等价]
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽。]
 /-- Lorenz-96 **能量内积耗散不等式**（白拿 `GalerkinNS.inner_vf_le`）：
 `⟪vf x, x⟫ ≤ −‖x‖² + ‖f‖·‖x‖`（对流项由对角相消严格抵消）。 -/
 theorem lorenz96_inner_vf_le (F : ℝ) (x : State N) :
@@ -287,6 +363,18 @@ theorem lorenz96_inner_vf_le (F : ℝ) (x : State N) :
       -1 * ‖x‖ ^ 2 + ‖(lorenz96Galerkin (N := N) F).f‖ * ‖x‖ :=
   (lorenz96Galerkin F).inner_vf_le x
 
+-- 侧车声明段（M1 收口，批三 L6）：SkewNonlinearity 不实例化之裁定登记。
+-- [L34a: 一致] NL 负面陈述「Lorenz-96 循环双线性形不满足全称对角斜对称条件
+--   ∀ u v, ⟪B u v, v⟫ = 0」↔ `lorenz96_not_hskew_full` 一致（机器检验否定式）。
+-- [L34a#谓词]: NL「不成立」↔ Lean `¬ (∀ u v : State 4, ⟪cyclicB u v, v⟫_ℝ = 0)`
+--   一致；N = 4 反例指针：u = e₀、v = e₁+e₂，⟪B u v, v⟫ = −1 ≠ 0。
+-- [L34b: 不可比] NL 侧无对应正命题可比较强度；本件为负面登记/接口排除件，
+--   不入强度层比较。
+-- [L34c: 未定+理由——同 cyclic_sum_diag 之 L34c 槽。]
+-- 裁定登记（R1 缓解条落实）：`SkewNonlinearity`（SkewB.lean hskew_full 强化
+-- 接口）对 Lorenz-96 **不实例化**；原因＝全斜对称不成立（上指 N=4 反例），
+-- 故本线只使用 `GalerkinNS.hskew` 对角假设层，与 skewB/B₃ 同病登记口径一致
+-- （SkewB.lean L48 注记）。此排除为接口级裁定，非缺陷。
 /-! ### 五、负面件：全斜对称不成立（N = 4 机器检验反例）
 
 如实登记：全称对角条件 `∀ u v, ⟪cyclicB u v, v⟫ = 0`（即
