@@ -60,6 +60,23 @@ WS-B 降级档 · D-B1 · 周期 Ladyzhenskaya 不等式：𝕋² Fourier 直证
        `integral_norm_sq_fourierPoly2` / `integral_norm_sq_pderivPoly2` /
        `integral_norm_sq_le_integral_pderiv2`。
 
+已完（续，EXT-WAVE-18 cont.4 · L7 席批四）：
+  (viii) D-C 件：周期域零均值 Poincaré（Q3 特例）+ 图范数/梯度半范数等价
+       （显式常数）+ Q3 特例登记（详见 DC 节头注）。
+       1D 谱/积分零均值 Poincaré 补齐（C_P = (2π)⁻¹，
+       `specGradEnergy1` / `sum_norm_sq_le_specGradEnergy1` /
+       `integral_norm_sq_le_integral_pderiv1`）；图范数↔梯度半范数等价
+       五件（1D/2D × 谱形/积分形 + UnitAddTorus 镜像，`graph_norm_equiv_*`，
+       显式常数 1+(2π)⁻²：`‖∇u‖²_{L²} ≤ ‖u‖²_{H¹} ≤ (1+(2π)⁻²)·‖∇u‖²_{L²}`，
+       H¹ 范数平方 = L² + 梯度半范数平方）；Q3 特例登记
+       `q3ZeroMeanL4Embedding`（∃-常数组装，见证 C = (1+π²/3)²/(4π⁴)，
+       即 `ladyzhenskaya_twoD_zero_mean` 等价重述）与图范数口径登记
+       `q3GraphNormL4Embedding`（见证 (1+π²/3)²，免均值，
+       支撑件 `ladyzhenskaya_twoD_graph_norm`）。位置：FGL-SEAM-SPEC-01
+       单元② Q3 行（推论：图范数与梯度半范数等价），为 Q1 Ladyzhenskaya
+       ⇒ Q4 时空 L⁴ 紧性 ⇒ Q6(a) 测试合法性通道预备。C1 钉：有限维 ODE
+       截断层口径维持（三角多项式层，不断言无限维 Sobolev 空间命题）。
+
 未完（残口登记，诚实标注）：主陈述登记件 `periodicLadyzhenskayaStatement`
 的纯可乘形 `∫‖u‖⁴ ≤ C·(∫‖u‖²)·(specGradEnergy)`（C·X·Y 形）本批仍未断开：
 切片路线在片侧使用 Agmon 阈值界（高频端损失 1/|k|² 阶；张量积反例
@@ -1672,6 +1689,275 @@ theorem ladyzhenskaya_twoD_zero_mean (c : WaveIdx →₀ ℂ) (h0 : c 0 = 0) :
 
 end TwoDim
 
+section DC
+/-! ### (viii) D-C 件：周期域零均值 Poincaré（Q3 特例）+ 图范数/梯度半范数等价
+（EXT-WAVE-18 续执行批四 · 枢/PIVOT-01 体系 L7 攻坚席 · 全程中文注释）
+
+【数学位置】FGL-SEAM-SPEC-01 单元② Q3 行（盒 Poincaré `‖Jv‖_H ≤ C_P‖∇v‖`，
+其**推论**：图范数与梯度半范数等价）在周期域三角多项式层的完整特例形式化：
+  · 零均值 Poincaré（显式 `C_P = (2π)⁻¹`）：1D 谱形/积分形补齐
+    （2D 谱形 `sum_norm_sq_le_specGradEnergy`、积分形
+    `integral_norm_sq_le_integral_pderiv` / `integral_norm_sq_le_integral_pderiv2`
+    为存量件，本节直接复用）；
+  · 图范数↔梯度半范数等价（显式常数 `1 + (2π)⁻²`）：
+    `‖∇u‖²_{L²} ≤ ‖u‖²_{H¹} ≤ (1 + (2π)⁻²)·‖∇u‖²_{L²}`，
+    其中 H¹ 范数平方 `:= ‖u‖²_{L²} + ‖∇u‖²_{L²}`；下界方向平凡
+    （L² 能量非负），上界方向由零均值 Poincaré 把 L² 项吸掉
+    （`X ≤ (2π)⁻²·Y`）。谱形 + 积分形双形态，1D/2D 各一组，
+    另附 UnitAddTorus (Fin 2) 积分形镜像；
+  · Q3 特例登记：零均值场 L⁴ 嵌入常数组装 `∫‖u‖⁴ ≤ C·(∫‖∇u‖²)²`
+    （∃-常数形 `q3ZeroMeanL4Embedding`，即 `ladyzhenskaya_twoD_zero_mean`
+    的等价重述）+ 图范数口径版本 `∫‖u‖⁴ ≤ (1+π²/3)²·‖u‖²_{H¹}²`
+    （免均值，`ladyzhenskaya_twoD_graph_norm` / `q3GraphNormL4Embedding`）。
+    唯一性链位置：Q3（Poincaré/图范数等价）为 Q1 Ladyzhenskaya
+    ⇒ Q4 时空 L⁴ 紧性 ⇒ Q6(a) 测试合法性的通道预备件
+    （spec 单元②依赖图：Q3 ← GNS + 有限测度；周期域绕行取
+    Fourier 系数显式估计路线，全程 Parseval 级）。
+
+【C1 钉（有限维 ODE 截断层口径）】本节全部结论位于**有限维 Fourier 截断
+多项式层**（`fourierPoly1` / `fourierPoly2` / `fourierPoly`，系数
+`ℤ →₀ ℂ` / `WaveIdx →₀ ℂ` 有限支集），不断言任何无限维 Sobolev 空间
+命题；向能量空间 V/H 的连续延拓属 Q2 闭包件范围，不在本节。
+零 sorry、零新增公理（仅 propext/Classical.choice/Quot.sound 三件套）。 -/
+
+/-- 1D 梯度侧谱坐标能量（Fourier 权 `(2πk)²`）：
+`specGradEnergy1 c = (2π)²·Σ_k k²·‖c_k‖²`；
+对三角多项式恰等于 `∫‖∂u‖²`（`integral_norm_sq_pderivPoly1` 的右端）。
+2D 件 `specGradEnergy` 的 1D 镜像（「有限维 ODE 截断层」谱坐标梯度能量）。 -/
+def specGradEnergy1 (c : ℤ →₀ ℂ) : ℝ :=
+  (2 * Real.pi) ^ 2 * ∑ k ∈ c.support, (k : ℝ) ^ 2 * ‖c k‖ ^ 2
+
+/-- **零均值 Poincaré（1D 谱坐标，Parseval 级）**：零均值条件 `c 0 = 0`
+（常数模缺失）下 L² 谱能量被梯度谱能量吸收：
+`Σ‖c_k‖² ≤ (2π)⁻²·specGradEnergy1 c`（`k ≠ 0` 时 `k² ≥ 1`，
+周期 1 圆周首非零模 `|k| = 1`；显式 `C_P = (2π)⁻¹`）。
+2D 件 `sum_norm_sq_le_specGradEnergy` 的 1D 镜像。 -/
+theorem sum_norm_sq_le_specGradEnergy1 (c : ℤ →₀ ℂ) (h0 : c 0 = 0) :
+    ∑ k ∈ c.support, ‖c k‖ ^ 2 ≤
+      (1 / (2 * Real.pi) ^ 2) * specGradEnergy1 c := by
+  rw [specGradEnergy1, Finset.mul_sum, Finset.mul_sum]
+  apply Finset.sum_le_sum; intro k _
+  by_cases hkk : k = 0
+  · subst hkk
+    rw [h0]
+    simp
+  · have h1 : (1 : ℝ) ≤ (k : ℝ) ^ 2 := by
+      have habs : (1 : ℝ) ≤ |(k : ℝ)| := by exact_mod_cast Int.one_le_abs hkk
+      have h2 := mul_le_mul habs habs zero_le_one (abs_nonneg _)
+      rwa [one_mul, ← pow_two, sq_abs] at h2
+    have hπ : (0 : ℝ) < Real.pi := Real.pi_pos
+    have hc : 0 ≤ ‖c k‖ ^ 2 := sq_nonneg _
+    have h2 : (1 / (2 * Real.pi) ^ 2) * ((2 * Real.pi) ^ 2 * ((k : ℝ) ^ 2 * ‖c k‖ ^ 2)) =
+        (k : ℝ) ^ 2 * ‖c k‖ ^ 2 := by
+      field_simp
+    rw [h2]
+    nlinarith [h1, hc]
+
+/-- **零均值 Poincaré（1D 积分形式）**：`∫‖u‖² ≤ (2π)⁻²·∫‖∂u‖²`
+（谱级 `sum_norm_sq_le_specGradEnergy1` 经 1D Parseval/偏导能量回代；
+零均值条件以显式假设携带）。Q3 特例的 1D 积分形态。 -/
+theorem integral_norm_sq_le_integral_pderiv1 (c : ℤ →₀ ℂ) (h0 : c 0 = 0) :
+    ∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure ≤
+      (1 / (2 * Real.pi) ^ 2) *
+        ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure := by
+  rw [integral_norm_sq_fourierPoly1, integral_norm_sq_pderivPoly1]
+  exact sum_norm_sq_le_specGradEnergy1 c h0
+
+/-- **图范数↔梯度半范数等价（1D 谱形，零均值，显式常数 `1+(2π)⁻²`）**：
+`specGradEnergy1 c ≤ Σ‖c‖² + specGradEnergy1 c ≤ (1+(2π)⁻²)·specGradEnergy1 c`
+（H¹ 范数平方 = L² 谱能量 + 梯度谱能量；下界平凡，上界由零均值
+Poincaré 吸收 L² 项）。 -/
+theorem graph_norm_equiv_spec_zero_mean_oneD (c : ℤ →₀ ℂ) (h0 : c 0 = 0) :
+    specGradEnergy1 c ≤ (∑ k ∈ c.support, ‖c k‖ ^ 2) + specGradEnergy1 c ∧
+      (∑ k ∈ c.support, ‖c k‖ ^ 2) + specGradEnergy1 c ≤
+        (1 + 1 / (2 * Real.pi) ^ 2) * specGradEnergy1 c := by
+  refine ⟨le_add_of_nonneg_left (Finset.sum_nonneg fun k _ => sq_nonneg _), ?_⟩
+  calc (∑ k ∈ c.support, ‖c k‖ ^ 2) + specGradEnergy1 c
+      ≤ (1 / (2 * Real.pi) ^ 2) * specGradEnergy1 c + specGradEnergy1 c :=
+        by linarith [sum_norm_sq_le_specGradEnergy1 c h0]
+    _ = (1 + 1 / (2 * Real.pi) ^ 2) * specGradEnergy1 c := by ring
+
+/-- **图范数↔梯度半范数等价（1D 积分形，零均值，显式常数 `1+(2π)⁻²`）**：
+`∫‖∂u‖² ≤ ∫‖u‖² + ∫‖∂u‖² ≤ (1+(2π)⁻²)·∫‖∂u‖²`
+（H¹ 范数平方 = L² + 梯度半范数平方的积分形态）。 -/
+theorem graph_norm_equiv_integral_zero_mean_oneD (c : ℤ →₀ ℂ) (h0 : c 0 = 0) :
+    (∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure) ≤
+        (∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure) +
+          ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure ∧
+      (∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure) +
+          ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure ≤
+        (1 + 1 / (2 * Real.pi) ^ 2) *
+          ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure := by
+  have hXn : 0 ≤ ∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure :=
+    integral_nonneg_of_ae (ae_of_all _ fun x => pow_nonneg (norm_nonneg _) _)
+  have hP := integral_norm_sq_le_integral_pderiv1 c h0
+  constructor
+  · linarith [hXn]
+  · linarith [hP]
+
+/-- **图范数↔梯度半范数等价（2D 谱形，零均值，显式常数 `1+(2π)⁻²`）**：
+`specGradEnergy c ≤ Σ‖c‖² + specGradEnergy c ≤ (1+(2π)⁻²)·specGradEnergy c`
+（存量谱级 Poincaré `sum_norm_sq_le_specGradEnergy` 的直接组装）。 -/
+theorem graph_norm_equiv_spec_zero_mean_twoD (c : WaveIdx →₀ ℂ) (h0 : c 0 = 0) :
+    specGradEnergy c ≤ (∑ k ∈ c.support, ‖c k‖ ^ 2) + specGradEnergy c ∧
+      (∑ k ∈ c.support, ‖c k‖ ^ 2) + specGradEnergy c ≤
+        (1 + 1 / (2 * Real.pi) ^ 2) * specGradEnergy c := by
+  have hP := sum_norm_sq_le_specGradEnergy c h0
+  have hnn : (0 : ℝ) ≤ ∑ k ∈ c.support, ‖c k‖ ^ 2 :=
+    Finset.sum_nonneg fun k _ => sq_nonneg _
+  constructor
+  · linarith [hnn]
+  · linarith [hP]
+
+/-- **图范数↔梯度半范数等价（2D 积分形·乘积环面，零均值，显式常数
+`1+(2π)⁻²`）**：`∫‖∇u‖² ≤ ∫‖u‖² + ∫‖∇u‖² ≤ (1+(2π)⁻²)·∫‖∇u‖²`，
+其中 `∫‖∇u‖² := ∫‖∂₀u‖² + ∫‖∂₁u‖²`
+（存量乘积侧 Poincaré `integral_norm_sq_le_integral_pderiv2` 的直接组装）。 -/
+theorem graph_norm_equiv_integral_zero_mean_twoD (c : WaveIdx →₀ ℂ) (h0 : c 0 = 0) :
+    ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+        ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) ≤
+        (∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+          ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) ∧
+      (∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+          ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) ≤
+        (1 + 1 / (2 * Real.pi) ^ 2) *
+          ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) := by
+  have hXn : 0 ≤ ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure :=
+    integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _)
+  refine ⟨le_add_of_nonneg_left hXn, ?_⟩
+  calc (∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+          ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure)
+      ≤ (1 / (2 * Real.pi) ^ 2) *
+          ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) +
+          ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) :=
+        by linarith [integral_norm_sq_le_integral_pderiv2 c h0]
+    _ = (1 + 1 / (2 * Real.pi) ^ 2) *
+          ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) := by ring
+
+/-- **图范数↔梯度半范数等价（UnitAddTorus (Fin 2) 积分形镜像，零均值，
+显式常数 `1+(2π)⁻²`）**：`∫‖∇u‖² ≤ ∫‖u‖² + ∫‖∇u‖² ≤ (1+(2π)⁻²)·∫‖∇u‖²`
+（存量 `integral_norm_sq_le_integral_pderiv` 的直接组装；
+与乘积形 `graph_norm_equiv_integral_zero_mean_twoD` 同常数、互为镜像）。 -/
+theorem graph_norm_equiv_integral_zero_mean_unitAddTorus (c : WaveIdx →₀ ℂ) (h0 : c 0 = 0) :
+    ((∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 0 c x‖ ^ 2 ∂torusMeasure) +
+        ∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 1 c x‖ ^ 2 ∂torusMeasure) ≤
+        (∫ x : UnitAddTorus (Fin 2), ‖fourierPoly c x‖ ^ 2 ∂torusMeasure) +
+          ((∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 0 c x‖ ^ 2 ∂torusMeasure) +
+            ∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 1 c x‖ ^ 2 ∂torusMeasure) ∧
+      (∫ x : UnitAddTorus (Fin 2), ‖fourierPoly c x‖ ^ 2 ∂torusMeasure) +
+          ((∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 0 c x‖ ^ 2 ∂torusMeasure) +
+            ∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 1 c x‖ ^ 2 ∂torusMeasure) ≤
+        (1 + 1 / (2 * Real.pi) ^ 2) *
+          ((∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 0 c x‖ ^ 2 ∂torusMeasure) +
+            ∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 1 c x‖ ^ 2 ∂torusMeasure) := by
+  have hXn : 0 ≤ ∫ x : UnitAddTorus (Fin 2), ‖fourierPoly c x‖ ^ 2 ∂torusMeasure :=
+    integral_nonneg_of_ae (ae_of_all _ fun x => pow_nonneg (norm_nonneg _) _)
+  have hP := integral_norm_sq_le_integral_pderiv c h0
+  constructor
+  · linarith [hXn]
+  · linarith [hP]
+
+/-- **Q3 特例登记（零均值场 L⁴ 嵌入，常数组装件，Prop 级陈述）**：
+存在显式正常数 `C`，使一切零均值 2D 三角多项式满足
+`∫‖u‖⁴ ≤ C·(∫‖∂₀u‖² + ∫‖∂₁u‖²)²`（即 `‖u‖₄⁴ ≤ C·‖∇u‖₂⁴` 梯度形）。
+唯一性链位置（FGL-SEAM-SPEC-01 单元②）：Q3 周期域特例的 L⁴ 嵌入组装，
+为 Q1 Ladyzhenskaya ⇒ Q4 时空 L⁴ 紧性 ⇒ Q6(a) 测试合法性通道预备
+（`Ladyzhenskaya → 测试合法性` 通道的周期域零均值入口）。
+C1 钉：本陈述位于有限维 ODE 截断层（三角多项式层）。 -/
+def q3ZeroMeanL4Embedding : Prop :=
+  ∃ C : ℝ, 0 < C ∧ ∀ c : WaveIdx →₀ ℂ, c 0 = 0 →
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure ≤
+      C * ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+        ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure) ^ 2
+
+/-- **Q3 登记件的显式见证（证毕）**：`C = (1+π²/3)²/(4π⁴) > 0`，
+即存量件 `ladyzhenskaya_twoD_zero_mean`（零均值 GNS 梯度形）的
+∃-常数等价重述。 -/
+theorem q3_zero_mean_l4_embedding : q3ZeroMeanL4Embedding := by
+  refine ⟨(1 + Real.pi ^ 2 / 3) ^ 2 / (4 * Real.pi ^ 4), ?_, fun c h0 =>
+    ladyzhenskaya_twoD_zero_mean c h0⟩
+  have hπ : (0 : ℝ) < Real.pi := Real.pi_pos
+  exact div_pos (pow_pos (add_pos zero_lt_one (div_pos (pow_pos hπ 2) (by norm_num))) 2)
+    (mul_pos (by norm_num) (pow_pos hπ 4))
+
+/-- **2D 周期 Ladyzhenskaya（图范数口径，免均值，显式常数 `(1+π²/3)²`）**：
+`∫‖u‖⁴ ≤ (1+π²/3)²·(∫‖u‖² + (∫‖∂₀u‖² + ∫‖∂₁u‖²))²`
+（H¹ 平方收边 `ladyzhenskaya_twoD_h1_sq` + `(2π)⁻² ≤ 1` 升权；
+图范数平方 = L² + 梯度半范数平方，免零均值假设）。
+在唯一性链中与 Q3 登记件同位（图范数 ⇒ 梯度半范数方向的反向使用
+另需零均值 Poincaré，见 `graph_norm_equiv_integral_zero_mean_twoD`）。 -/
+theorem ladyzhenskaya_twoD_graph_norm (c : WaveIdx →₀ ℂ) :
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure ≤
+      (1 + Real.pi ^ 2 / 3) ^ 2 *
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+          ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+            ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure)) ^ 2 := by
+  refine (ladyzhenskaya_twoD_h1_sq c).trans ?_
+  set X := ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure with hX
+  set Y := (∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure with hY
+  set q : ℝ := 1 / (2 * Real.pi) ^ 2 with hq
+  have hXn : 0 ≤ X := integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _)
+  have hYn : 0 ≤ Y :=
+    add_nonneg (integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _))
+      (integral_nonneg_of_ae (ae_of_all _ fun z => pow_nonneg (norm_nonneg _) _))
+  have hqn : 0 ≤ q := by
+    rw [hq]
+    exact div_nonneg zero_le_one (sq_nonneg _)
+  -- π 下界（闭包内自足件）：π²/6 = Σ 1/n² ≥ 首项 1（巴塞尔和 `hasSum_zeta_two`），
+  -- 故 π² ≥ 6，(2π)² ≥ 24 > 1。闭包未含 `Real.pi_gt_three`（Bounds 模块），
+  -- 故取此 Parseval 级自证路线（与本文件 1D 可和性件同源）。
+  have hπ2 : (6 : ℝ) ≤ Real.pi ^ 2 := by
+    have hsum := Summable.sum_le_tsum ({1} : Finset ℕ)
+      (fun n (_ : n ∉ ({1} : Finset ℕ)) => by positivity :
+        ∀ n : ℕ, n ∉ ({1} : Finset ℕ) → (0 : ℝ) ≤ 1 / (n : ℝ) ^ 2)
+      hasSum_zeta_two.summable
+    rw [hasSum_zeta_two.tsum_eq] at hsum
+    have h1 : (∑ n ∈ ({1} : Finset ℕ), (1 : ℝ) / (n : ℝ) ^ 2) = 1 := by simp
+    linarith [h1 ▸ hsum]
+  -- 升权：q = (2π)⁻² ≤ 1（π² ≥ 6 ⟹ (2π)² ≥ 24）
+  have hq1 : q ≤ 1 := by
+    rw [hq, div_le_one (pow_pos (mul_pos zero_lt_two Real.pi_pos) 2)]
+    nlinarith [hπ2]
+  have hle : X + q * Y ≤ X + Y := by
+    have hqY : q * Y ≤ Y := by
+      calc q * Y ≤ 1 * Y := mul_le_mul_of_nonneg_right hq1 hYn
+        _ = Y := one_mul Y
+    linarith
+  have hT0 : 0 ≤ X + q * Y := add_nonneg hXn (mul_nonneg hqn hYn)
+  have hsq : (X + q * Y) ^ 2 ≤ (X + Y) ^ 2 := pow_le_pow_left₀ hT0 hle _
+  have hKn : (0 : ℝ) ≤ (1 + Real.pi ^ 2 / 3) ^ 2 :=
+    pow_nonneg (add_nonneg zero_le_one (div_nonneg (sq_nonneg _) (by norm_num))) _
+  exact mul_le_mul_of_nonneg_left hsq hKn
+
+/-- **Q3 特例登记（图范数口径，免均值，Prop 级陈述）**：存在显式正常数 `C`，
+使一切 2D 三角多项式满足 `∫‖u‖⁴ ≤ C·(∫‖u‖² + (∫‖∂₀u‖² + ∫‖∂₁u‖²))²`
+（`‖u‖₄⁴ ≤ C·‖u‖²_{H¹}` 图范数形；免零均值假设）。
+与 `q3ZeroMeanL4Embedding` 互为口径两端（零均值 Poincaré/图范数等价
+即两口径在零均值子层上互通）。C1 钉：有限维 ODE 截断层（三角多项式层）。 -/
+def q3GraphNormL4Embedding : Prop :=
+  ∃ C : ℝ, 0 < C ∧ ∀ c : WaveIdx →₀ ℂ,
+    ∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 4 ∂torus2Measure ≤
+      C * ((∫ z : UnitAddCircle × UnitAddCircle, ‖fourierPoly2 c z‖ ^ 2 ∂torus2Measure) +
+        ((∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 0 c z‖ ^ 2 ∂torus2Measure) +
+          ∫ z : UnitAddCircle × UnitAddCircle, ‖pderivPoly2 1 c z‖ ^ 2 ∂torus2Measure)) ^ 2
+
+/-- **Q3 图范数口径登记件的显式见证（证毕）**：`C = (1+π²/3)² > 0`
+（支撑件 `ladyzhenskaya_twoD_graph_norm`）。 -/
+theorem q3_graph_norm_l4_embedding : q3GraphNormL4Embedding :=
+  ⟨(1 + Real.pi ^ 2 / 3) ^ 2,
+    pow_pos (add_pos zero_lt_one (div_pos (pow_pos Real.pi_pos 2) (by norm_num))) 2,
+    fun c => ladyzhenskaya_twoD_graph_norm c⟩
+
+end DC
+
 -- D-B1/D-B2 件公理审计（构建期打印；应仅见 propext/Classical.choice/Quot.sound）。
 #print axioms sum_norm_sq_convC_le
 #print axioms fourierPoly_mul
@@ -1716,6 +2002,20 @@ end TwoDim
 #print axioms ladyzhenskaya_twoD_h1_sq
 #print axioms integral_norm_sq_le_integral_pderiv2
 #print axioms ladyzhenskaya_twoD_zero_mean
+-- D-C 件（L7 批四 DC 节）公理审计
+#print axioms specGradEnergy1
+#print axioms sum_norm_sq_le_specGradEnergy1
+#print axioms integral_norm_sq_le_integral_pderiv1
+#print axioms graph_norm_equiv_spec_zero_mean_oneD
+#print axioms graph_norm_equiv_integral_zero_mean_oneD
+#print axioms graph_norm_equiv_spec_zero_mean_twoD
+#print axioms graph_norm_equiv_integral_zero_mean_twoD
+#print axioms graph_norm_equiv_integral_zero_mean_unitAddTorus
+#print axioms q3ZeroMeanL4Embedding
+#print axioms q3_zero_mean_l4_embedding
+#print axioms ladyzhenskaya_twoD_graph_norm
+#print axioms q3GraphNormL4Embedding
+#print axioms q3_graph_norm_l4_embedding
 
 end Ladyzhenskaya
 
