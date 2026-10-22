@@ -446,7 +446,7 @@ theorem hasDerivAt_mFourier_coord (k : WaveIdx) (x : UnitAddTorus (Fin 2)) (i : 
   rw [hfac]
   -- 单因子圆周导数（T = 1，故 2πi·kᵢ/1 = 2πi·kᵢ）
   have h1 := hasDerivAt_fourier (1 : ℝ) (k i) t
-  simp only [div_one] at h1
+  simp only [Complex.ofReal_one, div_one] at h1
   convert h1.const_mul (∏ j ∈ Finset.univ.erase i, fourier (k j) (x j)) using 1
   -- 导数值对齐：代回 ↑t = x i 并重组乘积
   rw [ht]
@@ -471,6 +471,13 @@ theorem hasDerivAt_fourierPoly_coord (c : WaveIdx →₀ ℂ) (x : UnitAddTorus 
         (c k * (2 * Real.pi * Complex.I * (k i : ℂ) * mFourier k x)) t :=
     fun k _ => (hasDerivAt_mFourier_coord k x i ht).const_mul (c k)
   have hsum := HasDerivAt.sum hterm
+  have hfun2 : (∑ k ∈ c.support, fun s : ℝ => c k * mFourier k
+        (Function.update x i (s : UnitAddCircle))) =
+      (fun s : ℝ => fourierPoly c (Function.update x i (s : UnitAddCircle))) := by
+    funext s
+    simp only [Finset.sum_apply]
+    rfl
+  rw [hfun2] at hsum
   convert hsum using 1
   show (∑ k ∈ c.support, (2 * Real.pi * Complex.I * (k i : ℂ) * c k) * mFourier k x) =
     ∑ k ∈ c.support, c k * (2 * Real.pi * Complex.I * (k i : ℂ) * mFourier k x)
@@ -517,7 +524,9 @@ theorem integral_norm_sq_sum_mFourier (s : Finset WaveIdx) (a : WaveIdx → ℂ)
       push_cast
       exact hC
     exact Complex.ofReal_inj.mp e2
-  rw [integral_congr_ae (ae_of_all _ fun x => by rw [hgx x])]
+  have hpt : ∀ x : UnitAddTorus (Fin 2),
+      ‖∑ k ∈ s, a k * mFourier k x‖ ^ 2 = ‖g x‖ ^ 2 := fun x => by rw [hgx x]
+  rw [integral_congr_ae (ae_of_all _ hpt)]
   exact key
 
 /-- **L² Parseval（fourierPoly 版）**：`∫‖u‖² = Σ‖cₖ‖²`。 -/
@@ -535,11 +544,16 @@ theorem integral_norm_sq_pderivPoly (i : Fin 2) (c : WaveIdx →₀ ℂ) :
       ‖2 * Real.pi * Complex.I * (k i : ℂ) * c k‖ =
         2 * Real.pi * |(k i : ℝ)| * ‖c k‖ := by
     intro k
-    rw [norm_mul, norm_mul, norm_mul, Complex.norm_I, Complex.norm_intCast, mul_one]
-    congr 1
-    rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (mul_pos zero_lt_two Real.pi_pos)]
-  rw [pderivPoly, integral_norm_sq_sum_mFourier c.support
-    (fun k => 2 * Real.pi * Complex.I * (k i : ℂ) * c k), Finset.mul_sum]
+    have h2pi : ((2 : ℂ) * (Real.pi : ℂ)) = ((2 * Real.pi : ℝ) : ℂ) := by
+      push_cast; ring
+    rw [h2pi, norm_mul, norm_mul, norm_mul, Complex.norm_real, Complex.norm_I,
+      Complex.norm_intCast, mul_one, Real.norm_eq_abs,
+      abs_of_pos (mul_pos zero_lt_two Real.pi_pos)]
+  have hmain : ∫ x : UnitAddTorus (Fin 2), ‖pderivPoly i c x‖ ^ 2 ∂torusMeasure =
+      ∑ k ∈ c.support, ‖2 * Real.pi * Complex.I * (k i : ℂ) * c k‖ ^ 2 := by
+    unfold pderivPoly
+    exact integral_norm_sq_sum_mFourier c.support _
+  rw [hmain, Finset.mul_sum]
   apply Finset.sum_congr rfl
   intro k _
   rw [hn k, mul_pow, mul_pow, sq_abs]
@@ -553,7 +567,7 @@ theorem specGradEnergy_eq_integral_pderiv (c : WaveIdx →₀ ℂ) :
       (∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 0 c x‖ ^ 2 ∂torusMeasure) +
         ∫ x : UnitAddTorus (Fin 2), ‖pderivPoly 1 c x‖ ^ 2 ∂torusMeasure := by
   rw [integral_norm_sq_pderivPoly, integral_norm_sq_pderivPoly, specGradEnergy, ← mul_add,
-    ← Finset.sum_add_distrib]
+    ← Finset.sum_add_distrib, Finset.mul_sum]
   apply Finset.sum_congr rfl
   intro k _
   rw [kSq]
@@ -633,7 +647,9 @@ theorem integral_norm_sq_sum_fourier (s : Finset ℤ) (a : ℤ → ℂ) :
       push_cast
       exact hC
     exact Complex.ofReal_inj.mp e2
-  rw [integral_congr_ae (ae_of_all _ fun x => by rw [hgx x])]
+  have hpt : ∀ x : UnitAddCircle,
+      ‖∑ k ∈ s, a k * fourier k x‖ ^ 2 = ‖g x‖ ^ 2 := fun x => by rw [hgx x]
+  rw [integral_congr_ae (ae_of_all _ hpt)]
   exact key
 
 /-- **1D L² Parseval**：`∫‖u‖² = Σ‖cₖ‖²`。 -/
@@ -777,13 +793,20 @@ theorem hasDerivAt_fourierPoly1 (c : ℤ →₀ ℂ) (t : ℝ) :
         (c k * (2 * Real.pi * Complex.I * (k : ℂ) * fourier k (t : UnitAddCircle))) t := by
     intro k _
     have h1 := hasDerivAt_fourier (1 : ℝ) k t
-    simp only [div_one] at h1
+    simp only [Complex.ofReal_one, div_one] at h1
     exact h1.const_mul (c k)
   have hsum := HasDerivAt.sum hterm
+  have hfun2 : (∑ k ∈ c.support, fun s : ℝ => c k * fourier k (s : UnitAddCircle)) =
+      (fun s : ℝ => fourierPoly1 c (s : UnitAddCircle)) := by
+    funext s
+    simp only [Finset.sum_apply]
+    rfl
+  rw [hfun2] at hsum
   convert hsum using 1
-  show (∑ k ∈ c.support,
-      c k * (2 * Real.pi * Complex.I * (k : ℂ) * fourier k (t : UnitAddCircle))) =
-    ∑ k ∈ c.support, (2 * Real.pi * Complex.I * (k : ℂ) * c k) * fourier k (t : UnitAddCircle)
+  show (∑ k ∈ c.support, (2 * Real.pi * Complex.I * (k : ℂ) * c k) *
+      fourier k (t : UnitAddCircle)) =
+    ∑ k ∈ c.support, c k * (2 * Real.pi * Complex.I * (k : ℂ) *
+      fourier k (t : UnitAddCircle))
   exact Finset.sum_congr rfl fun k _ => by ring
 
 /-- **1D 偏导能量（谱形式）**：`∫‖∂u‖² = (2π)²·Σ k²·‖cₖ‖²`。 -/
@@ -793,11 +816,16 @@ theorem integral_norm_sq_pderivPoly1 (c : ℤ →₀ ℂ) :
   have hn : ∀ k : ℤ, ‖2 * Real.pi * Complex.I * (k : ℂ) * c k‖ =
       2 * Real.pi * |(k : ℝ)| * ‖c k‖ := by
     intro k
-    rw [norm_mul, norm_mul, norm_mul, Complex.norm_I, Complex.norm_intCast, mul_one]
-    congr 1
-    rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (mul_pos zero_lt_two Real.pi_pos)]
-  rw [pderivPoly1, integral_norm_sq_sum_fourier c.support
-    (fun k => 2 * Real.pi * Complex.I * (k : ℂ) * c k), Finset.mul_sum]
+    have h2pi : ((2 : ℂ) * (Real.pi : ℂ)) = ((2 * Real.pi : ℝ) : ℂ) := by
+      push_cast; ring
+    rw [h2pi, norm_mul, norm_mul, norm_mul, Complex.norm_real, Complex.norm_I,
+      Complex.norm_intCast, mul_one, Real.norm_eq_abs,
+      abs_of_pos (mul_pos zero_lt_two Real.pi_pos)]
+  have hmain : ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure =
+      ∑ k ∈ c.support, ‖2 * Real.pi * Complex.I * (k : ℂ) * c k‖ ^ 2 := by
+    unfold pderivPoly1
+    exact integral_norm_sq_sum_fourier c.support _
+  rw [hmain, Finset.mul_sum]
   apply Finset.sum_congr rfl
   intro k _
   rw [hn k, mul_pow, mul_pow, sq_abs]
@@ -835,9 +863,11 @@ theorem sum_inv_sq_le (s : Finset ℤ) :
       have h2 : ((k.toNat : ℕ) : ℝ) = (k : ℝ) := by
         exact_mod_cast Int.toNat_of_nonneg hk.2.le
       rw [h2]
-    rw [Finset.sum_congr rfl hterm, ← Finset.sum_image hinj]
-    calc ∑ n ∈ (s.filter (fun k => 0 < k)).image Int.toNat, (1 : ℝ) / (n : ℝ) ^ 2
-        ≤ ∑' n : ℕ, (1 : ℝ) / (n : ℝ) ^ 2 :=
+    rw [Finset.sum_congr rfl hterm]
+    calc (∑ x ∈ s.filter (fun k => 0 < k), (1 : ℝ) / ((x.toNat : ℕ) : ℝ) ^ 2)
+        = ∑ n ∈ (s.filter (fun k => 0 < k)).image Int.toNat, (1 : ℝ) / (n : ℝ) ^ 2 :=
+          (Finset.sum_image (f := fun n : ℕ => (1 : ℝ) / (n : ℝ) ^ 2) hinj).symm
+      _ ≤ ∑' n : ℕ, (1 : ℝ) / (n : ℝ) ^ 2 :=
           Summable.sum_le_tsum _ (fun n _ => by positivity) hasSum_zeta_two.summable
       _ = Real.pi ^ 2 / 6 := hasSum_zeta_two.tsum_eq
   -- 负部：取反归约到正部
@@ -857,9 +887,13 @@ theorem sum_inv_sq_le (s : Finset ℤ) :
       have h2 : (((-k).toNat : ℕ) : ℝ) = (-k : ℝ) := by
         exact_mod_cast Int.toNat_of_nonneg (le_of_lt (neg_pos.mpr hk.2))
       rw [h2, neg_sq]
-    rw [Finset.sum_congr rfl hterm, ← Finset.sum_image hinj]
-    calc ∑ n ∈ (s.filter (fun k => k < 0)).image (fun k => (-k).toNat), (1 : ℝ) / (n : ℝ) ^ 2
-        ≤ ∑' n : ℕ, (1 : ℝ) / (n : ℝ) ^ 2 :=
+    rw [Finset.sum_congr rfl hterm]
+    calc (∑ x ∈ s.filter (fun k => k < 0), (1 : ℝ) / (((-x).toNat : ℕ) : ℝ) ^ 2)
+        = ∑ n ∈ ((s.filter (fun k => k < 0)).image (fun k => (-k).toNat) : Finset ℕ),
+            (1 : ℝ) / (n : ℝ) ^ 2 :=
+          (Finset.sum_image (s := s.filter fun k => k < 0) (g := fun k : ℤ => (-k).toNat)
+            (f := fun n : ℕ => (1 : ℝ) / (n : ℝ) ^ 2) hinj).symm
+      _ ≤ ∑' n : ℕ, (1 : ℝ) / (n : ℝ) ^ 2 :=
           Summable.sum_le_tsum _ (fun n _ => by positivity) hasSum_zeta_two.summable
       _ = Real.pi ^ 2 / 6 := hasSum_zeta_two.tsum_eq
   linarith [hpos, hneg]
@@ -943,15 +977,13 @@ theorem ladyzhenskaya_oneD_h1 (c : ℤ →₀ ℂ) (h0 : c 0 = 0) :
     integral_nonneg_of_ae (ae_of_all _ fun x => pow_nonneg (norm_nonneg _) _)
   have hHe : (0 : ℝ) ≤ ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure :=
     integral_nonneg_of_ae (ae_of_all _ fun x => pow_nonneg (norm_nonneg _) _)
-  have h1 : (1 / 12 : ℝ) * (∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure) *
-      ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure ≤
-    (1 / 12) * (∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure) *
-      ((∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure) +
-        ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure) := by
-    apply mul_le_mul_of_nonneg_left _ (by norm_num)
-    apply mul_le_mul_of_nonneg_left _ hL2
-    exact le_add_of_nonneg_left hHe
-  exact h1
+  have hadd : ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure ≤
+      (∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 2 ∂circleMeasure) +
+        ∫ x : UnitAddCircle, ‖pderivPoly1 c x‖ ^ 2 ∂circleMeasure :=
+    le_add_of_nonneg_left hL2
+  have h2 := mul_le_mul_of_nonneg_left hadd hL2
+  have h3 := mul_le_mul_of_nonneg_left h2 (show (0 : ℝ) ≤ 1 / 12 by norm_num)
+  convert h3 using 1 <;> ring
 
 /-- **一般（免均值）加权 Cauchy–Schwarz**：k = 0 权取 1，
 `(Σ‖c‖)² ≤ (1 + π²/3)·Σ (1 + k²)‖c‖²`。 -/
@@ -993,7 +1025,7 @@ theorem sum_norm_sq_weighted_general (c : ℤ →₀ ℂ) :
       · rw [if_neg hk, if_neg hk, if_neg hk, div_pow, one_pow, sq_abs, zero_add]
     rw [Finset.sum_congr rfl (fun k _ => hbb k), Finset.sum_add_distrib]
     have hind : (∑ k ∈ c.support, if k = 0 then (1 : ℝ) else 0) ≤ 1 := by
-      rw [← Finset.sum_filter, Finset.filter_eq]
+      rw [← Finset.sum_filter, Finset.filter_eq']
       by_cases h0s : (0 : ℤ) ∈ c.support <;> simp [h0s]
     linarith [hind, sum_inv_sq_le c.support]
   calc (∑ k ∈ c.support, ‖c k‖) ^ 2
@@ -1027,7 +1059,7 @@ theorem ladyzhenskaya_oneD_general (c : ℤ →₀ ℂ) :
           ((2 * Real.pi) ^ 2 * ∑ k ∈ c.support, (k : ℝ) ^ 2 * ‖c k‖ ^ 2) := by
     have hterm : ∀ k ∈ c.support, (1 + (k : ℝ) ^ 2) * ‖c k‖ ^ 2 =
         ‖c k‖ ^ 2 + (k : ℝ) ^ 2 * ‖c k‖ ^ 2 := fun k _ => by ring
-    rw [Finset.sum_congr rfl hterm, Finset.sum_add_distrib, one_div, inv_pow, ← mul_assoc,
+    rw [Finset.sum_congr rfl hterm, Finset.sum_add_distrib, one_div, ← mul_assoc,
       inv_mul_cancel₀ (ne_of_gt (pow_pos (mul_pos zero_lt_two Real.pi_pos) 2)), one_mul]
   calc ∫ x : UnitAddCircle, ‖fourierPoly1 c x‖ ^ 4 ∂circleMeasure
       ≤ (∑ k ∈ c.support, ‖c k‖) ^ 2 * (∑ l ∈ c.support, ‖c l‖ ^ 2) :=
