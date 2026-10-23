@@ -456,3 +456,7 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - 席位：B2 确认消亡（not found 非 race），B2′ 重派续 Tenet（8/8 公理采样补齐 + manifest 抽查）；B1 J5 稳定窗再试推进中（≤10min 日志外同步新规首用）。
 - 门禁终态：纪律扫描全绿（CLASSIFY 8/8、禁用措辞全禁令语境、FME 钉 0 处合规、密钥 CLEAN）。
 - 结转批八：钩 B2 merge+push 执行（待稳定窗，push 前再 fetch 复算）→ 三联义务（PAL-0003 再登记/钩 B3 钉可达性核验/witness 窗开启登记）；B1 SUP-03 + B2′ RERUN-02 到件收口；U-23 降级行文执行（框架线 §4.3，依 BC-A1 措辞钉）；qf-os 册仓登记（vci-ledger 线）；registry yaml 侧 corrigendum 另案（W3 遗留提示）；U-17 家族 ζ-anchor 并案修订前置义务。
+
+### v49 补登 · B2′ 到件收口（2026-10-23T15:3xZ）
+- OBL-NS-02-TENET-RERUN-02 + 双附件落账：8/8 公理全动态采样恰白名单三公理（无 sorryAx/无注入）；manifest 双轮 40 样本零漂移；toolchain/mathlib 钉与批六逐字一致（ghfast 降速改 gh-proxy 竞速，哈希兜底）；全量 build ETA 30h 超窗维持挂账（需更强算力通道）。
+- 批七挂账余：B1 J5 SUP-03 一件。
