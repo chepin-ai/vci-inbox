@@ -14,3 +14,4 @@ import NsGalerkin.SkewB
 import NsGalerkin.OpenDomain
 import NsGalerkin.Lorenz96
 import NsGalerkin.CondUniqueness
+import NsGalerkin.AbsorbingBall
