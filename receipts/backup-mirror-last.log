@@ -1,9 +1,7 @@
-== clone ci-control 2026-10-22T09:34:22Z
+== clone ci-control 2026-10-23T09:30:37Z
 Cloning into bare repository '/tmp/mir'...
-warning: redirecting to https://github.com/chepin-ai/ci-control.git/
 == push mirror
 Pushing to https://github.com/chepin-ai/ci-control-backup.git
-warning: redirecting to https://github.com/chepin-ai/ci-control-backup.git/
 To https://github.com/chepin-ai/ci-control-backup.git
  = [up to date]          HEAD -> main
 Everything up-to-date
