@@ -460,3 +460,10 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 ### v49 补登 · B2′ 到件收口（2026-10-23T15:3xZ）
 - OBL-NS-02-TENET-RERUN-02 + 双附件落账：8/8 公理全动态采样恰白名单三公理（无 sorryAx/无注入）；manifest 双轮 40 样本零漂移；toolchain/mathlib 钉与批六逐字一致（ghfast 降速改 gh-proxy 竞速，哈希兜底）；全量 build ETA 30h 超窗维持挂账（需更强算力通道）。
 - 批七挂账余：B1 J5 SUP-03 一件。
+
+### v49 补登二 · B1 到件收口 + FINDING-20261023-04（2026-10-23T18:2xZ）
+- J5 FGL 决算：窗口耗尽 PARTIAL [3094/3127]=98.9%、68 模块、全程 0 error；默认否认不翻 PASS、零失败信号不登 FAIL。三轮旁证齐（钉/工具链 sha256 37c2913c…/cache 8257/8257 三轮一致）。
+- FINDING-20261023-04（全局第八起）：B1 命名空间 15:03Z 抹除（fgl-src/toolchain/zstandard/git 配置同殉）——B1 已于 SUP-03 文内申报，FSL 索引闭环；对手模型（按命名空间易变）再获实证。
+- 硬化规则首用落地：300s 增量守护 + 双人工快照，证据钉 /mnt/agents/output/fgl-build-log/ 四件；前三件 SUP md5 未动（append-only 链完整）。
+- 收割义务钩（事件驱动，W30 合规零定时载体）：/mnt/agents/output/fgl-build-log/BUILD_RC.txt 出现 → 唤醒 B1 → 5 主定理 #print axioms 探针 → SUP-04 翻 GREEN；若再擦则快照为终局。下窗预算建议 ≥4.5h（OpenDomain* 重模块单件实测至 1513s）。
+- 批七挂账清零（B2′、B1 双件全收）。
