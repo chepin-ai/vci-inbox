@@ -444,3 +444,15 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **首次判定席双裁决成文**: (a) B8 冲突——采信 10-23 直读快照,基线 dim11「冻结」说判失效快照钉,append-only 更正(FME-BASELINE-CORR-01 义务钩);B7 联动结算源已变,裁事件驱动合并复查至结算(W30 禁定时明示);(b) 同步形态——**merge 并轨为默认形态**(本地 47 源提交含在册钉 ca67c8699,rebase 全量重写 sha 钉漂移远超单钉前科),窗式 rebase 设条件式例外(钉清单空+窗口判据+corrigendum 预案三判据逐次报批);联邦公域 pulse 链允许 merge 泡(钉稳定优先于历史线性);钩 A1–A5/B1–B5 入册待指派;「裁决先行、登记同步、行文随后」自查合规。
 - **搜索续扫**: B7/B8 当日不变;镜像假说部分佐证(llmlearner 2026-09-25 陈旧快照同源基线误读,非 benchlm);漏收补钉三条一手取讫(**仓名勘误**:「Re s>7/8 无零点」声明在 openai/math,非 NavierStokesAndEuler;Gomila Λ=129/800+87677/5e6 精确有理;Lei–Ren v1→v2 提交史逐字);RH 外部纪录日内再推进 **67.3600764507%**(10-23 02:22Z Lavery WL2;性质钉:区间见证层 PASS、kernel 层未证、非 RH 证据);第三方复现生态图谱在册(tomoto0 复建 7061 jobs/252min/8core 三公理;Bastounis arXiv 2610.08144 指 Lean 证出语句弱于论文)。
 - **门禁终态**: 仓面七提交在案;结转:B8 基线更正行文(钩A1)+merge 执行(钩B1 钉清单普查→B2,待稳定窗)/J5+Tenet 稳定算力窗(增量日志同步新规)/U-23 降级与 qf-os 草案判定席双轮/PAL-0003 漂移新登记/WELD V2-1 重发/补钉行文(三条+RH 纪录升档)/U-12 注记销账与 U-13 销账行文/帧 v1.2 diff 义务收尾(G0-5);本录 v48。——枢/PIVOT-01
+
+## v48→v49 · EXT-WAVE-19 批七收批（2026-10-23T15:15Z）
+
+- 批七指令「继续·完成度/严格化/完备化」：四前台席 + 枢 census + B1/B2′ 后台，八文件五提交全落（HEAD 76c942fa5）。
+- 完备化：FME-BASELINE-CORR-01（钩 A1 闭合，10-23 快照新基线，llmlearner 陈旧误读源登记，frontier_report 登记行五字段备原线追加）；MONITOR-SUP-REG-20261023-01（三补钉包：陈旧快照/仓名勘误/RH 纪录升档 67.3600764507%，全 append-only）。
+- 清除写作：L2-CLEARANCE-U12-U13-01（U-13 桥核证 PASS、U-12 定义层 PASS+三便签，各附回炉条款）；WSF-G05-DIFF-CLOSE-01（G0-5 diff 义务收口，v1.1 md5 实测零改动）。
+- 严格化：PAL-0003-REREG-01（append-only 追加重登记 HEAD 09253a4e0/tree 33ec6476，区间订正 47→58）；WELD-V2-1-REISSUE-01（registry 3/3 证面，yaml 槽位标待 V2-2）。
+- 判定席双轮：ADJUD-20261023-02——U-23 准降级（BC-A1 三段式措辞钉 + BC-A2 审计钩）；qf-os:// 准注册（BC-B1 12-hex 限制 + BC-B2 fail-closed 纪律 + BC-B3 锚例升格）；6 异见收割无一推翻，R2 复决 3 维持 + 4 修正。
+- 钩 B1 census：MERGE-PIN-CENSUS-01——真分叉 local 60 / remote 452（批六 374/47 系陈旧远端引用所计，规程升级：报数前必实 fetch）；零同触冲突面；remote 452 = pulse 359 + CI 代偿 93；ca67c8699 远程不可达坐实（witness 窗唯一梗阻 = 未 push）；merge 可执行性 GREEN，钩 B2 结转待稳定窗。
+- 席位：B2 确认消亡（not found 非 race），B2′ 重派续 Tenet（8/8 公理采样补齐 + manifest 抽查）；B1 J5 稳定窗再试推进中（≤10min 日志外同步新规首用）。
+- 门禁终态：纪律扫描全绿（CLASSIFY 8/8、禁用措辞全禁令语境、FME 钉 0 处合规、密钥 CLEAN）。
+- 结转批八：钩 B2 merge+push 执行（待稳定窗，push 前再 fetch 复算）→ 三联义务（PAL-0003 再登记/钩 B3 钉可达性核验/witness 窗开启登记）；B1 SUP-03 + B2′ RERUN-02 到件收口；U-23 降级行文执行（框架线 §4.3，依 BC-A1 措辞钉）；qf-os 册仓登记（vci-ledger 线）；registry yaml 侧 corrigendum 另案（W3 遗留提示）；U-17 家族 ζ-anchor 并案修订前置义务。
