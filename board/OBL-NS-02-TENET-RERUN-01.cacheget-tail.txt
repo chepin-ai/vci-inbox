@@ -1,0 +1,5 @@
+Downloaded: 8743 file(s) [attempted 8743/8747 = 99%, 56 KB/s], Decompressed: 8739
+Downloaded: 8746 file(s) [attempted 8746/8747 = 99%, 57 KB/s], Decompressed: 8743
+Downloaded: 8747 file(s) [attempted 8747/8747 = 100%, 57 KB/s], Decompressed: 8743
+Decompressed 8747 file(s)
+Already decompressed 8747 file(s)
