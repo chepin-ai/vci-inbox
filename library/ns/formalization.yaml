@@ -22,12 +22,19 @@ project:
 sources:
   - title: "NS-PROOF-FRAME-01.md v1.1 (federation governance frame)"
     authors: ["QF-OS Federation"]
-    id: "qf-os://vci-inbox/board/NS-PROOF-FRAME-01.md@58dfb9a94311"
+    id: "qf-os://vci-inbox/board/NS-PROOF-FRAME-01.md@58dfb9a94311863cd6d0127300b5cc79a827e415"
     type: "original-proof"
     location: "§3.1 可证层"
     relationship: "formalizes"
     author_endorsement: "n/a"
-    note: "内部治理帧；包与帧的逐条对照见 alignment 表。"
+    # BC-B3 锚例升格备注（2026-10-24，EXT-WAVE-21 批九）：id 之 @pin 由 12-hex 短钉
+    # 58dfb9a94311 升格为 40-hex 全钉（ADJUD-20261023-02 BC-B3；短钉形态仅作历史留痕，
+    # 不删）。解析凭据（BC-B1 强制随载）：2026-10-24 于本仓 HEAD
+    # bb48a8e10d9ef92bd4b2c8462694625cb23a16dc 对象库内经 `git rev-parse
+    # 58dfb9a94311` 唯一解析为 58dfb9a94311863cd6d0127300b5cc79a827e415（commit
+    # 信息：2026-10-18T21:44:56+08:00「NS-PROOF-FRAME-01 v1.1: EXT18卡6落地——NS-1勘误/
+    # NS-2锚更新/NS-3登记改写 + §4.1忠诚审计条（EXT-WAVE-15 M0）」）。
+    note: "内部治理帧；包与帧的逐条对照见 alignment 表。历史短钉留痕：58dfb9a94311（解析凭据见上行注释）。"
   - title: "C. Fefferman, Existence and smoothness of the Navier–Stokes equation (Clay Millennium Problem official statement, 2000)"
     id: "https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf"
     type: "article"
@@ -93,7 +100,11 @@ status:
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
       literature_dependencies: []
-    - declaration: "NSGalerkin.zetaAnchorImpliesRHCriticalLine"
+    # U-17 并案修订备注（2026-10-24，EXT-WAVE-21 批九；方案 board/U17-ZETA-ANCHOR-REVISION-01.md
+    # §3.1 / R1-M2）：declaration 命名空间前缀 NSGalerkin. → ZetaAnchor.（kernel 实测真实全名，
+    # ZetaAnchor.lean L18 `namespace ZetaAnchor` / L35 `def zetaAnchorImpliesRHCriticalLine : Prop`；
+    # 公理集值 {propext, Classical.choice, Quot.sound} 不变——名值分离：名改值不动）。
+    - declaration: "ZetaAnchor.zetaAnchorImpliesRHCriticalLine"
       file: "NsGalerkin/ZetaAnchor.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
@@ -157,7 +168,11 @@ alignment:
       module: "NsGalerkin.Concrete / NsGalerkin.ExplicitB"
       status: "proved"
     - source: "NS-PROOF-FRAME-01 §3.2 见证层锚（CAP 证书锚 / ζ 锚）"
-      lean: "NSGalerkin.capAnchorP1, NSGalerkin.zetaAnchorImpliesRHCriticalLine"
+      # U-17 并案修订备注（2026-10-24，EXT-WAVE-21 批九；方案 board/U17-ZETA-ANCHOR-REVISION-01.md
+      # §3.1 / R1-M1，finding 本位 board/L2-CLEARANCE-U12-U13-01.md §二 便签②）：
+      # lean 字段第二项命名空间前缀 NSGalerkin. → ZetaAnchor.（同 M2 口径）；第一项
+      # NSGalerkin.capAnchorP1 kernel 解析正常，依方案 §3.1 不动。
+      lean: "NSGalerkin.capAnchorP1, ZetaAnchor.zetaAnchorImpliesRHCriticalLine"
       module: "NsGalerkin.CapAnchor / NsGalerkin.ZetaAnchor"
       status: "proved"
     - source: "NS-PROOF-FRAME-01 §3.3 阻塞层（N→∞ PDE 接缝等四项）"
