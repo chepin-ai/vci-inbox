@@ -50,3 +50,12 @@ git diff --stat ca67c8699 HEAD -- library/ns：
 - 引用纪律钉：自本登记起，凡指称「当前包体」者一律引本件 HEAD 钉（09253a4e0 / tree 33ec6476f / library/ns 子树 1e4abd7d4）；凡指称 PAL-0003 原始证面者仍引 ca67c8699 / eb5b89cfc。名值分离，两钉并存，互不顶替。
 
 ——QF-OS 联邦 W3 登记席 · EXT-WAVE-19 批七·严格化线 · 2026-10-23T15:05:55Z
+
+---
+
+## 追加重登记二（2026-10-24T01:52Z · 钩 B2 落地触发）
+
+- 合并落地：merge bubble `aa8bb6302`（零冲突预判兑现，同触 0），push RC=0（`014dec121..aa8bb6302 main -> main`），本地 73 提交全部上远程。
+- 钩 B3 钉可达性核验：**PASS**——`ca67c869988a2123937c5d696b746399703becdf` 经 api.github.com 直查 **HTTP 200**（批六 422 替正），commit message 逐字「WS-A M1-4: GalerkinNS hB→hskew migration + Concrete re-proof」。
+- **外部见证窗正式开启**：PAL-0003 注册钉远程可达，本登记义务链闭合（census → merge → push → B3 → 本追加）。
+- 时间戳：date -u 实测 2026-10-24T01:52Z。
