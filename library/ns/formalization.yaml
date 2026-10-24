@@ -167,7 +167,20 @@ alignment:
       lean: "NSGalerkin.galerkinNS_exists_unique_solution_upto, NSGalerkin.explicit3_exists_unique_solution_upto, NSGalerkin.explicit3_energy_bound"
       module: "NsGalerkin.Concrete / NsGalerkin.ExplicitB"
       status: "proved"
-    - source: "NS-PROOF-FRAME-01 §3.2 见证层锚（CAP 证书锚 / ζ 锚）"
+    # U-17 第三错修订备注（2026-10-24T18:39:26Z date -u 实测，EXT-WAVE-23 批十一；裁决
+    # board/ADJUD-20261024-02.md 案A A-R1 择定出路① + BC-C1 形态钉；方案
+    # board/U17-ZETA-ANCHOR-REVISION-01.md §3.2 R1-第三错）：
+    # source 字段由指帧 §3.2 改指 kernel 层真实锚位双件 + 增录注记指针（方案件 §2.2 真实名基准）。
+    # 原值历史留痕（append-only，不删）：「NS-PROOF-FRAME-01 §3.2 见证层锚（CAP 证书锚 / ζ 锚）」
+    # ——原错：编号归属不符，帧 §3.2 实载 W-NS-01/02/03 数值见证件，无 CAP/ζ 锚条目
+    # （WSF charter U-17 行 L99 在案；判定席核读帧 §3.2 L63–73 确认，ADJUD-20261024-02 E-A2）。
+    # 锚位实证（本席 sed 复核；解析时刻本仓 HEAD 922d9e5e65b82707dcbf86ae5f677bb86c55b1a5，
+    # git rev-parse HEAD 2026-10-24 实测）：NsGalerkin/CapAnchor.lean L131
+    # `def capAnchorP1 : Prop := capAnchorStatement capParamsP1 capCenterP1 capRadiusP1`；
+    # NsGalerkin/ZetaAnchor.lean L18 `namespace ZetaAnchor` /
+    # L35 `def zetaAnchorImpliesRHCriticalLine : Prop :=`；ZetaAnchor.lean 头注
+    # 「Prop-valued defs only, no proof asserted; kernel-layer proof is BLOCKED(B1)」。
+    - source: "kernel 层真实锚位双件（有限维 ODE 截断层）：library/ns/NsGalerkin/CapAnchor.lean L131 NSGalerkin.capAnchorP1（def : Prop）与 library/ns/NsGalerkin/ZetaAnchor.lean L18 namespace ZetaAnchor / L35 ZetaAnchor.zetaAnchorImpliesRHCriticalLine（def : Prop）；二 decl 均为 Prop 陈述件——区间见证层 PASS、kernel 层未证、非 RH 证据；真实名基准增录注记指针 board/U17-ZETA-ANCHOR-REVISION-01.md §2.2"
       # U-17 并案修订备注（2026-10-24，EXT-WAVE-21 批九；方案 board/U17-ZETA-ANCHOR-REVISION-01.md
       # §3.1 / R1-M1，finding 本位 board/L2-CLEARANCE-U12-U13-01.md §二 便签②）：
       # lean 字段第二项命名空间前缀 NSGalerkin. → ZetaAnchor.（同 M2 口径）；第一项
