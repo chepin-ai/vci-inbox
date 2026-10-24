@@ -483,3 +483,13 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - 追推落通：cac5ea800（ls-remote 确认）——批八全部（含 REREG-2、FSL v50）上远程。
 - 册仓同步落通：5c2cfec（qf-os 登记入远程）——双仓同步闭环。
 - 结转不变：B1 SUP-04 ~06:08Z 待件；U-17 执行；锚例升格 40-hex；U-23 每批续扫。
+
+## v50→v51 · J5 GREEN 翻转（2026-10-24T05:52Z）——WS-B GO 硬前置满足
+
+- J5 FGL 第四轮构建跑完：3127/3127 jobs rc=0、13776s（01:52:48Z→05:42Z，4.5h 窗内余 23min）、全程 0 error。
+- 独立探针 5 主定理 #print axioms 全白名单 [propext, Classical.choice, Quot.sound]，无 sorryAx/无自定义公理；源树 sorry/admit 复扫 0。
+- 四轮同值：HEAD=4d023ac47aea…、工具链 sha256 37c2913c…、cache 8257/8257；前四件 SUP md5 未动（append-only 链完整）。
+- 边界载明：GREEN 仅断言外部复现构建成功，不涉 NL↔Lean 语义对齐（专家评议），洁净室双人制约束不变；状态钉维持「自评已核、外部复现中、未颁奖」+「有限维 ODE 截断层」。
+- **GO 影响**：批六 J1 actuals 所列 WS-B GO 唯一未满足硬前置 = J5，现已提前 18 天闭合（提案 deadline 2026-11-11）——GO 窗推进条件成立，推进裁决属 WS-B 线/乙席流程，本登记为事实依据。GO band 10.5–15.5pw 不变；D-道 actuals 0.70–1.00pw。
+- B1 耗时台账：01:38Z 取证（第五起抹除实锤）→ 01:52Z 重建讫（14min 四轮最快）→ 05:42Z 构建完结 → 05:47Z 探针 → 05:52Z SUP-04 成文。
+- 结转批九：GO 推进裁决（WS-B 线启动条件已齐：J2/J3 actuals + J5 GREEN）；U-17 R1–R5；锚例升格 40-hex；U-23 每批续扫（首轮）；PAL-0003 upgrade_path CI 回填。
