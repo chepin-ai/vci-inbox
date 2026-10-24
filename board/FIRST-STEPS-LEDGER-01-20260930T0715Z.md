@@ -528,3 +528,14 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **FINDING-20261024-03 第三次复发修复**：weave/pulse 蒸发 257 项，对象库完好，checkout 恢复 D=0；path-limited add 纪律持续有效；长期方案（sparse-checkout 排除）评估结转
 - **U-23 续扫第四轮 PASS**；GO 闸 BC-2 前置条件复核在案
 - 提交链：C1 MONITOR-INTRO + C2 M1-MATERIALS 顺序 path-limited 提交在案
+
+---
+
+## v56（批十三收口，2026-10-25T05:30Z）
+
+- **S1 前沿扫描一次性登记**：29 条目（NS 簇 9 / RH 簇 9 / Lean 基础设施簇 9 / SLE 簇 2），30 处零 NS/RH 关联声明，逐字纪律自检通过；3 项建议入监测网（N5 CIV 2609.20803、N6 Armstrong NS 形式化簇、L6 Palomar 注册中心）；HWY 无新增，存续「待评审预印本，结论未确立」。件：MONITOR-FRONTIER-20261025-01.md
+- **W10 M1 缺口闭合方案**：G-1..G-7 各钉最早闭合日（G-3 S2 回填最早 10-31/稳健 11-04，责任窗硬钉 11-06）；判据 A 抬升组合 {S1,S2,S6}→PASS=4 过线、S4 力争第 5 点、FAIL=0 底线；覆盖度三批路径（批一 3/6=50%）；S4 dry-run 预算封钉 wall≤3h/重试≤1；风险 R-1..R-6 登记。件：WSH-M1-GAPCLOSE-01.md
+- **W11 GO 闸检前置复核**：BC-1 🟢 / BC-2 🟢（钩W2 销记行缺登记，不触发回退）/ BC-3 🟡（WS-F MS-1 旗舰侧零进度，隔离窗收尾争用风险）/ BC-4 🟡（U-23 四轮连 PASS；B7+B8 断档六节，无实害但偏离「每批必含」口径）；**判定窗 2026-10-31 在轨、不触发回退**；R1 开庭前补齐清单五项。件：GO-GATE-CHECK-20261025-01.md
+- **B1 基础设施席**：sparse-checkout 排除 **NO-GO（现状形）**——weave/pulse 系 10 分钟活跃心跳道，排除将逆转蒸发为零损失→真数据损，附条件式 GO 路径与低成本替代（修复仪式脚本化+canary）；PAL-0003 upgrade_path CI 仍未落地；Lean v4.35.0 与主线钉持平（v4.36.0-rc1 预发，mathlib 超前 283 提交且 cache 去 Azure 化——建议 8257 件 .ltar portal 外分卷归档）；**U-23 第五轮 PASS**（另报 pulse 心跳 ~51min 空拍异常迹象，登记观察）。件：B1-INFRA-20261025-01.md
+- **FINDING-20261024-03 第五、六次复发**（278 项、270 项），均 checkout 修复 D=0；蒸发频率显著上升，与 merge/写活动窗相关
+- 提交链：c3b6aeb44 → bc7b261c1 → 2abaf7b5a → f05e35274 顺序 path-limited 在案
