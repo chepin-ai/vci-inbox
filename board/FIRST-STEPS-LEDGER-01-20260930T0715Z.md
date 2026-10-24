@@ -477,3 +477,9 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - registry yaml PAL-0003-CORR 追加（语法验证过，corrigenda 双条目）。
 - **钩 B2 落地**：merge bubble aa8bb6302（零同触冲突面兑现）+ push RC=0——本地 73 提交全上远程。**钩 B3 PASS**：ca67c8699 API 200 替 422，**外部见证窗开启**。REREG-01 追加重登记二闭合义务链。
 - 结转：B1 SUP-04 待件（~06:08Z，收割钩沿武装）；U-17 修订执行（归属线 R1–R5）；formalization.yaml 锚例升格 40-hex（BC-B3，U-04 另一半）；U-23 审计钩每批续扫（v1.3 载体）；公域 CI 复跑回填 log_sha256（PAL-0003 upgrade_path）。
+
+### v50 补登 · 追推全链落通 + FINDING-20261024-02（2026-10-24T02:1xZ）
+- FINDING-20261024-02（portal git 半落盘故障）：追推 merge 呈「树/索引/MERGE_HEAD 落盘、HEAD 引用更新丢失 + stale HEAD.lock」半完成态——portal 写故障在 git 层的首次实锤。修复链：reflog 取证 → MERGE_HEAD 残迹确认 → rm stale 锁 → git commit --no-edit 续完（cac5ea800）→ push 验证。**新规程入册：merge 后必 reflog 验证落盘、push 后必 ls-remote 验证真值，禁止信管道 RC。**
+- 追推落通：cac5ea800（ls-remote 确认）——批八全部（含 REREG-2、FSL v50）上远程。
+- 册仓同步落通：5c2cfec（qf-os 登记入远程）——双仓同步闭环。
+- 结转不变：B1 SUP-04 ~06:08Z 待件；U-17 执行；锚例升格 40-hex；U-23 每批续扫。
