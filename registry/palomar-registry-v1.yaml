@@ -290,3 +290,24 @@ corrigenda:
       superseded_by 链回 PAL-0001），压测门（公域CI通道 build 绿）通过后办理。
       截至 2026-10-21 该压测门状态=PENDING-SYNC（本地静态审计已绿：零 sorry、
       零新增公理、CLASSIFY 头 9/9、版本钉 v4.35.0 在轨）。
+  - id: "PAL-0003-CORR"
+    date: "2026-10-24"
+    registrar: "枢/PIVOT-01"
+    concerns: "PAL-0003"
+    issue: >-
+      PAL-0003 所钉提交 ca67c8699 之注册树钉（eb5b89cfc）对当前本地 HEAD 已漂移：
+      ca67c8699..HEAD 区间实测 58 提交、library/ns +3415 行（NsGalerkin 源文件 9→14，
+      新增 AbsorbingBall/CondUniqueness/Ladyzhenskaya/Lorenz96/OpenDomain）；且 ca67c8699
+      在 origin/main 祖先链上不可达（本地 60 提交未推送），外部见证窗未开。
+    resolution: >-
+      采 append-only 追加重登记：原条目保留不删改，重登记件另立
+      board/PAL-0003-REREG-01.md（登记 HEAD 09253a4e0 / tree
+      33ec6476f07aefbab4af49f0cc22ce96794e5915，区间提交数订正 47→58）。
+      合并执行（ADJUD-20261023-01 钩 B2：merge origin/main → push，census
+      可执行性 GREEN，零同触冲突面）落地后须再追加一次重登记，并执行钩 B3
+      钉可达性核验（api.github.com 直查 ca67c8699 预期 200 替 422）。
+    note: >-
+      漂移定性：非篡改、非事故，系本地源提交未同步所致正常演进（ADJUD-20261023-01
+      裁决 b-1/b-4：MERGE 默认、merge 泡裁许）。证据：board/MERGE-PIN-CENSUS-01.md、
+      board/PAL-0003-REREG-01.md、board/ADJUD-20261023-01.md。G1 判据无实质影响：
+      library/ns 既有内容只增不改，三 SHA-256 对文件内容计算继续有效。
