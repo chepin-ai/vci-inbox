@@ -518,3 +518,13 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - FINDING-20261024-03 复发一次（批十一中段 weave/pulse 253 项蒸发，checkout 恢复 D=0）——工作树完整性核验规程起效（每批收口 D 项扫描）；演进登记：unlink 噪音无害，path-limited add 纪律防裹入。
 - U-23 续扫第三轮 PASS（现行件零残留）。
 - 结转批十二：GO 判定窗 **2026-10-31**（7 天后，BC-1..BC-4 门禁在轨）；W-NS-03 MS-1 硬钉 11-15（旗舰绝对优先）；M1 复审材料制备启动（H2a，相对钉 12-05）；U-23 续扫第四轮；PAL-0003 upgrade_path CI 回填仍结转。
+
+---
+
+## v55（批十二收口，2026-10-24T16:20Z）
+
+- **引入件一次性登记（S1）**：微信「数学家」公众号文章 → arXiv:2506.09609《Schramm–Loewner evolution contains a topological Sierpiński carpet when κ is close to 8》（Liu Haoyu × Zhuang Zijie，v1 2025-06-11，v2 2025-10-12，math.PR）逐字核验，7 点转录比对；**零 NS/RH 关联声明**，一次性登记（不入 B1–B10 监测网），不裁正确性（预印本）。件：MONITOR-INTRO-20261024-01.md
+- **M1 材料首件（W10，如实基线）**：判据 A 现状 **PASS×1 / PARTIAL×5 / FAIL×0，今日未过线**（过线 PASS≥4∧FAIL=0）；判据 B 覆盖度 0/6=0.0%；缺口 G-1..G-7 登记；**S2 责任窗 2026-11-06**（run_id/log_sha256 回填）；S4 1.5k 组件 dry-run 未跑；≥10% 随机抽审规程草案就位。件：WSH-M1-MATERIALS-01.md
+- **FINDING-20261024-03 第三次复发修复**：weave/pulse 蒸发 257 项，对象库完好，checkout 恢复 D=0；path-limited add 纪律持续有效；长期方案（sparse-checkout 排除）评估结转
+- **U-23 续扫第四轮 PASS**；GO 闸 BC-2 前置条件复核在案
+- 提交链：C1 MONITOR-INTRO + C2 M1-MATERIALS 顺序 path-limited 提交在案
