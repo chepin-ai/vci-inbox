@@ -502,3 +502,12 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - CI 监测：公域 pulse 双 workflow（board-indexer-bridge/shadow-pulse）success 在轨；PAL-0003 upgrade_path build 复跑未见专用 workflow，维持结转。
 - 新裁决需求挂账：U-17 第三错（source 字段）R2 出路择路——W6 登记未见在册裁决。
 - 结转批十：GO 新窗门禁运转（BC-1..BC-4 义务钩 W1–W7）；U-17 第三错判定席择路 + R5 U-12 回炉联动；U-04 正式销账；U-23 每批续扫第二轮；卡4/WS-H M0 硬钉 11-15 逼近（绝对优先）。
+
+## v52→v53 · EXT-WAVE-22 批十收批（2026-10-24T16:5xZ）
+
+- **卡4/WS-H MVP M0 启动闸闭合，提前 22 天**（WSH-M0-GATE-01）：三要件核验全成立（RULING-01 八案全裁 10-22 生效/spike B 报告 C2 锁定在案/三线制裁定在案）；三线开账日 2026-10-24；C1 先行件 SeamSpec.lean 450 行落位核验；M1 相对钉起算 2026-12-05（先于绝对钉 12-27，先到为准）；旗舰绝对优先条款照录。
+- **U-04 销账闭合**（ADJUD-20261024-02 案B）：两前置核读俱齐（册仓登记+40-hex 升格）；BC-D1 明定销账≠义务灭失（BC-B1/B2 常驻义务存续，B3 随销闭合）。
+- **U-17 第三错择路**（案A）：出路①修 yaml source 字段，BC-C1 形态钉（禁指帧 §3.2，须指 CapAnchor.lean L131/ZetaAnchor.lean L18/L35 kernel 真实锚位+留痕三要素）；BC-C2 合并基线一次实跑；归属四线；截止 2026-11-18；闭合前 U-17 族不得宣称闭合。
+- FINDING-20261024-03（portal 第三形态·工作树蒸发）：223 个 weave/pulse 文件工作树批量消失（merge 落盘后蒸发），对象库完好，checkout 全恢复 4245/4245——申报+修复+闭环；与 FINDING-20261024-02（git 半落盘）合观：portal 文件系统对高频小文件目录与 git 引用写均不可信，工作树完整性核验纳入每批收口规程（git status D 项扫描）。
+- U-23 续扫第二轮 PASS（现行件零残留）。
+- 结转批十一：U-17 第三错落地（yaml source 修订+NS 包线探针复验+L2 回炉+监视收口）；U-23 续扫第三轮；GO 判定窗 10-31 逼近（BC-1..BC-4 门禁在轨）；M1 复审材料制备可启动（H2a，相对钉 12-05）。
