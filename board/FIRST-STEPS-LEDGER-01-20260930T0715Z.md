@@ -467,3 +467,13 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - 硬化规则首用落地：300s 增量守护 + 双人工快照，证据钉 /mnt/agents/output/fgl-build-log/ 四件；前三件 SUP md5 未动（append-only 链完整）。
 - 收割义务钩（事件驱动，W30 合规零定时载体）：/mnt/agents/output/fgl-build-log/BUILD_RC.txt 出现 → 唤醒 B1 → 5 主定理 #print axioms 探针 → SUP-04 翻 GREEN；若再擦则快照为终局。下窗预算建议 ≥4.5h（OpenDomain* 重模块单件实测至 1513s）。
 - 批七挂账清零（B2′、B1 双件全收）。
+
+## v49→v50 · EXT-WAVE-20 批八开门（2026-10-24T01:52Z）
+
+- FINDING-20261024-01（全局第九起）：B1 命名空间抹除实锤（/tmp 全空，窗 18:20Z–01:38Z；余烬死于 3096/3127）——B1 取证申报，FSL 索引闭环。B1 现场累计第五次。
+- B1 第四轮全链重建启动（01:38Z 起算 4.5h 窗，决算 ~06:08Z；硬化规则沿用）。
+- W4 交付落账：框架 v1.3（§4.3 按 BC-A1 三段式降级「待审假设+审计义务」，diff 自证恰 2 hunks；BC-A2 每批续扫进度行载体设立）+ U17-ZETA-ANCHOR-REVISION-01（新发现 formalization.yaml L96 同型失配并案；R1–R5 归属线；时间盒 2026-11-18）。
+- W5 交付落账：册仓 ledger/registry/QFOS-SCHEME-REG-01.md（新设 registry 类目，BC-B1/B2/B3 逐字，「已登记生效」）+ 回执 QFOS-LEDGER-RECEIPT-01（U-04 半销账，锚例升格 40-hex 待 formalization.yaml 归属线）。
+- registry yaml PAL-0003-CORR 追加（语法验证过，corrigenda 双条目）。
+- **钩 B2 落地**：merge bubble aa8bb6302（零同触冲突面兑现）+ push RC=0——本地 73 提交全上远程。**钩 B3 PASS**：ca67c8699 API 200 替 422，**外部见证窗开启**。REREG-01 追加重登记二闭合义务链。
+- 结转：B1 SUP-04 待件（~06:08Z，收割钩沿武装）；U-17 修订执行（归属线 R1–R5）；formalization.yaml 锚例升格 40-hex（BC-B3，U-04 另一半）；U-23 审计钩每批续扫（v1.3 载体）；公域 CI 复跑回填 log_sha256（PAL-0003 upgrade_path）。
