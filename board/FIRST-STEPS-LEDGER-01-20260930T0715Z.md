@@ -511,3 +511,10 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - FINDING-20261024-03（portal 第三形态·工作树蒸发）：223 个 weave/pulse 文件工作树批量消失（merge 落盘后蒸发），对象库完好，checkout 全恢复 4245/4245——申报+修复+闭环；与 FINDING-20261024-02（git 半落盘）合观：portal 文件系统对高频小文件目录与 git 引用写均不可信，工作树完整性核验纳入每批收口规程（git status D 项扫描）。
 - U-23 续扫第二轮 PASS（现行件零残留）。
 - 结转批十一：U-17 第三错落地（yaml source 修订+NS 包线探针复验+L2 回炉+监视收口）；U-23 续扫第三轮；GO 判定窗 10-31 逼近（BC-1..BC-4 门禁在轨）；M1 复审材料制备可启动（H2a，相对钉 12-05）。
+
+## v53→v54 · EXT-WAVE-23 批十一收批（2026-10-24T19:0xZ）
+
+- **U-17 族闭合（提前 25 天）**：第三错落地——yaml source 字段按 BC-C1 修订指向 kernel 真实锚位双件（CapAnchor.lean L131/ZetaAnchor.lean L18/L35，sed 实证+留痕三要素，+14/-1，原值留痕不删）；L3 kernel 探针 PASS（四锚 #check RC=0、公理白名单、独立重编译排除陈旧 olean；v4.35.0 重建台账：toolchain sha256 7289597a…/cache 9031/9031/110s）；L2 回炉一次实跑（BC-C2 合并基线）——**U-12 清除维持有效**，监视收口（钩 X3/X4/X5 全闭）。
+- FINDING-20261024-03 复发一次（批十一中段 weave/pulse 253 项蒸发，checkout 恢复 D=0）——工作树完整性核验规程起效（每批收口 D 项扫描）；演进登记：unlink 噪音无害，path-limited add 纪律防裹入。
+- U-23 续扫第三轮 PASS（现行件零残留）。
+- 结转批十二：GO 判定窗 **2026-10-31**（7 天后，BC-1..BC-4 门禁在轨）；W-NS-03 MS-1 硬钉 11-15（旗舰绝对优先）；M1 复审材料制备启动（H2a，相对钉 12-05）；U-23 续扫第四轮；PAL-0003 upgrade_path CI 回填仍结转。
