@@ -1,0 +1,19 @@
+{
+ "ts": "20261025-212110",
+ "moved": [],
+ "skipped": [
+  [
+   "bridge-drop/incoming/xanchor/TRI1/halfsign-cfts.json",
+   "正本已在(幂等)"
+  ],
+  [
+   "bridge-drop/incoming/xanchor/TRI1/halfsign-qgl.json",
+   "正本已在(幂等)"
+  ],
+  [
+   "bridge-drop/incoming/xanchor/TRI1/halfsign-usrm.json",
+   "正本已在(幂等)"
+  ]
+ ],
+ "errors": []
+}
