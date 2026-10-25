@@ -1,15 +1,15 @@
 {
- "artifact": "mirror/latest-cisvr.md",
- "statement": "L1 latest projection plane: classification marker + canonical head + hub signature present; no private-plane leakage patterns",
- "spec_sha256": "4d3fd60707a1f9381b80faae90c528c58f7cbd11ce19884bb4ffbd7dc779b2e9",
- "forbidden_patterns": [
-  "/m[n]t/",
-  "\\.scr[a]tch",
-  "O[T]P_",
-  "api[_-]?key",
-  "m[d]5",
-  "私[域]",
-  "@[0-9a-f]{12}",
-  "§4[0-9]"
- ]
+  "artifact": "mirror/latest-cisvr.md",
+  "statement": "L1 latest projection plane: classification marker + canonical head + hub signature present; no private-plane leakage patterns",
+  "spec_sha256": "0ddb1a644475a7e2f4d68ce6f3a4c1838188882e934573bd3a94cdc3c43b9e1e",
+  "forbidden_patterns": [
+    "/m[n]t/",
+    "\\.scr[a]tch",
+    "O[T]P_",
+    "api[_-]?key",
+    "m[d]5",
+    "私[域]",
+    "@[0-9a-f]{12}",
+    "§4[0-9]"
+  ]
 }
