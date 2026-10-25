@@ -593,3 +593,16 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **B1 .ltar 归档立项评估 GO**：GH Release 单 asset 案（434.7MB<2GB 免分卷、git 对象图外）；9031 件 staging 实测、工具链 sha256 与台账逐字符吻合；断供恢复从「源构建数十小时」退化为「下载 4–25min+解卷 2min」；建议 11-10 前执行、避让双硬钉 ±3 天，上传写权归 orchestrator
 - **FINDING-20261024-03 第十次复发**（338 项）修复 D=0
 - 提交链：98b9d341f → 2521d76a3 → ff6500ada → fe4dbf32e 顺序 path-limited 在案
+
+---
+
+## v61（批十八收口，2026-10-25T21:30Z）
+
+- **R2B-16③ .ltar 归档执行完毕并核验（orchestrator 自领，写权在案）**：GH Release `mathlib-cache-56a00585` 创建于 vci-inbox（release id 423669486），asset mathlib-cache-56a00585.tar（463,267,840 B，9031 件 .ltar + MANIFEST.sha256）上传 HTTP 201/32.6s；**回下载对拍 sha256 5b340affc0b7…2743f 逐字符一致**——断供恢复路径落成（下载 ~4min 级+解卷）。staging 双源对拍 9031/9031 逐件一致（B1 执行）
+- **重大 FINDING-20261025-04（B1 报，入册）**：portal 存在**单目录可见文件数 ~3999 封顶/逐出**行为——weave/pulse 恰钉 3999；十次「蒸发」算术（4277 tracked vs 3999 visible，D 项随 tracked 增长 223→389）与封顶假说完全相容，**疑为蒸发真凶（FS 级配额/LRU 逐出，非随机抹除）**；分片（每片<4000）后 9031 件稳定沉降。另录 portal 三特性：cp -a 保权限不可用、rsync 须 --inplace、readdir 分遍部分返回
+- **跳闸线橙线首次执行即触发（TRIPPED）**（M4）：批十八蒸发 2 起 ≥2，依 R2 案二直接强制架构评审（检测申报环已完成，B1 取证+判定席评审结转）；红线①②PASS；HEAD 滞后核验 5 提交/≈1h
+- **M4**：U-23 第七轮 PASS；B7+B8 无增量无异常（Nov 8 计 ~14 天）。件：MONITOR-SWEEP-20261025-03.md
+- **W12″ MS-1 冻结 checklist**：18 处 TBD 清点结转；**关键路径首环 FC-02（TBD-2 回稿，硬钉 11-08，仍未到）**。件：WSF-MS1-FREEZE-CHECKLIST-01.md
+- **L34′ 补样在途结转**：G1（Thm 2.1 补样）+G3（引理链抽样）已完成，G4 钉 rev 重编译构建在途（20:18Z 启动，日志 ≤5min 增量同步出 /tmp 加固在案），交付结转批十九
+- 蒸发第十一次复发修复（D 389→0，含 stale-index「File exists」新变体，-f 规程处置）；push「Everything up-to-date」谎报第二例在案（批十六同型）
+- 提交链：bdd9856e9 → a8a9dcbe3 → FSL v61 在案
