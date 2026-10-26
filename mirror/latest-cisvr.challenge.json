@@ -1,7 +1,7 @@
 {
   "artifact": "mirror/latest-cisvr.md",
-  "statement": "L1 latest projection plane: classification marker + canonical head + hub signature present; no private-plane leakage patterns",
-  "spec_sha256": "7e3750d9f23f9994d5732c237583ea222465367dbe9db302dd982b6d05593077",
+  "statement": "L1 projection of ci-control bridge/reports/latest.md (beat151); sha256 of mirror bytes must equal spec_sha256; classifier replay must find L1 marker + '# LATEST ·' head within first 2000 bytes + 毂 signature; forbidden_patterns must all be absent (FAIL-CLOSED)",
+  "spec_sha256": "85ce0044d31e24ad40916b02f73ab079cd09f1b5b084bdd1cbe16a7fbe6a09b7",
   "forbidden_patterns": [
     "/m[n]t/",
     "\\.scr[a]tch",
@@ -11,5 +11,6 @@
     "私[域]",
     "@[0-9a-f]{12}",
     "§4[0-9]"
-  ]
+  ],
+  "rotated_at": "2026-10-26T08:36:46Z"
 }
