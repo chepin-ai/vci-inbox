@@ -1,4 +1,4 @@
-<!-- L1-PROJECTION: sanitized public mirror of ci-control bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
+<!-- L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
 # LATEST · 毂席拍面 · 2026-10-26T08:32:39Z
 
