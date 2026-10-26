@@ -606,3 +606,16 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **L34′ 补样在途结转**：G1（Thm 2.1 补样）+G3（引理链抽样）已完成，G4 钉 rev 重编译构建在途（20:18Z 启动，日志 ≤5min 增量同步出 /tmp 加固在案），交付结转批十九
 - 蒸发第十一次复发修复（D 389→0，含 stale-index「File exists」新变体，-f 规程处置）；push「Everything up-to-date」谎报第二例在案（批十六同型）
 - 提交链：bdd9856e9 → a8a9dcbe3 → FSL v61 在案
+
+---
+
+## v61-addendum（批十八补遗，2026-10-26T00:30Z）
+
+- **L34′ 交付：净室动工硬前置四要素全部履行**（L34-FGL-SAMPLING-02.md）：
+  - ① 现行 5 条 PASS 钉复验一致
+  - ② **G1 履行**：Thm 2.1（`exists_global_solution` 开域全局端点）三层 diff 全过——八要素一致，强度层等价~略强（注记 D1：包围盒 Ω̄⊂Q° vs Ω⊆Q° 方向性差异登记）
+  - ③ **G3 履行**：3 链（Thm 2.1/2.2/2.3 ↔ §8/§7.2/§9）主干 19 环全对齐、0 失配
+  - ④ **G4 履行**：钉 rev 4d023ac /tmp 副本全量重建 **GREEN**——rc=0、3127/3127 jobs、13,931s（20:18:24Z→00:10:35Z）、0 error、0 sorry；6 定理（含 Thm 2.1 新入样）公理白名单全为 [propext, Classical.choice, Quot.sound]；自建探针独立复核，不以仓内注释充证据；加固规程（240s 增量同步）生效，未遇环境杀
+- **R2 案一验收口径四要素齐备**——「GO 通过后、净室动工前」硬前置达成履行态（待判定席销记）
+- 残余限定如实登记：G2 定义链未扩、G3 主干抽样非全链、编号单元覆盖 5/9；「FGL 蓝本保真」外推口径升级为「5/9 单元+三端点主干链范围内有限成立」
+- 证据链：/mnt/agents/output/fgl-build-log/l34r-g4/（build-full.log、BUILD_RC.txt、axioms-probe-output.txt、cacheget.log、sync-daemon.log）
