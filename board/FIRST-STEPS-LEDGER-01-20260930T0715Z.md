@@ -694,3 +694,14 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **J-EXEC 庭务三件**：J-ADJ3 案二补注 ADD1（墓碑草案存在性+P-1~P-7+生效时点，P-6 销记凭据）；GO R1 补注 ADD1 正式件（**待枢核签**）；v0.5 schema 偏移呈裁件（F-1~F-6 事实层＋选项树，庭期建议不迟于 11-03）
 - **M10 监视轮（MONITOR-SWEEP-20261026-06.md）**：U-23 r13 PASS；HEAD 滞后第九观测短窗微型（2/9m57s），**H3 第二批 r=0.99985 锯齿假说补强**；限窗红区合规（零业务 API，reset 时间戳倒挂如实登记）；pulse 14 拍/3h；跳闸四线零触发；FC-02 仍未到；**GO T-5 战备五缺**（更正声明未签发、R1 补注待核签未入 HEAD、案 F 补注件未见、E1/E3 双缺）
 - 提交链：a137a149d → 01e94ce00 → dd18f4e62 → 7db825c69 → 884ad8fde → 17e1a818a → aff736b4e 顺序 path-limited 在案
+
+---
+
+## v68（批二十五收口，2026-10-26T12:40Z）
+
+- **S-ADM GO 五缺闭合件（GO-T4-CLOSE-20261026-01.md）**：更正声明+R1 补注核签就绪终审（独差枢一笔核签）；案 F RQ-5 第三条件补注全文草稿（窗 11-08 前）；E1/E3 一页亲裁备忘各成（E1 四步签发动作清单；E3 两钥结构=E3 批示∧P-1~P-7 全绿）
+- **W11 S2 草案 v3（WSH-S2-BLOCKER-DRAFT-03.md）**：维 1 攻击 8/8 销记——artifact 名参数化 run_id-a<attempt>（409 结构性消解）、concurrency 组+nonce 绑定、actions 全钉 SHA（API 实测）、persist-credentials:false、pip --require-hashes 15 件哈希钉版（dry-run rc=0）；A2-2 attestation 与最小权限冲突呈裁不替裁
+- **H-WQ3 收割（ADJUD-WILDQ3-HARVEST-01.md）**：10 问裁——成立 9／部分 1／驳回 0（全部独立复核：gap-registry 实测恰 2 件、iso-1000 零命中、oid 占位符六处、29 组括号 Fraction 逐值复算 <200）；P0×7；**R2 案 J 急裁窗=批二十五收口前**（KI-ADD2 关闭证据与 registry UNRESOLVED 并存 13 日，引用冻结即日生效）；余项界定理化走外部同构路线预研（W3-P2-01）
+- **K-PAR 换装评估（KERNEL-PARANOID-EVAL-01.md）**：官方 paranoid 流水线可零迁移承接 kernel 层编排换装（主线已钉 v4.35.0）、超额兑现 R2B-09 四锚第二通道、解除 ζ BLOCKED(B1)「环境未备」分量；**但不产证明内容**——ζ 见证层无定理集可导出、Tenet 30h 全量构建为导出前提不可换装；两状态钉不变；试点建议落 11-03 后～11-06 隙窗（7 条机检验收）；con-ron 微差双写列验收项
+- **M11 监视轮（MONITOR-SWEEP-20261026-07.md）**：U-23 r14 PASS；HEAD 滞后第十观测 7/59m39s；**案 B 定谳「一足两缺」呈判定席**（H3 达成 r=0.99985 n=9 锯齿复证第十次；H1/H2 缺腿）；pulse 14 拍/3h；跳闸四线零触发；FC-02 四执未到；GO T-4：R1 补注入 HEAD 独差核签、更正声明未签发、案 F 补注未落盘、E1/E3 双缺
+- 提交链：ef035f144 → f713c72b6 → 453c0b11d → 632fed0fa → 41b0914e6 顺序 path-limited 在案
