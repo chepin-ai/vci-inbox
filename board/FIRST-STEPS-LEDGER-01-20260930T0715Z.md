@@ -683,3 +683,14 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 - **S-TOMB 墓碑映射草案（REDUCE-TOMBSTONE-DRAFT-01.md）**：7 条款+生效前置 P-1~P-7+验收判据 18 条——五字段墓碑、豁免册 fail-closed、先碑后删顺序闸、批量删除四元组原子性、强制回滚演练、3999 相容性逐点论证；**生效时点=E3 批示后首个批首与前置全绿日取后者**
 - **M9 监视轮（MONITOR-SWEEP-20261026-05.md）**：U-23 r12 PASS；HEAD 滞后第八发作 20 提交/2h39m；**归因判别实验首批：锯齿假说强支持（Pearson r=0.9998、OLS 斜率 1.007、八发作窗内 fetch 尝试次数为零——通道从未试了失败，只是未被试）**，通道劣化零证据；开口项（批间无同步执行体根因）结转；pulse 13 拍/3h；跳闸线四线零触发；FC-02 回稿仍未到；限窗黄区实捕合规降级
 - 提交链：499f92ca4 → 7c4c7f1c0 → 197f42bad → 16b2022ee → 59bb3295a 顺序 path-limited 在案；收口核验红区降级（ls-remote 单通道+补拍挂账 ×2）
+
+---
+
+## v67（批二十四收口，2026-10-26T12:10Z）
+
+- **RS-1 前沿全维扫描（FRONTIER-SCAN-20261026-02.md）**：①Lean v4.35.0 官方内置 `lake check --paranoid` 多内核流水线（lean4lean/nanoda/con-leche/con-ron+paranoid leanchecker）——kernel 验证线可直接换装官方规程；②OpenAI NS 形式化导出 2026-10-24 获 Lean Kernel Arena 双内核 accept，Clay 仍列未解决、评审中（口径律守住）；③ζ 前沿：Platt–Trudgian 纪录上方 2 万零点区间算术认证窗口（余项界由 Lean kernel 检验定理锚定）——与我方 kernel 层缺口精确同构，路线可借鉴；④ETag 三陷阱（按页不按集合/GraphQL 无 ETag/token 轮换失效宜降级 Last-Modified）；VFS for Git 已弃用，超大仓锁定 partial clone+sparse。Top5 接入清单在件
+- **RS-2 攻击扫描（ATTACK-SCAN-20261026-01.md）**：四维 18 条（P0×2/P1×8/P2×8）——**P0-1：upload-artifact v4 同名不可变，attempt≥2 重跑必 409，S2「重试≤1」预案结构性必败**；**P0-2：缺 concurrency 组+dispatch 非幂等，formal 证据可静默锚错 run**；P1 群：tj-actions CVE-2025-30066 钉 SHA、二级速率限未建模、共享 PAT 不可归因即外部事故模式、canary 在 untracked 区对象层承重锚够不到
+- **WQ3 ζ 线 10 问（WILDQ3-ZETA-20261026-01.md）**：最锋利——**gap-registry「双条目在册三绑定齐」被仓内实测证伪**（iso-1000 无条目、witness_oid 为占位符 PENDING_CERT_COMMIT）；**T=100 全部 29 零点存在性层余项界系网格实测放大、无定理背书**；**U-23 十二连 PASS 对 ζ 线信息含量为零**（结构排除 artifacts/、零哈希复核）；C2′ 短语被 Lorenz-96 线借用的口径主权问题
+- **J-EXEC 庭务三件**：J-ADJ3 案二补注 ADD1（墓碑草案存在性+P-1~P-7+生效时点，P-6 销记凭据）；GO R1 补注 ADD1 正式件（**待枢核签**）；v0.5 schema 偏移呈裁件（F-1~F-6 事实层＋选项树，庭期建议不迟于 11-03）
+- **M10 监视轮（MONITOR-SWEEP-20261026-06.md）**：U-23 r13 PASS；HEAD 滞后第九观测短窗微型（2/9m57s），**H3 第二批 r=0.99985 锯齿假说补强**；限窗红区合规（零业务 API，reset 时间戳倒挂如实登记）；pulse 14 拍/3h；跳闸四线零触发；FC-02 仍未到；**GO T-5 战备五缺**（更正声明未签发、R1 补注待核签未入 HEAD、案 F 补注件未见、E1/E3 双缺）
+- 提交链：a137a149d → 01e94ce00 → dd18f4e62 → 7db825c69 → 884ad8fde → 17e1a818a → aff736b4e 顺序 path-limited 在案
