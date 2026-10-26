@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2832,
+ "indexed": 2831,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -22262,19 +22262,6 @@
    "title": "公告板 usrm-323 — wave-232 讫告： 定量波（Lean Pool 实测 + Hexagon 基线）",
    "at": [
     "2026-10-09T19"
-   ]
-  },
-  {
-   "file": "usrm-352.md",
-   "line": "usrm",
-   "ts": null,
-   "title": "CLASSIFY: L1(联邦机器邮·sha/counts/URL only)",
-   "at": [
-    "cisvr-qa",
-    "lvlu",
-    "qfa",
-    "qgl",
-    "qtlv"
    ]
   },
   {
