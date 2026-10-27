@@ -37,5 +37,6 @@
   "G3' 探测域=mathlib v4.10.0 符号表; ABSENT 为工程层事实, 非元数学结论; 四锚为谓词映射, 非 RH 蕴含",
   "完备性 CERTIFIED @EXT-WAVE-13（N_B 唯一整数窗 649）：有限高度 T=1000 截断；区间见证层 PASS、kernel 层未证、非 RH 证据；隔离区间内区间见证 PASS、非全域声明",
   "路线依赖披露与回退触发器清单随 R1 WQ-8 行动项补载（窗 2026-11-06 前）"
- ]
+ ],
+ "DEPRECATED": "2026-10-27 R-1 归并案（ADJUD-REGISTRY-MERGE-20261027-01）：本面（artifacts/gap-registry/zeta/）经归并对拍后明文废止——唯一权威 registry=根级 gap-registry/zeta/；本面工件保留仅供历史追溯（git 历史可溯），一切引用改指根级路径；删除动作归 orchestrator 批收口合并通道（本批按 EXT-WAVE-41 S1 执行令以废止标注先行，不删文件）"
 }

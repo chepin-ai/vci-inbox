@@ -35,5 +35,6 @@
   "区间见证层 PASS、kernel 层未证、非 RH 证据",
   "存在性 PASS ⊊ 计数 PASS",
   "本证书为 Dudek 定理适用范围(x>e⁶⁰)之外的点态管道演练，非定理实例；零点输入由 ISO-1000 区间括号供给"
- ]
+ ],
+ "DEPRECATED": "2026-10-27 R-1 归并案（ADJUD-REGISTRY-MERGE-20261027-01）：本面（artifacts/gap-registry/zeta/）经归并对拍后明文废止——唯一权威 registry=根级 gap-registry/zeta/；本面工件保留仅供历史追溯（git 历史可溯），一切引用改指根级路径；删除动作归 orchestrator 批收口合并通道（本批按 EXT-WAVE-41 S1 执行令以废止标注先行，不删文件）"
 }

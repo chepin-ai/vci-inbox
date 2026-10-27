@@ -1,0 +1,41 @@
+{
+ "CLASSIFY": "L1",
+ "entry_id": "zeta-trunc-psi-1e7",
+ "spec": "WELD-A-SPEC-01",
+ "schema": "1.0.1(EXT14-SUP-01)",
+ "gap": {
+  "G1_census": "ψ 显式公式截断见证锚缺席(同 WS-64 探测面)",
+  "G2_mapping_host": "zeta-truncation 证书(psi-trunc)",
+  "G3_axioms_or_absent": "G3' 路径同族缺席"
+ },
+ "wit": {
+  "tier": "W1 计算层区间见证(管道演练级)",
+  "witness_oid": "8e443bb26dfbefdab6f96b481adf381cb5c72f476af557202c753cf485e19ff6",
+  "detail": "x0=10^7+0.5, T0=1000, 649 认证括号喂入; 残差∈[−3365.36,3142.19] ⊆ Dudek 形界 ±5.2e6; 核验器全门 PASS",
+  "scope_fence": "Dudek 适用域 x>e⁶⁰ 之外的点态管道演练; 不得进入任何 WIT 完备性计数, 不得出现在 GAP 链支撑集(qlv W-d)"
+ },
+ "binding": {
+  "witness_id": "psi-trunc",
+  "cert_path": "artifacts/witnesses-zeta/psi-trunc.witness.json",
+  "commit_oid": "0233116a775dc14b01a64f6d1dcf80efb146947f",
+  "verifier": "ci/witness_zeta_verify.py",
+  "verdict_tier": "W1-drill",
+  "granularity": "证书文件级"
+ },
+ "redeem": {
+  "status": "open→witnessed(drill)",
+  "blocked_codes": [],
+  "R1_artifact_oid": "8e443bb26dfbefdab6f96b481adf381cb5c72f476af557202c753cf485e19ff6",
+  "R2_ledger": "WQ-BOOK 追记48 + FIRST-STEPS-LEDGER v35（20261013T1305Z 收波双留痕）",
+  "R3_census_diff": "census 输入哈希锁定件 HEAD 漂移复核零漂移（ZetaAnchor.lean/gap_probe_zeta.sh sha256 逐位对齐锁定表）；EXT14 判定席 11/11 PASS（R2×3+R4×6+R5×2）"
+ },
+ "erratum_ref": "board/ERRATUM-ZETA-INST-01-20261013T1900Z.md",
+ "disclosure": [
+  "有限高度 T=1000 截断",
+  "区间见证层 PASS、kernel 层未证、非 RH 证据",
+  "存在性 PASS ⊊ 计数 PASS",
+  "本证书为 Dudek 定理适用范围(x>e⁶⁰)之外的点态管道演练，非定理实例；零点输入由 ISO-1000 区间括号供给",
+  "管道演练件、零定理内容（R1 WQ-7 在案）",
+  "2026-10-27 自 artifacts/gap-registry/zeta/ 迁入根级权威面（R-1 归并案 S3，ADJUD-REGISTRY-MERGE-20261027-01）；schema 标签沿用 1.0.1(EXT14-SUP-01) 不回溯升降"
+ ]
+}

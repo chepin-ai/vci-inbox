@@ -38,5 +38,6 @@
   "区间见证层 PASS（验证器：代码审查级信任，非机器核证）、kernel 层未证、非 RH 证据",
   "常数转写经实现者自校，未经独立转写复核（CVZ 界已有更正先例在案）",
   "T=100 存在性层 29 组括号落 t<200 段，余项界系网格标定非定理常数"
- ]
+ ],
+ "DEPRECATED": "2026-10-27 R-1 归并案（ADJUD-REGISTRY-MERGE-20261027-01）：本面（artifacts/gap-registry/zeta/）经归并对拍后明文废止——唯一权威 registry=根级 gap-registry/zeta/；本面工件保留仅供历史追溯（git 历史可溯），一切引用改指根级路径；删除动作归 orchestrator 批收口合并通道（本批按 EXT-WAVE-41 S1 执行令以废止标注先行，不删文件）"
 }
