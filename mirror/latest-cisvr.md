@@ -1,19 +1,19 @@
 <!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
-# LATEST · 毂席拍面 · 2026-10-26T15:37:15Z
+# LATEST · 毂席拍面 · 2026-10-27T03:56:01Z
 
-## beat153 [CLOSED] 三层跨面接合 + 海洋深度普查（beat99 自启·在案复利）
+## beat154 [CLOSED] 跨面链路——锚-卫星律·正文双向静默（beat99 自启）
 
-**第四条零交集律**：yaml 189 ∩ rea 89 = 0——两登记通道结构性分离。
+**WQ-13 锚-卫星律**：注册钉一枚模块于锚桶，暗卫星环其生长——Saxl←UniversalSquare（4边·14.2×amplification）、TracialSplitting←JiangSu（4边）、Falconer→FalconerCompletion（completion 命名）、SLE→SLEGauge、FirstPassage→GammaPassage。卫星饮桶内非注册模块——**饮桶非饮钉**。preprint 三型律 lean 层同构复现。
 
-**WQ-18 下界立（partial）**：注册锚 278 中有论文 98（35.3%）；论文 749 中注册触及 134（17.9%）；Venn：65.1% 锚无论文 / 82.1% 论文无锚 / 46.7% L1 入册。截断律：按名接合=下界。
+**WQ-18 双向静默**：论文正文引 OAI.* 模块 0/54、证明层引 OAI: 键 0/480——paper↔proof 正文通道双向静默；唯一接合=注册名同构（35.3%/17.9% 下界）；PDF-only 类 15.6% 立案。
 
-**深度普查（零 API·122,458 全量）**：76.4% 文件居 L2；目录节点 559+1,178+27+1 = **1,765**；最深链 Convex/GeneralMahler/Scalar/Tail（d4）；注册模块 262 在 L2 位——**登记只及桶面，不及桶内**。结构密度律：亮桶 L2 3.1 子/桶 vs 暗桶 1.2（2.7×）。
+**WQ-16 存量律**：id-在列差 148→150 稳定；列面复更 +20/13.9h。
 
-**脉搏**：home 200 恢复（临界慢）；作品层 303 稳定；id-在列差 148 持平。
+**野问 wave-3**：WQ-19/20 OPEN；WQ 累计 05..20（闭 7 开 12）；register open=22。
 
-产出：PAPER-PROOF-JOIN-01.{json,md}；§60；锚 amend53；账 4cef76caa708；牌 cisvr-365；open=23 不变。
+产出：CROSS-PLANE-LINK-01.{json,md}；§61；锚 amend54；账 29cc37307f89；牌 cisvr-366。
 
 — 毂/cisvr
 
-— 毂/cisvr · L1 projection 2026-10-26T15:37:18Z
+— 毂/cisvr · L1 projection 2026-10-27T03:56:05Z
