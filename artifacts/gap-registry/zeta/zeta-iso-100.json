@@ -9,14 +9,14 @@
   "G3_axioms_or_absent": "G3' 路径: riemannZeta_ne_zero_of_one_le_re / Hardy Z 缺席(gap-probe VERDICT ABSENT=TRUE)"
  },
  "wit": {
-  "tier": "W1 计算层区间见证(存在性 PASS / 完备性 UNRESOLVED)",
-  "witness_oid": "PENDING_CERT_COMMIT",
-  "detail": "29 组 IVT 括号端点异号不含0, 核验器存在性门全过; 完备性 Backlund 门 fail-closed 拒证(KI-EXT11-1)→仲裁态数值演示级, 分层记账禁冒充; 不得读作完备性进展"
+  "tier": "W1 计算层区间见证（存在性 PASS / 完备性 PASS@区间见证层）",
+  "witness_oid": "aaceb9a076cb7a2f9ca995af92d015d65d1a07d93660314f01912491534fdaaf",
+  "detail": "29 组 IVT 括号端点异号不含0, 核验器存在性门全过; 完备性 Backlund 门 fail-closed 拒证(KI-EXT11-1)→仲裁态数值演示级, 分层记账禁冒充; 不得读作完备性进展（2026-10-13 前状态）；2026-10-13 KI-EXT11-1-ADD2 关闭：N_B 区间宽 8.6e-18 含唯一整数 29，Backlund 门转 PASS（EXT15 判定席 11/11）；层位判据：依据 ADJUD-ZETA-R2-CASES-JK-20261027-01 案 J（KI-EXT11-1-ADD2 §三/§四＋LAB-CLOSE-EXT12 证据链 3/10）"
  },
  "binding": {
   "witness_id": "zeta-iso-100",
   "cert_path": "artifacts/witnesses-zeta/zeta-iso-100.witness.json",
-  "commit_oid": "PENDING_CERT_COMMIT",
+  "commit_oid": "aaceb9a076cb7a2f9ca995af92d015d65d1a07d93660314f01912491534fdaaf",
   "verifier": "ci/witness_zeta_verify.py",
   "verdict_tier": "W1",
   "granularity": "证书文件级(witness_sha256 锁全字段); 括号级证据由 brackets[] 携载, 核验器逐括号复算"
@@ -24,7 +24,7 @@
  "redeem": {
   "status": "open→witnessed",
   "blocked_codes": [],
-  "R1_artifact_oid": "PENDING_CERT_COMMIT",
+  "R1_artifact_oid": "aaceb9a076cb7a2f9ca995af92d015d65d1a07d93660314f01912491534fdaaf",
   "R2_ledger": "WQ-BOOK 追记48 + FIRST-STEPS-LEDGER v35（20261013T1305Z 收波双留痕）",
   "R3_census_diff": "census 输入哈希锁定件 HEAD 漂移复核零漂移（ZetaAnchor.lean/gap_probe_zeta.sh sha256 逐位对齐锁定表）；EXT14 判定席 11/11 PASS（R2×3+R4×6+R5×2）"
  },
@@ -34,6 +34,9 @@
   "有限高度 T=100 截断",
   "区间见证层 PASS、kernel 层未证、非 RH 证据",
   "存在性 PASS ⊊ 计数 PASS",
-  "G3' 探测域=mathlib v4.10.0 符号表; ABSENT 为工程层事实, 非元数学结论; 四锚为谓词映射, 非 RH 蕴含"
+  "G3' 探测域=mathlib v4.10.0 符号表; ABSENT 为工程层事实, 非元数学结论; 四锚为谓词映射, 非 RH 蕴含",
+  "区间见证层 PASS（验证器：代码审查级信任，非机器核证）、kernel 层未证、非 RH 证据",
+  "常数转写经实现者自校，未经独立转写复核（CVZ 界已有更正先例在案）",
+  "T=100 存在性层 29 组括号落 t<200 段，余项界系网格标定非定理常数"
  ]
 }
