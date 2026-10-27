@@ -752,7 +752,7 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 
 **批次主题**：ζ 案 K 回填执行＋案 N 开庭＋周期 fetch 备批＋REDUCE v2 复核庭＋10-28 督办 T-1＋V-2 二次同步＋kernel D-6 续备＋M14。
 
-**附则一执行对拍（第三款明文行）**：批二十八收口「批内合并时同步」——提交前 fetch→合并→推送→归零对拍：remote=local=〔本行要素于收口执行时回填〕。**补记（时序归因在案，M14 异常项(b)）**：批二十七第二轮归零对拍 remote=local=0a9a8668e66afc7badc629d0e307b34fe47c95df、reflog 推送时刻 2026-10-27T04:10:08Z、ahead_by=0——第二轮明文行于本批补记闭合（首轮 b34c6d951@04:07:23Z 已载 FSL v70）。
+**附则一执行对拍（第三款明文行）**：批二十八收口「批内合并时同步」——提交前 fetch→合并→推送→归零对拍：remote=local=eac7d49ead0960d7b9d454d752ac7867503bbfbc、ahead_by=0、时刻 2026-10-27T07:20:22Z（ls-remote 单通道，红区规程存续；合并插曲：merge.autoStash 默认触发之 stash 写 index 失败一次，autostash=false 复跑即过，覆写权未犯）。**补记（时序归因在案，M14 异常项(b)）**：批二十七第二轮归零对拍 remote=local=0a9a8668e66afc7badc629d0e307b34fe47c95df、reflog 推送时刻 2026-10-27T04:10:08Z、ahead_by=0——第二轮明文行于本批补记闭合（首轮 b34c6d951@04:07:23Z 已载 FSL v70）。
 
 **案 K 回填登记行（验收判据⑥，自 H-WQ3 移交 orchestrator 落账）**：zeta-iso-1000 条目已立（零占位符出生）；zeta-iso-100.json tier 依案 J 态①改写（逐字口径在位：完备性于区间见证层达成：有限高度 T=100 截断；区间见证层 PASS、kernel 层未证、非 RH 证据；隔离区间内区间见证 PASS、非全域声明）；oid 占位 9 处以规范化 witness_sha256 实值兑现；PENDING_CERT_COMMIT 全目录零命中（orchestrator 联验独立复证）；schema 1.0.1 条文核对 14/14；manifest 前态→后态入册（报告 §五）；trunc scope_fence 逐字零 diff。验收 6/7 PASS＋⑥本行闭合=**7/7 全闭合**。
 
