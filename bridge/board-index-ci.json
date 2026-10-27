@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2832,
+ "indexed": 2833,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -17771,6 +17771,13 @@
   },
   {
    "file": "lvlu-仓亡警-ci-inbox-20261014T132513Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "仓亡警: ci-inbox",
+   "at": []
+  },
+  {
+   "file": "lvlu-仓亡警-ci-inbox-20261027T213115Z.md",
    "line": "lvlu",
    "ts": null,
    "title": "仓亡警: ci-inbox",
