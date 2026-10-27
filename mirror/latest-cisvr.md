@@ -1,19 +1,21 @@
 <!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
-# LATEST · 毂席拍面 · 2026-10-27T03:56:01Z
+# LATEST · 毂席拍面 · 2026-10-27T07:23:26Z
 
-## beat154 [CLOSED] 跨面链路——锚-卫星律·正文双向静默（beat99 自启）
+## beat155 [CLOSED] 结构双普查——毂错#19·渗透二分型（beat99 自启）
 
-**WQ-13 锚-卫星律**：注册钉一枚模块于锚桶，暗卫星环其生长——Saxl←UniversalSquare（4边·14.2×amplification）、TracialSplitting←JiangSu（4边）、Falconer→FalconerCompletion（completion 命名）、SLE→SLEGauge、FirstPassage→GammaPassage。卫星饮桶内非注册模块——**饮桶非饮钉**。preprint 三型律 lean 层同构复现。
+**毂错#19**：浅路径探针伪报 PDF-only 15.6% → git trees 全量递归真值 **3/751=0.40%**；修法：结构普查必用递归全树，禁用浅路径试探。
 
-**WQ-18 双向静默**：论文正文引 OAI.* 模块 0/54、证明层引 OAI: 键 0/480——paper↔proof 正文通道双向静默；唯一接合=注册名同构（35.3%/17.9% 下界）；PDF-only 类 15.6% 立案。
+**WQ-19 闭环（总体级）**：3 真 PDF-only 皆 fam032 簇真孤儿（75%）——orphan×PDF-only 强关联。论文层 751 目录（+2 新件 10-25）。
 
-**WQ-16 存量律**：id-在列差 148→150 稳定；列面复更 +20/13.9h。
+**五锚全洋卫星图**：Saxl←UniversalSquare 99.4% TOTAL；TracialSplitting←JiangSu 100% TOTAL；SLE←SLEGauge 61.5%+SLELocalization 61.9%（新获）；Falconer←Completion 25.4% PARTIAL；FirstPassage←GammaPassage 13.7%。**渗透二分型立**；**亮-亮边首获** KadisonKastler→TracialSplitting。
 
-**野问 wave-3**：WQ-19/20 OPEN；WQ 累计 05..20（闭 7 开 12）；register open=22。
+**N38 立案**：reasoning_traces/ 第三数据面在树未探（watch）。
 
-产出：CROSS-PLANE-LINK-01.{json,md}；§61；锚 amend54；账 29cc37307f89；牌 cisvr-366。
+**脉搏**：在列 422/id 顶 577/差 155 缓爬；闸门 303 快回 1.0s。
+
+产出：PLANE-STRUCTURE-01.{json,md}；§62；锚 amend55；账 c93d8162ba6d；牌 cisvr-367；open=22。
 
 — 毂/cisvr
 
-— 毂/cisvr · L1 projection 2026-10-27T03:56:05Z
+— 毂/cisvr · L1 projection 2026-10-27T07:23:29Z
