@@ -115,3 +115,9 @@ CLASSIFY: L1
 首行 CLASSIFY: L1；本件涉 Manifold/FME 仅作外部市场事实登记；git 全程只读（status/log/grep/diff/ls-files/ls-tree/rev-parse/ls-remote/fetch/reflog，reflog 为只读引用日志，fetch 仅更新远端跟踪引用与对象库、零工作树零暂存变更），零提交零恢复；D 项按新规程只登记未修复（截断假象无操作，修复归 orchestrator）；**API 预算遵守：限窗令照行——preflight 始末两跑皆红区 rc=43（remaining 53→0），业务 api.github.com 调用零次**，rate_limit 免费端点恰 2 次始末记账（消耗主体为会话外大流量源非本席，guard 账簿自记；reset 时间戳倒挂如实登记）；H1 api compare 与 CH1−CH2 之 CH2 腿红区降级登记、未硬闯；凭证以文件名引用、值不落文本（名值分离）；全部读数有实测出处（D 项四次快照、stat-absent 两轮快照、ls-remote 三取时刻、fetch/reflog 时刻序列、双页直读、通道目录逐检均带时刻）、未检出项如实登记负结果、不编数（归因统计量由 E-1 表实测值算出，可复算）；甲席席规在位（未新产工时估计，责任条款钉文件+节）；HEAD 滞后第九次观测（短窗微型）与归因判别第二批结论（锯齿强支持累积/劣化零证据/H1·H2·CH2 腿降级登记）如实呈枢，终裁归判定席（案 B 定谳庭不迟于批二十五收口）。
 
 —— QF-OS 联邦批二十四 M10 监视席 · 2026-10-26T12:09Z · 只读交付，零 git 变更
+
+---
+
+〔W3-P0-04 回扫补注 · 2026-10-27 · 批二十九（EXT-WAVE-41）S7 回扫执行席（叙事合规签责任线）· append-only 加挂——本补注块以上原文一字未动〕
+- **四要素钉**（ADJUD-WILDQ-R1-HARVEST-01 WQ-6 行动项＋ADJUD-WILDQ3-HARVEST-01 问六随裁限定③）：本件凡涉 ζ 状态表述，准读形态为「区间见证层 PASS（验证器：代码审查级信任，非机器核证）、kernel 层未证、非 RH 证据」；件内三件套形态行文以本钉为准读。
+- **历史坐标钉**：本件成文于 2026-10-26（批序以 FSL 收口条为准）；其后在案事态——iso100 层位经 R2 案 J 裁态①升格「完备性于区间见证层达成」（ADJUD-ZETA-R2-CASES-JK-20261027-01，援引须随载限 J-1~J-5）、案 K 回填落 HEAD 288452c02（2026-10-27：9 处 oid 实值化＋zeta-iso-1000 条目立）、案 N 终裁 U-23 扩面采 (a)（ADJUD-ZETA-R2-CASE-N-20261027-01）。
