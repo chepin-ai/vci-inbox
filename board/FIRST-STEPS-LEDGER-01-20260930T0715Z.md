@@ -768,3 +768,19 @@ EXT-WAVE-06 canonical: OBL-EXT-06 续探 / VERIFY+EVCHAIN 在途收割 / C43rev3
 **重大残余呈裁挂号（R-1，高）**：**双 registry 名值分裂**——根级 gap-registry/zeta/（git 跟踪面）早已有 iso-1000 条目且 iso-100 已升 CERTIFIED(29) 形 tier、oid 取 git commit oid（40-hex）；与 artifacts/ 副本面（收割/裁决两庭实测面）在 tier 措辞、oid 口径、schema 标签三面分裂。含义：原「双条目在册三绑定齐」证伪断言的精确形态宜复核——对根级面成立、对 artifacts/ 面不成立。呈判定席裁「唯一权威 registry 位置」＋证伪断言形态复核（批二十九立案）。另：.ltar staging 整区抹失（B1 报，窗 10-30 前重建或 orchestrator 直取直传）。
 
 **结转批二十九**：GO 窗 10-31 听证执行（S1/S2 签署＋E1/E3 亲裁双缺仍全球最急；E1 钉 10-30 余 3 日）；**10-28 四件成文逾期处置开庭（明日到期未落）**；**双 registry 归并案开庭**；V-1 督办问责执行（督-V1-01）＋memo:25/LAB-CLOSE-EXT14:91 派生句处置；周期 fetch 增补款备批庭（本批收口前件已备）；v0.5 开庭 11-03（404 三钉证据面加固）＋B-1 合并判定；kernel 试点 11-03 就位（M-1~M-7）；REDUCE B1 并入窗 10-30；FC-02 硬钉 11-08。
+
+---
+
+〔W3-P0-04 回扫补注 · 2026-10-27 · 批二十九（EXT-WAVE-41）S7 回扫执行席（叙事合规签责任线）· append-only 加挂——本补注块以上原文一字未动〕
+- **四要素钉**（ADJUD-WILDQ-R1-HARVEST-01 WQ-6 行动项＋ADJUD-WILDQ3-HARVEST-01 问六随裁限定③）：本件凡涉 ζ 状态表述，准读形态为「区间见证层 PASS（验证器：代码审查级信任，非机器核证）、kernel 层未证、非 RH 证据」；件内三件套形态行文以本钉为准读。
+- **历史坐标钉**：本件成文于 滚动台账（本补注覆盖 v59 起涉 ζ 各行）（批序以 FSL 收口条为准）；其后在案事态——iso100 层位经 R2 案 J 裁态①升格「完备性于区间见证层达成」（ADJUD-ZETA-R2-CASES-JK-20261027-01，援引须随载限 J-1~J-5）、案 K 回填落 HEAD 288452c02（2026-10-27：9 处 oid 实值化＋zeta-iso-1000 条目立）、案 N 终裁 U-23 扩面采 (a)（ADJUD-ZETA-R2-CASE-N-20261027-01）。
+
+---
+
+## FSL v72 ｜ 批二十九收口（EXT-WAVE-41｜2026-10-27｜听证周 D-4 冲刺＋双 registry 归并案开庭＋周期 fetch 备批庭＋案 N 落地＋staging 重建＋M15）
+
+**批二十九七流全交付、两追单全闭合**：S1 双 registry 归并案终裁（ADJUD-REGISTRY-MERGE-20261027-01：根级 `gap-registry/zeta/` 面为唯一权威在册面，artifacts 面核验后废止，S1~S7 归并序＋M-1~M-7 验收，窗批三十收口）；S1b 款四 v1.1 修订全稿（ANNEX1-PERIODIC-FETCH-CLAUSE-DRAFT-02：R-A 必修落实「去抖不适用于款一之合并前 fetch」、R-B 建议采纳 poller 授权边界四句入款 4.2.2(i)）；S2 备批庭裁决（ADJUD-ANNEX1-CLAUSE4-20261027-01：款四附条件批准，生效闸＝要件②钩点③E-1 栏位＋v1.1 入 HEAD，窗批三十一收口前）；**要件②钩点件 orchestrator 亲撰落板**（ANNEX1-CLAUSE4-HOOKPOINTS-01：H-1 KICK 唤醒/H-2 批收口/H-3 监察到达/H-4 写前 fetch 四钩点，红区全 git 协议面）；**要件③ E-1 第三栏成文落地**（MONITOR-SWEEP-20261027-03 §三：栏义照裁决书原文、ep1–ep14 回溯填栏「0/—/义务未生效期」、盲区复算行随表常驻）；S3 .ltar staging 重建成功零异常（B1-STAGING-REBUILD-20261027-01：9031 件/455,355,304 B、portal 读回对拍 9031/9031、manifest 自 sha256 595d03f3…与批十八逐字节同值——两轮独立重建确定性复现；并入窗 10-30 五项核勾预置）；S4 GO 听证 D-4 冲刺板（GO-HEARING-D4-SPRINT-20261027-01：E1/E3 五催、V-1 问责在案、逾期处置模板齐）；S5 kernel 机位申请单（KERNEL-PARANOID-SEAT-REQ-20261027-01：四通道实测——A 官方不可用/B ghfast.top 唯一实证可用/C 归档在位无目标件须申请增补/D 排除；内存口径钉修订以 cgroup 实测 3,221,225,472B 为准；窗 11-03→11-06）；S6 M15 监察轮（U-23 r18 PASS 十一连；FC-02 缺席 ×8；ep14 7c/30m40s 短窗不触发；案 N 新两行首轮——行动项底账 12 行＋哈希钉核对三面双载：witnesses-zeta 9/9、artifacts/gap-registry/zeta 3/3、根级面基线待重建 R-1 分裂存续；v0.5 单 GET 000 第四度记未观测、404 三钉在案；红区零 api 调用）；S7 叙事 v2 全稿＋W3-P0-04 回扫（ZETA-RESTATEMENT-DRAFT-02：U-23 判定域不变、案 N(a) 落地条件 as-of 未达「在监」禁引、语义有效性/验证器漂移/G3′ 三面引用禁止存续；回扫 A 组补注 9 件纯 append 加挂＋B 组豁免登记 15 件逐件 grep 在案——本批 git status 实证 9M＋10?? 形态吻合）。
+
+**附则一执行对拍（第三款明文行）**：批二十九收口「批内合并时同步」——提交前 fetch（2026-10-27T08:33:49Z ls-remote 单通道探得远端领先 10  commits、off-session tip af0748391）→ 零交叠核验（unstaged ∩ incoming＝0）→ `git -c merge.autostash=false merge` 合并落 HEAD af0748391（board/ 零触及）→ 交付件入提交 → 推送 → 归零对拍明文行见本版次轮补记段。**补记（时序归因在案，同 M14/M15 异常项(c)「一记一补记」惯形态）**：批二十八第二轮归零对拍——reflog 推送时刻 2026-10-27T07:21:54Z、推送 commit ac4a8007561bb28f4b8b33fe4384e8d3cbf7e6d9；因批外流量继行（远端已超前），首轮式 remote=local 直读不可复得，采溯核形态：**git merge-base --is-ancestor 实证 ac4a80075 为远端 tip af0748391 之祖先（2026-10-27T08:38:05Z，ls-remote 单通道＋本地溯核双锚，红区规程存续）**，ahead_by=0 之当轮读数以 reflog 推送成功 rc=0 及本溯核联合闭合。批二十八第二轮明文行于本版补记闭合。
+
+**结转批三十**：**GO 听证 2026-10-31 执行日（D-Day 本窗内——S1 ADD1 枢核签/S2 ADD2 落笔签署双待、E1/E3 亲裁双缺仍全球最急）**；**10-28 四件＋W3-P0-05 逾期处置庭（已到期全域未落 HEAD，最高近端风险）**；**双 registry 归并执行 S1~S7（本批收口窗）**；款四生效闸（要件②✓③✓＋v1.1 入 HEAD——本批收口即达，生效宣告行待 orchestrator 签发；窗批三十一）；v0.5＋B-1 双庭 11-03（序 3→1→2；B-1 合并条件 GO/结案 NO-GO 维持）；kernel 试点就位窗 11-03→11-06（机位申请单待枢批）；REDUCE B1 并入窗 10-30＋staging 并入同窗核勾；V-1 问责执行（督-V1-01 已逾挂账）＋memo:8/memo:25/LAB-CLOSE-EXT14:91 派生句勘误；案 L 窗 11-01~11-06、M/O 备证据轨（P1-01 窗 11-15 前、P1-02 重锚批三十）；FC-02 硬钉 11-08（缺席 ×8，余 12 日）；「plan 补记」书面/在案差异（M15 异常项 b）由本批 plan 收口段补记闭合。
