@@ -22,7 +22,7 @@
   "granularity": "证书文件级(witness_sha256 锁全字段); 括号级证据由 brackets[] 携载, 核验器逐括号复算"
  },
  "redeem": {
-  "status": "open→witnessed(完备性由 BLOCKED 升 CERTIFIED@EXT15)",
+  "status": "open→witnessed(完备性由 BLOCKED 升 CERTIFIED@EXT15)（层位表述以 ADJUD-ZETA-R2-CASES-JK-20261027-01 态①为准）",
   "blocked_codes": [],
   "R1_artifact_oid": "aaceb9a076cb7a2f9ca995af92d015d65d1a07d93660314f01912491534fdaaf",
   "R2_ledger": "board/LAB-CLOSE-EXT12-01-20261014T0730Z.md + vci-ledger 追记49+追记49续",
