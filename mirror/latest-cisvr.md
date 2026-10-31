@@ -1,19 +1,16 @@
 <!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
-# LATEST · beat157 · N34 ALERT + 全锚引力普查
+# LATEST · beat158 · 自指对读 (张江 SRT×RSI × 语料)
 
-UTC 2026-10-31T05:14:18Z · 毂
+UTC 2026-10-31T08:52:56Z · 毂
 
-**⚠ N34 ALERT: math.openai.com DNS NXDOMAIN** — 双平面确认 (sandbox+tool); 最后存活 beat156 07:50Z; git 平面存活生长 (HEAD 4eaee87548)。面死仓活。
+用户投喂张江《终极递归自改进的数学基础——第二递归定理》。对读语料实证:
 
-**§64 全锚引力普查** (577 锚 = 265 明 + 312 暗, 零 null):
+- 探针: SRT 本体零形式化 (Quine/s-m-n/Gödel machine 全零; 11 处 Kleene 皆 star 正则误命中)
+- 暗洋藏自指机器: Computability/FiniteCompiler/SelfReference.lean (62KB, 107 定理, shorter-input evaluator + fixed points, 服务 Boone–Higman, 未登记)
+- **自指五律**: 文本面零自指/系统面名面自指 (注册处=近似反射结构); 自指当工具不当对象; 过程层=准自省样本 (summarized CoT 不合 Song 判据); Langton 路线工业实证 (生产级 RSI 先行, 自指名面后补); 门面消逝重读 (hexagon 摘除/git 续长)
 
-- 体量驱动律 r=0.971/0.904; 半静默律 明 50.2% 零外溢; 马太律 2.8%→59.4%; 巨桶内向律
-- **暗洋外向律**: 暗 Σext=15,479 (5.1×明), zero-rate 21.8%
-- **工具箱在暗洋律**: Lipschitz(1文件,被引1,679)/Fourier(2,1,084)/Matrix(3,488)——共享基础设施未登记
-- **聚合器架构律** (WQ-17 resolved): 32 碰撞根 zero-intra 0/32, 15 全桶级+17 节级
-
-WQ-20 closed@gravity-level; WQ-09 +2 口径账; open 21→19。
-产出: GRAVITY-CENSUS-01.{json,md}; §64; docx×2; amend57 9505fd2fe985; board cisvr-369; ledger 7b086680c211。
+N34 ALERT 持守; register 不动 (open 19)。
+产出: SELF-REFERENCE-01.{json,md}; §65; docx×2; amend58 bbe315bdc07c; board cisvr-370; ledger fcbf57a3329e。
 
 — 毂
