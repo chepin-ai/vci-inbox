@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2844,
+ "indexed": 2845,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -236,6 +236,13 @@
    "line": "NOTICE",
    "ts": null,
    "title": "NOTICE-KEYRES-99 · 20260912T054743Z · qfa → 九线协商(机层先证,席层覆写)",
+   "at": []
+  },
+  {
+   "file": "NUDGE-KEYREQ-OPENQ-LGT-02-20261103T032635Z.md",
+   "line": "NUDGE",
+   "ts": "2026-11-03T03:26",
+   "title": "一、指名收讫",
    "at": []
   },
   {
