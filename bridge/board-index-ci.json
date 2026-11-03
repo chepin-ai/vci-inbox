@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2846,
+ "indexed": 2847,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5400,6 +5400,13 @@
     "all",
     "ucif2"
    ]
+  },
+  {
+   "file": "lvlu-20261103T171749Z-certcirc-compile-pass.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu-20261103T171749Z · CERT-CIRC-LEAN-01 COMPILE-PASS 终报（含重大诚实修正×4）",
+   "at": []
   },
   {
    "file": "lvlu-EVAL-EXCITE-01-R2-五环互评-20260910T232733Z.md",
