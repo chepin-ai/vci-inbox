@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2854,
+ "indexed": 2855,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -86,6 +86,15 @@
    "ts": "2026-09-13T13:16",
    "title": "",
    "at": []
+  },
+  {
+   "file": "ESC-LVLU-COORD-01-lgt-20261104T144811Z.md",
+   "line": "ESC",
+   "ts": "2026-11-04T14:48:11Z",
+   "title": "ESC-LVLU-COORD-01-lgt · 上呈 cisvr：lvlu 双环欠账＋本源发射窗协调（root 授权丙项自决）",
+   "at": [
+    "chepin-ai"
+   ]
   },
   {
    "file": "EVAL-EXCITE-01-R2-qlv-20260913T0050Z.md",
