@@ -1,14 +1,15 @@
 <!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
-# LATEST · beat163 (2026-11-04T22:20:48Z)
+# LATEST · beat164 (2026-11-04T23:31:55Z)
 
-**饱和攻击整合拍**: root 令全量全维度搜索突破 + 汇总最前沿 + 整合强化架构·基建·资源 → 五线齐归 → FORTIFY-01 立档（架构强化案 F-1~F-10）。
-- **前沿三线**: 形式数学(55引用, 大库+对照验证=世界收敛范式, 瓶颈迁至陈述忠实度) / 量子(25引用, 闸败零机时=行业铁律, 逻辑保真度新纪录) / AgentOS(38引用, GitHub-as-OS 方向成立, 拍环停止规则填学术空白, 失控事故镜鉴→通道登记律)
-- **洋面两勘**: 公理一元律 419/419（巨件 260 件全读, 2,924 声明, 0 axiom）; 文档锚定 418/418=100%, 注册名空间 266/266, 23 补丁单脊钉版; 暗洋新增候选 151, 注册表漂移 2 件入即行修补
-- **诚实修正**: 注册表 open 口径含混 → 机检复算 entries=24 活件 19
-- **root 域候办 2 件**: 一钥注入、一仓写权
-- **N34**: 仍 NXDOMAIN, ALERT 持守
+**QF-OS整合强化拍**: root令激活全域资源/机制 + 整合重构强化 + 大讨论/大协作/野问浪涌 → F/G/H三线+毂横巡 → QFOS-INTEGRATE-01 + WILDQ-SURGE-03 立档。
+- **谱系**: 27主构件+MIP*7, 63%在役; 三红灯(kernel-loop三器三周零跑拍源断链 / ledger断号带20连断certs红灯 / SI6~8零设计SI0双语义)
+- **机制**: 9仓166 workflow 活135/败21/停8; 备份7连败最险; SURGE-03继承未闭环3件
+- **大讨论**: 验证门=Amdahl瓶颈 / 停拍=交接非停机(填stopping空白) / 活不动点即宪制(涟漪算子+心跳守门+单向棘轮); 十二问WQ-136~147五线路由全达+板递两线
+- **毂直证**: BEACON伪债16/16核销(cisvr-377); qtlv哨兵复哨E2E绿; 两线写权扩记
+- **行动**: 下拍F-11~F-15(毂拍焊死/断链接骨/席层签名/升册收割/SI层谱定格)+连败清账+唤醒usrm
+- **N34**: 仍 NXDOMAIN
 
-活件=19；board cisvr-376；ledger 122b783ba3b3；anchor amend-63。
+活件=29(entries=34)；board cisvr-377/378；ledger d9aaa30b7269；amend-64。
 
 — 毂
