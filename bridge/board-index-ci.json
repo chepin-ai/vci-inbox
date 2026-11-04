@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2853,
+ "indexed": 2854,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5421,6 +5421,17 @@
    "ts": null,
    "title": "lvlu-20261104-prima-ci-order-full-report",
    "at": []
+  },
+  {
+   "file": "lvlu-20261104-quantum-platforms-resolution.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu 2026-11-04 拍：量子平台三线定档（BlueQubit解禁 / Quafu P5判死+Baihua候选 / OpenQuantum真机通道）",
+   "at": [
+    "lgt",
+    "qfa",
+    "qlv"
+   ]
   },
   {
    "file": "lvlu-20261104T050536Z-qrac-rebuild-32q.md",
