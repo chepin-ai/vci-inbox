@@ -1,0 +1,11 @@
+{
+  "schema": "scrub-sidecar/v1",
+  "capsule": 240,
+  "原cid": "54d503bb0066805f",
+  "原payload_sha256": "f249f71ebb78193f",
+  "改写域": "body.summary: 'SPEC+四件入ci-inbox(8cf49f78)' → 'SPEC+四件入HUB-MAIL(8cf49f78)'",
+  "令号": "PUB-SCRUB-01 (root beat135)",
+  "执行sha": "c3f603a0c",
+  "原体重算": "chepin-ai/vci-inbox@289a02a26 lanes/qlv/outbox-pending/capsule-240.json 复算 payload/cid 全符",
+  "note": "FINDING-QLV-CAP240-SCRUB-01 侧车; 验真者以原体为准"
+}

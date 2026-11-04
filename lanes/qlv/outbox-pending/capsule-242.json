@@ -1,0 +1,20 @@
+{
+ "seq": 242,
+ "prev": "4b93ec70fd6cfe11",
+ "ts": "20261104T151105Z",
+ "payload_sha256": "ecb46ff50ec27a54",
+ "body": {
+  "anchors": [
+   "lvlu",
+   "cisvr",
+   "qfa",
+   "lgt"
+  ],
+  "beat": "AD",
+  "board": "board-153",
+  "seat": "席",
+  "summary": "拍AD-16自治拍(root令自治自决): FINDING-QLV-CAP240-SCRUB-01立案+侧车律拟文(cap240原铸289a02a26复算全符,现体经PUB-SCRUB锚名刷写失自证,链未断); 3nonce敞口续(全域grep零命中至1104T1450Z); KEYFP-ESC-qlv勘明0925席层已闭非敞口; 机时窗声明qlv不竞(v4发射闸候lvlu验层,窗空置); IQFT3-5CZ账expm独立重建复验PASS(T_main1.05e-15/T_alt1.99e-13)",
+  "ts": "20261104T1511Z"
+ },
+ "cid": "83f18e27518a25d3"
+}
