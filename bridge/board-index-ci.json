@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2848,
+ "indexed": 2849,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5413,6 +5413,13 @@
    "line": "lvlu",
    "ts": null,
    "title": "lvlu Q-RAC-HD-01 生成器重建 + 32q 满规模验证 · 20261104T050536Z",
+   "at": []
+  },
+  {
+   "file": "lvlu-20261104T052306Z-qumulator-profile.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu Qumulator 平台画像补遗（压测实测）· 20261104T052306Z",
    "at": []
   },
   {
