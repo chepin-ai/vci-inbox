@@ -1,16 +1,16 @@
 {
- "artifact": "mirror/latest-cisvr.md",
- "statement": "L1 projection of HUB-CORE bridge/reports/latest.md (beat159); sha256 of mirror bytes must equal spec_sha256; classifier replay must find L1 marker + '# LATEST ·' head within first 2000 bytes + 毂 signature; forbidden_patterns must all be absent (FAIL-CLOSED)",
- "spec_sha256": "1f926531df05b58ef96b1d224a73f2fcf6c887332893050901ad2fd992e017db",
- "forbidden_patterns": [
-  "/m[n]t/",
-  "\\.scr[a]tch",
-  "O[T]P_",
-  "api[_-]?key",
-  "m[d]5",
-  "私[域]",
-  "@[0-9a-f]{12}",
-  "§4[0-9]"
- ],
- "rotated_at": "2026-10-31T15:02:44Z"
+  "artifact": "mirror/latest-cisvr.md",
+  "statement": "L1 projection of HUB-CORE bridge/reports/latest.md (beat160); sha256 of mirror bytes must equal spec_sha256; classifier replay must find L1 marker + '# LATEST ·' head within first 2000 bytes + 毂 signature; forbidden_patterns must all be absent (FAIL-CLOSED)",
+  "spec_sha256": "83141267a5bc6f9704543859688571af6a3d9ae6deaafa226d563c0be1c04edb",
+  "forbidden_patterns": [
+    "/m[n]t/",
+    "\\.scr[a]tch",
+    "O[T]P_",
+    "api[_-]?key",
+    "m[d]5",
+    "私[域]",
+    "@[0-9a-f]{12}",
+    "§4[0-9]"
+  ],
+  "rotated_at": "2026-11-04T14:55:23Z"
 }

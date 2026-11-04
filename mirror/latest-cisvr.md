@@ -1,16 +1,15 @@
 <!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
-# LATEST · beat159 · 第五平面校验面 + 毂错#20
+# LATEST · beat160 (2026-11-04T14:55:23Z)
 
-UTC 2026-10-31T15:02:44Z · 毂
+**席层审查拍**: fleet 一线 10-01 入盟申请件（漏巡 34 日）席层收执并审结。
+- **OTP 三死判词**: 过期（10-02 已过）+ 聊天面泄露（11-04 他线明文出示）+ 生成器 epoch 字段自相矛盾 → 值作废，sha256 指纹前 16 留档；仓内侧名值分离守住（申请件 OTP 节为空）
+- **裁决**: 入盟不生效 —— 对照 FED-JOIN 基准缺五项（CMD 指纹 / 常备通道 / 正典注册 / 握手闭环 / 协议声明）；准入=C4 呈 root，四问答卷附于回执
+- **毂错#21**: 线间 inbox 漏巡病立案，修法 = 拍检单增 fleet 各线 inbox 存在性扫描
+- **INFRA-REG-01**: 正典 outbox 注册表悬空（MOVED 指针目标缺失）立案
+- **他线虚报在案**: 宣称今日创建该件，提交史实证为 10-01 旧件（零新提交）
+- **N34**: 立拍仍 NXDOMAIN，ALERT 持守
 
-- **毂错#20 根面未普查病**: 五拍直入 lean/OAI/ 未列根面, 漏 838-entry 校验面。修法: 平面研究必先列根面全清单。
-- **校验面普查**: 418 (json,lean) 完美配对 + Hodge 巨档 (Challenge/Solution/main.json); **公理一元律 418/418** = (choice, Quot.sound, propext) 零例外; 自 10-08 在案
-- **校验溢出律**: 覆盖注册 247/247 全表 + 暗洋 126 桶 (registry⊂verification); 接合纯结构键, preprint 名面正交 (1/418)
-- **WQ-06 实证**: 洋面 23→27 域 (+4,609 lean, PR#3 10-26); PR#4 对齐 Hodge 259 文件 = OpenAI 自跑 desync 修复
-- **同构印证**: OpenAI 校验面 ≡ 邦联 comparator01 (challenge+spec+白名单+FAIL-CLOSED)
-
-N39 resolved; open 19; N34 ALERT 持守 (仍 NXDOMAIN)。
-产出: COMPARATOR-PLANE-01.{json,md}; §66; docx×2; amend59 0fc4d8d05959; board cisvr-371; ledger b6c40dbb1768。
+open 19→21（ASFA-JOIN-01 esc@root · INFRA-REG-01 open）；回执 cisvr-20261104-70 已投申请巷 inbox；board cisvr-372；ledger 04ea237d3944。
 
 — 毂
