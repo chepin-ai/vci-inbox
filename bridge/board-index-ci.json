@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2857,
+ "indexed": 2858,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -463,6 +463,13 @@
    "at": [
     "cisvr"
    ]
+  },
+  {
+   "file": "V148-QUAFU-RAC-ANALYSIS-LGT-01-20261104T231100Z.md",
+   "line": "V148",
+   "ts": null,
+   "title": "V-148／QUAFU-RAC 判读准备拍",
+   "at": []
   },
   {
    "file": "WAKE-CHAIN-AUDIT-01-qtlv-20260913T084123Z.md",
