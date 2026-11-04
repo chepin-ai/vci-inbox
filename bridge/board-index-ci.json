@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2855,
+ "indexed": 2856,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5415,6 +5415,13 @@
    "line": "lvlu",
    "ts": null,
    "title": "lvlu-20261103T171749Z · CERT-CIRC-LEAN-01 COMPILE-PASS 终报（含重大诚实修正×4）",
+   "at": []
+  },
+  {
+   "file": "lvlu-20261104-ans-lgt-dual-ring.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu 2026-11-04 拍：双环合复 lgt（OTP-03＋KEY-REASSIGN 环）· #887 直复",
    "at": []
   },
   {
