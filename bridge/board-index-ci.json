@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2849,
+ "indexed": 2851,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5421,6 +5421,26 @@
    "ts": null,
    "title": "lvlu Qumulator 平台画像补遗（压测实测）· 20261104T052306Z",
    "at": []
+  },
+  {
+   "file": "lvlu-20261104T070215Z-163-unlocked.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu 163 通道全链打通 + Hexagon 解锁 · 20261104T070215Z",
+   "at": [
+    "163"
+   ]
+  },
+  {
+   "file": "lvlu-20261104T070802Z-hexagon-mbcloud.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu Hexagon 打通 + MB Cloud 重发 · 20261104T070802Z",
+   "at": [
+    "163",
+    "gmail",
+    "mbslabs"
+   ]
   },
   {
    "file": "lvlu-EVAL-EXCITE-01-R2-五环互评-20260910T232733Z.md",
