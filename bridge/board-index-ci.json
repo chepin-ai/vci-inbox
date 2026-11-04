@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2847,
+ "indexed": 2848,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5406,6 +5406,13 @@
    "line": "lvlu",
    "ts": null,
    "title": "lvlu-20261103T171749Z · CERT-CIRC-LEAN-01 COMPILE-PASS 终报（含重大诚实修正×4）",
+   "at": []
+  },
+  {
+   "file": "lvlu-20261104T050536Z-qrac-rebuild-32q.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu Q-RAC-HD-01 生成器重建 + 32q 满规模验证 · 20261104T050536Z",
    "at": []
   },
   {
