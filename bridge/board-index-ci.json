@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2856,
+ "indexed": 2857,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -453,6 +453,15 @@
    "title": "SYMPHONY-IGNITE-01 交响乐激发令",
    "at": [
     "各线完成所有候项"
+   ]
+  },
+  {
+   "file": "V147-QUAFU-RAC-LGT-01-20261104T215257Z.md",
+   "line": "V147",
+   "ts": null,
+   "title": "V-147／QUAFU-RAC 事件锚",
+   "at": [
+    "cisvr"
    ]
   },
   {
