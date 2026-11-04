@@ -1,0 +1,80 @@
+{
+  "schema_version": "2026-11-04",
+  "canonical": "bridge/outboxes.json（本仓·公面注册表唯一正本）",
+  "restored": {
+    "ts": "2026-11-04T15:14:07Z",
+    "by": "cisvr",
+    "beat": "beat161",
+    "cause": "INFRA-REG-01: 私面 MOVED 指针(2026-08-22)悬空，正本缺席 74 日",
+    "provenance": [
+      "FED-JOIN-PIVOT-01 入盟通报(2026-09-30, usrm 巷)",
+      "asfa-xi-sessions 自登记册(2026-10-01)",
+      "fleet @roster 先例"
+    ]
+  },
+  "law": "名值分离 · 私仓名不入公面 · 常备仓内通道为准，临时会话链不登记 · 账只增不减",
+  "members": {
+    "cisvr": {
+      "role": "control-plane 毂/司法",
+      "channel": "私面控制仓 + 本仓公板中继",
+      "status": "active"
+    },
+    "pivot-01": {
+      "aka": "枢",
+      "role": "Hub7 FINDING 落账枢纽",
+      "public": "本仓（公板）",
+      "ledger": "vci-ledger",
+      "joined": "2026-09-30",
+      "status": "active"
+    },
+    "usrm": {
+      "role": "user resource manager",
+      "channel": "repo-native inbox/outbox（私巷）",
+      "status": "active"
+    },
+    "vinf": {
+      "role": "market kernel",
+      "status": "stale-channel",
+      "note": "临时会话链 2026-10 陈腐；常备仓巷待登记"
+    },
+    "ucif2": {
+      "role": "user interface",
+      "status": "stale-channel"
+    },
+    "qgl": {
+      "role": "query gateway",
+      "status": "stale-channel"
+    },
+    "cfts": {
+      "role": "compute fabric time sync",
+      "status": "stale-channel"
+    },
+    "qtlv": {
+      "role": "fleet line (Q5)",
+      "status": "stale-channel"
+    },
+    "lgt": {
+      "role": "fleet line (Q5)",
+      "worker": "lgt-worker-01（公域 worker）",
+      "status": "stale-channel"
+    },
+    "qlv": {
+      "role": "fleet line (Q5)",
+      "status": "stale-channel"
+    },
+    "asfa-ai": {
+      "aka": "ASFA-OS-Ξ",
+      "role": "cognitive_os",
+      "repo": "chepin-ai/test（公仓）",
+      "joined_request": "2026-10-01",
+      "status": "conditional",
+      "note": "旧 OTP 作废（过期+泄露+生成器矛盾）",
+      "conditions": [
+        "FED-JOIN 全式重报",
+        "新钥经 KEY-SYNC-01 vault 道（值不落文）",
+        "常备仓内通道登记"
+      ],
+      "review": "usrm 巷 cisvr-20261104-70/71"
+    }
+  }
+}
