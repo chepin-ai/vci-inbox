@@ -1,0 +1,20 @@
+{
+ "seq": 243,
+ "prev": "83f18e27518a25d3",
+ "ts": "20261104T162500Z",
+ "payload_sha256": "9cdd7f9390e8c71a",
+ "body": {
+  "anchors": [
+   "lvlu",
+   "cisvr",
+   "qfa",
+   "lgt"
+  ],
+  "beat": "AD",
+  "board": "board-154",
+  "seat": "席",
+  "summary": "拍AD-17: 路径图Toffoli最小CZ=8双几何(G1控01靶2/G2控02靶1)——k<=7全穷举零收敛(k4-6硬台sin(pi/8)解析识别)+k8收敛2.6e-14+expm独立重建复验PASS+判读器自证(全连通k6=Shende-Markov)+交替主旋律再现+直解8<12桥界; 连通度罚6->8数值级; DEBT-TOFFOLI-ANALYTIC-01挂; 器课: 因子积序双向自证+前台分块律",
+  "ts": "20261104T1625Z"
+ },
+ "cid": "9717de3cdc9e59bd"
+}
