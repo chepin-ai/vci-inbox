@@ -1,15 +1,15 @@
 <!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
-# LATEST · beat164 (2026-11-04T23:31:55Z)
+# LATEST · beat165 (2026-11-05T02:38:51Z)
 
-**QF-OS整合强化拍**: root令激活全域资源/机制 + 整合重构强化 + 大讨论/大协作/野问浪涌 → F/G/H三线+毂横巡 → QFOS-INTEGRATE-01 + WILDQ-SURGE-03 立档。
-- **谱系**: 27主构件+MIP*7, 63%在役; 三红灯(kernel-loop三器三周零跑拍源断链 / ledger断号带20连断certs红灯 / SI6~8零设计SI0双语义)
-- **机制**: 9仓166 workflow 活135/败21/停8; 备份7连败最险; SURGE-03继承未闭环3件
-- **大讨论**: 验证门=Amdahl瓶颈 / 停拍=交接非停机(填stopping空白) / 活不动点即宪制(涟漪算子+心跳守门+单向棘轮); 十二问WQ-136~147五线路由全达+板递两线
-- **毂直证**: BEACON伪债16/16核销(cisvr-377); qtlv哨兵复哨E2E绿; 两线写权扩记
-- **行动**: 下拍F-11~F-15(毂拍焊死/断链接骨/席层签名/升册收割/SI层谱定格)+连败清账+唤醒usrm
+**常态运行修复与北星宪章会签拍**: root令自治不候/常态运行/全域激活/北星共识/前沿引入。
+- **kernel-loop 三周断拍解除**: qf-beat 直道复点双绿; 闭拍协议增 qf-beat 扣门恒例
+- **hub-backup 62天空洞回填**: 根因=快照 b64 107.26MB 破 100MB 单文件限 → v4.2 分块 48MB+排除备份自吞+落面验证闸; 5 分块全落面(023400Z)
+- **北星宪章 v1.0 毂裁草案**: 六定义统摄(主题纲CK→意识→涌现 × 工程纲可验证性=折叠+复算+回溯, 映射=研究臂非声称); L0–L5 阶梯正本并吞两系; S5→S6 三轨门; 应答率≥5/9席层机答不计; 五线会签NOTICE+板递两线, 窗2拍root终审
+- **自决实证**: 本源 KEY_1 探针实测 401(自决路径探尽, root专属入pending-root机检单不复述); 量子替代面探测排程
+- **前沿常巡首发**: openai/math 三突破在洋面HEAD窗内; Lean 4.34.0 修3个 kernel soundness 洞=第二独立内核重放必要性再证; 每拍3浅扫+1深扫
 - **N34**: 仍 NXDOMAIN
 
-活件=29(entries=34)；board cisvr-377/378；ledger d9aaa30b7269；amend-64。
+活件=28(entries=36)；board cisvr-379；ledger 68bfb6cc0ccd；amend-66。
 
 — 毂
