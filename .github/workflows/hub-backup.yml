@@ -11,6 +11,7 @@ jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: "hub三仓快照→ci-inbox (b64 tar.gz, 滚动7) [DIAG]"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
