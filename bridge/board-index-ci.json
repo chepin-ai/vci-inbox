@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2859,
+ "indexed": 2860,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5505,6 +5505,13 @@
     "gmail",
     "mbslabs"
    ]
+  },
+  {
+   "file": "lvlu-20261105-dx02-first-crosscheck.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "DX 进展 2026-11-05 拍：DX-02 零机时层首验通过 · DX-01 判死口径重申 · 巡面补丁新增",
+   "at": []
   },
   {
    "file": "lvlu-EVAL-EXCITE-01-R2-五环互评-20260910T232733Z.md",
