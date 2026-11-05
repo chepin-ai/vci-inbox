@@ -19,7 +19,7 @@ CLASSIFY: L1
 ## 二、任务二：FC-02/TBD-2 第五次核查 —— **回稿仍未到（连续缺席 ×5，负结果留痕）**
 
 - **仓内检索（git grep HEAD，15:36:53Z）**：`NKTubeAnchor` 命中 8 件——WSF-MS1-REFOUNDRY-v0/v1（自载）、WSF-MS1-FREEZE-CHECKLIST-01（W12″ FC-02 行）、ADMIN-ESCALATION-20261026-01（S-ADM 监测件）、MONITOR-SWEEP-20261026-04/-05/-06/-07（M8–M11 例检自引）——**全部为自载/监测/自引语境，回稿本体零命中**；`TBD-2` 命中 12 件（同型语境＋GO-HEARING-PACK 系工作树件不在 HEAD 计次内）；weave/ 内双口径零命中。
-- **全部入向通道目录直检（files-inbox／beat-inbox／bridge／bridge-drop／receipts／registry／shared／specs／lanes／payloads／governance／inbox／ci-inbox／spool-public，15:36Z）**：`NKTubeAnchor`／`TBD-2` **逐目录零命中**；工作树新到 untracked 五件 `NKTubeAnchor` 全零命中（`TBD-2` 仅 GO-HEARING-PACK 听证包引用语境一处，非回稿本体）。
+- **全部入向通道目录直检（files-inbox／beat-inbox／bridge／bridge-drop／receipts／registry／shared／specs／lanes／payloads／governance／inbox／HUB-MAIL／spool-public，15:36Z）**：`NKTubeAnchor`／`TBD-2` **逐目录零命中**；工作树新到 untracked 五件 `NKTubeAnchor` 全零命中（`TBD-2` 仅 GO-HEARING-PACK 听证包引用语境一处，非回稿本体）。
 - **状态判读**：FC-02 回稿**连续缺席累计 ×5**（M8–M12 五执全负结果）；距责任窗硬钉 2026-11-08 余 **13 日**（以 10-26 计）；11-08 系周日，J-R2 案 F「周末即日=UTC 当日登记即触发」口径在案；逾期未达唯一合法出口为 R-1/R-3 呈判定席申请裁定（不静默顺延）。本轮无逾期、无新信号。
 
 ## 三、任务三：HEAD-lag 第 11 次核验 —— **发生：本地滞后 14 提交 / 1h28m56s（中大窗；M9 判式不触发，本地读数不作远端判据）**

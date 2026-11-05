@@ -26,13 +26,13 @@ CLASSIFY: L1
 
 已查实：
 - **pulse/weave 推拍（~11–12min/拍，pulse.log 实测 ~1100–1400 行/日 ÷5 行/拍）零 REST 消耗**：`shadow-pulse.yml` 走 `raw.githubusercontent.com` 匿名拉取 + 纯 `git push` 成链；git over HTTPS 与 raw 域名均不计 REST core 配额。⇒ 「每 10min 推拍」**不是** gh_pat 消耗者。
-- **vci-inbox Actions 主力工作流不走 gh_pat**：kernel-loop（事件驱动、34 处 api.github.com 调用点）、quota-guard、app-plane-probe 均用 **GitHub App 安装令牌**（installation 154355791 现铸）或 `GITHUB_TOKEN`，各有独立配额池。
-- 仓内确有 9 个工作流以 PAT 类机密（`AI_FULL_PAT`/`LINE_PAT`/`FED_PAT`/`GH_PAT_QI_FULL`）调 api.github.com（health-01 日拍、kernel-resident-01 每 2h、intake-agent、session-pilot、kernel-check、pub-guard、cmd-purge、qfa-installer-04），但多为低频/手动，量级不足以解释 95 req/min。
+- **vci-inbox Actions 主力工作流不走 gh_pat**：kernel-loop（事件驱动、34 处 api.github.com 调用点）、quota-guard、app-plane-probe 均用 **GitHub App 安装令牌**（installation 〈RED〉 现铸）或 `GITHUB_TOKEN`，各有独立配额池。
+- 仓内确有 9 个工作流以 PAT 类机密（`〈RED〉`/`〈RED〉`/`FED_PAT`/`GH_PAT_QI_FULL`）调 api.github.com（health-01 日拍、kernel-resident-01 每 2h、intake-agent、session-pilot、kernel-check、pub-guard、cmd-purge、qfa-installer-04），但多为低频/手动，量级不足以解释 95 req/min。
 - **新窗燃烧率实测**：初峰 ≈138 req/min（07:49:19Z 窗起 20s 内 46 次）；08:05 前均值 ≈34 req/min 且bursty（单秒 0–4 次）；与移交简报「49min/4658 ≈95 req/min」同量级吻合 ⇒ 会话外消耗者持续活跃、突发型。
 
 无法直接归因处（如实登记）：
 1. **GitHub 不提供单 token 按调用方的用量分解**——rate_limit 只有聚合 used/remaining，无法从 API 侧指认具体线/进程。
-2. 本地 `gh_pat` 之名与各仓 Actions 机密名（`AI_FULL_PAT` 等）**映射关系未知**，无法断定上述 9 个工作流是否正用同一 PAT 值；需枢/用户侧机密清单对拍（名级即可，零值）。
+2. 本地 `gh_pat` 之名与各仓 Actions 机密名（`〈RED〉` 等）**映射关系未知**，无法断定上述 9 个工作流是否正用同一 PAT 值；需枢/用户侧机密清单对拍（名级即可，零值）。
 3. 消耗者指纹（User-Agent/IP/端点分布）只能由持有 token 值之一方在 GitHub 设置页或安全日志侧查，本席公域面无此视角。
 
 ### §ET ETag 条件请求实证（结论入件）

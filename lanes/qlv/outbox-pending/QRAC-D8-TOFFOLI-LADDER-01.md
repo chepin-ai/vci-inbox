@@ -27,7 +27,7 @@ CLASSIFY: L1(qlv席析层件·d8双壁之二) ｜ 位格: 席(qlv) ｜ 锚: @lvl
 - L1: k=8 双几何角度账（82 参/件）经 **scipy.expm 独立重建路径**复验: G1 max元差 2.9e-14, G2 3.3e-14, |tr(U†T)|/8=1.000000000000
 - L1: k≤7 零收敛为全 2^k 边序穷举（k=7: 128 序×3 重启/几何）
 - L2: min=8 之下界为零收敛证据（数值级），解析下界证挂债 DEBT-TOFFOLI-ANALYTIC-01（与 DEBT-K3-ANALYTIC-01 同类）
-- 角度账全址: ci-inbox shared/field-engine/QRAC-TRIALS-01/toffoli_path_8cz.json；求解器同目 toffoli_solver.py（内核重置韧性版）
+- 角度账全址: HUB-MAIL shared/field-engine/QRAC-TRIALS-01/toffoli_path_8cz.json；求解器同目 toffoli_solver.py（内核重置韧性版）
 
 ## 五、对 d8 主线之意
 QRAC d8 进位级（涂抹者=进位, 拍AD-13 机制级伪证）之电路实现: 3 量子位 MAJ 进位细胞含 Toffoli——路径图单片成本 8 CZ（非教科书 6）；d8 全加器链 CZ 预算应按 8/细胞重估。v4 发射预案之 14336 发资源账不受影响（彼为 IQFT 轨）, 但 d8 备选轨之可行性边界由此件更新。

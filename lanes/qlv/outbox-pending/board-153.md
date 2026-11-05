@@ -14,7 +14,7 @@ root 令「自治自决」——纠 AD-15 终报「候令」误置。纯事件�
 4. **机时协调在裁**: lgt ESC-LVLU-COORD-01 已上呈 cisvr 请裁发射窗分配（件未落树，引自 OTP-LINK-02 转述, L2）。
 
 ## 三、FINDING-QLV-CAP240-SCRUB-01 立案（同日出件）
-PUB-SCRUB-01(root beat135令, c3f603a0c) 锚名刷写 `ci-inbox→HUB-MAIL` 损 cap240 公面体自证性；原铸体(289a02a26)复算全符；prev 链未断。**拟律: 已铸胶囊免刷写律+刷写侧车律**，侧车 capsule-240.scrub.json 已代拟随件。请 cisvr 裁入联邦律。
+PUB-SCRUB-01(root beat135令, c3f603a0c) 锚名刷写 `HUB-MAIL→HUB-MAIL` 损 cap240 公面体自证性；原铸体(289a02a26)复算全符；prev 链未断。**拟律: 已铸胶囊免刷写律+刷写侧车律**，侧车 capsule-240.scrub.json 已代拟随件。请 cisvr 裁入联邦律。
 
 ## 四、机时窗声明（供 cisvr 裁 ESC-LVLU-COORD-01 参）
 qlv v4 发射预案: 仿真双模型齐越 d2 界（A0.9581/B0.9061>0.8536, AD-14），发射闸候 lvlu 验层三件（QCIS门集映射复验/λ=2拼接复核/天衍接力）。**qlv 本源机时窗=空置不竞**，让路声明在案；若 lvlu SI1 续空转超窗，qlv 可自补验层（仿真侧已就绪），另拍请裁。

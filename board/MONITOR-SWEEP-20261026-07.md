@@ -97,7 +97,7 @@ CLASSIFY: L1
 ## 七、任务七：FC-02/TBD-2 回稿通道例行检查（GO-R1 RQ-5 条件①随批直读行，本轮四执）—— **回稿仍未到（负结果留痕）**
 
 - **仓内检索（git grep HEAD，13:28Z）**：`NKTubeAnchor` 命中 7 件——WSF-MS1-REFOUNDRY-v0/v1（自载）、WSF-MS1-FREEZE-CHECKLIST-01（W12″ FC-02 行）、ADMIN-ESCALATION-20261026-01（S-ADM 监测件）、MONITOR-SWEEP-20261026-04/-05/-06（M8/M9/M10 例检自引）——**全部为自载/监测/自引语境，回稿本体零命中**；`TBD-2` 命中 11 件（上列＋ADJUD-GO-R1／GO-R1-PREP／FIRST-STEPS-LEDGER／WSH-S2-FINAL-PREP，全为裁决/登记/自引语境）；weave/ 内双口径零命中（13:38Z）。
-- **全部入向通道目录直检（files-inbox／beat-inbox／bridge／bridge-drop／receipts／registry／shared／specs／lanes／payloads／governance／inbox／ci-inbox／spool-public，13:31Z）**：`NKTubeAnchor`／`TBD-2` **逐目录零命中**；工作树新到 untracked 一件（GO-T4-CLOSE-20261026-01）亦零命中（13:31Z）。
+- **全部入向通道目录直检（files-inbox／beat-inbox／bridge／bridge-drop／receipts／registry／shared／specs／lanes／payloads／governance／inbox／HUB-MAIL／spool-public，13:31Z）**：`NKTubeAnchor`／`TBD-2` **逐目录零命中**；工作树新到 untracked 一件（GO-T4-CLOSE-20261026-01）亦零命中（13:31Z）。
 - **状态判读**：距责任窗硬钉 2026-11-08 余 **13 日**（以 10-26 计，与 M10 同日口径一致）；FC-02 为 MS-1 冻结关键路径首环与唯一实质浮动源之一（链上缓冲 6 日，11-08→11-14，W12″ §二/§四）；逾期未达唯一合法出口为 R-1/R-3 呈判定席申请裁定（不静默顺延；J-R2 案 F 已裁「周末即日=UTC 当日登记即触发」，11-08 系周日，口径明示在案）。本轮无逾期、无新信号，负结果按 GO-R1 条件①验收口径留痕。
 
 ## 八、任务八：GO 窗 T-4 战备读数（距 2026-10-31 开庭窗，开庭必备件在案状态清点，照 FSL 登记；T-4 照任务口径——以 10-26 整日计直线差 5 日、以 13:30Z 时刻差计 4 日 10 时余，M10 同日上午记 T-5，口径差异如实注记）—— **裁决书在案；补注件已入 HEAD、独差枢核签一笔；更正声明未签发；案 F 第三条件补注未落盘（S-ADM 草稿在途）；E1/E3 批示双缺**

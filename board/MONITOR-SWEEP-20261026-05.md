@@ -98,7 +98,7 @@ CLASSIFY: L1
 ## 七、任务七：FC-02/TBD-2 回稿通道例行检查（GO-R1 RQ-5 条件①随批直读行，本轮二执）—— **回稿仍未到（负结果留痕）**
 
 - **仓内检索（git grep HEAD，11:21Z）**：`NKTubeAnchor` 命中 5 件——WSF-MS1-REFOUNDRY-v0/v1（自载）、WSF-MS1-FREEZE-CHECKLIST-01（W12″ FC-02 行）、ADMIN-ESCALATION-20261026-01（S-ADM 监测件）、MONITOR-SWEEP-20261026-04（M8 例检自引）——**全部为自载/监测/自引语境，回稿本体零命中**；weave/ 内零命中。
-- **全部入向通道目录直检（files-inbox／beat-inbox／bridge／bridge-drop／receipts／registry／shared／specs／lanes／payloads／governance／inbox／ci-inbox／spool-public，11:21Z）**：`NKTubeAnchor`／`TBD-2` **逐目录零命中**；files-inbox 内仅见 cisvr/ 目录（同窗产物），无回稿件；工作树新到 untracked 三件（ADJUD-R2B／GO-CORRECTION／REDUCE-TOMBSTONE）亦零命中（11:30Z）。
+- **全部入向通道目录直检（files-inbox／beat-inbox／bridge／bridge-drop／receipts／registry／shared／specs／lanes／payloads／governance／inbox／HUB-MAIL／spool-public，11:21Z）**：`NKTubeAnchor`／`TBD-2` **逐目录零命中**；files-inbox 内仅见 cisvr/ 目录（同窗产物），无回稿件；工作树新到 untracked 三件（ADJUD-R2B／GO-CORRECTION／REDUCE-TOMBSTONE）亦零命中（11:30Z）。
 - **状态判读**：距责任窗硬钉 2026-11-08 余约 **13 日**（以 10-26 计）；FC-02 为 MS-1 冻结关键路径首环与唯一实质浮动源之一（链上缓冲 6 日，11-08→11-14，W12″ §二/§四）；逾期未达唯一合法出口为 R-1/R-3 呈判定席申请裁定（不静默顺延）。本轮无逾期、无新信号，负结果按 GO-R1 条件①验收口径留痕。
 
 ## 八、纪律自查
