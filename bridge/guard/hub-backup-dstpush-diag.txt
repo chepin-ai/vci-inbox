@@ -1,0 +1,6 @@
+dst_push_ok=0
+7Z.tar.gz.b64 is 107.26 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/chepin-ai/ci-inbox.git
+ ! [remote rejected]   HEAD -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/chepin-ai/ci-inbox.git'
