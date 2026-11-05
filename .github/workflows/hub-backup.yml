@@ -30,6 +30,14 @@ jobs:
           export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=http.https://github.com/.extraheader GIT_CONFIG_VALUE_0="AUTHORIZATION: basic $(echo -n x:$IT | base64 -w0)"
           unset IT
           TS=$(date -u +%Y%m%dT%H%M%SZ)
+          GH_TOKEN_V=$(python3 - <<'PYT'
+          import os,time,json,urllib.request,jwt as JW
+          now=int(time.time())
+          appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json'})
+          print(json.loads(urllib.request.urlopen(rq,timeout=20).read())['token'])
+          PYT
+          )
           # 20h节流
           if [ -f stamp.json ]; then :; fi
           git clone -q --depth 1 https://github.com/chepin-ai/vci-inbox.git wb 2>/dev/null || true
@@ -48,12 +56,14 @@ jobs:
             git clone -q --depth 1 https://github.com/chepin-ai/$REPO.git src-$REPO
             tar -czf /tmp/$REPO.tgz --exclude=.git --exclude='archive/hub-backup' -C src-$REPO .
             SZ=$(stat -c%s /tmp/$REPO.tgz)
-            base64 -w0 /tmp/$REPO.tgz > dst/archive/hub-backup/$REPO-$TS.tar.gz.b64
+            base64 -w0 /tmp/$REPO.tgz > /tmp/$REPO.b64
+            split -b 48m -d /tmp/$REPO.b64 dst/archive/hub-backup/$REPO-$TS.tar.gz.b64.part
+            rm -f /tmp/$REPO.b64
             echo "$REPO tar=${SZ}B (自吞排除后)"
             DONE="$DONE $REPO:${SZ}B"
             rm -rf src-$REPO /tmp/$REPO.tgz
             # 滚动7
-            ls dst/archive/hub-backup/ | grep "^$REPO-.*\.b64$" | sort | head -n -7 | while read old; do git -C dst rm -q "archive/hub-backup/$old"; done
+            for OLDTS in $(ls dst/archive/hub-backup/ | grep -o "^$REPO-[0-9T]*Z" | sort -u | head -n -7); do git -C dst rm -q "archive/hub-backup/$OLDTS"* 2>/dev/null || true; done
           done
           git -C dst config user.name "hub-backup"; git -C dst config user.email "hub-backup@users.noreply.github.com"
           git -C dst add archive/hub-backup/
@@ -76,6 +86,20 @@ jobs:
               resp=urllib.request.urlopen(req,timeout=30); print('REST write ci-inbox:',resp.status)
           except urllib.error.HTTPError as e: print('REST write ci-inbox FAIL:',e.code,e.read().decode()[:200])
           PYEOF2
+          # 落面验证闸: 远端无新分块即整run红(毂错#5 推送成功≠落面成功)
+          for i in 1 2 3 4 5 6; do git -C dst pull --rebase -q origin main && git -C dst push -q origin HEAD:main && break; sleep 5; done
+          python3 - <<'PYV'
+          import json,urllib.request,os,time
+          ts=os.environ.get('TS') or ''
+          PYV
+          FIRST=$(ls dst/archive/hub-backup/ | grep "^ci-control-$TS" | head -1)
+          echo "verify remote: $FIRST"
+          for i in 1 2 3 4 5 6; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $GH_TOKEN_V" https://api.github.com/repos/chepin-ai/ci-inbox/contents/archive/hub-backup/$FIRST || echo 000)
+            [ "$CODE" = "200" ] && echo "落面验证绿" && break
+            [ "$i" = "6" ] && [ "$CODE" != "200" ] && echo "落面验证红(http=$CODE)" && exit 1
+            sleep 5
+          done
           # stamp(写vci-inbox经REST免再克隆)
           python3 - <<PYEOF
           import json,base64,os,urllib.request
