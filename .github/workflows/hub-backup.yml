@@ -9,53 +9,67 @@ permissions:
 jobs:
   backup:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
-      - name: "DIAG v3 分段探针(零密钥值·微负载)"
+      - name: "hub三仓快照 v4: git面重写(排除自吞·分仓隔离·铸钥即焚)"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
           HUBID: ${{ vars.CI_OPS_HUB_ID }}
         run: |
+          set -e
           python3 -m pip install -q pyjwt
-          python3 - <<'PYEOF'
-          import os,json,time,datetime,urllib.request,urllib.error,base64
-          import jwt as JW
-          OWNER='chepin-ai'; GH='https://api.github.com'
-          D={'stages':{}}
+          IT=$(python3 - <<'PYEOF'
+          import os,time,json,urllib.request,jwt as JW
           now=int(time.time())
           appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
-          rq=urllib.request.Request(GH+'/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'hub-backup-diag'})
-          IT=json.loads(urllib.request.urlopen(rq,timeout=20).read())['token']
-          H={'Authorization':'token '+IT,'Accept':'application/vnd.github+json','User-Agent':'hub-backup-diag'}
-          def call(stage,req):
-              try:
-                  r=urllib.request.urlopen(req,timeout=90); b=r.read()
-                  D['stages'][stage]={'ok':True,'bytes':len(b)}
-                  return b
-              except urllib.error.HTTPError as e:
-                  D['stages'][stage]={'ok':False,'http':e.code,'err':e.read().decode()[:300]}; return None
-              except Exception as e:
-                  D['stages'][stage]={'ok':False,'err':str(e)[:200]}; return None
-          # S1 codeload×3
-          for repo in ['ci-control','vci-inbox','ci-inbox']:
-              call('codeload:'+repo, urllib.request.Request('https://codeload.github.com/'+OWNER+'/'+repo+'/tar.gz/refs/heads/main',headers=H))
-          # S2 graphql head
-          q='query($n:String!){repository(owner:"'+OWNER+'",name:$n){ref(qualifiedName:"refs/heads/main"){target{oid}}}}'
-          hb=call('gql:head:ci-inbox', urllib.request.Request(GH+'/graphql',data=json.dumps({'query':q,'variables':{'n':'ci-inbox'}}).encode(),method='POST',headers=H))
-          # S3 graphql 微负载试写(vci-inbox)
-          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-          if hb:
-              oid=json.loads(hb)['data']['repository']['ref']['target']['oid']
-              mut='mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
-              # 注意: 试写落vci-inbox需另取head
-              q2='query{repository(owner:"'+OWNER+'",name:"vci-inbox"){ref(qualifiedName:"refs/heads/main"){target{oid}}}}'
-              hb2=call('gql:head:vci-inbox', urllib.request.Request(GH+'/graphql',data=json.dumps({'query':q2}).encode(),method='POST',headers=H))
-              if hb2:
-                  oid2=json.loads(hb2)['data']['repository']['ref']['target']['oid']
-                  inp={'branch':{'repositoryNameWithOwner':OWNER+'/vci-inbox','branchName':'main'},'message':{'headline':'hub-backup DIAG-GQL '+ts},'expectedHeadOid':oid2,'fileChanges':{'additions':[{'path':'archive/hub-backup/DIAG-GQL-'+ts+'.json','contents':base64.b64encode(b'{"probe":true}').decode()}]}}
-                  call('gql:commit:micro', urllib.request.Request(GH+'/graphql',data=json.dumps({'query':mut,'variables':{'input':inp}}).encode(),method='POST',headers=H))
-          # DIAG回执 REST PUT(kit已证通道)
-          body=json.dumps({'ts':ts,**D},ensure_ascii=False).encode()
-          put=urllib.request.Request(GH+'/repos/'+OWNER+'/vci-inbox/contents/archive/hub-backup/DIAG3-'+ts+'.json',data=json.dumps({'message':'hub-backup DIAG3 '+ts,'content':base64.b64encode(body).decode()}).encode(),method='PUT',headers={**H,'Content-Type':'application/json'})
-          call('diag:put', put)
-          print(json.dumps(D,ensure_ascii=False)[:800])
+          rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'hub-backup-v4'})
+          print(json.loads(urllib.request.urlopen(rq,timeout=20).read())['token'])
           PYEOF
+          )
+          # 名值分离: token仅env/extraheader, 永不入URL argv (毂错#12)
+          export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=http.https://github.com/.extraheader GIT_CONFIG_VALUE_0="AUTHORIZATION: basic $(echo -n x:$IT | base64 -w0)"
+          unset IT
+          TS=$(date -u +%Y%m%dT%H%M%SZ)
+          # 20h节流
+          if [ -f stamp.json ]; then :; fi
+          git clone -q --depth 1 https://github.com/chepin-ai/vci-inbox.git wb 2>/dev/null || true
+          if [ -f wb/bridge/guard/hub-backup-stamp.json ]; then
+            LAST=$(python3 -c "import json;print(json.load(open('wb/bridge/guard/hub-backup-stamp.json'))['ts'])" 2>/dev/null || echo "")
+            if [ -n "$LAST" ]; then
+              AGE=$(( $(date -u +%s) - $(date -u -d "${LAST:0:8} ${LAST:9:2}:${LAST:11:2}:${LAST:13:2}" +%s 2>/dev/null || echo 0) ))
+              if [ "$AGE" -lt 72000 ] && [ "$AGE" -gt 0 ]; then echo "throttle age=${AGE}s skip"; exit 0; fi
+            fi
+          fi
+          git clone -q --depth 1 https://github.com/chepin-ai/ci-inbox.git dst
+          mkdir -p dst/archive/hub-backup
+          DONE=""
+          for REPO in ci-control vci-inbox ci-inbox; do
+            echo "== $REPO =="
+            git clone -q --depth 1 https://github.com/chepin-ai/$REPO.git src-$REPO
+            tar -czf /tmp/$REPO.tgz --exclude=.git --exclude='archive/hub-backup' -C src-$REPO .
+            SZ=$(stat -c%s /tmp/$REPO.tgz)
+            base64 -w0 /tmp/$REPO.tgz > dst/archive/hub-backup/$REPO-$TS.tar.gz.b64
+            echo "$REPO tar=${SZ}B (自吞排除后)"
+            DONE="$DONE $REPO:${SZ}B"
+            rm -rf src-$REPO /tmp/$REPO.tgz
+            # 滚动7
+            ls dst/archive/hub-backup/ | grep "^$REPO-.*\.b64$" | sort | head -n -7 | while read old; do git -C dst rm -q "archive/hub-backup/$old"; done
+          done
+          git -C dst config user.name "hub-backup"; git -C dst config user.email "hub-backup@users.noreply.github.com"
+          git -C dst add archive/hub-backup/
+          git -C dst commit -q -m "hub-backup v4 $TS:$DONE [skip ci]"
+          for i in 1 2 3 4 5 6; do git -C dst pull --rebase -q origin main && git -C dst push -q origin HEAD:main && break; sleep 5; done
+          # stamp(写vci-inbox经REST免再克隆)
+          python3 - <<PYEOF
+          import json,base64,os,urllib.request
+          ts="$TS"; done="$DONE".strip()
+          tok=os.environ.get('GIT_CONFIG_VALUE_0','')
+          hdr={'Authorization':'Bearer '+os.environ['HUBK'],'Accept':'application/vnd.github+json'}
+          # stamp经dst同仓体系外, 用wb仓git写
+          PYEOF
+          echo "{"ts":"$TS","done":"$DONE"}" > wb/bridge/guard/hub-backup-stamp.json
+          git -C wb config user.name "hub-backup"; git -C wb config user.email "hub-backup@users.noreply.github.com"
+          git -C wb add bridge/guard/hub-backup-stamp.json
+          git -C wb commit -q -m "hub-backup stamp $TS [skip ci]"
+          for i in 1 2 3 4 5 6; do git -C wb pull --rebase -q origin main && git -C wb push -q origin HEAD:main && break; sleep 5; done
+          echo "DONE $TS:$DONE"
