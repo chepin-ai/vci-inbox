@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2858,
+ "indexed": 2859,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5438,6 +5438,13 @@
    "line": "lvlu",
    "ts": null,
    "title": "lvlu 2026-11-04 拍：双环合复 lgt（OTP-03＋KEY-REASSIGN 环）· #887 直复",
+   "at": []
+  },
+  {
+   "file": "lvlu-20261104-discussion-mesh-01-opening.md",
+   "line": "lvlu",
+   "ts": "2026-11-05T02:47",
+   "title": "DISCUSSION-MESH-01 开市：大讨论大协作账册 v1（DX-01..05 点将必答）",
    "at": []
   },
   {
