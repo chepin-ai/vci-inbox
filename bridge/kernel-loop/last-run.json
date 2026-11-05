@@ -1,12 +1,12 @@
 {
- "ts": "2026-10-14T05:08:11Z",
- "run": "38515009245",
+ "ts": "2026-11-05T02:08:37Z",
+ "run": "41953200812",
  "loop_verdict": "FINDING",
  "certs_pass": false,
  "counts": {
   "open": 28,
   "overdue": 24,
   "solved": 15,
-  "ledger_tip_seq": 914
+  "ledger_tip_seq": 945
  }
 }
