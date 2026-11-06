@@ -1,16 +1,8 @@
 {
- "ts": "2026-11-06T03:27:22Z",
+ "ts": "2026-11-06T03:28:46Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 8527,
- "fixed_n": 7,
- "fixed": [
-  "archive/hub-backup/DIAG3-20261105T021612Z.json",
-  "bridge/board-index-ci.json",
-  "bridge/purge/classify-sweep-20261105-0211Z.json",
-  "qfa-face/awake/awake-20261106-032706.json",
-  "receipts/backup-mirror-last.log",
-  "receipts/health/HEALTH-20261105.json",
-  "receipts/health/HEALTH-LATEST.json"
- ]
+ "scanned": 8526,
+ "fixed_n": 0,
+ "fixed": []
 }
