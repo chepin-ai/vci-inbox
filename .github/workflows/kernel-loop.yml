@@ -90,11 +90,12 @@ jobs:
           lines = [l for l in (led_txt or '').splitlines() if l.strip()]
           entries = []
           raw_by_seq = {}
-          for l in lines:
+          ledger_parse_errors = []
+          for _lineno, l in enumerate(lines, 1):
               try:
                   e = json.loads(l); entries.append(e); raw_by_seq[e.get('seq')] = l
               except Exception:
-                  pass
+                  ledger_parse_errors.append(_lineno)
           hashed = [e for e in entries if e.get('hash')]
           tip = hashed[-1] if hashed else None
           maxseq = max([e.get('seq', 0) for e in entries] + [0])
@@ -138,25 +139,62 @@ jobs:
               it['_constructions'] = constructions_for(it.get('id', ''))
 
           # ---- P3 VERIFY (NP机: 证书机检) ----
-          # cert1: 因果链纪元测绘——规范纪元=sha256(prev+canon(去hash))最大连续后缀全绿;前规范纪元=GRANDFATHERED(不判FAIL,产FINDING提案)
-          recompute_ok = []
-          link_gaps = []
+          # cert1: LEDGER-CHAIN-RECOMPUTE-01——历史双方言重放;cutover后只收显式prev+完整sha256。
+          # pass仅证活后缀与cutover后规范写入;永不宣称历史全链已证。
+          LEDGER_CANON_CUTOVER_SEQ = 952
+          def _ledger_ranges(nums):
+              nums = sorted(set(nums)); out = []
+              if not nums:
+                  return out
+              start = last = nums[0]
+              for n in nums[1:]:
+                  if n != last + 1:
+                      out.append([start, last, last - start + 1]); start = n
+                  last = n
+              out.append([start, last, last - start + 1])
+              return out
+          def _ledger_trailing(flags):
+              n = 0
+              for flag in reversed(flags):
+                  if not flag:
+                      break
+                  n += 1
+              return n
+          seqs = [e.get('seq') for e in entries]
+          seq_continuous = seqs == list(range(1, len(entries) + 1))
+          strict_flags, compatible_flags = [], []
+          link_gaps, prev_missing, prev_mismatch, missing_hash = [], [], [], []
           prev_h = 'GENESIS'
-          for e in hashed:
+          for e in entries:
+              h = e.get('hash', '')
               e2 = {k: v for k, v in e.items() if k != 'hash'}
-              ok = hashlib.sha256((e.get('prev', 'GENESIS') + canon(e2)).encode()).hexdigest() == e['hash']
-              recompute_ok.append(ok)
+              if not h:
+                  missing_hash.append(e.get('seq'))
+              if e.get('prev') is None:
+                  prev_missing.append(e.get('seq'))
+              elif e.get('prev') != prev_h:
+                  prev_mismatch.append(e.get('seq'))
               if e.get('prev') != prev_h:
                   link_gaps.append(e.get('seq'))
-              prev_h = e['hash']
-          suf = 0
-          for ok in reversed(recompute_ok):
-              if ok:
-                  suf += 1
-              else:
-                  break
-          canon_start = hashed[len(hashed) - suf].get('seq') if suf else None
-          cert_chain = {'name': 'ledger-chain-eras', 'pass': suf == len(hashed) or suf > 0, 'canonical_suffix': {'start_seq': canon_start, 'checked': suf, 'all_green': suf > 0 and all(recompute_ok[len(recompute_ok) - suf:])}, 'legacy_zone': {'count': len(hashed) - suf, 'status': 'GRANDFATHERED', 'note': '前规范纪元异构哈希惯例;不判FAIL,列入文献线修复缺口'}, 'link_gaps': link_gaps[:20]}
+              strict = len(h) == 64 and e.get('prev') == prev_h and hashlib.sha256((prev_h + canon(e2)).encode()).hexdigest() == h
+              compatible = False
+              if len(h) in (12, 64) and (e.get('prev') is None or e.get('prev') == prev_h):
+                  for _ensure_ascii in (False, True):
+                      _c = json.dumps(e2, sort_keys=True, separators=(',', ':'), ensure_ascii=_ensure_ascii)
+                      _d = hashlib.sha256((prev_h + _c).encode()).hexdigest()
+                      if h in (_d, _d[:12]):
+                          compatible = True
+              strict_flags.append(strict); compatible_flags.append(compatible)
+              prev_h = h
+          suf_strict = _ledger_trailing(strict_flags)
+          suf_compatible = _ledger_trailing(compatible_flags)
+          canon_start = entries[len(entries) - suf_strict].get('seq') if suf_strict else None
+          compat_start = entries[len(entries) - suf_compatible].get('seq') if suf_compatible else None
+          unverifiable = [e.get('seq') for e, ok in zip(entries, compatible_flags) if not ok]
+          new_dialect_violations = [e.get('seq') for e, ok in zip(entries, strict_flags) if isinstance(e.get('seq'), int) and e['seq'] > LEDGER_CANON_CUTOVER_SEQ and not ok]
+          latest_compatible = bool(compatible_flags and compatible_flags[-1])
+          chain_pass = (not ledger_parse_errors and seq_continuous and not missing_hash and not prev_mismatch and latest_compatible and suf_compatible > 0 and not new_dialect_violations)
+          cert_chain = {'name': 'ledger-chain-eras', 'pass': chain_pass, 'cutover_seq': LEDGER_CANON_CUTOVER_SEQ, 'canonical_suffix': {'start_seq': canon_start, 'checked': suf_strict, 'all_green': suf_strict > 0 and all(strict_flags[len(strict_flags) - suf_strict:])}, 'compatible_suffix': {'start_seq': compat_start, 'checked': suf_compatible}, 'legacy_zone': {'count': len(entries) - suf_compatible, 'status': 'GRANDFATHERED', 'note': '历史异构方言按可重算性归档;未证条目不迁补不伪造;pass不宣称全链已证', 'unverifiable_seq': unverifiable, 'unverifiable_ranges': _ledger_ranges(unverifiable)}, 'link_gaps': link_gaps[:20], 'link_gap_count': len(link_gaps), 'prev_missing_ranges': _ledger_ranges(prev_missing), 'prev_mismatch': prev_mismatch, 'missing_hash': missing_hash, 'parse_errors': ledger_parse_errors, 'seq_continuous': seq_continuous, 'new_dialect_violations': new_dialect_violations, 'full_chain_verified': bool(entries) and all(compatible_flags), 'verdict': 'TAIL_VERIFIED_LEGACY_OPEN' if chain_pass and unverifiable else ('PASS' if chain_pass else 'FAIL')}
           # cert2: EXPECT 携带 evidence 锚的条目逐一核验
           cert_ev = {'name': 'expect-evidence-anchors', 'pass': True, 'checked': 0, 'fails': []}
           for it in items:
