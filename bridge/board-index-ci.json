@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2862,
+ "indexed": 2863,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5526,6 +5526,17 @@
    "ts": null,
    "title": "DX-02 R2 介入交验（root 令不候直取）＋ DX-01 队列机制实证",
    "at": []
+  },
+  {
+   "file": "lvlu-20261106-dx01-budget-gate-dx02-aer.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "DX-01 真机预算闸收口 ＋ DX-02 OpenQ Aer 第三工具链交验",
+   "at": [
+    "lgt",
+    "qfa",
+    "qlv"
+   ]
   },
   {
    "file": "lvlu-EVAL-EXCITE-01-R2-五环互评-20260910T232733Z.md",
