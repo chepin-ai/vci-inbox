@@ -142,6 +142,7 @@ jobs:
           # cert1: LEDGER-CHAIN-RECOMPUTE-01——历史双方言重放;cutover后只收显式prev+完整sha256。
           # pass仅证活后缀与cutover后规范写入;永不宣称历史全链已证。
           LEDGER_CANON_CUTOVER_SEQ = 952
+          LEDGER_CANON_EXCEPTIONS = {953: 'STALE_MODULE_WRITER_RELOAD_01'}  # 唯一不可扩展书面例外;原条保留
           def _ledger_ranges(nums):
               nums = sorted(set(nums)); out = []
               if not nums:
@@ -192,9 +193,11 @@ jobs:
           compat_start = entries[len(entries) - suf_compatible].get('seq') if suf_compatible else None
           unverifiable = [e.get('seq') for e, ok in zip(entries, compatible_flags) if not ok]
           new_dialect_violations = [e.get('seq') for e, ok in zip(entries, strict_flags) if isinstance(e.get('seq'), int) and e['seq'] > LEDGER_CANON_CUTOVER_SEQ and not ok]
+          registered_dialect_exceptions = [n for n in new_dialect_violations if n in LEDGER_CANON_EXCEPTIONS]
+          unregistered_dialect_violations = [n for n in new_dialect_violations if n not in LEDGER_CANON_EXCEPTIONS]
           latest_compatible = bool(compatible_flags and compatible_flags[-1])
-          chain_pass = (not ledger_parse_errors and seq_continuous and not missing_hash and not prev_mismatch and latest_compatible and suf_compatible > 0 and not new_dialect_violations)
-          cert_chain = {'name': 'ledger-chain-eras', 'pass': chain_pass, 'cutover_seq': LEDGER_CANON_CUTOVER_SEQ, 'canonical_suffix': {'start_seq': canon_start, 'checked': suf_strict, 'all_green': suf_strict > 0 and all(strict_flags[len(strict_flags) - suf_strict:])}, 'compatible_suffix': {'start_seq': compat_start, 'checked': suf_compatible}, 'legacy_zone': {'count': len(entries) - suf_compatible, 'status': 'GRANDFATHERED', 'note': '历史异构方言按可重算性归档;未证条目不迁补不伪造;pass不宣称全链已证', 'unverifiable_seq': unverifiable, 'unverifiable_ranges': _ledger_ranges(unverifiable)}, 'link_gaps': link_gaps[:20], 'link_gap_count': len(link_gaps), 'prev_missing_ranges': _ledger_ranges(prev_missing), 'prev_mismatch': prev_mismatch, 'missing_hash': missing_hash, 'parse_errors': ledger_parse_errors, 'seq_continuous': seq_continuous, 'new_dialect_violations': new_dialect_violations, 'full_chain_verified': bool(entries) and all(compatible_flags), 'verdict': 'TAIL_VERIFIED_LEGACY_OPEN' if chain_pass and unverifiable else ('PASS' if chain_pass else 'FAIL')}
+          chain_pass = (not ledger_parse_errors and seq_continuous and not missing_hash and not prev_mismatch and latest_compatible and suf_compatible > 0 and not unregistered_dialect_violations)
+          cert_chain = {'name': 'ledger-chain-eras', 'pass': chain_pass, 'cutover_seq': LEDGER_CANON_CUTOVER_SEQ, 'canonical_suffix': {'start_seq': canon_start, 'checked': suf_strict, 'all_green': suf_strict > 0 and all(strict_flags[len(strict_flags) - suf_strict:])}, 'compatible_suffix': {'start_seq': compat_start, 'checked': suf_compatible}, 'legacy_zone': {'count': len(entries) - suf_compatible, 'status': 'GRANDFATHERED', 'note': '历史异构方言按可重算性归档;未证条目不迁补不伪造;pass不宣称全链已证', 'unverifiable_seq': unverifiable, 'unverifiable_ranges': _ledger_ranges(unverifiable)}, 'link_gaps': link_gaps[:20], 'link_gap_count': len(link_gaps), 'prev_missing_ranges': _ledger_ranges(prev_missing), 'prev_mismatch': prev_mismatch, 'missing_hash': missing_hash, 'parse_errors': ledger_parse_errors, 'seq_continuous': seq_continuous, 'new_dialect_violations': new_dialect_violations, 'registered_dialect_exceptions': [{'seq': n, 'reason': LEDGER_CANON_EXCEPTIONS[n]} for n in registered_dialect_exceptions], 'unregistered_dialect_violations': unregistered_dialect_violations, 'full_chain_verified': bool(entries) and all(compatible_flags), 'verdict': 'TAIL_VERIFIED_LEGACY_OPEN' if chain_pass and unverifiable else ('PASS' if chain_pass else 'FAIL')}
           # cert2: EXPECT 携带 evidence 锚的条目逐一核验
           cert_ev = {'name': 'expect-evidence-anchors', 'pass': True, 'checked': 0, 'fails': []}
           for it in items:
