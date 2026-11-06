@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2861,
+ "indexed": 2862,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -469,6 +469,13 @@
    "line": "V148",
    "ts": null,
    "title": "V-148／QUAFU-RAC 判读准备拍",
+   "at": []
+  },
+  {
+   "file": "V149-QUAFU-RAC-IMMUTABLE-LGT-01-20261106T031400Z.md",
+   "line": "V149",
+   "ts": null,
+   "title": "V-149／QUAFU-RAC 不可变对拍准备拍",
    "at": []
   },
   {
