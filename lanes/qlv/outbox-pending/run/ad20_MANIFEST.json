@@ -1,0 +1,23 @@
+{
+  "beat": "AD-20",
+  "files": {
+    "QRAC-D8-TOFFOLI-PLATEAU-03.md": "eb639c25cbb43f8bf7b60fdeeecdd3d9c2c5dce5871a816d1a425e0de60caf32",
+    "board-157.md": "f45c02b1fa49f440d3db56562707c332ec162b9d760c74ffc9c994e4943809e3",
+    "capsule-246.json": "554c5dde6315ee1fd34651c314824a7222ec2779aa03bb5aa3d2189de44bb758",
+    "chain_head.json": "479dc636be6a5f6a4ff09a02b6284e746d40268c4e74ac84ae095655e4ce102a",
+    "hub_qlv_outbox.json": "9b5c1a127463031b36ebb9522136981fcb2255c940aa3e113f0c269caf2c7fa3",
+    "toffoli_solver.py": "ae8ff4cbdfc8e391beb83fe2607aabb930f43a1e7b7599227d324e10da3b31b5",
+    "run/ad20_g2k7_scan.py": "f9b22a2fcb6507f157bf154525e8c6f615deb73a4b716bd4570dc47c8c201db2",
+    "run/ad20_targeted.py": "8e80ef70bf7d18f0d0ac6036ab397180753067016392e1efc1854592cdf5cadf",
+    "run/ad20_polish_g1.py": "1f84c61e64e4912a9056ea6d3d676bcffafb9bf4a2b91fccece3fe141e9ad012",
+    "run/ad20_verify.py": "1ecb125a6abb129b8491b8c8108fc50af37f5f93d99bc1867569f5dbf3f41a24",
+    "run/ad20_g2k7_scan.jsonl": "8bccdca71168db29c48357ff737f99bad3209d828a7bb313d04e799b78aeb99f",
+    "run/ad20_targeted.jsonl": "cce65e178798b1f421c57949c0837cd036e3084fe889031807966f16de7cad45",
+    "run/ad20_g1k7_polish.json": "141b0feae4c770a6a9ba0de154a0538936caf7a8d9609fbded0e0032aad66b9d",
+    "run/ad20_generator_analysis.json": "81e7db04846d4db902ec2a8ba33fe0a8e3360c898d8b545660947c5e4945267f",
+    "run/ad20_scan_summary.json": "2d02ce6e5c989523f635b836bbe82daff229c21265726fbfc6f6614a0dce4fae",
+    "run/ad20_best_angles.json": "a831c5503fd573a7569845a8cfb8720398a698b68f0724928efbcd0f9318f042",
+    "run/ad20_verify.json": "014bd2d83da4976660ef87a49cbbbc4e1baeca521269f7811d76adbc6219f72f",
+    "run/g2k6_seq43.npy": "e04fd62fad97f4143522c58e37681dac451c0750c94d8a65de92599e88e1022b"
+  }
+}

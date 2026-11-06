@@ -1,0 +1,88 @@
+{
+  "beat": "AD-20",
+  "verdict": "ALL_PASS",
+  "selftest_max": {
+    "G1_form": 2.220446049250313e-16,
+    "G2_form": 2.220446049250313e-16
+  },
+  "scan": {
+    "sequences": 128,
+    "restarts_per_sequence": 5,
+    "errors": 0
+  },
+  "targeted": {
+    "runs": 200,
+    "errors": 0
+  },
+  "best_G2k7": {
+    "idx": 34,
+    "source": "targeted",
+    "e": 0.19897989920504464,
+    "angle_max_dev_rad": 1.4552081761820546e-09,
+    "involution_max": 4.8550350406629076e-09,
+    "hermitian_max": 1.2857753552864526e-15
+  },
+  "best_G1k7": {
+    "idx": 85,
+    "e": 0.2307297569011044,
+    "angle_max_dev_rad": 2.979351009790854e-07,
+    "involution_max": 7.536772685945436e-07,
+    "hermitian_max": 1.0547118733938987e-15
+  },
+  "G2k7_candidates": [
+    {
+      "idx": 34,
+      "e": 0.19897989920504466,
+      "source": "targeted",
+      "angle_max_dev_rad": 1.4552081761820546e-09,
+      "involution_max": 4.8550350406629076e-09,
+      "hermitian_max": 1.2857753552864526e-15
+    },
+    {
+      "idx": 91,
+      "e": 0.19917725828964972,
+      "source": "scan",
+      "angle_max_dev_rad": 1.1375531239199432e-08,
+      "involution_max": 3.9319915656754745e-08,
+      "hermitian_max": 1.2448499433677053e-15
+    },
+    {
+      "idx": 38,
+      "e": 0.204680847839913,
+      "source": "scan",
+      "angle_max_dev_rad": 3.4469039289497516e-09,
+      "involution_max": 1.2332191712260965e-08,
+      "hermitian_max": 1.1411052692018427e-15
+    },
+    {
+      "idx": 52,
+      "e": 0.21771920975872464,
+      "source": "scan",
+      "angle_max_dev_rad": 4.1169040398969514e-10,
+      "involution_max": 1.7155540669221375e-09,
+      "hermitian_max": 9.228728892196614e-16
+    }
+  ],
+  "G2k6_erratum": {
+    "c-d-1": 1.3736387582952148e-09,
+    "a2+b2+cd": 3.5094377404121246e-10,
+    "c+d-1": -1.1270404713094229
+  },
+  "G1k7_constraints": {
+    "u-v-1": 4.3508663338798215e-10,
+    "w2+t2+uv": 1.868137700089534e-09
+  },
+  "G2k7_constraints": {
+    "u-v-1": -1.724167475458671e-10,
+    "w2+t2+uv": 8.106727261703028e-09,
+    "pair_w": 1.066418592321483e-08,
+    "pair_t": 1.1769382801674055e-08
+  },
+  "input_sha256": {
+    "ad20_g2k7_scan.jsonl": "8bccdca71168db29c48357ff737f99bad3209d828a7bb313d04e799b78aeb99f",
+    "ad20_targeted.jsonl": "cce65e178798b1f421c57949c0837cd036e3084fe889031807966f16de7cad45",
+    "ad20_g1k7_polish.json": "141b0feae4c770a6a9ba0de154a0538936caf7a8d9609fbded0e0032aad66b9d",
+    "g2k6_seq43.npy": "e04fd62fad97f4143522c58e37681dac451c0750c94d8a65de92599e88e1022b"
+  },
+  "best_angles_sha256": "a831c5503fd573a7569845a8cfb8720398a698b68f0724928efbcd0f9318f042"
+}
