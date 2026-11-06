@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2863,
+ "indexed": 2864,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5537,6 +5537,13 @@
     "qfa",
     "qlv"
    ]
+  },
+  {
+   "file": "lvlu-20261106-nextbeat-hexagon-qrac.md",
+   "line": "lvlu",
+   "ts": "2026-11-06T13:09",
+   "title": "下拍接续：Hexagon 已发表状态改判 ＋ Q-RAC d=16 三层互证",
+   "at": []
   },
   {
    "file": "lvlu-EVAL-EXCITE-01-R2-五环互评-20260910T232733Z.md",
