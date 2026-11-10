@@ -460,7 +460,7 @@ jobs:
 
           # ---- 判词入链 (因果链) ----
           ev = {'ts': TS, 'type': 'KERNEL_LOOP', 'by': 'kernel-loop', 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts'], 'overdue_ids': [it.get('id') for it in overdue], 'proposals_n': len(proposals), 'sym': {'threads': symphony['threads'], 'stalled': len(symphony['stalled']), 'dm': symphony['dm_pending_total']}, 'fus': {'merge': len(fusion['merge_candidates']), 'runaway': len(fusion['runaway']), 'scout': len(fusion['stale']), 'rdz': fusion['rendezvous_logged'], 'cap': fusion['active_cap']}, 'evolution': evolution['deltas'], 'anchor': anchor['tip_hash'][:16]}
-          append_ledger(ev, f'KERNEL_LOOP verdict={loop_verdict} @ {TS}')
+          ev = append_ledger(ev, f'KERNEL_LOOP verdict={loop_verdict} @ {TS}')
           putc('vci-inbox', 'bridge/kernel-loop/last-run.json', json.dumps({'ts': TS, 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts']}, ensure_ascii=False, indent=1), f'kernel-loop last-run {TS}')
           # ---- P9 BEAT-FORWARD (D-157: 事件驱动接力扣门,级联深度≤1——cause='beat-forward'者不转叩) ----
           CAUSE = os.environ.get('CAUSE', 'schedule')
