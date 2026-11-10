@@ -1,0 +1,105 @@
+{
+  "beat": "AD-25",
+  "status": "SEQ91_528_RAW_CIRCUITS_INDEPENDENT_PASS",
+  "known_answer_gate_first": {
+    "center_e": 3.94138946710769e-14,
+    "center_signature": {
+      "direct_e_rebuilt": 0.19917725455929625,
+      "angle_max_dev_rad": 4.884981308350689e-14,
+      "H_involution_max": 1.509903313490213e-13,
+      "best_perm": [
+        2,
+        1,
+        0
+      ],
+      "best_sigma": -1,
+      "best_ansatz_max_delta": 9.059419880941277e-14,
+      "runner_up_ansatz_max_delta": 0.49963757791837726
+    }
+  },
+  "runs": 528,
+  "max_target_rebuild_difference": 3.954902666101579e-16,
+  "signature_mismatches": 0,
+  "exact_returns": 443,
+  "by_radius": {
+    "0.001": {
+      "n": 48,
+      "exact_returns": 48,
+      "signature_hits": 48
+    },
+    "0.003": {
+      "n": 48,
+      "exact_returns": 48,
+      "signature_hits": 48
+    },
+    "0.01": {
+      "n": 48,
+      "exact_returns": 48,
+      "signature_hits": 48
+    },
+    "0.03": {
+      "n": 48,
+      "exact_returns": 48,
+      "signature_hits": 48
+    },
+    "0.1": {
+      "n": 48,
+      "exact_returns": 48,
+      "signature_hits": 48
+    },
+    "0.3": {
+      "n": 48,
+      "exact_returns": 48,
+      "signature_hits": 48
+    },
+    "1.0": {
+      "n": 48,
+      "exact_returns": 47,
+      "signature_hits": 47
+    },
+    "2.0": {
+      "n": 48,
+      "exact_returns": 38,
+      "signature_hits": 38
+    },
+    "3.0": {
+      "n": 48,
+      "exact_returns": 35,
+      "signature_hits": 35
+    },
+    "5.0": {
+      "n": 48,
+      "exact_returns": 26,
+      "signature_hits": 26
+    },
+    "10.0": {
+      "n": 48,
+      "exact_returns": 9,
+      "signature_hits": 9
+    }
+  },
+  "finite_difference_rank_check": {
+    "raw73_rank": 33,
+    "core38_rank": 33,
+    "core38_nullity": 5,
+    "raw_boundary_singular_values": [
+      0.39599623432172576,
+      0.24959013005803882,
+      0.09052847270901832,
+      2.3349103079636326e-08,
+      7.97559778722301e-11
+    ],
+    "core_boundary_singular_values": [
+      0.3959962343297929,
+      0.24959013005154393,
+      0.09052847270935455,
+      2.3352741943107726e-08,
+      1.0748246683593649e-10,
+      6.352256538018143e-11
+    ],
+    "note": "只复核横向代表和最终电路；rank30的Euler规范伪影由单独诊断件承担。"
+  },
+  "boundary": "528条最终电路及签名独立一致；有限方向局部协议仍不是全局basin体积或测地几何。",
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

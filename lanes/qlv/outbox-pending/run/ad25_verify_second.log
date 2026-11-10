@@ -1,0 +1,41 @@
+{
+  "status": "ALL_PASS",
+  "children": {
+    "maj": {
+      "script": "ad25_maj_independent.py",
+      "output": "ad25_maj_independent.json",
+      "returncode": 0,
+      "stdout_sha256": "7bf973636ea85693fa189ab6b6418f7ed24b2ec20cdffcc61ebcc83f9ae878f7",
+      "json_sha256": "1c448c7ea26f83f9e05bc4c2e83641c5ff95b166741fe7709bf45b2a0c4c98b8"
+    },
+    "s2": {
+      "script": "ad25_s2_independent.py",
+      "output": "ad25_s2_independent.json",
+      "returncode": 0,
+      "stdout_sha256": "2bee69eb24710df6e27bf5ab0aa755d8036f87201c30e653c71ea284b5a5ceb9",
+      "json_sha256": "ca45bb625b20aeb580dce3be549fca88f1a4fc8229ad8982d7bce5d30ca46c91"
+    },
+    "seq91": {
+      "script": "ad25_seq91_independent.py",
+      "output": "ad25_seq91_independent.json",
+      "returncode": 0,
+      "stdout_sha256": "9e5045e4504552ad32c9d5161fb0fa062a3fe141c68671688fa078ed9d1cc866",
+      "json_sha256": "bdca977a44dfa3bffe8d58603af7bfe1f5763ebba3df035232acc65d58ff034c"
+    }
+  },
+  "headline": {
+    "maj_interval": "4 <= k <= 7",
+    "maj_k4_runs": 96,
+    "maj_k4_joint_hits": 0,
+    "s2_full_sphere_cz": 11,
+    "s2_numeric_points": 25,
+    "s2_numeric_max_abs": 1.5788995281571398e-15,
+    "seq91_runs": 528,
+    "seq91_exact_returns": 443,
+    "seq91_raw73_rank": 33,
+    "seq91_core38_rank": 33,
+    "seq91_core38_nullity": 5,
+    "rac_verdict": "WAITING_PEER_S_SIM"
+  },
+  "sha256": "e8e0c34c30a629b02af323d29bf075e0aed2a8d118aadb2785e2588493a709a1"
+}

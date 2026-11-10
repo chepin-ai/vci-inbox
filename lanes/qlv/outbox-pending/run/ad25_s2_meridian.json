@@ -1,0 +1,955 @@
+{
+  "beat": "AD-25",
+  "status": "S2_FULL_SPHERE_11CZ_L1_PASS",
+  "evidence_level": "L1 analytic circuit identity; L2 independent-looking numeric grid is corroboration only",
+  "source_endpoint": {
+    "path": "/mnt/agents/output/.stash/ad24/run/ad24_s2_exact.json",
+    "sha256": "ec0f942e4a5404daaf5476126d93f27a00eb7821a056c77c9025b806203065ce",
+    "theta0_7cz_numeric_max_abs": 3.885780586188048e-16
+  },
+  "known_answer_gate_first": {
+    "w_cases": [
+      {
+        "theta": 0.0,
+        "decomposition": 5.551115123125783e-16,
+        "unitary": 0.0,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 0.0
+      },
+      {
+        "theta": 0.1,
+        "decomposition": 4.47545209131181e-16,
+        "unitary": 3.621235256101585e-17,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 8.673617379884035e-18
+      },
+      {
+        "theta": 0.7,
+        "decomposition": 6.684427777288334e-16,
+        "unitary": 2.220446049250313e-16,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 1.1102230246251565e-16
+      },
+      {
+        "theta": 1.3,
+        "decomposition": 5.578801654593729e-16,
+        "unitary": 2.7755575615628914e-17,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 0.0
+      }
+    ],
+    "wrong_adjoint_direction_nonzero": 0.963558185417193,
+    "phi_cases": [
+      {
+        "phi": -1.3,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 1.0007415106216804e-16
+      },
+      {
+        "phi": -0.2,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 1.1102230246251565e-16
+      },
+      {
+        "phi": 0.4,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 2.7755575615628914e-17
+      },
+      {
+        "phi": 1.7,
+        "toffoli_commutation": 0.0,
+        "sphere_conjugation": 1.3877787807814457e-17
+      }
+    ]
+  },
+  "symbolic_proof": {
+    "status": "ALL_SYMBOLIC_IDENTITIES_EXACT_ZERO",
+    "coordinates": "c=cos(theta/4), s=sin(theta/4), relation c^2+s^2-1=0; phi kept symbolic",
+    "reduction": "exact normal form by s^n -> s^(n mod 2)(1-c^2)^floor(n/2), equivalent to reduction modulo c^2+s^2-1",
+    "nonzero_after_reduction": {
+      "w_decomposition_4x4": 0,
+      "w_unitary_4x4": 0,
+      "w_cnot_commutation_4x4": 0,
+      "w_sphere_conjugation_4x4": 0
+    },
+    "phi_pauli_conjugation": "RXR^dagger=cos(phi)X-sin(phi)Y; RYR^dagger=cos(phi)Y+sin(phi)X; RZR^dagger=Z exact",
+    "theorem": "Wtheta=Tcontrolled 2-CZ block; [Wtheta,Toffoli]=0; H(theta,0)=Wtheta H00 Wtheta^dagger; H(theta,phi)=Rphi H(theta,0) Rphi^dagger.",
+    "circuit_consequence": "U(theta,phi)=Rphi Wtheta U0 Wtheta^dagger Rphi^dagger; 2+7+2=11 CZ, unchanged PATH edge sequence, only first/last q0 SU(2) layers absorb Rphi."
+  },
+  "construction": {
+    "cz_count": 11,
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "time_order": "W(theta)^dagger -> AD-24 U0 -> W(theta), then Rphi on both outer sides",
+    "phase": "3*pi/8; W and W^dagger normalization phases cancel",
+    "local_layers": 12,
+    "phi_absorption": "first q0 SU(2) right-multiplied by Rphi^dagger; last q0 SU(2) left-multiplied by Rphi",
+    "theta_zero_11cz_exact": {
+      "status": "THETA_ZERO_11CZ_ALL_EXACT_ZERO",
+      "exact_nonzero_residual_entries": 0,
+      "phase_pi_over_8": 3,
+      "local_angles_pi_over_4": [
+        [
+          [
+            0,
+            2,
+            -2
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            -2,
+            3,
+            -6
+          ],
+          [
+            -2,
+            2,
+            4
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            2,
+            -6
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            0,
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            -7,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            -2
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            -7,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            -2,
+            2,
+            4
+          ],
+          [
+            4,
+            2,
+            -4
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "max_integer_snap_rad": 4.440892098500626e-16,
+      "field": "Q(w), w=exp(i*pi/8), w^8+1=0"
+    },
+    "theta_zero_numeric_max_abs": 5.4672143489065705e-16
+  },
+  "numeric_full_matrix_grid": {
+    "points": 72,
+    "theta_points": 9,
+    "phi_points": 8,
+    "max_abs": 8.968100940422724e-16,
+    "records": [
+      {
+        "theta": 0.0,
+        "phi": -3.141592653589793,
+        "max_abs": 5.452355312039072e-16,
+        "frobenius": 1.6321144635244741e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": -2.356194490192345,
+        "max_abs": 7.301351988545592e-16,
+        "frobenius": 2.0540364354307863e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": -1.5707963267948966,
+        "max_abs": 7.454064588905287e-16,
+        "frobenius": 2.1379075457473677e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": -0.7853981633974483,
+        "max_abs": 7.895177979396797e-16,
+        "frobenius": 2.3428034432901707e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": 0.0,
+        "max_abs": 5.959574457709398e-16,
+        "frobenius": 1.9365357049566526e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": 0.7853981633974483,
+        "max_abs": 6.497413668604471e-16,
+        "frobenius": 1.8430675408996373e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": 1.5707963267948966,
+        "max_abs": 7.184187149139049e-16,
+        "frobenius": 2.0289314317810994e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": 2.356194490192345,
+        "max_abs": 7.264599276594309e-16,
+        "frobenius": 2.136285744130452e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": -3.141592653589793,
+        "max_abs": 5.128238871312644e-16,
+        "frobenius": 1.4923679761787168e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": -2.356194490192345,
+        "max_abs": 6.308767392048742e-16,
+        "frobenius": 1.6233149170591167e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": -1.5707963267948966,
+        "max_abs": 6.609477110653012e-16,
+        "frobenius": 1.6348579104896342e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": -0.7853981633974483,
+        "max_abs": 7.082432167099489e-16,
+        "frobenius": 1.9324906934967347e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": 0.0,
+        "max_abs": 5.772225570600925e-16,
+        "frobenius": 1.5108149110258192e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": 0.7853981633974483,
+        "max_abs": 4.592793019057271e-16,
+        "frobenius": 1.4513729879711663e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": 1.5707963267948966,
+        "max_abs": 4.948676888734902e-16,
+        "frobenius": 1.5822276402465185e-15
+      },
+      {
+        "theta": 0.39269908169872414,
+        "phi": 2.356194490192345,
+        "max_abs": 5.990399793736238e-16,
+        "frobenius": 1.7378286507398929e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": -3.141592653589793,
+        "max_abs": 5.229764790997962e-16,
+        "frobenius": 1.680135784220663e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": -2.356194490192345,
+        "max_abs": 7.147060721024445e-16,
+        "frobenius": 2.149063511550234e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": -1.5707963267948966,
+        "max_abs": 6.855521024051994e-16,
+        "frobenius": 2.1079591405564777e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": -0.7853981633974483,
+        "max_abs": 8.356687129687288e-16,
+        "frobenius": 2.4962853012227855e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": 0.0,
+        "max_abs": 7.001065424966057e-16,
+        "frobenius": 1.851969226256425e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": 0.7853981633974483,
+        "max_abs": 5.48172618408671e-16,
+        "frobenius": 1.8061655820658117e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": 1.5707963267948966,
+        "max_abs": 6.661338147750939e-16,
+        "frobenius": 2.1308973808417584e-15
+      },
+      {
+        "theta": 0.7853981633974483,
+        "phi": 2.356194490192345,
+        "max_abs": 7.144028522217822e-16,
+        "frobenius": 2.1066595218230066e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": -3.141592653589793,
+        "max_abs": 6.028251468982864e-16,
+        "frobenius": 1.6861043161018866e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": -2.356194490192345,
+        "max_abs": 6.52403646303099e-16,
+        "frobenius": 1.6330145654692116e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": -1.5707963267948966,
+        "max_abs": 3.9396812026052867e-16,
+        "frobenius": 1.5454524710771013e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": -0.7853981633974483,
+        "max_abs": 5.797195660796456e-16,
+        "frobenius": 1.9516180538353884e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": 0.0,
+        "max_abs": 5.750497121565129e-16,
+        "frobenius": 1.6651314416513476e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": 0.7853981633974483,
+        "max_abs": 6.214088459698983e-16,
+        "frobenius": 1.4932324221812002e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": 1.5707963267948966,
+        "max_abs": 5.431951066745305e-16,
+        "frobenius": 1.6891355067132573e-15
+      },
+      {
+        "theta": 1.1780972450961724,
+        "phi": 2.356194490192345,
+        "max_abs": 5.209256464834128e-16,
+        "frobenius": 1.776654315248825e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": -3.141592653589793,
+        "max_abs": 6.939551718746428e-16,
+        "frobenius": 1.7637233449800945e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": -2.356194490192345,
+        "max_abs": 5.661048867003677e-16,
+        "frobenius": 1.8041918326621755e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": -1.5707963267948966,
+        "max_abs": 4.84892122454586e-16,
+        "frobenius": 1.62696993192966e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": -0.7853981633974483,
+        "max_abs": 6.292624226552986e-16,
+        "frobenius": 1.962492313316714e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": 0.0,
+        "max_abs": 5.013320832966251e-16,
+        "frobenius": 1.63354519618667e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": 0.7853981633974483,
+        "max_abs": 5.558049685633556e-16,
+        "frobenius": 1.7807688293177234e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": 1.5707963267948966,
+        "max_abs": 5.551368259645423e-16,
+        "frobenius": 1.7192532514353102e-15
+      },
+      {
+        "theta": 1.5707963267948966,
+        "phi": 2.356194490192345,
+        "max_abs": 5.578801654593729e-16,
+        "frobenius": 1.7515993752696128e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": -3.141592653589793,
+        "max_abs": 6.69092829300443e-16,
+        "frobenius": 2.149624617713746e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": -2.356194490192345,
+        "max_abs": 8.968100940422724e-16,
+        "frobenius": 2.55912532898012e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": -1.5707963267948966,
+        "max_abs": 7.774778754248601e-16,
+        "frobenius": 2.5239557480581866e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": -0.7853981633974483,
+        "max_abs": 8.564967692975252e-16,
+        "frobenius": 2.7255896792758602e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": 0.0,
+        "max_abs": 6.39734408315113e-16,
+        "frobenius": 2.172715514851168e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": 0.7853981633974483,
+        "max_abs": 7.001065424966056e-16,
+        "frobenius": 2.2805005149889538e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": 1.5707963267948966,
+        "max_abs": 7.572556489974359e-16,
+        "frobenius": 2.4305172314385948e-15
+      },
+      {
+        "theta": 1.9634954084936207,
+        "phi": 2.356194490192345,
+        "max_abs": 7.752952570751715e-16,
+        "frobenius": 2.3637192283464618e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": -3.141592653589793,
+        "max_abs": 6.754494564621461e-16,
+        "frobenius": 2.2067288965088827e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": -2.356194490192345,
+        "max_abs": 7.021666937153402e-16,
+        "frobenius": 2.1781712042535935e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": -1.5707963267948966,
+        "max_abs": 6.077924344622314e-16,
+        "frobenius": 1.98739652713344e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": -0.7853981633974483,
+        "max_abs": 6.497413668604471e-16,
+        "frobenius": 2.261320494770217e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": 0.0,
+        "max_abs": 5.960990477592167e-16,
+        "frobenius": 2.048436834698155e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": 0.7853981633974483,
+        "max_abs": 6.661338147750939e-16,
+        "frobenius": 2.0024474661811205e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": 1.5707963267948966,
+        "max_abs": 6.473657049138937e-16,
+        "frobenius": 2.1042528062169273e-15
+      },
+      {
+        "theta": 2.356194490192345,
+        "phi": 2.356194490192345,
+        "max_abs": 6.397344083151129e-16,
+        "frobenius": 2.134842946242937e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": -3.141592653589793,
+        "max_abs": 5.685686857635897e-16,
+        "frobenius": 1.5803284963052653e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": -2.356194490192345,
+        "max_abs": 7.267295797271748e-16,
+        "frobenius": 1.9615279575914843e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": -1.5707963267948966,
+        "max_abs": 6.400119697629711e-16,
+        "frobenius": 1.738480374129053e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": -0.7853981633974483,
+        "max_abs": 7.468261590855958e-16,
+        "frobenius": 2.1168408633608458e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": 0.0,
+        "max_abs": 5.181453794521193e-16,
+        "frobenius": 1.6459152664664595e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": 0.7853981633974483,
+        "max_abs": 5.398816479619992e-16,
+        "frobenius": 1.6303664351076248e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": 1.5707963267948966,
+        "max_abs": 6.473657049138937e-16,
+        "frobenius": 1.8296581898293337e-15
+      },
+      {
+        "theta": 2.748893571891069,
+        "phi": 2.356194490192345,
+        "max_abs": 6.534734648290199e-16,
+        "frobenius": 1.9282385704639202e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": -3.141592653589793,
+        "max_abs": 7.125965269882663e-16,
+        "frobenius": 2.0908498057301228e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": -2.356194490192345,
+        "max_abs": 7.108895957933346e-16,
+        "frobenius": 2.1940377604044948e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": -1.5707963267948966,
+        "max_abs": 7.442069717685902e-16,
+        "frobenius": 2.0862775449568163e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": -0.7853981633974483,
+        "max_abs": 6.704846527567386e-16,
+        "frobenius": 2.2735024763960613e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 0.0,
+        "max_abs": 6.521014946038239e-16,
+        "frobenius": 1.974787803643249e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 0.7853981633974483,
+        "max_abs": 6.483825106237571e-16,
+        "frobenius": 2.032551568182085e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 1.5707963267948966,
+        "max_abs": 7.360821209728264e-16,
+        "frobenius": 2.2334639870118752e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 2.356194490192345,
+        "max_abs": 7.763621337697607e-16,
+        "frobenius": 2.145848672721754e-15
+      }
+    ]
+  },
+  "adjacent_cz_cancellation_attack": {
+    "scope": "isolated CZ-local-CZ pair on 01; exact local iff two-qubit operator Schmidt rank=1",
+    "by_theta": {
+      "0.0": [
+        {
+          "left_cz_index": 0,
+          "rank_1e-9": 1,
+          "second_schmidt_coefficient": 0.0,
+          "local_cancellation": true
+        },
+        {
+          "left_cz_index": 1,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.3065629648763766,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 2,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.414213562373095,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 7,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.0000000000000002,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 8,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.414213562373095,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 9,
+          "rank_1e-9": 1,
+          "second_schmidt_coefficient": 0.0,
+          "local_cancellation": true
+        }
+      ],
+      "0.1": [
+        {
+          "left_cz_index": 0,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 0.049994791829424505,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 1,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.3062247439997108,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 2,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.414213562373095,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 7,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.0000000000000002,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 8,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.4142135623730951,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 9,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 0.049994791829424505,
+          "local_cancellation": false
+        }
+      ],
+      "0.7": [
+        {
+          "left_cz_index": 0,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 0.3482162751871922,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 1,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.290053028102327,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 2,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.414213562373095,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 7,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.0000000000000002,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 8,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.414213562373095,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 9,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 0.3482162751871922,
+          "local_cancellation": false
+        }
+      ],
+      "1.3": [
+        {
+          "left_cz_index": 0,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 0.6386175717140018,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 1,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.250166489851165,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 2,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.414213562373095,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 7,
+          "rank_1e-9": 4,
+          "second_schmidt_coefficient": 1.0000000000000002,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 8,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 1.4142135623730951,
+          "local_cancellation": false
+        },
+        {
+          "left_cz_index": 9,
+          "rank_1e-9": 2,
+          "second_schmidt_coefficient": 0.6386175717140018,
+          "local_cancellation": false
+        }
+      ]
+    },
+    "nonzero_theta_hits": 0,
+    "verdict": "NO_TESTED_NONZERO_THETA_LOCAL_PAIR_CANCELLATION",
+    "boundary": "只排除被测相邻门直接局部抵消；不排除跨多块重合成、非标准W分解、其他边序或9/7-CZ实现。"
+  },
+  "strict_conclusion": "序34对应的整个S²目标族存在同一11-CZ PATH模板的解析全矩阵实现；theta=0仍可由AD-24的7-CZ实现。",
+  "open_boundaries": [
+    "11-CZ不冒报为最优；11到9/7的跨块消门与另一模板仍开放。",
+    "数值72点只作交叉检查，任意theta/phi结论由符号恒等式链承担。",
+    "旧65点7-CZ同伦仍属L2；本结果不把全theta的7-CZ存在性写成定理。",
+    "±pi/8角刚性未由本构造解决。"
+  ],
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

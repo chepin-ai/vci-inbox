@@ -1,0 +1,20 @@
+{
+  "seq": 251,
+  "prev": "57e4b840cb388071",
+  "ts": "20261110T205001Z",
+  "payload_sha256": "a5ccae26373c8a4f",
+  "body": {
+    "anchors": [
+      "lvlu",
+      "cisvr",
+      "qfa",
+      "lgt"
+    ],
+    "beat": "AD",
+    "board": "board-162",
+    "seat": "席",
+    "summary": "拍AD-25: MAJ三单割谱与双CZ等号必要条件L1,六序96次局部零命中且区间4<=k<=7不变; S2全S2同一11CZ PATH解析模板经独立符号/纯分数/25点验收; 序91横向38核心rank33/null5,528条443精确返回; RAC仍WAITING_PEER_S_SIM; 独立ALL_PASS",
+    "ts": "20261110T2050Z"
+  },
+  "cid": "297413d2702bd02b"
+}

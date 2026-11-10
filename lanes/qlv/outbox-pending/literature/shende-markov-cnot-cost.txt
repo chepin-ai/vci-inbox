@@ -1,0 +1,1356 @@
+Quantum Information and Computation, Vol. 9, No. 5&6 (2009) 0461–0486
+c Rinton Press
+
+
+
+
+                               On THE CNOT-COST OF TOFFOLI GATES
+
+
+                                             VIVEK V. SHENDEa
+                                   Princeton University, Princeton, NJ 08544
+
+                                            IGOR L. MARKOVb
+                       Department of EECS, University of Michigan, Ann Arbor, MI 48109
+
+
+                                              Received March 22, 2008
+                                              Revised January 2, 2009
+
+
+          The three-input TOFFOLI gate is the workhorse of circuit synthesis for classical logic oper-
+          ations on quantum data, e.g., reversible arithmetic circuits. In physical implementations,
+          however, TOFFOLI gates are decomposed into six CNOT gates and several one-qubit gates.
+          Though this decomposition has been known for at least 10 years, we provide here the
+          first demonstration of its CNOT-optimality. We study three-qubit circuits which contain
+          less than six CNOT gates and implement a block-diagonal operator, then show that they
+          implicitly describe the cosine-sine decomposition of a related operator. Leveraging the
+          canonical nature of such decompositions to limit one-qubit gates appearing in respective
+          circuits, we prove that the n-qubit analogue of the TOFFOLI requires at least 2n CNOT
+          gates. Additionally, our results offer a complete classification of three-qubit diagonal
+          operators by their CNOT-cost, which holds even if ancilla qubits are available.
+
+          Keywords:
+          Communicated by: H-K Lo & R Laflamme
+
+
+1   Introduction
+The three-qubit TOFFOLI gate appears in key quantum logic circuits, such as those for modular
+exponentiation. However, in physical implementations it must be decomposed into one- and
+two-qubit gates. Figure 1 reproduces the textbook circuit from [14] with six CNOT gates, as
+well as Hadamard (H), T = exp (iπσz /8) and T † gates.
+
+                 •                                  •                        •          •      T    •
+
+                 •         =           •                         •                  T   
+                                                                                           T†   
+                                                                                                    
+
+                
+                              H    
+                                           T†   
+                                                        T    
+                                                                    T†   
+                                                                                T   H
+
+          Fig. 1 Decomposing the TOFFOLI gate into one-qubit and six CNOT gates.
+
+    The pursuit of efficient circuits for standard gates has a long and rich history. DiVincenzo
+and Smolin found numerical evidence [4] that five two-qubit gates are necessary and sufficient
+to implement the TOFFOLI. Margolus showed that a phase-modified TOFFOLI gate admits a
+avshende@princeton.edu
+b imarkov@eecs.umich.edu
+
+
+
+                                                           461
+462   On the CNOT-cost of TOFFOLI gates
+
+
+three-CNOT implementation [6, 5], whose optimality was eventually demonstrated by Song and
+Klappenecker [20]. Unfortunately, this MARGOLUS gate can replace TOFFOLI only in rare cases.
+The detailed case analysis used in the optimality proof from [20] does not extend easily to
+circuits with four or five CNOTs. The omnibus Barenco et al. paper offers circuits for many
+standard gates, including an eight-CNOT circuit for the TOFFOLI [1, Corollary 6.2], as well as
+a six-CNOT circuit for the controlled-controlled-σz , which differs from the TOFFOLI only by
+one-qubit operators [1, Section 7]. Problem 4.4b of the textbook by Nielsen and Chuang asks
+whether the circuit of Figure 1 could be improved. The problem was marked as unsolved,
+and we report the following progress.
+    Theorem 1 A circuit consisting of CNOT gates and one-qubit gates which implements the
+n-qubit TOFFOLI gate without ancillae requires at least 2n CNOT gates. For n = 3, this bound
+holds even when ancillae are permitted, and is achieved by the circuit of Figure 1.
+    Our main tool is the Cartan decomposition in its “KAK” form, which provides a Lie-
+theoretic generalization of the singular-value decomposition [8]. Several special cases have
+previously proven useful for the synthesis and analysis of quantum circuits, notably the two-
+qubit magic decomposition [10, 11, 24, 23, 22, 16, 17], the cosine-sine decomposition [7, 2, 13,
+18], and the demultiplexing decomposition [18]. The canonical nature of the two-qubit “magic”
+decomposition was used previously to perform CNOT-counting for two-qubit operators [16].
+The magic decomposition is a two-qubit phenomenon,cbut the cosine-sine and demultiplexing
+decompositions hold for n-qubit operators are similarly canonical. Moreover, the components
+of these decompositions are multiplexors [18] — block-diagonal operators that commute with
+many common circuit elements. Commutation properties facilitate circuit restructuring that
+can dramatically reduce the number of circuit topologies to be considered in proofs. These
+results and observations allow us to perform CNOT-counting using the Cartan decomposition
+in a divide-and-conquer manner.
+    In the remaining part of this paper, we first review basic properties of quantum gates
+in Section 2 and make several elementary simplifications to reduce the complexity of the
+subsequent case analysis. In particular, we pass from the CNOT and TOFFOLI gates to the
+symmetric, diagonal CZ and CCZ gates, and recall circuit decompositions which yield operators
+commuting with Z and CZ gates. We also define qubit-local CZ-costs, and observe that the total
+CZ-cost can be lower-bounded by half the sum of the local CZ counts for each qubit. Though
+weak, this bound suffices for our purposes and we can compute it in simple cases. Further
+technique is developped in Section 3, where we compute matrix entries to derive constraints
+on gates from circuit equations. This approach was employed by Song and Klappenecker in
+the two-qubit case, and we generalize several of their results to n-qubit circuits.
+    Section 4 is the heart of the present work, in which we prove our result on the CNOT-cost
+of the TOFFOLI gate. It starts by motivating and outlining the methods involved, previews
+key intermediate results, and proves that the CNOT-cost of the TOFFOLI is 6, based on these
+results. In Section 4.2, we use the canonicality of the cosine-sine decomposition derive circuit
+constraints. Section 4.1, motivated by [17], employs the canonicality of the demultiplexing
+decomposition, captured by a spectral invariant, to lower-bound CZ gates required in circuit
+c While the Cartan decomposition SU(n) = SO(n) · [diagonals] · SO(n) is general, the utility of the magic de-
+
+composition arises from the isomorphism SU(2) × SU(2) ≃ SO(4) being represented as an inner automorphism
+of SU(4). Such coincidental isomorphisms are few and confined to low dimensions.
+                                                                    V.V. Shende and I.L. Markov    463
+
+
+implementations of operators. The results apply, mutatis mutandis, to CNOT-based implemen-
+tations as well. Finally, in Section 4.3, we deduce as corollaries that the three-qubit PERES
+gate requires exactly 5 CNOTs and the n-qubit TOFFOLI gate requires at least 2n. In Sec-
+tion 5, we extend our techniques to all three-qubit diagonal operators, completely classifying
+them according to CZ-cost. Generalizations to circuits with ancillae are obtained in Section
+6. Concluding discussion can be found in Section 7.
+
+2     Preliminaries
+We review notation and properties of useful quantum gates, then characterize operators that
+commute with Pauli-Z gates on multiple qubits. We then review circuit decompositions from
+[3, 13, 18]. Finally, we introduce terminology appropriate for quantifying gate costs of unitary
+operators in terms of the CNOT and CZ and state elementary but useful observations about
+these costs.
+
+2.1    Notation and properties of standard quantum gates
+We write X, Y, Z for the Pauli operators, and CX, CCX for CNOT, TOFFOLI. Rotation gates
+exp(iZθ) are denoted by Rz (θ), and we analogously use Rx , Ry .d We work throughout on
+some fixed number of qubits N . For a one-qubit gate g and a qubit q, we denote by g (q) the
+N -qubit operator implemented by applying the gate g on qubit q. Similarly, C(i) X(j) is the
+operator implemented by a controlled-X with the control on qubit i and target on qubit j.
+The controlled-Z being symmetric with respect to exchanging qubits, we do not distinguish
+control from target in the notation CZ(i,j) . We similarly denote the operator of a controlled-
+controlled-Z on qubits i, j, k by CCZ(i,j,k) . In choosing qubit labels, we follow throughout the
+convention that the high-to-low significance order of qubits is the same as the lexicographic
+order of their labels.
+    We follow the standard but sometimes confusing convention that typeset operators act on
+vectors from the left, but circuit diagrams process inputs from the right. Consistently with
+the established notation for the CNOT gate, we denote the X gate by “⊕” in circuit diagrams.
+We denote the Z gate by a “•” symbol, which does not lead to ambiguity in the matching
+notation for CZ because CZ is symmetric. Thus the following diagram expresses the identity
+CZ(ℓ,m) X(ℓ) = Z(m) X(ℓ) CZ(ℓ,m) and rearranges gates in quantum circuits, like de Morgan’s law
+does in digital logic.
+
+                                    ℓ      •
+                                                      • 
+                                                                                               (1)
+                                                      =
+                                   m          •           • •
+    Another standard identity relates the X, Z, and one-qubit HADAMARD (H) gates: HXH = Z.
+By case analysis on control qubits, one obtains the further identities H(i) C(j) X (i) H(i) = CZ(i,j)
+and H(i) CC(j,k) X(i) H(i) = CCZ(i,j,k) . Despite this equivalence, we prefer the X family of gates for
+some applications and the Z family for others, as summarized in Table 1.
+    Circuits consisting entirely of one-qubit gates and CZ (respectively CNOT) gates will be
+called CZ-circuits (respectively CNOT-circuits). Using the above identities, CZ-circuits and
+CNOT-circuits can be interchanged at the cost of adding one-qubit H gates. It will also be
+d We omit the factor of ±1/2 used by other authors.
+464   On the CNOT-cost of TOFFOLI gates
+
+                           CNOT and TOFFOLI                                  CZ and CCZ
+  Advantages                     With one-qubit gates added, either CNOT or CZ would be universal
+                           Implement addition and multiplication             Symmetric
+                           Universal for reversible computation              Fewer circuit topologies
+                           Block-diagonal                                    Diagonal
+                           With 1-qubit diagonals, implement any diagonal —
+                           Commute with X on target                          Commute with Z on target
+  Other                    Change direction after two H-conjugations
+   properties                         One can map back and forth by H-conjugation on target
+  Applications             Circuit synthesis                                 Circuit analysis
+                          Table 1 Relative advantages of standard controlled gates.
+
+
+convenient to consider CZ(ℓ) -circuits, which by definition are arbitrary circuits where all multi-
+qubit gates touching qubit ℓ are CZ. While these are not a subclass of CZ-circuits, a CZ(ℓ) -circuit
+can be converted into a CZ-circuit without any changes affecting qubit ℓ.
+
+2.2    Operators commuting with Z
+An operator is diagonal if and only if it commutes with Z(ℓ) for all qubits ℓ. Similarly, Q
+commutes with Z on the highest order qubit if and only if
+                                                   
+                                            Q0 0
+                                    Q=
+                                             0 Q1
+
+For ℓ any qubit, Q commutes with Z(ℓ) if and only if the (s, t)-th entry of the matrix of Q
+whenever is zero when the binary expansions of s and t differ at digit ℓ. It is more convenient
+to write this in the following way:
+Observation 2 Let Q be a unitary operator and ℓ be a qubit. The following are equivalent.
+
+   1. Q commutes with Z(ℓ)
+            (ℓ)           (ℓ)
+   2. h0|         Q |1i         =0
+            (ℓ)           (ℓ)
+   3. h1|         Q |0i         =0
+
+   4. Q decomposes as a Q = |0i h0| ⊗ Q0 + |1i h1| ⊗ Q1 , where the projectors |ii hi| operate
+      on qubit ℓ and the unitary Qi operate on the qubits other than ℓ.
+
+   5. Q decomposes as a product of a positively ℓ-controlled operator a negatively ℓ-controlled
+                                  (ℓ)
+      operator: Q = C(ℓ) (Q1 ) · C (Q0 ).
+
+The Q0 , Q1 of 4 and 5 are the same.
+    Whenever we have an operator commuting with Z(ℓ) we will employ subscripts as in Ob-
+servation 2 to denote its diagonal blocks. More generally,
+Notation. Fix qubits ℓ1 , . . . , ℓk , and let Q commute with Z(ℓi ) for all i. For any bitstring
+                                                 (ℓ ...ℓ )            (ℓ ...ℓ )
+j1 . . . jk we write Qj1 ...jk for hj1 . . . jk | 1 k Q |j1 . . . jk i 1 k . Note that Qj1 ...jk acts on k
+fewer qubits than Q.
+                                                                              V.V. Shende and I.L. Markov   465
+
+                                                             (i)                    (i)
+   For example, the two-qubit operator U = |0i h0| ⊗ Z (j) + |1i h1| ⊗ X (j) commutes only
+with Z i and hence we would write U0 = Z and U1 = X. Below, we write the matrix of U in
+two bases; on the left, i is the most significant qubit, but on the right, j is.
+                                                                
+                                1 0 0 0              1 0 0 0
+                              0 −1 0 0   0 0 0 1 
+                                                                
+                              0 0 0 1   0 0 −1 0 
+                                0 0 1 0              0 1 0 0
+
+                                        i>j                        j>i
+Observe that only the left matrix is block-diagonal.
+   In circuit diagrams, we indicate that a given operator commutes with Z(ℓ) by using a
+“control-on-box”, as below. The backslash on the bottom line indicates that it represents an
+arbitrary number of qubits (a multi-qubit bus).
+
+                                                 ℓ
+                                                     \ U
+Unlike the notation for the positively and negatively controlled-U gates, the U above is not
+to be understood as acting only on the lower line. By way of illustration, we translate
+Observation 2, item 5, into a diagram:
+
+                                                             •      
+                                                     =
+                                       \ Q               \ Q1      Q0
+Observation 3 Let Q, R be two gates such that for every qubit ℓ, either one of them does
+not affect ℓ, or both of them commute with Z(ℓ) . Then QR = RQ. In picture:
+
+                                   \                         \
+                                   \ Q                   =   \            Q
+
+                                   \         R               \ R
+      We now recall the multiplexed rotation gates [13, 18], which generalize the Rx , Ry , Rz gates.
+Let ∆ be a diagonal Hermitian matrix acting on the qubits ℓ1 , . . . , ℓk , and fix another qubit
+                                             (m)
+m 6= ℓi . We define the operator Rz (∆) on the qubits ℓ1 , . . . , ℓk , m by the conditions (1) that
+                          (ℓi )                                                                 (m)
+it commute with Z                for all i, and (2) for any bitstring j1 . . . jk , we have Rz (∆)j1 ...jk =
+                                      (m)
+Rz (∆ℓ1 ...ℓk ). Explicitly, Rz (∆) = exp(iZ(m) ∆(ℓ1 ...ℓk ) ). Multiplexed Rx , Ry gates are defined
+similarly. Since such operators commute with Z(ℓi ) , we depict them in circuit diagrams with
+the appropriate control-on-boxes.
+      It is natural to ask when an operator commuting with various Z gates can be implemented
+in a CZ-circuit containing only gates commuting with the same Z gates. The answer is given
+in terms of the partial determinant.
+Definition 1 Fix qubits ℓ1 . . . ℓk , and let U be an operator commuting with Z(ℓ1 ) , . . . , Z(ℓk ) .
+We define its partial determinant detℓ1 ...ℓk (U ), to be the diagonal operator acting on the qubits
+ℓ1 , . . . , ℓk , whose j1 . . . jk ’th diagonal entry is det(Uj1 ...jk ). In short, it is given by the formula
+(detℓ1 ...ℓk (U ))j1 ...jk = det(Uj1 ...jk ).
+466   On the CNOT-cost of TOFFOLI gates
+
+
+    When computing partial determinants of a single gate or subcircuit acting on m qubits, we
+first tensor respective operators with I2N −m to form operators acting on all N qubits (which
+may affect the determinants). When applied to such “full” operators, the partial determinant
+mapping is a group homomorphism.
+    For example, consider a CCZ gate in a three qubit circuit. Then for any two qubits i, j, we
+have deti,j (CCZ) = CZi,j . However, in a four qubit circuit, we deti,j (CCZ) = I.
+Proposition 4 Fix qubits ℓ1 . . . ℓk among N > k qubits. A unitary U commuting with
+Z(ℓ1 ) , . . . , Z(ℓk ) can be implemented by a CZ-circuit in which only diagonal gates operate on
+qubits ℓi if and only if detℓ1 ...ℓk (U ) is separable (can be implemented by one-qubit gates).
+Proof: (⇒). To establish the result in the forward direction, it suffices to show the separa-
+bility of detℓ1 ...ℓk (U ) for a generating set of operators. By definition, such a generating set is
+provided by CZs, one-qubit diagonals on the ℓi , and gates not affecting any of the ℓi .
+     Note first that any diagonal gate D acting on qubits ℓ1 , . . . , ℓk has partial determinant
+                                  N −k
+given by detℓ1 ...ℓk (D) = D2          , understood as an operator on qubits ℓ1 . . . ℓk . In particular,
+if D were separable, then so is detℓ1 ...ℓk (D). If D = CZ(ℓi ,ℓj ) , then from CZ2 = I and N > k
+we deduce detℓ1 ...ℓk (CZ(ℓi ,ℓj ) ) = I. The remaining gates we need to consider are:
+(i) any gate not affecting qubits ℓi implements U = Q(1..N )\(ℓ1 ...ℓk ) for some Q.
+In this case Uj1 ...jk = Q, and furthermore detℓ1 ...ℓk (U ) = det(Q)I.
+(ii) CZ gates connecting qubits ℓi , m ∈        / {ℓ1 , . . . , ℓk }. We compute detℓ1 ...ℓk (CZ(ℓi ,m) ) =
+   (ℓi ) 2N −k−1
+(Z )             .
+     (⇐). This part of the result is not used in the rest of the paper, and we therefore defer
+the proof to the Appendix.
+
+2.3    Cartan decompositions in quantum logic
+This section recalls two important operator decompositions (cosine-sine and demultiplexing)
+and casts them as circuit decompositions. Readers willing to accept their use in our proofs
+may skip to Section 2.4.
+    Observe that an operator can be implemented with a single one-qubit gate if and only if
+it commutes with the Pauli operators Z and X on all other qubits. Thus to produce a CNOT-
+circuit for a given operator U , one may use the following algorithmic framework.
+
+   1. Decompose U into a circuit in which each non-CNOT gate, V, W, . . ., commutes with X
+      and Z on more qubits that U does.
+
+   2. Apply the algorithm recursively to V, W, . . . until one-qubit gates are reached.
+
+   As Z is self-adjoint, the requirement that U commutes with Z(i) can be rephrased as the
+condition that U is fixed under the involution U 7→ Z(i) U Z(i) . Given such an involution, a
+fundamental Lie-theoretic result produces an operator decomposition [8]. Here we recite the
+result for completeness, but do not require the reader to understand all terminology.
+
+The Cartan Decomposition. Let G be a reductive Lie group, and ι : G → G an involution.
+Let K = {g : ι(g) = g} and A be maximal over subgroups contained in {g : ι(g) = g −1 }.
+Then K is reductive, A is abelian, and G = KAK.
+                                                                            V.V. Shende and I.L. Markov   467
+
+
+   In order to restate decompositions of unitary operators as circuit decompositions, we
+employ the notation of set-valued quantum gates [18]. Completely unlabelled gates (as in
+Equation 4) denote the set of all gates satisfying all control-on-box commutativity conditions
+imposed by the diagram, and gates labelled Rx , Ry , Rz denote the appropriate set of (possibly
+multiplexed) rotations. An equivalence of circuits with set-valued gates means that if we pick
+an element from each set on one side, there is a way to choose elements on the other so that
+the two circuits compute the same operator. The backslashed wires which usually indicate
+multiple qubits may also carry zero qubits.
+   The involution φZ : U 7→ Z(ℓ) U Z(ℓ) corresponds to the cosine-sine decomposition.e
+
+                                     \                                                                    (2)
+                                     \           =
+
+                                 ℓ                              Ry
+
+    The involution φY : U 7→ Y(ℓ) U Y(ℓ) yields the demultiplexing decomposition [18].
+
+                                 ℓ                              Rz                                        (3)
+                                     \           =
+                                     \
+   The map φY restricts to the subgroup of diagonal operators. This group being abelian,
+the K and A factors commute, leaving the following decomposition of diagonal operators.
+
+                                         ℓ                        Rz                                      (4)
+                                                     =
+                                             \
+   The involution φY further restricts to the subgroup of multiplexed Z rotations, which we
+can demultiplex again. The K and A factors again commute; the A factor is computed by
+the last 3 gates in the circuit below.
+
+                             ℓ                                •             •                             (5)
+                                 \               =
+                                     Rz                  Rz   
+                                                                   Rz   
+                                                                            
+
+   To establish the existence of these decompositions, it remains to verify in each case that the
+purported K and A satisfy the appropriate properties with respect to the relevant involution.
+This can be checked after passing to the Lie algebra where it is easy. Alternatively, explicit
+constructions of the cosine-sine and demultiplexing decompositions are given in [15] and [18],
+respectively.
+   To decompose general n-qubit operators, Equation 2 can be applied iteratively until all
+remaining gates are either multiplexed Ry gates or diagonal. The Ry gates can be replaced
+by Rz gates at the cost of introducing some one-qubit operators; the Rz and other diagonal
+gates can be decomposed as described above; for details and optimizations see [13]. Smaller
+e The terminology comes from the numerical linear algebra literature; see [15] and references therein.
+468       On the CNOT-cost of TOFFOLI gates
+
+
+circuits are obtained by another algorithm, which alternates cosine-sine decompositions with
+demultiplexing decompositions; for details and optimizations, see [18].
+    When circuit decompositions are applied recursively, some gates can be reduced by local
+circuit transformations. For example, when iteratively demultiplexing multiplexed Rz gates,
+some CNOTs may be cancelled as shown below.
+
+
+                  •           •                                                   •                             •
+                                                         •                 •             •              •
+                                                                        _ _         _ _ 
+                                      =
+      \
+                                                                                         
+                                                                                   
+           Rz     
+                     Rz   
+                                               Rz
+                                                  Rz  
+                                                         
+                                                         
+                                                               Rz 
+                                                                        Rz 
+                                                                                        
+                                                       _ _           _ _
+   This technique produces a circuit with 2n CNOT gates for an n-ply multiplexed Rz gate.
+Using Equation 4, we obtain a circuit with 2n − 2 CNOT gates for an arbitrary n-qubit diagonal
+operator [3]. Applying this result to CCZ gate leads to the circuit in Figure 1.
+
+2.4       Basic facts about CZ-counting
+The CZ-cost |U |CZ of an N -qubit operator U is the minimum number of CZs which appear in any
+N -qubit CZ-circuit for U ; we define the CNOT-cost analogously. The identity H(i) C(j) X (i) H(i) =
+CZ(i,j) ensures that |U |CZ = |U |CNOT . The further identity H(i) CC(j,k) X(i) H(i) = CCZ(i,j,k) yields:
+Observation 5 |CCZ|CZ = |CCX|CNOT ≤ 6.
+   By way of illustration, the following modification of the circuit in Figure 1 implements the
+CCZ in terms of CZs.
+
+
+            •                                 •                               •                 •   T       •       (6)
+
+            •    =            •                               •                       T H • HT † H • H
+
+            •             H • HT † H • HT H • HT † H • HT
+    It shall prove more convenient to compute |CCZ|CZ rather than |CCZ|CNOT . To do so, we are
+going to study the number of CZs which must touch a given qubit in any CZ-circuit for a given
+operator. More precisely, the CZ(ℓ) -cost |U |CZ;ℓ is the minimum number of CZ gates incident on
+ℓ in any CZ(ℓ) -circuit for U . These cost functions are related through the following estimate.f
+Observation 6 For any operator P ,
+                                                 1X
+                                       |P |CZ ≥         |P |CZ;j
+                                                 2 j
+
+Proof: Each CZ gate touches two qubits.
+  As the costs |CCZ|CZ;j are the same for j = 1, 2, 3 (by symmetry),
+                                                                3
+                                                  |CCZ|CZ ≥       |CCZ|CZ;j                                         (7)
+                                                                2
+f This bound is very weak in general.  It can be shown using the results of [18] that |U |CZ;ℓ < 6N . Thus a
+direct application of the techniques developped here cannot yield a bound better than |U |CZ ≥ N (6N − 1).
+On the other hand, dimension-counting shows that a generic N -qubit operator U requires on the order of 4N
+CZ gates [9].
+                                                                                                      V.V. Shende and I.L. Markov     469
+
+
+    We emphasize that the number of qubits, N , is an unspecified parameter in both | · |CZ and
+|·|CZ;ℓ . In the presence of ancillae, we define |U |aCZ := mint |U ⊗I2⊗t |CZ . Obviously |U |aCZ ≤ |U |CZ .
+While |U |aCZ = |U |CZ seems unlikely to always hold, we are not aware of any counterexamples.
+Indeed, we will show in Section 6 that this equality holds for all two-qubit operators and all
+three-qubit diagonal operators.
+
+3    Deriving gate constraints from circuit equations
+The circuit decompositions of Section 2.3 are essentially unique, and from one can derive
+various constraints on which gates may appear in certain circuit equations. We will pursue
+this route in Section 4.2. However, the simplest cases are easier to treat from the more
+elementary point of view adopted by Song and Klappenecker in their classification of two-qubit
+controlled-U operators by CNOT-cost [19]. Considering the operator computed by a candidate
+circuit, they first focus on matrix elements which vanish if the operator is a controlled-U . In
+order to produce such zero elements, the gates in the candidate circuit must satisfy certain
+constraints. Below we derive a series of more general results for n-qubit circuits. One-qubit
+gates which become diagonal when multiplied by X occur frequently; we refer to them as
+anti-diagonal.
+Lemma 1 The following equation imposes at least one of the following constraints.
+
+                                         1           b                a
+                                                                                   =
+                                               \          P                                   Q
+    1. a, b are both diagonal or both anti-diagonal.
+    2. P takes the form d ⊗ P0 for some one-qubit diagonal d.
+                      (1)              (1)
+Proof: 0 = h0| aP b |1i = h0| a |0i h0| b |1i P0 + h0| a |1i h1| b |1i P1 . As the coefficients do
+not vanish, P0 and P1 are linearly dependent. It follows that P = d ⊗ P0 for some one-qubit
+diagonal d.
+Corollary 1 If a(i) CZ(i,j) b(i) commutes with Z(i) , then a, b are both diagonal or anti-diagonal.
+Corollary 2 In the situation of Lemma 1, there exist one-qubit operators a′ , b′ which are
+either diagonal or anti-diagonal, such that a′(1) P b′(1) = Q.
+Proof: In Case 1, a = a′ and b = b′ . In Case 2, write P = d ⊗ P0 . Take a′ = adbd−1 and
+b′ = I; then a′(1) P b′(1) = a(1) P b(1) . As a′(1) = QP † commutes with Z(1) , it is diagonal.
+    We turn now to circuits with two CZ gates.
+Lemma 2 Suppose the following equation holds.
+
+                                         1           b                a
+                                         2                                         =
+                                                          P                                   Q
+                                               \
+Then (I) ai bj is diagonal for all i, j or (II) one of P , X(2) P commutes with Z(2) .
+Proof: We compute:
+                                 (1)         (2)              (1)         (2)       (1)               (1)         (2)           (2)
+                       0 = h0|         hi|         aP b |1i         |ji         = h0|     ai bj |1i         hi|         P |ji
+             (2)        (2)
+Either hi|         P |ji      = 0 for some i, j, or h0| ai bj |1i vanishes for all i, j.
+470   On the CNOT-cost of TOFFOLI gates
+
+
+Corollary 3 Suppose the following equation holds.
+
+                           1                         t       •   s   •   r
+                           2                =                •       •
+                                   M                 T           S       R
+                               \
+Then either (I) an even number of r, s, t are anti-diagonal, and the remainder diagonal, or
+(II) S or SX(2) commutes with Z(2) .
+Proof: In order to apply Lemma 2, We move R and T to the other side.
+
+                                                             t   •   s       •       r
+                 m                               =               •           •
+                         †
+                     \ T
+                                   M   R†                \
+                                                                         S
+
+The cases here will correspond to the cases of Lemma 2. Case II is preserved verbatim. For
+Case I, the “ai bj ” which must be diagonal are rst, rsZt, rZst, rZsZt. Since (rst)† rsZt = tZt†
+is diagonal, we deduce that either t or tX is diagonal. Likewise, rZst(rst)† = rZr† is diagonal,
+so either r or rX is diagonal. Finally, rst is diagonal, so from what we know about r, t, either
+s or sX is diagonal, and the number of r, s, t which are not diagonal is even.
+    The following reformulation will be useful later.
+Corollary 4 Suppose Q commutes with Z(ℓ) and let C be a CZ(ℓ) -circuit computing Q in which
+exactly two CZs are incident on ℓ, say CZ(ℓ,m) and CZ(ℓ,n) . Then all non-diagonal one-qubit
+gates may be eliminated from qubit ℓ at the cost of possibly (i) replacing CZ(ℓ,n) with CZ(ℓ,m)
+and (ii) adding one-qubit gates on qubits m, n.
+Proof: By hypothesis, C takes the form
+
+                               Q = [r ⊗ R]CZ(ℓ,m) [s ⊗ S]CZ(ℓ,n) [t ⊗ T ]
+
+where r, s, t are subcircuits of one-qubit operators acting on ℓ, and R, S, T are subcircuits
+containing no gates acting on ℓ. We immediately replace r, s, t by the one-qubit operators
+they compute. Moreover, if m 6= n, then replace S and T by S · SWAP(m,n) and SWAP(m,n) · T ,
+where SWAP is the gate which exchanges qubits. The swaps will be restored and canceled at
+the end of the proof. We are in the situation of Lemma 2.
+Case I. We are done, with the exception that the r, s, t may be anti-diagonal rather than
+diagonal. In this case, Equation 1 allows the extraneous Xs to be pushed through and cancelled
+at the cost of introducing Z gates on qubit m. The diagonal gates remaining on qubit ℓ may be
+commuted through the CZs and conglomerated into one. Finally, the possible swap introduced
+between the S, T terms may be cancelled.
+Case II. Using Equation 1 and replacing s by sZ if necessary, we commute S past one of the
+CZs. We now have:
+                          Q = [r ⊗ R]CZ(ℓ,m) s(ℓ) CZ(ℓ,m) [t ⊗ ST ]
+
+Rearranging the equation,
+
+                         [I ⊗ R† ]Q[I ⊗ T † S † ] = r(ℓ) CZ(ℓ,m) s(ℓ) CZ(ℓ,m) t(ℓ)          (8)
+                                                                                      V.V. Shende and I.L. Markov    471
+
+
+Let V be the value of either side of the equation above. Then from the LHS we see that V
+commutes with Z (ℓ) , and from the RHS we see that V is a two-qubit operator commuting
+with Z (m) . Thus V is a two-qubit diagonal, and admits the following decomposition.
+
+             ℓ                            Rz (α)          •                                   •
+                     V       =
+            m                             Rz (β)      H   • H             Rz (γ)         H    • H
+
+Substituting this decomposition for the RHS of Equation 8 and restoring the R, S, T gates
+completes the proof.
+
+4   The CNOT-cost of the TOFFOLI gate
+So far we have reduced CNOT-counting for the TOFFOLI gate to CZ-counting for the CCZ
+gate, with the latter two being diagonal and symmetric. Having derived the inequality
+3|CCZ|CZ;ℓ /2 ≤ |CCZ|CZ , we seek to determine the qubit-local costs |CCZ|CZ;ℓ .
+    The idea is to find an equivalence relation ∼ℓ such that (i) U ∼ℓ V =⇒ |U |CZ;ℓ = |V |CZ;ℓ
+and (ii) the equivalence classes of ∼ℓ are easy to characterize.
+Definition 2 For P, Q commuting with Z(ℓ) , we write P ∼ℓ Q if there exist a, b, A, B satis-
+fying the following equation.
+
+                                 ℓ        b           a                                                              (9)
+                                                                  =
+                                     \ B          P   A                       Q
+
+    The fact that |·|CZ;ℓ is constant on equivalence classes is obvious; the ability to characterize
+the equivalence classes comes from a comparison between Equation 9 and the demultiplexing
+decomposition of Equation 3. We construct invariants of the equivalence classes in Theorem
+8. The reductions of Section 4.2 provide circuit forms on which the invariants are easy to
+compute; as a consequence, we arrive at a complete characterization of U such that |U |CZ;ℓ =
+0, 1, 2 in Theorem 9. The CCZ gate falls into none of these classes, and thus |CCZ|CZ;ℓ ≥ 3, and
+hence |CCZ|CZ ≥ 5. Unfortunately, qubit-local CZ-counting can take us no further: one can
+show by construction that in fact |CCZ|CZ;ℓ = 3.
+    We now consider a hypothetical five-CZ circuit for the CCZ and seek a contradiction, using
+a divide-and-conquer strategy. There are many possible arrangements of the CZs, and we do
+not deal with them case by case. Nonetheless, we fix one here for clarity.
+
+                 1   •                f       •       e           •           d              •    c                 (10)
+
+                 2   •   =            k       •   j   •                   i       •      h   •    g
+
+                 3   •                o               •   n       •       m       •               l
+We define a, b, P, Q as follows.
+
+                                              a               d • c
+                                                      =
+                                                                      •
+                                              b               f       • e
+                                                      =
+                                                                      •
+472     On the CNOT-cost of TOFFOLI gates
+
+
+                                                                        •
+                                            =       j       •               i       •   h
+                               P
+                                                            •   n       •   m       •
+                                                                        •
+                                                    =           k†      • g†
+                                        Q
+                                                                o†      •   l†
+Our circuit decomposition now takes the following form.
+
+                                1       b           a                                        (11)
+                                2                                =
+                                                P                           Q
+                                    \
+    Up to some two-qubit diagonal fudge factors, this equation says that the cosine-sine de-
+composition of b† ⊗I is Q† [a⊗I]P . In Section 4.2, we translate the well-known canonicality of
+this Cartan decomposition into constraints on the components a, b, P and Q. The formulae of
+Theorem 9 further strengthen these constraints in the | · |CZ;ℓ = 3 case. Specifically, we show in
+Theorem 10 that if |U |CZ;ℓ = 3 and C computes U using the minimum required three CZ gates
+incident on ℓ, then all one-qubit gates on ℓ are diagonal or anti-diagonal. The anti-diagonal
+gates can be made diagonal at the cost of introducing Z gates elsewhere in the circuit.
+    This is the last result needed to determine the CZ-cost of the CCZ. From |CCZ|CZ;ℓ ≥ 3, we
+see that in any five-CZ circuit for the CCZ, two of the qubits, m, n touch exactly three CZ gates
+and the remaining one touches four. By Theorem 10, we can assume all one-qubit operators
+on m, n are diagonal. Proposition 4 would then require detm,n CCZ = CZ(m,n) to be separable,
+which it is not.
+      Theorem 7 |CCZ|CZ = 6.
+      We show in Section 6 that the use of ancillae can not lower the CZ-cost of the CCZ.
+
+4.1     CZ counting via the demultiplexing decomposition
+We now turn to the study of qubit-local CZ-cost. To apply P ∼ℓ Q =⇒ |P |CZ;ℓ = |Q|CZ;ℓ , we
+first seek to determine when P ∼ℓ Q. This will be done under the assumption that P and Q
+both commute with Z(ℓ) .
+Definition 3 Let U commute with Z(ℓ) . Then the ℓ-mux-spectrum ℑ(ℓ) (U ) is the multi-set of
+eigenvalues, taken with multiplicity, of U1† U0 . Two multi-sets S, T are said to be congruent,
+S∼= T , if there exists a nonzero scalar λ such that either λS = T or λS = T † .
+    We note that before taking the ℓ-mux-spectrum of U , it is necessary to fix the number of
+qubits on which U acts : ℑ(ℓ) (U ⊗ I) contains dim I copies of ℑ(ℓ) (U ).
+    Theorem 8 Suppose P, Q commute with Z(ℓ) . Then P ∼ℓ Q ⇐⇒ ℑ(ℓ) (P ) =         ∼ ℑ(ℓ) (Q).
+Proof: (⇒). As P ∼ℓ Q, there are gates a, b, A, B such that
+
+                                ℓ       b               a
+                                                                    =
+                                    \ B         P       A                       Q
+                                                                            V.V. Shende and I.L. Markov   473
+
+
+By Corollary 1, we may assume that either a, b or aX, bX are diagonal. In the first case,
+Q0 = a0 b0 AP0 B and Q1 = a1 b1 AP1 B. Thus Q†1 Q0 = (a1 b1 )† a0 b0 B † P1† P0 B, which has the
+same eigenvalues as (a1 b1 )† a0 b0 P1† P0 . Thus ℑ(ℓ) (P ) ∼    = ℑ(ℓ) (Q).
+   Otherwise, a′ = aX and b′ = Xb are diagonal. Now Q†0 Q1 = (a′1 b′1 )† a′0 b′0 B † P0† P1 B, which
+has the same eigenvalues as (a′1 b′1 )† a′0 b′0 P0† P1 , whose eigenvalues in turn are the complex
+conjugates of those of a′1 b′1 (a′0 b′0 )† P1† P0 ; again ℑ(ℓ) (P ) ∼
+                                                                    = ℑ(ℓ) (Q).
+    (⇐). By supposition, the ℑ(ℓ) (P ) ∼     = ℑ(ℓ) (Q) We note ℑ(ℓ) (X(ℓ) P X(ℓ) ) = ℑ(P )† and
+      (ℓ)
+ℑ((Rz (λ)P ) = e ℑ(P ). Therefore we can readily find an operator P ′ ∼ℓ P such that
+                     2iλ
+
+the ℓ-mux-spectrum of P is identical, rather than merely congruent, to that of Q. It remains
+to show that P ′ ∼ℓ Q.
+    By the demultiplexing decomposition (Equation 3) there exist unitary operators MP , NP
+and a real diagonal matrix δP , all of which operate on the qubits other than ℓ, such that
+                 (ℓ)                                                        (ℓ)
+P ′ = [I ⊗ MP ]Rz (δP )[I ⊗ NP ]. Likewise we decompose Q = [I ⊗ MQ ]Rz (δQ )[I ⊗ NQ ]. If we
+                                                                         ′
+let ∆P = exp(iδP ) and ∆Q = exp(iδQ ), then the ℓ-mux-spectra of P and Q are respectively
+the entries of ∆2P and ∆2Q . Since ℑ(ℓ) (P ) = ℑ(ℓ) (Q), there must exist a permutation matrix π
+acting on the qubits other than ℓ such that π∆2P π † = ∆2Q . Rearranging, we have ∆†Q π∆P =
+∆Q π∆†P . Writing K for this term, [I ⊗ MQ KMP† ]P ′ [I ⊗ NP† π † NQ ] = Q. Thus P ′ ∼ℓ Q.
+    We now apply Theorem 8 to prove the following result relating ℑ(ℓ) (P ) and |P |CZ;ℓ . We
+emphasize that the number of qubits on which P acts is an unspecified parameter in both of
+these functions.
+    Theorem 9 Let P commute with Z(ℓ) .
+
+    • |P |CZ;ℓ = 0 iff ℑ(ℓ) (P ) ∼
+                                 = {1, 1, . . .}.
+
+    • |P |CZ;ℓ = 1 iff ℑ(ℓ) (P ) ∼
+                                 = {1, −1, 1, −1, . . .}
+
+    • |P |CZ;ℓ ≤ 2 iff ℑ(ℓ) (P ) is congruent to some multi-set S of unit norm complex numbers
+      which come in conjugate pairs.
+
+Proof: The first and second statements follow immediately from Theorem 8 and the calcu-
+lations ℑ(ℓ) (I) = {1, 1, . . .} and ℑ(ℓ) (CZ(ℓ,m) ) = {1, −1, 1, −1, . . .}. To perform the relevant
+calculation for the third statement, we will use Corollary 4.
+    Let ℓ be the most significant qubit. For δ a diagonal real operator acting on all qubits but
+ℓ, define Φ(δ) by
+                            ℓ                          •           •
+                                                =          •   Ry (δ)   •
+                                    Φ(δ)
+                                \                    \
+By construction, |Φ(δ)|CZ;ℓ ≤ 2. We compute ℑ(ℓ) (Φ(δ)) = {e2iδ0 , e−2iδ0 , e2iδ1 , e−2iδ1 , . . . , }.
+    (⇐) Write the entries of S as eiφ ·{eiθ0 , e−iθ0 , eiθ1 , e−iθ1 , . . .}, and let θ be the real diagonal
+operator acting on all qubits but ℓ whose diagonal entries are θ0 , θ1 , . . .. By construction,
+ℑ(ℓ) (Φ(θ/2)) = S, and S ∼   = ℑ(ℓ) (Q) by hypothesis. By Theorem 8, Φ(θ/2) ∼ℓ Q are ℓ-
+equivalent. It follows that |Q|CZ;ℓ = |Φ(θ/2)|CZ;ℓ ≤ 2.
+    (⇒) By hypothesis |Q|CZ;ℓ ≤ 2. If in fact |Q|CZ;ℓ = 0, 1, note by the first two statements
+of the Theorem, which have been proven, the ℓ-mux-spectrum of Q has the desired property.
+474   On the CNOT-cost of TOFFOLI gates
+
+
+Thus we assume |Q|CZ;ℓ = 2. Let C be a circuit in which this minimal CZ count is achieved.
+By Corollary 4, we can find an equivalent circuit C ′ of the following form.
+
+                                                             Rz (θ)      •            •
+
+                                              =                          •
+                                 Q                               A             B      •    C
+                             \                          \
+We have drawn the CZs with different lower contacts, but of course they might be the same.
+Actually, we prefer the latter case, and ensure it by incorporating swaps into B, C if necessary.
+We take a cosine-sine decomposition (see Equation 2) of B
+
+                                             Rz (θ)         •                                   •
+
+                                 =                          •                Ry (β)             •
+                     Q                         A                                                    C
+                 \                       \                        BL                       BR
+
+Note that the BL and BR gates commute with the CZs. Thus Q ∼ℓ Φ(β). By Theorem 8, the
+ℑ(ℓ) (Q) ∼
+         = ℑ(ℓ) (Φ(β)). But we have already seen that ℑ(ℓ) (Φ(·)) always consists of conjugate
+pairs of unit-norm complex numbers.
+
+4.2   Circuit constraints from the cosine-sine decomposition
+This section is devoted to the study of Equation 11. We take cosine-sine decompositions of
+a, b. Below, Al , Ar , Bl , Br are two-qubit diagonal operators, and α, β are 2 × 2 real diagonal
+matrices of angular parameters.
+
+                             1       b                               Ry (−β)                            (12)
+                                              =             BL                        BR
+                             2
+
+                             1       a                                 Ry (α)                           (13)
+                                               =            AL                        AR
+                             2
+Define P̃ = AL P BR and Q̃ = A†R QBL† to obtain:
+
+                         1       Ry (−β)                        Ry (α)                                  (14)
+                         2                                                      =
+                                                   P̃               Q̃
+                           \
+    We recall the standard argument used to measure the uniqueness of the KAK decom-
+                                                                                  (1)
+position [8]. Throughout this discussion, we will write simply Ry (α) for Ry (α(2) ), and
+similarly for Ry (β). Rearrange the equation to obtain Q̃† Ry (α)P̃ = Ry (β). Transforming
+the equation by k 7→ Z(1) k † Z(1) , we get P̃ † Ry (α)Q̃ = Ry (β). Multiplying these equations
+yields P̃ † Ry (2α)P̃ = Ry (2β). Thus Ry (2α) and Ry (2β) have the same eigenvalues. One can
+check that in fact they are conjugate under an element of the group W generated by X(2) and
+CZ(1,2) ; note that these operators commute with Z(1) . That is, there exists w ∈ W such that
+wRy (2α)w† = Ry (2β). Now let t = wRy (α)w† Ry (−β). We have both t = Ry (ξ) for some
+                                                                 V.V. Shende and I.L. Markov    475
+
+
+2 × 2 real diagonal matrix ξ acting on qubit 2, and t2 = I; it follows that t ∈ {±I, ±Z(2) }.
+Defining P̄ = P̃ · [tw ⊗ I] and Q̄ = Q̃ · [w ⊗ I] reduces our equation to the following.
+
+                        1       Ry (−α)         Ry (α)                                         (15)
+                        2                                  =
+                                           P̄                      Q̄
+                            \
+    By an argument similar to that given for P̃ and Q̃, the operators P̄ and Q̄ both commute
+with Ry (2α). Conjugation by Ry (α) is an involution on the set of operators commuting with
+Ry (2α); Equation 15 says that P and Q are interchanged by this involution. In fact, this
+involution always has a simpler description:
+Lemma 3 Equation 15 also holds for some α̃ for which α̃i is an integer or half-integer mul-
+tiple of π. Half-integers occur if and only if 2αi is an odd integer multiple of π.
+Proof: Decompose 2αi = φi + ψi (mod 2π) where φi ∈ (−π, π), where ψi = 0 unless φi = 0,
+and ψi ∈ {0, π} in any event. Then any operator which commutes with Ry (2α) also commutes
+with Ry (φ/2). Thus, on operators commuting with Ry (2α), conjugation by Ry (α) is the same
+as conjugation by Ry (α − φ/2) = Ry (α − φ/2 − ψ/2)Ry (ψ/2). But 2(α − φ/2 − ψ/2) = 0
+(mod 2π).
+   We also record the constraints imposed on possible P̄ , Q̄ by the value of θ = 2α.
+Lemma 4 Fix distinct qubits ℓ, m. Let U be a unitary operator commuting with Z(ℓ) , and let
+θ be a two-by-two real diagonal matrix of angular parameters which is understood to operate
+                                 (ℓ)
+on m. Then U commutes with Ry (θ) if and only if one of the following holds:
+
+  1. cos(θ) is scalar, and either
+
+      (a) sin(θ) = 0.
+      (b) sin(θ) is a nonzero scalar and U0 = U1 .
+      (c) Z sin(θ) is a nonzero scalar and U0 = Z(m) U1 Z(m) .
+
+  2. cos(θ) is not scalar, U commutes with Z(m) , and either
+
+      (a) sin(θ0 ) = 0 and sin(θ1 ) = 0.
+      (b) sin(θ0 ) = 0 and sin(θ1 ) 6= 0 and U01 = U11 .
+      (c) sin(θ0 ) 6= 0 and sin(θ1 ) = 0 and U00 = U10 .
+      (d) sin(θ0 ) 6= 0 and sin(θ1 ) 6= 0 and U0 = U1 .
+                                                                 (ℓ)
+Proof: The (⇐) direction is trivial. For (⇒), suppose [Ry (θ(m) ), U ] = 0 and expand
+                        (ℓ)
+using the expression Ry (θ(m) ) = exp(iY(ℓ) θ(m) ) = cos(θ)(m) + iY (ℓ) sin(θ)(m) in order to
+observe that U0 and U1 both commute with cos(θ)(m) , and U0 sin(θ)(m) = sin(θ)(m) U1 . Now
+repeatedly apply the fact that two-by-two matrices which commute with a two-by-two diagonal
+matrix with distinct entries are themselves diagonal.
+   Finally, we translate these results back to the original operators P, Q.
+Lemma 5 In the situation of Equation 11, at least one of the following must hold.
+
+  1. Either a, b are diagonal or aX(1) , bX(1) are diagonal.
+476   On the CNOT-cost of TOFFOLI gates
+
+
+  2. There exists a two-qubit operator U and two-qubit diagonals D, D′ such that
+
+
+                                                =               D′       D
+                                        P                            U
+
+      Similarly, there exists a two-qubit operator V and two-qubit diagonals C, C ′ such that
+
+
+                                                    =           C′       C
+                                        Q                            V
+
+  3. Either P or P X(2) commute with Z(2) . There exist replacements a′ , b′ for a, b which are
+     in the subgroup generated by two-qubit diagonal operators on qubits 1 and 2, C(2) X(1) ,
+     and X(1) , such that Equation 11 continues to hold.
+
+Proof: This amounts to unwinding the above discussion in light of Lemma 4. Case I comes
+from Case 1.a of the Lemma; the X appears because of the 2 in θ = 2α. Case II comes from
+Cases 1.b and 1.c. The first claim in Case III is just Case 2 of the Lemma; the possible X here
+comes from the w factor in P̄ = P̃ tw from the discussion above. The second claim follows
+from Lemma 3.
+    While we cannot completely characterize operators with | · |CZ;ℓ = 3, we can characterize
+   (ℓ)
+CZ -minimal circuits which compute them.
+    Theorem 10 Fix a qubit ℓ, and suppose M commutes with Z(ℓ) . Suppose |M |CZ;j = 3, and
+let C be a CZ(j) -circuit exhibiting this bound. Then all one-qubit gates of C on ℓ are diagonal
+or anti-diagonal.
+Proof: Consider M, C satisfying the hypothesis. Without loss of generality, ℓ = 1 and C takes
+the form
+                              1     h • g • f • e
+                              2             •           •        •
+                                    H           G        E  F
+                              \
+The CZs may have originally had different terminals, but we can incorporate swaps into
+E, F, G, H to suppress this behavior. This affects neither the hypothesis nor the conclusion.
+   (*) Define P by
+                             1                         •
+                             2           =             •
+                                  P               G       F
+                                \
+If P X(2) commutes with Z(2) , then return to (*) and replace G by GX(2) , H by X(2) H, and h
+by Z (1) h. This does not affect the conclusion, and by Equation 1, the resulting circuit still
+computes M . We have ensured that if one of P, P X(2) commutes with Z(2) , then it is P .
+    Define a, b, Q by
+                               1    a              f • e
+                                           =
+                               2                      •
+                               1    b              h • g
+                                           =
+                               2                      •
+                                                                                           V.V. Shende and I.L. Markov    477
+
+
+                               1
+                               2         =
+                                 Q                H†     M     E†
+                              \
+Note |Q|CZ;1 = |M |CZ;1 . We also have Q = [a⊗I]P [b⊗I], hence are in the situation of Equation
+11. Lemma 5 allows us to reduce to the following cases.
+Case I. a, b are diagonal, or aX(1) , bX(1) are diagonal. In either case, Corollary 1 applied to
+the circuits defining a, b shows that e, f, g, h are each diagonal or anti-diagonal.
+Case II. Q takes the form
+
+                                  1
+                                                       =           C′                  C
+                                  2
+                                             Q                                V
+                                         \
+The cosine-sine decomposition (see Equation 2) of V along qubit 2 determines unitary oper-
+ators R, S and a real diagonal operator δ such that:
+
+                                2                                       Ry (δ)                                           (16)
+                                             V        =
+                                         \                    S                        R
+We substitute, commute the S, T outwards past C, C ′ , and decompose the diagonals C, C ′ .
+
+         1                    •                      •        Rz          •                    •
+
+         2          Rz        
+                                     Rz (θ)      
+                                                         Ry (δ)       
+                                                                                 Rz (φ)    
+                                                                                                  Rz
+
+             \ S                                                                                           R
+Evidently ℑ(1) (Q) depends only on θ, δ, φ. We calculate that, up to a global scalar multiple,
+ℑ(1) (Q) consists of the roots of the following quadratics in T :
+                   T 2 − 2T (cos(2θ + 2φ) cos(δi )2 + cos(2θ − 2φ) sin(δi )2 ) + 1
+The equations being real, each has complex conjugate roots. By Theorem 9, |M |CZ;1 =
+|Q|CZ;1 = 2, contrary to hypothesis.
+Case III. We have already ensured that P , rather than P X(2) , commutes with Z(2) . We replace
+a, b by the a′ , b′ of Lemma 5. We demultiplex P (see Equation 3) to obtain a decomposition
+of the following form, where D is diagonal.
+
+                                     1
+                                     2                   =                  D
+                                         \ P                       S                  R
+   The operators S, R commute past a′ , b′ to the edges of the circuit, and thus do not affect
+the CZ-cost of Q. That is, |Q|CZ;ℓ = |[a′ ⊗ I]D[b′ ⊗ I]|CZ;ℓ .
+                                                              (ℓ)            (ℓ)
+   By construction, |P |CZ;ℓ = |D|CZ;ℓ = 1. If D = |0i h0| ⊗ D0 + |1i h1| ⊗ D1 , Theorem 9
+                        †
+asserts the entries of D0 D1 are eiθ {1, −1, 1, −1, . . .}. Thus D can be written as
+
+                      1                                     Rz (−θ/2)            •
+                      2         D                =                               •
+                                                               π                     π†       D0
+                          \
+478   On the CNOT-cost of TOFFOLI gates
+
+
+for some permutation π. We set N := X(1) ([a′ ⊗ I]D[b′ ⊗ I])† X(1) [a′ ⊗ I]D[b′ ⊗ I], so that
+                                                       (1)   (1)
+ℑ(1) ([a′ ⊗ I]D[b′ ⊗ I]) is given by the entries of h0| N |0i . Evidently D0 commutes past a′
+                     †
+and cancels with D0 . Applying Equation 1 to eliminate X gates, the following circuit computes
+N.
+      b′    Rz (−θ/2)     •         a′        
+                                                 (a′ )†        •
+                                                                         Rz (−θ/2)   
+                                                                                            (b′ )†   
+                                                                                                         
+
+                          •                                            • •
+                 π            π†                                  π             π†
+
+The condition on a′ implies that (a′ )† X(1) a′ X(1) is diagonal. It follows that the subcircuit
+sandwiched between the two CZs computes a diagonal operator, and so the CZs cancel. Then
+the π, π † pair on the left cancel. The π † Z(m) π term on the right commutes past the (b′ )† .
+What remains is a circuit of the form
+                                     1
+                                               F
+                                     2                        •
+                                                       π          π†
+                                          \
+By construction, N commutes with both Z(1) and Z(2) . It follows that F is diagonal. Then f =
+   (1)    (1)                                                         (1)    (1)
+h0| F |0i is some one-qubit diagonal acting on m. We have h0| N |0i = π † Z(2) πf (2) .
+                                                            (1)    (1)
+Denote by f0 , f1 the entries of f . Then the entries of h0| N |0i are f0 , f1 , −f0 , −f1 , and
+moreover f0 will occur with the same   pmultiplicity as −f1 ; likewise −f0 will occur with the
+same multiplicity as f1 . We see that −f0 /f1 ℑ(1) ([a′ ⊗ I]D[b′ ⊗ I]) come in conjugate pairs.
+By Theorem 9, |[a′ ⊗I]D[b′ ⊗I]|CZ;1 ≤ 2. But now |M |CZ;1 = |Q|CZ;1 = |[a′ ⊗I]D[b′ ⊗I]|CZ;1 ,
+contrary to hypothesis.
+
+4.3   Corollaries
+The PERES gate implements a three-qubit transformation from classical reversible logic PERES(ℓ;m;n) =
+C(ℓ) X(m) · CC(ℓ,m) X (n) . As shown in [12], it can be a useful alternative to the TOFFOLI gate in
+reversible circuits.
+Corollary 5 |PERES|CZ = 5.
+Proof: As is clear from its definition, the PERES gate can be implemented by the circuit of
+Figure 1, save the rightmost CNOT. Thus, |PERES|CZ ≤ 5. On the other hand, it also follows
+from the definition that any circuit for the PERES can, with the addition of a single CNOT,
+become a circuit for the TOFFOLI. Thus |PERES|CZ ≥ |TOFFOLI|CZ − 1 = 5, and all inequalities
+are equalities.
+    In a different direction, we consider below multiply-controlled Z gates:
+Corollary 6 |(n − 1)-controlled-Z|CZ ≥ 2n for any n ≥ 3.
+Proof: We proceed by induction on n. Suppose the Corollary is false; choose minimal
+falsifying n, and a falsifying circuit C. By Theorem 7, n > 2. As before, at least three CZ
+gates are incident to each qubit, and counting shows that at least one, say ℓ touches exactly
+three. As before, we can assume that all one-qubit operators which appear on ℓ are diagonal.
+                             (ℓ)   (ℓ)                                               (ℓ)  (ℓ)
+Form the circuit C ′ = h1| C |1i by replacing every gate g of C with g ′ = h1| g |1i . This
+has no effect on gates which do not touch ℓ; it turns one-qubit gates on ℓ into scalars, and
+replaces CZ(ℓ,s) with Z(s) . At any rate, C ′ is a CZ-circuit on (n − 1) qubits which computes
+the (n − 2)-controlled-Z. We deduce by induction that it contains at least 2(n − 1) CZ gates.
+Adding the (at least) three CZs incident to ℓ, there are at least 2n + 1 total CZs in C.
+                                                                                         V.V. Shende and I.L. Markov    479
+
+
+5   Three-qubit diagonal operators
+We give here a complete classification of three-qubit diagonal operators by their CZ-cost.
+Throughout this section, we assume no ancillae are available and label our qubits 1, 2, 3,
+                                                             (1)   (2)   (3)      (1)   (2) (3)
+from most significant to least significant. We abbreviate hi| hj| hk| D |ii |ji |ki
+by Dijk . We also write ∆(η) for the one-qubit gate given by |0i h0| + |1i h1| η. Define
+                                                                                                                      2
+           D011 D000                         D101 D000                             D110 D000                   D111 D000
+λ1 (D) =             ,          λ2 (D) =               ,               λ3 (D) =              ,      ξ(D) =
+           D001 D010                         D100 D001                             D100 D010                 D100 D010 D001
+Then any three-qubit diagonal D admits the expansion
+                        (1)                  (2)                  (3)
+                  D100                   D010                   D001
+D = D000 ·∆                     ·∆                     ·∆                     ·diag(1, 1, 1, λ1 (D), 1, λ2 (D), λ3 (D), ξ(D))
+                  D000                   D000                   D000
+
+The λi (D) are multiplicative, λi (DD′ ) = λi (D)λi (D′ ), and likewise for ξ. We denote by S(D)
+the ordered quadruple (λ1 (D), λ2 (D), λ3 (D), ξ(D)).
+Observation 11 For D, D′ three-qubit diagonal operators, S(D) = S(D′ ) iff S(D† D′ ) =
+(1, 1, 1, 1) iff D† D′ is a tensor product of one-qubit diagonal operators. It follows that S(D) =
+S(D′ ) =⇒ |D|CZ;i = |D′ |CZ;i .
+Observation 12 ℑ(i) (D) = {1, λj (D)† , λk (D)† , ξ(D)† λi (D)} where {i, j, k} = {1, 2, 3}.
+Lemma 6 A three-qubit diagonal D can be implemented in a three-qubit CZ-circuit with:
+
+    • 0 CZs on touching qubit 1 iff S(D) = (ξ, 1, 1; ξ).
+
+    • 1 CZ touching qubit 1 iff S(D) = (ξ, −1, −1; ξ), (−ξ, 1, −1; ξ), (−xi, −1, 1 ξ).
+
+    • 2 CZs touching qubit 1 iff S(D) = (a, b, c; abc), (a, b, c; ab/c), (a, b, c; ac/b).
+
+Proof: This is just a translation of Theorem 9 using Observation 12, involving a straightfor-
+ward but tedious calculation which we omit.
+    The two possibilities S(D) = (a, b, c; abc), (a, b, c; ab/c) are quite different, and the follow-
+ing result helps distinguish between them.
+Lemma 7 Let D be a three-qubit diagonal operator and u be a one-qubit gate. Suppose
+|Du(3) CZ(1,3) |CZ;1 = 1 or |CZ(1,3) u(3) D|CZ;1 = 1. Then λ1 (D)λ2 (D) = λ3 (D)ξ(D).
+Proof: The conclusion being stable under D → D† , we assume |Du(3) CZ(1,3) |CZ;1 = 1. De-
+compose u† = eiθ Rz (α)Ry (β)Rz (γ). Then ℑ(ℓ) (A) is given by the roots of the polynomials
+
+                                         x2 − cos(2β)(1 − λ2 (D))x − λ2 (D)
+
+                    x2 − cos(2β)(λ3 (D) − ξ/(D)λ1 (D))x − λ3 (D)ξ(D)/λ1 (D)
+For these to have roots either {p, p, −p, −p} or {p, p, p, p}, the two equations must have the
+same constant terms – either both p2 or both −p2 .
+    We turn to computing CZ-costs. These being invariant under relabelling of qubits, we
+write s(D) for (λ1 (D), λ2 (D), λ3 (D); ξ(D)), where we ignore the order of the λi .
+Observation 13 Given two three-qubit diagonals D, D′ , s(D) = s(D′ ) if and only if there
+exist one-qubit diagonals d, d′ , d′′ and a wire permutation ω such that D′ = (d⊗d′ ⊗d′′ )·ωDω † .
+Thus s(D) = s(D′ ) =⇒ |D|CZ = |D′ |CZ .
+480     On the CNOT-cost of TOFFOLI gates
+
+
+   Theorem 14 Let D be a three-qubit diagonal operator. Then there exists a CZ-circuit for
+D containing
+
+      • 0 CZs iff s(D) = (1, 1, 1; 1).
+
+      • 1 CZ iff s(D) = (1, 1, −1; −1).
+
+      • 2 CZs iff s(D) = (1, 1, ξ; ξ), (1, −1, −1; 1).
+
+      • 3 CZs iff s(D) = (1, 1, ξ; ξ), (ξ, −1, −1; ξ), (−ξ, 1, −1; ξ).
+
+      • 4 CZs iff s(D) = (a, b, c; ab/c).
+
+      • 5 CZs iff s(D) = (a, b, c; ab/c), (a, b, c; abc).
+
+      • 6 CZs always.
+
+Proof: We assume without loss of generality that D takes the form diag(1, 1, 1, λ1 , 1, λ2 , λ3 , ξ).
+We number the qubits 1,2,3 from most to least significant.
+   (⇐). We can assume that in fact S(D) takes the form given. Our constructions will use
+the CX, which may be replaced by the CZ at the cost of inserting HADAMARD gates.
+   Case 0. S(D) = (1, 1, 1; 1) =⇒ D = I.
+   Case 1. S(D) = (1, 1, −1; −1) =⇒ D = CZ(1,2) .
+                                         √
+   Case 2a. S(D) = (ξ, 1, 1; ξ). Fix η = ξ;
+
+                             1
+                             2   D       =        ∆(η)          •                 •
+
+                             3                    ∆(η)        
+                                                                 ∆(1/η)       
+                                                                                  
+
+   Case 2b. S(D) = (1, −1, −1; 1) =⇒ D = CZ(1,3) CZ(1,2) .
+   Case 3a. S(D) = (ξ, 1, 1; ξ). By Case 2a, the CZ can be implemented in a circuit
+containing 2 CZs. It follows that any operator that can be implemented with n > 0 CZs can be
+implemented with n + 1. Thus since D can be implemented with 2 CZs, it can be implemented
+with 3.
+                                               √
+   Case 3b. S(D) = (ξ, −1, −1; ξ). Fix η = ξ;
+
+                         1                                                    •
+                         2       D       =       ∆(η)       •                         •
+
+                         3                       ∆(η)       
+                                                                 ∆(1/η)   • 
+                                                                                
+
+                                                     √
+      Case 3c. S(D) = (−ξ, 1, −1; ξ). Fix η =         −ξ.
+
+                         1                                                               •
+                         2       D       =       ∆(η)       •                  • •
+
+                         3                       ∆(η)       
+                                                                 ∆(1/η)   
+                                                                              
+                                                                            V.V. Shende and I.L. Markov      481
+
+
+   Case 4. S(D) = (a, b, c; ab/c). Fix square roots α, β, γ for a, b, c;
+
+   1                        ∆(β)                             •                                        •
+
+   2     D         =        ∆(α)       •                                            •
+
+   3                       ∆(αβ/γ)    
+                                             ∆(γ/α)      
+                                                                    ∆(1/γ)   
+                                                                                        ∆(γ/β)    
+                                                                                                      
+
+  Case 5a. S(D) = (a, b, c; ab/c). As D can be implemented with 4 CZs, it can be imple-
+mented with 5.
+  Case 5b. S(D) = (a, b, c; abc). Fix square roots α, β, γ for a, b, c;
+
+         1                     ∆(βγ)                  •                                 •       •
+
+         2     D       =       ∆(αγ)         •        
+                                                                •      ∆(1/γ)       
+                                                                                        
+
+         3                     ∆(αβ)         
+                                                ∆(1/α)          
+                                                                       ∆(1/β)              
+                                                                                               
+
+    Case 6. More generally, any n-qubit diagonal operator has CZ-cost bounded by 2n − 2.
+See [3] or Section 2.3.
+    (⇒).
+    Case 0. D must be locally equivalent to I, hence s(D) = (1, 1, 1; 1).
+    Case 1. D must be locally equivalent to some CZ, hence s(D) = (1, 1, −1; −1).
+    Case 2 Suppose there exists a minimal implementation of D in which both CZ gates
+connect the same two qubits. Then D is locally equivalent to a two-qubit diagonal; in which
+case one can compute s(D) = (ξ, 1, 1; ξ).
+    Otherwise, there is a minimal implementation of D in which the two CZ gates are CZ(i,j) ,
+  (j,k)
+CZ      . By Corollary 4, we may pass to an implementation with only diagonal one-qubit
+gates along j; by Corollary 2, we may pass to an implementation with only diagonal one-
+qubit gates along i, k as well. But then D is locally equivalent to CZ(i,j) CZ(j,k) and we may
+compute s(D) = (1, −1, −1; 1).
+    Case 3. It suffices to show that |D|CZ;j ≤ 1 for some j. For, if |D|CZ;j = 0, then
+D is a two-qubit diagonal, with s(D) = (ξ, 1, 1; ξ), and if |D|CZ;j = 1, then by Lemma 6,
+s(D) = (−ξ, 1, −1; ξ) or (ξ, −1, −1; ξ).
+    Consider an implementation of D containing three CZs. We have |D|CZ;ℓ ≤ 1 for some ℓ
+unless the CZs are distributed so that each qubit touches exactly two. Let j be a qubit touching
+the middle CZ. By Corollary 4, we can assume the circuit contains only diagonal gates on
+qubit j; it follows by inspection that D ∼j CZ(i,j) CZ(j,k) . But we have already determined
+that |CZ(i,j) CZ(j,k) |CZ;j = 1.
+    Case 4. Consider an implementation of D containing four CZs. If any qubit touches fewer
+than two CZs, we reduce to the previous case and observe that the desired condition on s holds.
+Thus suppose each qubit touches at least two CZs. Then there are only two possibilities for
+the number of CZs touched by each qubit: (2, 2, 4) and (2, 3, 3).
+    For the configuration (2, 2, 4), say qubits ℓ, m touch two CZs and qubit n touches four. Note
+that no CZs connect ℓ, m. Thus we may assume by Corollary 4 all one-qubit gates on ℓ, m
+are diagonal. By Proposition 4, detℓ,m D is separable; this says precisely that λℓ (D)λm (D) =
+λn (D)ξ(D).
+482    On the CNOT-cost of TOFFOLI gates
+
+
+    For the configuration (2, 3, 3), say qubit 1 touches two CZs and qubits 2,3 touch three.
+Then there are two CZs connecting qubits 2 and 3, one connecting qubits 1 and 3 and one
+connecting qubits 1 and 2. By Corollary 4, we ensure that all one-qubit gates on qubit 1 are
+diagonal. If the CZs connecting qubits 2 and 3 are outermost, D ∼ℓ CZ(1,2) CZ(1,3) , hence can
+be implemented with three CZ s by Case 3. Otherwise, one of the CZs incident on qubit 1 is
+outermost; without loss of generality let it be CZ(1,3) . Then we have an equation of the form
+D = u(3) CZ(1,3) A where by construction A commutes with Z(1) and |A|CZ;1 = 1. Lemma 7
+yields the desired result.
+    Case 5. It suffices by Lemma 6 to show that |D|CZ;ℓ ≤ 2 for some ℓ. Suppose not; then
+in any five-CZ implementation for D, each qubit must touch three CZs. It follows that two
+of the qubits, say ℓ, m touch exactly three CZs, and the remaining qubit touches four. By
+Theorem 10, all one-qubit gates on ℓ, m are diagonal or anti-diagonal. Enough applications
+of Equation 1 will ensure that all one-qubit gates on ℓ, m are in fact diagonal. Move the CZ
+which connects ℓ, m to the edge of the circuit. This yields D = CZ(ℓ,m) A, where |A|CZ;ℓ ≤ 2.
+By Lemma 6, it follows that |D|CZ;ℓ ≤ 2 as well.
+
+6     Circuits with ancillae
+The proofs of Theorems 7 and 14 assume that only three qubits were present, and use this
+assumption when enumerating possible circuit configurations with a given total number of CZ
+gates. This dependency can be eliminated. Indeed, these cases involved so few CZs that one
+could eliminate configurations with ancillae by performing explicit checks.
+   More significant is the use of Proposition 4 and the characterization by Theorem 9 of
+|D|CZ;ℓ ≤ 2. Both of these statements are true for any fixed N , but suffer when N is allowed
+to vary. For example if only N = 3 qubits are available, then det1,2 CCZ(1,2,3) = CZ(1,2) , so
+by Proposition 4, the CCZ cannot be implemented in any three-qubit CZ-circuit in which all
+gates commute with Z(1) , Z(2) . But if N = 4 qubits are present, det1,2 (CCZ(1,2,3) ) = I (1,2) , so
+CCZ(1,2,3) ⊗ I (4) can be implemented in a four-qubit CZ-circuit in which all one-qubit gates
+commute with Z(1) and Z(2) .
+   Similarly, for N = 3 qubits, we have ℑ(ℓ) (CCZ) = {1, 1, 1, −1} and thus by Theorem 9
+|CCZ|CZ;ℓ ≥ 3. However, for N = 4 qubits, ℑℓ (CCZ(ℓ,m,n) ) = {1, 1, 1, −1, 1, 1, 1, −1}, so now
+Theorem 9 implies that |CCZ(1,2,3) ⊗ I (4) |CZ;1 = 2. Indeed:
+
+                            •                  •                  •
+                                           H   •   H    •   H     •   H    •
+                                   =
+                            •                           •                  •
+                            •                           •                  •
+                                                = {1, 1, . . .} and ℑ(ℓ) (U ) ∼
+    On the other hand, the properties ℑ(ℓ) (U ) ∼                             = {1, −1, 1, −1 . . .} are
+stable under adding ancillae. By Theorem 9, so are the properties |U |CZ;ℓ = 0 and |U |CZ;ℓ = 1.
+Since only these properties are used in the proof of Lemma 7, it too holds even in the presence
+of ancillae. This leads to an extension of the CZ-cost classification of three-qubit diagonals to
+the case where ancilla qubits are permitted.
+Lemma 8 Let A be a unitary operator; let C be qubit minimal among CZ-circuits computing
+A, possibly with the use of ancillae, using only |A|aCZ CZ gates. Then every ancilla in C touches
+at least three CZ gates.
+                                                                        V.V. Shende and I.L. Markov   483
+
+
+Proof: Fix an ancilla qubit ℓ. If no CZ gates touch ℓ, then it may be removed. If one
+(respectively two) CZ touches ℓ, then by Corollary 2 (respectively Corollary 4), then there is
+a circuit with no more CZs in which the only one-qubit gates on a are diagonal.
+                            (ℓ)     (ℓ)
+    Now form the circuit h0| C |0i as in the proof of Corollary 6. This circuit computes
+the operator A using one fewer ancilla, fewer CZs than C.
+Corollary 7 For any two-qubit operator V , |V |aCZ = |V |CZ .
+Proof: If no ancillae are needed to minimize CZ-count, then the result holds. Otherwise,
+each ancilla used in a qubit-minimal CZ-minimal implementation must touch at least three
+CZgates. Thus | · |CZ ≥ | · |aCZ ≥ 3. However it is known [23, 22, 16] that two-qubit operators
+have | · |CZ ≤ 3. Thus all the inequalities are equalities.
+Proposition 15 For any three-qubit diagonal operator, D, |D|aCZ = |D|CZ .
+Proof: Suppose |D|aCZ < |D|CZ . By Lemma 8, a qubit-minimal circuit for D achieving the
+bound for |D|aCZ contains at least three CZ gates incident on each ancilla. By assumption at
+least one ancilla is used, so |D|CZ > |D|aCZ ≥ 3. It follows from Theorem 14 and Lemma 6
+that |D|CZ;ℓ > 1 for the three qubits ℓ = 1, 2, 3. By Theorem 9, this property is stable under
+addition of ancilla. Thus a qubit-minimal circuit for D achieving the bound for |D|aCZ contains
+at least 3 CZs incident to each ancilla, and at least 2 CZs incident to each non-ancilla qubit. If
+k ancillae are used, then we have |D|aCZ ≥ (3k + 6)/2. From Theorem 14 and the supposition
+we have |D|aCZ < |D|CZ = 6; it follows that k = 1, that |D|aCZ = 5, and that |D|CZ = 6.
+    In any four-qubit, five-CZ circuit for D, we must have two of the non-ancilla, say x1 , x2
+touching two CZs, and both the remaining non-ancilla z and the ancilla a touching three.
+By Corollary 4, we can assume that the only one-qubit operators appearing on x1 , x2 are
+diagonal. We may also assume that the graph where vertices are qubits and edges are CZ
+gates is connected; otherwise D could be split into the tensor product of a two-qubit and a
+one-qubit diagonal, and hence would have |D| ≤ 2. Then there are only three possibilities
+regarding which wires are connected by CZs.
+
+                        I     (x1 , x2 )   (x1 , z)   (x2 , a)    (z, a)    (z, a)
+                        II     (x1 , z)    (x1 , z)   (x2 , a)   (x2 , a)   (z, a)
+                        III    (x1 , z)    (x1 , a)   (x2 , z)   (x2 , a)   (z, a)
+    We will show that any circuit with those CZ gates can be transformed so that (i) one of the
+outermost CZgates does not touch the ancilla, and (ii) one of the x-qubits on which this CZ
+gate acts has the property that all one-qubit gates acting on it are diagonal. As this x-qubit
+only touched 2 CZ gates to begin with, it follows from Lemma 7 that s(D) takes the form
+(a, b, c; ab/c). By Theorem 14, |D|CZ = 4, which is a contradiction.
+    We return to checking (i) and (ii). Eliminate non-diagonal one-qubit gates on xi using
+Corollary 4. In Case (I), the (x1 , x2 ) CZ can therefore only be prevented from moving by the
+(x1 , a). This can be on only one side, so the (x1 , x2 ) can be moved outwards to the other.
+Similarly, in Case (II), an (x, z) can only be blocked by (z, a) and the other (x, z). In this
+case, the second (x, z) is blocked on only one side and can be moved to the edge. In Case
+(III), we use Corollary 4 to clear both the x1 and x2 qubits of non-diagonal gates; the possible
+additional one-qubit gates will only fall on the z and a qubits. Now the (x1 , z) can only be
+blocked by the (x2 , z) and the (z, a), and also the (x2 , z) can only be blocked by (z, a) and
+(x1 , z). Thus one of (x1 , z) and (x2 , z) can be made outermost.
+484    On the CNOT-cost of TOFFOLI gates
+
+
+Corollary 8 |CCZ|aCZ = |TOFFOLI|aCZ = 6 and |P ERES|aCZ = 5.
+
+7     Conclusion
+While our work is primarily focused on quantum circuit implementations, the TOFFOLI gate
+originally arose as a universal gate for classical reversible logic [21]. In contrast, the NOT and
+CNOT gates are not universal for reversible logic: their action on bit-strings is affine-linear over
+F2 , and thus the same is true for any operator computed by any circuit containing only these
+gates.
+    Augmenting CNOT gates with single-qubit rotations to express the TOFFOLI gate provides
+the lacking non-linearity. Thus the number of one-qubit gates (excluding inverters) needed
+to express the TOFFOLI, or more generally any reversible computation, can be thought of as
+a measure of its non-linearity. In this inverted cost model (also relevant to some quantum
+implementation technologies) the following question remains open: how many one-qubit gates
+are needed to implement the TOFFOLI? Furthermore, are there circuits that simultaneously
+minimize the number of CNOT and one-qubit gates ?
+    In a different direction, recall our results showing that diagonality and block-diagonality
+of an operator impose strong constraints on small circuits that compute this operator. We
+believe other conditions may act in a similar way. In particular, we ask what can be said
+about minimal quantum circuits for operators computable by classical reversible circuits, i.e.,
+operators expressed by 0-1 matrices? Very little is known even for three-qubit operators. In
+particular, the CNOT-cost of the controlled-swap (Fredkin gate) remains unresolved.
+    Closest to our present work, the exact CNOT-cost of the n-qubit analogue of the TOFFOLI
+gate remains unknown. We have shown that 2n CNOTs are necessary if ancillae are not per-
+mitted, but already for n = 4 we only know that 8 ≤ |CCCZ|CZ ≤ 14, where the upper bound is
+provided by a generic decomposition of diagonal operators [3]. Existing constructions of the
+n-qubit TOFFOLI gate require a quadratic number of CNOT gates without the use of ancillae.
+With one ancilla, such constructions require linearly many CNOTs, but the leading coefficient
+is in double-digits [1, 12].
+    Finally, we hope that our proof can be simplified and our techniques generalized. In par-
+ticular, we have relied on repeated comparisons of various Cartan decompositions to each
+other. A careful study of the proof will reveal the simultaneous use of six Cartan decomposi-
+tions — those corresponding to conjugation by X and Z on each of three wires. Keeping track
+of these decompositions in a more systematic manner may simplify the proof, while using
+additional decompositions may lead to new results. A related challenge is gauging the power
+of the qubit-by-qubit gate counting we have used. It follows from the results of [18] that
+|U |CZ;ℓ < 6(n − 1) for U an n-qubit operator, and hence no technique relying solely on this
+process can achieve better than a quadratic lower bound. On the other hand, we have only
+been able to characterize cases when |U |CZ;ℓ > 2, and thus have achieved only linear lower
+bounds.
+
+Acknowledgements
+We thank Mikko Mottonen, Jun Zhang, K. Birgitta Whaley, and Yaoyun Shi for helpful
+discussions. This work was sponsored in part by the Air Force Research Laboratory under
+Agreement No. FA8750-05-1-0282.
+                                                                   V.V. Shende and I.L. Markov   485
+
+
+ References
+
+
+ 1. A. Barenco, C. Bennett, R. Cleve, D. P. DiVincenzo, N. Margolus, P. Shor, T. Sleator, J. A.
+    Smolin, and H. Weinfurter, Elementary gates for quantum computation, PRA 52, 3457 (1995).
+ 2. S. S. Bullock, A note on the Khaneja-Glaser decomposition, QIC 4.5, 396-400 (2004).
+ 3. S. S. Bullock, I. L. Markov, Asymptotically Optimal Circuits for Arbitrary n-qubit Diagonal
+    Computations, QIC 4.1, 027-047 (2004).
+ 4. D. P. DiVincenzo and J. A. Smolin, Results on two-bit gate design for quantum computers, Proc.
+    of the Workshop on Physics and Computation (1994).
+ 5. D.P. DiVincenzo, Quantum gates and circuits. Proc. R. Soc. Lond. A, 454:261276, (1998).
+ 6. N. Margolus, Simple quantum gates, Unpublished manuscript (circa 1994).
+ 7. N. Khaneja and S. J. Glaser, Cartan decomposition of SU(n) and control of spin systems, Chem.
+    Physics 267, 11-23 (2001).
+ 8. A. W. Knapp, Lie Groups Beyond an Introduction, Progress in Mathematics, vol. 140, Birkhäuser,
+    1996.
+ 9. E. Knill, Approximation by quantum circuits, LANL report LAUR-95-2225.
+10. M. Lewenstein, B. Kraus, J. I. Cirac, and P. Horodecki, Optimization of entanglement witnesses,
+    PRA 62, 052310 (2000).
+11. Yu. G. Makhlin, Nonlocal properties of two-qubit gates and mixed states and optimizations of
+    quantum computations, QIP 1, 243-252 (2002).
+12. D. Maslov and G. W. Dueck. IEE Electronics Letters 39.25, 1790-1791 (2003).
+13. M. Möttönen, J. J. Vartiainen, V. Bergholm, and M. M. Salomaa, Quantum circuits for general
+    multiqubit gates, PRL 93, 130502 (2004).
+14. M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information, Cambridge
+    University Press (2000).
+15. C. C. Paige and M. Wei, History and generality of the CS decomposition, Linear Algebra and
+    Applications 208, 303 (1994).
+16. V. V. Shende, I. L. Markov, and S. S. Bullock, CNOT-optimal circuits for generic two-qubit
+    operators, PRA 69, 062321 (2004).
+17. V. V. Shende, S. S. Bullock, and I. L. Markov, Recognizing small-circuit structure in two-qubit
+    operators. PRA 70, 012310 (2004).
+18. V. V. Shende, S. S. Bullock, and I. L. Markov, Synthesis of quantum logic circuits, IEEE. Trans.
+    on CAD 25, 1000 (2006).
+19. G. Song and A. Klappenecker, Optimal realizations of controlled unitary gates, QIC 3, 139-155
+    (2003).
+20. G. Song and A. Klappenecker, The simplified Toffoli gate implementation by Margolus is optimal,
+    QIC 4, 361-372 (2004).
+21. T. Toffoli, Reversible Computing, MIT Technical Report MIT/LCS/TM-151 (1980).
+22. F. Vatan and C. Williams, Optimal quantum circuits for general two-qubit gates, PRA 69, 032315
+    (2004).
+23. G. Vidal and C. M. Dawson, A universal quantum circuit for two-qubit transformations with
+    three CNOT gates, PRA 69, 010301 (2004).
+24. J. Zhang, J. Vala, K. B. Whaley, and S. Sastry, A geometric theory of non-local two-qubit opera-
+    tions, PRA 67, 042313 (2003).
+
+ Appendix: Proof of Proposition 4
+ Below we restate Proposition 4 and complete its proof.
+ Proposition 5 Fix qubits ℓ1 . . . ℓk among N > k qubits. A unitary U commuting with
+ Z(ℓ1 ) , . . . , Z(ℓk ) can be implemented by a CZ-circuit in which only diagonal gates operate on
+ qubits ℓi if and only if detℓ1 ...ℓk (U ) is separable (can be implemented by one-qubit gates).
+486   On the CNOT-cost of TOFFOLI gates
+
+
+Proof: (⇒). It suffices to show the separability of detℓ1 ...ℓk (U ) for a small generating set of
+operators. Direct calculation confirms this for (i) CZ gates, (ii) diagonal one-qubit gates on
+the ℓi , and (iii) any gate not affecting qubits ℓi .
+                                                                             k−N
+    (⇐). By hypothesis, detℓ1 ...ℓk (U ), and hence D = detℓ1 ...ℓk (U )−2        , can be implemented
+using only one-qubit diagonal gates. It remains to implement Ũ = U/D, which satisfies the
+normalization Ũj1 ...jk ∈ iSU(2N −k ). We will construct a circuit for Ũ by multiplexing circuits
+for Ũj1 ...jk . Let C be a (N − k)-qubit circuit containing only CZs and one-qubit Rx , Ry , Rz
+gates such that any operator in iSU(2N −k ) can be implemented by making the appropriate
+choice of parameter for the Rx , Ry , Rz gates. Such universal circuits exist [1]; see Section 2.3
+for modern constructions. Choose specifications Cj1 ...jk implementing the Ũji ...jk ; let the s-th
+rotation gate in Cj1 ...jk be given by Rd(s) (θj1 ...jk (s))(q(s)) , where q(s) is a qubit, θj1 ...jk (s) is
+an angle, and d(s) = x, y, z. Define Θ(s) to be the real diagonal operator on qubits ℓi . . . ℓk
+such that Θ(s)ji ...jk = θj1 ...jk (s). Form the N -qubit circuit C˜ by replacing the s-th rotation
+gate of C by the multiplexed rotation Rd(s) (Θ(s))(q(s)) ; then C˜ implements Ũ . Implement
+Rd(s) (Θ(s))(q(s)) by a CZ-circuit containing no one-qubit operator on any qubit save q(s),
+which is not one of the ℓi (see [13] or Section 2.3).
+Corollary 9 N -qubit operators which commute with Z on k qubits can be implemented using
+on the order of 2k 4N −k one-qubit and CZ gates.g
+Proof: This follows from the construction in the proof of Proposition 4 and the known
+estimates in the cases k = 0, N − 1 [13] and k = N [3].
+
+
+
+
+g Dimension-counting following [9] shows that roughly this many are necessary for almost all such operators.
+

@@ -1,0 +1,350 @@
+{
+  "beat": "AD-25",
+  "status": "MAJ_K4_SIX_ORDER_CONSTRAINED_NUMERIC_COMPLETE",
+  "known_answer_gate_first": {
+    "exact_7cz_sources": 7,
+    "exact_7cz_max_abs": 8.455206652451151e-16,
+    "known_solver_max_abs": 5.978733960281817e-16
+  },
+  "protocol": "each order uses only its own AD-22 best raw candidate; canonical 26-core; 4x4 b/t cases; weight=10; max_nfev=600",
+  "runs": 96,
+  "errors": 0,
+  "per_order": {
+    "AABB": {
+      "source_best_e": 0.7071067811893924,
+      "source_idx": 3,
+      "source_restart": 3,
+      "initial_invariants": {
+        "A": [
+          3.141592514982525,
+          8.881784197001252e-16
+        ],
+        "B": [
+          2.3561944901883125,
+          -4.8044218227789464e-11
+        ]
+      },
+      "runs": 16,
+      "exact_joint_hits": 0,
+      "best_target": {
+        "order": "AABB",
+        "case_A_index": 3,
+        "case_B_index": 3,
+        "case_A": [
+          0.6666666666666666,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.5706443235778398,
+        "constraint_inf": 0.009299024745407003,
+        "nfev": 37,
+        "status": 2,
+        "optimality": 8.326977871754086e-08
+      },
+      "best_target_with_constraint_inf_lt_1e-2": {
+        "order": "AABB",
+        "case_A_index": 3,
+        "case_B_index": 3,
+        "case_A": [
+          0.6666666666666666,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.5706443235778398,
+        "constraint_inf": 0.009299024745407003,
+        "nfev": 37,
+        "status": 2,
+        "optimality": 8.326977871754086e-08
+      },
+      "max_constraint_inf": 0.009299024745860418,
+      "min_constraint_inf": 0.002704937071400071
+    },
+    "ABAB": {
+      "source_best_e": 0.3826834879916871,
+      "source_idx": 5,
+      "source_restart": 7,
+      "initial_invariants": {
+        "A": [
+          1.5707963272082879,
+          2.828427121863286
+        ],
+        "B": [
+          1.570796327438421,
+          -1.9999999979614693
+        ]
+      },
+      "runs": 16,
+      "exact_joint_hits": 0,
+      "best_target": {
+        "order": "ABAB",
+        "case_A_index": 2,
+        "case_B_index": 0,
+        "case_A": [
+          0.5,
+          2.0
+        ],
+        "case_B": [
+          0.3333333333333333,
+          0.0
+        ],
+        "target_max_abs": 0.6021721878476556,
+        "constraint_inf": 0.006354706392841969,
+        "nfev": 220,
+        "status": 2,
+        "optimality": 8.563354755852792e-08
+      },
+      "best_target_with_constraint_inf_lt_1e-2": {
+        "order": "ABAB",
+        "case_A_index": 2,
+        "case_B_index": 0,
+        "case_A": [
+          0.5,
+          2.0
+        ],
+        "case_B": [
+          0.3333333333333333,
+          0.0
+        ],
+        "target_max_abs": 0.6021721878476556,
+        "constraint_inf": 0.006354706392841969,
+        "nfev": 220,
+        "status": 2,
+        "optimality": 8.563354755852792e-08
+      },
+      "max_constraint_inf": 0.007451953235266817,
+      "min_constraint_inf": 0.004122084445750573
+    },
+    "ABBA": {
+      "source_best_e": 0.38268349216320235,
+      "source_idx": 6,
+      "source_restart": 1,
+      "initial_invariants": {
+        "A": [
+          1.5707963137568035,
+          1.9999999999999916
+        ],
+        "B": [
+          1.5707963267948966,
+          -2.8284271247461996
+        ]
+      },
+      "runs": 16,
+      "exact_joint_hits": 0,
+      "best_target": {
+        "order": "ABBA",
+        "case_A_index": 0,
+        "case_B_index": 3,
+        "case_A": [
+          0.3333333333333333,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.6020039536034081,
+        "constraint_inf": 0.007545257627738389,
+        "nfev": 178,
+        "status": 2,
+        "optimality": 8.37427021616044e-08
+      },
+      "best_target_with_constraint_inf_lt_1e-2": {
+        "order": "ABBA",
+        "case_A_index": 0,
+        "case_B_index": 3,
+        "case_A": [
+          0.3333333333333333,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.6020039536034081,
+        "constraint_inf": 0.007545257627738389,
+        "nfev": 178,
+        "status": 2,
+        "optimality": 8.37427021616044e-08
+      },
+      "max_constraint_inf": 0.03443483083540344,
+      "min_constraint_inf": 0.007545257254656601
+    },
+    "BAAB": {
+      "source_best_e": 0.38268349030578525,
+      "source_idx": 9,
+      "source_restart": 0,
+      "initial_invariants": {
+        "A": [
+          0.7853981626057848,
+          -1.9984014443252818e-15
+        ],
+        "B": [
+          1.5707963110922618,
+          -2.000000001583307
+        ]
+      },
+      "runs": 16,
+      "exact_joint_hits": 0,
+      "best_target": {
+        "order": "BAAB",
+        "case_A_index": 3,
+        "case_B_index": 3,
+        "case_A": [
+          0.6666666666666666,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.6020039510629726,
+        "constraint_inf": 0.007545257645383607,
+        "nfev": 207,
+        "status": 2,
+        "optimality": 9.096867215503199e-08
+      },
+      "best_target_with_constraint_inf_lt_1e-2": {
+        "order": "BAAB",
+        "case_A_index": 3,
+        "case_B_index": 3,
+        "case_A": [
+          0.6666666666666666,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.6020039510629726,
+        "constraint_inf": 0.007545257645383607,
+        "nfev": 207,
+        "status": 2,
+        "optimality": 9.096867215503199e-08
+      },
+      "max_constraint_inf": 0.9714694164297666,
+      "min_constraint_inf": 0.007545257444493192
+    },
+    "BABA": {
+      "source_best_e": 0.3826834841410246,
+      "source_idx": 10,
+      "source_restart": 6,
+      "initial_invariants": {
+        "A": [
+          1.5707963817836412,
+          -1.9999999982674292
+        ],
+        "B": [
+          1.5707963313807667,
+          -2.828427122295976
+        ]
+      },
+      "runs": 16,
+      "exact_joint_hits": 0,
+      "best_target": {
+        "order": "BABA",
+        "case_A_index": 3,
+        "case_B_index": 2,
+        "case_A": [
+          0.6666666666666666,
+          0.0
+        ],
+        "case_B": [
+          0.5,
+          2.0
+        ],
+        "target_max_abs": 0.602172186585623,
+        "constraint_inf": 0.00635470641116731,
+        "nfev": 212,
+        "status": 2,
+        "optimality": 8.608804297205452e-08
+      },
+      "best_target_with_constraint_inf_lt_1e-2": {
+        "order": "BABA",
+        "case_A_index": 3,
+        "case_B_index": 2,
+        "case_A": [
+          0.6666666666666666,
+          0.0
+        ],
+        "case_B": [
+          0.5,
+          2.0
+        ],
+        "target_max_abs": 0.602172186585623,
+        "constraint_inf": 0.00635470641116731,
+        "nfev": 212,
+        "status": 2,
+        "optimality": 8.608804297205452e-08
+      },
+      "max_constraint_inf": 0.0074518317677996215,
+      "min_constraint_inf": 0.004122084445755014
+    },
+    "BBAA": {
+      "source_best_e": 0.7071067812133685,
+      "source_idx": 12,
+      "source_restart": 4,
+      "initial_invariants": {
+        "A": [
+          2.356194490230277,
+          -6.935097665584622e-11
+        ],
+        "B": [
+          1.088910872231703e-07,
+          -1.4210854715202002e-14
+        ]
+      },
+      "runs": 16,
+      "exact_joint_hits": 0,
+      "best_target": {
+        "order": "BBAA",
+        "case_A_index": 0,
+        "case_B_index": 3,
+        "case_A": [
+          0.3333333333333333,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.5706443210865055,
+        "constraint_inf": 0.009299024740005102,
+        "nfev": 68,
+        "status": 2,
+        "optimality": 7.956365210454437e-08
+      },
+      "best_target_with_constraint_inf_lt_1e-2": {
+        "order": "BBAA",
+        "case_A_index": 0,
+        "case_B_index": 3,
+        "case_A": [
+          0.3333333333333333,
+          0.0
+        ],
+        "case_B": [
+          0.6666666666666666,
+          0.0
+        ],
+        "target_max_abs": 0.5706443210865055,
+        "constraint_inf": 0.009299024740005102,
+        "nfev": 68,
+        "status": 2,
+        "optimality": 7.956365210454437e-08
+      },
+      "max_constraint_inf": 0.00929902476873301,
+      "min_constraint_inf": 0.0027049370714471443
+    }
+  },
+  "exact_joint_hits": 0,
+  "evidence_level": "L2 targeted local numerical falsification only",
+  "boundary": "每序仅覆盖AD-22本序最佳候选的暖启动盆及16个等号分支；任何零命中均不证明该边序或k=4全局不存在。六序解析排除仍开放。",
+  "strict_interval": "4 <= k <= 7",
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

@@ -1,0 +1,475 @@
+{
+  "beat": "AD-25",
+  "status": "MAJ_SINGLE_CUT_SATURATION_AND_TWO_CZ_EQUALITY_L1_PASS",
+  "known_answer_gate_first": {
+    "identity_rank_each_cut": 1,
+    "single_cz_ranks": {
+      "CZ01_q0": 2,
+      "CZ01_q2": 1,
+      "CZ12_q2": 2,
+      "CZ12_q0": 1
+    },
+    "z_commuting_controlled_form_rank": 2
+  },
+  "single_qubit_cuts": {
+    "q0|rest": {
+      "shape": [
+        4,
+        16
+      ],
+      "rank": 4,
+      "gram_eigenvalues_with_multiplicity": {
+        "3": 2,
+        "1": 2
+      },
+      "schmidt_coefficients": [
+        "sqrt(3)",
+        "sqrt(3)",
+        "1",
+        "1"
+      ],
+      "unfolded_integer_matrix": [
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    "q1|rest": {
+      "shape": [
+        4,
+        16
+      ],
+      "rank": 4,
+      "gram_eigenvalues_with_multiplicity": {
+        "3": 2,
+        "1": 2
+      },
+      "schmidt_coefficients": [
+        "sqrt(3)",
+        "sqrt(3)",
+        "1",
+        "1"
+      ],
+      "unfolded_integer_matrix": [
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "q2|rest": {
+      "shape": [
+        4,
+        16
+      ],
+      "rank": 4,
+      "gram_eigenvalues_with_multiplicity": {
+        "3": 2,
+        "1": 2
+      },
+      "schmidt_coefficients": [
+        "sqrt(3)",
+        "sqrt(3)",
+        "1",
+        "1"
+      ],
+      "unfolded_integer_matrix": [
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      ]
+    }
+  },
+  "local_z_commutation_obstruction": {
+    "lemma": "若算符与某位 Z 对易，则该位单割算符 Schmidt 秩至多2；左右局部酉保持秩。MAJ三个单割秩均4，故不能经左右局部酉化成任一单比特 Z-对易两块形式。",
+    "consequence": "Shende–Markov Definition 16–Theorem 18 的 mux-spectrum 不能直接以 MAJ 本身作为 Z-对易 P 使用；不清中期中间块或辅助位路线。",
+    "not_claimed": "不排除 k=4，也不宣称所有 demultiplexing/偏行列式证明技术失效。"
+  },
+  "two_cz_equality_lemma": {
+    "reduction": "two cross-cut CZ imply local equivalence to CZ (Ry(b) tensor V) CZ by ZYZ and commuting outer Rz through CZ",
+    "gram_eigenvalues": [
+      "c2*(4+t)",
+      "c2*(4-t)",
+      "s2*(4+t)",
+      "s2*(4-t)"
+    ],
+    "definitions": "c2=cos(b/2)^2; s2=sin(b/2)^2; c2+s2=1; t=Tr(V Z_1 V^dagger Z_1)",
+    "target_spectrum_consequences": [
+      {
+        "b": "pi/3 or 2*pi/3",
+        "t": "0"
+      },
+      {
+        "b": "pi/2",
+        "t": "+2 or -2"
+      }
+    ],
+    "allowed_b": [
+      "pi/3",
+      "pi/2",
+      "2*pi/3"
+    ],
+    "explicit_witnesses": [
+      {
+        "case": "t0_c2_3over4",
+        "b_over_pi": 0.3333333333333333,
+        "V": "Ry(0.5*pi)_1 tensor I_2",
+        "t": 7.581077015868176e-16,
+        "squared_schmidt": [
+          3.0000000000000004,
+          3.0000000000000004,
+          0.9999999999999996,
+          0.9999999999999996
+        ],
+        "formula_error": 8.881784197001252e-16,
+        "target_spectrum_error": 4.440892098500626e-16
+      },
+      {
+        "case": "tabs2_c2_1over2",
+        "b_over_pi": 0.5,
+        "V": "Ry(0.3333333333333333*pi)_1 tensor I_2",
+        "t": 2.0000000000000004,
+        "squared_schmidt": [
+          3.0000000000000018,
+          3.0000000000000004,
+          1.0,
+          0.9999999999999993
+        ],
+        "formula_error": 1.3322676295501878e-15,
+        "target_spectrum_error": 1.7763568394002505e-15
+      }
+    ],
+    "random_unitary_crosscheck": {
+      "cases": 8,
+      "max_spectrum_formula_error": 2.220446049250313e-15
+    },
+    "scope_boundary": "必要等号条件；两个显式见证说明该谱本身不排除 k=4，也不提高下界。"
+  },
+  "k4_six_edge_orders": [
+    {
+      "order": "AABB",
+      "A_positions": [
+        0,
+        1
+      ],
+      "B_positions": [
+        2,
+        3
+      ],
+      "opposite_cz_between_A": 0,
+      "opposite_cz_between_B": 0,
+      "class": "adjacent-pair"
+    },
+    {
+      "order": "ABAB",
+      "A_positions": [
+        0,
+        2
+      ],
+      "B_positions": [
+        1,
+        3
+      ],
+      "opposite_cz_between_A": 1,
+      "opposite_cz_between_B": 1,
+      "class": "alternating"
+    },
+    {
+      "order": "ABBA",
+      "A_positions": [
+        0,
+        3
+      ],
+      "B_positions": [
+        1,
+        2
+      ],
+      "opposite_cz_between_A": 2,
+      "opposite_cz_between_B": 0,
+      "class": "nested"
+    },
+    {
+      "order": "BAAB",
+      "A_positions": [
+        1,
+        2
+      ],
+      "B_positions": [
+        0,
+        3
+      ],
+      "opposite_cz_between_A": 0,
+      "opposite_cz_between_B": 2,
+      "class": "nested"
+    },
+    {
+      "order": "BABA",
+      "A_positions": [
+        1,
+        3
+      ],
+      "B_positions": [
+        0,
+        2
+      ],
+      "opposite_cz_between_A": 1,
+      "opposite_cz_between_B": 1,
+      "class": "alternating"
+    },
+    {
+      "order": "BBAA",
+      "A_positions": [
+        2,
+        3
+      ],
+      "B_positions": [
+        0,
+        1
+      ],
+      "opposite_cz_between_A": 0,
+      "opposite_cz_between_B": 0,
+      "class": "adjacent-pair"
+    }
+  ],
+  "k5_k6_touch_patterns": {
+    "k5": [
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "k6": [
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "notation": "[n01,n12]; 单割秩仅给出 n01>=2,n12>=2"
+  },
+  "strict_result": "MAJ三个单比特割均为秩4、谱(sqrt3,sqrt3,1,1)；k=4两割均为双CZ等号情形，新增b/t必要条件。严格区间仍4<=k<=7。",
+  "open_boundaries": [
+    "六边序尚未解析排除或构造；等号谱条件有显式见证，不能当作不存在证明。",
+    "k=5/6未改善；k=4仍是唯一可能取得新下界或更小构造的边界。",
+    "mux-spectrum直接迁移受阻不等于相关文献方法全部不可用。"
+  ],
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

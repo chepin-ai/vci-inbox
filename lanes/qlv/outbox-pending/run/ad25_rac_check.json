@@ -1,0 +1,150 @@
+{
+  "beat": "AD-25",
+  "checked_at": "20261110T200158Z",
+  "previous_checked_at": "20261110T180937Z",
+  "repos": {
+    "chepin-ai/ci-inbox": {
+      "base": "e5efba809923c577d7edb8bbf0fc34d2b0d70a0f",
+      "head": "d69654dad07175b8da03507843502af7b0e5b409",
+      "ahead_by": 11,
+      "behind_by": 0,
+      "candidate_counts": 4,
+      "candidates": [
+        {
+          "path": "shared/field-engine/QRAC-TRIALS-01/QRAC-D8-TOFFOLI-PLATEAU-05.md",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "a478d3b00b1d46b6790826fe3d2b6458d7f197a06d0203ec3cb2f084ca1e2399"
+        },
+        {
+          "path": "shared/field-engine/QRAC-TRIALS-01/QRAC-D8-TOFFOLI-PLATEAU-06.md",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "5a1e5e9221cee8ee1f42f9dc3a33aff6d169f7de7001d9ce9b3c4426f6cdbef5"
+        },
+        {
+          "path": "shared/field-engine/QRAC-TRIALS-01/QRAC-D8-TOFFOLI-PLATEAU-07.md",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "705a2d017097aa61779b573147137bd8432035f87797cea06c56bdd1140e029d"
+        },
+        {
+          "path": "公告板/V151-QUAFU-RAC-EMPTY-COMPLETED-LGT-01-20261110T051234Z.md",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": true,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "705abcf1f98ee1d6a1a7b37f8dc29e5670583b45b0f738be008d3789954f1918"
+        }
+      ]
+    },
+    "chepin-ai/vci-inbox": {
+      "base": "5128006d34fe465254cc1aa8f678fdc5b77ce66f",
+      "head": "468b9fec0d99de4a520b79c909c6322ae28ec083",
+      "ahead_by": 12,
+      "behind_by": 0,
+      "candidate_counts": 10,
+      "candidates": [
+        {
+          "path": "lanes/qlv/outbox-pending/QRAC-D8-TOFFOLI-PLATEAU-05.md",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "a478d3b00b1d46b6790826fe3d2b6458d7f197a06d0203ec3cb2f084ca1e2399"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/QRAC-D8-TOFFOLI-PLATEAU-06.md",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "5a1e5e9221cee8ee1f42f9dc3a33aff6d169f7de7001d9ce9b3c4426f6cdbef5"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/QRAC-D8-TOFFOLI-PLATEAU-07.md",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "705a2d017097aa61779b573147137bd8432035f87797cea06c56bdd1140e029d"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad22_rac_check.json",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "909c9eae92a9062595747ed25f8b79708f0de72a5a03c1048f01b47350887303"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad22_rac_check.log",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "27f9bc26a266db2ead63246d4694d923f83e0f024190116e7efd25e4da7b6a4e"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad22_rac_recon.py",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": true,
+          "content_sha256": "5ebe3d364135739327e3b1e3e5ee75c9ecef7a040949976d299caf81b2fd7ab5"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad23_rac_check.json",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "53540725063bc0bb1557a65183500d1f7ae8a74cc142a727f3087149d7b8cd30"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad23_rac_recon.py",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": true,
+          "content_sha256": "a94f86d63fd1115a772c8119f50aaf72c4063b5f1a0e3ea230803ed66cfc9e0a"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad24_rac_check.json",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "2b3f759a93b94a8a9646f0971832958a2c6a1879950556094be32a955491fe1e"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad24_rac_recon.py",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": true,
+          "content_sha256": "5159faaaf322da13bad2333ea6087fa7ae7f73588e9588d14c81c72b48319cfa"
+        }
+      ]
+    },
+    "chepin-qi/qlv-pub": {
+      "base": "e57180f818d021ddf5a18c2b2bd5caed3a4b3afa",
+      "head": "6ac5c4bfecc3b4d89f453241a8744c0c3454cba5",
+      "ahead_by": 12,
+      "behind_by": 0,
+      "candidate_counts": 0,
+      "candidates": []
+    }
+  },
+  "fingerprint_arrived": false,
+  "quantum_machine_consumption": 0,
+  "private_ci_consumption": 0,
+  "verdict": "WAITING_PEER_S_SIM",
+  "boundary": "仅复查对方数值指纹是否到件；源码队列字面量不充当指纹；QLV自身模拟S_sim不冒充跨线对拍；未触发任何真机或私域CI。"
+}

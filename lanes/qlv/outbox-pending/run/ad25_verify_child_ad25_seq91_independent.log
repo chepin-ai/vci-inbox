@@ -1,0 +1,9 @@
+{
+  "status": "SEQ91_528_RAW_CIRCUITS_INDEPENDENT_PASS",
+  "runs": 528,
+  "exact_returns": 443,
+  "mismatches": 0,
+  "raw_rank": 33,
+  "core_rank": 33,
+  "sha256": "bdca977a44dfa3bffe8d58603af7bfe1f5763ebba3df035232acc65d58ff034c"
+}

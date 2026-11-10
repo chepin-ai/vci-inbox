@@ -1,0 +1,13 @@
+{
+  "status": "S2_FULL_SPHERE_11CZ_INDEPENDENT_L1_PASS",
+  "symbolic": {
+    "w_decomposition": 0,
+    "w_unitarity": 0,
+    "w_toffoli_commutation": 0,
+    "w_meridian_conjugation": 0
+  },
+  "theta0_exact": "THETA_ZERO_11CZ_INDEPENDENT_ALL_EXACT_ZERO",
+  "numeric_points": 25,
+  "numeric_max_abs": 1.5788995281571398e-15,
+  "sha256": "ca45bb625b20aeb580dce3be549fca88f1a4fc8229ad8982d7bce5d30ca46c91"
+}

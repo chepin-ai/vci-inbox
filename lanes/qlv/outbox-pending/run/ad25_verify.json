@@ -1,0 +1,149 @@
+{
+  "beat": "AD-25",
+  "status": "ALL_PASS",
+  "known_answer_gate_first": {
+    "trace_inner_product_witnesses": [
+      4.0,
+      -4.0
+    ],
+    "trace_inner_product_extrema": [
+      -4,
+      4
+    ],
+    "normalized_trace_at_pi_over_8": 0.9903926402016153,
+    "wrong_extra_halving_rejected_by": 0.49519632010080766,
+    "angle_from_lambda": 0.0981747704246806
+  },
+  "maj_gram_independent": {
+    "gram_block_eigenvalues_exact": true,
+    "allowed_branch_witnesses": [
+      {
+        "branch": "pi/3,t0",
+        "squared_schmidt": [
+          3,
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "branch": "2pi/3,t0",
+        "squared_schmidt": [
+          3,
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "branch": "pi/2,t+2",
+        "squared_schmidt": [
+          3,
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "branch": "pi/2,t-2",
+        "squared_schmidt": [
+          3,
+          3,
+          1,
+          1
+        ]
+      }
+    ],
+    "scope": "必要条件与显式谱见证，不是k=4不存在证明。"
+  },
+  "controlled_trace_independent": {
+    "symbolic_trace_over_8": "(1+cos(theta/2))/2 = cos(theta/4)^2",
+    "lambda": "t/2",
+    "A_squared_epsilon_coefficients": [
+      "theta**2/16",
+      "theta/8",
+      "1/16"
+    ],
+    "lambda_second_at_epsilon_zero": "-cos(theta/2)/16",
+    "known_theta_pi_over_2": {
+      "A": "pi/8",
+      "lambda": "cos(pi/8)^2/2"
+    },
+    "boundary": "不是目标保真角曲率，不证明±pi/8局部或全局角刚性。"
+  },
+  "cold_process_children": {
+    "maj": {
+      "script": "ad25_maj_independent.py",
+      "output": "ad25_maj_independent.json",
+      "returncode": 0,
+      "stdout_sha256": "7bf973636ea85693fa189ab6b6418f7ed24b2ec20cdffcc61ebcc83f9ae878f7",
+      "json_sha256": "1c448c7ea26f83f9e05bc4c2e83641c5ff95b166741fe7709bf45b2a0c4c98b8"
+    },
+    "s2": {
+      "script": "ad25_s2_independent.py",
+      "output": "ad25_s2_independent.json",
+      "returncode": 0,
+      "stdout_sha256": "2bee69eb24710df6e27bf5ab0aa755d8036f87201c30e653c71ea284b5a5ceb9",
+      "json_sha256": "ca45bb625b20aeb580dce3be549fca88f1a4fc8229ad8982d7bce5d30ca46c91"
+    },
+    "seq91": {
+      "script": "ad25_seq91_independent.py",
+      "output": "ad25_seq91_independent.json",
+      "returncode": 0,
+      "stdout_sha256": "9e5045e4504552ad32c9d5161fb0fa062a3fe141c68671688fa078ed9d1cc866",
+      "json_sha256": "bdca977a44dfa3bffe8d58603af7bfe1f5763ebba3df035232acc65d58ff034c"
+    }
+  },
+  "headline": {
+    "maj_interval": "4 <= k <= 7",
+    "maj_k4_runs": 96,
+    "maj_k4_joint_hits": 0,
+    "s2_full_sphere_cz": 11,
+    "s2_numeric_points": 25,
+    "s2_numeric_max_abs": 1.5788995281571398e-15,
+    "seq91_runs": 528,
+    "seq91_exact_returns": 443,
+    "seq91_raw73_rank": 33,
+    "seq91_core38_rank": 33,
+    "seq91_core38_nullity": 5,
+    "rac_verdict": "WAITING_PEER_S_SIM"
+  },
+  "input_sha256": {
+    "ad25_maj_saturation.json": "d466f446e0dda9baaa8bce8785897fcddc775e590aa6fae40bff55de5f6e079d",
+    "ad25_maj_k4_constrained.jsonl": "0685a67b60cb3b72e4265393c3ebf062063365de50dccf9f2cc0b405e0c9d3d1",
+    "ad25_maj_k4_constrained_summary.json": "8914a28667b048622bfbfe3d1832bfbf109507d7b0a9408b9421bd469bc688ed",
+    "ad25_maj_independent.json": "1c448c7ea26f83f9e05bc4c2e83641c5ff95b166741fe7709bf45b2a0c4c98b8",
+    "ad25_s2_meridian.json": "d6691a896cceaac1b737349358af4cb43c81bbabbcf2da5faf5098b1562b8536",
+    "ad25_s2_theta0_11cz_exact.json": "bd075233dbdf0a9a281b1fa1286712d607a88eee4cf7e9b8675701d0fc1e41f0",
+    "ad25_s2_independent.json": "ca45bb625b20aeb580dce3be549fca88f1a4fc8229ad8982d7bce5d30ca46c91",
+    "ad25_seq91_rank_diagnostic.json": "4ae7b19e7cdaab725eec56fd5035a0ab2b0d09dc467c8f6e203dfbd714bffcee",
+    "ad25_seq91_transversal_metric.jsonl": "c4197ea0f5ed4e51fb3360508b1118b096382fc535897b74badec1d6c9b33d99",
+    "ad25_seq91_transversal_metric_summary.json": "ec657cd3eb057c98b4952fbbbc84b98ddacccd582d0184cde7e91d124be39f8a",
+    "ad25_seq91_independent.json": "bdca977a44dfa3bffe8d58603af7bfe1f5763ebba3df035232acc65d58ff034c",
+    "ad25_secondary.json": "123734d91285d40e8fb3cc54c7ff07ddf3fccaf30fe5e016dccdd65d6bd5f254",
+    "ad25_rac_check.json": "df61f340cf0a71ee1c1053d84105fac1e0a08ddc30dc8a217839bc3a3100c562"
+  },
+  "strict_result": "MAJ严格区间仍4<=k<=7；S²全S²存在11-CZ PATH解析实现且独立符号/纯分数/25点网格通过；序91局部横向38核心rank33/null5，528条中443精确返回；均不升级为最优、全局basin或不存在结论。",
+  "anomaly_notes": [
+    "第一诚律·异常注记1：AD-23 Euler规范核心在基点实测rank30/null8；三处Euler奇点导致非横向图伪影，未写成物理零空间由5增至8。新建35维精确边界规范正交补后恢复rank33/null5。",
+    "第一诚律·异常注记2：首轮528条只保存x_core，不能让独立验收摆脱横向基；完整重跑528条并补存73维x_raw，443个精确返回保持不变。",
+    "第一诚律·异常注记3：序91独立目标初版漏掉sigma=-1分支，已知答案门拒绝后修复；最终528条签名不一致为0。",
+    "第一诚律·异常注记4：撤回以未归一化迹导数冒充保真角曲率及cos^2(theta/2)/2旧口径；现仅保留t=Re(tr(W)/8)=cos^2(theta/4)、lambda=t/2与A=theta/4的可证恒等式。",
+    "第一诚律·异常注记5：t=±2不是4×4迹内积极值；V=I与在Z1作用因子上的X分别给出±4，未把谱等号条件伪化为V与Z对易。总验收初版把X误放到对易因子时被已知门拒绝，改正反交换因子后才放行。",
+    "第一诚律·异常注记6：MAJ六序96次定向求解0联合精确命中，只覆盖暖启动盆和所测分支，未写成六序或k=4全局不存在证明。",
+    "第一诚律·异常注记7：S²独立验收初版H00漏Z2且Fraction矩阵累加有误；修复并以H00对合、17个三角已知答案门复验，失败运行不记通过。",
+    "第一诚律·异常注记8：S²数值网格曾把φ门原地写回W/W†共享层，导致首点后污染并在(theta=pi/11,phi=-0.83)出现0.10519701069149003；改为纯复制拼接，新增W/W†已知门与零突变门，25点最大误差1.5788995281571398e-15。",
+    "第一诚律·异常注记9：RAC源码队列字面量不充当对方数值指纹；本次三仓候选均无数值S_sim，维持WAITING_PEER_S_SIM。"
+  ],
+  "open_boundaries": [
+    "DEBT-MAJ-LB-01：k=4六序未解析排除或构造，k=5/6未改善，区间仍4<=k<=7。",
+    "DEBT-S2-CONSTRUCT-01与DEBT-S2-11TO7-01：11-CZ不冒报最优；11到9/7及全theta 7-CZ仍开放。",
+    "DEBT-S2-W-NORMALIZER-01：非标准连续W与替代边界模板未闭合。",
+    "DEBT-SEQ91-BASIN-GEOM-01：443/528是局部线性横向图和有限方向协议频率，不是全局basin体积、测地距离或旧466的可比优劣。",
+    "DEBT-K3-ANALYTIC-01与DEBT-TOFFOLI-ANALYTIC-01：±pi/8角刚性仍未解决。",
+    "RAC-COUNTERPART-NUMERIC-S-SIM：对方数值指纹未到件，跨线独立重放未启动。",
+    "DEBT-FEDPAT-ROT-01、DEBT-QLVSI5-ROT-01、DEBT-QUAFU-P5-REAP-01与Sidecar授权边界续存。"
+  ],
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

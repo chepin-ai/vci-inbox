@@ -1,0 +1,244 @@
+{
+  "beat": "AD-25",
+  "status": "S2_FULL_SPHERE_11CZ_INDEPENDENT_L1_PASS",
+  "independence": "no constructor, solver, AD-23 exact module, or AD-24 verifier imported; rebuilt from raw endpoint and integer angles",
+  "known_answer_gate_first": {
+    "controlled_unitary_cases": 3,
+    "unitarity_max": 0.0,
+    "wrong_adjoint_direction_max_abs": 0.35694929447691137
+  },
+  "exact_field_known_answer_gate": {
+    "field_relation": "w^8+1=0",
+    "trigonometric_cases": 17,
+    "sphere_endpoint_involution": true,
+    "representation": "8-tuple Fraction polynomial basis; no SymPy field and no constructor import"
+  },
+  "symbolic": {
+    "status": "ALL_INDEPENDENT_SYMBOLIC_IDENTITIES_EXACT_ZERO",
+    "nonzero_after_normal_form": {
+      "w_decomposition": 0,
+      "w_unitarity": 0,
+      "w_toffoli_commutation": 0,
+      "w_meridian_conjugation": 0
+    },
+    "relation": "c^2+s^2=1; c=cos(theta/4), s=sin(theta/4)",
+    "phi_absorption": "R X R^dagger=cos(phi)X-sin(phi)Y; R Y R^dagger=cos(phi)Y+sin(phi)X",
+    "consequence": "Rphi W U0 W^dagger Rphi^dagger implements the full S² with 2+7+2 CZ"
+  },
+  "theta0_exact": {
+    "status": "THETA_ZERO_11CZ_INDEPENDENT_ALL_EXACT_ZERO",
+    "nonzero_residual_entries": 0,
+    "cz_count": 11,
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "engine": "pure Fraction Q(w), independent polynomial reduction w^8=-1"
+  },
+  "numeric_crosscheck": {
+    "points": 25,
+    "max_abs": 1.5788995281571398e-15,
+    "w_block_known_answer_gate": {
+      "status": "W_AND_W_DAGGER_RAW_KNOWN_ANSWER_PASS",
+      "cases": [
+        {
+          "theta": 0.0,
+          "w_max_abs": 2.220446049250313e-16,
+          "w_dagger_max_abs": 2.220446049250313e-16,
+          "phase_pair_error": 0.0
+        },
+        {
+          "theta": 0.28559933214452665,
+          "w_max_abs": 1.5700924586837752e-16,
+          "w_dagger_max_abs": 1.5700924586837752e-16,
+          "phase_pair_error": 0.0
+        },
+        {
+          "theta": 1.17,
+          "w_max_abs": 1.1443916996305594e-16,
+          "w_dagger_max_abs": 1.0007415106216804e-16,
+          "phase_pair_error": 0.0
+        }
+      ]
+    },
+    "shared_layer_mutation_max": 0.0,
+    "w_block_pre_post_rebuild_max": 2.220446049250313e-16,
+    "records": [
+      {
+        "theta": 0.0,
+        "phi": -2.7,
+        "max_abs": 1.4432899320127035e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": -0.83,
+        "max_abs": 1.3732700395566711e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": 0.19,
+        "max_abs": 1.5788995281571398e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": 1.21,
+        "max_abs": 1.3732700395566711e-15
+      },
+      {
+        "theta": 0.0,
+        "phi": 2.94,
+        "max_abs": 1.3426356273935429e-15
+      },
+      {
+        "theta": 0.28559933214452665,
+        "phi": -2.7,
+        "max_abs": 1.5548697241856942e-15
+      },
+      {
+        "theta": 0.28559933214452665,
+        "phi": -0.83,
+        "max_abs": 1.46717820963972e-15
+      },
+      {
+        "theta": 0.28559933214452665,
+        "phi": 0.19,
+        "max_abs": 1.400006751556181e-15
+      },
+      {
+        "theta": 0.28559933214452665,
+        "phi": 1.21,
+        "max_abs": 1.3839571271152534e-15
+      },
+      {
+        "theta": 0.28559933214452665,
+        "phi": 2.94,
+        "max_abs": 1.5548697241856942e-15
+      },
+      {
+        "theta": 0.6283185307179586,
+        "phi": -2.7,
+        "max_abs": 9.41467529262489e-16
+      },
+      {
+        "theta": 0.6283185307179586,
+        "phi": -0.83,
+        "max_abs": 1.1894689089654562e-15
+      },
+      {
+        "theta": 0.6283185307179586,
+        "phi": 0.19,
+        "max_abs": 1.0090067972277008e-15
+      },
+      {
+        "theta": 0.6283185307179586,
+        "phi": 1.21,
+        "max_abs": 1.0647302538741618e-15
+      },
+      {
+        "theta": 0.6283185307179586,
+        "phi": 2.94,
+        "max_abs": 1.0090067972277008e-15
+      },
+      {
+        "theta": 2.0943951023931953,
+        "phi": -2.7,
+        "max_abs": 1.1710090180710446e-15
+      },
+      {
+        "theta": 2.0943951023931953,
+        "phi": -0.83,
+        "max_abs": 1.1762602059271538e-15
+      },
+      {
+        "theta": 2.0943951023931953,
+        "phi": 0.19,
+        "max_abs": 1.3732700395566711e-15
+      },
+      {
+        "theta": 2.0943951023931953,
+        "phi": 1.21,
+        "max_abs": 1.1762602059271538e-15
+      },
+      {
+        "theta": 2.0943951023931953,
+        "phi": 2.94,
+        "max_abs": 1.2670655869532562e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": -2.7,
+        "max_abs": 1.3877787807814457e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": -0.83,
+        "max_abs": 1.2658490090568385e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 0.19,
+        "max_abs": 1.324147507406233e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 1.21,
+        "max_abs": 1.3608726004012153e-15
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 2.94,
+        "max_abs": 1.2947314098277873e-15
+      }
+    ],
+    "role": "corroboration only; arbitrary-angle proof is symbolic"
+  },
+  "strict_conclusion": "序34整个S²存在11-CZ PATH解析实现；theta=0端点另有7-CZ。11-CZ最优性、全theta 7-CZ与11到9/7消门均仍未解决。",
+  "input_sha256": {
+    "ad24_s2_exact.json": "ec0f942e4a5404daaf5476126d93f27a00eb7821a056c77c9025b806203065ce",
+    "ad25_s2_theta0_11cz_exact.json": "bd075233dbdf0a9a281b1fa1286712d607a88eee4cf7e9b8675701d0fc1e41f0"
+  },
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

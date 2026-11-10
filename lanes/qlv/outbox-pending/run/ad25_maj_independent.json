@@ -1,0 +1,80 @@
+{
+  "beat": "AD-25",
+  "status": "MAJ_AD25_INDEPENDENT_L1_L2_PASS",
+  "known_answer_gate_first": {
+    "single_cuts": {
+      "q0|rest": {
+        "rank": 4,
+        "gram_spectrum": "{3,3,1,1}"
+      },
+      "q1|rest": {
+        "rank": 4,
+        "gram_spectrum": "{3,3,1,1}"
+      },
+      "q2|rest": {
+        "rank": 4,
+        "gram_spectrum": "{3,3,1,1}"
+      }
+    },
+    "ad23_7cz_hits": 7,
+    "ad23_7cz_max_abs": 8.455206652451151e-16
+  },
+  "numeric96": {
+    "runs": 96,
+    "per_order": {
+      "AABB": {
+        "runs": 16,
+        "joint_hits": 0,
+        "best_target_rebuilt": 0.5706443235778398,
+        "min_constraint_rebuilt": 0.002704937071400071,
+        "max_constraint_rebuilt": 0.009299024745860418
+      },
+      "ABAB": {
+        "runs": 16,
+        "joint_hits": 0,
+        "best_target_rebuilt": 0.6021721878476556,
+        "min_constraint_rebuilt": 0.004122084445750573,
+        "max_constraint_rebuilt": 0.007451953235266817
+      },
+      "ABBA": {
+        "runs": 16,
+        "joint_hits": 0,
+        "best_target_rebuilt": 0.6020039536034081,
+        "min_constraint_rebuilt": 0.007545257254656601,
+        "max_constraint_rebuilt": 0.03443483083540344
+      },
+      "BAAB": {
+        "runs": 16,
+        "joint_hits": 0,
+        "best_target_rebuilt": 0.6020039510629726,
+        "min_constraint_rebuilt": 0.007545257444493192,
+        "max_constraint_rebuilt": 0.9714694164297666
+      },
+      "BABA": {
+        "runs": 16,
+        "joint_hits": 0,
+        "best_target_rebuilt": 0.602172186585623,
+        "min_constraint_rebuilt": 0.004122084445755014,
+        "max_constraint_rebuilt": 0.0074518317677996215
+      },
+      "BBAA": {
+        "runs": 16,
+        "joint_hits": 0,
+        "best_target_rebuilt": 0.5706443210865055,
+        "min_constraint_rebuilt": 0.0027049370714471443,
+        "max_constraint_rebuilt": 0.00929902476873301
+      }
+    },
+    "max_target_rebuild_difference": 0.0,
+    "max_constraint_rebuild_difference": 0.0,
+    "exact_joint_hits": 0,
+    "boundary": "只验收96条已跑电路及其坐标；未把暖启动盆未命中升级为六序或k=4不存在证明。"
+  },
+  "strict_interval": "4 <= k <= 7",
+  "open": [
+    "k=4六序解析排除或精确构造",
+    "k=5/6更严下界或更小构造"
+  ],
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

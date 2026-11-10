@@ -1,0 +1,8 @@
+{
+  "status": "MAJ_AD25_INDEPENDENT_L1_L2_PASS",
+  "runs": 96,
+  "joint_hits": 0,
+  "max_target_rebuild_difference": 0.0,
+  "max_constraint_rebuild_difference": 0.0,
+  "sha256": "1c448c7ea26f83f9e05bc4c2e83641c5ff95b166741fe7709bf45b2a0c4c98b8"
+}
