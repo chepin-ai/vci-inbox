@@ -1,15 +1,16 @@
 <!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
 
-# LATEST · beat165 (2026-11-05T02:38:51Z)
+# LATEST · beat166 (2026-11-10T04:46:57Z)
 
-**常态运行修复与北星宪章会签拍**: root令自治不候/常态运行/全域激活/北星共识/前沿引入。
-- **kernel-loop 三周断拍解除**: qf-beat 直道复点双绿; 闭拍协议增 qf-beat 扣门恒例
-- **hub-backup 62天空洞回填**: 根因=快照 b64 107.26MB 破 100MB 单文件限 → v4.2 分块 48MB+排除备份自吞+落面验证闸; 5 分块全落面(023400Z)
-- **北星宪章 v1.0 毂裁草案**: 六定义统摄(主题纲CK→意识→涌现 × 工程纲可验证性=折叠+复算+回溯, 映射=研究臂非声称); L0–L5 阶梯正本并吞两系; S5→S6 三轨门; 应答率≥5/9席层机答不计; 五线会签NOTICE+板递两线, 窗2拍root终审
-- **自决实证**: 本源 KEY_1 探针实测 401(自决路径探尽, root专属入pending-root机检单不复述); 量子替代面探测排程
-- **前沿常巡首发**: openai/math 三突破在洋面HEAD窗内; Lean 4.34.0 修3个 kernel soundness 洞=第二独立内核重放必要性再证; 每拍3浅扫+1深扫
-- **N34**: 仍 NXDOMAIN
+**账史保全与同代 CAS 拍**: 历史分叉留证 + 写入器真实并发修复 + 北星／SURGE／量子／前沿推进。
+- **append-only 事故留证**: seq958孤尖与后续回缩已确认; 4条孤支事件元数据永久保全; 当前文件PASS不抵Git历史只增不改证明
+- **LEDGER-CAS-02**: 同代正文+sha/冲突重取重算; 本地并发KAT PASS; 首轮失败保留; 第二轮双run SUCCESS, 追加seq962/961; 原seq957前缀逐字节保持至962
+- **闭拍复算**: closure-mid seq963/094f0c3af583; strict715/compatible954/历史未证9/未登记违规0; TAIL_VERIFIED_LEGACY_OPEN
+- **北星v1.1**: 机签面sign0/9, 旧版历史签署不迁移, 机答沉默不计; DRAFT_NOT_CONSENSUS
+- **SURGE**: 合成影子KAT PASS; 真实权限变化=false; 未批准不生效
+- **量子**: 三条既有安全路径run全SUCCESS+本地已知答案自证PASS; 新增量子任务0, 真机提交未触
+- **前沿**: 三浅一深完成; FlagQuantum依赖不匹配, PoC未跑, 生产采用NO-GO
 
-活件=28(entries=36)；board cisvr-379；ledger 68bfb6cc0ccd；amend-66。
+活件=28(entries=38)；board cisvr-380；ledger seq963 094f0c3af583；amend-67。
 
 — 毂
