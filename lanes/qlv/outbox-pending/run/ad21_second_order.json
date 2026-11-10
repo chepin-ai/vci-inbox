@@ -1,0 +1,266 @@
+{
+  "beat": "AD-21",
+  "verdict": "ALL_PASS",
+  "known_answer_gate_cokernel_max": 1.490161208520172e-09,
+  "known_answer_gate": {
+    "G1k7_seq85/theta": 8.11661280390137e-10,
+    "G1k7_seq85/phi": 1.490161208520172e-09,
+    "G2k7_seq34/theta": 8.863203791032045e-10,
+    "G2k7_seq34/phi": 9.640837081830556e-10
+  },
+  "outside_cokernel_norm": {
+    "G1k7_seq85": 5.171174139518823,
+    "G2k7_seq34": 2.3394118723614206
+  },
+  "rows": [
+    {
+      "kind": "theta",
+      "jacobian_rank": 35,
+      "nullity": 38,
+      "first_order_residual_ratio": 1.8252572516098684e-15,
+      "cokernel_norm_at_zero_nullspace": 8.11661280390137e-10,
+      "cokernel_norm_optimized": 8.11661280390137e-10,
+      "rhs_norm_optimized": 0.29174794220056965,
+      "cokernel_ratio_optimized": 2.7820634286844073e-09,
+      "nullspace_optimization_nfev": 1,
+      "nullspace_optimization_optimality": 2.0960928284099425e-13,
+      "seconds": 0.7102768421173096,
+      "finite_difference_stability": [
+        {
+          "h": 0.001,
+          "cokernel_norm": 8.135412490987783e-08,
+          "rhs_norm": 0.29174793384501424
+        },
+        {
+          "h": 0.0003,
+          "cokernel_norm": 7.32144676641487e-09,
+          "rhs_norm": 0.2917479415251368
+        },
+        {
+          "h": 0.0001,
+          "cokernel_norm": 8.11661280390137e-10,
+          "rhs_norm": 0.29174794220056965
+        },
+        {
+          "h": 3e-05,
+          "cokernel_norm": 7.10547833478378e-11,
+          "rhs_norm": 0.29174794227384215
+        },
+        {
+          "h": 1e-05,
+          "cokernel_norm": 3.032448899108499e-11,
+          "rhs_norm": 0.2917479422814635
+        }
+      ],
+      "case": "G1k7_seq85"
+    },
+    {
+      "kind": "phi",
+      "jacobian_rank": 35,
+      "nullity": 38,
+      "first_order_residual_ratio": 2.023065588493264e-15,
+      "cokernel_norm_at_zero_nullspace": 1.490161208520172e-09,
+      "cokernel_norm_optimized": 1.490161208520172e-09,
+      "rhs_norm_optimized": 0.36882157260091697,
+      "cokernel_ratio_optimized": 4.040330932953858e-09,
+      "nullspace_optimization_nfev": 1,
+      "nullspace_optimization_optimality": 2.2029810273403652e-13,
+      "seconds": 0.6910319328308105,
+      "finite_difference_stability": [
+        {
+          "h": 0.001,
+          "cokernel_norm": 1.4900389945039707e-07,
+          "rhs_norm": 0.36882146114913494
+        },
+        {
+          "h": 0.0003,
+          "cokernel_norm": 1.3410769385246646e-08,
+          "rhs_norm": 0.3688215635954197
+        },
+        {
+          "h": 0.0001,
+          "cokernel_norm": 1.490161208520172e-09,
+          "rhs_norm": 0.36882157260091697
+        },
+        {
+          "h": 3e-05,
+          "cokernel_norm": 1.3448977354264647e-10,
+          "rhs_norm": 0.36882157363325585
+        },
+        {
+          "h": 1e-05,
+          "cokernel_norm": 4.56783931835729e-11,
+          "rhs_norm": 0.3688215737249762
+        }
+      ],
+      "case": "G1k7_seq85"
+    },
+    {
+      "kind": "outside",
+      "pauli": "ZXI",
+      "jacobian_rank": 35,
+      "nullity": 38,
+      "first_order_residual_ratio": 1.8400415208152865e-15,
+      "cokernel_norm_at_zero_nullspace": 5.171174139518873,
+      "cokernel_norm_optimized": 5.171174139518823,
+      "rhs_norm_optimized": 9.01799106969614,
+      "cokernel_ratio_optimized": 0.573428616146663,
+      "nullspace_optimization_nfev": 23,
+      "nullspace_optimization_optimality": 0.002999172126557459,
+      "seconds": 1.693854808807373,
+      "finite_difference_stability": [
+        {
+          "h": 0.001,
+          "cokernel_norm": 5.171170991040627,
+          "rhs_norm": 9.017974209481547
+        },
+        {
+          "h": 0.0003,
+          "cokernel_norm": 5.17117388510005,
+          "rhs_norm": 9.017989707253516
+        },
+        {
+          "h": 0.0001,
+          "cokernel_norm": 5.171174139518823,
+          "rhs_norm": 9.01799106969614
+        },
+        {
+          "h": 3e-05,
+          "cokernel_norm": 5.17117416845748,
+          "rhs_norm": 9.017991224663419
+        },
+        {
+          "h": 1e-05,
+          "cokernel_norm": 5.171174171026384,
+          "rhs_norm": 9.017991238327623
+        }
+      ],
+      "case": "G1k7_seq85"
+    },
+    {
+      "kind": "theta",
+      "jacobian_rank": 33,
+      "nullity": 40,
+      "first_order_residual_ratio": 2.5633895504857554e-15,
+      "cokernel_norm_at_zero_nullspace": 8.863203791032045e-10,
+      "cokernel_norm_optimized": 8.863203791032045e-10,
+      "rhs_norm_optimized": 0.37936262614747174,
+      "cokernel_ratio_optimized": 2.3363407937783e-09,
+      "nullspace_optimization_nfev": 1,
+      "nullspace_optimization_optimality": 1.692479962600524e-13,
+      "seconds": 0.7352166175842285,
+      "finite_difference_stability": [
+        {
+          "h": 0.001,
+          "cokernel_norm": 8.854091812401763e-08,
+          "rhs_norm": 0.37936259501571906
+        },
+        {
+          "h": 0.0003,
+          "cokernel_norm": 7.968735266711483e-09,
+          "rhs_norm": 0.3793626236307743
+        },
+        {
+          "h": 0.0001,
+          "cokernel_norm": 8.863203791032045e-10,
+          "rhs_norm": 0.37936262614747174
+        },
+        {
+          "h": 3e-05,
+          "cokernel_norm": 7.699400051770069e-11,
+          "rhs_norm": 0.37936262642537905
+        },
+        {
+          "h": 1e-05,
+          "cokernel_norm": 3.462732124077951e-11,
+          "rhs_norm": 0.37936262645503704
+        }
+      ],
+      "case": "G2k7_seq34"
+    },
+    {
+      "kind": "phi",
+      "jacobian_rank": 33,
+      "nullity": 40,
+      "first_order_residual_ratio": 4.008735410561632e-15,
+      "cokernel_norm_at_zero_nullspace": 9.640837081830556e-10,
+      "cokernel_norm_optimized": 9.640837081830556e-10,
+      "rhs_norm_optimized": 1.273984848814029e-09,
+      "cokernel_ratio_optimized": 0.7567466042320167,
+      "nullspace_optimization_nfev": 1,
+      "nullspace_optimization_optimality": 1.932075016386748e-13,
+      "seconds": 0.7169268131256104,
+      "finite_difference_stability": [
+        {
+          "h": 0.001,
+          "cokernel_norm": 9.642452090542388e-08,
+          "rhs_norm": 1.2745936780025601e-07
+        },
+        {
+          "h": 0.0003,
+          "cokernel_norm": 8.67796371549395e-09,
+          "rhs_norm": 1.1471062258585369e-08
+        },
+        {
+          "h": 0.0001,
+          "cokernel_norm": 9.640837081830556e-10,
+          "rhs_norm": 1.273984848814029e-09
+        },
+        {
+          "h": 3e-05,
+          "cokernel_norm": 8.67489888123951e-11,
+          "rhs_norm": 1.1554497944333325e-10
+        },
+        {
+          "h": 1e-05,
+          "cokernel_norm": 4.410718571231851e-11,
+          "rhs_norm": 5.255260825585935e-11
+        }
+      ],
+      "case": "G2k7_seq34"
+    },
+    {
+      "kind": "outside",
+      "pauli": "ZIZ",
+      "jacobian_rank": 33,
+      "nullity": 40,
+      "first_order_residual_ratio": 1.3705474446605609e-15,
+      "cokernel_norm_at_zero_nullspace": 2.3394118725273185,
+      "cokernel_norm_optimized": 2.3394118723614206,
+      "rhs_norm_optimized": 3.4538973290923574,
+      "cokernel_ratio_optimized": 0.6773252501330692,
+      "nullspace_optimization_nfev": 17,
+      "nullspace_optimization_optimality": 0.00042788352276822844,
+      "seconds": 2.9426305294036865,
+      "finite_difference_stability": [
+        {
+          "h": 0.001,
+          "cokernel_norm": 2.3394118002054203,
+          "rhs_norm": 3.45389718901236
+        },
+        {
+          "h": 0.0003,
+          "cokernel_norm": 2.339411866531527,
+          "rhs_norm": 3.4538973177734835
+        },
+        {
+          "h": 0.0001,
+          "cokernel_norm": 2.3394118723614206,
+          "rhs_norm": 3.4538973290923574
+        },
+        {
+          "h": 3e-05,
+          "cokernel_norm": 2.3394118730312146,
+          "rhs_norm": 3.4538973303879343
+        },
+        {
+          "h": 1e-05,
+          "cokernel_norm": 2.339411873085015,
+          "rhs_norm": 3.453897330491163
+        }
+      ],
+      "case": "G2k7_seq34"
+    }
+  ],
+  "boundary": "\u4e8c\u9636\u6709\u9650\u5dee\u5206/\u56fa\u5b9a\u79e9\u9608\u503c\u7684\u5c40\u90e8\u6570\u503c\u8bc1\u4e66\uff1b\u4e0d\u662f\u5168\u5c40\u4e0d\u53ef\u8fbe\u5b9a\u7406\uff0c\u4e5f\u4e0d\u66ff\u4ee3\u6709\u9650\u7535\u8def\u91cd\u5efa\u3002"
+}

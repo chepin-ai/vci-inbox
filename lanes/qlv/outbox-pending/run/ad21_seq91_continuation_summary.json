@@ -1,0 +1,482 @@
+{
+  "beat": "AD-21",
+  "case": "G2k7_seq91",
+  "perm": [
+    2,
+    1,
+    0
+  ],
+  "sigma": -1,
+  "theta": 1.6088733998635378,
+  "phi": 0.24766313984038607,
+  "base_e": 3.961903041992063e-14,
+  "tangent": {
+    "jacobian_rank": 34,
+    "jacobian_singular_max": 4.748282666469212,
+    "jacobian_singular_min_nonzero": 2.3304995112444442e-08,
+    "directions": {
+      "alpha": {
+        "projection_residual_ratio": 1.000000000000003,
+        "least_squares_parameter_step": 9.840436250750408
+      },
+      "theta": {
+        "projection_residual_ratio": 4.1517554689390355e-14,
+        "least_squares_parameter_step": 0.8583612981285222
+      },
+      "phi": {
+        "projection_residual_ratio": 3.227284253422298e-14,
+        "least_squares_parameter_step": 0.8932953672545171
+      }
+    },
+    "outside_candidates": [
+      {
+        "pauli": "ZIZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9971006233468107,
+        "projection_residual_ratio": 2.883957612218895e-14,
+        "least_squares_parameter_step": 0.9185267967832107
+      },
+      {
+        "pauli": "ZXZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9971006233468107,
+        "projection_residual_ratio": 2.883957612218895e-14,
+        "least_squares_parameter_step": 0.9185267967832107
+      },
+      {
+        "pauli": "IIZ",
+        "outside_ratio": 1.2421674544528345e-16,
+        "outside_norm": 4.965068306494546e-16,
+        "projection_residual_ratio": 3.227284253422298e-14,
+        "least_squares_parameter_step": 1.7865907345090342
+      },
+      {
+        "pauli": "IXZ",
+        "outside_ratio": 1.2421674544528345e-16,
+        "outside_norm": 4.965068306494546e-16,
+        "projection_residual_ratio": 3.227284253422298e-14,
+        "least_squares_parameter_step": 1.7865907345090342
+      },
+      {
+        "pauli": "IIX",
+        "outside_ratio": 2.0697080880855492e-16,
+        "outside_norm": 1.1531061078284162e-15,
+        "projection_residual_ratio": 3.3410912137700233e-14,
+        "least_squares_parameter_step": 1.9662963069581487
+      },
+      {
+        "pauli": "ZIX",
+        "outside_ratio": 1.0,
+        "outside_norm": 5.571346580063004,
+        "projection_residual_ratio": 3.41123754309256e-14,
+        "least_squares_parameter_step": 1.6716191718449813
+      },
+      {
+        "pauli": "IIY",
+        "outside_ratio": 1.5823732868697393e-16,
+        "outside_norm": 6.521083742145178e-16,
+        "projection_residual_ratio": 3.6900709016369247e-14,
+        "least_squares_parameter_step": 1.52706904471019
+      },
+      {
+        "pauli": "ZXX",
+        "outside_ratio": 1.0,
+        "outside_norm": 5.571346580063004,
+        "projection_residual_ratio": 3.7585495731126546e-14,
+        "least_squares_parameter_step": 1.5044459097012028
+      },
+      {
+        "pauli": "ZXY",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.12107800116193,
+        "projection_residual_ratio": 3.970268884643103e-14,
+        "least_squares_parameter_step": 1.3691741700277258
+      },
+      {
+        "pauli": "ZIY",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.12107800116193,
+        "projection_residual_ratio": 4.0113880153068015e-14,
+        "least_squares_parameter_step": 1.5034522330848745
+      },
+      {
+        "pauli": "IXY",
+        "outside_ratio": 2.1968996405899037e-16,
+        "outside_norm": 9.053594779595603e-16,
+        "projection_residual_ratio": 4.0507906610931776e-14,
+        "least_squares_parameter_step": 1.6482877831585647
+      },
+      {
+        "pauli": "IXX",
+        "outside_ratio": 2.0545712399383362e-16,
+        "outside_norm": 1.1446728451126255e-15,
+        "projection_residual_ratio": 4.984719900145805e-14,
+        "least_squares_parameter_step": 2.64874861886659
+      },
+      {
+        "pauli": "ZZY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.1386366650079548,
+        "least_squares_parameter_step": 19707616.897362266
+      },
+      {
+        "pauli": "ZZZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.22085360500535742,
+        "least_squares_parameter_step": 23315055.297979385
+      },
+      {
+        "pauli": "ZYZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.22105064911985142,
+        "least_squares_parameter_step": 28391269.3832477
+      },
+      {
+        "pauli": "ZYY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.2991817853024154,
+        "least_squares_parameter_step": 25642909.879107006
+      },
+      {
+        "pauli": "IYX",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.4298057542907557,
+        "least_squares_parameter_step": 2227867.812663461
+      },
+      {
+        "pauli": "ZYI",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.46414030089269426,
+        "least_squares_parameter_step": 8692947.566724943
+      },
+      {
+        "pauli": "IYZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.46420713001127434,
+        "least_squares_parameter_step": 8676949.65037777
+      },
+      {
+        "pauli": "ZZX",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.49495697686697676,
+        "least_squares_parameter_step": 13614607.997206843
+      },
+      {
+        "pauli": "IZX",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.5049976260248672,
+        "least_squares_parameter_step": 16556934.651006931
+      },
+      {
+        "pauli": "XIX",
+        "outside_ratio": 1.0,
+        "outside_norm": 0.9798455413075432,
+        "projection_residual_ratio": 0.5140989589607017,
+        "least_squares_parameter_step": 0.27339277994362426
+      },
+      {
+        "pauli": "XIY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.8751407856153035,
+        "projection_residual_ratio": 0.5140989589607017,
+        "least_squares_parameter_step": 1.081227057451245
+      },
+      {
+        "pauli": "XXX",
+        "outside_ratio": 1.0,
+        "outside_norm": 0.9798455413075432,
+        "projection_residual_ratio": 0.5140989589607017,
+        "least_squares_parameter_step": 0.27339277994362426
+      },
+      {
+        "pauli": "XXY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.8751407856153035,
+        "projection_residual_ratio": 0.5140989589607017,
+        "least_squares_parameter_step": 1.081227057451245
+      },
+      {
+        "pauli": "YIX",
+        "outside_ratio": 1.0,
+        "outside_norm": 0.9798455413075432,
+        "projection_residual_ratio": 0.5140989589607017,
+        "least_squares_parameter_step": 0.42960838378532157
+      },
+      {
+        "pauli": "YXX",
+        "outside_ratio": 1.0,
+        "outside_norm": 0.9798455413075432,
+        "projection_residual_ratio": 0.5140989589607017,
+        "least_squares_parameter_step": 0.42960838378532157
+      },
+      {
+        "pauli": "YIY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.8751407856153035,
+        "projection_residual_ratio": 0.5140989589607018,
+        "least_squares_parameter_step": 1.699036127175921
+      },
+      {
+        "pauli": "YXY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.8751407856153035,
+        "projection_residual_ratio": 0.5140989589607018,
+        "least_squares_parameter_step": 1.699036127175921
+      },
+      {
+        "pauli": "IZI",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.5333846591035125,
+        "least_squares_parameter_step": 4581196.764837525
+      },
+      {
+        "pauli": "IYI",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.5334662773371418,
+        "least_squares_parameter_step": 16836263.14891064
+      },
+      {
+        "pauli": "IYY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.5614752600646669,
+        "least_squares_parameter_step": 9178895.646717735
+      },
+      {
+        "pauli": "ZYX",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.6407048681672689,
+        "least_squares_parameter_step": 10075068.23703963
+      },
+      {
+        "pauli": "ZZI",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.6716763202694617,
+        "least_squares_parameter_step": 3616735.665708522
+      },
+      {
+        "pauli": "IZZ",
+        "outside_ratio": 0.9999999999999998,
+        "outside_norm": 4.075424635824059,
+        "projection_residual_ratio": 0.6717225021801992,
+        "least_squares_parameter_step": 3578112.6403249516
+      },
+      {
+        "pauli": "YXZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.00289727657862,
+        "projection_residual_ratio": 0.6913959032937128,
+        "least_squares_parameter_step": 0.883862727389196
+      },
+      {
+        "pauli": "XXZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.00289727657862,
+        "projection_residual_ratio": 0.691395903293713,
+        "least_squares_parameter_step": 1.5035766732101206
+      },
+      {
+        "pauli": "IZY",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.6933792519002131,
+        "least_squares_parameter_step": 633688.6103624036
+      },
+      {
+        "pauli": "YIZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.00289727657862,
+        "projection_residual_ratio": 0.7220038445221003,
+        "least_squares_parameter_step": 0.9813260486289389
+      },
+      {
+        "pauli": "XIZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.00289727657862,
+        "projection_residual_ratio": 0.7220038445221004,
+        "least_squares_parameter_step": 1.4518740281267248
+      },
+      {
+        "pauli": "XII",
+        "outside_ratio": 1.0,
+        "outside_norm": 5.656854249492381,
+        "projection_residual_ratio": 0.754344479484572,
+        "least_squares_parameter_step": 2.312709895211704
+      },
+      {
+        "pauli": "YII",
+        "outside_ratio": 1.0,
+        "outside_norm": 5.656854249492381,
+        "projection_residual_ratio": 0.7543444794845735,
+        "least_squares_parameter_step": 4.8371212389370015
+      },
+      {
+        "pauli": "YYI",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.7669699332736097,
+        "least_squares_parameter_step": 1.0684752466058842
+      },
+      {
+        "pauli": "XYI",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.7669699332736142,
+        "least_squares_parameter_step": 5.67126830659587
+      },
+      {
+        "pauli": "YZI",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.7669699332736214,
+        "least_squares_parameter_step": 1.983015429684173
+      },
+      {
+        "pauli": "XZI",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.7669699332736278,
+        "least_squares_parameter_step": 6.69186859456724
+      },
+      {
+        "pauli": "YZX",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.8009851714837968,
+        "least_squares_parameter_step": 0.4831192790029918
+      },
+      {
+        "pauli": "XZX",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.8009851714837996,
+        "least_squares_parameter_step": 4.631071601593698
+      },
+      {
+        "pauli": "YYX",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.8009851714838065,
+        "least_squares_parameter_step": 2.6203713748928403
+      },
+      {
+        "pauli": "XYX",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.8009851714838125,
+        "least_squares_parameter_step": 7.060908700667435
+      },
+      {
+        "pauli": "XXI",
+        "outside_ratio": 1.0,
+        "outside_norm": 5.656854249492381,
+        "projection_residual_ratio": 0.8164965809277311,
+        "least_squares_parameter_step": 3.951804584329115
+      },
+      {
+        "pauli": "YXI",
+        "outside_ratio": 1.0,
+        "outside_norm": 5.656854249492381,
+        "projection_residual_ratio": 0.8164965809277315,
+        "least_squares_parameter_step": 4.943543804163232
+      },
+      {
+        "pauli": "XYY",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.926511065807131,
+        "least_squares_parameter_step": 0.48537849546750506
+      },
+      {
+        "pauli": "YYY",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.9265110658071315,
+        "least_squares_parameter_step": 2.032374472190616
+      },
+      {
+        "pauli": "YZY",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.9265110658071316,
+        "least_squares_parameter_step": 3.057803283049459
+      },
+      {
+        "pauli": "XZY",
+        "outside_ratio": 1.0,
+        "outside_norm": 4.07542463582406,
+        "projection_residual_ratio": 0.9265110658071345,
+        "least_squares_parameter_step": 5.726604116690032
+      },
+      {
+        "pauli": "XYZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.9548597391524397,
+        "least_squares_parameter_step": 1.2794467380701608
+      },
+      {
+        "pauli": "YYZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.9548597391524405,
+        "least_squares_parameter_step": 2.501597316884846
+      },
+      {
+        "pauli": "YZZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.9548597391524417,
+        "least_squares_parameter_step": 2.781911499921817
+      },
+      {
+        "pauli": "XZZ",
+        "outside_ratio": 1.0,
+        "outside_norm": 3.9231255444757727,
+        "projection_residual_ratio": 0.9548597391524432,
+        "least_squares_parameter_step": 4.254328614147252
+      }
+    ]
+  },
+  "records": 148,
+  "seconds": 251.28681707382202,
+  "groups": {
+    "alpha_scan": {
+      "count": 6,
+      "success_e_lt_1e-8": 0,
+      "e_min": 0.0005861962584022243,
+      "e_max": 0.0609980792404461
+    },
+    "outside_fine": {
+      "count": 6,
+      "success_e_lt_1e-8": 0,
+      "e_min": 2.425542527422039e-07,
+      "e_max": 0.001035061845420515
+    },
+    "phi_loop": {
+      "count": 72,
+      "success_e_lt_1e-8": 72,
+      "e_min": 1.680582887476011e-14,
+      "e_max": 5.056695273991469e-10
+    },
+    "theta_navigation": {
+      "count": 64,
+      "success_e_lt_1e-8": 64,
+      "e_min": 2.8000960413525485e-14,
+      "e_max": 4.968287386591144e-13
+    }
+  }
+}

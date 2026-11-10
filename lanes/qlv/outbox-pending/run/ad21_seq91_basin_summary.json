@@ -1,0 +1,230 @@
+{
+  "beat": "AD-21",
+  "center": {
+    "e": 0.19917725828964972,
+    "seed": 201458,
+    "classification": {
+      "direct_e_rebuilt": 0.19917725828964966,
+      "angle_max_dev_rad": 1.1375531239199432e-08,
+      "H_involution_max": 3.9319915656754745e-08,
+      "best_perm": [
+        2,
+        1,
+        0
+      ],
+      "best_sigma": -1,
+      "best_ansatz_max_delta": 3.913823699286563e-08,
+      "runner_up_ansatz_max_delta": 0.4996376142468843
+    }
+  },
+  "preregistered_hit": "e<0.205; angle_dev<1e-5; H_involution<1e-4; perm=[2,1,0]; sigma=-1; ansatz_delta<1e-4",
+  "radii_solver_coordinate": [
+    0.001,
+    0.003,
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    2.0
+  ],
+  "runs": 256,
+  "errors": 0,
+  "seconds": 273.740704536438,
+  "global": {
+    "n": 64,
+    "hits": 0,
+    "frequency": 0.0,
+    "wilson95": [
+      0.0,
+      0.05662405979280534
+    ],
+    "e_min": 0.20458192089546548,
+    "hit_seeds": []
+  },
+  "local": {
+    "n": 192,
+    "hits": 130,
+    "by_radius": {
+      "0.001": {
+        "n": 24,
+        "hits": 24
+      },
+      "0.003": {
+        "n": 24,
+        "hits": 24
+      },
+      "0.01": {
+        "n": 24,
+        "hits": 24
+      },
+      "0.03": {
+        "n": 24,
+        "hits": 24
+      },
+      "0.1": {
+        "n": 24,
+        "hits": 21
+      },
+      "0.3": {
+        "n": 24,
+        "hits": 10
+      },
+      "1.0": {
+        "n": 24,
+        "hits": 3
+      },
+      "2.0": {
+        "n": 24,
+        "hits": 0
+      }
+    },
+    "directions": [
+      {
+        "direction": 0,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 1,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 2,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 3,
+        "contiguous_hit_radius": 0.1,
+        "hits": 6,
+        "nonmonotonic": true
+      },
+      {
+        "direction": 4,
+        "contiguous_hit_radius": 1.0,
+        "hits": 7,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 5,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 6,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 7,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 8,
+        "contiguous_hit_radius": 0.03,
+        "hits": 4,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 9,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 10,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 11,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 12,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 13,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 14,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 15,
+        "contiguous_hit_radius": 1.0,
+        "hits": 7,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 16,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 17,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 18,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 19,
+        "contiguous_hit_radius": 0.03,
+        "hits": 4,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 20,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 21,
+        "contiguous_hit_radius": 0.1,
+        "hits": 5,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 22,
+        "contiguous_hit_radius": 0.3,
+        "hits": 6,
+        "nonmonotonic": false
+      },
+      {
+        "direction": 23,
+        "contiguous_hit_radius": 0.03,
+        "hits": 4,
+        "nonmonotonic": false
+      }
+    ]
+  },
+  "boundary": "\u534a\u5f84\u662f73\u7ef4\u539f\u59cb\u6c42\u89e3\u5668\u5750\u6807\u7684\u6b27\u6c0f\u6270\u52a8\uff1b\u975e\u89c4\u8303\u4e0d\u53d8\u51e0\u4f55\u76c6\u5bbd\uff0c\u4ea6\u975e\u5168\u5c40\u5438\u5f15\u6982\u7387\u3002"
+}
