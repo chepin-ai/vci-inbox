@@ -1,0 +1,182 @@
+{
+  "beat": "AD-24",
+  "status": "ALL_PASS",
+  "known_answer_gate_first": {
+    "random_circuit_unitarity_max": 6.661338147750939e-16,
+    "sphere_involution_max": 2.220446049250313e-16,
+    "cases": "3 random circuits + 72 sphere points"
+  },
+  "maj_independent": {
+    "engine": "Fraction complete row elimination + independently rebuilt finite permutation enumeration",
+    "ranks": {
+      "0|12": 4,
+      "1|23": 4
+    },
+    "single_cz_known_answers": [
+      2,
+      1
+    ],
+    "peres_numeric_error": 3.1401849173675503e-16,
+    "peres_direct_cases": 4608,
+    "peres_direct_hits": 0,
+    "interval_unchanged": true
+  },
+  "s2_exact_independent": {
+    "engine": "SymPy QQ.algebraic_field(exp(I*pi/8)) independent of constructor",
+    "exact_nonzero_residual_entries": 0,
+    "trig_known_answer_cases": 17,
+    "status": "INDEPENDENT_ENDPOINT_ALL_EXACT_ZERO"
+  },
+  "s2_numeric_independent": {
+    "scans": {
+      "k3": {
+        "runs": 8,
+        "hits": 0,
+        "best": 0.38268343463649757
+      },
+      "k4": {
+        "runs": 16,
+        "hits": 0,
+        "best": 0.3604799110035007
+      },
+      "k5": {
+        "runs": 32,
+        "hits": 0,
+        "best": 0.29827049914527864
+      },
+      "k7_AA": {
+        "runs": 8,
+        "hits": 1,
+        "best": 1.466474446398992e-14
+      }
+    },
+    "homotopy": {
+      "ad24_s2_legacy_homotopy.jsonl": {
+        "points": 65,
+        "max_e": 3.904450920858918e-14,
+        "fourier": [
+          {
+            "frequencies": [
+              0,
+              0.5,
+              1
+            ],
+            "fit_gates_lt_1e-8": 0,
+            "max_scalar_entry_error": 0.3198662494952211
+          },
+          {
+            "frequencies": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "fit_gates_lt_1e-8": 0,
+            "max_scalar_entry_error": 0.1873320529106504
+          },
+          {
+            "frequencies": [
+              0,
+              0.125,
+              0.25,
+              0.375,
+              0.5,
+              0.625,
+              0.75,
+              0.875,
+              1
+            ],
+            "fit_gates_lt_1e-8": 0,
+            "max_scalar_entry_error": 0.08611012330070064
+          }
+        ]
+      },
+      "ad24_s2_homotopy.jsonl": {
+        "points": 65,
+        "max_e": 3.3399657818426447e-15,
+        "fourier": [
+          {
+            "frequencies": [
+              0,
+              0.5,
+              1
+            ],
+            "fit_gates_lt_1e-8": 8,
+            "max_scalar_entry_error": 1.1169157480076528
+          },
+          {
+            "frequencies": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "fit_gates_lt_1e-8": 8,
+            "max_scalar_entry_error": 0.6284885657558585
+          },
+          {
+            "frequencies": [
+              0,
+              0.125,
+              0.25,
+              0.375,
+              0.5,
+              0.625,
+              0.75,
+              0.875,
+              1
+            ],
+            "fit_gates_lt_1e-8": 8,
+            "max_scalar_entry_error": 0.5382442621224062
+          }
+        ],
+        "frozen_coordinate_max_delta": 0.0
+      }
+    },
+    "evidence_boundary": "数值重建不升级为全经线解析证书，也不把低k未命中当作不存在。"
+  },
+  "rac": {
+    "checked_at": "20261110T180937Z",
+    "verdict": "WAITING_PEER_S_SIM",
+    "fingerprint_arrived": false,
+    "heads": {
+      "chepin-ai/ci-inbox": "e5efba809923c577d7edb8bbf0fc34d2b0d70a0f",
+      "chepin-ai/vci-inbox": "5128006d34fe465254cc1aa8f678fdc5b77ce66f",
+      "chepin-qi/qlv-pub": "e57180f818d021ddf5a18c2b2bd5caed3a4b3afa"
+    },
+    "candidate_counts": {
+      "chepin-ai/ci-inbox": 3,
+      "chepin-ai/vci-inbox": 7,
+      "chepin-qi/qlv-pub": 0
+    }
+  },
+  "input_sha256": {
+    "ad24_maj_audit.json": "b1d65c329d84367439a63f3e9f6ea11420308283e97312f2e229c17fa4a4b434",
+    "ad24_s2_endpoint.json": "fe89ae8379f947676659237834760967e5964d6fa8f59aeb8ae5695578048971",
+    "ad24_s2_exact.json": "ec0f942e4a5404daaf5476126d93f27a00eb7821a056c77c9025b806203065ce",
+    "ad24_s2_scans.json": "9609358ed4e91c4e571d47ddf870fc73914288e11abd7e4e56dabda20aa50005",
+    "ad24_s2_legacy_homotopy.jsonl": "a875671857749e59ca372ae1a62e5d90bc4fbc09f123ce1cba16f737a8e532b3",
+    "ad24_s2_homotopy.jsonl": "186ff95ffdc9a21213fae8308f8e8f693f0fbe028253e3916ea546f91b98a1fe",
+    "ad24_s2_summary.json": "1ab90c67ea10633838754193c2759aed67e5fa3467dc8556351c1dd4536d0b28",
+    "ad24_rac_check.json": "2b3f759a93b94a8a9646f0971832958a2c6a1879950556094be32a955491fe1e"
+  },
+  "strict_result": "MAJ区间4<=k<=7不变；S² theta=0端点7-CZ为独立L1精确零；全theta解析经线未闭合。",
+  "anomaly_notes": [
+    "第一诚律·异常注记1：原始S²命中角不全在pi/4网格，未直接取整伪造证书；先冻结/重解得到数值闭合的全网格构造，再做精确域零验收。",
+    "第一诚律·异常注记2：Peres五CNOT初次重建遗漏尾部局部门并混用T约定；最终按Shende-Markov Fig.1删最右CNOT且保留尾部T/Tdag，独立全矩阵误差3.1401849173675503e-16。",
+    "第一诚律·异常注记3：signA=-1的W候选未过已知答案门，不用于结论；仅signA=+1标准分解通过三点已知门，新端点边界归一化及576个Clifford候选仍零命中。",
+    "第一诚律·异常注记4：独立验收器初版Sphere基标签与Kronecker行索引有误，修正为ZXZ/ZIZ/YIZ/XIZ/YXZ/XXZ及len(A)外循环后重跑；失败运行不记通过。",
+    "第一诚律·异常注记5：RAC源码队列字面量不充当对方数值指纹；本次三仓候选均无数值S_sim，维持WAITING_PEER_S_SIM。"
+  ],
+  "open_boundaries": [
+    "MAJ严格区间仍4<=k<=7；k=4六种Schmidt饱和边序未解析排除，k=5/6无更小严格构造。",
+    "S²仅theta=0端点为L1；65点冻结坐标同伦为L2，完整解析theta经线未闭合。",
+    "标准controlled-W及576个Clifford边界归一化失败只覆盖被测形式，非标准连续W或其他模板仍开放。",
+    "±pi/8角刚性、序91全局basin几何未解决。",
+    "RAC对方数值S_sim未到件，跨线独立对拍未启动。"
+  ],
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

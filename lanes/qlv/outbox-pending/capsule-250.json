@@ -1,0 +1,20 @@
+{
+  "seq": 250,
+  "prev": "34452c63c9eafeac",
+  "ts": "20261110T181453Z",
+  "payload_sha256": "ed961f89b9469a35",
+  "body": {
+    "anchors": [
+      "lvlu",
+      "cisvr",
+      "qfa",
+      "lgt"
+    ],
+    "beat": "AD",
+    "board": "board-161",
+    "seat": "席",
+    "summary": "拍AD-24: MAJ双割Schmidt秩4独立证明n01/n12>=2且区间4<=k<=7不变; Peres五CNOT含2条非PATH边且4608直接形式零命中; S2序34 theta=0端点新边序7CZ分圆域精确零升L1,65点冻结坐标经线仍L2; RAC仍WAITING_PEER_S_SIM; 独立ALL_PASS",
+    "ts": "20261110T1814Z"
+  },
+  "cid": "57e4b840cb388071"
+}

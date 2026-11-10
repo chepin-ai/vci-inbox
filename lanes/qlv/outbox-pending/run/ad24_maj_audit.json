@@ -1,0 +1,314 @@
+{
+  "beat": "AD-24",
+  "status": "MAJ_LOWER_AND_PERES_AUDIT_PASS",
+  "strict_interval": "4 <= k <= 7",
+  "known_answer_gate": {
+    "maj_toffoli_path_cnot_identity": "exact zero",
+    "identity_unfold_rank": 1,
+    "single_cz_01_rank_across_0|12": 2,
+    "single_cz_01_rank_across_1|23": 1
+  },
+  "schmidt_rank_theorem": {
+    "cuts": {
+      "0|12": {
+        "shape": [
+          4,
+          16
+        ],
+        "exact_rank": 4,
+        "numeric_singular_values_for_display": [
+          1.732050807568877,
+          1.732050807568877,
+          1.0000000000000002,
+          1.0
+        ],
+        "unfolded_integer_matrix": [
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "1|23": {
+        "shape": [
+          16,
+          4
+        ],
+        "exact_rank": 4,
+        "numeric_singular_values_for_display": [
+          1.7320508075688772,
+          1.7320508075688772,
+          1.0,
+          1.0
+        ],
+        "unfolded_integer_matrix": [
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    "logical_step": "each 01 CZ at most doubles rank across 0|12 and leaves 1|23 unchanged; each 12 CZ conversely; local SU2 layers preserve both ranks",
+    "conclusion": "n01 >= 2 and n12 >= 2, hence k >= 4; for k=4 exactly two gates on each PATH edge",
+    "evidence_level": "L1 exact integer rank; numerical SVD is display only"
+  },
+  "peres": {
+    "source": "V. Shende and I. Markov, On the CNOT-cost of TOFFOLI gates, QIC 9 (2009), Fig.1 and Corollary 5",
+    "source_url": "https://www.rintonpress.com/xxqic9/qic-9-56/0461-0486.pdf",
+    "construction": "Fig.1 with rightmost CNOT deleted; trailing local T/Tdag retained",
+    "operations_chronological": [
+      [
+        "H",
+        2
+      ],
+      [
+        "CNOT",
+        1,
+        2
+      ],
+      [
+        "Tdag",
+        2
+      ],
+      [
+        "CNOT",
+        0,
+        2
+      ],
+      [
+        "T",
+        2
+      ],
+      [
+        "CNOT",
+        1,
+        2
+      ],
+      [
+        "Tdag",
+        2
+      ],
+      [
+        "CNOT",
+        0,
+        2
+      ],
+      [
+        "T",
+        1
+      ],
+      [
+        "T",
+        2
+      ],
+      [
+        "H",
+        2
+      ],
+      [
+        "CNOT",
+        0,
+        1
+      ],
+      [
+        "T",
+        0
+      ],
+      [
+        "Tdag",
+        1
+      ]
+    ],
+    "cnot_edges_chronological": [
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "non_path_cnot_count": 2,
+    "numeric_full_matrix_error": 3.1401849173675503e-16,
+    "direct_attack_space": "6 qubit permutations * 8 input X masks * 8 output X masks * 6 directed CNOTs * 2 sides",
+    "direct_cases": 4608,
+    "direct_hits": [],
+    "boundary": "原五门构造含两条02边；有限直接形式均未得到MAJ。此结果不排除其他局部门或六CZ构造，不改变4<=k<=7。"
+  },
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

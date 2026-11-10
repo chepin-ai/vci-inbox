@@ -1,0 +1,72 @@
+{
+  "beat": "AD-24",
+  "prev_cid": "34452c63c9eafeac",
+  "seq": 250,
+  "cid": "57e4b840cb388071",
+  "files": {
+    "QRAC-D8-TOFFOLI-PLATEAU-07.md": "705a2d017097aa61779b573147137bd8432035f87797cea06c56bdd1140e029d",
+    "board-161.md": "2b9aec9ffda2c8c49846a480f9ca4bd48ffea899f9a0e99da12882bb56bcf860",
+    "capsule-250.json": "19774192e1fb4f2f453b3a8235e10c8ddbaefc19f45eec460838d22d0559aa7b",
+    "chain_head.json": "e2ca99b2f8890c79fdcf350cbb30d242db0a4722e1e3648d6abde45b79262f5b",
+    "hub_qlv_outbox.json": "0e22efc04d995ac09eb10db769be1ffb7b06c5ec62127b4735ba358bafb7e538",
+    "ad22/run/ad22_verify.py": "50d6e59c76e37bbd53e8cb4e9728e124278c2a76125508f129938e0f4857a4a1",
+    "ad23/run/ad23_exact.py": "300c63257f0e5c34484b2e7e5f919139a79f7266896924eb734cda2a62bd002d",
+    "run/ad24_maj.py": "776aaeb21339406fc53ed1391002399a4513d43e90b1ae0b4e723555aba67300",
+    "run/ad24_maj_audit.json": "b1d65c329d84367439a63f3e9f6ea11420308283e97312f2e229c17fa4a4b434",
+    "run/ad24_s2.py": "b52db9bf574a1c4d1e5aa71f23134a457f7fa6b82be595cab829a7676fc394e2",
+    "run/ad24_s2_endpoint.json": "fe89ae8379f947676659237834760967e5964d6fa8f59aeb8ae5695578048971",
+    "run/ad24_s2_exact.json": "ec0f942e4a5404daaf5476126d93f27a00eb7821a056c77c9025b806203065ce",
+    "run/ad24_s2_scans.json": "9609358ed4e91c4e571d47ddf870fc73914288e11abd7e4e56dabda20aa50005",
+    "run/ad24_s2_legacy_homotopy.jsonl": "a875671857749e59ca372ae1a62e5d90bc4fbc09f123ce1cba16f737a8e532b3",
+    "run/ad24_s2_homotopy.jsonl": "186ff95ffdc9a21213fae8308f8e8f693f0fbe028253e3916ea546f91b98a1fe",
+    "run/ad24_s2_summary.json": "1ab90c67ea10633838754193c2759aed67e5fa3467dc8556351c1dd4536d0b28",
+    "run/ad24_rac_recon.py": "5159faaaf322da13bad2333ea6087fa7ae7f73588e9588d14c81c72b48319cfa",
+    "run/ad24_rac_check.json": "2b3f759a93b94a8a9646f0971832958a2c6a1879950556094be32a955491fe1e",
+    "run/ad24_verify.py": "3c06c560eb3163487d7ff7852e5f2e92d52286b8eec481ccfd7e72d2e6b9ab41",
+    "run/ad24_verify.json": "d6efc02e60c4a1c4a2a3ee5471351fea90550765393492031f827e4065f223c5",
+    "run/ad24_verify.log": "36f6308381549a4f9ef4b543b2aa58bed47d2b58f7e2f98ed743b00447690b3a",
+    "literature/shende-markov-cnot-cost.pdf": "0d2c9e3dc64a6af52bc4b06865d2c7a7e297107d8bfa166d6617d747cdeef973",
+    "literature/shende-figure1.png": "ded1b3c5bae91611db47674578c454b39f3eb91ef32806a3d326beaa1eaa7c67",
+    "literature/peres-page-56.png": "8df4e35ac0e531a6ccc239ed2badb654b0f7a0106aade0f52e83a8dcb956be30"
+  },
+  "evidence_register": {
+    "L1": [
+      "run/ad24_maj_audit.json:schmidt_rank_theorem（精确整数秩；独立Fraction复验）",
+      "run/ad24_s2_exact.json（Q(exp(iπ/8))全矩阵精确零；独立SymPy复验）",
+      "run/ad24_verify.json（独立ALL_PASS及输入指纹）"
+    ],
+    "L2": [
+      "run/ad24_maj_audit.json:peres（全矩阵数值已知门与有限直接形式；否定限界）",
+      "run/ad24_s2_scans.json（完整角度可重建；无seed重生成声明）",
+      "run/ad24_s2_legacy_homotopy.jsonl / run/ad24_s2_homotopy.jsonl（各65点数值证据）",
+      "run/ad24_s2_summary.json（Fourier与W边界负结果，只覆盖被测形式）"
+    ],
+    "STATE": [
+      "run/ad24_rac_check.json",
+      "hub_qlv_outbox.json",
+      "chain_head.json"
+    ],
+    "SOURCE": [
+      "run/*.py",
+      "ad22/run/ad22_verify.py",
+      "ad23/run/ad23_exact.py",
+      "literature/*"
+    ]
+  },
+  "verification": "run/ad24_verify.json=ALL_PASS; deterministic double-run equal; clean remote rebuild must reproduce the same JSON SHA-256",
+  "open_debts": [
+    "DEBT-MAJ-LB-01",
+    "DEBT-S2-CONSTRUCT-01",
+    "DEBT-S2-W-NORMALIZER-01",
+    "DEBT-SEQ91-BASIN-GEOM-01",
+    "DEBT-K3-ANALYTIC-01",
+    "DEBT-TOFFOLI-ANALYTIC-01",
+    "RAC-COUNTERPART-NUMERIC-S-SIM",
+    "DEBT-FEDPAT-ROT-01",
+    "DEBT-QLVSI5-ROT-01",
+    "DEBT-QUAFU-P5-REAP-01",
+    "SIDECAR-CENSUS-AUTHORIZATION"
+  ],
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

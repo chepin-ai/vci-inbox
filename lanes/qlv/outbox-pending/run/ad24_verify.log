@@ -1,0 +1,33 @@
+{
+  "status": "ALL_PASS",
+  "known_answer_gate_first": {
+    "random_circuit_unitarity_max": 6.661338147750939e-16,
+    "sphere_involution_max": 2.220446049250313e-16,
+    "cases": "3 random circuits + 72 sphere points"
+  },
+  "maj": {
+    "engine": "Fraction complete row elimination + independently rebuilt finite permutation enumeration",
+    "ranks": {
+      "0|12": 4,
+      "1|23": 4
+    },
+    "single_cz_known_answers": [
+      2,
+      1
+    ],
+    "peres_numeric_error": 3.1401849173675503e-16,
+    "peres_direct_cases": 4608,
+    "peres_direct_hits": 0,
+    "interval_unchanged": true
+  },
+  "exact": {
+    "engine": "SymPy QQ.algebraic_field(exp(I*pi/8)) independent of constructor",
+    "exact_nonzero_residual_entries": 0,
+    "trig_known_answer_cases": 17,
+    "status": "INDEPENDENT_ENDPOINT_ALL_EXACT_ZERO"
+  },
+  "legacy_max_e": 3.904450920858918e-14,
+  "frozen_max_e": 3.3399657818426447e-15,
+  "seconds": 2.4513087272644043,
+  "sha256": "d6efc02e60c4a1c4a2a3ee5471351fea90550765393492031f827e4065f223c5"
+}
