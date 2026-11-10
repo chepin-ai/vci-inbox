@@ -1,1 +1,1 @@
-{"ts": "2026-11-10T04:23:01Z", "scanned": 0, "fixed": [], "quarantined": []}
+{"ts": "2026-11-10T04:23:33Z", "scanned": 1, "fixed": ["bridge/purge/classify-sweep-20261110-0422Z.json"], "quarantined": []}
