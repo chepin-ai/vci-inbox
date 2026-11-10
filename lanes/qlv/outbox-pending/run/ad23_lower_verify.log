@@ -1,0 +1,37 @@
+{
+  "beat": "AD-23",
+  "status": "INDEPENDENT_LOWER_PASS",
+  "method": "raw JSONL -> independent canonical expansion -> independent 8x8 circuit and basis-permutation MAJ",
+  "known_answer_gate": {
+    "exact_7cz_sources": 7,
+    "max_exact_source_e": 8.473409486550037e-16,
+    "min_wrong_identity_target_e": 1.0
+  },
+  "runs": 784,
+  "unique_tasks": 784,
+  "errors": 0,
+  "core_coordinates_per_run": 34,
+  "max_recorded_e_delta": 6.307504518687779e-11,
+  "worst_delta_task_source_delete_restart": [
+    5,
+    6,
+    7
+  ],
+  "max_abs_unreduced_coordinate": 3543825.6501064003,
+  "record_delta_bound": 1e-09,
+  "independent_exact_e_lt_1e-9": 0,
+  "independent_best": {
+    "e": 0.20756667444783763,
+    "source_idx": 2,
+    "delete": 4,
+    "restart": 13,
+    "nfev": 54,
+    "optimizer_status_not_a_proof": 2
+  },
+  "strict_interval_unchanged": "4 <= k <= 7",
+  "boundary": "784 次独立复核的零命中仅为本采样协议下的 L2 数值否证，不是 k=6 不存在的证明。",
+  "input_sha256": "76d44a64d61eff5ef4da08939aa5c8baa457e7e20ba8639af823c42b63ca4bf5",
+  "summary_sha256": "912256816595631b060a8068c740e5da449d637d92d60c35e2ff8832991b993d",
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

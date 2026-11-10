@@ -1,0 +1,26 @@
+{
+  "beat": "AD-23",
+  "status": "INDEPENDENT_S2_THETA_PASS",
+  "evidence_level": "L2 numerical only",
+  "method": "raw angles -> independent gauge -> independent Pauli/Toffoli targets -> independent 8x8 circuits",
+  "old_points": 64,
+  "old_max_e": 1.5565564616446628e-15,
+  "old_max_core30_formula_delta": 4.440892098500626e-16,
+  "new_off_grid_points": 63,
+  "new_max_e": 6.722137407118775e-16,
+  "new_exact_e_lt_1e-9": 63,
+  "max_new_record_delta": 0.0,
+  "max_target_involution_error": 4.440892098500626e-16,
+  "max_target_unitarity_error": 1.1102230246251565e-16,
+  "wrong_phi_control_e": 0.009558819971861485,
+  "coordinate": {
+    "core_index": 30,
+    "label": "L7q0b",
+    "formula": "(pi-theta)/2"
+  },
+  "boundary": "127个数值点与63个网格外求根不构成连续经线解析定理；单坐标公式不充分，其他核心角仍待解析化。",
+  "new_raw_sha256": "3042cc7a6b1720516ecc3c5f610e340c9de3c456e7ed838c0396ea577da219b5",
+  "summary_sha256": "4820197901dfbcdff8976f2f1954cbc50b6edbcd64fb151d561d6e331414dfac",
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

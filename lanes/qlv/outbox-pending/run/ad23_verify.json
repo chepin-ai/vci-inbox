@@ -1,0 +1,85 @@
+{
+  "beat": "AD-23",
+  "status": "ALL_PASS",
+  "checks": {
+    "gauge": {
+      "formula": "4*k+10; k=7 gives 38",
+      "random_cases": 12,
+      "max_matrix_error": 8.196123257993793e-16,
+      "compressed_hits": 7
+    },
+    "maj_exact": {
+      "hits": 7,
+      "all_128_real_residuals_exact_zero": true,
+      "engine": "SymPy QQ.algebraic_field(exp(I*pi/8))",
+      "known_answer_gate": {
+        "trig_pythagorean_exact": 17,
+        "ordered_identity": "exact zero",
+        "wrong_order_control_nonzero": 32,
+        "maj_toffoli_identity": "exact zero",
+        "maj_non_involution": true
+      },
+      "strict_interval": "4 <= k <= 7",
+      "upper_bound_evidence": "L1 exact construction"
+    },
+    "maj_lower": {
+      "runs": 784,
+      "unique_tasks": 784,
+      "independent_zero_hits": 0,
+      "best_e": 0.20756667444783763,
+      "max_record_delta": 6.307504518687779e-11,
+      "evidence_level": "L2 negative numerical scan; not nonexistence"
+    },
+    "s2_theta": {
+      "coordinate": {
+        "core_index": 30,
+        "label": "L7q0b",
+        "formula": "(pi-theta)/2"
+      },
+      "old_points": 64,
+      "old_max_formula_delta": 4.440892098500626e-16,
+      "new_off_grid_points": 63,
+      "new_max_e": 6.722137407118775e-16,
+      "wrong_phi_control_e": 0.009558819971861485,
+      "evidence_level": "L2 only; full meridian analytic lift open"
+    },
+    "rac": {
+      "checked_at": "20261110T153837Z",
+      "verdict": "WAITING_PEER_S_SIM",
+      "fingerprint_arrived": false,
+      "heads": {
+        "chepin-ai/ci-inbox": "98ad70dfc565cd2b40b13939e8220d76eaff7147",
+        "chepin-ai/vci-inbox": "427c4296c5698a8acca4f598fb3f951a68f9320f",
+        "chepin-qi/qlv-pub": "9fdc0c763f7ba318403e38917291d1dbe47f274d"
+      },
+      "candidate_counts": {
+        "chepin-ai/ci-inbox": 2,
+        "chepin-ai/vci-inbox": 4,
+        "chepin-qi/qlv-pub": 0
+      }
+    }
+  },
+  "input_sha256": {
+    "ad23_gauge.json": "caed7841d7adbd406456ba755f6e1eb34f5ae7cbb47a7957e5e6ae10864f3c94",
+    "ad23_maj_7cz_exact.json": "a9dd303b04fc96fe24a2c80780e089e37dd10c6ad9adbb4d43c9763bfb4745fc",
+    "ad23_lower.jsonl": "76d44a64d61eff5ef4da08939aa5c8baa457e7e20ba8639af823c42b63ca4bf5",
+    "ad23_s2_theta.jsonl": "3042cc7a6b1720516ecc3c5f610e340c9de3c456e7ed838c0396ea577da219b5",
+    "ad23_rac_check.json": "53540725063bc0bb1557a65183500d1f7ae8a74cc142a727f3087149d7b8cd30"
+  },
+  "anomaly_notes": [
+    "第一诚律·异常注记1：原始角网格周期映射与全局相位π/4误吸附均不作废原账；最终局部门用π/4、全局相位用π/8，并由分圆域全矩阵精确零取代浮点吸附判据。",
+    "第一诚律·异常注记2：wpow(0)构造、Rz数值参考半角及CZ²无效反序对照已修正；独立已知门改用有序dagger恒等式与非平凡A CZ A† CZ对照。",
+    "第一诚律·异常注记3：S²早期L6q1b/core27/core29标签误判不进入结论；最终全坐标重算为core30=L7q0b，单坐标不重解最大残差0.423712066106791，故只记坐标证据。",
+    "第一诚律·异常注记4：删门独立重建与记录最大差6.307504518687779e-11，来自最大3543825.6501064003的未约化角及求值次序；命中只按独立残差判定，零命中不升级为下界。",
+    "第一诚律·异常注记5：RAC差集首次IncompleteRead，按传输纪律重试一次成功；源码内队列字面量曾造成queue_only误标，修正为源码不充当指纹、队列只认报告件后重跑。"
+  ],
+  "strict_interval": "4 <= k <= 7",
+  "open_boundaries": [
+    "k=4,5,6精确代数否证或更优解析下界未建立。",
+    "序34其余核心角、序85/91经线以及全S²同模板解析覆盖未闭合。",
+    "±π/8角刚性与外方向全局不可达仍未证明。",
+    "RAC对方数值S_sim未到件，跨线独立对拍未启动。"
+  ],
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

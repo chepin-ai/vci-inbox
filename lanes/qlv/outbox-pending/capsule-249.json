@@ -1,0 +1,20 @@
+{
+  "seq": 249,
+  "prev": "ce2f6b0c0fdc90db",
+  "ts": "20261110T154628Z",
+  "payload_sha256": "4c79f1ff55e74d29",
+  "body": {
+    "anchors": [
+      "lvlu",
+      "cisvr",
+      "qfa",
+      "lgt"
+    ],
+    "beat": "AD",
+    "board": "board-160",
+    "seat": "席",
+    "summary": "拍AD-23: 7个MAJ7CZ解升级为分圆域严格构造,128实残差精确零,上界7升L1但区间4<=k<=7; 784次规范核心删门独立零命中仅L2; S2序34 core30=(pi-theta)/2及63网格外点通过但全经线开放; RAC仍WAITING_PEER_S_SIM; 独立ALL_PASS",
+    "ts": "20261110T1546Z"
+  },
+  "cid": "34452c63c9eafeac"
+}

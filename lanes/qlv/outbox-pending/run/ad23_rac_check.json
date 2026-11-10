@@ -1,0 +1,86 @@
+{
+  "beat": "AD-23",
+  "checked_at": "20261110T153837Z",
+  "previous_checked_at": "20261110T134433Z",
+  "repos": {
+    "chepin-ai/ci-inbox": {
+      "base": "e5a5accd4dace7f50551ea0d2f146f40868c5ea4",
+      "head": "98ad70dfc565cd2b40b13939e8220d76eaff7147",
+      "ahead_by": 10,
+      "behind_by": 0,
+      "candidate_counts": 2,
+      "candidates": [
+        {
+          "path": "shared/field-engine/QRAC-TRIALS-01/QRAC-D8-TOFFOLI-PLATEAU-05.md",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "a478d3b00b1d46b6790826fe3d2b6458d7f197a06d0203ec3cb2f084ca1e2399"
+        },
+        {
+          "path": "公告板/V151-QUAFU-RAC-EMPTY-COMPLETED-LGT-01-20261110T051234Z.md",
+          "status": "recheck",
+          "has_numeric_S_sim": false,
+          "queue_only": true,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "705abcf1f98ee1d6a1a7b37f8dc29e5670583b45b0f738be008d3789954f1918"
+        }
+      ]
+    },
+    "chepin-ai/vci-inbox": {
+      "base": "32f908349e77af6c9b0f8f8188ac5c8074b95805",
+      "head": "427c4296c5698a8acca4f598fb3f951a68f9320f",
+      "ahead_by": 11,
+      "behind_by": 0,
+      "candidate_counts": 4,
+      "candidates": [
+        {
+          "path": "lanes/qlv/outbox-pending/QRAC-D8-TOFFOLI-PLATEAU-05.md",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "a478d3b00b1d46b6790826fe3d2b6458d7f197a06d0203ec3cb2f084ca1e2399"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad22_rac_check.json",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "909c9eae92a9062595747ed25f8b79708f0de72a5a03c1048f01b47350887303"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad22_rac_check.log",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": false,
+          "content_sha256": "27f9bc26a266db2ead63246d4694d923f83e0f024190116e7efd25e4da7b6a4e"
+        },
+        {
+          "path": "lanes/qlv/outbox-pending/run/ad22_rac_recon.py",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": false,
+          "source_code_excluded_from_fingerprint": true,
+          "content_sha256": "5ebe3d364135739327e3b1e3e5ee75c9ecef7a040949976d299caf81b2fd7ab5"
+        }
+      ]
+    },
+    "chepin-qi/qlv-pub": {
+      "base": "bf3b2fb3b06fc0c88949992a441f097c709f7d44",
+      "head": "9fdc0c763f7ba318403e38917291d1dbe47f274d",
+      "ahead_by": 12,
+      "behind_by": 0,
+      "candidate_counts": 0,
+      "candidates": []
+    }
+  },
+  "fingerprint_arrived": false,
+  "quantum_machine_consumption": 0,
+  "private_ci_consumption": 0,
+  "verdict": "WAITING_PEER_S_SIM",
+  "boundary": "仅复查对方数值指纹是否到件；QLV 自身模拟 S_sim 不冒充跨线对拍，未触发任何真机或私域 CI。"
+}

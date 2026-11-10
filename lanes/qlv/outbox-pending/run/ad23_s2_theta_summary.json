@@ -1,0 +1,64 @@
+{
+  "beat": "AD-23",
+  "case": "G2k7_seq34",
+  "evidence_level": "L2 numerical only",
+  "status": "S2_THETA_OUT_OF_SAMPLE_PASS",
+  "perm": [
+    0,
+    1,
+    2
+  ],
+  "sigma": 1,
+  "phi": 0.8451937126529602,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "coordinate": {
+    "core_index": 30,
+    "label": "L7q0b",
+    "formula": "(pi-theta)/2"
+  },
+  "old_points": 64,
+  "old_max_circuit_e": 1.5565564616446628e-15,
+  "old_max_coordinate_formula_abs_error": 4.440892098500626e-16,
+  "known_answer_gate_e": 2.8305244335018383e-16,
+  "new_off_grid_points": 63,
+  "new_exact_e_lt_1e-9": 63,
+  "new_max_e": 6.722137407118775e-16,
+  "new_best_e": 2.897767167584095e-16,
+  "single_coordinate_no_refit_points": 65,
+  "single_coordinate_no_refit_max_e": 0.423712066106791,
+  "single_coordinate_no_refit_min_e": 0.002172996852438976,
+  "boundary": "旧64点线性关系与新63点冻结坐标求根均为L2；不是全经线解析提升，也不证明该坐标在所有解分支上必要。",
+  "raw_sha256": "3042cc7a6b1720516ecc3c5f610e340c9de3c456e7ed838c0396ea577da219b5",
+  "seconds": 12.509955167770386,
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0
+}

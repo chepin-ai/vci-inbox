@@ -1,0 +1,61 @@
+{
+  "beat": "AD-23",
+  "status": "INDEPENDENT_ALL_EXACT_ZERO",
+  "engine": "SymPy QQ.algebraic_field(exp(I*pi/8))",
+  "known_answer_gate": {
+    "trig_pythagorean_exact": 17,
+    "ordered_identity": "exact zero",
+    "wrong_order_control_nonzero": 32,
+    "maj_toffoli_identity": "exact zero",
+    "maj_non_involution": true
+  },
+  "hits": [
+    {
+      "idx": 45,
+      "restart": 1,
+      "exact_nonzero_residual_entries": 0,
+      "canonical_shape": true
+    },
+    {
+      "idx": 45,
+      "restart": 3,
+      "exact_nonzero_residual_entries": 0,
+      "canonical_shape": true
+    },
+    {
+      "idx": 45,
+      "restart": 7,
+      "exact_nonzero_residual_entries": 0,
+      "canonical_shape": true
+    },
+    {
+      "idx": 82,
+      "restart": 0,
+      "exact_nonzero_residual_entries": 0,
+      "canonical_shape": true
+    },
+    {
+      "idx": 82,
+      "restart": 1,
+      "exact_nonzero_residual_entries": 0,
+      "canonical_shape": true
+    },
+    {
+      "idx": 82,
+      "restart": 5,
+      "exact_nonzero_residual_entries": 0,
+      "canonical_shape": true
+    },
+    {
+      "idx": 82,
+      "restart": 7,
+      "exact_nonzero_residual_entries": 0,
+      "canonical_shape": true
+    }
+  ],
+  "input_sha256": "a9dd303b04fc96fe24a2c80780e089e37dd10c6ad9adbb4d43c9763bfb4745fc",
+  "seconds": 42.38589096069336,
+  "private_ci_consumption": 0,
+  "quantum_machine_consumption": 0,
+  "boundary": "独立精确零只证明所给7-CZ整数电路实现MAJ；不推出k<=6不存在。"
+}
