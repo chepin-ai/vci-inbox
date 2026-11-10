@@ -79,6 +79,42 @@ jobs:
           def canon(o):
               return json.dumps(o, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
 
+          def putc_same_sha(repo, path, content, msg, sha):
+              # LEDGER-CAS-02: content and sha must come from the same read generation.
+              body = {'message': msg, 'content': base64.b64encode(content.encode()).decode(), 'sha': sha}
+              rq = urllib.request.Request(f'https://api.github.com/repos/chepin-ai/{repo}/contents/{urllib.parse.quote(path, safe="")}', method='PUT', headers=H, data=json.dumps(body).encode())
+              try:
+                  return urllib.request.urlopen(rq, timeout=20).status
+              except urllib.error.HTTPError as e:
+                  return e.code
+
+          def append_ledger(ev, label):
+              # Rebuild seq/prev/hash from every freshly read tip; never pair stale text with a fresh sha.
+              import time as _time
+              for _attempt in range(6):
+                  cur_txt, cur_sha = getc('ci-control', 'bridge/stream-ledger.jsonl')
+                  if cur_txt is None or cur_sha is None:
+                      _time.sleep(2 * (_attempt + 1)); continue
+                  cur_entries = []
+                  try:
+                      for _line in cur_txt.splitlines():
+                          if _line.strip(): cur_entries.append(json.loads(_line))
+                  except Exception:
+                      raise RuntimeError('LEDGER-CAS-02 parse failure; append refused')
+                  if not cur_entries or [e.get('seq') for e in cur_entries] != list(range(1, len(cur_entries) + 1)):
+                      raise RuntimeError('LEDGER-CAS-02 sequence failure; append refused')
+                  tip2 = cur_entries[-1]
+                  if not tip2.get('hash'):
+                      raise RuntimeError('LEDGER-CAS-02 missing tip hash; append refused')
+                  ev2 = dict(ev); ev2['seq'] = tip2['seq'] + 1; ev2['prev'] = tip2['hash']; ev2.pop('hash', None)
+                  ev2['hash'] = hashlib.sha256((ev2['prev'] + canon(ev2)).encode()).hexdigest()
+                  led_new = cur_txt + (chr(10) if not cur_txt.endswith(chr(10)) else '') + json.dumps(ev2, ensure_ascii=False) + chr(10)
+                  status = putc_same_sha('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'{label.split(" verdict=")[0]} seq{ev2["seq"]}' + (' verdict=' + label.split(' verdict=', 1)[1] if ' verdict=' in label else ''), cur_sha)
+                  if status in (200, 201):
+                      return ev2
+                  _time.sleep(2 * (_attempt + 1))
+              raise RuntimeError('LEDGER-CAS-02 append retries exhausted; no stale overwrite attempted')
+
           NOW = datetime.datetime.now(datetime.timezone.utc)
           TS = NOW.strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -423,10 +459,8 @@ jobs:
           putc('ci-control', 'bridge/kernel-loop/KERNEL-STATE.json', json.dumps(state, ensure_ascii=False, indent=1), f'kernel-loop 拍 {TS} verdict={loop_verdict}')
 
           # ---- 判词入链 (因果链) ----
-          ev = {'seq': maxseq + 1, 'ts': TS, 'type': 'KERNEL_LOOP', 'by': 'kernel-loop', 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts'], 'overdue_ids': [it.get('id') for it in overdue], 'proposals_n': len(proposals), 'sym': {'threads': symphony['threads'], 'stalled': len(symphony['stalled']), 'dm': symphony['dm_pending_total']}, 'fus': {'merge': len(fusion['merge_candidates']), 'runaway': len(fusion['runaway']), 'scout': len(fusion['stale']), 'rdz': fusion['rendezvous_logged'], 'cap': fusion['active_cap']}, 'evolution': evolution['deltas'], 'anchor': anchor['tip_hash'][:16], 'prev': tip.get('hash') if tip else 'GENESIS'}
-          ev['hash'] = hashlib.sha256((ev['prev'] + canon(ev)).encode()).hexdigest()
-          led_new = led_txt + ('\n' if not led_txt.endswith('\n') else '') + json.dumps(ev, ensure_ascii=False) + '\n'  # EMPTY-READ-GENESIS-01: 账只增不减, 禁空基重建
-          putc('ci-control', 'bridge/stream-ledger.jsonl', led_new, f'KERNEL_LOOP seq{ev["seq"]} verdict={loop_verdict} @ {TS}')
+          ev = {'ts': TS, 'type': 'KERNEL_LOOP', 'by': 'kernel-loop', 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts'], 'overdue_ids': [it.get('id') for it in overdue], 'proposals_n': len(proposals), 'sym': {'threads': symphony['threads'], 'stalled': len(symphony['stalled']), 'dm': symphony['dm_pending_total']}, 'fus': {'merge': len(fusion['merge_candidates']), 'runaway': len(fusion['runaway']), 'scout': len(fusion['stale']), 'rdz': fusion['rendezvous_logged'], 'cap': fusion['active_cap']}, 'evolution': evolution['deltas'], 'anchor': anchor['tip_hash'][:16]}
+          append_ledger(ev, f'KERNEL_LOOP verdict={loop_verdict} @ {TS}')
           putc('vci-inbox', 'bridge/kernel-loop/last-run.json', json.dumps({'ts': TS, 'run': RUN, 'loop_verdict': loop_verdict, 'certs_pass': certs_pass, 'counts': state['counts']}, ensure_ascii=False, indent=1), f'kernel-loop last-run {TS}')
           # ---- P9 BEAT-FORWARD (D-157: 事件驱动接力扣门,级联深度≤1——cause='beat-forward'者不转叩) ----
           CAUSE = os.environ.get('CAUSE', 'schedule')
