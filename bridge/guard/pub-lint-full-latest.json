@@ -1,18 +1,10 @@
 {
- "ts": "2026-11-10T04:22:48Z",
+ "ts": "2026-11-10T04:28:23Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 9044,
- "fixed_n": 9,
+ "scanned": 9046,
+ "fixed_n": 1,
  "fixed": [
-  "bridge/board-index-ci.json",
-  "lanes/qlv/outbox/qlv-outbox.json",
-  "qfa-face/awake/awake-20261110-042235.json",
-  "receipts/backup-mirror-last.log",
-  "receipts/health/HEALTH-20261106.json",
-  "receipts/health/HEALTH-20261107.json",
-  "receipts/health/HEALTH-20261108.json",
-  "receipts/health/HEALTH-20261109.json",
-  "receipts/health/HEALTH-LATEST.json"
+  "bridge/board-index-ci.json"
  ]
 }
