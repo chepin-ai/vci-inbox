@@ -1,0 +1,59 @@
+{"case": "G1k7_seq85", "kind": "theta", "best": 8.11661280390137e-10}
+{"case": "G1k7_seq85", "kind": "phi", "best": 1.490161208520172e-09}
+{"case": "G1k7_seq85", "pauli": "ZXI", "best": 3.1350143311250775, "start": 1}
+{"case": "G1k7_seq85", "pauli": "ZYI", "best": 1.781722262616478, "start": 1}
+{"case": "G1k7_seq85", "pauli": "ZZI", "best": 1.361455702519965, "start": 4}
+{"case": "G1k7_seq85", "pauli": "ZZX", "best": 1.361455702519965, "start": 4}
+{"case": "G1k7_seq85", "pauli": "ZYX", "best": 1.779367018993347, "start": 3}
+{"case": "G1k7_seq85", "pauli": "ZXX", "best": 3.146630093658102, "start": 3}
+{"case": "G2k7_seq34", "kind": "theta", "best": 8.863203791032045e-10}
+{"case": "G2k7_seq34", "kind": "phi", "best": 9.640837081830556e-10}
+{"case": "G2k7_seq34", "pauli": "ZIZ", "best": 2.121566078685598, "start": 3}
+{"case": "G2k7_seq34", "pauli": "ZXZ", "best": 2.121566078685598, "start": 3}
+{"case": "G2k7_seq34", "pauli": "YIZ", "best": 4.0249902310111985, "start": 0}
+{"case": "G2k7_seq34", "pauli": "XIZ", "best": 3.5040730153248316, "start": 4}
+{"case": "G2k7_seq34", "pauli": "XXZ", "best": 3.5031464553619083, "start": 5}
+{"case": "G2k7_seq34", "pauli": "YXZ", "best": 3.7508688145211857, "start": 5}
+{
+  "gate_max": 1.490161208520172e-09,
+  "outside_min": 1.361455702519965,
+  "outside_count": 12,
+  "independent": {
+    "G1k7_seq85": {
+      "candidate_count": 6,
+      "direction_rank": 4,
+      "singular_values": [
+        2.1647844005847885,
+        2.164784400584788,
+        2.164784400584788,
+        2.164784400584788,
+        2.187992171442829e-16,
+        1.086629057485959e-16
+      ],
+      "independent_pauli": [
+        "ZXI",
+        "ZXX",
+        "ZYX",
+        "ZZX"
+      ]
+    },
+    "G2k7_seq34": {
+      "candidate_count": 6,
+      "direction_rank": 4,
+      "singular_values": [
+        2.164784400584789,
+        2.1647844005847885,
+        2.1647844005847885,
+        2.1647844005847885,
+        3.6042117930532207e-16,
+        1.9042014076646802e-16
+      ],
+      "independent_pauli": [
+        "YIZ",
+        "YXZ",
+        "XIZ",
+        "ZIZ"
+      ]
+    }
+  }
+}

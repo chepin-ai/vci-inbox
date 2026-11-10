@@ -1,0 +1,37 @@
+{
+  "beat": "AD-22",
+  "checked_at": "20261110T134433Z",
+  "repos": {
+    "chepin-ai/ci-inbox": {
+      "base": "43ea0157796eab310c131a020fcea0ba8cc87bf1",
+      "head": "e5a5accd4dace7f50551ea0d2f146f40868c5ea4",
+      "ahead_by": 41,
+      "behind_by": 0,
+      "candidates": [
+        {
+          "path": "公告板/V151-QUAFU-RAC-EMPTY-COMPLETED-LGT-01-20261110T051234Z.md",
+          "status": "added",
+          "has_numeric_S_sim": false,
+          "queue_only": true
+        }
+      ]
+    },
+    "chepin-ai/vci-inbox": {
+      "base": "685af987c492b2092c85c3ee9f2e69007977bf55",
+      "head": "32f908349e77af6c9b0f8f8188ac5c8074b95805",
+      "ahead_by": 45,
+      "behind_by": 0,
+      "candidates": []
+    },
+    "chepin-qi/qlv-pub": {
+      "base": "781f101908b534c6d23d56c66bc8a3cda9ff5be2",
+      "head": "bf3b2fb3b06fc0c88949992a441f097c709f7d44",
+      "ahead_by": 46,
+      "behind_by": 0,
+      "candidates": []
+    }
+  },
+  "fingerprint_arrived": false,
+  "quantum_machine_consumption": 0,
+  "verdict": "WAITING_PEER_S_SIM"
+}

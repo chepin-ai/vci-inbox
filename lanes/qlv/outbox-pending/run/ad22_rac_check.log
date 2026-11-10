@@ -1,0 +1,15 @@
+{
+  "checked_at": "20261110T134433Z",
+  "fingerprint_arrived": false,
+  "verdict": "WAITING_PEER_S_SIM",
+  "heads": {
+    "chepin-ai/ci-inbox": "e5a5accd4dace7f50551ea0d2f146f40868c5ea4",
+    "chepin-ai/vci-inbox": "32f908349e77af6c9b0f8f8188ac5c8074b95805",
+    "chepin-qi/qlv-pub": "bf3b2fb3b06fc0c88949992a441f097c709f7d44"
+  },
+  "candidate_counts": {
+    "chepin-ai/ci-inbox": 1,
+    "chepin-ai/vci-inbox": 0,
+    "chepin-qi/qlv-pub": 0
+  }
+}

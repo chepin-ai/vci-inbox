@@ -1,0 +1,96 @@
+{"event": "verify_start", "check": "sphere_closed"}
+{"event": "verify_pass", "check": "sphere_closed", "elapsed": 0.30774521827697754}
+{"event": "verify_start", "check": "maj"}
+{"event": "verify_pass", "check": "maj", "elapsed": 1.2932255268096924}
+{"event": "verify_start", "check": "seq91_basin"}
+{"event": "verify_pass", "check": "seq91_basin", "elapsed": 3.245774269104004}
+{"event": "verify_start", "check": "outside_second_order"}
+{"event": "verify_pass", "check": "outside_second_order", "elapsed": 3.5259857177734375}
+{
+  "status": "ALL_PASS",
+  "seconds": 3.534785032272339,
+  "maj": {
+    "multistart_runs": 1920,
+    "max_record_delta": 5.551115123125783e-16,
+    "by_k": {
+      "4": {
+        "runs": 128,
+        "exact": 0,
+        "best_e": 0.38268348414102443,
+        "best_idx": 10,
+        "best_restart": 6
+      },
+      "5": {
+        "runs": 256,
+        "exact": 0,
+        "best_e": 0.3826834342019295,
+        "best_idx": 11,
+        "best_restart": 6
+      },
+      "6": {
+        "runs": 512,
+        "exact": 0,
+        "best_e": 0.28493382488188496,
+        "best_idx": 21,
+        "best_restart": 3
+      },
+      "7": {
+        "runs": 1024,
+        "exact": 7,
+        "best_e": 5.506651073341565e-16,
+        "best_idx": 82,
+        "best_restart": 1
+      }
+    },
+    "delete7_runs": 392,
+    "delete7_exact": 0,
+    "delete7_best_e": 0.22147842108173257,
+    "delete7_max_record_delta": 4.996003610813204e-16,
+    "strict_interval": "4 <= k <= 7",
+    "boundary": "k=4,5,6\u53ca\u5220\u95e8\u96f6\u547d\u4e2d\u5747\u4e3aL2\u6570\u503c\u5426\u8bc1\uff0c\u4e0d\u5ba3\u79f07\u6700\u4f18\u3002"
+  },
+  "basin": {
+    "files": {
+      "ad22_seq91_metric.jsonl": {
+        "records": 384,
+        "exact": 384,
+        "signature": 384,
+        "max_record_delta": 3.326118413665305e-16
+      },
+      "ad22_seq91_metric_extended.jsonl": {
+        "records": 144,
+        "exact": 82,
+        "signature": 82,
+        "max_record_delta": 3.387900043392108e-16
+      }
+    },
+    "total_runs": 528,
+    "total_exact": 466,
+    "gauge_pair_agreement": [
+      236,
+      264
+    ],
+    "solver_pair_agreement": [
+      242,
+      264
+    ],
+    "rank_absolute_threshold": 33,
+    "singular_rank_boundary": [
+      0.23753671642006102,
+      2.3304995112444442e-08
+    ],
+    "boundary": "r<=2\u5168\u8fd4\u56de\u975e\u65e0\u9650\u76c6\u5bbd\u8bc1\u660e\uff1br>=3\u5206\u6b67\u975e\u5168\u5c40\u5438\u5f15\u76c6\u4f53\u79ef\u6216\u89e3\u6d41\u5f62\u6d4b\u5730\u8ddd\u79bb\u3002"
+  },
+  "sphere": {
+    "phi_circuits": 75,
+    "max_phi_circuit_e": 4.0029660424867204e-14,
+    "max_record_delta": 1.997828682502529e-16,
+    "global_cases": 288,
+    "sphere_identity_max": 5.613217783960923e-16,
+    "target_identity_max": 5.60334479738423e-16,
+    "toffoli_commutation_max": 0.0,
+    "pole_identity_max": 3.376611507232129e-16
+  },
+  "outside_min": 1.361455702519965,
+  "mixed_min": 2.152606433349282
+}

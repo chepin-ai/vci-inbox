@@ -1,0 +1,22 @@
+{"done": 49, "total": 392, "elapsed": 5.8604347705841064}
+{"done": 98, "total": 392, "elapsed": 11.2893967628479}
+{"done": 147, "total": 392, "elapsed": 16.79800772666931}
+{"done": 196, "total": 392, "elapsed": 22.50137972831726}
+{"done": 245, "total": 392, "elapsed": 27.83813500404358}
+{"done": 294, "total": 392, "elapsed": 35.43743276596069}
+{"done": 343, "total": 392, "elapsed": 40.597350120544434}
+{"done": 392, "total": 392, "elapsed": 46.53294777870178}
+{
+  "beat": "AD-22",
+  "runs": 392,
+  "errors": 0,
+  "seconds": 46.54344034194946,
+  "exact_e_lt_1e-9": 0,
+  "boundary": "7\u4e2a\u65b0\u89e3\u00d77\u5220\u95e8\u00d78\u8d77\u70b9\u7684\u6696\u542f\u52a8\u6570\u503c\u626b\u63cf\uff1b\u4e0d\u8bc1\u660ek=6\u4e0d\u5b58\u5728\u3002"
+}
+{
+  "best_e": 0.2595159200898377,
+  "best_source": 5,
+  "best_delete": 4,
+  "hits": 0
+}

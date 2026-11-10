@@ -1,0 +1,1842 @@
+Toffoli Requires Six Quantum Neighbor Gates
+KELI HUANG, University of California, Los Angeles, USA
+JENS PALSBERG, University of California, Los Angeles, USA
+Toffoli gates are key building blocks in quantum programs, and on most current quantum computers, they
+must be implemented with smaller gates. Such an implementation requires five 2-qubit gates if we assume
+that each gate can operate on any two qubits. However, many current quantum computers have only 2-qubit
+gates that operate on neighboring qubits; we call them neighbor gates. How many neighbor gates are required
+to implement a Toffoli gate? In this paper, we show that six neighbor gates are necessary and sufficient, and
+we generalize to a characterization of all 3-qubit diagonal gates.
+CCS Concepts: • Computer systems organization → Quantum computing; • Software and its engi-
+neering → Compilers.
+Additional Key Words and Phrases: quantum computing, compilers, code size
+ACM Reference Format:
+Keli Huang and Jens Palsberg. 2025. Toffoli Requires Six Quantum Neighbor Gates. 1, 1 (December 2025),
+37 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn
+
+1    INTRODUCTION
+   Background. Researchers are designing quantum algorithms that, in some cases, have an expo-
+nential advantage over classical algorithms. They describe their algorithms in the form of quantum
+circuits that use quantum gates. In a recent trend, many of their papers [Berry et al. 2019, 2024;
+Goings et al. 2022; Lee et al. 2021; Rubin et al. 2024; Su et al. 2021] express an algorithm’s execution
+time in terms of the number of Toffoli gates. They do that because they anticipate error-corrected
+quantum computers on which the execution of Toffoli gates will be a bottleneck. Thus, they use
+Toffoli gates as building blocks that must be compiled to hardware gates.
+   Toffoli gates are 3-qubit gates and on most current quantum computers, they must be implemented
+with smaller gates. Thus, the implementation of a Toffoli gate on a given quantum computer has
+a direct impact on the execution time of quantum algorithms. For such an implementation, five
+2-qubit gates are necessary and sufficient, as shown by [Palsberg and Yu 2024; Yu et al. 2013; Yu
+and Ying 2015], assuming that a 2-qubit gate can operate on any two qubits. In our terminology,
+such an implementation uses unrestricted gates.
+   Current quantum computers rarely support that a 2-qubit gate can operate on any two qubits.
+For example, IBM Condor (1,121 qubits) and IBM Osprey (433 qubits) support that a 2-qubit gate
+operates only on some pairs of qubits. In particular, for any three qubits, they support 2-qubit gates
+on at most two of the three possible pairs of qubits. They do that because supporting a 2-qubit
+gate is easier when the two qubits are neighbors on the chip. In our terminology, current quantum
+computers tend to support neighbor gates.
+Authors’ addresses: Keli Huang, University of California, Los Angeles, USA, kelihuang@cs.ucla.edu; Jens Palsberg, University
+of California, Los Angeles, USA, palsberg@ucla.edu.
+
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee
+provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the
+full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored.
+Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires
+prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+© 2025 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM XXXX-XXXX/2025/12-ART
+https://doi.org/10.1145/nnnnnnn.nnnnnnn
+
+
+                                                                   , Vol. 1, No. 1, Article . Publication date: December 2025.
+2                                                                                   Keli Huang and Jens Palsberg
+
+
+  In this paper, we focus on the question of how many 2-qubit neighbor gates are required to
+implement a Toffoli gate and, more generally, any 3-qubit diagonal gate.
+   Question: Five or Six? We can implement a Toffoli gate both using five unrestricted gates [Yu
+et al. 2013], and using six neighbor gates, as we show in Section 3. Here we arrive at our central
+question: five or six? Specifically, can we improve the implementation of a Toffoli gate from using
+five unrestricted gates to using five neighbor gates? Or, are we forced to use a sixth neighbor gate?
+  Our Results. We show that six neighbor gates are necessary and sufficient to implement a Toffoli
+gate. We also generalize this to a characterization of the number of neighbor gates (Theorem 7.1)
+and the number of unrestricted gates (Theorem 7.2) that are sufficient to implement 3-qubit diagonal
+gates. In Corollary 7.3, we prove that these upper bounds are indeed least upper bounds.
+    Our Proof Technique. Figure 1 shows our proof structure. The lower bound for implementations
+
+
+                            Lemma 4.2
+
+
+
+          Lemma 4.1                            Lemma 4.4                    Theorem 7.1
+
+
+
+                            Lemma 4.3                         Theorem 6.2                 Corollary 7.3
+
+
+
+                                              Theorem 6.1                   Theorem 7.2
+
+
+                                                 Fig. 1. Proof structure.
+
+of a Toffoli gate is a corollary of Theorem 6.2, which is a novel equivalence between the expressive
+power of unrestricted gates and the expressive power of neighbor gates. Specifically, Theorem 6.2
+says that three classes of quantum circuits implement the same 3-qubit diagonal gates; those
+classes are (1) four neighbor gates, (2) five neighbor gates, and (3) four unrestricted gates. The most
+surprising aspect of Theorem 6.2 is the implication (2) ⇒ (1), which says that we can transform any
+circuit with five neighbor gates into an equivalent circuit with four neighbor gates. This may seem
+like a magic trick: a gate disappeared! We prove Theorem 6.2 by proving the chain of implications
+(1) ⇒ (2) ⇒ (3) ⇒ (1).
+   The proof of the implication (2) ⇒ (3) is the main technical innovation in this paper: we trans-
+form an implementation of a 3-qubit diagonal gate using five neighbor gates into an implementation
+using four unrestricted gates. We devote Section 4 to proving one particular form of this result
+(Lemma 4.4), which uses Lemmas 4.1–4.3, and then we use it in Section 6 in the proof of Theorem 6.2
+which relies on Theorem 6.1. Our proofs in Section 4 and Section 6 rely on a suite of known lemmas
+that we list in Appendix A. In particular, we use Lemma A.9 ([Palsberg and Yu 2024, Lemma 6.4]),
+which characterizes the 3-qubit quantum gates with two controls that can be implemented with
+four neighbor gates.
+   A surprising corollary of Theorem 6.2 is that while four unrestricted gates and four neighbor
+gates have the same expressive power, five unrestricted gates have strictly more expressive power
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                                     3
+
+
+than five neighbor gates. In particular, five unrestricted gates are sufficient to implement a Toffoli
+gate, while five neighbor gates are insufficient. Another surprising finding is that, in some cases,
+the qubit layout affects the optimal number of neighbor gates (Theorem 6.1).
+   The Rest of the Paper. In Section 2, we recall key quantum concepts, and in Section 3, we show
+implementations of the Toffoli gate and two other gates. In Section 5, we define some sets of 3-qubit
+diagonal gates that we use to state our results, and in Sections 4–7, we state and prove our theorems,
+with the exception of some proofs that we relegated to the appendices. In Section 8, we use our
+theorems to show that our implementations in Section 3 are optimal, and in Section 9, we discuss
+related work.
+
+2     QUANTUM CONCEPTS
+  Qubits, Quantum States, and Quantum Gates. A qubit is a two-dimensional unit vector of complex
+numbers. An 𝑛-qubit quantum state is a 2𝑛 -dimensional unit vector of complex numbers. We use
+lower-case letters 𝑎, 𝑏, 𝑑, 𝑝, 𝑞 to represent complex numbers. Furthermore, we use lowercase letters,
+enclosed in Dirac notation, as |𝑥⟩, |𝑦⟩, |𝑧⟩ to range over 1-qubit quantum states.
+  A quantum gate is a unitary matrix. A matrix 𝑈 is unitary if 𝑈 𝑈 † = 𝑈 †𝑈 = 𝐼 , where 𝑈 † is the
+conjugate transpose of 𝑈 , and 𝐼 is the identity matrix. We use uppercase letters, such as 𝑈 , to range
+over quantum gates. We will use the following gates.
+                 1 0 0 0
+                                                                                                                     
+                 0 0 1 0                            0   1                       1 0                                1 1
+        𝑆    =                        𝑋     =                     𝑍 =                         𝐻    =     √1
+                 0 1 0 0
+                                                    1   0                       0 −1                       2       1 −1
+                 0 0 0 1
+                          
+                  −𝑖 𝛼                                                                                             
+                   𝑒 2 0                              cos(𝜃 /2) − sin(𝜃 /2)                                    1 0
+    𝑅𝑧 (𝛼)   =           𝛼         𝑅 𝑦 (𝜃 )   =                                              𝑃 (𝜑)   =
+                    0 𝑒𝑖 2                            sin(𝜃 /2) cos(𝜃 /2)                                      0 𝑒 𝑖𝜑
+
+Notice that 𝑆 is the 2-qubit swap gate, while the others are 1-qubit gates. Also, we have that
+𝐻𝑍𝐻 = 𝑋 , 𝐻𝑋 𝐻 = 𝑍 , and 𝐻 † = 𝐻 . We use Greek letters 𝛼, 𝛽, 𝛾, 𝜑, and 𝜃 to stand for angles ranging
+from 0 to 2𝜋.
+    We write an 𝑛-qubit diagonal gate with 2𝑛 complex-number entries as Diag(𝑑 0, 𝑑 1, . . . , 𝑑 2𝑛 −1 ),
+where 𝑑𝑖 is the (𝑖 + 1)𝑡ℎ element on the diagonal.
+    For an 𝑛-qubit gate 𝑈 , we define its (𝑛 + 1)-qubit zero-controlled gate as |0⟩⟨0| ⊗ 𝑈 + |1⟩⟨1| ⊗ 𝐼 ,
+which applies 𝑈 to the target qubits when the control qubit is |0⟩ and applies the identity matrix
+if it is |1⟩. Also, we define its (𝑛 + 1)-qubit one-controlled gate as C(𝑈 ) = |0⟩⟨0| ⊗ 𝐼 + |1⟩⟨1| ⊗ 𝑈 .
+which applies 𝑈 to the target qubits when the control qubit is |1⟩ and applies the identity matrix if
+it is |0⟩.
+    We use Eigenvalues(𝑈 ) to denote the multiset of eigenvalues of the unitary matrix 𝑈 , and we
+use ⊔ to denote the multiset-union operator.
+   Quantum Circuit Diagrams. In a circuit diagram, each qubit has its own line, and we use the
+symbol / to denote that a diagram represents multiple qubits in a single line. We display the 𝑋 gate
+as ⊕, and we display the 𝑆 gate as two ×’s connected by a line. In such a diagram, we have three
+special notations. We display a zero-controlled operation as ◦ and a one-controlled operation as •,
+as shown in Figure 2.
+   If there exist two 𝑛-qubit gates 𝑉0 and 𝑉1 , such that an (𝑛 + 1)-qubit gate 𝑉 can be written as
+𝑉 = |0⟩⟨0| ⊗ 𝑉0 + |1⟩⟨1| ⊗ 𝑉1 , then, in a diagram, we use □ on a line to emphasize such a qubit, as
+shown in Figure 3. We borrow this notation from [Shende and Markov 2008].
+
+                                                                  , Vol. 1, No. 1, Article . Publication date: December 2025.
+4                                                                                               Keli Huang and Jens Palsberg
+
+
+                                                               •                                                 •
+                                            C(𝑈 )      =                               𝑉   =         =
+                          / 𝑈           /                  / 𝑈                 /               / 𝑉       / 𝑉0   𝑉1
+
+                  Fig. 2. Circuits for controlled gates.                    Fig. 3. Zero-one-controlled circuits.
+
+
+   For a 3-qubit diagonal gate 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ), there exist four 1-qubit gates 𝐷 00 =
+Diag(𝑑 0, 𝑑 1 ), 𝐷 01 = Diag(𝑑 2, 𝑑 3 ), 𝐷 10 = Diag(𝑑 4, 𝑑 5 ), and 𝐷 11 = Diag(𝑑 6, 𝑑 7 ), such that 𝐷 =
+|00⟩⟨00| ⊗ 𝐷 00 + |01⟩⟨01| ⊗ 𝐷 01 + |10⟩⟨10| ⊗ 𝐷 10 + |11⟩⟨11| ⊗ 𝐷 11 . This enables us to think of
+𝐷 in terms of two control qubits, and we display 𝐷 as shown in Figure 4.
+
+                                                                        •          •
+                                                =                  •               •
+
+                                            𝐷          𝐷 00     𝐷 01   𝐷 10    𝐷 11
+
+                                 Fig. 4. A gate with two zero-one-controlled qubits.
+
+
+   Applying a 2-qubit Gate to 3 Qubits. Because we focus on 3-qubit circuits, we use three uppercase
+letters 𝐴, 𝐵, 𝐶 to represent these three different qubits. An unrestricted 2-qubit gate can operate on
+any pair of qubits: 𝐴𝐵, 𝐵𝐶, and 𝐴𝐶. However, neighbor gates can operate on only two of the three
+pairs. Following [Palsberg and Yu 2024], we define a 3-qubit gate 𝑈 𝑖 𝑗 , where 𝑖 𝑗 ∈ {𝐴𝐵, 𝐵𝐶, 𝐴𝐶 },
+to represent that a 2-qubit gate 𝑈 is implemented on the qubits 𝑖 and 𝑗 in a 3-qubit circuit, with the
+third qubit remaining unchanged. In this notation, if 𝑈 is a 2-qubit unitary, then 𝑈𝑖 𝑗 operates on 2
+qubits, while 𝑈 𝑖 𝑗 operates on 3 qubits. We define 𝑈 𝑖 𝑗 as follows.
+                   𝑈 𝐴𝐵     = 𝑈 ⊗ 𝐼,            𝑈 𝐵𝐶 = 𝐼 ⊗ 𝑈 ,                𝑈 𝐴𝐶 = 𝑆 𝐵𝐶 𝑈 𝐴𝐵 𝑆 𝐵𝐶
+Notice the use of the swap gate 𝑆 in 𝑆 𝐵𝐶 . We have that 𝑆 𝐴𝐵 𝑈 𝐴𝐶 𝑆 𝐴𝐵 = 𝑈 𝐵𝐶 [Palsberg and Yu 2024,
+Lemma A.12]. Furthermore, we can easily check that 𝑆 𝐵𝐶 𝑆 𝐴𝐶 𝑈 𝐴𝐵 𝑆 𝐴𝐶 𝑆 𝐵𝐶 = 𝑈 𝐵𝐶 . If we have qubit
+indices 𝑖 𝑗 ∈ {𝐵𝐴, 𝐶𝐵, 𝐶𝐴}, then the qubit order must be reversed by sandwiching two swap gates.
+Thus, we write 𝑈 𝑖 𝑗 as (𝑆 𝑗𝑖 𝑈 𝑗𝑖 𝑆 𝑗𝑖 ) or 𝑆𝑈 𝑆 𝑗𝑖 . We write 𝑈𝑉𝑊 𝑖 𝑗 as an abbreviation for 𝑈 𝑖 𝑗 𝑉 𝑖 𝑗 𝑊 𝑖 𝑗 .
+    Sets of Gates. If 𝑈 , 𝑉 are 3-qubit gates, and S is a set of 3-qubit diagonal gates, then we define:
+                                            𝑈 S𝑉      =       {𝑈 𝐷𝑉 | 𝐷 ∈ S }
+
+3    PROGRAMMING WITH NEIGHBOR GATES
+In this section, we present five example circuits that implement the Toffoli gate (Examples 3.1–3.2)
+and other diagonal gates (Examples 3.3–3.5). They all have the optimal numbers of 2-qubit gates, as
+we will show in Section 8.
+  Qubit Layout. If we have three qubits 𝐴, 𝐵, and 𝐶, and only two of the pairs are neighbors, the
+qubit layout is one of the ones in Figure 5. We will study all three layouts.
+   The Toffoli Gate. The Toffoli gate can be written CC(𝑋 ), and it can be depicted as the left-hand-
+side of Circuit (1). Here, 𝐴, 𝐵, 𝐶 are qubits, and the idea is that if both 𝐴 and 𝐵 are 1, then the gate
+will flip 𝐶 by applying an 𝑋 gate. The usual terminology is that 𝐴, 𝐵 are the control qubits, while 𝐶
+is the target qubit. The notation CC(𝑋 ) signals that the gate has two control qubits and that we
+may apply an 𝑋 gate to the target qubit. Below is an implementation of a Toffoli gate that uses five
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                                       5
+
+
+                                  𝐴                                𝐴                          𝐴
+
+                          𝐵               𝐶                𝐵                𝐶          𝐵            𝐶
+
+                                                  Fig. 5. Three qubit layouts.
+
+
+unrestricted gates, which is the optimal number of such gates. Those gates are all conditional gates
+that each has a single control.
+
+                              𝐴       •               •                 •             •                                         (1)
+                              𝐵       •   =                    •                 •
+                                                     √         √                √ †
+                              𝐶                       𝑋         𝑋                𝑋
+
+Notice that in Circuit (1), the gates are applied to all possible qubit pairs 𝐴𝐶, 𝐵𝐶, and 𝐴𝐵.
+  A Gate with Two Controls. We can generalize CC(𝑋 ) to CC(𝑈 ) where 𝑈 is a 1-qubit unitary, and
+we can implement it by a straightforward generalization of the scheme above.
+
+                              𝐴       •                •                 •            •                                         (2)
+                              𝐵       •       =                 •                •
+                                                     √         √                √ †
+                              𝐶   𝑈                   𝑈         𝑈                𝑈
+
+  In Table 1, we walk through the effect of Circuit (2) on |𝐴𝐵⟩|𝐶⟩, and we see that the circuit
+implements CC(𝑈 ) correctly: the final state is |𝐴𝐵⟩ 𝑈 |𝐶⟩ if and only if |𝐴𝐵⟩ = |11⟩, and |𝐴𝐵⟩ |𝐶⟩
+otherwise.
+
+                              Table 1. The effect of the circuit in (2) on |𝐴𝐵⟩ |𝐶⟩.
+
+                        √                       √                                            √ †
+         Input        C( 𝑈 )𝐴𝐶                C( 𝑈 ) 𝐵𝐶                 C(𝑋 )𝐴𝐵            C( 𝑈 ) 𝐵𝐶          C(𝑋 )𝐴𝐵
+        |00⟩ |𝐶⟩       |00⟩ |𝐶⟩              |00⟩ |𝐶⟩                  |00⟩ |𝐶⟩             |00⟩ |𝐶⟩          |00⟩ |𝐶⟩
+                                                √                         √
+        |01⟩ |𝐶⟩       |01⟩ |𝐶⟩           |01⟩ ( 𝑈 |𝐶⟩)             |01⟩ ( 𝑈 |𝐶⟩)           |01⟩ |𝐶⟩          |01⟩ |𝐶⟩
+                          √                     √                         √
+        |10⟩ |𝐶⟩    |10⟩ ( 𝑈 |𝐶⟩)         |10⟩ ( 𝑈 |𝐶⟩)             |11⟩ ( 𝑈 |𝐶⟩)           |11⟩ |𝐶⟩          |10⟩ |𝐶⟩
+                          √
+        |11⟩ |𝐶⟩    |11⟩ ( 𝑈 |𝐶⟩)         |11⟩ (𝑈 |𝐶⟩)                 |10⟩ (𝑈 |𝐶⟩)        |10⟩ (𝑈 |𝐶⟩)    |11⟩ (𝑈 |𝐶⟩)
+
+
+
+   Example 3.1 (CC(𝑋 ) using 2-qbit gates only on 𝐴𝐵 and 𝐵𝐶). Now let us move from using
+unrestricted gates to using neighbor gates. We ask: can we improve the implementation of CC(𝑋 )
+from using five unrestricted gates to using five neighbor gates? The answer is No, and we need six
+neighbor gates to make a Toffoli. Let us assume that a 2-qubit gate can operate on qubits 𝐴𝐵, and
+on qubits 𝐵𝐶, but not 𝐴𝐶. In other words, a 2-qubit gate can operate on the two control qubits but
+on only one of the pairs of a control qubit and the target qubit. Circuit (1) for CC(𝑋 ) violates this
+assumption because the first gate operates on 𝐴𝐶. We can fix that by (i) changing the first gate’s
+
+                                                                         , Vol. 1, No. 1, Article . Publication date: December 2025.
+6                                                                                                      Keli Huang and Jens Palsberg
+
+
+target qubit from 𝐶 to 𝐵 and (ii) inserting two swap gates.
+                           𝐴       •           •                               •               •
+                                              √
+                           𝐵       •      = ×  𝑋             ×           •            •
+
+                                                                     √              √ †
+                           𝐶       𝑋            ×            ×        𝑋              𝑋
+
+   The above circuit uses neighbor gates entirely, but, at first, it appears to use seven gates. How-
+ever, the third and fourth gates both operate on qubits 𝐵𝐶 so they can be combined by matrix
+multiplication, as indicated by the dashed lines above. The result is a total of six neighbor gates.
+   A similar situation to the one above arises when we assume that a 2-qubit gate can operate on
+qubits 𝐴𝐵, and on qubits 𝐴𝐶, but not 𝐵𝐶. Notice that also in this case, a 2-qubit gate can operate on
+the two control qubits and on one of the control qubits and the target qubit. We can handle this
+situation as we did above.
+   Example 3.2 (CC(𝑋 ) using 2-qbit gates only on 𝐴𝐶 and 𝐵𝐶). A rather different situation
+arises when we assume that a 2-qubit gate can operate on qubits 𝐴𝐶 and on 𝐵𝐶, but not on 𝐴𝐵. In
+other words, a 2-qubit gate can operate on both pairs of a control qubit and the target qubit, while
+it cannot operate on the two control qubits. Circuit (1) for CC(𝑋 ) violates this assumption because
+the third gate and the fifth gate operate on 𝐴𝐵. However, we can fix that by (i) changing the third
+gate’s target qubit from 𝐵 to 𝐶 and (ii) inserting two swap gates, and (iii) doing steps (i)–(ii) for the
+fifth gate.
+                 𝐴     •                 •                       •                                 •
+                 𝐵     •       =                     •   ×                   ×  •         ×            ×
+                                        √           √                          √ †
+                 𝐶     𝑋                 𝑋           𝑋   ×                   ×  𝑋         ×            ×
+
+The above circuit uses neighbor gates entirely, but, at first, it appears to use nine gates. However,
+the second and third gates operate on qubits 𝐵𝐶 so they can be combined by matrix multiplication,
+as indicated by the dashed lines above. Similarly, the fifth, sixth, and seventh gates all operate on
+qubits 𝐵𝐶 so they can be combined as well. The result is a total of six neighbor gates.
+   In summary, the optimal number of 2-qubit gates for implementing CC(𝑋 ) depends on whether
+we allow unrestricted gates or limit ourselves to neighbor gates.
+   Example 3.3 (CC(𝑅𝑧 (𝛼)) using 2-qbit gates only on 𝐴𝐶 and 𝐵𝐶). The example above
+illustrates that five unrestricted gates have strictly more expressive power than five neighbor gates.
+In contrast, four unrestricted gates have the same expressive power as four neighbor gates if the
+qubit layout can be chosen to be any one of the three cases in Figure 5. Let us examine a case that
+can be implemented with four unrestricted gates, namely CC(𝑅𝑧 (𝛼)):
+                               𝐴         •               •                    •
+                               𝐵         •          =                •                •
+
+                               𝐶       𝑅𝑧 (𝛼)                𝑅𝑧 (− 𝛼2 )            𝑅𝑧 ( 𝛼2 )
+
+Notice that the above circuit uses four neighbor gates: it uses no 2-qubit gates on qubits 𝐴𝐵.
+  Example 3.4 (CC(𝑅𝑧 (𝛼)) using 2-qbit gates only on 𝐴𝐵 and 𝐵𝐶). Now we can ask the
+question of whether we can also implement CC(𝑅𝑧 (𝛼)) by four neighbor gates that cannot operate
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                               7
+
+
+on qubits 𝐴𝐶. Surprisingly, the answer is No! Rather, we have to use five neighbor gates, for example,
+as follows.
+                  𝐴        •                   •                         •
+                  𝐵        •       = ×             ×         •   ×           ×       •
+
+                  𝐶     𝑅𝑧 (𝛼)             ×       × 𝑅𝑧 (− 𝛼2 ) ×            × 𝑅𝑧 ( 𝛼2 )
+
+Similarly, if we cannot operate a 2-qubit gate on 𝐵𝐶, we must use five neighbor gates to implement
+CC(𝑅𝑧 (𝛼)). Thus, while we can implement CC(𝑅𝑧 (𝛼)) using four neighbor gates, we can do it only
+in the case where a 2-qubit gate can operate on both pairs of a control qubit and the target qubit.
+   One can wonder whether we can implement CC(𝑅𝑧 (𝛼)) either using three unrestricted gates or
+using four neighbor gates that cannot operate on 𝐴 and 𝐶. The answer to both questions is No, as
+we will show later in the paper.
+   In summary, the optimal number of 2-qubit neighbor gates for the implementation of CC(𝑅𝑧 (𝛼))
+depends on the layout of the qubit.
+   Example 3.5 (Diag(1, 1, 1, −1, 1, 𝑖, 𝑖, 1) using 2-qbit gates only on 𝐴𝐵 and 𝐵𝐶). Five unre-
+stricted gates have strictly more expressive power than five neighbor gates while four unrestricted
+gates have the same expressive power as four neighbor gates if the qubit layout can be chosen to be
+any one of the three cases in Figure 5. What about three unrestricted gates? Consider the 3-qubit
+diagonal gate 𝑊 = Diag(1, 1, 1, −1, 1, 𝑖, 𝑖, 1), which we can implement with three unrestricted
+gates as follows.
+                               𝐴                         •           •                                                  (3)
+
+                               𝐵   𝑊           =       𝑃 (𝜋/2)               •
+
+                               𝐶                                 𝑃 (𝜋/2)     𝑍
+   Now we can ask: can we improve the implementation of 𝑊 from using three unrestricted gates
+to using three neighbor gates? Or, does the focus on neighbor gates force us to use additional
+gates? The answer is that we need four neighbor gates to make a 𝑊 gate. For example, here is an
+implementation of 𝑊 with four neighbor gates, specifically on 𝐴𝐵 and 𝐵𝐶.
+                       𝐴                           •               •
+
+                       𝐵       𝑊       =       𝑃 (𝜋/2)       × 𝑃 (𝜋/2)       ×   •
+
+                       𝐶                                     ×               × 𝑍
+
+  Similarly, we can implement 𝑊 with four neighbor gates on 𝐴𝐵 and 𝐴𝐶 by adding swap gates on
+qubits 𝐴𝐶 before and after C(𝑍 ) gate in Equation (3). We can also implement 𝑊 with four neighbor
+gates on 𝐴𝐶 and 𝐵𝐶 by adding swap gates on qubits 𝐴𝐶 before and after C(𝑃 (𝜋/2)) in Equation (3).
+    In Section 8, we show that all our circuits above are optimal.
+
+4    FROM FIVE NEIGHBOR GATES TO FOUR UNRESTRICTED GATES
+Here, we present the main technical innovation in this paper: an implementation of a 3-qubit
+diagonal gate using five 2-qubit neighbor gates can be transformed into an implementation using
+four 2-qubit unrestricted gates. In Lemma 4.1, we prove this for a subset of such circuits of five
+
+                                                                 , Vol. 1, No. 1, Article . Publication date: December 2025.
+8                                                                                 Keli Huang and Jens Palsberg
+
+
+2-qubit neighbor gates, and then in Lemma 4.4, we generalize to a wider subset, and ultimately in
+Theorem 6.2 (in Section 6), we generalize to all such circuits, as illustrated in Figure 1.
+  The proof of Lemma 4.1 transforms the implementation of a diagonal gate into a form that
+uses 1) a 3-qubit gate with a single control qubit and two target qubits, and 2) two 2-qubit gates.
+Fortunately, the 3-qubit gate in 1) can be implemented with four 2-qubit gates, two of which can be
+combined with the two 2-qubit gates in 2). The net result is a circuit with four 2-qubit gates.
+  The proof of Lemma 4.4 uses Lemma 4.2 and Lemma 4.3 to transform an implementation of a
+diagonal gate to the simpler form covered by Lemma 4.1.
+  Lemma 4.1. Suppose 𝐷 is a 3-qubit diagonal gate. If there exist two 1-qubit gates 𝑃 and 𝑄 and three
+2-qubit gates 𝑈 1 , 𝑈 3 , and 𝑈 5 , such that 𝑈 1𝐵𝐶 C(𝑃)𝐴𝐶 𝑈 3𝐵𝐶 C(𝑄)𝐴𝐶 𝑈 5𝐵𝐶 = 𝐷, then there exist four
+2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , and 𝑉4 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+
+   Proof. Suppose that 𝑈 1𝐵𝐶 C(𝑃)𝐴𝐶 𝑈 3𝐵𝐶 C(𝑄)𝐴𝐶 𝑈 5𝐵𝐶 = 𝐷. We calculate as shown in Figure 6,
+and we justify each step as follows. Notice that in Figure 6, we order the qubits as 𝐴, 𝐶, 𝐵, which
+simplifies the circuit diagrams, and we will continue to use this qubit order in the circuit diagrams
+throughout this section. In contrast, the calculations in the text will use the qubit order 𝐴, 𝐵, 𝐶.
+   In the first step, we use the assumption about 𝐷.
+   In the second step, for C(𝑃) and C(𝑄), according to Lemma A.3, there exist four complex numbers
+𝑑𝑝 0 , 𝑑𝑝 1 , 𝑑𝑞0 , and 𝑑𝑞1 and two 1-qubit gates 𝐾 and 𝐿, such that the second step is valid.
+   In the third step, for C(Diag(𝑑𝑝 0 , 𝑑𝑝 1 )) and C(Diag(𝑑𝑞0 , 𝑑𝑞1 )), according to Lemma A.6, there
+exist two 1-qubit gates 𝑃 (𝜑𝑝 ) and 𝑃 (𝜑𝑞 ) and two 2-qubit gates C(𝑅𝑧 (𝛼)) and C(𝑅𝑧 (𝛽)), such that
+the third step is valid.
+   In the fourth step, because 𝑃 (𝜑𝑞 ) commutes with C(𝑅𝑧 (𝛽)), we define one 1-qubit gate 𝑃 (𝜑) =
+𝑃 (𝜑𝑝 + 𝜑𝑞 ) and three 2-qubit gates 𝑊1 = 𝑈 1 (𝐼 ⊗ 𝐾), 𝑊3 = (𝐼 ⊗ 𝐾 † ) 𝑈 3 (𝐼 ⊗ 𝐿), and 𝑊5 = (𝐼 ⊗ 𝐿 † ) 𝑈 5 .
+   In the fifth step, for 𝑊3 , according to Lemma A.4, there exist six 1-qubit gates 𝑀0 , 𝑀1 , 𝑅 𝑦 (𝜃 0 ),
+𝑅 𝑦 (𝜃 1 ), 𝑁 0 , and 𝑁 1 and three 2-qubit gates 𝑀 = 𝑀0 ⊗ |0⟩⟨0| + 𝑀1 ⊗ |1⟩⟨1|, 𝑅 = |0⟩⟨0| ⊗ 𝑅 𝑦 (𝜃 0 ) +
+|1⟩⟨1| ⊗ 𝑅 𝑦 (𝜃 1 ), and 𝑁 = 𝑁 0 ⊗ |0⟩⟨0| + 𝑁 1 ⊗ |1⟩⟨1|, such that the fifth step is valid.
+   In the sixth step, we use that 𝑀 commutes with C(𝑅𝑧 (𝛼)) and 𝑁 commutes with C(𝑅𝑧 (𝛽)) while
+𝑅 † = |0⟩⟨0| ⊗ 𝑅 𝑦 (−𝜃 0 ) + |1⟩⟨1| ⊗ 𝑅 𝑦 (−𝜃 1 ) cancels out with 𝑅 in the circuit.
+   In the seventh step, we define two 2-qubit gates 𝐺 1 = 𝑊1 𝑀 and 𝐺 5 = 𝑅 𝑁 𝑊5 .
+   In the eighth step, we need multiple substeps of reasoning to derive the desired equation. We
+first rearrange the result of the first seven steps to give the first equation in (4):
+                           𝐴               •                  •       •    •                               (4)
+                           𝐶      𝑅†    𝑅𝑧 (𝛽)     𝑅     𝑅𝑧 (𝛼)   =   𝑅0   𝑅1
+
+                           𝐵                                                  •
+   In Equation (4), the right-hand-side circuit equals the left-hand-side circuit for the following
+reasons. If qubit 𝐴 is |0⟩, then we implement 𝐼 on qubits 𝐵 and 𝐶. If qubit 𝐴 is |1⟩ and qubit
+𝐵 is |0⟩, then we implement 𝑅0 = 𝑅𝑧 (𝛼) 𝑅 𝑦 (𝜃 0 ) 𝑅𝑧 (𝛽) 𝑅 𝑦 (−𝜃 0 ) on qubit 𝐶. If qubit 𝐴 is |1⟩ and
+qubit 𝐵 is |1⟩, then we implement 𝑅1 = 𝑅𝑧 (𝛼) 𝑅 𝑦 (𝜃 1 ) 𝑅𝑧 (𝛽) 𝑅 𝑦 (−𝜃 1 ) on qubit 𝐶. Because 𝑅𝑧 (𝛼),
+𝑅𝑧 (𝛽), 𝑅 𝑦 (±𝜃 0 ), and 𝑅 𝑦 (±𝜃 1 ) all have determinant 1, according to Lemma A.10, we conclude
+that det(𝑅0 ) = det(𝑅1 ) = 1. From this, there exist two complex numbers 𝑒 𝑖𝛾0 and 𝑒 𝑖𝛾1 , such that
+Eigenvalues(𝑅0 ) = (𝑒 𝑖𝛾0 , 𝑒 −𝑖𝛾0 ) and Eigenvalues(𝑅1 ) = (𝑒 𝑖𝛾1 , 𝑒 −𝑖𝛾1 ). From the above observations,
+according to Lemma A.12 and Lemma A.3, there exists one 2-qubit gate 𝐹 , such that
+                               
+                         𝑅    0
+                    C( 0          ) = (𝐼 ⊗ 𝐹 ) · C(Diag(𝑒 −𝑖𝛾1 , 𝑒 −𝑖𝛾0 , 𝑒 𝑖𝛾0 , 𝑒 𝑖𝛾1 )) · (𝐼 ⊗ 𝐹 † ) (5)
+                         0 𝑅1
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                                              9
+
+
+
+      𝐴                             •                  •
+
+      𝐶    𝐷        =               𝑄                  𝑃
+                            𝑈5               𝑈3                𝑈1
+      𝐵
+
+                                                           •                                                     •
+                    =               𝐿†       Diag(𝑑𝑞0 , 𝑑𝑞1 )               𝐿                  𝐾†       Diag(𝑑𝑝 0 , 𝑑𝑝 1 )   𝐾
+                            𝑈5                                                       𝑈3                                          𝑈1
+
+
+
+                                    𝑃 (𝜑𝑞 )            •                                𝑃 (𝜑𝑝 )         •
+
+                    =                   𝐿†         𝑅𝑧 (𝛽)          𝐿                     𝐾†         𝑅𝑧 (𝛼)       𝐾
+                            𝑈5                                             𝑈3                                        𝑈1
+
+
+                            𝑃 (𝜑)        •                             •
+
+                    =                𝑅𝑧 (𝛽)                        𝑅𝑧 (𝛼)
+                             𝑊5                        𝑊3                           𝑊1
+
+
+                            𝑃 (𝜑)        •                                          •
+
+                    =                𝑅𝑧 (𝛽)                    𝑅               𝑅𝑧 (𝛼)
+                             𝑊5                                                                𝑊1
+                                                    𝑁                  𝑀
+
+                            𝑃 (𝜑)                                   •                      •
+
+                    =                         𝑅      𝑅†        𝑅𝑧 (𝛽)           𝑅       𝑅𝑧 (𝛼)
+                             𝑊5                                                                             𝑊1
+                                     𝑁                                                              𝑀
+
+                            𝑃 (𝜑)                  •                       •
+
+                    =                𝑅†       𝑅𝑧 (𝛽)           𝑅        𝑅𝑧 (𝛼)
+                             𝐺5                                                         𝐺1
+
+
+                                    𝑃 (𝜑)                  •                        •
+
+                    =                                                      𝑅𝑧 (𝛾 1 − 𝛾 0 )
+                            𝐺5       𝐹†                                                             𝐹       𝐺1
+                                                  𝑅𝑧 (𝛾 0 + 𝛾 1 )
+
+
+                                    Fig. 6. The key calculation in Lemma 4.1.
+
+
+
+                                                                                , Vol. 1, No. 1, Article . Publication date: December 2025.
+10                                                                                                 Keli Huang and Jens Palsberg
+
+
+  Now we plug Equations (4)–(5) into in Figure 6, which completes the eighth step.
+  From Figure 6 we conclude that there exist four 2-qubit gates 𝑉1 = 𝐺 1 𝐹 , 𝑉2 = C(𝑅𝑧 (𝛾 1 − 𝛾 0 )),
+𝑉3 = C(𝑅𝑧 (𝛾 0 + 𝛾 1 )) (𝑃 (𝜑) ⊗ 𝐼 ), and 𝑉4 = 𝐹 † 𝐺 5 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.        □
+  Lemma 4.2. Suppose 𝐷 is a 3-qubit diagonal gate. If there exist one 1-qubit gate 𝑃 and five 2-qubit
+gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , 𝑈 5 , where 𝑈 3 = 𝐼 ⊗ |0⟩⟨0| + 𝑃 ⊗ |1⟩⟨1|, such that 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶 = 𝐷,
+then there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , and 𝑉4 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+   Proof. Suppose that 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶 = 𝐷, where 𝑈 3 = 𝐼 ⊗ |0⟩⟨0| + 𝑃 ⊗ |1⟩⟨1|. We
+calculate as Equation (6).
+   In the first step, we use the assumptions about 𝐷 and 𝑈 3 . In the second step, for C(𝑃), according
+to Lemma A.5, there exist four 1-qubit gates 𝐾, 𝑄, 𝑅𝑧 (𝛼 0 ), and 𝑅𝑧 (𝛼 1 ) and one 2-qubit gate 𝑅 =
+|0⟩⟨0| ⊗ 𝑅𝑧 (𝛼 0 ) + |1⟩⟨1| ⊗ 𝑅𝑧 (𝛼 1 ), such that the second step is valid. In the third step, we use Lemma
+A.7. In the fourth step, we define one 1-qubit gate 𝑅𝑧 (𝛽) = 𝑅𝑧 (𝛼 1 − 𝛼 0 ) and four 2-qubit gates
+𝑊1 = 𝑈 1 (𝐾 ⊗ 𝐼 ), 𝑊2 = 𝑈 2 , 𝑊4 = (𝐼 ⊗ 𝑅𝑧 (𝛼 0 )) 𝑈 4 , and 𝑊5 = (𝑄 ⊗ 𝐼 ) 𝑈 5 .
+                𝐴
+                                                   𝑈4             𝑈2
+                𝐶       𝐷        =                          •
+                                           𝑈5                               𝑈1
+                𝐵                                           𝑃
+
+
+                                                   𝑈4             𝑈2
+                                 =                          𝑅
+                                           𝑈5                               𝑈1
+                                                   𝑄              𝐾
+
+
+                                                   𝑈4                                         𝑈2
+                                 =                          𝑅𝑧 (𝛼 0 )   𝑅𝑧† (𝛼 0 )𝑅𝑧 (𝛼 1 )
+                                           𝑈5                                                          𝑈1
+                                                   𝑄                              •           𝐾
+
+                                                                                                                            (6)
+                                                   𝑊4                   𝑊2
+                                 =                            𝑅𝑧 (𝛽)
+                                          𝑊5                  𝑊1
+                                                 •
+     From the result, by moving 𝑊1 and 𝑊5 to the left-hand side of the equation, we have that
+                    𝐴                                                                                                       (7)
+                            𝑊4               𝑊2
+                    𝐶            𝑅𝑧 (𝛽)                 =               𝐷                =    𝐿
+                                                                𝑊5†              𝑊1†
+                𝐵              •
+   In Equation (7), the right two circuits equal the left-hand-side circuit. This is because the left-hand-
+side circuit commutes with 𝑍 gates on qubit B and the middle-hand-side circuit commutes with 𝑍
+gates on qubit A, and according to Lemma A.1, there exist four 1-qubit gates 𝐿00 , 𝐿01 , 𝐿10 , and 𝐿11 ,
+such that both circuits can be written as one 3-qubit gate 𝐿 = |00⟩⟨00| ⊗𝐿00 +|01⟩⟨01| ⊗𝐿01 +|10⟩⟨10| ⊗
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                                                  11
+
+
+𝐿10 + |11⟩⟨11| ⊗ 𝐿11 . For Equation (7), we have the following two observations: If qubit 𝐵 is |0⟩, then
+|0⟩⟨0| ⊗𝐿00 + |1⟩⟨1| ⊗𝐿10 = 𝑊2 𝑊4 ; If qubit 𝐵 is |1⟩, then |0⟩⟨0| ⊗𝐿01 + |1⟩⟨1| ⊗𝐿11 = 𝑊2 (𝐼 ⊗𝑅𝑧 (𝛽)) 𝑊4 .
+From this, we know that
+                     †           
+                 𝐿01 𝐿00    0                                           †           𝛽
+                                                                                 −𝑖 2
+                                                                                             𝛽       𝛽       𝛽
+Eigenvalues(                   † ) = Eigenvalues((𝑊2 (𝐼 ⊗ 𝑅𝑧 (𝛽)) 𝑊2 ) = (𝑒           , 𝑒 −𝑖 2 , 𝑒 𝑖 2 , 𝑒 𝑖 2 )
+                   0      𝐿11 𝐿10
+                                                                                         †
+   From the above and according to Lemma A.12, we have three cases: (1) Eigenvalues(𝐿01 𝐿00 )=
+                                     𝛽        𝛽                                                             𝛽       𝛽
+                 †                                              †                                           †
+Eigenvalues(𝐿11 𝐿10 ) = (𝑒 −𝑖 2 , 𝑒 𝑖 2 ), (2) Eigenvalues(𝐿01 𝐿00 ) = (𝑒 −𝑖 2 , 𝑒 −𝑖 2 ), Eigenvalues(𝐿11 𝐿10 )=
+   𝛽     𝛽                                                          𝛽        𝛽                                                  𝛽   𝛽
+                                            †                                           †
+(𝑒 𝑖 2 , 𝑒 𝑖 2 ), and (3) Eigenvalues(𝐿01 𝐿00 ) = (𝑒 𝑖 2 , 𝑒 𝑖 2 ) and Eigenvalues(𝐿11 𝐿10 ) = (𝑒 −𝑖 2 , 𝑒 −𝑖 2 ). The
+proof of case (3) is similar to that of case (2) by symmetry, and the proofs of case (1) and case (2) go
+as follows.                                                                                𝛽       𝛽
+                                                  †                            †
+    For case (1), because Eigenvalues(𝐿01 𝐿00       ) = Eigenvalues(𝐿11 𝐿10      ) = (𝑒 −𝑖 2 , 𝑒 𝑖 2 ), according to
+Lemma A.2, there exist two 1-qubit gates 𝐺 0 and 𝐺 1 , such that 𝐿01 = 𝐺 0 𝑅𝑧 (𝛽) 𝐺 0† 𝐿00 and 𝐿11 =
+𝐺 1 𝐺 0 𝑅𝑧 (𝛽) 𝐺 0† 𝐺 1† 𝐿10 , and we can rewrite 𝐿 in Equation (7) as
+                      𝐴                  •         •                                        •                                                (8)
+
+                      𝐶    𝐿00        𝐿10         𝐺 1†      𝐺 0†    𝑅𝑧 (𝛽)        𝐺0      𝐺1            =       𝐿
+
+                𝐵                           •
+   From Equations (7)–(8), by moving 𝑊5 and 𝑊1† back, according to Lemma A.7, we have that
+                                       †
+
+          𝐴                              •             •                                        •                                            (9)
+                                     †
+          𝐶               𝐿00       𝐿00 𝐿10        𝐺 1†      𝐺 0†    𝑅𝑧 (𝛽)          𝐺0     𝐺1                      =       𝐷
+                 𝑊5                                                                                     𝑊1
+             𝐵                                                           •
+   According to Equation (9), we know that there exist two 1-qubit gates 𝑀 = 𝐺 1 and 𝑁 = 𝐺 1† 𝐿10 𝐿00           †
+                                                                        †
+and three 2-qubit gates 𝐹 1 = 𝑊1 , 𝐹 3 = (𝐼 ⊗ 𝐺 0 ) C(𝑅𝑧 (𝛽)) (𝐼 ⊗ 𝐺 0 ), and 𝐹 5 = (𝐼 ⊗ 𝐿00 ) 𝑊5 , such that
+𝐹 1𝐵𝐶 C(𝑀)𝐴𝐶 𝐹 3𝐵𝐶 C(𝑁 )𝐴𝐶 𝐹 5𝐵𝐶 = 𝐷. According to Lemma 4.1, there exist four 2-qubit gates 𝑉1 ,
+𝑉2 , 𝑉3 , and 𝑉4 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+                                                    𝛽        𝛽                                    𝛽       𝛽
+                                        †                                             †
+   For case (2), if Eigenvalues(𝐿01 𝐿00   ) = (𝑒 −𝑖 2 , 𝑒 −𝑖 2 ) and Eigenvalues(𝐿11 𝐿10 ) = (𝑒 𝑖 2 , 𝑒 𝑖 2 ), we
+                            𝛽                                 𝛽                                                         𝛽               𝛽
+               †                      †
+have that 𝐿01 𝐿00 = 𝑒 −𝑖 2 𝐼 and 𝐿11 𝐿10 = 𝑒 𝑖 2 𝐼 , and we conclude that 𝐿01 = 𝑒 −𝑖 2 𝐿00 and 𝐿11 = 𝑒 𝑖 2 𝐿10 .
+From the above, we can rewrite 𝐿 in Equation (7) as
+                                𝐴                            •                   •                                                          (10)
+
+                                𝐶                                    𝐿00         𝐿10      =         𝐿
+
+                                              𝛽
+                                𝐵        𝑃 (− 2 )          𝑃 (𝛽)
+
+   From Equations (7) and (10), by moving 𝑊5† and 𝑊1† back, according to Lemma A.7, we have that
+                      𝐴                                       •            •                                                                (11)
+                                                                         †                          =
+                      𝐶                      𝐿00                        𝐿00 𝐿10                                 𝐷
+                                𝑊5                                                     𝑊1
+                                                  𝛽
+                      𝐵                   𝑃 (− 2 )          𝑃 (𝛽)
+
+                                                                                  , Vol. 1, No. 1, Article . Publication date: December 2025.
+12                                                                                                       Keli Huang and Jens Palsberg
+
+                                                                         †
+  By Equation (11), there exist four 2-qubit gates 𝑉1 = 𝑊1 , 𝑉2 = C(𝐿10 𝐿00 ), 𝑉3 = C(𝑃 (𝛽)), and
+           𝛽
+𝑉4 = (𝑃 (− 2 ) ⊗ 𝐿00 ) 𝑊5 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.                                  □
+
+   Lemma 4.3. Suppose 𝐷 is a 3-qubit diagonal gate. If there exist two 1-qubit gates 𝑃0 and 𝑃1
+and five 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , and 𝑈 5 , where 𝑈 2 = |0⟩⟨0| ⊗ 𝑃 0 + |1⟩⟨1| ⊗ 𝑃1 , such that
+𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶 = 𝐷, then there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , and 𝑉4 , such that
+𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+  Proof. Suppose that 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶 = 𝐷, where 𝑈 2 = 𝑃 = |0⟩⟨0| ⊗ 𝑃0 + |1⟩⟨1| ⊗ 𝑃 1 .
+We calculate as shown in Equation (12).
+  In the first step, we use the assumptions about 𝐷 and 𝑈 2 . From these assumptions, according to
+Lemma A.1, we have that both 𝐷 and 𝑈 2 commute with 𝑍 gates on qubit A. From this, we conclude
+that 𝑈 4 also commutes with 𝑍 gates on qubit A. As a result, according to Lemma A.1, we conclude
+that there exist two 1-qubit gates 𝑄 0 and 𝑄 1 , such that 𝑈 4 = 𝑄 = |0⟩⟨0| ⊗ 𝑄 0 + |1⟩⟨1| ⊗ 𝑄 1 . In the
+second step, we use this observation. In the third step, we use Lemma A.7.
+
+
+                   𝐴
+                                                      𝑈4
+                   𝐶      𝐷         =                                       𝑃
+                                              𝑈5               𝑈3                    𝑈1
+                    𝐵
+
+
+
+                                    =                 𝑄                 𝑃
+                                              𝑈5              𝑈3                 𝑈1
+
+
+                                                                   •                              •                             (12)
+
+                                    =                 𝑄0      𝑄 0†𝑄 1                     𝑃0    𝑃0† 𝑃1
+                                              𝑈5                                𝑈3                       𝑈1
+
+
+  From Equation (12), we have that there exist two 1-qubit gates 𝑀 = 𝑃1 𝑃0† and 𝑁 = 𝑄 1𝑄 0† and
+three 2-qubit gates 𝑊1 = 𝑈 1 , 𝑊3 = (𝐼 ⊗ 𝑃0 ) 𝑈 3 , and 𝑊5 = (𝐼 ⊗ 𝑄 0 ) 𝑈 5 , such that
+                                   𝑊1𝐵𝐶 C(𝑀)𝐴𝐶 𝑊3𝐵𝐶 C(𝑁 )𝐴𝐶 𝑊5𝐵𝐶                               = 𝐷
+From this and Lemma 4.1, we conclude that there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , and 𝑉4 , such
+that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.                                                                       □
+
+  Lemma 4.4. Suppose 𝐷 is a 3-qubit diagonal gate. If there exist five 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , 𝑈 5 ,
+such that 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶 = 𝐷, then there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , such that
+𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+  Proof. Suppose that 𝐷 = |0⟩⟨0| ⊗ 𝐷 0 + |1⟩⟨1| ⊗ 𝐷 1 . For 𝑈 2 , 𝑈 3 , 𝑈 4 , and 𝑈 5 , according to Lemma
+A.16, there exist four 2-qubit gates 𝑊2 , 𝑊3 , 𝑊4 , and 𝑊5 , such that
+                              𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶         = 𝑊2𝐴𝐶 𝑊3𝐵𝐶 𝑊4𝐴𝐶 𝑊5𝐵𝐶                                             (13)
+                                        𝑊4 (|0⟩ ⊗ |0⟩)        =        |0⟩ ⊗ |0⟩                                                (14)
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                             13
+
+
+    By Equation (13) and the assumptions of 𝐷, if we define 𝑊1 = 𝑈 1 , we have that
+                                     𝑊1𝐵𝐶 𝑊2𝐴𝐶 𝑊3𝐵𝐶 𝑊4𝐴𝐶 𝑊5𝐵𝐶 = 𝐷                                                     (15)
+    By Equations (14)-(15), we conclude that, for all |𝑦⟩, we have that
+                                     𝑊2𝐴𝐶 𝑊3𝐵𝐶 (|0⟩𝐴 ⊗ |𝑦⟩𝐵 ⊗ |0⟩𝐶 )
+                                        †         †        †
+                                = 𝑊1 𝐵𝐶 𝐷 𝑊5 𝐵𝐶 𝑊4𝐴𝐶 (|0⟩𝐴 ⊗ |𝑦⟩𝐵 ⊗ |0⟩𝐶 )
+                                        †             †
+                                = 𝑊1 𝐵𝐶 𝐷 0𝐵𝐶 𝑊5 𝐵𝐶 (|0⟩𝐴 ⊗ |𝑦⟩𝐵 ⊗ |0⟩𝐶 )                                             (16)
+  According to Lemma A.8, 𝑊3 has three cases. In the first case, suppose that there exists a qubit |𝑦⟩,
+such that 𝑊3 (|𝑦⟩ ⊗ |0⟩) is entangled. From this and Equation (16), for 𝑊2 , according to Lemma A.13,
+we conclude that there exist two 1-qubit gates 𝑃0 and 𝑃1 , such that 𝑊2 = |0⟩⟨0| ⊗ 𝑃0 + |1⟩⟨1| ⊗ 𝑃1 .
+From this and Equation (15), according to Lemma 4.3, we conclude that there exist four 2-qubit
+gates 𝑉1 , 𝑉2 , 𝑉3 , and 𝑉4 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+  In the second case, suppose that ∃|𝑥⟩ : ∀|𝑦⟩ : ∃|𝑧⟩ : 𝑊3 (|𝑦⟩ ⊗ |0⟩) = |𝑥⟩ ⊗ |𝑧⟩. From this and
+Equation (16), for 𝑊2 , according to Lemma A.17, we conclude that there exist two 1-qubit gates 𝑃0
+and 𝑃 1 , such that 𝑊2 = |0⟩⟨0| ⊗ 𝑃0 + |1⟩⟨1| ⊗ 𝑃 1 . From this and Equation (15), according to Lemma 4.3,
+we conclude that there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , and 𝑉4 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+  In the third case, suppose that ∃|𝑥⟩ : ∀|𝑦⟩ : ∃|𝑧⟩ : 𝑉3 (|𝑦⟩ ⊗ |0⟩) = |𝑧⟩ ⊗ |𝑥⟩. From this, for 𝑊2 ,
+𝑊3 , 𝑊4 , and 𝑊5 , according to Lemma A.15, we conclude that there exist one 1-qubit gate 𝑃 and
+three 2-qubit gates 𝐾2 , 𝐾3 , and 𝐾5 , such that 𝑊2𝐴𝐶 𝑊3𝐵𝐶 𝑊4𝐴𝐶 𝑊5𝐵𝐶 = 𝐾2𝐴𝐶 𝐾3𝐵𝐶 𝑊4𝐴𝐶 𝐾5𝐵𝐶 and
+𝐾3 = 𝐼 ⊗ |0⟩⟨0| + 𝑃 ⊗ |1⟩⟨1|. From this and Equation (15), according to Lemma 4.2, we conclude that
+there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , and 𝑉4 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.               □
+
+5    SETS OF 3-QUBIT DIAGONAL GATES
+In this section, we define the sets S1, . . . , S6 of 3-qubit diagonal gates. For each S𝑖 , we will prove
+the least upper bounds shown in Table 2 on the number of 2-qubit neighbor gates and on the
+number of 2-qubit unrestricted gates needed to implement any 3-qubit diagonal gate 𝐷 in S𝑖 . In
+more detail, we will prove those upper bounds in Theorem 7.1 and Theorem 7.2, and we will prove
+Corollary 7.3 which states that the upper bounds in Table 2 are indeed least upper bounds, as
+illustrated in Figure 1. In the first row of Table 2, the least upper bounds are based on picking the
+qubit layout, among three cases in Figure 5, that minimizes the number of 2-qubit gates. We borrow
+the notions of S1 , S4 , S5 , and S6 from Shende and Markov [2008], though we state their definitions
+in a different way. In contrast, S2 and S3 are new. The interesting cases are S4 and S6 for which
+we need an additional neighbor gate, compared to the number of unrestricted gates.
+
+     Table 2. Least upper bounds on the number of 2-qubit gates needed to implement any gate in S𝑖 .
+
+
+                             # of 2-qubit gates       S1       S2   S3    S4     S5    S6
+                              Neighbor gates          1        2     3     4      4     6
+                            Unrestricted gates        1        2     3     3      4     5
+
+
+   The Idea. Table 2 shows that when 𝑖 increases, the number of 2-qubit gates needed to implement
+a gate in S𝑖 increases or stays the same. Thus, when 𝑖 increases, the gates in S𝑖 become more
+resource-intensive to implement. Intuitively, this is because, when 𝑖 increases, the gates in S𝑖 must
+satisfy fewer constraints on its eight diagonal elements. Specifically, the gates in S1 must satisfy
+
+                                                                , Vol. 1, No. 1, Article . Publication date: December 2025.
+14                                                                                                  Keli Huang and Jens Palsberg
+
+
+three constraints, while the gates in S2 ∪ S3 must satisfy two constraints, and the gates in S4 ∪ S5
+must satisfy a single constraint. Ultimately, S6 is the set of all diagonal 3-qubit gates.
+   The Definition. Each S𝑖 is a union of three sets: S𝑖 = S𝑖1 ∪ S𝑖2 ∪ S𝑖3 . We give the definitions of
+the sets S𝑖𝑗 in Figure 7. For most 𝑖, the three sets S𝑖1, S𝑖2, S𝑖3 are different and reflect different ways
+of imposing constraints on the diagonal elements of a gate.
+
+   Intuition. The definition of sets S𝑖𝑗 contains many constraints that equate products of diagonal
+elements. A key intuition behind the definition lies in a property that we will state as Lemma 5.3
+below: 𝐷 ∈ S𝑖𝑗 if and only if 𝐷 † ∈ S𝑖𝑗 . For example, the definition of S11 contains the constraint
+𝑑 0𝑑 5 = 𝑑 1𝑑 4 . For 𝐷 ∈ S11 , we see that every diagonal element of 𝐷 † is the one from 𝐷 but conjugated.
+So, when we have 𝑑 0𝑑 5 = 𝑑 1𝑑 4 and we conjugate all four factors, we see that the equation still holds.
+
+
+      Each S𝑖 is a union of three sets: S𝑖 = S𝑖1 ∪ S𝑖2 ∪ S𝑖3 . We define each S𝑖𝑗 as follows.
+      S11    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 5 = 𝑑 1𝑑 4 ∧ 𝑑 0𝑑 6 = 𝑑 2𝑑 4 ∧ 𝑑 0𝑑 7 = 𝑑 3𝑑 4 }
+      S12    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 3 = 𝑑 1𝑑 2 ∧ 𝑑 0𝑑 6 = 𝑑 2𝑑 4 ∧ 𝑑 0𝑑 7 = 𝑑 2𝑑 5 }
+      S13    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 3 = 𝑑 1𝑑 2 ∧ 𝑑 0𝑑 5 = 𝑑 1𝑑 4 ∧ 𝑑 0𝑑 7 = 𝑑 1𝑑 6 }
+
+
+      S21    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 3 = 𝑑 1𝑑 2 ∧ 𝑑 4𝑑 7 = 𝑑 5𝑑 6 }
+      S22    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 5 = 𝑑 1𝑑 4 ∧ 𝑑 2𝑑 7 = 𝑑 3𝑑 6 }
+      S23    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 6 = 𝑑 2𝑑 4 ∧ 𝑑 1𝑑 7 = 𝑑 3𝑑 5 }
+
+
+      S31    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 7 = 𝑑 3𝑑 4 ∧ 𝑑 1𝑑 6 = 𝑑 2𝑑 5 }
+      S32    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 7 = 𝑑 2𝑑 5 ∧ 𝑑 1𝑑 6 = 𝑑 3𝑑 4 }
+      S33    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 7 = 𝑑 1𝑑 6 ∧ 𝑑 2𝑑 5 = 𝑑 3𝑑 4 }
+
+
+      S41    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7 } = S42 = S43
+
+
+      S51    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 3𝑑 4𝑑 7 = 𝑑 1𝑑 2𝑑 5𝑑 6 }
+      S52    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 2𝑑 5𝑑 7 = 𝑑 1𝑑 3𝑑 4𝑑 6 }
+      S53    =    { Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) | 𝑑 0𝑑 1𝑑 6𝑑 7 = 𝑑 2𝑑 3𝑑 4𝑑 5 }
+
+
+      S61    = the set of all 3-qubit diagonal unitaries = S62 = S63
+
+                                            Fig. 7. The definition of S1, . . . , S6 .
+
+
+
+   Properties. We can show, through a tedious case analysis, that S1 ⊆ S2 ⊆ S4 ⊆ S6 , S1 ⊆ S3 ⊆
+S5 ⊆ S6 , and S2 ⊂ S5 , while S2 ⊄ S3 and S3 ⊄ S4 and S4 ⊄ S5 . Figure 8 shows the inclusion
+relations among the S𝑖 sets, and Figure 9 shows detailed inclusion relations among some of the S𝑖𝑗
+sets. In particular, each set S1𝑗 is included in two sets S2𝑗 and one set S3𝑗 . In addition, each set S2𝑗 is
+included in one set S5𝑗 , and each set S3𝑗 is included in two sets S5𝑗 .
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                            15
+
+
+                                                    S6
+
+
+                                                    S4         S5
+
+
+                                                    S2         S3
+
+
+                                                    S1
+
+                                Fig. 8. Inclusion relations among the S𝑖 sets.
+
+
+
+
+                                              S51        S52         S53
+
+
+
+
+                    S21         S22           S23                    S33          S32          S31
+
+
+
+
+                                              S13        S12         S11
+
+                                                                                   𝑗
+                            Fig. 9. Inclusion relations among some of the S𝑖 sets.
+
+
+
+
+   The sets S𝑖𝑗 satisfy three key properties that we state as Lemma 5.1, Lemma 5.2, and Lemma 5.3
+and that we prove in Appendix B. First, Lemma 5.1 says that we can map a gate from one of
+S𝑖1, S𝑖2, S𝑖3 to another by conjugating the gate with a swap gate.
+
+   Lemma 5.1. For all 𝑖 ∈ 1..6, (1) 𝑆 𝐵𝐶 S𝑖1 𝑆 𝐵𝐶 = S𝑖1 , (2) 𝑆 𝐴𝐵 S𝑖1 𝑆 𝐴𝐵 = S𝑖2 , (3) 𝑆 𝐴𝐶 S𝑖1 𝑆 𝐴𝐶 = S𝑖3 , (4)
+𝑆 𝐴𝐶 S𝑖2 𝑆 𝐴𝐶 = S𝑖2 , (5) 𝑆 𝐵𝐶 S𝑖2 𝑆 𝐵𝐶 = S𝑖3 , and (6) 𝑆 𝐴𝐵 S𝑖3 𝑆 𝐴𝐵 = S𝑖3 .
+
+   Second, Lemma 5.2 says that conjugating a gate with a swap gate preserves the number of 2-qubit
+neighbor gates and the number of 2-qubit unrestricted gates used in an implementation. Lemma 5.2
+also states how to change each component gate when conjugating with a swap gate.
+
+    Lemma 5.2. For 𝑘 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }, a 3-qubit gate 𝐷 can be implemented with 𝑚 2-qubit
+gates as 𝐷 = 𝑈 1𝑖 1 𝑈 2𝑖 2 . . . 𝑈𝑚𝑖𝑚 if and only if 𝑆 𝑘 𝐷 𝑆 𝑘 can be implemented with 𝑚 2-qubit gates as
+𝑆 𝑘 𝐷 𝑆 𝑘 = 𝑉1 𝑗1 𝑉2 𝑗2 . . . 𝑉𝑚 𝑗𝑚 . Specifically, we have the following table.
+
+                                                               , Vol. 1, No. 1, Article . Publication date: December 2025.
+16                                                                                   Keli Huang and Jens Palsberg
+
+
+
+                      For mapping a product 𝐷 to: map each factor in 𝐷 as follows:
+                                                              𝑈 𝐵𝐶   → 𝑆 𝑈 𝑆 𝐵𝐶
+                                 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶                  𝑈 𝐴𝐶   → 𝑈 𝐴𝐵
+                                                              𝑈 𝐴𝐵   → 𝑈 𝐴𝐶
+                                                              𝑈 𝐵𝐶   → 𝑆 𝑈 𝑆 𝐴𝐵
+                                 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶                  𝑈 𝐴𝐶   → 𝑆 𝑈 𝑆 𝐴𝐶
+                                                              𝑈 𝐴𝐵   → 𝑆 𝑈 𝑆 𝐵𝐶
+                                                              𝑈 𝐵𝐶   → 𝑈 𝐴𝐶
+                                 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵                  𝑈 𝐴𝐶   → 𝑈 𝐵𝐶
+                                                              𝑈 𝐴𝐵   → 𝑆 𝑈 𝑆 𝐴𝐵
+   When we combine Lemma 5.1 and Lemma 5.2, we see that for a given 𝑖, the least upper bounds
+for neighbor gates and unrestricted gates are the same across S𝑖1 , S𝑖2 , and S𝑖3 .
+   Third, the dagger operation will not change the set to which a 3-qubit diagonal gate belongs.
+     Lemma 5.3. A 3-qubit diagonal gate 𝐷 ∈ S𝑖𝑗 if and only if 𝐷 † ∈ S𝑖𝑗 .
+   Examples. Here are examples of elements of the sets S1, S2, S3 . First, for the 3-qubit gate CC(−𝐼 ) =
+Diag(1, 1, 1, 1, 1, 1, −1, −1), we have that 𝑑 0𝑑 3 = 𝑑 1𝑑 2 , 𝑑 0𝑑 5 = 𝑑 1𝑑 4 , and 𝑑 0𝑑 7 = 𝑑 1𝑑 6 . From this,
+we conclude that CC(−𝐼 ) ∈ S1 .
+   For the gate C(𝑍 ⊗ 𝑍 ) = Diag(1, 1, 1, 1, 1, −1, −1, 1), we have that 𝑑 0𝑑 3 = 𝑑 1𝑑 2 and 𝑑 4𝑑 7 = 𝑑 5𝑑 6 .
+Also, we have that 𝑑 0𝑑 7 = 𝑑 3𝑑 4 and 𝑑 1𝑑 6 = 𝑑 2𝑑 5 . From this, we conclude that C(𝑍 ⊗ 𝑍 ) ∈ S2 ∩ S3 ,
+but also that C(𝑍 ⊗ 𝑍 ) ∉ S1 .
+   If we change −1 to 𝑖 in C(𝑍 ⊗ 𝑍 ), we get the gate 𝐷 3 = Diag(1, 1, 1, 1, 1, 𝑖, 𝑖, 1), and we have
+𝑑 0𝑑 7 = 𝑑 3𝑑 4 and 𝑑 1𝑑 6 = 𝑑 2𝑑 5 . From this, we conclude that 𝐷 3 ∈ S3 . Similarly, we can easily check
+that 𝐷 3 ∉ S2 .
+   For the gate C(𝑆 ⊗ 𝑆 † ) = Diag(1, 1, 1, 1, 1, −𝑖, 𝑖, 1), and we have 𝑑 0𝑑 3 = 𝑑 1𝑑 2 and 𝑑 4𝑑 7 = 𝑑 5𝑑 6 .
+From this, we conclude that C(𝑆 ⊗ 𝑆 † ) ∈ S2 . Similarly, we can easily check that C(𝑆 ⊗ 𝑆 † ) ∉ S3 .
+   Examples from Section 3. Now we turn to the gates from Section 3. In Examples 3.1 and 3.2 we
+considered the 3-qubit gate CC(𝑋 ), which can be conjugated with 𝐼 ⊗ 𝐼 ⊗ 𝐻 to give the diagonal
+gate CC(𝑍 ) = Diag(1, 1, 1, 1, 1, 1, 1, −1). We have CC(𝑍 ) ∉ S4 because 𝑑 0𝑑 3𝑑 5𝑑 6 = 1 ≠ −1 =
+𝑑 1𝑑 2𝑑 4𝑑 7 . Also, CC(𝑍 ) ∉ S51 because 𝑑 0𝑑 3𝑑 4𝑑 7 = −1 ≠ 1 = 𝑑 1𝑑 2𝑑 5𝑑 6 . Similarly, we can easily check
+that CC(𝑍 ) ∉ S52 and CC(𝑍 ) ∉ S53 . So, CC(𝑍 ) ∉ S4 ∪ S5 .
+                                                                                                   𝛼     𝛼
+   In Examples 3.3 and 3.4 we considered CC(𝑅𝑧 (𝛼)) = Diag(1, 1, 1, 1, 1, 1, 𝑒 −𝑖 2 , 𝑒 𝑖 2 ). We
+have CC(𝑅𝑧 (𝛼)) ∈ S53 ⊆ S5 because 𝑑 0𝑑 1𝑑 6𝑑 7 = 𝑑 2𝑑 3𝑑 4𝑑 5 . Similarly, we can easily check that
+CC(𝑅𝑧 (𝛼)) ∉ S3 ∪ S4 ∪ S51 ∪ S52 .
+   In Example 3.5 we considered the 3-qubit diagonal gate 𝑊 = Diag(1, 1, 1, −1, 1, 𝑖, 𝑖, 1). We
+have 𝑊 ∈ S4 ∩ S5 because 𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7 , and also 𝑑 0𝑑 3𝑑 4𝑑 7 = 𝑑 1𝑑 2𝑑 5𝑑 6 . Similarly, we can
+easily check that 𝑊 ∉ S2 ∪ S3 .
+
+6     THE EXPRESSIVENESS OF FOUR NEIGHBOR GATES
+In this section, we state two theorems on the expressiveness of four neighbor gates. We begin with
+Theorem 6.1, which says that a 3-qubit diagonal gate 𝐷 belongs to subsets of S4 ∪ S5 if and only if
+𝐷 can be implemented using particular products of four neighbor gates. This is significant because
+some 3-qubit diagonal gates, such as CC(𝑅𝑧 (𝛼)), are in one of the subsets of S4 ∪ S5 but not the
+others, as we saw in Section 5.
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                             17
+
+
+   Theorem 6.1. Suppose 𝐷 is a 3-qubit diagonal gate.
+   (1) We have 𝐷 ∈ S4 ∪ S51 if and only if there exist four 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , such that
+       𝑈 1𝐴𝐶 𝑈 2𝐴𝐵 𝑈 3𝐴𝐶 𝑈 4𝐴𝐵 = 𝐷.
+   (2) We have 𝐷 ∈ S4 ∪ S52 if and only if there exist four 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 such that
+       𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵 = 𝐷.
+   (3) We have 𝐷 ∈ S4 ∪ S53 if and only if there exist four 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 such that
+       𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 = 𝐷.
+     We prove Theorem 6.1 by first proving Property (3) through a sequence of if-and-only-if state-
+ments. First, 𝐷 ∈ S4 ∪ S53 if and only if for particular 𝑑 0′ , 𝑑 1′ , we have that CC(Diag(𝑑 0′ , 𝑑 1′ )) satisfies
+𝑑 0′ 𝑑 1′ = 1 or 𝑑 0′ = 𝑑 1′ . Then we use Lemma A.9 to see that CC(Diag(𝑑 0′ , 𝑑 1′ )) satisfies this constraint
+if and only if CC(Diag(𝑑 0′ , 𝑑 1′ )) can be implemented by a particular combination of four neighbor
+gates. Finally, we use Lemma 5.2 to transform this combination of neighbor gates to a product
+that both has the desired form and equals 𝐷. After we are done with proving Proving (3), we use
+Lemma 5.1 and Lemma 5.2 to derive Properties (1)–(2) from Property (3).
+
+ Proof. (Theorem 6.1) Suppose we have a 3-qubit diagonal gate 𝐷 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ).
+We will prove the three properties in the order (3), (2), (1).
+ Property (3). We reason as follows.
+    𝐷 ∈ S4 ∪ S53      ⇐⇒ 𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7 ∨ 𝑑 0𝑑 1𝑑 6𝑑 7 = 𝑑 2𝑑 3𝑑 4𝑑 5
+                         𝑑6 𝑑0 𝑑7 𝑑1               𝑑6 𝑑0 𝑑7 𝑑1
+                      ⇐⇒          =           ∨         ·       =1
+                         𝑑2 𝑑4 𝑑3 𝑑5               𝑑2 𝑑4 𝑑3 𝑑5
+                      ⇐⇒ ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                                     𝑑6 𝑑0 𝑑7 𝑑1
+                            𝑉1𝐴𝐶 𝑉2𝐵𝐶 𝑉3𝐴𝐶 𝑉4𝐵𝐶 = CC(Diag(                  ,      ))
+                                                                     𝑑2 𝑑4 𝑑3 𝑑5
+                      ⇐⇒ ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                                                     𝑑6 𝑑0 𝑑7 𝑑1
+                             𝑆 𝐴𝐵 𝑉1𝐴𝐶 𝑉2𝐵𝐶 𝑉3𝐴𝐶 𝑉4𝐵𝐶 𝑆 𝐴𝐵 = 𝑆 𝐴𝐵 CC(Diag(                ,      )) 𝑆 𝐴𝐵
+                                                                                     𝑑2 𝑑4 𝑑3 𝑑5
+                      ⇐⇒ ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                                     𝑑6 𝑑0 𝑑7 𝑑1
+                            𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐵𝐶 𝑉4𝐴𝐶 = CC(Diag(                  ,      ))
+                                                                     𝑑2 𝑑4 𝑑3 𝑑5
+                      ⇐⇒ ∃ 2-qubit gates 𝑈 1, 𝑈 2, 𝑈 3, 𝑈 4 :
+                                  𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 = 𝐷                                                          (17)
+In the first step, we use the definitions of 𝐷, S4 , S53 . In the third step, we use Lemma A.9. In
+the fifth step, we use Lemma 5.2. In the sixth step, we define 𝑊1 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ) and 𝑊4 =
+Diag(1, 1, 𝑑 4 /𝑑 0, 𝑑 5 /𝑑 1 ), and then we use 𝑈 1 = 𝑊1𝑉1 and 𝑈 2 = 𝑉2 and 𝑈 3 = 𝑉3 and 𝑈 4 = 𝑉4𝑊4 . This
+is sufficient to complete the proof of Property (3) because we have:
+                            𝑑6 𝑑0 𝑑7 𝑑1
+        𝑊1𝐵𝐶 CC(Diag(            ,      )) 𝑊4𝐴𝐶       = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 )
+                            𝑑2 𝑑4 𝑑3 𝑑5
+                                                                                  𝑑6 𝑑0 𝑑7 𝑑1
+                                                           Diag(1, 1, 1, 1, 1, 1,         ,         )
+                                                                                  𝑑2 𝑑4 𝑑3 𝑑5
+                                                           Diag(1, 1, 1, 1, 𝑑 4 /𝑑 0, 𝑑 5 /𝑑 1, 𝑑 4 /𝑑 0, 𝑑 5 /𝑑 1 )
+                                                      = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 )
+                                                      = 𝐷
+
+                                                               , Vol. 1, No. 1, Article . Publication date: December 2025.
+18                                                                                           Keli Huang and Jens Palsberg
+
+
+     Property (2). We reason as follows.
+                         𝐷 ∈ S4 ∪ S52       ⇐⇒ 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 ∈ S4 ∪ S53
+                                            ⇐⇒        ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                         𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐵𝐶 𝑉4𝐴𝐶 = 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶
+                                            ⇐⇒        ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                         𝑆 𝐵𝐶 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐵𝐶 𝑉4𝐴𝐶 𝑆 𝐵𝐶 = 𝐷
+                                            ⇐⇒        ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                         𝑆 𝑉1 𝑆 𝐵𝐶 𝑉2𝐴𝐵 𝑆 𝑉3 𝑆 𝐵𝐶 𝑉4𝐴𝐵 = 𝐷
+                                            ⇐⇒        ∃ 2-qubit gates 𝑈 1, 𝑈 2, 𝑈 3, 𝑈 4 :
+                                                         𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵 = 𝐷                                 (18)
+In the first step, we use Lemma 5.1. In the second step, we use Property (3). In the fourth step, we
+use Lemma 5.2.
+   Property (1). We reason as follows.
+                         𝐷 ∈ S4 ∪ S51       ⇐⇒ 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S4 ∪ S52
+                                            ⇐⇒        ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                         𝑉1𝐵𝐶 𝑉2𝐴𝐵 𝑉3𝐵𝐶 𝑉4𝐴𝐵 = 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵
+                                            ⇐⇒        ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                         𝑆 𝐴𝐵 𝑉1𝐵𝐶 𝑉2𝐴𝐵 𝑉3𝐵𝐶 𝑉4𝐴𝐵 𝑆 𝐴𝐵 = 𝐷
+                                            ⇐⇒        ∃ 2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 :
+                                                         𝑉1𝐴𝐶 𝑆 𝑉2 𝑆 𝐴𝐵 𝑉3𝐴𝐶 𝑆 𝑉4 𝑆 𝐴𝐵 = 𝐷
+                                            ⇐⇒        ∃ 2-qubit gates 𝑈 1, 𝑈 2, 𝑈 3, 𝑈 4 :
+                                                         𝑈 1𝐴𝐶 𝑈 2𝐴𝐵 𝑈 3𝐴𝐶 𝑈 4𝐴𝐵 = 𝐷
+In the first step, we use Lemma 5.1. In the second step, we use Property (2). In the fourth step, we
+use Lemma 5.2.                                                                                     □
+  Next, we state Theorem 6.2, which says that the following four classes of 3-qubit diagonal gates
+are equivalent: (1) S4 ∪ S5 , (2) those implemented with four neighbor gates, (3) those implemented
+with five neighbor gates, and (4) those implemented with four unrestricted gates.
+     Theorem 6.2. Suppose 𝐷 is a 3-qubit diagonal gate. The following conditions on 𝐷 are equivalent.
+     (1) 𝐷 ∈ S4 ∪ S5 .
+     (2) There exist four 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , such that 𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 1 𝑈 4𝑖 2 = 𝐷, where 𝑖 1 , 𝑖 2
+         ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }.
+     (3) There exist five 2-qubit gates 𝑊1 , 𝑊2 , 𝑊3 , 𝑊4 , 𝑊5 , such that 𝑊1 𝑗1 𝑊2 𝑗2 𝑊3 𝑗1 𝑊4 𝑗2 𝑊5 𝑗1 = 𝐷, where
+         𝑗1 , 𝑗2 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }.
+     (4) There exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , such that 𝑉1𝑘1 𝑉2𝑘2 𝑉3𝑘3 𝑉4𝑘4 = 𝐷, where 𝑘 1 , 𝑘 2 , 𝑘 3 ,
+         𝑘 4 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }.
+   Notice that in Theorem 6.2, each of Properties (2)–(3) uses just two indices, which means that
+the matrix products use neighbor gates. In contrast, Property (4) uses four indices.
+   We give the proof of Theorem 6.2 below, but first we outline the idea of the proof. The centerpiece
+of the proof is Table 3, which summarizes key properties that we prove in a suite of lemmas. Notice
+that in Table 3, each row has a structure that is similar to the four items in Theorem 6.2. Specifically,
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                          19
+
+
+the first column of Table 3 has a subset of S4 ∪ S5 , the third column has a product of four neighbor
+gates, the fourth column has a product of five neighbor gates, and the fifth column has a product of
+four unrestricted gates. Additionally, the second column lists the two qubits that the first gate in
+each of the products in columns 3–5 works on.
+                               Table 3. Summary of our lemmas in Theorem 6.2.
+
+
+               𝐷       1𝑠𝑡 gate     Four neighbor gates         Five neighbor gates Four gates
+
+           S4 ∪ S53                𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶           𝑊1𝐵𝐶 𝑊2𝐴𝐶               𝑉1𝐵𝐶 𝑉2𝐴𝐶
+                          𝐵𝐶
+           S4 ∪ S52                𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵        𝑊3𝐵𝐶 𝑊4𝐴𝐶 𝑊5𝐵𝐶             𝑉3𝐴𝐵 𝑉4𝐵𝐶
+
+           S4 ∪ S52                𝑈 1𝐴𝐵 𝑈 2𝐵𝐶 𝑈 3𝐴𝐵 𝑈 4𝐵𝐶           𝑊1𝐴𝐵 𝑊2𝐵𝐶               𝑉1𝐴𝐵 𝑉2𝐵𝐶
+                          𝐴𝐵
+           S4 ∪ S51                𝑈 1𝐴𝐵 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 𝑈 4𝐴𝐶        𝑊3𝐴𝐵 𝑊4𝐵𝐶 𝑊5𝐴𝐵             𝑉3𝐴𝐶 𝑉4𝐴𝐵
+
+           S4 ∪ S53                𝑈 1𝐴𝐶 𝑈 2𝐵𝐶 𝑈 3𝐴𝐶 𝑈 4𝐵𝐶           𝑊1𝐴𝐶 𝑊2𝐵𝐶               𝑉1𝐴𝐶 𝑉2𝐵𝐶
+                          𝐴𝐶
+           S4 ∪ S51                𝑈 1𝐴𝐶 𝑈 2𝐴𝐵 𝑈 3𝐴𝐶 𝑈 4𝐴𝐵        𝑊3𝐴𝐶 𝑊4𝐵𝐶 𝑊5𝐴𝐶             𝑉3𝐴𝐵 𝑉4𝐴𝐶
+
+   The key idea of Table 3 is to show different approaches to implementing gates in the three
+sets S4 ∪ S51 , S4 ∪ S52 , and S4 ∪ S53 . For example, if we want to consider an implementation of a
+gate in S4 ∪ S53 , and we want the first gate to operate on qubits 𝐵𝐶, then Table 3 suggests three
+different ways of doing it. The first implementation uses four neighbor gates, and the second uses
+five neighbor gates, while the third, in column “Four gates”, uses four unrestricted gates.
+   Table 3 is based on two key lemmas. First, in Appendix C, Lemma C.1 shows a reduction from
+arbitrary products of four 2-qubit unrestricted gates to the nine cases listed in the third and fifth
+columns of Table 3. Lemma C.2 shows a reduction from arbitrary products of five 2-qubit neighbor
+gates to the three cases listed in the fourth column of Table 3. Together, Lemma C.1 and Lemma C.2
+enable us to focus on the products listed in Table 3 when we discuss a product using four or five
+2-qubit gates in Theorem 6.2.
+    Proof. (Theorem 6.2) We will prove (1) ⇒ (2) ⇒ (3) ⇒ (4) ⇒ (1).
+    Condition (1) ⇒ Condition (2). Immediate from Theorem 6.1, using S5 = S51 ∪ S52 ∪ S53 .
+    Condition (2) ⇒ Condition (3). We use 𝐼 as the fifth gate.
+    Condition (3) ⇒ Condition (4). Suppose there exist five 2-qubit gates 𝑊1 , 𝑊2 , 𝑊3 , 𝑊4 , 𝑊5 , such
+that 𝑊1 𝑗1 𝑊2 𝑗2 𝑊3 𝑗1 𝑊4 𝑗2 𝑊5 𝑗1 = 𝐷, where 𝑗1 , 𝑗2 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }. According to Lemma C.2, we can
+assume that the product is one of the three cases in the fourth column in Table 3. We will consider
+each of those three cases in turn.
+    First, if 𝑗1 = 𝐵𝐶 and 𝑗2 = 𝐴𝐶, then from Lemma 4.4, we have that there exist four 2-qubit gates
+𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , such that 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 = 𝐷.
+    Second, if 𝑗1 = 𝐴𝐵 and 𝑗2 = 𝐵𝐶, then according to Lemma 5.2, we know that 𝑆 𝐵𝐶 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 𝑆 𝐵𝐶 =
+𝑊1𝐵𝐶 𝑆 𝑊2 𝑆 𝐴𝐶 𝑊3𝐵𝐶 𝑆 𝑊4 𝑆 𝐴𝐶 𝑊5𝐵𝐶 . According to Lemma 4.4, there exist four 2-qubit gates 𝑉1 , 𝑉2 ,
+𝑉3 , 𝑉4 , such that 𝑆 𝐵𝐶 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 𝑆 𝐵𝐶 = 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 . From this, according to Lemma 5.2, we
+know that 𝐷 = 𝑉1𝐴𝐵 𝑆 𝑉2 𝑆 𝐵𝐶 𝑆 𝑉3 𝑆 𝐴𝐶 𝑉4𝐴𝐵 .
+   Third, if 𝑗1 = 𝐴𝐶 and 𝑗2 = 𝐵𝐶, then according to Lemma 5.2, we know that 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 =
+𝑊1𝐵𝐶 𝑊2𝐴𝐶 𝑊3𝐵𝐶 𝑊4𝐴𝐶 𝑊5𝐵𝐶 . According to Lemma 4.4, there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 ,
+such that 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 = 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑉3𝐴𝐵 𝑉4𝐵𝐶 . From this, according to Lemma 5.2, we know that
+𝐷 = 𝑉1𝐴𝐶 𝑉2𝐵𝐶 𝑆 𝑉3 𝑆 𝐴𝐵 𝑉4𝐴𝐶 .
+
+                                                             , Vol. 1, No. 1, Article . Publication date: December 2025.
+20                                                                                         Keli Huang and Jens Palsberg
+
+
+  Thus, in all three cases, we get the desired conclusion.
+  Condition (4) ⇒ Condition (1). Suppose there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , such that
+𝑉1𝑘1 𝑉2𝑘2 𝑉3𝑘3 𝑉4𝑘4 = 𝐷, where 𝑘 1 , 𝑘 2 , 𝑘 3 , 𝑘 4 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }. From Lemma C.1 we have that we
+can assume that the product is one of the nine cases in the third and fifth columns in Table 3.
+We will show the three cases in the fifth column in detail here. The first case we will consider is
+the one where 𝑘 1 = 𝐵𝐶, 𝑘 2 = 𝐴𝐶, 𝑘 3 = 𝐴𝐵, and 𝑘 4 = 𝐵𝐶. Let us write 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) as
+𝐷 = |0⟩⟨0| ⊗ 𝐷 0 + |1⟩⟨1| ⊗ 𝐷 1 , where 𝐷 0 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ) and 𝐷 1 = Diag(𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ). From
+the assumption about 𝐷, we have that
+                            𝑉2𝐴𝐶 𝑉3𝐴𝐵 = |0⟩⟨0| ⊗ (𝑉1† 𝐷 0 𝑉4† ) + |1⟩⟨1| ⊗ (𝑉1† 𝐷 1 𝑉4† )                         (19)
+  By Equation (19), according to Lemma A.14, there exist four 1-qubit gates 𝑃 0 , 𝑃 1 , 𝑄 0 , 𝑄 1 , such
+that 𝑉2𝐴𝐶 𝑉3𝐴𝐵 = |0⟩⟨0| ⊗ 𝑃 0 ⊗ 𝑄 0 + |1⟩⟨1| ⊗ 𝑃1 ⊗ 𝑄 1 , and we have that
+                                 𝐷 0 = 𝑉1 (𝑃0 ⊗ 𝑄 0 ) 𝑉4         𝐷 1 = 𝑉1 (𝑃1 ⊗ 𝑄 1 ) 𝑉4                          (20)
+     By Equation (20), we conclude that
+                                            𝐷 0† 𝐷 1 = 𝑉4† (𝑃0† 𝑃1 ⊗ 𝑄 0†𝑄 1 ) 𝑉4                                 (21)
+  By Lemma A.11, there exist four complex numbers 𝑎, 𝑏, 𝑝, 𝑞, such that Eigenvalues(𝑃 0† 𝑃1 ⊗𝑄 0†𝑄 1 ) =
+(𝑎𝑝, 𝑏𝑝, 𝑎𝑞, 𝑏𝑞). From this and by Equation (21), we have that
+                                                                                    𝑑4 𝑑5 𝑑6 𝑑7
+                                               Eigenvalues(𝐷 0† 𝐷 1 )      =    (     ,  ,  ,   )
+                                                                                    𝑑0 𝑑1 𝑑2 𝑑3
+                      =     Eigenvalues(𝑉4† (𝑃0† 𝑃 1 ⊗ 𝑄 0†𝑄 1 ) 𝑉4 )      =    (𝑎𝑝, 𝑏𝑝, 𝑎𝑞, 𝑏𝑞)                  (22)
+     According to Equation (22), we conclude that for Eigenvalues(𝐷 0† 𝐷 1 ), there exists the multi-
+plication of two eigenvalues equal to the multiplication of the other two eigenvalues. Thus, we
+have the following three cases. (1) If 𝑑 0𝑑 1𝑑 6𝑑 7 = 𝑑 2𝑑 3𝑑 4𝑑 5 , we conclude that 𝐷 ∈ S53 . (2) If
+𝑑 0𝑑 2𝑑 5𝑑 7 = 𝑑 1𝑑 3𝑑 4𝑑 6 , we conclude that 𝐷 ∈ S52 . (3) If 𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7 , we conclude that 𝐷 ∈ S4 .
+As a result, we conclude that 𝐷 ∈ S4 ∪ S52 ∪ S53 ⊆ S4 ∪ S5 .
+   For the second case where 𝑘 1 = 𝐴𝐵, 𝑘 2 = 𝐵𝐶, 𝑘 3 = 𝐴𝐶, and 𝑘 4 = 𝐴𝐵, according Lemma 5.2,
+we have that 𝑆 𝐵𝐶 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 𝑆 𝐵𝐶 = 𝑉1𝐵𝐶 𝑆 𝑉2 𝑆 𝐴𝐶 𝑆 𝑉3 𝑆 𝐴𝐵 𝑉4𝐵𝐶 . From the analysis of the first case,
+we conclude that 𝑆 𝐵𝐶 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 𝑆 𝐵𝐶 ∈ S4 ∪ S52 ∪ S53 . According to Lemma 5.1, we conclude that
+𝐷 ∈ S4 ∪ S51 ∪ S52 ⊆ S4 ∪ S5 .
+   For the third case where 𝑘 1 = 𝐴𝐶, 𝑘 2 = 𝐵𝐶, 𝑘 3 = 𝐴𝐵, and 𝑘 4 = 𝐴𝐶, according Lemma 5.2, we
+have that 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 = 𝑉1𝐵𝐶 𝑉2𝐴𝐶 𝑆 𝑉3 𝑆 𝐴𝐵 𝑉4𝐵𝐶 . From the analysis of the first case, we conclude that
+𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S4 ∪ S52 ∪ S53 . According to Lemma 5.1, we conclude that 𝐷 ∈ S4 ∪ S51 ∪ S53 ⊆ S4 ∪ S5 .
+   For the other six cases in the third column, three of them can be derived according to Theorem 6.1,
+and the other three cases can be derived by symmetry. For the first case where 𝑘 1 = 𝐴𝐵, 𝑘 2 = 𝐴𝐶,
+𝑘 3 = 𝐴𝐵, and 𝑘 4 = 𝐴𝐶, if 𝐷 = 𝑉1𝐴𝐵𝑉2𝐴𝐶 𝑉3𝐴𝐵𝑉4𝐴𝐶 , then we have that 𝐷 † = 𝑉4†𝐴𝐶 𝑉3†𝐴𝐵𝑉2†𝐴𝐶 𝑉1†𝐴𝐵 .
+According to Theorem 6.1 property (1), we conclude that 𝐷 † ∈ S4 ∪ S51 . According to Lemma 5.3,
+we conclude that 𝐷 ∈ S4 ∪ S51 .
+   For the second case where 𝑘 1 = 𝐴𝐵, 𝑘 2 = 𝐵𝐶, 𝑘 3 = 𝐴𝐵, and 𝑘 4 = 𝐵𝐶, if 𝐷 = 𝑉1𝐴𝐵𝑉2𝐵𝐶 𝑉3𝐴𝐵𝑉4𝐵𝐶 ,
+then we have that 𝐷 † = 𝑉4† 𝐵𝐶 𝑉3†𝐴𝐵𝑉2† 𝐵𝐶 𝑉1†𝐴𝐵 . According to Theorem 6.1 property (2), we conclude
+that 𝐷 † ∈ S4 ∪ S52 . According to Lemma 5.3, we conclude that 𝐷 ∈ S4 ∪ S52 .
+  For the third case where 𝑘 1 = 𝐴𝐶, 𝑘 2 = 𝐵𝐶, 𝑘 3 = 𝐴𝐶, and 𝑘 4 = 𝐵𝐶, if 𝐷 = 𝑉1𝐴𝐶 𝑉2𝐵𝐶 𝑉3𝐴𝐶 𝑉4𝐵𝐶 ,
+then we have that 𝐷 † = 𝑉4† 𝐵𝐶 𝑉3†𝐴𝐶 𝑉2† 𝐵𝐶 𝑉1†𝐴𝐶 . According to Theorem 6.1 property (3), we conclude
+that 𝐷 † ∈ S4 ∪ S53 . According to Lemma 5.3, we conclude that 𝐷 ∈ S4 ∪ S53 .
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                    21
+
+
+   The above three cases, along with six others that can be derived according to Theorem 6.1, lead
+to the overall conclusion that 𝐷 ∈ S4 ∪ S5 .                                                     □
+
+7    CHARACTERIZATION OF ALL 3-QUBIT DIAGONAL GATES
+In this section, we first state two theorems that give upper bounds on the number of 2-qubit
+gates needed to implement a 3-qubit diagonal gate. We begin with Theorem 7.1, which focuses on
+neighbor gates.
+    Theorem 7.1. Suppose 𝐷 is a 3-qubit diagonal gate.
+    (1) We have 𝐷 ∈ S1 if and only if 𝐷 can be implemented with one 2-qubit neighbor gate.
+    (2) We have 𝐷 ∈ S2 if and only if 𝐷 can be implemented with two 2-qubit neighbor gates.
+    (3) We have 𝐷 ∈ S2 ∪ S3 if and only if 𝐷 can be implemented with three 2-qubit neighbor gates.
+    (4) We have 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented with four 2-qubit neighbor gates.
+    (5) We have 𝐷 ∈ S6 if and only if 𝐷 can be implemented with six 2-qubit neighbor gates.
+   Notice that S2 appears twice in Theorem 7.1 because we state if-and-only-if properties. Specif-
+ically, in the forwards direction, both 2 and 3 are upper bounds for S2 , while in the backwards
+direction, we characterize accurately which gates can be implemented with two 2-qubit neighbor
+gates and with three 2-qubit neighbor gates. In Appendix D, we prove each if-and-only-if property
+by proving the two directions separately. For the left-to-right direction, we pick a 3-qubit diagonal
+gate from the given subset and then implement it with neighbor gates. For the right-to-left direction,
+we first assume that a three-qubit diagonal gate 𝐷 equals the product of some 2-qubit neighbor
+gates. Then we discuss which restrictions each neighbor gate must satisfy to make this equation
+valid. The neighbor gates satisfy those restrictions simultaneously, which let us derive the subset
+to which 𝐷 belongs.
+   Next, we state Theorem 7.2, which focuses on unrestricted gates.
+    Theorem 7.2. Suppose 𝐷 is a 3-qubit diagonal gate.
+    (1) We have 𝐷 ∈ S1 if and only if 𝐷 can be implemented with one 2-qubit unrestricted gate.
+    (2) We have 𝐷 ∈ S2 if and only if 𝐷 can be implemented with two 2-qubit unrestricted gates.
+    (3) We have 𝐷 ∈ S3 ∪ S4 if and only if 𝐷 can be implemented with three 2-qubit unrestricted gates.
+    (4) We have 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented with four 2-qubit unrestricted gates.
+    (5) We have 𝐷 ∈ S6 if and only if 𝐷 can be implemented with five 2-qubit unrestricted gates.
+   Notice that S4 appears twice in Theorem 7.2, which is because we state if-and-only-if properties.
+In Appendix E, we prove Theorem 7.2. In the left-to-right direction, the cases of S1 , S2 , S3 , and S5
+are immediate from Theorem 7.1. In contrast, we give a separate proof of the case of S4 , akin to
+the proof of the case of S4 in Theorem 7.1, and we also give a separate proof of the case of S6 . In
+the right-to-left direction, we do the proof in a manner similar to that of Theorem 7.1, but without
+neighbor restrictions.
+   Now we use the upper bounds in Theorem 7.1 and Theorem 7.2, along with examples from
+Section 5, to prove Corollary 7.3, which states least upper bounds.
+  Corollary 7.3. Table 2 states the least upper bounds on the number of 2-qubit gates needed to
+implement any gate in S1, . . . , S6 .
+  Proof. For S1 , according to Theorem 7.1.(1), the upper bound on the number of 2-qubit neighbor
+gates is 1, and according to Theorem 7.2.(1), the upper bound on the number of 2-qubit unrestricted
+gates is 1. Because there exists a 3-qubit diagonal gate CC(−𝐼 ) = Diag(1, 1, 1, 1, 1, 1, −1, −1) =
+C(𝑍 ) ⊗ 𝐼 , such that CC(−𝐼 ) ∈ S1 and CC(−𝐼 ) cannot be implemented without 2-qubit gates, we
+
+                                                       , Vol. 1, No. 1, Article . Publication date: December 2025.
+22                                                                             Keli Huang and Jens Palsberg
+
+
+conclude that for S1 , the least upper bound on the number of 2-qubit neighbor gates is 1, and the
+least upper bound on the number of 2-qubit unrestricted gates is 1.
+   For S2 , according to Theorem 7.1.(2), the upper bound on the number of 2-qubit neighbor gates
+is 2, and according to Theorem 7.2.(2), the upper bound on the number of 2-qubit unrestricted gates
+is 2. Because there exists a 3-qubit diagonal gate C(𝑍 ⊗ 𝑍 ) = Diag(1, 1, 1, 1, 1, −1, −1, 1), such
+that C(𝑍 ⊗ 𝑍 ) ∈ S2 and C(𝑍 ⊗ 𝑍 ) ∉ S1 , we conclude that C(𝑍 ⊗ 𝑍 ) cannot be implemented with
+one 2-qubit neighbor gate according to Theorem 7.1.(1) or one 2-qubit unrestricted gate according
+to Theorem 7.2.(1). Thus, for S2 , the least upper bound on the number of 2-qubit neighbor gates is
+2, and the least upper bound on the number of 2-qubit unrestricted gates is 2.
+   For S3 , according to Theorem 7.1.(3), the upper bound on the number of 2-qubit neighbor gates
+is 3, and according to Theorem 7.2.(3), the upper bound on the number of 2-qubit unrestricted
+gates is 3. Because there exists a 3-qubit diagonal gate 𝐷 3 = Diag(1, 1, 1, 1, 1, 𝑖, 𝑖, 1), such that
+𝐷 3 ∈ S3 and 𝐷 3 ∉ S2 , we conclude that 𝐷 3 cannot be implemented with two 2-qubit neighbor gates
+according to Theorem 7.1.(2) or two 2-qubit unrestricted gates according to Theorem 7.2.(2). Thus,
+for S3 , the least upper bound on the number of 2-qubit neighbor gates is 3, and the least upper
+bound on the number of 2-qubit unrestricted gates is 3.
+   For S4 , according to Theorem 7.1.(4), the upper bound on the number of 2-qubit neighbor gates
+is 4, and according to Theorem 7.2.(3), the upper bound on the number of 2-qubit unrestricted
+gates is 3. Because there exists a 3-qubit diagonal gate 𝑊 = Diag(1, 1, 1, −1, 1, 𝑖, 𝑖, 1) as shown
+in Example 3.5, such that 𝑊 ∈ S4 and 𝑊 ∉ S2 ∪ S3 , we conclude that 𝑊 cannot be implemented
+with three 2-qubit neighbor gates according to Theorem 7.1.(3) or two 2-qubit unrestricted gates
+according to Theorem 7.2.(2). Thus, for S4 , the least upper bound on the number of 2-qubit neighbor
+gates is 4, and the least upper bound on the number of 2-qubit unrestricted gates is 3.
+   For S5 , according to Theorem 7.1.(4), the upper bound on the number of 2-qubit neighbor gates
+is 4, and according to Theorem 7.2.(4), the upper bound on the number of 2-qubit unrestricted gates
+                                                                                             𝛼      𝛼
+is 4. Because there exists a 3-qubit diagonal gate CC(𝑅𝑧 (𝛼)) = Diag(1, 1, 1, 1, 1, 1, 𝑒 −𝑖 2 , 𝑒 𝑖 2 ) as
+shown in Examples 3.3 and 3.4, such that CC(𝑅𝑧 (𝛼)) ∈ S5 and 𝑊 ∉ S3 ∪ S4 , we conclude that
+CC(𝑅𝑧 (𝛼)) cannot be implemented with three 2-qubit neighbor gates according to Theorem 7.1.(3)
+or three 2-qubit unrestricted gates according to Theorem 7.2.(3). Thus, for S5 , the least upper bound
+on the number of 2-qubit neighbor gates is 4, and the least upper bound on the number of 2-qubit
+unrestricted gates is 4.
+   For S6 , according to Theorem 7.1.(5), the upper bound on the number of 2-qubit neighbor gates
+is 6, and according to Theorem 7.2.(5), the upper bound on the number of 2-qubit unrestricted gates
+is 5. Because there exists a 3-qubit diagonal gate CC(𝑍 ) = Diag(1, 1, 1, 1, 1, 1, 1, −1), such that
+CC(𝑍 ) ∈ S6 and 𝑊 ∉ S4 ∪ S5 , we conclude that CC(𝑍 ) cannot be implemented with four 2-qubit
+unrestricted gates according to Theorem 7.2.(4). Also, according to Theorem 6.2, we conclude that
+CC(𝑍 ) cannot be implemented with five 2-qubit neighbor gates. Thus, for S6 , the least upper bound
+on the number of 2-qubit neighbor gates is 6, and the least upper bound on the number of 2-qubit
+unrestricted gates is 5.
+   In summary, we have proved that Table 2 states the least upper bounds on the number of 2-qubit
+gates needed to implement any gate in S1, . . . , S6 .                                                  □
+
+8    OUR EXAMPLE CIRCUITS IN SECTION 3 ARE OPTIMAL
+   The Circuits in Examples 3.1 and 3.2 are optimal. Each of our circuits in Examples 3.1 and 3.2
+implements CC(𝑋 ) using six neighbor gates. Because CC(𝑋 ) can be diagonalized using 1-qubit
+gates to CC(𝑍 ), the number of two-qubit neighbor gates needed to implement CC(𝑋 ) is the same as
+for CC(𝑍 ). From Section 5, we have that CC(𝑍 ) ∉ S4 ∪ S5 . From this and Theorem 6.2, specifically
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                   23
+
+
+(3) ⇒ (1), we conclude that five 2-qubit neighbor gates cannot make a Toffoli gate, so six neighbor
+gates are needed.
+  The Circuit in Example 3.3 is optimal. Our circuit in Example 3.3 implements CC(𝑅𝑧 (𝛼)) using
+four neighbor gates. From Section 5, we have that CC(𝑅𝑧 (𝛼)) ∈ S53 ⊆ S5 , but CC(𝑅𝑧 (𝛼)) ∉
+S3 ∪ S4 ∪ S51 ∪ S52 . From this, because S2 ⊆ S4 , according to Theorem 7.1.(3), we conclude that
+three 2-qubit neighbor gates cannot make a CC(𝑅𝑧 (𝛼)) gate, so four neighbor gates are needed.
+   The Circuit in Example 3.4 is optimal. Our circuit in Example 3.4 implements CC(𝑅𝑧 (𝛼)) using
+five neighbor gates on 𝐴𝐵 and 𝐵𝐶. From Section 5, we have that CC(𝑅𝑧 (𝛼)) ∈ S53 , but CC(𝑅𝑧 (𝛼)) ∉
+S3 ∪ S4 ∪ S51 ∪ 𝑆 52 . From Theorem 6.1.(2) and CC(𝑅𝑧 (𝛼)) ∉ S4 ∪ S52 , we have that we cannot
+implement CC(𝑅𝑧 (𝛼)) on 𝐴𝐵 and 𝐵𝐶 using four neighbor gates, so five neighbor gates on 𝐴𝐵 and
+𝐵𝐶 are needed.
+   The Circuits in Example 3.5 is optimal. Our circuits in Example 3.5 implements 𝑊 using three
+unrestricted gates and four neighbor gates, respectively. From Section 5, we have that 𝑊 ∈ S4 ∩ S5 ,
+but 𝑊 ∉ S2 ∪ S3 . From this and according to Theorem 7.2.(2), we conclude that two 2-qubit
+unrestricted gates cannot make a 𝑊 gate, so three unrestricted gates are needed. Also, according
+to Theorem 7.1.(3), we conclude that three 2-qubit neighbor gates cannot make a 𝑊 gate, so four
+neighbor gates are needed.
+  The impact of qubit layout. Examples 3.1 and 3.2 along with Equation (1) illustrate that the optimal
+number of 2-qubit gates for implementing a 3-qubit diagonal gate outside S4 ∪ S5 , depends on
+whether we allow unrestricted gates or only neighbor gates. Similarly, Example 3.5 illustrates that
+the optimal number of 2-qubit gates for implementing a gate in S4 , but outside S2 ∪ S3 , depends
+on whether we allow unrestricted gates or only neighbor gates. Examples 3.3 and 3.4 illustrate that
+the optimal number of 2-qubit neighbor gates for implementing a gate in S5 , but outside S3 ∪ S4 ,
+depends on the qubit layout.
+
+9   RELATED WORK
+   Least upper bounds for 3-qubit Diagonal Gates. [Palsberg and Yu 2024; Yu et al. 2013; Yu and
+Ying 2015] studied 3-qubit diagonal gates of the form CC(Diag(𝑑 0, 𝑑 1 )). They proved the fol-
+lowing least upper bounds on the number of unrestricted gates needed in an implementation.
+If CC(Diag(𝑑 0, 𝑑 1 )) ∈ S1 , which happens when 𝑑 0 = 𝑑 1 , then it can be implemented using one
+2-qubit gate. If CC(Diag(𝑑 0, 𝑑 1 )) ∈ S5 which happens when 𝑑 0 𝑑 1 = 1 or 𝑑 0 = 𝑑 1 , then it can
+be implemented using four 2-qubit gates. In general, if CC(Diag(𝑑 0, 𝑑 1 )) ∈ S6 , then it can be
+implemented using five 2-qubit gates. Our Theorem 7.2 generalizes their results.
+   For any 3-qubit diagonal gate 𝐷, [Shende and Markov 2008] proved the following least upper
+bounds on the number of unrestricted C(𝑋 ) gates needed in an implementation. If 𝐷 ∈ S1 , then it
+can be implemented with two C(𝑋 ) gates. If 𝐷 ∈ S4 , then it can be implemented with five C(𝑋 )
+gates, a remarkable jump from the three gates that are sufficient if we can freely pick the 2-qubit
+gates. If 𝐷 ∈ S5 , then it can be implemented with four C(𝑋 ) gates. Notice that elements of S4
+require as most as many 2-qubit unrestricted gates as elements of S5 according to Theorem 7.2,
+while, perhaps surprisingly, elements of S4 require at least as many unrestricted C(𝑋 ) gates as
+elements of S5 . This is possible in part because S4 ⊈ S5 and S5 ⊈ S4 . If 𝐷 ∈ S6 , then it can be
+implemented with six C(𝑋 ) gates.
+   Mapping Circuits to Neighbor Gates. [Wille et al. 2014] presented strategies for mapping a quantum
+circuit to a nearest-neighbor architecture by inserting swap gates. Many papers on this mapping
+problem have followed, including [Farghadan and Mohammadzadeh 2017] for a two-dimensional
+
+                                                      , Vol. 1, No. 1, Article . Publication date: December 2025.
+24                                                                          Keli Huang and Jens Palsberg
+
+
+grid, [Bhattacharjee et al. 2018; Hattori and Yamashita 2019] for a two-dimensional architecture,
+and [Chang and Lee 2021; Datta et al. 2022a,b] for a two-dimensional hexagonal architecture. [Zhao
+et al. 2020] studied how to map a variety of controlled gates to a nearest-neighbor architecture.
+[Duckering et al. 2021] showed how to implement a Toffoli gate using eight C(𝑋 ) neighbor gates.
+[Park and Ahn 2023] constructed a one-dimensional nearest-neighbor circuit for the quantum
+Fourier transform. None of those papers show optimality.
+
+10     CONCLUSION
+The Toffoli gate is a key building block for error-corrected quantum computers, and it is a key
+component of many quantum algorithms. For implementing a Toffoli gate, we consider common
+quantum architectures that have only neighbor gates, and we prove that six 2-qubit neighbor gates
+are necessary and sufficient. Moreover, we prove least upper bounds for implementing 3-qubit
+diagonal gates using neighbor gates and using unrestricted gates, respectively. We find that while
+the expressive power of four 2-qubit unrestricted gates is the same as four 2-qubit neighbor gates,
+the expressive power of five 2-qubit unrestricted gates is strictly more than five 2-qubit neighbor
+gates.
+  Our results are independent of specific gate sets. This implies that there is no gate set with
+2-qubit gates and 1-qubit gates that supports that we use just five neighbor gates to implement a
+Toffoli gate. Rather, for any specific gate set, we must use at least six neighbor gates.
+  We see at least six directions for future work, which we discuss below.
+  Automation. Is it possible to automate our analysis by an SMT-solver or an automated theorem
+prover? Such an automation could provide more general insights for larger and more complex
+configurations that might be intractable to analyze manually.
+     ZX-calculus. Can some of our proofs be given more easily using ZX-calculus or ZH-calculus?
+  Limited gate sets. Actual quantum hardware typically supports only a limited gate set. How many
+neighbor gates are required to implement a Toffoli gate under such hardware constraints?
+  Asymptotic lower bounds. How many neighbor gates are required to implement an 𝑛-qubit Toffoli
+gates with (𝑛 − 1) controls? Shende and Markov [2008] showed that we need at least 2𝑛 unrestricted
+C(𝑋 ) gates, and we speculate that a lower bound on the number of neighbor C(𝑋 ) gates will be
+even higher.
+  General 3-qubit gates. How many neighbor gates are required to implement any 3-qubit gate?
+[Chen et al. 2024] showed that 11 unrestricted gates are sufficient, and we speculate that we need
+even more neighbor gates.
+  Non-neighbors. How many neighbor gates are required to implement a Toffoli gate on three
+qubits that are connected but where either none of them are neighbors or only two of them are
+neighbors? One way to approach this case might be to use swap gates to bring two pairs of the
+qubits to be neighbors, resulting in the situation in Figure 5.
+     Qubit mapping. How can our results be integrated into an algorithm for qubit mapping?
+   Different qubit technologies. Different qubit technologies have different constraints on “which
+qubits are neighbors?” In this paper, we have taken our motivation from a leading kind of quantum
+computer that uses superconducting qubits. However, quantum computers based on trapped-ion
+qubits, spin qubits, and neutral-atom qubits come with different constraints. This opens the question
+of how many 2-qubit gates are needed to implement a Toffoli gate on such computers. For example,
+we can ask how many Mølmer-Sørensen gates are needed.
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                               25
+
+
+   Acknowledgements. We are grateful to the anonymous reviewers for their many helpful sugges-
+tions that led us to improve the paper. We are supported by the NSF QLCI program: grant number
+OMA-2016245.
+
+
+
+
+                                                  , Vol. 1, No. 1, Article . Publication date: December 2025.
+26                                                                                              Keli Huang and Jens Palsberg
+
+
+A     KNOWN LEMMAS
+   Lemma A.1. [Shende and Markov 2008, Observation 2] For an (𝑛 + 1)-qubit gate 𝑉 , it commutes
+with 𝑍 gates on qubit 𝑖 if and only if there exist two 𝑛-qubit gates 𝑉0 and 𝑉1 , such that 𝑉 = |0⟩⟨0| ⊗
+𝑉0 + |1⟩⟨1| ⊗ 𝑉1 on qubit 𝑖.
+  Lemma A.2. [Horn and Johnson 2012, Theorem 2.5.3] For an n-qubit gate 𝑉 , there exist 2𝑛 complex
+numbers 𝑑 0 , 𝑑 1 , . . . , 𝑑 2𝑛 −1 and one 𝑛-qubit gate 𝑃, where Eigenvalues(𝑉 ) = (𝑑 0, 𝑑 1, . . . , 𝑑 2𝑛 −1 ), such
+that
+                                    / 𝑉 = / 𝑃 † Diag(𝑑 0, 𝑑 1, . . . , 𝑑 2𝑛 −1 ) 𝑃
+
+
+  Lemma A.3. For an n-qubit gate 𝑉 , there exist 2𝑛 complex numbers 𝑑 0 , 𝑑 1 , . . . , 𝑑 2𝑛 −1 and one n-qubit
+gate 𝑃, where Eigenvalues(𝑉 ) = (𝑑 0, 𝑑 1, . . . , 𝑑 2𝑛 −1 ), such that
+                                 / •         /                            •
+                                         =
+                                 / 𝑉         / 𝑃†        Diag(𝑑 0, 𝑑 1, . . . , 𝑑 2𝑛 −1 )   𝑃
+
+     Proof. One can easily prove this according to Lemma A.2.                                                             □
+   Lemma A.4. [Paige and Wei 1994] For a 2-qubit gate 𝑉 , there exist six 1-qubit gates 𝑃 0 , 𝑃1 , 𝑅 𝑦 (𝜃 0 ),
+𝑅 𝑦 (𝜃 1 ), 𝑄 0 , and 𝑄 1 and three 2-qubit gates 𝑃 = |0⟩⟨0| ⊗ 𝑃 0 + |1⟩⟨1| ⊗ 𝑃1 , 𝑅 = 𝑅 𝑦 (𝜃 0 ) ⊗ |0⟩⟨0| +
+𝑅 𝑦 (𝜃 1 ) ⊗ |1⟩⟨1|, and 𝑄 = |0⟩⟨0| ⊗ 𝑄 0 + |1⟩⟨1| ⊗ 𝑄 1 , such that
+                                                                       𝑅
+                                                     𝑉     =
+                                                                𝑄             𝑃
+
+   Lemma A.5. [Shende et al. 2005] For two 1-qubit gates 𝑉0 and 𝑉1 and one 2-qubit gate 𝑉 =
+|0⟩⟨0| ⊗ 𝑉0 + |1⟩⟨1| ⊗ 𝑉1 , there exist four 1-qubit gates 𝑃, 𝑄, 𝑅𝑧 (𝛼 0 ), and 𝑅𝑧 (𝛼 1 ) and one 2-qubit gate
+𝑅 = 𝑅𝑧 (𝛼 0 ) ⊗ |0⟩⟨0| + 𝑅𝑧 (𝛼 1 ) ⊗ |1⟩⟨1|, such that
+                                                                      𝑅
+                                                          =
+                                                     𝑉         𝑄              𝑃
+
+  Lemma A.6. [Shende and Markov 2008, Eqation 4] Suppose 𝑑 0 , 𝑑 1 are two complex numbers.
+For C(Diag(𝑑 0, 𝑑 1 )), there exist one 1-qubit gate 𝑃 (𝜑) and one 2-qubit gate C(𝑅𝑧 (𝛼)), such that
+                                                 •                    𝑃 (𝜑)         •
+                                                               =
+                                          Diag(𝑑 0, 𝑑 1 )                         𝑅𝑧 (𝛼)
+
+     Lemma A.7. For two n-qubit gates 𝑉0 and 𝑉1 , we have 𝑉 = |0⟩⟨0| ⊗𝑉0 +|1⟩⟨1| ⊗𝑉1 = C(𝑉1𝑉0† ) (𝐼 ⊗𝑉0 ).
+                                                                              •
+                                                          =
+                                                 / 𝑉           / 𝑉0       𝑉0†𝑉1
+
+     Proof. C(𝑉1𝑉0† ) (𝐼 ⊗ 𝑉0 ) = (|0⟩⟨0| ⊗ 𝐼 + |1⟩⟨1| ⊗ 𝑉1𝑉0† ) (𝐼 ⊗ 𝑉0 ) = |0⟩⟨0| ⊗ 𝑉0 + |1⟩⟨1| ⊗ 𝑉1 .                  □
+     Lemma A.8. [Palsberg and Yu 2024, Lemma 6.1] For a 2-qubit gate 𝑉 , either
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                         27
+
+
+    • ∃|𝑦⟩ : 𝑉 (|𝑦⟩ ⊗ |0⟩) is entangled, or
+    • ∃|𝑥⟩ : ∀|𝑦⟩ : ∃|𝑧⟩ : 𝑉 (|𝑦⟩ ⊗ |0⟩) = |𝑥⟩ ⊗ |𝑧⟩, or
+    • ∃|𝑥⟩ : ∀|𝑦⟩ : ∃|𝑧⟩ : 𝑉 (|𝑦⟩ ⊗ |0⟩) = |𝑧⟩ ⊗ |𝑥⟩.
+
+    Lemma A.9. [Palsberg and Yu 2024, Lemma 6.4] Suppose 𝑑 0 , 𝑑 1 are complex numbers such that
+|𝑑 0 | = |𝑑 1 | = 1. There exist 2-qubit unitaries 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , such that 𝑈 1𝐴𝐶 𝑈 2𝐵𝐶 𝑈 3𝐴𝐶 𝑈 4𝐵𝐶 =
+CC(Diag(𝑑 0, 𝑑 1 )) if and only if either 𝑑 0 = 𝑑 1 or 𝑑 0𝑑 1 = 1.
+  Lemma A.10. For square matrices 𝑈 , 𝑉 of the same size, we have that det(𝑈 𝑉 ) = det(𝑈 ) det(𝑉 ).
+   Lemma A.11. [Palsberg and Yu 2024, Lemma A.5] For 1-qubit gates 𝑃 and 𝑄 and complex numbers
+𝑎, 𝑏, 𝑝, 𝑞, if Eigenvalues(𝑃) = (𝑎, 𝑏) and Eigenvalues(𝑄) = (𝑝, 𝑞), then Eigenvalues(𝑃 ⊗ 𝑄) =
+(𝑎𝑝, 𝑎𝑞, 𝑏𝑝, 𝑏𝑞).
+  Lemma A.12. [Palsberg and Yu 2024, Lemma A.6] For 1-qubit gates 𝑃, 𝑄, we have that
+Eigenvalues(|0⟩⟨0| ⊗ 𝑃 + |1⟩⟨1| ⊗ 𝑄) = Eigenvalues(𝑃) ⊔ Eigenvalues(𝑄).
+   Lemma A.13. [Palsberg and Yu 2024, Lemma A.19] If V is a 2-qubit gate and |𝜙⟩𝐵𝐶 , |𝜔⟩𝐵𝐶 are
+4-dimensional unit vectors, such that 𝑉 𝐴𝐶 (|0⟩𝐴 ⊗ |𝜙⟩𝐵𝐶 ) = |0⟩𝐴 ⊗ |𝜔⟩𝐵𝐶 and |𝜙⟩𝐵𝐶 is entangled, then
+V is of the following form, where 𝑃0 and 𝑃1 are 1-qubit gates
+                                         𝑉 = |0⟩⟨0| ⊗ 𝑃0 + |1⟩⟨1| ⊗ 𝑃1
+
+
+  Lemma A.14. [Palsberg and Yu 2024, Lemma A.24] For 2-qubit gates 𝑈 , 𝑉 , 𝑊0 , 𝑊1 , if
+                                    𝑈 𝐴𝐶 𝑉 𝐴𝐵 = |0⟩⟨0| ⊗ 𝑊0 + |1⟩⟨1| ⊗ 𝑊1
+then
+                              𝑈 𝐴𝐶 𝑉 𝐴𝐵 = |0⟩⟨0| ⊗ 𝑃0 ⊗ 𝑄 0 + |1⟩⟨1| ⊗ 𝑃 1 ⊗ 𝑄 1
+, where 𝑃0 , 𝑄 0 , 𝑃1 , 𝑄 1 are 1-qubit gates.
+  Lemma A.15. [Palsberg and Yu 2024, Lemma A.30] For 2-qubit gates 𝑈 1, 𝑈 2, 𝑈 3, 𝑈 4 , for which
+                                ∃|𝑥⟩ : ∀|𝑦⟩ : ∃|𝑧⟩ : 𝑈 2 (|𝑦⟩ ⊗ |0⟩) = |𝑧⟩ ⊗ |𝑥⟩
+there exist 2-qubit gates 𝑉1, 𝑉2, 𝑉4 and a 1-qubit gate 𝑃 such that
+                              𝑈 1𝐴𝐶 𝑈 2𝐵𝐶 𝑈 3𝐴𝐶 𝑈 4𝐵𝐶 = 𝑉1𝐴𝐶 𝑉2𝐵𝐶 𝑈 3𝐴𝐶 𝑉4𝐵𝐶
+                                                    𝑉2 = 𝐼 ⊗ |0⟩⟨0| + 𝑃 ⊗ |1⟩⟨1|
+
+
+  Lemma A.16. [Palsberg and Yu 2024, Lemma A.32] For 2-qubit gates 𝑈 1, 𝑈 2, 𝑈 3, 𝑈 4 , there exist
+2-qubit gates 𝑉1, 𝑉2, 𝑉3, 𝑉4 , such that
+                               𝑈 1𝐴𝐶 𝑈 2𝐵𝐶 𝑈 3𝐴𝐶 𝑈 4𝐵𝐶 = 𝑉1𝐴𝐶 𝑉2𝐵𝐶 𝑉3𝐴𝐶 𝑉4𝐵𝐶
+                                          𝑉3 (|0⟩ ⊗ |0⟩) = |0⟩ ⊗ |0⟩
+
+
+  Lemma A.17. [Palsberg and Yu 2024, Lemma A.33] For 2-qubit gates 𝑉1, 𝑉2, 𝑉4 , if
+                                                                   †
+                    ∀|𝑦⟩ : 𝑉1𝐴𝐶 𝑉2𝐵𝐶 (|0⟩𝐴 ⊗ |𝑦⟩𝐵 ⊗ |0⟩𝐶 ) = 𝑉4 𝐵𝐶 (|0⟩𝐴 ⊗ |𝑦⟩𝐵 ⊗ |0⟩𝐶 )
+                         ∃|𝑥⟩ : ∀|𝑦⟩ : ∃|𝑧⟩ : 𝑉2 (|𝑦⟩ ⊗ |0⟩) = |𝑥⟩ ⊗ |𝑧⟩
+
+                                                            , Vol. 1, No. 1, Article . Publication date: December 2025.
+28                                                                                                      Keli Huang and Jens Palsberg
+
+
+then 𝑉1 is of the following form, where 𝑃0, 𝑃1 are 1-qubit gates:
+
+                                                𝑉1 = |0⟩⟨0| ⊗ 𝑃 0 + |1⟩⟨1| ⊗ 𝑃1
+
+
+
+
+B     CHARACTERISTICS OF S𝑖𝑗 SETS
+In this section, we prove two characteristics of S𝑖𝑗 sets mentioned in Section 5. Lemma 5.1 states
+that S𝑖𝑗 sets can be transformed to another one with the same 𝑖 index after swap transformations.
+Lemma 5.2 states that both the number of unrestricted 2-qubit gates and the number of neighbor
+2-qubit gates stay the same after swap transformations. Lemma 5.3 states that the dagger operation
+will not change the set to which the 3-qubit diagonal gate belongs.
+
+   Lemma 5.1. (1) 𝑆 𝐵𝐶 S𝑖1 𝑆 𝐵𝐶 = S𝑖1 , (2) 𝑆 𝐴𝐵 S𝑖1 𝑆 𝐴𝐵 = S𝑖2 , (3) 𝑆 𝐴𝐶 S𝑖1 𝑆 𝐴𝐶 = S𝑖3 , (4) 𝑆 𝐴𝐶 S𝑖2 𝑆 𝐴𝐶 = S𝑖2 ,
+(5) 𝑆 𝐵𝐶 S𝑖2 𝑆 𝐵𝐶 = S𝑖3 , and (6) 𝑆 𝐴𝐵 S𝑖3 𝑆 𝐴𝐵 = S𝑖3 .
+
+     Proof. Suppose we have that 𝐷 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ). For property (1), we sup-
+pose 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 = Diag(𝑑 0, 𝑑 2, 𝑑 1, 𝑑 3, 𝑑 4, 𝑑 6, 𝑑 5, 𝑑 7 ) = Diag(𝑑 0′ , 𝑑 1′ , 𝑑 2′ , 𝑑 3′ , 𝑑 4′ , 𝑑 5′ , 𝑑 6′ , 𝑑 7′ ). From
+this, we know that: (1) If 𝐷 ∈ S11 , then 𝑑 0𝑑 5 = 𝑑 1𝑑 4 , 𝑑 0𝑑 6 = 𝑑 2𝑑 4 , and 𝑑 0𝑑 7 = 𝑑 3𝑑 4 . Thus, we have
+𝑑 0′ 𝑑 6′ = 𝑑 2′ 𝑑 4′ , 𝑑 0′ 𝑑 5′ = 𝑑 1′ 𝑑 4′ , and 𝑑 0′ 𝑑 7′ = 𝑑 3′ 𝑑 4′ and 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 ∈ S11 . (2) If 𝐷 ∈ S21 , then 𝑑 0𝑑 3 = 𝑑 1𝑑 2 and
+𝑑 4𝑑 7 = 𝑑 5𝑑 6 . Thus, we have 𝑑 0′ 𝑑 3′ = 𝑑 1′ 𝑑 2′ and 𝑑 4′ 𝑑 7′ = 𝑑 5′ 𝑑 6′ and 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 ∈ S21 . (3) If 𝐷 ∈ S31 , then
+𝑑 0𝑑 7 = 𝑑 3𝑑 4 and 𝑑 1𝑑 6 = 𝑑 2𝑑 5 . Thus, we have 𝑑 0′ 𝑑 7′ = 𝑑 3′ 𝑑 4′ and 𝑑 2′ 𝑑 5′ = 𝑑 1′ 𝑑 6′ and 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 ∈ S31 . (4) If
+𝐷 ∈ S41 , then 𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7 . Thus, we have 𝑑 0′ 𝑑 3′ 𝑑 5′ 𝑑 6′ = 𝑑 1′ 𝑑 2′ 𝑑 4′ 𝑑 7′ and 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 ∈ S41 . (5) If
+𝐷 ∈ S51 , then 𝑑 0𝑑 3𝑑 4𝑑 7 = 𝑑 1𝑑 2𝑑 5𝑑 6 . Thus, we have 𝑑 0′ 𝑑 3′ 𝑑 4′ 𝑑 7′ = 𝑑 1′ 𝑑 2′ 𝑑 5′ 𝑑 6′ and 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 ∈ S51 . (6) If
+𝐷 ∈ S61 , then 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 ∈ S61 by definition.
+     For property (2), we suppose 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 = Diag(𝑑 0, 𝑑 1, 𝑑 4, 𝑑 5, 𝑑 2, 𝑑 3, 𝑑 6, 𝑑 7 ) and 𝐷 is equal
+to Diag(𝑑 0′ , 𝑑 1′ , 𝑑 2′ , 𝑑 3′ , 𝑑 4′ , 𝑑 5′ , 𝑑 6′ , 𝑑 7′ ). From this, we know that: (1) If 𝐷 ∈ S11 , then 𝑑 0𝑑 5 = 𝑑 1𝑑 4 ,
+𝑑 0𝑑 6 = 𝑑 2𝑑 4 , and 𝑑 0𝑑 7 = 𝑑 3𝑑 4 . Thus, we have 𝑑 0′ 𝑑 3′ = 𝑑 1′ 𝑑 2′ , 𝑑 0′ 𝑑 6′ = 𝑑 2′ 𝑑 4′ , and 𝑑 0′ 𝑑 7′ = 𝑑 2′ 𝑑 5′ and
+𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S12 . (2) If 𝐷 ∈ S21 , then 𝑑 0𝑑 3 = 𝑑 1𝑑 2 and 𝑑 4𝑑 7 = 𝑑 5𝑑 6 . Thus, we have 𝑑 0′ 𝑑 5′ = 𝑑 1′ 𝑑 4′ and
+𝑑 2′ 𝑑 7′ = 𝑑 3′ 𝑑 6′ and 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S22 . (3) If 𝐷 ∈ S31 , then 𝑑 0𝑑 7 = 𝑑 3𝑑 4 and 𝑑 1𝑑 6 = 𝑑 2𝑑 5 . Thus, we have
+𝑑 0′ 𝑑 7′ = 𝑑 2′ 𝑑 5′ and 𝑑 1′ 𝑑 6′ = 𝑑 3′ 𝑑 4′ and 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S32 . (4) If 𝐷 ∈ S41 , then 𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7 . Thus, we
+have 𝑑 0′ 𝑑 3′ 𝑑 5′ 𝑑 6′ = 𝑑 1′ 𝑑 2′ 𝑑 4′ 𝑑 7′ and 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S42 . (5) If 𝐷 ∈ S51 , then 𝑑 0𝑑 3𝑑 4𝑑 7 = 𝑑 1𝑑 2𝑑 5𝑑 6 . Thus, we
+have 𝑑 0′ 𝑑 2′ 𝑑 5′ 𝑑 7′ = 𝑑 1′ 𝑑 3′ 𝑑 4′ 𝑑 6′ and 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S52 . (6) If 𝐷 ∈ S61 , then 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 ∈ S62 by definition.
+     For property (3), we suppose 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 = Diag(𝑑 0, 𝑑 4, 𝑑 2, 𝑑 6, 𝑑 1, 𝑑 5, 𝑑 3, 𝑑 7 ) and 𝐷 is equal
+to Diag(𝑑 0′ , 𝑑 1′ , 𝑑 2′ , 𝑑 3′ , 𝑑 4′ , 𝑑 5′ , 𝑑 6′ , 𝑑 7′ ). From this, we know that: (1) If 𝐷 ∈ S11 , then 𝑑 0𝑑 5 = 𝑑 1𝑑 4 ,
+𝑑 0𝑑 6 = 𝑑 2𝑑 4 , and 𝑑 0𝑑 7 = 𝑑 3𝑑 4 . Thus, we have 𝑑 0′ 𝑑 5′ = 𝑑 1′ 𝑑 4′ , 𝑑 0′ 𝑑 3′ = 𝑑 1′ 𝑑 2′ , and 𝑑 0′ 𝑑 7′ = 𝑑 1′ 𝑑 6′ and
+𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 ∈ S13 . (2) If 𝐷 ∈ S21 , then 𝑑 0𝑑 3 = 𝑑 1𝑑 2 and 𝑑 4𝑑 7 = 𝑑 5𝑑 6 . Thus, we have 𝑑 0′ 𝑑 6′ = 𝑑 2′ 𝑑 4′ and
+𝑑 1′ 𝑑 7′ = 𝑑 3′ 𝑑 5′ and 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 ∈ S23 . (3) If 𝐷 ∈ S31 , then 𝑑 0𝑑 7 = 𝑑 3𝑑 4 and 𝑑 1𝑑 6 = 𝑑 2𝑑 5 . Thus, we have
+𝑑 0′ 𝑑 7′ = 𝑑 1′ 𝑑 6′ and 𝑑 3′ 𝑑 4′ = 𝑑 2′ 𝑑 5′ and 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 ∈ S33 . (4) If 𝐷 ∈ S41 , then 𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7 . Thus, we
+have 𝑑 0′ 𝑑 3′ 𝑑 5′ 𝑑 6′ = 𝑑 1′ 𝑑 2′ 𝑑 4′ 𝑑 7′ and 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 ∈ S43 . (5) If 𝐷 ∈ S51 , then 𝑑 0𝑑 3𝑑 4𝑑 7 = 𝑑 1𝑑 2𝑑 5𝑑 6 . Thus, we
+have 𝑑 0′ 𝑑 1′ 𝑑 6′ 𝑑 7′ = 𝑑 2′ 𝑑 3′ 𝑑 4′ 𝑑 5′ and 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 ∈ S53 . (6) If 𝐷 ∈ S61 , then 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 ∈ S63 by definition.
+     For property (4), we have 𝑆 𝐴𝐶 S𝑖2 𝑆 𝐴𝐶 = 𝑆 𝐴𝐶 𝑆 𝐴𝐵 S𝑖1 𝑆 𝐴𝐵 𝑆 𝐴𝐶 = 𝑆 𝐴𝐵 𝑆 𝐵𝐶 S𝑖1 𝑆 𝐵𝐶 𝑆 𝐴𝐵 = S𝑖2 .
+     For property (5), we have 𝑆 𝐵𝐶 S𝑖2 𝑆 𝐵𝐶 = 𝑆 𝐵𝐶 𝑆 𝐴𝐵 S𝑖1 𝑆 𝐴𝐵 𝑆 𝐵𝐶 = 𝑆 𝐴𝐶 𝑆 𝐵𝐶 S𝑖1 𝑆 𝐵𝐶 𝑆 𝐴𝐶 = S𝑖3 .
+     For property (6), we have 𝑆 𝐴𝐵 S𝑖3 𝑆 𝐴𝐵 = 𝑆 𝐴𝐵 𝑆 𝐴𝐶 S𝑖1 𝑆 𝐴𝐶 𝑆 𝐴𝐵 = 𝑆 𝐴𝐶 𝑆 𝐵𝐶 S𝑖1 𝑆 𝐵𝐶 𝑆 𝐴𝐶 = S𝑖3 .                                  □
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                            29
+
+
+    Lemma 5.2. For 𝑘 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }, a 3-qubit gate 𝐷 can be implemented with 𝑚 2-qubit
+gates as 𝐷 = 𝑈 1𝑖 1 𝑈 2𝑖 2 . . . 𝑈𝑚𝑖𝑚 if and only if 𝑆 𝑘 𝐷 𝑆 𝑘 can be implemented with 𝑚 2-qubit gates as
+𝑆 𝑘 𝐷 𝑆 𝑘 = 𝑉1 𝑗1 𝑉2 𝑗2 . . . 𝑉𝑚 𝑗𝑚 . Specifically, for 𝑝 ranging from 1 to m,
+    (1) for 𝑘 = 𝐵𝐶, we have if 𝑖 𝑝 = 𝐵𝐶 then 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐵𝐶, if 𝑖 𝑝 = 𝐴𝐶 then 𝑉𝑝 = 𝑈𝑝 and
+        𝑗𝑝 = 𝐴𝐵, and if 𝑖 𝑝 = 𝐴𝐵 then 𝑉𝑝 = 𝑈𝑝 and 𝑗𝑝 = 𝐴𝐶.
+    (2) for 𝑘 = 𝐴𝐶, we have if 𝑖 𝑝 = 𝐵𝐶 then 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐴𝐵, if 𝑖 𝑝 = 𝐴𝐶 then 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and
+        𝑗𝑝 = 𝐴𝐶, and if 𝑖 𝑝 = 𝐴𝐵 then 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐵𝐶.
+    (3) for 𝑘 = 𝐴𝐵, we have if 𝑖 𝑝 = 𝐵𝐶 then 𝑉𝑝 = 𝑈𝑝 and 𝑗𝑝 = 𝐴𝐶, if 𝑖 𝑝 = 𝐴𝐶 then 𝑉𝑝 = 𝑈𝑝 and
+        𝑗𝑝 = 𝐵𝐶, and if 𝑖 𝑝 = 𝐴𝐵 then 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐴𝐵.
+
+    Proof. Suppose we have that 𝐷 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ) and that 𝐷 can be im-
+plemented with 𝑚 2-qubit gates 𝑈 1 , 𝑈 2 , . . . , 𝑈𝑚 as 𝐷 = 𝑈 1𝑖 1 𝑈 2𝑖 2 . . . 𝑈𝑚𝑖𝑚 , where 𝑖 1 , 𝑖 2 , . . . ,
+𝑖𝑚 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 }.
+    If 𝑘 = 𝐵𝐶, then we have that 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 = Diag(𝑑 0, 𝑑 2, 𝑑 1, 𝑑 3, 𝑑 4, 𝑑 6, 𝑑 5, 𝑑 7 ). From this, we
+conclude that 𝑆 𝐵𝐶 𝑈 1𝑖 1 𝑈 2𝑖 2 . . . 𝑈𝑚𝑖𝑚 𝑆 𝐵𝐶 = (𝑆 𝐵𝐶 𝑈 1𝑖 1 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝑖 2 𝑆 𝐵𝐶 ) . . . (𝑆 𝐵𝐶 𝑈𝑚𝑖𝑚 𝑆 𝐵𝐶 ). For
+𝑝 ranging from 1 to 𝑚, if 𝑖 𝑝 = 𝐵𝐶, we define 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐵𝐶. If 𝑖 𝑝 = 𝐴𝐶, we define 𝑉𝑝 = 𝑈𝑝
+and 𝑗𝑝 = 𝐴𝐵. If 𝑖 𝑝 = 𝐴𝐵, we define 𝑉𝑝 = 𝑈𝑝 and 𝑗𝑝 = 𝐴𝐶. From the above, according to Section 2,
+we have that (𝑆 𝐵𝐶 𝑈 1𝑖 1 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝑖 2 𝑆 𝐵𝐶 ) . . . (𝑆 𝐵𝐶 𝑈𝑚𝑖𝑚 𝑆 𝐵𝐶 ) = 𝑉1 𝑗1 𝑉2 𝑗2 . . . 𝑉𝑚 𝑗𝑚 .
+    If 𝑘 = 𝐴𝐶, then we have that 𝑆 𝐴𝐶 𝐷 𝑆 𝐴𝐶 = Diag(𝑑 0, 𝑑 4, 𝑑 2, 𝑑 6, 𝑑 1, 𝑑 5, 𝑑 3, 𝑑 7 ). From this, we
+conclude that 𝑆 𝐴𝐶 𝑈 1𝑖 1 𝑈 2𝑖 2 . . . 𝑈𝑚𝑖𝑚 𝑆 𝐴𝐶 = (𝑆 𝐴𝐶 𝑈 1𝑖 1 𝑆 𝐴𝐶 ) (𝑆 𝐴𝐶 𝑈 2𝑖 2 𝑆 𝐴𝐶 ) . . . (𝑆 𝐴𝐶 𝑈𝑚𝑖𝑚 𝑆 𝐴𝐶 ). For
+𝑝 ranging from 1 to 𝑚, if 𝑖 𝑝 = 𝐵𝐶, we define 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐴𝐵. If 𝑖 𝑝 = 𝐴𝐶, we define
+𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐴𝐶. If 𝑖 𝑝 = 𝐴𝐵, we define 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐵𝐶. From the above, according
+to Section 2, we have that (𝑆 𝐴𝐶 𝑈 1𝑖 1 𝑆 𝐴𝐶 ) (𝑆 𝐴𝐶 𝑈 2𝑖 2 𝑆 𝐴𝐶 ) . . . (𝑆 𝐴𝐶 𝑈𝑚𝑖𝑚 𝑆 𝐴𝐶 ) = 𝑉1 𝑗1 𝑉2 𝑗2 . . . 𝑉𝑚 𝑗𝑚 .
+    If 𝑘 = 𝐴𝐵, then we have that 𝑆 𝐴𝐵 𝐷 𝑆 𝐴𝐵 = Diag(𝑑 0, 𝑑 1, 𝑑 4, 𝑑 5, 𝑑 2, 𝑑 3, 𝑑 6, 𝑑 7 ). From this, we
+conclude that 𝑆 𝐴𝐵 𝑈 1𝑖 1 𝑈 2𝑖 2 . . . 𝑈𝑚𝑖𝑚 𝑆 𝐴𝐵 = (𝑆 𝐴𝐵 𝑈 1𝑖 1 𝑆 𝐴𝐵 ) (𝑆 𝐴𝐵 𝑈 2𝑖 2 𝑆 𝐴𝐵 ) . . . (𝑆 𝐴𝐵 𝑈𝑚𝑖𝑚 𝑆 𝐴𝐵 ). For
+𝑝 ranging from 1 to 𝑚, if 𝑖 𝑝 = 𝐵𝐶, we define 𝑉𝑝 = 𝑈𝑝 and 𝑗𝑝 = 𝐴𝐶. If 𝑖 𝑝 = 𝐴𝐶, we define 𝑉𝑝 = 𝑈𝑝
+and 𝑗𝑝 = 𝐵𝐶. If 𝑖 𝑝 = 𝐴𝐵, we define 𝑉𝑝 = 𝑆 𝑈𝑝 𝑆 and 𝑗𝑝 = 𝐴𝐵. From the above, according to Section 2,
+we have that (𝑆 𝐴𝐶 𝑈 1𝑖 1 𝑆 𝐴𝐶 ) (𝑆 𝐴𝐶 𝑈 2𝑖 2 𝑆 𝐴𝐶 ) . . . (𝑆 𝐴𝐶 𝑈𝑚𝑖𝑚 𝑆 𝐴𝐶 ) = 𝑉1 𝑗1 𝑉2 𝑗2 . . . 𝑉𝑚 𝑗𝑚 .
+    From the above, we conclude that 𝐷 can be implemented with 𝑚 2-qubit gates if and only if
+𝑆 𝑘 𝐷 𝑆 𝑘 can be implemented with 𝑚 2-qubit gates. Also, if we fix 𝑘, then each 𝑗𝑝 after adding swap
+gates has a one-to-one correspondence to 𝑖 𝑝 before adding swap gates. Thus, these 𝑚 2-qubit gates
+are 2-qubit neighbor (unrestricted) gates before the swap transformations if and only if these 𝑚
+2-qubit gates are 2-qubit neighbor (unrestricted) gates before the swap transformations.                             □
+
+    Lemma 5.3. A 3-qubit diagonal gate 𝐷 ∈ S𝑖𝑗 if and only if 𝐷 † ∈ S𝑖𝑗 .
+
+   Proof. For two 3-qubit diagonal gate 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) and 𝐷 † = Diag(𝑑 0†, 𝑑 1†, . . . , 𝑑 7† ), we
+have that 𝐷 ∈ S𝑖𝑗 if and only if 𝐷 † ∈ S𝑖𝑗 . This is because all the equations needed are still valid
+after the dagger operation.                                                                                          □
+
+C    REDUCTION TO A FEW CASES IN THEOREM 6.2
+In Table 3, we list six implementations using four neighbor gates, three implementations using five
+2-qubit neighbor gates, and three implementations using four 2-qubit unrestricted gates. This is
+sufficient because of the following two lemmas. Lemma C.1 reduces the number of implementations
+using four 2-qubit unrestricted gates to nine, and Lemma C.2 reduces the number of implementations
+using five 2-qubit neighbor gates to three.
+
+                                                               , Vol. 1, No. 1, Article . Publication date: December 2025.
+30                                                                                                Keli Huang and Jens Palsberg
+
+
+   Lemma C.1. For four 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , there exist 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , such that
+𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 3 𝑈 4𝑖 4 = 𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗3 𝑉4 𝑗4 , where 𝑖 1 , 𝑖 2 , 𝑖 3 , 𝑖 4 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 } and 𝑗1 , 𝑗2 , 𝑗3 , 𝑗4 satisfy
+one of the following cases:
+   (1) 𝑗1 = 𝐵𝐶, 𝑗2 = 𝐴𝐶, 𝑗3 = 𝐵𝐶, 𝑗4 = 𝐴𝐶.
+   (2) 𝑗1 = 𝐵𝐶, 𝑗2 = 𝐴𝐵, 𝑗3 = 𝐵𝐶, 𝑗4 = 𝐴𝐵.
+   (3) 𝑗1 = 𝐵𝐶, 𝑗2 = 𝐴𝐶, 𝑗3 = 𝐴𝐵, 𝑗4 = 𝐵𝐶.
+   (4) 𝑗1 = 𝐴𝐵, 𝑗2 = 𝐵𝐶, 𝑗3 = 𝐴𝐵, 𝑗4 = 𝐵𝐶.
+   (5) 𝑗1 = 𝐴𝐵, 𝑗2 = 𝐴𝐶, 𝑗3 = 𝐴𝐵, 𝑗4 = 𝐴𝐶.
+   (6) 𝑗1 = 𝐴𝐵, 𝑗2 = 𝐵𝐶, 𝑗3 = 𝐴𝐶, 𝑗4 = 𝐴𝐵.
+   (7) 𝑗1 = 𝐴𝐶, 𝑗2 = 𝐵𝐶, 𝑗3 = 𝐴𝐶, 𝑗4 = 𝐵𝐶.
+   (8) 𝑗1 = 𝐴𝐶, 𝑗2 = 𝐴𝐵, 𝑗3 = 𝐴𝐶, 𝑗4 = 𝐴𝐵.
+   (9) 𝑗1 = 𝐴𝐶, 𝑗2 = 𝐵𝐶, 𝑗3 = 𝐴𝐵, 𝑗4 = 𝐴𝐶.
+
+   Proof. For products using four 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , we first restrict 𝑖 1 = 𝐵𝐶. We examine
+all products as shown in Table 4. We see that three of the products are already among the nine cases
+in the lemma, so we copy them straight to the third column and add the case number. For each
+one of the five remaining products, we map the first column to the second column by inserting 𝑆
+gates that cancel out and by using associativity. The result is an expression that we simplify to the
+expression in the third column, using the properties of 𝑆 gates listed in Section 2. The expression
+in the third column can easily be seen as one of the first three cases in the lemma.
+   By defining 𝐴′ = 𝐶, 𝐵 ′ = 𝐴, and 𝐶 ′ = 𝐵, for 𝑖 1 = 𝐵 ′𝐶 ′ , according to Table 4, we have that for four
+2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , such that 𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 3 𝑈 4𝑖 4 =
+𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗3 𝑉4 𝑗4 , where 𝑖 2 , 𝑖 3 , 𝑖 4 ∈ { 𝐴′ 𝐵 ′, 𝐴′𝐶 ′, 𝐵 ′𝐶 ′ } and 𝑗1 , 𝑗2 , 𝑗3 , 𝑗4 satisfy case (4), case (5), or
+case (6).
+   By defining 𝐴′ = 𝐵, 𝐵 ′ = 𝐴, and 𝐶 ′ = 𝐶, for 𝑖 1 = 𝐵 ′𝐶 ′ , according to Table 4, we have that for four
+2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , there exist four 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , such that 𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 3 𝑈 4𝑖 4 =
+𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗3 𝑉4 𝑗4 , where 𝑖 2 , 𝑖 3 , 𝑖 4 ∈ { 𝐴′ 𝐵 ′, 𝐴′𝐶 ′, 𝐵 ′𝐶 ′ } and 𝑗1 , 𝑗2 , 𝑗3 , 𝑗4 satisfy case (7), case (8), or
+case (9).
+   From the above, we conclude that all products using four 2-qubit gates can be implemented with
+nine specific products using four 2-qubit gates.                                                                               □
+   Lemma C.2. For five 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , 𝑈 5 , there exist five 2-qubit gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 ,
+𝑉5 , such that 𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 1 𝑈 4𝑖 2 𝑈 5𝑖 1 = 𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗1 𝑉4 𝑗2 𝑉5 𝑗1 , where 𝑖 1 , 𝑖 2 ∈ { 𝐴𝐵, 𝐴𝐶, 𝐵𝐶 } and 𝑗1 , 𝑗2
+satisfy one of the following cases:
+   (1) 𝑗1 = 𝐵𝐶, 𝑗2 = 𝐴𝐶.
+   (2) 𝑗1 = 𝐴𝐵, 𝑗2 = 𝐵𝐶.
+   (3) 𝑗1 = 𝐴𝐶, 𝑗2 = 𝐵𝐶.
+
+   Proof. For products using five 2-qubit neighbor gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , 𝑈 5 , we first restrict 𝑖 1 = 𝐵𝐶.
+We examine all products and summarize them in Table 5. We see that one of the products is already
+among the three cases in the lemma, so we copy them directly to the third column and add the case
+number. For the one remaining gate combination, we do the following calculations, we map the
+first column to the second column by inserting 𝑆 gates that cancel out and by using associativity.
+The result is an expression that we simplify to the expression in the second column, using the
+properties of 𝑆 gates listed in Section 2. The expression in the third column can easily be seen as
+the first case in the lemma.
+   By defining 𝐴′ = 𝐶, 𝐵 ′ = 𝐴, and 𝐶 ′ = 𝐵, for 𝑖 1 = 𝐵 ′𝐶 ′ , according to Table 5, we have that for five
+2-qubit neighbor gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , 𝑈 5 , there exist five 2-qubit neighbor gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , 𝑉5 ,
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                                       31
+
+
+                Table 4. Implement products using four 2-qubit gates within a few combinations
+
+                                                            when 𝑖 1 = 𝐵𝐶.
+      𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 3 𝑈 4𝑖 4                                         𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗3 𝑉4 𝑗4
+
+   𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐴𝐶 𝑈 4𝐴𝐵                         𝑈 1𝐵𝐶 (𝑈 2𝐴𝐵 𝑆 𝐴𝐵 )                 (2)      𝑈 1𝐵𝐶 𝑈 2 𝑆 𝐴𝐵 𝑈 3𝐵𝐶 𝑆 𝑈 4𝐴𝐵
+                                              (𝑆 𝐴𝐵 𝑈 3𝐴𝐶 𝑆 𝐴𝐵 ) (𝑆 𝐴𝐵 𝑈 4𝐴𝐵 )
+
+    𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐴𝐶 𝑈 4𝐵𝐶                   (𝑈 1𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝐵𝐶 )         (3)      𝑈 1 𝑆 𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 𝑆 𝑈 4𝐵𝐶
+                                              (𝑆 𝐵𝐶 𝑈 3𝐴𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 4𝐵𝐶 )
+
+    𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵                                                            (2)           𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵
+
+    𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶                   (𝑈 1𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝐵𝐶 )         (1)      𝑈 1 𝑆 𝐵𝐶 𝑈 2𝐴𝐶 𝑆 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶
+                                                    (𝑆 𝐵𝐶 𝑈 3𝐵𝐶 ) 𝑈 4𝐴𝐶
+
+                                                   𝑈 1𝐵𝐶 (𝑈 2𝐴𝐶 𝑆 𝐴𝐶 )
+   𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 𝑈 4𝐴𝐶               (𝑆 𝐵𝐶 𝑆 𝐵𝐶 𝑆 𝐴𝐶 𝑈 3𝐴𝐵 𝑆 𝐴𝐶 𝑆 𝐵𝐶 𝑆 𝐵𝐶 )        (1) 𝑈 1𝐵𝐶 𝑈 2 𝑆 𝐴𝐶 𝑆 𝑈 3 𝑆 𝐵𝐶 𝑆 𝑈 4𝐴𝐶
+                                                       (𝑆 𝐴𝐶 𝑈 4𝐴𝐶 )
+
+    𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 𝑈 4𝐵𝐶                                                            (3)          𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 𝑈 4𝐵𝐶
+
+    𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵                   (𝑈 1𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝐴𝐶 𝑆 𝐵𝐶 )         (2)      𝑈 1 𝑆 𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵
+                                                    (𝑆 𝐵𝐶 𝑈 3𝐵𝐶 ) 𝑈 4𝐴𝐵
+
+   𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶                                                             (1)          𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶
+
+
+          Table 5. Implement products using five 2-qubit neighbor gates within a few combinations
+
+                                                            when 𝑖 1 = 𝐵𝐶.
+         𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 1 𝑈 4𝑖 2 𝑈 5𝑖 1                                𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗1 𝑉4 𝑗2 𝑉5 𝑗1
+
+     𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 𝑈 4𝐴𝐵 𝑈 5𝐵𝐶                   (𝑈 1𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝐵𝐶 )          (1) 𝑈 1 𝑆 𝐵𝐶 𝑈 2𝐴𝐶 𝑆 𝑈 3 𝑆 𝐵𝐶
+                                                   (𝑆 𝐵𝐶 𝑈 3𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 4𝐴𝐵 𝑆 𝐵𝐶 )                     𝑈 4𝐴𝐶 𝑆 𝑈 5𝐵𝐶
+                                                              (𝑆 𝐵𝐶 𝑈 5𝐵𝐶 )
+
+     𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶                                                             (1)         𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶
+                                                                                                             𝑈 4𝐴𝐶 𝑈 5𝐵𝐶
+
+
+
+such that 𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 1 𝑈 4𝑖 2 𝑈 5𝑖 1 = 𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗1 𝑉4 𝑗2 𝑉5 𝑗1 , where 𝑖 2 ∈ { 𝐴′ 𝐵 ′, 𝐴′𝐶 ′ } and 𝑗1 , 𝑗2 satisfy
+case (2).
+  By defining 𝐴′ = 𝐵, 𝐵 ′ = 𝐴, and 𝐶 ′ = 𝐶, for 𝑖 1 = 𝐵 ′𝐶 ′ , according to Table 5, we have that for five
+2-qubit neighbor gates 𝑈 1 , 𝑈 2 , 𝑈 3 , 𝑈 4 , 𝑈 5 , there exist five 2-qubit neighbor gates 𝑉1 , 𝑉2 , 𝑉3 , 𝑉4 , 𝑉5 ,
+
+                                                                          , Vol. 1, No. 1, Article . Publication date: December 2025.
+32                                                                                                   Keli Huang and Jens Palsberg
+
+
+such that 𝑈 1𝑖 1 𝑈 2𝑖 2 𝑈 3𝑖 1 𝑈 4𝑖 2 𝑈 5𝑖 1 = 𝑉1 𝑗1 𝑉2 𝑗2 𝑉3 𝑗1 𝑉4 𝑗2 𝑉5 𝑗1 , where 𝑖 2 ∈ { 𝐴′ 𝐵 ′, 𝐴′𝐶 ′ } and 𝑗1 , 𝑗2 satisfy
+case (3).
+  From the above, we conclude that all products using five 2-qubit neighbor gates can be imple-
+mented with three specific products using 2-qubit neighbor gates.                                                              □
+
+D      PROOF OF THEOREM 7.1
+Here, we prove Theorem 7.1 from Section 7. Theorem 7.1 shows the tight bounds on the number of
+needed neighbor 2-qubit gates of 3-qubit diagonal gates.
+  Lemma D.1. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S1 if and only if 𝐷 can be implemented
+with one 2-qubit neighbor gate.
+   Proof. (⇒). If 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) ∈ S1 , then we suppose that 𝐷 ∈ S11 . This is valid because
+according Lemma 5.1 and Lemma 5.2, S11 , S12 , and S13 have the same upper bound on the number of
+of 2-qubit neighbor gates. From this, we have that
+                                     𝑑 0𝑑 5 = 𝑑 1𝑑 4 ,   𝑑 0𝑑 6 = 𝑑 2𝑑 4,     𝑑 0𝑑 7 = 𝑑 3𝑑 4
+    From the above, there exists one 2-qubit gate 𝑈 1 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ) and one 1-qubit gate
+Diag(1, 𝑑 4 /𝑑 0 ), such that 𝐷 = Diag(1, 𝑑 4 /𝑑 0 ) ⊗ 𝑈 1 .
+    (⇐). If 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) can be implemented with one 2-qubit gate 𝑈 1 and one 1-qubit
+gate 𝑃, then we suppose the first 2-qubit gate operates on the 𝐵𝐶 qubits as 𝐷 = 𝑃 ⊗ 𝑈 1 . This is valid
+because the other two cases, where the first 2-qubit gate operates on the 𝐴𝐶 qubits and 𝐴𝐵 qubits,
+lead to the same sets S𝑖 , according to Lemma 5.1 and Lemma 5.2. Because 𝐷 commutes with 𝑍
+gates on qubits 𝐴, 𝐵, and 𝐶, we know that 𝑃 is a 1-qubit diagonal gate, and there exists two complex
+numbers 𝑎 0 and 𝑎 1 , such that 𝑃 = Diag(𝑎 0, 𝑎 1 ). Similarly, we know that 𝑈 1 is a 2-qubit diagonal
+gate, and there exists four complex numbers 𝑏 0 , 𝑏 1 , 𝑏 2 , and 𝑏 3 , such that 𝑈 1 = Diag(𝑏 0, 𝑏 1, 𝑏 2, 𝑏 3 ).
+From this, we have that 𝑑 0 = 𝑎 0𝑏 0 , 𝑑 1 = 𝑎 0𝑏 1 , 𝑑 2 = 𝑎 0𝑏 2 , 𝑑 3 = 𝑎 0𝑏 3 , 𝑑 4 = 𝑎 1𝑏 0 , 𝑑 5 = 𝑎 1𝑏 1 , 𝑑 6 = 𝑎 1𝑏 2 ,
+𝑑 7 = 𝑎 1𝑏 3 , from which we conclude
+                                 𝑑 0𝑑 5   =     (𝑎 0𝑏 0 ) (𝑎 1𝑏 1 ) = (𝑎 0𝑏 1 ) (𝑎 1𝑏 0 ) = 𝑑 1𝑑 4
+                                 𝑑 0𝑑 6   =     (𝑎 0𝑏 0 ) (𝑎 1𝑏 2 ) = (𝑎 0𝑏 2 ) (𝑎 1𝑏 0 ) = 𝑑 2𝑑 4
+                                 𝑑 0𝑑 7   =     (𝑎 0𝑏 0 ) (𝑎 1𝑏 3 ) = (𝑎 0𝑏 3 ) (𝑎 1𝑏 0 ) = 𝑑 3𝑑 4
+     As a result, we have that 𝐷 ∈ S11 ⊂ S1 .                                                                                  □
+  Lemma D.2. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S2 if and only if 𝐷 can be implemented
+with two 2-qubit neighbor gates.
+   Proof. (⇒). If 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) ∈ S2 , then we suppose that 𝐷 ∈ S23 . This is valid because
+according Lemma 5.1 and Lemma 5.2, S21 , S22 , and S23 have the same upper bound on the number of
+of 2-qubit neighbor gates. From this, we conclude that
+                                               𝑑 0𝑑 6 = 𝑑 2𝑑 4 ,   𝑑 1𝑑 7 = 𝑑 3𝑑 5
+   Thus, there exist 2-qubit gates 𝑈 1 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ) and 𝑈 2 = Diag(1, 1, 𝑑 4 /𝑑 0, 𝑑 5 /𝑑 1 ), such
+that 𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 .
+   (⇐). If 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) can be implemented with two 2-qubit gates 𝑈 1 and 𝑈 2 , then we
+suppose the first 2-qubit gate operates on the 𝐵𝐶 qubits as 𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 or 𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 . This
+is valid because the other two cases where the first 2-qubit gate operates on the 𝐴𝐶 qubits and 𝐴𝐵
+qubits lead to the same sets S𝑖 according to Lemma 5.1 and Lemma 5.2. For the first case, because
+𝐷 commutes with 𝑍 gates on qubits 𝐴 and 𝐵, we conclude that 𝑈 1 commutes with 𝑍 gates on qubit
+𝐵, and 𝑈 2 commutes with 𝑍 gates on qubit 𝐴. From this, according to Lemma A.1, there exist four
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                                33
+
+
+1-qubit gates 𝑃0 , 𝑃 1 , 𝑄 0 , and 𝑄 1 , such that 𝑈 1 can be written as 𝑈 1 = |0⟩⟨0| ⊗ 𝑃 0 + |1⟩⟨1| ⊗ 𝑃1 and
+𝑈 2 can be written as 𝑈 2 = |0⟩⟨0| ⊗ 𝑄 0 + |1⟩⟨1| ⊗ 𝑄 1 . As a result, we have that 𝑃0 𝑄 0 = Diag(𝑑 0, 𝑑 1 ),
+𝑃1 𝑄 0 = Diag(𝑑 2, 𝑑 3 ), 𝑃 0 𝑄 1 = Diag(𝑑 4, 𝑑 5 ), and 𝑃1 𝑄 1 = Diag(𝑑 6, 𝑑 7 ). Because we have that
+𝑃0 𝑄 0 𝑄 0† 𝑃1† = 𝑃0 𝑄 1 𝑄 1† 𝑃1† , we conclude that
+            Diag(𝑑 0 /𝑑 2, 𝑑 1 /𝑑 3 ) = (𝑃0 𝑄 0 ) (𝑄 0† 𝑃1† ) = (𝑃0 𝑄 1 ) (𝑄 1† 𝑃1† ) = Diag(𝑑 4 /𝑑 6, 𝑑 5 /𝑑 7 )
+  From the above, we have that
+                                             𝑑 0𝑑 6 = 𝑑 2𝑑 4 ,   𝑑 1𝑑 7 = 𝑑 3𝑑 5
+   From this, we have that 𝐷 ∈ S23 ⊂ S2 .
+   For the second case, by applying the 𝑆 gates, from Section 2, we have 𝑆 𝐵𝐶 𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝐵𝐶 =
+(𝑆 𝐵𝐶 𝑈 1𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝐵𝐶 ) = 𝑆 𝑈 1 𝑆 𝐵𝐶 𝑈 2𝐴𝐶 = 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 = 𝐷 ′ . From Lemma 5.1 and Lemma 5.2
+and the discussion for the first case, we conclude 𝐷 ′ ∈ S2 .                                            □
+  Lemma D.3. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S2 ∪ S3 if and only if 𝐷 can be implemented
+with three 2-qubit neighbor gates.
+  Proof. (⇒). For 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ), suppose that either 𝐷 ∈ S2 or 𝐷 ∈ S3 . If 𝐷 ∈ S2 ,
+then according to Lemma D.2, we can implement 𝐷 by three 2-qubit neighbor gates. If 𝐷 ∈ S3 , we
+suppose that 𝐷 ∈ S31 . This is valid because according Lemma 5.1 and Lemma 5.2, S31 , S32 , and S33
+have the same upper bound on the number of of 2-qubit neighbor gates. From this, we have that
+                                             𝑑 0𝑑 7 = 𝑑 3𝑑 4 ,   𝑑 1𝑑 6 = 𝑑 2𝑑 5
+   Thus, there exist three 2-qubit gates 𝑈 1 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ) · C(𝑋 ) and additionally 𝑈 2 =
+Diag(1, 1, 𝑑 4 /𝑑 0, 𝑑 5 /𝑑 1 ) with 𝑈 3 = C(𝑋 ), such that 𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 .
+   (⇐). If 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) can be implemented with three 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , then
+we suppose the first 2-qubit gate operates on the 𝐵𝐶 qubits as 𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 or 𝐷 =
+𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 . This is valid because the other two cases where the first 2-qubit gate operates on
+the 𝐴𝐶 qubits and 𝐴𝐵 qubits lead to the same sets S𝑖 according to Lemma 5.1 and Lemma 5.2.
+For the first case, because 𝐷 commutes with 𝑍 gates on qubit 𝐴, we conclude that 𝑈 2 commutes
+with 𝑍 gates on qubit 𝐴. From this, according to Lemma A.1, there exist two 1-qubit gates 𝑃0
+and 𝑃 1 , such that 𝑈 2 can be written as 𝑈 2 = |0⟩⟨0| ⊗ 𝑃0 + |1⟩⟨1| ⊗ 𝑃 1 . From this, we have that
+𝑈 1 (𝐼 ⊗ 𝑃0 ) 𝑈 3 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ), 𝑈 1 (𝐼 ⊗ 𝑃1 ) 𝑈 3 = Diag(𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ), and
+                                                                     𝑑4 𝑑5 𝑑6 𝑑7
+                            Eigenvalues(𝑈 3† (𝐼 ⊗ 𝑃 0† 𝑃1 ) 𝑈 3 ) = (  ,   ,    ,   )
+                                                                     𝑑0 𝑑1 𝑑2 𝑑3
+   From the above, according to Lemma A.11, we conclude that there are two pairs of the same
+eigenvalues among four eigenvalues. As a result, we have the following three cases: (a) 𝑑 0𝑑 5 = 𝑑 1𝑑 4
+and 𝑑 2𝑑 7 = 𝑑 3𝑑 6 , (b) 𝑑 0𝑑 6 = 𝑑 2𝑑 4 and 𝑑 1𝑑 7 = 𝑑 3𝑑 5 , and (c) 𝑑 0𝑑 7 = 𝑑 3𝑑 4 and 𝑑 1𝑑 6 = 𝑑 2𝑑 5 . By
+calculation, we conclude that for case (a), we have 𝐷 ∈ S22 ⊂ S2 , for case (b), we have 𝐷 ∈ S23 ⊂ S2 ,
+and for case (c), we have 𝐷 ∈ S31 ⊂ S3 .
+   For the second case, according to Section 2, by inserting the 𝑆 gates, we have 𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐵𝐶 =
+(𝑈 1𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 3𝐵𝐶 ) = 𝑈 1 𝑆 𝐵𝐶 𝑈 2𝐴𝐶 𝑆 𝑈 3𝐵𝐶 = 𝐷. From this and the discussion for
+the first case, we conclude that either 𝐷 ∈ S2 or 𝐷 ∈ S3 .                                                     □
+  Lemma D.4. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented
+with four 2-qubit neighbor gates.
+  Proof. According to Theorem 6.2, we have that 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented
+with four 2-qubit neighbor gates.                                                             □
+
+                                                                   , Vol. 1, No. 1, Article . Publication date: December 2025.
+34                                                                                            Keli Huang and Jens Palsberg
+
+
+  Lemma D.5. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S6 if and only if 𝐷 can be implemented
+with six 2-qubit neighbor gates.
+                                                                                 √︁
+     √︁ For 𝐷 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ), we define 𝑎 = (𝑑 6 /𝑑 2 ) (𝑑 0 /𝑑 4 ) (𝑑 7 /𝑑 3 ) (𝑑 1 /𝑑 5 ),
+  Proof.
+𝑏 = (𝑑 2√  /𝑑 6 ) (𝑑√4 /𝑑 0 ) (𝑑 7 /𝑑 3 ) (𝑑 1 /𝑑 5 ). From this, we define 𝑈 1 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ) C(𝑋 ), 𝑈 2 =
+Diag(1, 1, 𝑏, 1/ √𝑏), 𝑈 3 √= 𝑆, and additionally 𝑈 4 = Diag(1, 1, 1, 𝑎), 𝑈 5 = 𝑆C(𝑋 ), and 𝑈 6 =
+Diag(1, 1, 𝑑 4 /(𝑑 0 𝑏), (𝑑 5 𝑏)/𝑑 1 ). We can see that 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐵𝐶 𝑈 4𝐴𝐶 𝑈 5𝐵𝐶 𝑈 6𝐴𝐶 = 𝐷.                          □
+     Theorem 7.1. Suppose 𝐷 is a 3-qubit diagonal gate.
+     (1) We have 𝐷 ∈ S1 if and only if 𝐷 can be implemented with one 2-qubit neighbor gate.
+     (2) We have 𝐷 ∈ S2 if and only if 𝐷 can be implemented with two 2-qubit neighbor gates.
+     (3) We have 𝐷 ∈ S2 ∪ S3 if and only if 𝐷 can be implemented with three 2-qubit neighbor gates.
+     (4) We have 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented with four 2-qubit neighbor gates.
+     (5) We have 𝐷 ∈ S6 if and only if 𝐷 can be implemented with six 2-qubit neighbor gates.
+  Proof. We have property (1) according to Lemma D.1, property (2) according to Lemma D.2,
+property (3) according to Lemma D.3, property (4) according to Lemma D.4, and property (5)
+according to Lemma D.5.                                                                 □
+
+E     PROOF OF THEOREM 7.2
+Here, we prove Theorem 7.2 from Section 7. Theorem 7.2 shows the tight bounds on the number of
+needed unrestricted 2-qubit gates of 3-qubit diagonal gates.
+  Lemma E.1. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S1 if and only if 𝐷 can be implemented with
+one 2-qubit unrestricted gate.
+  Proof. Using one 2-qubit unrestricted gate to implement 𝐷 is the same as using one 2-qubit
+neighbor gate, and we have discussed this in Lemma D.1 in Appendix D.                     □
+  Lemma E.2. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S2 if and only if 𝐷 can be implemented with
+two 2-qubit unrestricted gates.
+  Proof. Using two 2-qubit unrestricted gates to implement 𝐷 is the same as using two 2-qubit
+neighbor gates, and we have discussed this in Lemma D.2 in Appendix D                      □
+  Lemma E.3. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S3 ∪ S4 if and only if 𝐷 can be implemented
+with three 2-qubit unrestricted gates.
+  Proof. (⇒). For 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ), suppose that 𝐷 ∈ S3 or 𝐷 ∈ S4 . If 𝐷 ∈ S3 . Then,
+according to Lemma D.3, we can implement 𝐷 by three 2-qubit neighbor gates. If 𝐷 ∈ S4 , then we
+have that
+                                              𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7
+  Thus, there exist three 2-qubit gates 𝑈 1 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ), 𝑈 2 = Diag(1, 1, 𝑑 4 /𝑑 0, 𝑑 5 /𝑑 1 ),
+and 𝑈 3 = Diag(1, 1, 1, (𝑑 6 𝑑 0 )/(𝑑 4 𝑑 2 )), such that 𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 .
+  (⇐). Suppose that 𝐷 = Diag(𝑑 0, 𝑑 1, . . . , 𝑑 7 ) = |0⟩⟨0| ⊗ 𝐷 0 + |1⟩⟨1| ⊗ 𝐷 1 . We have two scenarios as
+𝐷 is implemented with 2-qubit neighbor gates or not. If 𝐷 can be implemented with three 2-qubit
+neighbor gates, then according to Lemma D.3, we conclude that either 𝐷 ∈ S2 ⊂ S4 or 𝐷 ∈ S3 .
+  If 𝐷 can be implemented with three 2-qubit gates 𝑈 1 , 𝑈 2 , 𝑈 3 , and they are not neighbor gates,
+then we suppose the first 2-qubit gate operates on the 𝐵𝐶 qubits as 𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 or
+𝐷 = 𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐴𝐶 . This is valid because the other two cases where the first 2-qubit gate operates
+on the 𝐴𝐶 qubits and 𝐴𝐵 qubits lead to the same sets S𝑖 according to Lemma 5.1 and Lemma 5.2.
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                                35
+
+
+ According to Lemma A.14, we conclude that there exist four 1-qubit gates 𝑃0 , 𝑃 1 , 𝑄 0 , 𝑄 1 , such
+that 𝑈 2 = |0⟩⟨0| ⊗ 𝑃0 + |1⟩⟨1| ⊗ 𝑃1 and 𝑈 3 = |0⟩⟨0| ⊗ 𝑄 0 + |1⟩⟨1| ⊗ 𝑄 1 . From this, we have
+𝑈 1 (𝑄 0 ⊗ 𝑃0 ) = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3 ), 𝑈 1 (𝑄 1 ⊗ 𝑃 1 ) = Diag(𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ), and
+                                                                  𝑑4 𝑑5 𝑑6 𝑑7
+                                      𝑄 0†𝑄 1 ⊗ 𝑃0† 𝑃1 = Diag(      ,  ,  ,   )
+                                                                  𝑑0 𝑑1 𝑑2 𝑑3
+  From the above, we know that both 𝑃0† 𝑃1 and 𝑄 0†𝑄 1 commute with 𝑍 gates, and there exist four
+complex numbers 𝑎, 𝑏, 𝑝, 𝑞, such that 𝑃0† 𝑃1 = Diag(𝑎, 𝑏), 𝑄 0†𝑄 1 = Diag(𝑝, 𝑞), and
+                                      𝑑4 𝑑5 𝑑6 𝑑7
+                                 Diag(   ,    ,      ,     ) = Diag(𝑎𝑝, 𝑏𝑝, 𝑎𝑞, 𝑏𝑞)
+                                      𝑑0 𝑑1 𝑑2 𝑑3
+   From the above, we have that
+                                               𝑑 0𝑑 3𝑑 5𝑑 6 = 𝑑 1𝑑 2𝑑 4𝑑 7
+   By calculation, we conclude that 𝑆 ∈ S4 .
+   For the second case, by using 𝑆 gates, from Section 2, we have 𝑆 𝐵𝐶 𝑈 1𝐵𝐶 𝑈 2𝐴𝐵 𝑈 3𝐴𝐶 𝑆 𝐵𝐶 =
+(𝑆 𝐵𝐶 𝑈 1𝐵𝐶 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 2𝐴𝐵 𝑆 𝐵𝐶 ) (𝑆 𝐵𝐶 𝑈 3𝐴𝐶 𝑆 𝐵𝐶 ) = 𝑆 𝑈 1 𝑆 𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 = 𝑆 𝐵𝐶 𝐷 𝑆 𝐵𝐶 = 𝐷 ′ . Accord-
+ing to Lemma 5.1 and Lemma 5.2 and the discussion for the first case, we conclude that both 𝐷 ′
+and 𝐷 satisfy S4 .                                                                                           □
+  Lemma E.4. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented
+with four 2-qubit unrestricted gates.
+  Proof. According to Theorem 6.2, we have that 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented
+with four 2-qubit unrestricted gates.                                                         □
+   Lemma E.5. Suppose 𝐷 is a 3-qubit diagonal gate. 𝐷 ∈ S6 if and only if 𝐷 can be implemented with
+five 2-qubit unrestricted gates.
+                                                                                 √︁
+      √︁ For 𝐷 = Diag(𝑑 0, 𝑑 1, 𝑑 2, 𝑑 3, 𝑑 4, 𝑑 5, 𝑑 6, 𝑑 7 ), we define 𝑎 = (𝑑 6 /𝑑 2 ) (𝑑 0 /𝑑 4 ) (𝑑 7 /𝑑 3 ) (𝑑 1 /𝑑 5 ),
+   Proof.
+𝑏 = (𝑑 2√  /𝑑 6 ) (𝑑√4 /𝑑 0 ) (𝑑 7 /𝑑 3 ) (𝑑 1 /𝑑 5 ). From this, we define 𝑈 1 = Diag(𝑑 0, 𝑑√
+                                                                                             1, 𝑑 2, 𝑑 3 )√
+                                                                                                          C(𝑋 ), 𝑈 2 =
+Diag(1, 1, 𝑏, 1/ 𝑏), 𝑈 3 = Diag(1, 1, 1, 𝑎), 𝑈 4 = C(𝑋 ), 𝑈 5 = Diag(1, 1, 𝑑 4 /(𝑑 0 𝑏), (𝑑 5 𝑏)/𝑑 1 ). We
+can see that 𝑈 1𝐵𝐶 𝑈 2𝐴𝐶 𝑈 3𝐴𝐵 𝑈 4𝐵𝐶 𝑈 5𝐴𝐶 = 𝐷.                                                                            □
+   Theorem 7.2. Suppose 𝐷 is a 3-qubit diagonal gate.
+   (1) We have 𝐷 ∈ S1 if and only if 𝐷 can be implemented with one 2-qubit unrestricted gate.
+   (2) We have 𝐷 ∈ S2 if and only if 𝐷 can be implemented with two 2-qubit unrestricted gates.
+   (3) We have 𝐷 ∈ S3 ∪ S4 if and only if 𝐷 can be implemented with three 2-qubit unrestricted gates.
+   (4) We have 𝐷 ∈ S4 ∪ S5 if and only if 𝐷 can be implemented with four 2-qubit unrestricted gates.
+   (5) We have 𝐷 ∈ S6 if and only if 𝐷 can be implemented with five 2-qubit unrestricted gates.
+  Proof. We have property (1) according to Lemma E.1, property (2) according to Lemma E.2,
+property (3) according to Lemma E.3, property (4) according to Lemma E.4, and property (5)
+according to Lemma E.5.                                                                 □
+
+REFERENCES
+Dominic W Berry, Craig Gidney, Mario Motta, Jarrod R McClean, and Ryan Babbush. 2019. Qubitization of arbitrary basis
+  quantum chemistry leveraging sparsity and low rank factorization. Quantum 3 (2019), 208. https://doi.org/10.22331/q-
+  2019-12-02-208
+Dominic W Berry, Yuan Su, Casper Gyurik, Robbie King, Joao Basso, Alexander Del Toro Barba, Abhishek Rajput, Nathan
+  Wiebe, Vedran Dunjko, and Ryan Babbush. 2024. Analyzing prospects for quantum advantage in topological data analysis.
+  PRX Quantum 5, 1 (2024), 010319. https://doi.org/10.1103/PRXQuantum.5.010319
+
+
+                                                                   , Vol. 1, No. 1, Article . Publication date: December 2025.
+36                                                                                             Keli Huang and Jens Palsberg
+
+
+Anirban Bhattacharjee, Chandan Bandyopadhyay, Robert Wille, Rolf Drechsler, and Hafizur Rahaman. 2018. A novel
+   approach for nearest neighbor realization of 2D quantum circuits. In 2018 IEEE computer society annual symposium on
+   VLSI (ISVLSI). IEEE, 305–310. https://doi.org/10.1109/ISVLSI.2018.00063
+Kuan-Yu Chang and Chun-Yi Lee. 2021. Mapping nearest neighbor compliant quantum circuits onto a 2-D hexagonal
+   architecture. IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems 41, 10 (2021), 3373–3386.
+   https://doi.org/10.1109/TCAD.2021.3127868
+Jianxin Chen, Dawei Ding, Weiyuan Gong, Cupjin Huang, and Qi Ye. 2024. One gate scheme to rule them all: Introducing a
+   complex yet reduced instruction set for quantum computing. In Proceedings of the 29th ACM International Conference on
+   Architectural Support for Programming Languages and Operating Systems, Volume 2. 779–796. https://doi.org/10.1145/
+   3620665.3640386
+Kamalika Datta, Abhoy Kole, Indranil Sengupta, and Rolf Drechsler. 2022a. Mapping quantum circuits to 2-dimensional
+   quantum architectures. In Lecture Notes in Informatics (LNI). Gesellschaft für Informatik, Bonn. https://doi.org/10.18420/
+   inf2022_94
+Kamalika Datta, Abhoy Kole, Indranil Sengupta, and Rolf Drechsler. 2022b. Nearest neighbor mapping of quantum circuits
+   to two-dimensional hexagonal qubit architecture. In 2022 IEEE 52nd International Symposium on Multiple-Valued Logic
+   (ISMVL). IEEE, 35–42. https://doi.org/10.1109/ISMVL52857.2022.00013
+Casey Duckering, Jonathan M Baker, Andrew Litteken, and Frederic T Chong. 2021. Orchestrated trios: compiling for
+   efficient communication in quantum programs with 3-qubit gates. In Proceedings of the 26th ACM International Conference
+   on Architectural Support for Programming Languages and Operating Systems. 375–385. https://doi.org/10.1145/3445814.
+   3446718
+Azim Farghadan and Naser Mohammadzadeh. 2017. Quantum circuit physical design flow for 2D nearest-neighbor
+   architectures. International Journal of Circuit Theory and Applications 45, 7 (2017), 989–1000. https://doi.org/10.1002/cta.
+   2335
+Joshua J Goings, Alec White, Joonho Lee, Christofer S Tautermann, Matthias Degroote, Craig Gidney, Toru Shiozaki,
+   Ryan Babbush, and Nicholas C Rubin. 2022. Reliably assessing the electronic structure of cytochrome P450 on today’s
+   classical computers and tomorrow’s quantum computers. Proceedings of the National Academy of Sciences 119, 38 (2022),
+   e2203533119. https://doi.org/10.1073/pnas.2203533119
+Wakaki Hattori and Shigeru Yamashita. 2019. Mapping a quantum circuit to 2D nearest neighbor architecture by changing
+   the gate order. IEICE TRANSACTIONS on Information and Systems 102, 11 (2019), 2127–2134. https://doi.org/10.1587/
+   transinf.2018EDP7439
+Roger A Horn and Charles R Johnson. 2012. Matrix analysis. Cambridge university press.
+Joonho Lee, Dominic W Berry, Craig Gidney, William J Huggins, Jarrod R McClean, Nathan Wiebe, and Ryan Babbush.
+   2021. Even more efficient quantum computations of chemistry through tensor hypercontraction. PRX Quantum 2, 3
+   (2021), 030305. https://doi.org/10.1103/PRXQuantum.2.030305
+Christopher C Paige and Musheng Wei. 1994. History and generality of the CS decomposition. Linear Algebra Appl. 208
+   (1994), 303–326. https://doi.org/10.1016/0024-3795(94)90446-4
+Jens Palsberg and Nengkun Yu. 2024. Optimal Implementation of Quantum Gates with Two Controls. Linear Algebra Appl.
+   (2024). https://doi.org/10.1016/j.laa.2024.03.039
+Byeongyong Park and Doyeol Ahn. 2023. Reducing CNOT count in quantum Fourier transform for the linear nearest-
+   neighbor architecture. Scientific Reports 13, 1 (2023), 8638. https://doi.org/10.1038/s41598-023-35625-3
+Nicholas C Rubin, Dominic W Berry, Alina Kononov, Fionn D Malone, Tanuj Khattar, Alec White, Joonho Lee, Hartmut Neven,
+   Ryan Babbush, and Andrew D Baczewski. 2024. Quantum computation of stopping power for inertial fusion target design.
+   Proceedings of the National Academy of Sciences 121, 23 (2024), e2317772121. https://doi.org/10.1073/pnas.2317772121
+Vivek V Shende, Stephen S Bullock, and Igor L Markov. 2005. Synthesis of quantum logic circuits. In Proceedings of the 2005
+   Asia and South Pacific Design Automation Conference. 272–275. https://doi.org/10.1145/1120725.1120847
+Vivek V Shende and Igor L Markov. 2008. On the CNOT-cost of TOFFOLI gates. arXiv preprint arXiv:0803.2316 (2008).
+   https://doi.org/10.48550/arXiv.0803.2316
+Yuan Su, Dominic W Berry, Nathan Wiebe, Nicholas Rubin, and Ryan Babbush. 2021. Fault-tolerant quantum simulations of
+   chemistry in first quantization. PRX Quantum 2, 4 (2021), 040332. https://doi.org/10.1103/PRXQuantum.2.040332
+Robert Wille, Aaron Lye, and Rolf Drechsler. 2014. Optimal SWAP gate insertion for nearest neighbor quantum circuits.
+   In 2014 19th Asia and South Pacific Design Automation Conference (ASP-DAC). IEEE, 489–494. https://doi.org/10.1109/
+   ASPDAC.2014.6742939
+Nengkun Yu, Runyao Duan, and Mingsheng Ying. 2013. Five Two-Qubit Gates Are Necessary for Implementing Toffoli Gate.
+   Physical Review A (2013). https://doi.org/10.1103/PhysRevA.88.010304
+Nengkun Yu and Mingsheng Ying. 2015. Optimal simulation of Deutsch gates and the Fredkin gate. Physical Review A
+   (2015). https://doi.org/10.1103/PhysRevA.91.032302
+
+
+
+, Vol. 1, No. 1, Article . Publication date: December 2025.
+Toffoli Requires Six Quantum Neighbor Gates                                                                               37
+
+
+Peng Zhao, Peng Xu, Dong Lan, Xinsheng Tan, Haifeng Yu, and Yang Yu. 2020. Switchable next-nearest-neighbor coupling
+   for controlled two-qubit operations. Physical review applied 14, 6 (2020), 064016. https://doi.org/10.1103/PhysRevApplied.
+  14.064016
+
+
+
+
+                                                                  , Vol. 1, No. 1, Article . Publication date: December 2025.
+
