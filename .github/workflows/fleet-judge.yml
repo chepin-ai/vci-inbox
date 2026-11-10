@@ -200,7 +200,7 @@ jobs:
               'counts': fstate['counts'], 'synergy_flags': synergy_flags,
               'rdz': len(rdz)
           }
-          append_ledger(ev, f'FLEET_EVAL verdict={verdict} @ {TS}')
+          ev = append_ledger(ev, f'FLEET_EVAL verdict={verdict} @ {TS}')
           # 本拍报文(公告板只出计数/哈希,零原文零密钥)
           report = f"""# fleet-judge 拍报 {TS}
           - verdict: **{verdict}** ｜ frontier: {frontier}
