@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2866,
+ "indexed": 2869,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -18285,6 +18285,13 @@
    "at": []
   },
   {
+   "file": "lvlu-未录件警-20261113T224555Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "未录件警 INBOX-SWEEP-01",
+   "at": []
+  },
+  {
    "file": "lvlu-浪涌一号一拍战报-五闸-器课16-20260910T234958Z.md",
    "line": "lvlu",
    "ts": null,
@@ -25507,6 +25514,13 @@
    "at": []
   },
   {
+   "file": "钥注回执-aiq-lvlu-auto-20261113T224555ZZ.md",
+   "line": "钥注回执",
+   "ts": null,
+   "title": "钥注回执 — 钥取-aiq-DEEPSEEK_API_KEY-20260929T021013Z.md",
+   "at": []
+  },
+  {
    "file": "钥注回执-lgt-lvlu-auto-20260910T220214ZZ.md",
    "line": "钥注回执",
    "ts": null,
@@ -25525,6 +25539,13 @@
    "line": "钥注回执",
    "ts": null,
    "title": "钥注回执 — 钥取-lgt-LGT-WORKER-01三键-20260910.md",
+   "at": []
+  },
+  {
+   "file": "钥注回执-lgt-lvlu-auto-20261113T224555ZZ.md",
+   "line": "钥注回执",
+   "ts": null,
+   "title": "钥注回执 — 钥取-lgt-KIMI-API-KEY-GITEE-TOK-20260910.md",
    "at": []
   }
  ]
