@@ -66,6 +66,7 @@ cert_table = "\n".join(
     for k in (8, 7, 6))
 anomalies = "\n".join(f"{i}. {x.split('：', 1)[1]}" for i, x in enumerate(v["anomaly_notes"], 1))
 anomalies += "\n17. 发布前本机预检发现总验收59项输入被清单生成器漏加`run/`前缀；在任何远端写入前修正路径并重核全件哈希，科学JSON与capsule不变。"
+anomalies += "\n18. 首轮远端逐blob字节核验通过，但干净重建在启动科学子件前发现证据包漏收`ad26_verify.json`并停止；补收基准证书、保留失败血缘并增量非强制修订vci/ci后重新终验，未将该工程失败记作科学负结果。"
 counts = "/".join(str(rac["repos"][repo]["candidate_counts"])
                   for repo in ("chepin-ai/ci-inbox", "chepin-ai/vci-inbox", "chepin-qi/qlv-pub"))
 
@@ -290,7 +291,7 @@ for name in ["ad25_s2_meridian.py", "ad25_seq91_independent.py", "ad25_secondary
     files["ad25/run/" + name] = sha(A25 / name)
 
 extra_run = [
-    "ad26_verify.py", "ad26_verify.log", "ad26_verify_second.log", "ad26_verify.run1.json",
+    "ad26_verify.py", "ad26_verify.json", "ad26_verify.log", "ad26_verify_second.log", "ad26_verify.run1.json",
     "ad26_maj_prune.py", "ad26_maj_7to5.py", "ad26_maj_k4_branch.py", "ad26_maj_k4_direct.py",
     "ad26_maj_k4_independent.py", "ad26_maj_k4_branch_summary.precorrection.json",
     "ad26_maj_k4_branch.precorrection.jsonl",
@@ -316,6 +317,7 @@ extra_run = [
     "ad26_shende_markov_2009.pdf", "ad26_shende_markov_2009.txt",
     "ad26_shende_page480.png", "ad26_shende_page481.png",
     "ad26_make_release.py", "ad26_publish.py", "ad26_remote_verify.py",
+    "ad26_remote_verify_precorrection.json", "ad26_remote_verify_precorrection.log",
 ]
 extra_run += [f"ad26_verify_child_{key}.log" for key in v["cold_process_children"]]
 for name in sorted(set(extra_run)):

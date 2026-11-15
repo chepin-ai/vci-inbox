@@ -4,8 +4,8 @@
   "seq": 252,
   "cid": "efd6b2f0069552bd",
   "files": {
-    "QRAC-D8-TOFFOLI-PLATEAU-09.md": "2f3f735f4c431f58f23b23331a416bddc3abd2b3faa1201415b63203f866dec9",
-    "board-163.md": "7ea2376c8929cc9c49e0b818ed9d3a60f79f1c8c52e37e95a1c0aa4614902ef5",
+    "QRAC-D8-TOFFOLI-PLATEAU-09.md": "7c57f3f256c39c4203ad7643b00c287dbd5fb4af732f91e5f4beddf8446ccf52",
+    "board-163.md": "91c02dc805ea583c9dd0502d01d4d0d58f565371eb27eba6db5f7526f3ef4c49",
     "TH-NORTHSTAR-QFA-02-ANS-qlv-20261115T1923Z.md": "ad250c5adfd1f686e8528cab8de1ca4919b3dfcf77302c3d80db12810fdb82a2",
     "capsule-252.json": "d31c8866ac8aed0983d36361c8a43fbc618a76cbea60b287a75fe5aa24adc953",
     "chain_head.json": "2323bb1f860efbaffbd46abbf057cb378d9724b3e2a5533b6bf38d737a937806",
@@ -88,8 +88,8 @@
     "run/ad26_maj_k4_direct.py": "2a86678547b3394eafa556ae441aed3270c0cb55bede350cea0e5b9a857adde5",
     "run/ad26_maj_k4_independent.py": "229b856e3cb4a20cb0e48c8c0e24a455fe933f47ea5d9a9a80c8d871ac3108c2",
     "run/ad26_maj_prune.py": "4d1cb4fb027df97e60f440d993374da03b24d091b8a2d8dfc28b163f4075ea3e",
-    "run/ad26_make_release.py": "731cd09ae787132ea5394425c51c19ea4854d803157611a2ed9281fa876a4aeb",
-    "run/ad26_publish.py": "94c9727807d7f2c0923b76726a98363cf2f64fb11320818c1e3d3fe53107be9d",
+    "run/ad26_make_release.py": "865c61679c003b91b3d3fab0aac3096577186664a11507a14749616dc235132a",
+    "run/ad26_publish.py": "ec0dcfacf16901b22aa8df3c96198d4f5d532e7cf149b7f611383e0ba412032f",
     "run/ad26_rac_recon.py": "bd066724a0c41839607492fbf2c26a9e678bc811a03e2d5a1c98dea2e0895c07",
     "run/ad26_rac_recon_latest.log": "0c1101fa66059219ef6cdeb23762a8b3bb8927b3ac6798ad54bdef258f84d20b",
     "run/ad26_remote_verify.py": "9ae7e81237e6a698b7e5b7acbb52f737c383e6f8a0867c2ebf1f27d8b9eb4c66",
@@ -160,7 +160,10 @@
     "run/ad26_verify_child_symbolic6.log": "eae094286a060aeff818778693c24af1b0f4966b8557f61338b42b9c1ab9fc67",
     "run/ad26_verify_child_symbolic7.log": "48a4df8a2dffd0d2680a38f8309b7b2d42f33d659cc671000aa5b7cdebb9c97b",
     "run/ad26_verify_child_symbolic8.log": "dd6aec953de3330ba04f1b9fb61bc553cc8fa722bec5600551e401b8f7335c92",
-    "run/ad26_verify_second.log": "b256b21b3f1348529804a0d240732ba3db2c64402b818f7308aaf80cc99a782f"
+    "run/ad26_verify_second.log": "b256b21b3f1348529804a0d240732ba3db2c64402b818f7308aaf80cc99a782f",
+    "run/ad26_verify.json": "7e2f9781fad062b8ec7ba52ad6637a10781ebd2320ed4297386eecd5a23c8c4c",
+    "run/ad26_remote_verify_precorrection.json": "bc1fee9a5fc191d3c926f6d033247a0a605a60fd3bbcc16dff15ed8343186f71",
+    "run/ad26_remote_verify_precorrection.log": "261a2b441b13d36d9ad15f5c0a87d881aa28b7895b93cb5564c23b870f418d22"
   },
   "evidence_register": {
     "L1": [
@@ -215,6 +218,11 @@
     "manifest_run_prefix_correction": true,
     "remote_writes_before_correction": 0,
     "corrected_input_paths": 59,
-    "scientific_json_and_capsule_changed": false
+    "scientific_json_and_capsule_changed": false,
+    "first_remote_blob_byte_stage": "ALL_MATCH",
+    "first_clean_rebuild_science_children_started": false,
+    "first_clean_rebuild_error": "missing run/ad26_verify.json",
+    "baseline_verify_added": true,
+    "precorrection_lineage_preserved": true
   }
 }

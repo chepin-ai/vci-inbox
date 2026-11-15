@@ -82,7 +82,9 @@ def main():
     qi_token = (VAULT / "qi_pat.txt").read_text().strip()
     current = request("GET", "/repos/chepin-qi/qlv-pub/contents/outbox/qlv-outbox.json?ref=main", qi_token, attempts=3)
     current_hub = json.loads(base64.b64decode(current["content"]))
-    assert current_hub["chain_head"]["seq"] == 251 and current_hub["chain_head"]["cid"] == cap["prev"]
+    observed_chain = (current_hub["chain_head"]["seq"], current_hub["chain_head"]["cid"])
+    assert observed_chain in ((251, cap["prev"]), (252, cid))
+    resumed = observed_chain == (252, cid)
 
     vci = {}
     for name, expected in manifest["files"].items():
@@ -100,9 +102,12 @@ def main():
         assert all(a in msg[:200] for a in ("@lvlu", "@cisvr", "@qfa", "@lgt")) and "[skip ci]" in msg
 
     receipts = {}
-    receipts["qlv-pub"] = publish("chepin-qi/qlv-pub", "qi_pat.txt",
-                                  {"outbox/qlv-outbox.json": S / "hub_qlv_outbox.json"},
-                                  msg_q, "ad26_qlvpub_receipt.json")
+    if resumed:
+        receipts["qlv-pub"] = json.loads((R / "ad26_qlvpub_receipt.json").read_text())
+    else:
+        receipts["qlv-pub"] = publish("chepin-qi/qlv-pub", "qi_pat.txt",
+                                      {"outbox/qlv-outbox.json": S / "hub_qlv_outbox.json"},
+                                      msg_q, "ad26_qlvpub_receipt.json")
     receipts["vci-inbox"] = publish("chepin-ai/vci-inbox", "fed_pat.txt", vci,
                                     msg_v, "ad26_vci_receipt.json")
     discussion = (R / "ad26_discussion_name.txt").read_text().strip()
@@ -110,8 +115,15 @@ def main():
         "shared/field-engine/QRAC-TRIALS-01/QRAC-D8-TOFFOLI-PLATEAU-09.md": S / "QRAC-D8-TOFFOLI-PLATEAU-09.md",
         "讨论室/threads/" + discussion: S / discussion,
     }
-    receipts["ci-inbox"] = publish("chepin-ai/ci-inbox", "fed_pat.txt", ci,
-                                   msg_c, "ad26_ciinbox_receipt.json")
+    if resumed and (R / "ad26_ciinbox_receipt.json").is_file():
+        previous_ci = json.loads((R / "ad26_ciinbox_receipt.json").read_text())
+        same_ci = all(hashlib.sha256(src.read_bytes()).hexdigest() == previous_ci["file_sha256"][target]
+                      for target, src in ci.items())
+        receipts["ci-inbox"] = previous_ci if same_ci else publish(
+            "chepin-ai/ci-inbox", "fed_pat.txt", ci, msg_c, "ad26_ciinbox_receipt.json")
+    else:
+        receipts["ci-inbox"] = publish("chepin-ai/ci-inbox", "fed_pat.txt", ci,
+                                       msg_c, "ad26_ciinbox_receipt.json")
     print(json.dumps({k: {"repo": val["repo"], "commit": val["commit"], "parent": val["parent"],
                           "files": len(val["file_sha256"]), "race_attempts": val["race_attempts"]}
                       for k, val in receipts.items()}, ensure_ascii=False, indent=2))

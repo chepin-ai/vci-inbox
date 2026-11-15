@@ -1,0 +1,55 @@
+{
+  "beat": "AD-26",
+  "checked_at": "20261115T192921Z",
+  "status": "ALL_PASS",
+  "repos": {
+    "qlv-pub": {
+      "repo": "chepin-qi/qlv-pub",
+      "commit": "834eb903c05d7486d7b21639d9fe269489f8b213",
+      "current_main": "834eb903c05d7486d7b21639d9fe269489f8b213",
+      "delivery_is_ancestor": true,
+      "ahead_by": 0,
+      "behind_by": 0,
+      "compare_status": "identical",
+      "files": 1,
+      "bytes": 1770,
+      "byte_verdict": "ALL_MATCH"
+    },
+    "vci-inbox": {
+      "repo": "chepin-ai/vci-inbox",
+      "commit": "53286f66cb3682f18545ac3f32b2f5f15172a684",
+      "current_main": "53286f66cb3682f18545ac3f32b2f5f15172a684",
+      "delivery_is_ancestor": true,
+      "ahead_by": 0,
+      "behind_by": 0,
+      "compare_status": "identical",
+      "files": 159,
+      "bytes": 7229964,
+      "byte_verdict": "ALL_MATCH"
+    },
+    "ci-inbox": {
+      "repo": "chepin-ai/ci-inbox",
+      "commit": "ab3bef1298b6b0b6d306d73334682219428bedcd",
+      "current_main": "ab3bef1298b6b0b6d306d73334682219428bedcd",
+      "delivery_is_ancestor": true,
+      "ahead_by": 0,
+      "behind_by": 0,
+      "compare_status": "identical",
+      "files": 2,
+      "bytes": 14650,
+      "byte_verdict": "ALL_MATCH"
+    }
+  },
+  "public_main": {
+    "url": "https://raw.githubusercontent.com/chepin-qi/qlv-pub/main/outbox/qlv-outbox.json",
+    "bytes": 1770,
+    "sha256": "43b6b4c3825cf2e96d7555e172bab17135405bc8a1d3c1cf1e8350e38826ef05",
+    "byte_verdict": "ALL_MATCH",
+    "seq": 252,
+    "cid": "efd6b2f0069552bd"
+  },
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}
