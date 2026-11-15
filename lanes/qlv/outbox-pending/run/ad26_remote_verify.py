@@ -152,6 +152,14 @@ def main():
         proc = subprocess.run([sys.executable, str(pkg / "run/ad26_verify.py")], cwd=pkg / "run",
                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=2400, check=False)
         process_attempts = 2
+    if proc.returncode == 0 and not (pkg / "run/ad26_verify.json").is_file():
+        # 已观察到stdout给出最终哈希但父视图暂未落件；允许同包完整重放一次，仍须实际文件核验。
+        (pkg / "rebuilt_verify_stdout.missing_output_retry.txt").write_bytes(proc.stdout)
+        time.sleep(1)
+        os.sync()
+        proc = subprocess.run([sys.executable, str(pkg / "run/ad26_verify.py")], cwd=pkg / "run",
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=2400, check=False)
+        process_attempts += 1
     stdout = proc.stdout
     (pkg / "rebuilt_verify_stdout.txt").write_bytes(stdout)
     assert proc.returncode == 0, (proc.returncode, stdout[-3000:].decode(errors="replace"))
