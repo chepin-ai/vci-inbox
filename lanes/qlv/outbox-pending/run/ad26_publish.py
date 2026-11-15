@@ -32,8 +32,15 @@ def publish(repo, token_name, files, message, receipt_name, rounds=12):
     token = (VAULT / token_name).read_text().strip()
     assert token
     blobs = {}
+    previous = None
+    if (R / receipt_name).is_file():
+        previous = json.loads((R / receipt_name).read_text())
     for target, src in sorted(files.items()):
         raw = src.read_bytes()
+        digest = hashlib.sha256(raw).hexdigest()
+        if previous and previous["file_sha256"].get(target) == digest and target in previous["blob_shas"]:
+            blobs[target] = previous["blob_shas"][target]  # 内容未变，复用已创建blob，避免重复网关写入。
+            continue
         blob = request("POST", f"/repos/{repo}/git/blobs", token,
                        {"content": base64.b64encode(raw).decode(), "encoding": "base64"}, attempts=3)
         blobs[target] = blob["sha"]

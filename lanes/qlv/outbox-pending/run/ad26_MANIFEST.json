@@ -89,10 +89,10 @@
     "run/ad26_maj_k4_independent.py": "229b856e3cb4a20cb0e48c8c0e24a455fe933f47ea5d9a9a80c8d871ac3108c2",
     "run/ad26_maj_prune.py": "4d1cb4fb027df97e60f440d993374da03b24d091b8a2d8dfc28b163f4075ea3e",
     "run/ad26_make_release.py": "865c61679c003b91b3d3fab0aac3096577186664a11507a14749616dc235132a",
-    "run/ad26_publish.py": "ec0dcfacf16901b22aa8df3c96198d4f5d532e7cf149b7f611383e0ba412032f",
+    "run/ad26_publish.py": "569f0fa4b2ae16adf53f8359556cf7f1e7b942a34135541013e671d22d8dd051",
     "run/ad26_rac_recon.py": "bd066724a0c41839607492fbf2c26a9e678bc811a03e2d5a1c98dea2e0895c07",
     "run/ad26_rac_recon_latest.log": "0c1101fa66059219ef6cdeb23762a8b3bb8927b3ac6798ad54bdef258f84d20b",
-    "run/ad26_remote_verify.py": "9095351403025b9739d5c7187143b196c319990c4d6aa5e1bf89003348146d2e",
+    "run/ad26_remote_verify.py": "7afd3d75368473800b4160c716c4313c426dea772f59c5c5ccfd7624e497ebc1",
     "run/ad26_s2_6to5.py": "ece594f957cb70971b8ce80a08632eec610cd488ef8373f8c9c6eb82113d047c",
     "run/ad26_s2_6to5_independent.py": "61b234e257b1e7c848276a24f83ed069894b5794617c006dbbbb5ab2a195cae6",
     "run/ad26_s2_7to6.py": "24b07f3eafdd43d9c66641b5801bd9f0493eff60bb9a9b1dc3468f90fa67fc18",
@@ -226,6 +226,7 @@
     "precorrection_lineage_preserved": true,
     "public_main_equivalent_contents_api_fallback": true,
     "bounded_rebuild_visibility_retry": true,
-    "bounded_zero_exit_missing_output_replay": true
+    "bounded_zero_exit_missing_output_replay": true,
+    "independent_python_rebuild_driver": true
   }
 }

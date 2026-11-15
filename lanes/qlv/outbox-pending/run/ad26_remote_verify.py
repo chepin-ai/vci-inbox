@@ -70,6 +70,17 @@ def public_bytes(url):
     raise last
 
 
+def run_clean_verify(pkg):
+    # 独立Python驱动重放；直接挂在本网络驱动下时，挂载层曾出现输出文件不可见。
+    runner = ("import subprocess,sys; "
+              "p=subprocess.run([sys.executable,sys.argv[1]],stdout=subprocess.PIPE,"
+              "stderr=subprocess.STDOUT); sys.stdout.buffer.write(p.stdout); "
+              "sys.exit(p.returncode)")
+    return subprocess.run([sys.executable, "-c", runner, str(pkg / "run/ad26_verify.py")],
+                          cwd=pkg / "run", stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                          timeout=2400, check=False)
+
+
 def main():
     out = {"beat": "AD-26", "checked_at": time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()),
            "status": "ALL_PASS", "repos": {}, "public_main": {},
@@ -141,24 +152,21 @@ def main():
     original = json.loads(original_raw)
     (pkg / "run/ad26_verify.json").unlink()  # 防止失败时把远端随包旧件误当本次重建结果。
     os.sync()  # 挂载层偶发短时不可见；先同步远端重建输入，不改变任何科学判据。
-    proc = subprocess.run([sys.executable, str(pkg / "run/ad26_verify.py")], cwd=pkg / "run",
-                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=2400, check=False)
+    proc = run_clean_verify(pkg)
     process_attempts = 1
     if proc.returncode != 0 and b"ModuleNotFoundError" in proc.stdout:
         # 仅对已发生的导入可见性异常限重试一次；真实缺件会在第二次同样失败。
         (pkg / "rebuilt_verify_stdout.import_retry.txt").write_bytes(proc.stdout)
         time.sleep(1)
         os.sync()
-        proc = subprocess.run([sys.executable, str(pkg / "run/ad26_verify.py")], cwd=pkg / "run",
-                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=2400, check=False)
+        proc = run_clean_verify(pkg)
         process_attempts = 2
     if proc.returncode == 0 and not (pkg / "run/ad26_verify.json").is_file():
         # 已观察到stdout给出最终哈希但父视图暂未落件；允许同包完整重放一次，仍须实际文件核验。
         (pkg / "rebuilt_verify_stdout.missing_output_retry.txt").write_bytes(proc.stdout)
         time.sleep(1)
         os.sync()
-        proc = subprocess.run([sys.executable, str(pkg / "run/ad26_verify.py")], cwd=pkg / "run",
-                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=2400, check=False)
+        proc = run_clean_verify(pkg)
         process_attempts += 1
     stdout = proc.stdout
     (pkg / "rebuilt_verify_stdout.txt").write_bytes(stdout)
@@ -175,6 +183,7 @@ def main():
         "beat": "AD-26", "status": "ALL_PASS", "source": "remote vci-inbox blobs only",
         "remote_commit": rec["commit"], "clean_parent": str(parent), "files_rebuilt": count,
         "process_returncode": proc.returncode, "process_attempts": process_attempts,
+        "process_isolation": "independent_python_driver",
         "output_visibility_retries": output_visibility_retries,
         "original_verify_sha256": sha(original_raw),
         "rebuilt_verify_file_sha256": sha(rebuilt_raw), "verify_json_byte_identical": True,
