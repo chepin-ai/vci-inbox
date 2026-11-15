@@ -92,7 +92,7 @@
     "run/ad26_publish.py": "ec0dcfacf16901b22aa8df3c96198d4f5d532e7cf149b7f611383e0ba412032f",
     "run/ad26_rac_recon.py": "bd066724a0c41839607492fbf2c26a9e678bc811a03e2d5a1c98dea2e0895c07",
     "run/ad26_rac_recon_latest.log": "0c1101fa66059219ef6cdeb23762a8b3bb8927b3ac6798ad54bdef258f84d20b",
-    "run/ad26_remote_verify.py": "32441624dd40b0301a71d0ccd35c72d0d52fae0b4862f24032240793859e83b8",
+    "run/ad26_remote_verify.py": "cd7f81a912108d75f227037621576cbd2d26b16635f331359c30c16b72c572bd",
     "run/ad26_s2_6to5.py": "ece594f957cb70971b8ce80a08632eec610cd488ef8373f8c9c6eb82113d047c",
     "run/ad26_s2_6to5_independent.py": "61b234e257b1e7c848276a24f83ed069894b5794617c006dbbbb5ab2a195cae6",
     "run/ad26_s2_7to6.py": "24b07f3eafdd43d9c66641b5801bd9f0493eff60bb9a9b1dc3468f90fa67fc18",
@@ -224,6 +224,7 @@
     "first_clean_rebuild_error": "missing run/ad26_verify.json",
     "baseline_verify_added": true,
     "precorrection_lineage_preserved": true,
-    "public_main_equivalent_contents_api_fallback": true
+    "public_main_equivalent_contents_api_fallback": true,
+    "bounded_rebuild_visibility_retry": true
   }
 }

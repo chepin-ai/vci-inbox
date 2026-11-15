@@ -2,6 +2,7 @@
 import base64
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import time
@@ -139,11 +140,25 @@ def main():
     original_raw = (pkg / "run/ad26_verify.json").read_bytes()
     original = json.loads(original_raw)
     (pkg / "run/ad26_verify.json").unlink()  # 防止失败时把远端随包旧件误当本次重建结果。
+    os.sync()  # 挂载层偶发短时不可见；先同步远端重建输入，不改变任何科学判据。
     proc = subprocess.run([sys.executable, str(pkg / "run/ad26_verify.py")], cwd=pkg / "run",
                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=2400, check=False)
+    process_attempts = 1
+    if proc.returncode != 0 and b"ModuleNotFoundError" in proc.stdout:
+        # 仅对已发生的导入可见性异常限重试一次；真实缺件会在第二次同样失败。
+        (pkg / "rebuilt_verify_stdout.import_retry.txt").write_bytes(proc.stdout)
+        time.sleep(1)
+        os.sync()
+        proc = subprocess.run([sys.executable, str(pkg / "run/ad26_verify.py")], cwd=pkg / "run",
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=2400, check=False)
+        process_attempts = 2
     stdout = proc.stdout
     (pkg / "rebuilt_verify_stdout.txt").write_bytes(stdout)
     assert proc.returncode == 0, (proc.returncode, stdout[-3000:].decode(errors="replace"))
+    output_visibility_retries = 0
+    while not (pkg / "run/ad26_verify.json").is_file() and output_visibility_retries < 100:
+        time.sleep(0.1)
+        output_visibility_retries += 1
     rebuilt_raw = (pkg / "run/ad26_verify.json").read_bytes()
     rebuilt = json.loads(rebuilt_raw)
     assert rebuilt_raw == original_raw, (sha(rebuilt_raw), sha(original_raw))
@@ -151,7 +166,9 @@ def main():
     rebuild = {
         "beat": "AD-26", "status": "ALL_PASS", "source": "remote vci-inbox blobs only",
         "remote_commit": rec["commit"], "clean_parent": str(parent), "files_rebuilt": count,
-        "process_returncode": proc.returncode, "original_verify_sha256": sha(original_raw),
+        "process_returncode": proc.returncode, "process_attempts": process_attempts,
+        "output_visibility_retries": output_visibility_retries,
+        "original_verify_sha256": sha(original_raw),
         "rebuilt_verify_file_sha256": sha(rebuilt_raw), "verify_json_byte_identical": True,
         "stdout_sha256": sha(stdout), "status_checks_inputs_boundaries_equal": True,
         "private_ci_consumption": 0, "quantum_machine_actual_consumption_seconds": 0,
