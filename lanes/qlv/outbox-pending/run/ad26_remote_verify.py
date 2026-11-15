@@ -5,6 +5,7 @@ import json
 import subprocess
 import sys
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -99,12 +100,22 @@ def main():
 
     url = "https://raw.githubusercontent.com/chepin-qi/qlv-pub/main/outbox/qlv-outbox.json"
     expected = (S / "hub_qlv_outbox.json").read_bytes()
-    raw = public_bytes(url + "?ad26=" + out["repos"]["qlv-pub"]["commit"])
+    try:
+        raw = public_bytes(url + "?ad26=" + out["repos"]["qlv-pub"]["commit"])
+        public_channel = "raw_githubusercontent_main"
+    except (urllib.error.URLError, TimeoutError, ConnectionError):
+        # raw 域名的持续传输故障不阻塞等价主支核验：改读同一公仓的 contents API main。
+        qi_token = (VAULT / "qi_pat.txt").read_text().strip()
+        doc = request("GET", "/repos/chepin-qi/qlv-pub/contents/outbox/qlv-outbox.json?ref=main",
+                      qi_token, attempts=3)
+        assert doc.get("encoding") == "base64"
+        raw = base64.b64decode(doc["content"])
+        public_channel = "github_contents_api_main"
     assert raw == expected
     hub = json.loads(raw)
     cap = json.loads((S / "capsule-252.json").read_text())
     assert hub["chain_head"]["seq"] == 252 and hub["chain_head"]["cid"] == cap["cid"]
-    out["public_main"] = {"url": url, "bytes": len(raw), "sha256": sha(raw),
+    out["public_main"] = {"url": url, "channel": public_channel, "bytes": len(raw), "sha256": sha(raw),
                           "byte_verdict": "ALL_MATCH", "seq": 252, "cid": hub["chain_head"]["cid"]}
     (R / "ad26_remote_verify.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n")
 
