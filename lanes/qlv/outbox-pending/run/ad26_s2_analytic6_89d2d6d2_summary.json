@@ -1,0 +1,100 @@
+{
+  "beat": "AD-26",
+  "status": "S2_6CZ_89D2D6D2_LINEAR_ANGLE_ANALYTIC_CANDIDATE_NUMERIC_PASS",
+  "topology": "89d2d6d2",
+  "cz_count": 6,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "known_answer_gate": {
+    "source_raw6_max_abs": 6.758924343478424e-16,
+    "candidate_at_source_max_abs": 1.1157603309187458e-15,
+    "negative_control": "core1 += pi/4",
+    "negative_control_max_abs": 0.35994596609412277
+  },
+  "angle_recipe": {
+    "frozen_pi_over_4": {
+      "1": 2,
+      "3": 15,
+      "4": 14,
+      "5": 2,
+      "8": 4,
+      "9": 1,
+      "10": 14,
+      "11": 4,
+      "12": 6,
+      "13": 2,
+      "14": 14,
+      "15": 1,
+      "16": 4,
+      "17": 1,
+      "18": 0,
+      "19": 4,
+      "20": 10,
+      "22": 13,
+      "23": 2,
+      "24": 10,
+      "27": 0,
+      "28": 4,
+      "29": 2,
+      "30": 2,
+      "31": 1,
+      "32": 0,
+      "33": 4
+    },
+    "free_formulas": {
+      "0": "5*pi/8 (global phase)",
+      "2": "pi+phi",
+      "6": "theta/2",
+      "7": "-pi/2+theta/2",
+      "21": "pi/2-theta/2",
+      "25": "-3*pi/2-phi",
+      "26": "pi/2+theta/2"
+    }
+  },
+  "original_grid": {
+    "points": 25,
+    "worst_max_abs": 1.1673851243905792e-15
+  },
+  "off_grid": {
+    "points": 216,
+    "random_points": 160,
+    "pole_and_special_points": 56,
+    "worst_max_abs": 1.4602703977091184e-15
+  },
+  "worst": {
+    "class": "off_grid_and_poles",
+    "theta": 3.0548622838661084,
+    "phi": -0.031091685383762613,
+    "target_max_abs": 1.4602703977091184e-15
+  },
+  "evidence_level": "L2 complete explicit linear-angle candidate; exact symbolic certificate required for L1",
+  "boundary": "数值命中不代替全参数恒等式；本结果不证明6-CZ最优，也不排除5-CZ或其他6-CZ拓扑。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

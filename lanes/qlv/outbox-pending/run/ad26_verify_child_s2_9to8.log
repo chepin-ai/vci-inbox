@@ -1,0 +1,31 @@
+{
+  "status": "S2_TWO_9CZ_TO8_INDEPENDENT_REBUILD_PASS",
+  "runs": 36,
+  "exact_numeric_hits": 7,
+  "per_topology": {
+    "010": {
+      "runs": 18,
+      "exact_numeric_hits": 2,
+      "best": {
+        "deleted": [
+          8
+        ],
+        "kick": 0.02,
+        "target_max_abs": 1.5218182408308988e-15
+      }
+    },
+    "89": {
+      "runs": 18,
+      "exact_numeric_hits": 5,
+      "best": {
+        "deleted": [
+          2
+        ],
+        "kick": 0.02,
+        "target_max_abs": 9.122732470144754e-16
+      }
+    }
+  },
+  "max_target_rebuild_difference": 0.0,
+  "sha256": "808524c5a2d1bcaf277fbe35596be566d80aefdb5e739f08532f136579ec76be"
+}

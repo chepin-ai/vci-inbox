@@ -1,0 +1,233 @@
+{
+  "beat": "AD-26",
+  "status": "MAJ_K4_BRANCH_PRESERVING_CONTINUATION_COMPLETE",
+  "known_answer_gate_first": {
+    "ad23_7cz": {
+      "ad23_hits": 7,
+      "max_abs": 8.455206652451151e-16
+    },
+    "branch_continuation": {
+      "self_target_recovery": [
+        {
+          "order": "ABAB",
+          "target": "own_old_circuit_known_answer",
+          "start_perturbation_inf": 2.4812693937392716e-05,
+          "final": {
+            "target_max_abs": 3.3235698281446747e-10,
+            "constraint_inf": 5.995683949322483e-10,
+            "constraint_vector": [
+              4.290161559339367e-10,
+              5.995683949322483e-10,
+              0.0,
+              3.391660285956277e-10
+            ],
+            "invariants": {
+              "A": [
+                1.5707963272082879,
+                2.828427122202452
+              ],
+              "B": [
+                1.5707963272239127,
+                -1.9999999994004316
+              ]
+            }
+          },
+          "stages": [
+            "constraint_closure",
+            "joint_trf_w1",
+            "joint_trf_w10",
+            "joint_trf_w100",
+            "joint_trf_w1000",
+            "joint_slsqp"
+          ]
+        },
+        {
+          "order": "ABBA",
+          "target": "own_old_circuit_known_answer",
+          "start_perturbation_inf": 1.8492688387747262e-05,
+          "final": {
+            "target_max_abs": 2.0076046017818846e-09,
+            "constraint_inf": 8.692062181125948e-09,
+            "constraint_vector": [
+              -8.692062181125948e-09,
+              -3.3306690738754696e-15,
+              0.0,
+              -1.7763568394002505e-15
+            ],
+            "invariants": {
+              "A": [
+                1.5707963181028344,
+                1.9999999999999967
+              ],
+              "B": [
+                1.5707963267948966,
+                -2.8284271247462014
+              ]
+            }
+          },
+          "stages": [
+            "constraint_closure",
+            "joint_trf_w1",
+            "joint_trf_w10",
+            "joint_trf_w100",
+            "joint_trf_w1000",
+            "joint_slsqp"
+          ]
+        },
+        {
+          "order": "BABA",
+          "target": "own_old_circuit_known_answer",
+          "start_perturbation_inf": 2.778510281376074e-05,
+          "final": {
+            "target_max_abs": 8.467297459821566e-09,
+            "constraint_inf": 3.665916303852157e-08,
+            "constraint_vector": [
+              3.665916303852157e-08,
+              5.095808219834908e-10,
+              0.0,
+              -2.882614147381446e-10
+            ],
+            "invariants": {
+              "A": [
+                1.5707963634540596,
+                -1.9999999994904192
+              ],
+              "B": [
+                1.5707963313807667,
+                -2.8284271225842375
+              ]
+            }
+          },
+          "stages": [
+            "constraint_closure",
+            "joint_trf_w1",
+            "joint_trf_w10",
+            "joint_trf_w100",
+            "joint_trf_w1000",
+            "joint_slsqp"
+          ]
+        }
+      ],
+      "changed_angle_counterexample_max_abs": 0.38309501137034757
+    }
+  },
+  "protocol": "3 preselected orders; fixed already-satisfied cut; 4 free-cut branches; kicks 0 and 0.02; constraint TRF then weighted TRF w=1,10,100,1000 then equality-constrained SLSQP",
+  "runs": 24,
+  "errors": 0,
+  "exact_joint_hits": 0,
+  "per_order": {
+    "ABAB": {
+      "source_idx": 5,
+      "source_restart": 7,
+      "source_e": 0.3826834879916871,
+      "initial_invariants": {
+        "A": [
+          1.5707963272082879,
+          2.828427121863286
+        ],
+        "B": [
+          1.570796327438421,
+          -1.9999999979614693
+        ]
+      },
+      "fixed_branch_error": 2.038530677594963e-09,
+      "runs": 8,
+      "constraint_closed_runs": 8,
+      "exact_joint_hits": 0,
+      "best": {
+        "free_case_index": 1,
+        "kick": 0.0,
+        "target_max_abs": 0.6057638284128029,
+        "constraint_inf": 6.661338147750939e-16,
+        "invariants": {
+          "A": [
+            1.5707963267948966,
+            -1.9999999999999998
+          ],
+          "B": [
+            1.5707963267948966,
+            -1.9999999999999993
+          ]
+        }
+      }
+    },
+    "ABBA": {
+      "source_idx": 6,
+      "source_restart": 1,
+      "source_e": 0.38268349216320235,
+      "initial_invariants": {
+        "A": [
+          1.5707963137568035,
+          1.9999999999999916
+        ],
+        "B": [
+          1.5707963267948966,
+          -2.8284271247461996
+        ]
+      },
+      "fixed_branch_error": 1.3038093049644317e-08,
+      "runs": 8,
+      "constraint_closed_runs": 8,
+      "exact_joint_hits": 0,
+      "best": {
+        "free_case_index": 1,
+        "kick": 0.0,
+        "target_max_abs": 0.7933533481890878,
+        "constraint_inf": 8.881784197001252e-16,
+        "invariants": {
+          "A": [
+            1.5707963267948966,
+            1.9999999999999993
+          ],
+          "B": [
+            1.5707963267948966,
+            -1.9999999999999991
+          ]
+        }
+      }
+    },
+    "BABA": {
+      "source_idx": 10,
+      "source_restart": 6,
+      "source_e": 0.3826834841410246,
+      "initial_invariants": {
+        "A": [
+          1.5707963817836412,
+          -1.9999999982674292
+        ],
+        "B": [
+          1.5707963313807667,
+          -2.828427122295976
+        ]
+      },
+      "fixed_branch_error": 5.4988744668804657e-08,
+      "runs": 8,
+      "constraint_closed_runs": 8,
+      "exact_joint_hits": 0,
+      "best": {
+        "free_case_index": 1,
+        "kick": 0.02,
+        "target_max_abs": 0.6057638300181902,
+        "constraint_inf": 0.0,
+        "invariants": {
+          "A": [
+            1.5707963267948966,
+            -2.0
+          ],
+          "B": [
+            1.5707963267948966,
+            -2.0
+          ]
+        }
+      }
+    }
+  },
+  "evidence_level": "L2 targeted local numerical result only",
+  "boundary": "仅覆盖ABAB/ABBA/BABA三条指定旧轨的保割续解、四自由割分支与两种确定性扰动；不覆盖AABB/BAAB/BBAA新轨，不证明任何边序或k=4全局不存在。",
+  "strict_interval": "4 <= k <= 7",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "seconds": 180.11215114593506
+}

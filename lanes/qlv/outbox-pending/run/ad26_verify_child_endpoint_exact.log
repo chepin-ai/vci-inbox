@@ -1,0 +1,25 @@
+{
+  "status": "S2_THETA0_DIAGONAL_AND_UNRESTRICTED_5CZ_EXACT_PASS",
+  "diagonal_identity_nz": 0,
+  "case5_full_nz": 0,
+  "phases": [
+    1,
+    15,
+    15,
+    1,
+    15,
+    1,
+    1,
+    7
+  ],
+  "invariants": [
+    4,
+    4,
+    4,
+    12
+  ],
+  "minimum_unrestricted_three_qubit_cz": 5,
+  "negative_control_nz": 8,
+  "seconds": 0.44246983528137207,
+  "sha256": "a54b007dbb4abafa1dafa981a7f1c649f5915de021c5561ebd1a8ae3e5c57f9e"
+}

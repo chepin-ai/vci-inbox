@@ -1,0 +1,64 @@
+{
+  "beat": "AD-26",
+  "status": "S2_TWO_6CZ_TO5_TARGETED_POINT_COMPLETE",
+  "known_answer_gate_first": {
+    "89d2d0d1": {
+      "source_6cz_max_abs": 6.731800026102354e-16,
+      "same_point_6cz_solver_max_abs": 6.731800026102354e-16,
+      "deleted_self_target_5cz_recovery_max_abs": 1.915134717478395e-15,
+      "merge_canonical_max_abs": 4.742874840267547e-16,
+      "changed_angle_counterexample_max_abs": 0.35381374996687365
+    },
+    "89d2d6d2": {
+      "source_6cz_max_abs": 6.758924343478424e-16,
+      "same_point_6cz_solver_max_abs": 6.758924343478424e-16,
+      "deleted_self_target_5cz_recovery_max_abs": 3.553745215176098e-15,
+      "merge_canonical_max_abs": 3.3335590258932494e-16,
+      "changed_angle_counterexample_max_abs": 0.359945966094123
+    }
+  },
+  "theta": 0.4487989505128276,
+  "phi": 0.31,
+  "merge_canonical_max_abs": 6.245004513516506e-16,
+  "protocol": "two 6-CZ sources with distinct edge orders; 6 single deletions per source; kicks 0/0.02; canonical 30-core; TRF max_nfev=900",
+  "runs": 24,
+  "errors": 0,
+  "exact_numeric_hits": 0,
+  "per_topology": {
+    "89d2d0d1": {
+      "runs": 12,
+      "exact_numeric_hits": 0,
+      "hit_deletions": [],
+      "best": {
+        "deleted": [
+          0
+        ],
+        "kick": 0.02,
+        "target_max_abs": 0.3382196341236988,
+        "nfev": 37,
+        "optimality": 1.9207241925117287e-08
+      }
+    },
+    "89d2d6d2": {
+      "runs": 12,
+      "exact_numeric_hits": 0,
+      "hit_deletions": [],
+      "best": {
+        "deleted": [
+          1
+        ],
+        "kick": 0.02,
+        "target_max_abs": 0.3382196344808475,
+        "nfev": 42,
+        "optimality": 2.1534531349732817e-08
+      }
+    }
+  },
+  "evidence_level": "L2 targeted local numerical search at one generic point",
+  "boundary": "只覆盖两个6-CZ代表元的12种删门及两种扰动，共24轨；零命中不证明5-CZ不存在，命中仍需延拓与精确证书。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "seconds": 1.7135791778564453
+}

@@ -1,0 +1,91 @@
+{
+  "beat": "AD-26",
+  "status": "S2_8TO7_AND_TWO_7CZ_GRIDS_INDEPENDENT_REBUILD_PASS",
+  "source_known_answer_gate": {
+    "source_8cz_max_abs": 9.122732470144754e-16,
+    "changed_angle_counterexample_max_abs": 0.3583003064770491
+  },
+  "point_runs": 16,
+  "point_exact_numeric_hits": 3,
+  "point_max_target_rebuild_difference": 0.0,
+  "grid_points": 50,
+  "grid_exact_numeric_hits": 50,
+  "per_grid": {
+    "89d2d0": {
+      "grid_points": 25,
+      "exact_numeric_hits": 25,
+      "worst_max_abs": 3.962079557602053e-15,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "89d2d6": {
+      "grid_points": 25,
+      "exact_numeric_hits": 25,
+      "worst_max_abs": 3.4309585268681444e-15,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "evidence_level": "L2 independent full-matrix rebuild of 16 point runs and two finite 5x5 grids",
+  "boundary": "3条单点命中与50点网格命中均不自行构成全S^2恒等式；需另行精确证书。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

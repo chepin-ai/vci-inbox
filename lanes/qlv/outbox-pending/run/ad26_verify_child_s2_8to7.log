@@ -1,0 +1,8 @@
+{
+  "status": "S2_8TO7_AND_TWO_7CZ_GRIDS_INDEPENDENT_REBUILD_PASS",
+  "point_hits": 3,
+  "grid_points": 50,
+  "grid_hits": 50,
+  "max_target_rebuild_difference": 0.0,
+  "sha256": "300682c888bb44c57fd431e100f573432fef9f9ef0b6cf7ace49d3fa09af95bf"
+}

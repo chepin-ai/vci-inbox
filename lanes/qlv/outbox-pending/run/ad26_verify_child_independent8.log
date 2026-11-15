@@ -1,0 +1,20 @@
+{
+  "status": "S2_8CZ_89D2_INDEPENDENT_REBUILD_PASS",
+  "points": 328,
+  "worst": {
+    "theta": 3.141592653589793,
+    "phi": 0.31,
+    "target_max_abs": 1.4946834900704542e-15
+  },
+  "theta_zero_exact": {
+    "field": "Q(w), w=exp(i*pi/8), w^8+1=0",
+    "exact_nonzero_residual_entries": 0,
+    "negative_control": "first local angle +pi/4",
+    "negative_control_nonzero_entries": 16,
+    "max_integer_snap_rad": 0.0,
+    "phase_pi_over_8": 5
+  },
+  "negative_control_max_abs": 0.3573102697669012,
+  "seconds": 0.5642828941345215,
+  "sha256": "4cb60b87991d8e45b337729368eedbee0cb6cc7dc1494cb121a46d36b1d9154b"
+}

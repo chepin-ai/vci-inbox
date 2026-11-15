@@ -1,0 +1,124 @@
+{
+  "beat": "AD-26",
+  "status": "S2_9CZ_89_LINEAR_ANGLE_ANALYTIC_CANDIDATE_NUMERIC_PASS",
+  "topology": "89",
+  "cz_count": 9,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "known_answer_gate": {
+    "source_raw9_max_abs": 4.463127628559181e-15,
+    "candidate_at_source_max_abs": 6.826968921430001e-16,
+    "negative_control": "core1 += pi/4",
+    "negative_control_max_abs": 0.35355461864469395
+  },
+  "angle_recipe": {
+    "frozen_pi_over_4": {
+      "1": 1,
+      "3": 6,
+      "4": 0,
+      "6": 4,
+      "7": 0,
+      "8": 13,
+      "10": 0,
+      "11": 3,
+      "12": 5,
+      "13": 4,
+      "14": 12,
+      "15": 4,
+      "16": 2,
+      "17": 2,
+      "18": 0,
+      "19": 4,
+      "20": 7,
+      "21": 0,
+      "22": 7,
+      "23": 1,
+      "24": 3,
+      "25": 7,
+      "26": 4,
+      "27": 4,
+      "28": 15,
+      "29": 0,
+      "30": 10,
+      "31": 3,
+      "32": 0,
+      "34": 0,
+      "35": 2,
+      "36": 14,
+      "39": 8,
+      "40": 0,
+      "41": 6,
+      "42": 9,
+      "43": 10,
+      "44": 0,
+      "45": 15
+    },
+    "free_formulas": {
+      "0": "3*pi/8",
+      "2": "-pi/2+phi",
+      "5": "pi/2+theta/2",
+      "9": "3*pi/4+theta/2",
+      "33": "-pi/2+theta/2",
+      "37": "-pi/2-phi",
+      "38": "-pi/2-theta/2"
+    }
+  },
+  "original_grid": {
+    "points": 25,
+    "worst_max_abs": 9.347697126931793e-16
+  },
+  "off_grid": {
+    "points": 216,
+    "random_points": 160,
+    "pole_and_special_points": 56,
+    "worst_max_abs": 1.2412670766236366e-15
+  },
+  "worst": {
+    "class": "off_grid_and_poles",
+    "theta": 2.6671476894430195,
+    "phi": 2.3840413799726248,
+    "target_max_abs": 1.2412670766236366e-15
+  },
+  "evidence_level": "L2 complete explicit linear-angle candidate with deterministic numeric reconstruction; symbolic certificate still required for L1",
+  "boundary": "数值命中不代替全参数恒等式；本结果不证明9-CZ最优，也不预先断言与[0,10]块级同族。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

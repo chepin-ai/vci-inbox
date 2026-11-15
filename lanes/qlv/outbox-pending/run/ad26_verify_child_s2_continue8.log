@@ -1,0 +1,7 @@
+{
+  "status": "S2_8CZ_GRID_INDEPENDENT_REBUILD_PASS",
+  "grid_points": 75,
+  "exact_numeric_hits": 75,
+  "max_target_rebuild_difference": 0.0,
+  "sha256": "72b90ea529ff70ea1261de8623b80b0bcdd134c4ab4775e55082f5c5267b3db4"
+}

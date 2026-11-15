@@ -1,0 +1,12 @@
+{
+  "status": "S2_THETA0_CASE5_NEIGHBOR_PATH5_INDEPENDENT_REBUILD_PASS",
+  "runs": 36,
+  "hits": 0,
+  "max_saved_metric_rebuild_difference": 0.0,
+  "best": {
+    "PATH": 0.31889824253860793,
+    "unrestricted_auxiliary": 0.3826834323650911
+  },
+  "seconds": 0.03453683853149414,
+  "sha256": "2fb72ef4f716d335a2e9ed47d1d0be76be3acd5d75843dd1af50a7bd3fc9e878"
+}

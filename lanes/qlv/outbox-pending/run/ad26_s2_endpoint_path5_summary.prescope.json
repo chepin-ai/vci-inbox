@@ -1,0 +1,48 @@
+{
+  "beat": "AD-26",
+  "status": "S2_THETA0_CASE5_NEIGHBOR_PATH5_COMPLETE",
+  "known_answer_gate_first": {
+    "unrestricted_case5_max_abs": 9.868075478780918e-16,
+    "same_target_solver_recovery_max_abs": 5.333694441429199e-15,
+    "exact_6cz_template_max_abs": 9.50197851991224e-16
+  },
+  "theta": 0.0,
+  "phi": 0.0,
+  "protocol": "case5b六条单边突变加精确6-CZ模板六条删门；kick 0/0.02/0.1；TRF max_nfev=1800",
+  "runs": 36,
+  "errors": 0,
+  "exact_numeric_hits": 0,
+  "per_family": {
+    "case5_edge_mutation": {
+      "runs": 18,
+      "exact_numeric_hits": 0,
+      "hit_labels": [],
+      "best": {
+        "label": "case5_edge4_02to12",
+        "kick": 0.1,
+        "target_max_abs": 0.3604799110038507,
+        "nfev": 35,
+        "optimality": 6.635041273366157e-09
+      }
+    },
+    "exact6_deletion": {
+      "runs": 18,
+      "exact_numeric_hits": 0,
+      "hit_labels": [],
+      "best": {
+        "label": "delete4",
+        "kick": 0.02,
+        "target_max_abs": 0.31889824253860793,
+        "nfev": 50,
+        "optimality": 1.6426137228187088e-08
+      }
+    }
+  },
+  "evidence_level": "L2 structural-neighborhood numerical search at theta=0",
+  "boundary": "只覆盖case5b的6条单边突变与指定6-CZ模板删门；零命中不证明PATH 5-CZ不存在。任何命中仍须精确证书，且不得外推全S^2。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "seconds": 3.111182451248169
+}

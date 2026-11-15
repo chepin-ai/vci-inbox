@@ -1,0 +1,71 @@
+{
+  "beat": "AD-26",
+  "status": "S2_6CZ_89D2D6D2_FULL_SPHERE_DIRECT_L1_EXACT_PASS",
+  "evidence_level": "L1 exact Q(w)-coefficient polynomial full-matrix identity on the whole S^2",
+  "topology": "89d2d6d2",
+  "cz_count": 6,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "field_known_answer_gate": {
+    "field_relation": "w^8+1=0 exact",
+    "rz_ry_cases": 35,
+    "rz_ry_unitarity": "exact zero",
+    "numeric_crosscheck_max": 6.497413668604471e-16,
+    "ordered_identity": "A^dagger CZ CZ A = I exact",
+    "wrong_order_control_nonzero": 32,
+    "maj_toffoli_identity": "exact zero",
+    "maj_squared_nonidentity_entries": 6
+  },
+  "numeric_known_answer_gate": {
+    "theta": 0.4487989505128276,
+    "phi": 0.31,
+    "symbolic_matrix_numeric_max_abs": 1.1102230246251565e-16,
+    "independent_numeric_constructor_max_abs": 1.1157603309187458e-15,
+    "nonzero_residual_entries_before_certificate": 32
+  },
+  "proof": {
+    "method": "sparse polynomial matrices with exact Q(w) coefficients; reduce all residuals modulo two circle relations",
+    "nonzero_residual_entries": 32,
+    "passed_entries": 32,
+    "entries_file": "ad26_s2_symbolic6_89d2d6d2_qw_entries.json",
+    "entries_sha256": "05f410718fc48f907fd45297345bc5fadfe8f7378a59a1446a272603e8834b73",
+    "numerics_in_identity_decision": false,
+    "candidate_module": "ad26_s2_analytic6_89d2d6d2"
+  },
+  "numeric_companion": {
+    "path": "ad26_s2_analytic6_89d2d6d2_summary.json",
+    "sha256": "4b2e83b0a7d60b950bccea1e6abc005d0aa2bc53ece65b21a494cbcc5dbe7552",
+    "points": 241
+  },
+  "strict_conclusion": "整个S^2目标族存在边序[(0, 1), (0, 1), (1, 2), (0, 1), (1, 2), (0, 1)]的6-CZ精确线性角构造，全局相位为5*pi/8。",
+  "boundary": "不冒报6-CZ最优；5-CZ、其他6-CZ拓扑及块级同族性仍开放。",
+  "first_honesty_anomaly_note": "候选先经删门、有限网格和规范吸附发现；L1资格仅来自本精确域恒等式。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

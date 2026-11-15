@@ -1,0 +1,13 @@
+{
+  "status": "MAJ_K4_BRANCH_DIRECT_INDEPENDENT_REBUILD_PASS",
+  "combined_protocol_runs": 48,
+  "combined_exact_joint_hits": 0,
+  "weighted_max_target_delta": 0.0,
+  "direct_max_target_delta": 0.0,
+  "known_gate": {
+    "runs": 3,
+    "worst_target": 7.893200191297616e-09,
+    "worst_constraint": 4.440892098500626e-16
+  },
+  "sha256": "f9371b8251341be95eb91e67ad7ad27167f0be4c51ed7a7211cc674a4fda8843"
+}

@@ -1,0 +1,31 @@
+{
+  "beat": "AD-26",
+  "status": "MAJ_7TO6_TARGETED_COMPLETE",
+  "known_answer_gate_first": {
+    "ad23_sources": 7,
+    "ad23_max_abs": 8.455206652451151e-16,
+    "known_k7_solver_max_abs": 5.551115123125783e-16,
+    "merge_canonical_max_abs": 3.376611507232129e-16
+  },
+  "merge_canonical_max_abs": 4.742874840267547e-16,
+  "protocol": "7 exact sources x 7 single deletions x {0,0.03} deterministic kicks; canonical 34-core; LM max_nfev=700",
+  "runs": 98,
+  "errors": 0,
+  "exact_numeric_hits": 0,
+  "best": {
+    "hit": 3,
+    "deleted": 4,
+    "kick": 0.03,
+    "target_max_abs": 0.3773419318516115,
+    "nfev": 58,
+    "optimality": 4.678417993963538e-09
+  },
+  "exact_hit_indices": [],
+  "evidence_level": "L2 targeted local numerical search; exact hits, if any, still require algebraic certification",
+  "boundary": "只覆盖AD-23七证书的49条删门轨道及指定扰动；零命中不证明k=6不存在，更不改变4<=k<=7。",
+  "strict_interval": "4 <= k <= 7",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

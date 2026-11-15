@@ -1,0 +1,892 @@
+{
+  "beat": "AD-26",
+  "status": "S2_TWO_6CZ_TO5_INDEPENDENT_REBUILD_PASS",
+  "source_policy": "只读取原始jsonl保存坐标与汇总；目标、raw解码和电路矩阵复用独立验收原语，不导入6to5求解器或其依赖求解模块。",
+  "known_answer_gate": {
+    "independent_6cz_max_abs": 1.1157603309187458e-15,
+    "changed_angle_counterexample_max_abs": 0.35994596609412277
+  },
+  "theta": 0.4487989505128276,
+  "phi": 0.31,
+  "runs": 24,
+  "errors": 0,
+  "exact_numeric_hits": 0,
+  "max_saved_metric_rebuild_difference": 0.0,
+  "max_full_matrix_second_decode_difference": 0.0,
+  "per_topology": {
+    "89d2d0d1": {
+      "runs": 12,
+      "exact_numeric_hits": 0,
+      "best": {
+        "index": 1,
+        "topology": "89d2d0d1",
+        "deleted": [
+          0
+        ],
+        "kick": 0.02,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "saved_target_max_abs": 0.3382196341236988,
+        "rebuilt_target_max_abs": 0.3382196341236988,
+        "exact_numeric_hit": false
+      }
+    },
+    "89d2d6d2": {
+      "runs": 12,
+      "exact_numeric_hits": 0,
+      "best": {
+        "index": 15,
+        "topology": "89d2d6d2",
+        "deleted": [
+          1
+        ],
+        "kick": 0.02,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "saved_target_max_abs": 0.3382196344808475,
+        "rebuilt_target_max_abs": 0.3382196344808475,
+        "exact_numeric_hit": false
+      }
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "topology": "89d2d0d1",
+      "deleted": [
+        0
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.6112604669781576,
+      "rebuilt_target_max_abs": 0.6112604669781576,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 1,
+      "topology": "89d2d0d1",
+      "deleted": [
+        0
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3382196341236988,
+      "rebuilt_target_max_abs": 0.3382196341236988,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 2,
+      "topology": "89d2d0d1",
+      "deleted": [
+        1
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 1.1143984749345437,
+      "rebuilt_target_max_abs": 1.1143984749345437,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 3,
+      "topology": "89d2d0d1",
+      "deleted": [
+        1
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.35839582837008765,
+      "rebuilt_target_max_abs": 0.35839582837008765,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 4,
+      "topology": "89d2d0d1",
+      "deleted": [
+        2
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.7338215011095145,
+      "rebuilt_target_max_abs": 0.7338215011095145,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 5,
+      "topology": "89d2d0d1",
+      "deleted": [
+        2
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.34191521002982905,
+      "rebuilt_target_max_abs": 0.34191521002982905,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 6,
+      "topology": "89d2d0d1",
+      "deleted": [
+        3
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 1.114398474934544,
+      "rebuilt_target_max_abs": 1.114398474934544,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 7,
+      "topology": "89d2d0d1",
+      "deleted": [
+        3
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3963088245446018,
+      "rebuilt_target_max_abs": 0.3963088245446018,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 8,
+      "topology": "89d2d0d1",
+      "deleted": [
+        4
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.6009675450579853,
+      "rebuilt_target_max_abs": 0.6009675450579853,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 9,
+      "topology": "89d2d0d1",
+      "deleted": [
+        4
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.35447216633622786,
+      "rebuilt_target_max_abs": 0.35447216633622786,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 10,
+      "topology": "89d2d0d1",
+      "deleted": [
+        5
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.5794593836536766,
+      "rebuilt_target_max_abs": 0.5794593836536766,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 11,
+      "topology": "89d2d0d1",
+      "deleted": [
+        5
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.36291877160413666,
+      "rebuilt_target_max_abs": 0.36291877160413666,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 12,
+      "topology": "89d2d6d2",
+      "deleted": [
+        0
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 1.0065392534596556,
+      "rebuilt_target_max_abs": 1.0065392534596556,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 13,
+      "topology": "89d2d6d2",
+      "deleted": [
+        0
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.33821963475719635,
+      "rebuilt_target_max_abs": 0.33821963475719635,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 14,
+      "topology": "89d2d6d2",
+      "deleted": [
+        1
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 1.1170620766319037,
+      "rebuilt_target_max_abs": 1.1170620766319037,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 15,
+      "topology": "89d2d6d2",
+      "deleted": [
+        1
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3382196344808475,
+      "rebuilt_target_max_abs": 0.3382196344808475,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 16,
+      "topology": "89d2d6d2",
+      "deleted": [
+        2
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 1.0726130541253085,
+      "rebuilt_target_max_abs": 1.0726130541253085,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 17,
+      "topology": "89d2d6d2",
+      "deleted": [
+        2
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.39630883503020015,
+      "rebuilt_target_max_abs": 0.39630883503020015,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 18,
+      "topology": "89d2d6d2",
+      "deleted": [
+        3
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.7472777568538048,
+      "rebuilt_target_max_abs": 0.7472777568538048,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 19,
+      "topology": "89d2d6d2",
+      "deleted": [
+        3
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3419152091894639,
+      "rebuilt_target_max_abs": 0.3419152091894639,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 20,
+      "topology": "89d2d6d2",
+      "deleted": [
+        4
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 1.0726130541253087,
+      "rebuilt_target_max_abs": 1.0726130541253087,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 21,
+      "topology": "89d2d6d2",
+      "deleted": [
+        4
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3705928965329024,
+      "rebuilt_target_max_abs": 0.3705928965329024,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 22,
+      "topology": "89d2d6d2",
+      "deleted": [
+        5
+      ],
+      "kick": 0.0,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.5794593836536767,
+      "rebuilt_target_max_abs": 0.5794593836536767,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 23,
+      "topology": "89d2d6d2",
+      "deleted": [
+        5
+      ],
+      "kick": 0.02,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.36291877124951255,
+      "rebuilt_target_max_abs": 0.36291877124951255,
+      "exact_numeric_hit": false
+    }
+  ],
+  "evidence_level": "独立L2复验：24条原始保存坐标的逐条全矩阵重建",
+  "boundary": "零命中只限两个代表元的指定删门与扰动；不证明5-CZ不存在，也不证明6-CZ最优。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

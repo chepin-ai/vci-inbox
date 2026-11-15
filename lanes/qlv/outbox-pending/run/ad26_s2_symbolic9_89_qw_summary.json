@@ -1,0 +1,82 @@
+{
+  "beat": "AD-26",
+  "status": "S2_9CZ_89_FULL_SPHERE_DIRECT_L1_EXACT_PASS",
+  "evidence_level": "L1 exact Q(w)-coefficient polynomial full-matrix identity on the whole S^2",
+  "topology": "89",
+  "cz_count": 9,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "field_known_answer_gate": {
+    "field_relation": "w^8+1=0 exact",
+    "rz_ry_cases": 35,
+    "rz_ry_unitarity": "exact zero",
+    "numeric_crosscheck_max": 6.497413668604471e-16,
+    "ordered_identity": "A^dagger CZ CZ A = I exact",
+    "wrong_order_control_nonzero": 32,
+    "maj_toffoli_identity": "exact zero",
+    "maj_squared_nonidentity_entries": 6
+  },
+  "numeric_known_answer_gate": {
+    "theta": 0.4487989505128276,
+    "phi": 0.31,
+    "symbolic_matrix_numeric_max_abs": 1.1102230246251565e-16,
+    "independent_numeric_constructor_max_abs": 6.826968921430001e-16,
+    "nonzero_residual_entries_before_certificate": 32
+  },
+  "proof": {
+    "method": "sparse polynomial matrices with exact Q(w) coefficients; reduce all residuals modulo two circle relations",
+    "nonzero_residual_entries": 32,
+    "passed_entries": 32,
+    "entries_file": "ad26_s2_symbolic9_89_qw_entries.json",
+    "entries_sha256": "20f0a0da0078b41b7fe1c9807200aef5e978055f1f4d9a383f09396cffe53c6b",
+    "numerics_in_identity_decision": false
+  },
+  "numeric_companion": {
+    "path": "ad26_s2_analytic9_89_summary.json",
+    "sha256": "11a45a3eac741d3d03c2f99876894ac82cff97e8600d8382484ae44e39dd9dd8",
+    "points": 241
+  },
+  "strict_conclusion": "整个 S^2 目标族存在同一 [8,9] 边序的9-CZ精确构造；所有角均为pi/4整数倍及theta/2、phi一次式。9-CZ不冒报为最优。",
+  "boundary": "第二套精确模板不证明与[0,10]块级同族，不给出7/8-CZ或其他拓扑的不存在性。",
+  "first_honesty_anomaly_note": "通用Sympy展开与复代数数域两条路线分别因表达式爆炸和转换开销超时；均非电路反例。本版以Q(w)稀疏精确算术完成判等。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

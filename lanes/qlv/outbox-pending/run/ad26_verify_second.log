@@ -1,0 +1,57 @@
+{
+  "status": "ALL_PASS",
+  "children": 16,
+  "headline": {
+    "maj_interval": "4 <= k <= 7",
+    "maj_k4_protocol_runs": 48,
+    "maj_k4_joint_hits": 0,
+    "s2_full_sphere_exact_cz": 6,
+    "s2_full_sphere_6cz_edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "s2_8_7_6_symbolic_passed_entries": [
+      32,
+      32,
+      32
+    ],
+    "s2_8_7_6_independent_points": [
+      328,
+      328,
+      328
+    ],
+    "s2_6to5_runs": 24,
+    "s2_6to5_hits": 0,
+    "theta0_minimum_unrestricted_three_qubit_cz": 5,
+    "theta0_path_runs": 24,
+    "theta0_path_hits": 0,
+    "theta0_unrestricted_auxiliary_runs": 12,
+    "seq91_runs": 528,
+    "seq91_exact_returns": 443,
+    "rac_checked_at": "20261115T190308Z",
+    "rac_verdict": "WAITING_PEER_S_SIM"
+  },
+  "sha256": "7e2f9781fad062b8ec7ba52ad6637a10781ebd2320ed4297386eecd5a23c8c4c"
+}

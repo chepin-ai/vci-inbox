@@ -1,0 +1,84 @@
+{
+  "beat": "AD-26",
+  "status": "S2_TWO_7CZ_TO6_TARGETED_POINT_COMPLETE",
+  "known_answer_gate_first": {
+    "89d2d0": {
+      "source_7cz_max_abs": 1.5524059674132788e-15,
+      "same_point_7cz_solver_max_abs": 1.5524059674132788e-15,
+      "deleted_self_target_6cz_recovery_max_abs": 6.661338147750939e-16,
+      "merge_canonical_max_abs": 4.126162952233366e-16,
+      "changed_angle_counterexample_max_abs": 0.3593320120456307
+    },
+    "89d2d6": {
+      "source_7cz_max_abs": 2.8790975114856154e-15,
+      "same_point_7cz_solver_max_abs": 2.8790975114856154e-15,
+      "deleted_self_target_6cz_recovery_max_abs": 3.7735335743599086e-15,
+      "merge_canonical_max_abs": 5.117875266520904e-16,
+      "changed_angle_counterexample_max_abs": 0.353554618644694
+    }
+  },
+  "theta": 0.4487989505128276,
+  "phi": 0.31,
+  "merge_canonical_max_abs": 6.206335383118183e-16,
+  "protocol": "two numerical 7-CZ sources with distinct edge orders; 7 single deletions per source; kicks 0/0.02; canonical 34-core; TRF max_nfev=900",
+  "runs": 28,
+  "errors": 0,
+  "exact_numeric_hits": 6,
+  "per_topology": {
+    "89d2d0": {
+      "runs": 14,
+      "exact_numeric_hits": 3,
+      "hit_deletions": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          5
+        ]
+      ],
+      "best": {
+        "deleted": [
+          1
+        ],
+        "kick": 0.02,
+        "target_max_abs": 6.731800026102354e-16,
+        "nfev": 25,
+        "optimality": 6.271191941804973e-16
+      }
+    },
+    "89d2d6": {
+      "runs": 14,
+      "exact_numeric_hits": 3,
+      "hit_deletions": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "best": {
+        "deleted": [
+          2
+        ],
+        "kick": 0.02,
+        "target_max_abs": 6.758924343478424e-16,
+        "nfev": 50,
+        "optimality": 1.3260987739588383e-15
+      }
+    }
+  },
+  "evidence_level": "L2 targeted local numerical search at one generic point",
+  "boundary": "只覆盖两个7-CZ代表元的14种删门及两种扰动，共28轨；零命中不证明6-CZ不存在，命中仍需延拓与精确证书。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "seconds": 3.8044776916503906
+}

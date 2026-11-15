@@ -1,0 +1,20 @@
+{
+  "checked_at": "20261115T190308Z",
+  "verdict": "WAITING_PEER_S_SIM",
+  "fingerprint_arrived": false,
+  "heads": {
+    "chepin-ai/ci-inbox": "1b6b6f1bb63f85f7713c4e67b1d5142449d7fe84",
+    "chepin-ai/vci-inbox": "e00b161a8bccb6f23b2e94a7d17b911a2bbac2e6",
+    "chepin-qi/qlv-pub": "2b0607b246e70a93135aab846aefadd2dfcc74f0"
+  },
+  "candidate_counts": {
+    "chepin-ai/ci-inbox": 6,
+    "chepin-ai/vci-inbox": 13,
+    "chepin-qi/qlv-pub": 0
+  },
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "private_ci_consumption": 0,
+  "sha256": "e54b96321d7c92cb96d8c921cfc202ffdd39edb1c0d311c36e43c2a4bf596a24"
+}

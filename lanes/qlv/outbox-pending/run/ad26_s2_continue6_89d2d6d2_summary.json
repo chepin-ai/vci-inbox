@@ -1,0 +1,76 @@
+{
+  "beat": "AD-26",
+  "status": "S2_6CZ_GRID_CONTINUATION_COMPLETE",
+  "topology": "89d2d6d2",
+  "source_deleted": [
+    2
+  ],
+  "source_topology": "89d2d6",
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "known_answer_gate_first": {
+    "source_point_max_abs": 6.758924343478424e-16,
+    "same_point_solver_max_abs": 6.758924343478424e-16,
+    "theta_plus_0.01_solver_max_abs": 1.1730630610775704e-15
+  },
+  "theta_values": [
+    0.2,
+    0.32,
+    0.4487989505128276,
+    0.58,
+    0.74
+  ],
+  "phi_values": [
+    -0.32,
+    0.0,
+    0.31,
+    0.62,
+    0.94
+  ],
+  "grid_points": 25,
+  "exact_numeric_hits": 25,
+  "nonhits": 0,
+  "best": {
+    "theta": 0.4487989505128276,
+    "phi": 0.31,
+    "target_max_abs": 6.758924343478424e-16,
+    "nfev": 1
+  },
+  "worst": {
+    "theta": 0.32,
+    "phi": 0.94,
+    "target_max_abs": 1.476941570699936e-14,
+    "nfev": 34
+  },
+  "evidence_level": "L2 numerical continuation on a finite 5x5 grid with fixed gate topology",
+  "boundary": "网格命中不是全S^2恒等式；非命中只表示当前暖启动轨道未闭合，不证明6-CZ不存在。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "seconds": 3.026376962661743
+}

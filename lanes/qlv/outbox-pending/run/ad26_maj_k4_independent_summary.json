@@ -1,0 +1,147 @@
+{
+  "beat": "AD-26",
+  "status": "MAJ_K4_BRANCH_DIRECT_INDEPENDENT_REBUILD_PASS",
+  "known_answer_gate_first": {
+    "single_cuts": {
+      "q0|rest": {
+        "rank": 4,
+        "gram": "{3,3,1,1}"
+      },
+      "q1|rest": {
+        "rank": 4,
+        "gram": "{3,3,1,1}"
+      },
+      "q2|rest": {
+        "rank": 4,
+        "gram": "{3,3,1,1}"
+      }
+    },
+    "ad23_7cz_hits": 7,
+    "ad23_7cz_max_abs": 8.455206652451151e-16
+  },
+  "source_rebuild": {
+    "ABAB": {
+      "source_idx": 5,
+      "source_restart": 7,
+      "target_max_abs": 0.38268348799168717,
+      "fixed_cut": "B",
+      "fixed_case_index": 1,
+      "fixed_branch_error": 2.038530233505753e-09,
+      "invariants": {
+        "A": [
+          1.5707963272082885,
+          2.828427121863287
+        ],
+        "B": [
+          1.570796327438421,
+          -1.9999999979614698
+        ]
+      }
+    },
+    "ABBA": {
+      "source_idx": 6,
+      "source_restart": 1,
+      "target_max_abs": 0.3826834921632024,
+      "fixed_cut": "A",
+      "fixed_case_index": 2,
+      "fixed_branch_error": 1.3038092827599712e-08,
+      "invariants": {
+        "A": [
+          1.5707963137568037,
+          1.999999999999991
+        ],
+        "B": [
+          1.5707963267948963,
+          -2.8284271247462
+        ]
+      }
+    },
+    "BABA": {
+      "source_idx": 10,
+      "source_restart": 6,
+      "target_max_abs": 0.38268348414102443,
+      "fixed_cut": "A",
+      "fixed_case_index": 1,
+      "fixed_branch_error": 5.498874444676005e-08,
+      "invariants": {
+        "A": [
+          1.570796381783641,
+          -1.9999999982674295
+        ],
+        "B": [
+          1.5707963313807665,
+          -2.8284271222959765
+        ]
+      }
+    }
+  },
+  "weighted_continuation": {
+    "runs": 24,
+    "per_order": {
+      "ABAB": {
+        "runs": 8,
+        "constraint_closed": 8,
+        "exact_joint_hits": 0,
+        "best_target": 0.6057638284128029
+      },
+      "ABBA": {
+        "runs": 8,
+        "constraint_closed": 8,
+        "exact_joint_hits": 0,
+        "best_target": 0.7933533481890878
+      },
+      "BABA": {
+        "runs": 8,
+        "constraint_closed": 8,
+        "exact_joint_hits": 0,
+        "best_target": 0.6057638300181902
+      }
+    },
+    "max_target_rebuild_difference": 0.0,
+    "max_constraint_rebuild_difference": 0.0,
+    "exact_joint_hits": 0,
+    "known_self_target_gate": {
+      "runs": 3,
+      "worst_target": 6.22568127626329e-16,
+      "worst_constraint": 8.881784197001252e-16
+    }
+  },
+  "direct_continuation": {
+    "runs": 24,
+    "per_order": {
+      "ABAB": {
+        "runs": 8,
+        "exact_joint_hits": 0,
+        "best_final_target": 0.6057638288483631
+      },
+      "ABBA": {
+        "runs": 8,
+        "exact_joint_hits": 0,
+        "best_final_target": 0.8202330845225285
+      },
+      "BABA": {
+        "runs": 8,
+        "exact_joint_hits": 0,
+        "best_final_target": 0.7437203821089141
+      }
+    },
+    "max_target_rebuild_difference": 0.0,
+    "max_constraint_rebuild_difference": 0.0,
+    "exact_joint_hits": 0,
+    "known_self_target_gate": {
+      "runs": 3,
+      "worst_target": 7.893200191297616e-09,
+      "worst_constraint": 4.440892098500626e-16
+    },
+    "changed_angle_counterexample_max_abs": 0.9192033126142611
+  },
+  "combined_protocol_runs": 48,
+  "combined_exact_joint_hits": 0,
+  "evidence_level": "L1 exact known gates + L2 independent numerical rebuild of saved circuits",
+  "boundary": "独立验收只证明所保存电路的矩阵与约束读数及已知门有效；未把48条终态零命中升级为六序或k=4不存在证明。",
+  "strict_interval": "4 <= k <= 7",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

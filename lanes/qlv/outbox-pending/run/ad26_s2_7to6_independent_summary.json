@@ -1,0 +1,89 @@
+{
+  "beat": "AD-26",
+  "status": "S2_7TO6_AND_TWO_6CZ_GRIDS_INDEPENDENT_REBUILD_PASS",
+  "source_known_answer_gate": {
+    "89d2d0": {
+      "source_7cz_max_abs": 1.5524059674132788e-15,
+      "changed_angle_counterexample_max_abs": 0.3593320120456307
+    },
+    "89d2d6": {
+      "source_7cz_max_abs": 2.8790975114856154e-15,
+      "changed_angle_counterexample_max_abs": 0.353554618644694
+    }
+  },
+  "point_runs": 28,
+  "point_exact_numeric_hits": 6,
+  "point_max_target_rebuild_difference": 0.0,
+  "grid_points": 50,
+  "grid_exact_numeric_hits": 50,
+  "per_grid": {
+    "89d2d0d1": {
+      "grid_points": 25,
+      "exact_numeric_hits": 25,
+      "worst_max_abs": 3.209024705508149e-14,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "89d2d6d2": {
+      "grid_points": 25,
+      "exact_numeric_hits": 25,
+      "worst_max_abs": 1.476941570699936e-14,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "evidence_level": "L2 independent full-matrix rebuild of 28 point runs and two finite 5x5 grids",
+  "boundary": "6条单点命中与50点网格命中均不自行构成全S^2恒等式；需另行精确证书。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

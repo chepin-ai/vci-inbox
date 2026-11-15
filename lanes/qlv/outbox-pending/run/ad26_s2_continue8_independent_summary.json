@@ -1,0 +1,132 @@
+{
+  "beat": "AD-26",
+  "status": "S2_8CZ_GRID_INDEPENDENT_REBUILD_PASS",
+  "grid_points": 75,
+  "per_topology": {
+    "89d2": {
+      "grid_points": 25,
+      "exact_numeric_hits": 25,
+      "worst_max_abs": 4.883502627044722e-15,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "89d7": {
+      "grid_points": 25,
+      "exact_numeric_hits": 25,
+      "worst_max_abs": 4.724861971938167e-15,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "010d1": {
+      "grid_points": 25,
+      "exact_numeric_hits": 25,
+      "worst_max_abs": 8.001447338483843e-15,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "exact_numeric_hits": 75,
+  "max_target_rebuild_difference": 0.0,
+  "evidence_level": "L2 independent full-matrix rebuild on three finite 5x5 grids",
+  "boundary": "75点命中不是全S^2符号恒等式，也不证明8-CZ最优。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

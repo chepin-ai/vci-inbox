@@ -1,0 +1,32 @@
+{
+  "beat": "AD-26",
+  "status": "S2_6CZ_89D2D6D2_INDEPENDENT_REBUILD_PASS",
+  "source_policy": "固定角与线性公式重录；未导入analytic6_89d2d6d2或符号证明器；复用独立验收器的无状态电路/目标原语。",
+  "theta_zero_exact": {
+    "field": "Q(w), w=exp(i*pi/8), w^8+1=0",
+    "exact_nonzero_residual_entries": 0,
+    "negative_control": "first local angle +pi/4",
+    "negative_control_nonzero_entries": 32,
+    "max_integer_snap_rad": 0.0,
+    "phase_pi_over_8": 5
+  },
+  "numeric_points": 328,
+  "worst": {
+    "theta": 2.5132741228718345,
+    "phi": 1.2,
+    "target_max_abs": 1.355199909595506e-15
+  },
+  "negative_control_max_abs": 0.3633446720056129,
+  "linked_symbolic_certificate": {
+    "path": "ad26_s2_symbolic6_89d2d6d2_qw_summary.json",
+    "sha256": "c08b3cedc9a660973cb86e57cf1880f504ff0df2ff134dcdb7b3ed29518e026b",
+    "status": "S2_6CZ_89D2D6D2_FULL_SPHERE_DIRECT_L1_EXACT_PASS",
+    "passed_entries": 32
+  },
+  "evidence_level": "独立数值/精确端点重建；全参数L1由已链接Q(w)稀疏多项式证明器承担",
+  "boundary": "独立重建不证明6-CZ最优，也不排除5-CZ或其他拓扑。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

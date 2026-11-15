@@ -1,0 +1,46 @@
+{"built_layer": 6}
+{"built_layer": 5}
+{"built_layer": 4}
+{"built_layer": 3}
+{"built_layer": 2}
+{"built_layer": 1}
+{"built_layer": 0}
+{"entry": [0, 0], "pass": true, "terms": 0, "elapsed": 0.34229063987731934}
+{"entry": [0, 2], "pass": true, "terms": 0, "elapsed": 0.3425254821777344}
+{"entry": [0, 4], "pass": true, "terms": 0, "elapsed": 0.3429415225982666}
+{"entry": [0, 6], "pass": true, "terms": 0, "elapsed": 0.3433504104614258}
+{"entry": [1, 1], "pass": true, "terms": 0, "elapsed": 0.34354710578918457}
+{"entry": [1, 3], "pass": true, "terms": 0, "elapsed": 0.34375882148742676}
+{"entry": [1, 5], "pass": true, "terms": 0, "elapsed": 0.344165563583374}
+{"entry": [1, 7], "pass": true, "terms": 0, "elapsed": 0.3445742130279541}
+{"entry": [2, 0], "pass": true, "terms": 0, "elapsed": 0.34476590156555176}
+{"entry": [2, 2], "pass": true, "terms": 0, "elapsed": 0.344959020614624}
+{"entry": [2, 4], "pass": true, "terms": 0, "elapsed": 0.345367431640625}
+{"entry": [2, 6], "pass": true, "terms": 0, "elapsed": 0.3457813262939453}
+{"entry": [3, 1], "pass": true, "terms": 0, "elapsed": 0.3459775447845459}
+{"entry": [3, 3], "pass": true, "terms": 0, "elapsed": 0.34616899490356445}
+{"entry": [3, 5], "pass": true, "terms": 0, "elapsed": 0.34657788276672363}
+{"entry": [3, 7], "pass": true, "terms": 0, "elapsed": 0.3469829559326172}
+{"entry": [4, 0], "pass": true, "terms": 0, "elapsed": 0.3473939895629883}
+{"entry": [4, 2], "pass": true, "terms": 0, "elapsed": 0.3477957248687744}
+{"entry": [4, 4], "pass": true, "terms": 0, "elapsed": 0.34798479080200195}
+{"entry": [4, 6], "pass": true, "terms": 0, "elapsed": 0.3481776714324951}
+{"entry": [5, 1], "pass": true, "terms": 0, "elapsed": 0.3485848903656006}
+{"entry": [5, 3], "pass": true, "terms": 0, "elapsed": 0.348984956741333}
+{"entry": [5, 5], "pass": true, "terms": 0, "elapsed": 0.34917259216308594}
+{"entry": [5, 7], "pass": true, "terms": 0, "elapsed": 0.3493685722351074}
+{"entry": [6, 0], "pass": true, "terms": 0, "elapsed": 0.3497767448425293}
+{"entry": [6, 2], "pass": true, "terms": 0, "elapsed": 0.3501768112182617}
+{"entry": [6, 4], "pass": true, "terms": 0, "elapsed": 0.35036802291870117}
+{"entry": [6, 6], "pass": true, "terms": 0, "elapsed": 0.35055971145629883}
+{"entry": [7, 1], "pass": true, "terms": 0, "elapsed": 0.3509652614593506}
+{"entry": [7, 3], "pass": true, "terms": 0, "elapsed": 0.35136842727661133}
+{"entry": [7, 5], "pass": true, "terms": 0, "elapsed": 0.35156893730163574}
+{"entry": [7, 7], "pass": true, "terms": 0, "elapsed": 0.351757287979126}
+{
+  "status": "S2_7CZ_89D2D6_FULL_SPHERE_DIRECT_L1_EXACT_PASS",
+  "entries": 32,
+  "seconds": 0.3665804862976074,
+  "entries_sha256": "40348bf1c3970dca79e6c9b6683a36d259d6cfc4f7c53c0e8c63287799827c0d",
+  "summary_sha256": "e7fe17d35e1760540bdf23c9ab321cc8d893eb8644eb0bc054484e06968c18b0"
+}

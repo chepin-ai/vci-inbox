@@ -1,0 +1,20 @@
+{
+  "status": "S2_6CZ_89D2D6D2_INDEPENDENT_REBUILD_PASS",
+  "points": 328,
+  "worst": {
+    "theta": 2.5132741228718345,
+    "phi": 1.2,
+    "target_max_abs": 1.355199909595506e-15
+  },
+  "theta_zero_exact": {
+    "field": "Q(w), w=exp(i*pi/8), w^8+1=0",
+    "exact_nonzero_residual_entries": 0,
+    "negative_control": "first local angle +pi/4",
+    "negative_control_nonzero_entries": 32,
+    "max_integer_snap_rad": 0.0,
+    "phase_pi_over_8": 5
+  },
+  "negative_control_max_abs": 0.3633446720056129,
+  "seconds": 0.4539332389831543,
+  "sha256": "b88d16f942af655a777c2ee592d4b8ad880428ec3d4d74e0afefa66a38c29bb7"
+}

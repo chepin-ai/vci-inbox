@@ -1,0 +1,1249 @@
+{
+  "beat": "AD-26",
+  "status": "S2_THETA0_CASE5_NEIGHBOR_PATH5_INDEPENDENT_REBUILD_PASS",
+  "known_answer_gate": {
+    "independent_6cz_max_abs": 9.50197851991224e-16,
+    "changed_angle_counterexample_max_abs": 0.353553390593274,
+    "linked_unrestricted_exact_certificate": "S2_THETA0_DIAGONAL_AND_UNRESTRICTED_5CZ_EXACT_PASS"
+  },
+  "runs": 36,
+  "errors": 0,
+  "exact_numeric_hits": 0,
+  "path_runs": 24,
+  "path_exact_numeric_hits": 0,
+  "max_saved_metric_rebuild_difference": 0.0,
+  "per_scope": {
+    "PATH": {
+      "runs": 24,
+      "exact_numeric_hits": 0,
+      "best": {
+        "index": 31,
+        "family": "exact6_deletion",
+        "label": "delete4",
+        "kick": 0.02,
+        "scope": "PATH",
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "saved_target_max_abs": 0.31889824253860793,
+        "rebuilt_target_max_abs": 0.31889824253860793,
+        "exact_numeric_hit": false
+      }
+    },
+    "unrestricted_auxiliary": {
+      "runs": 12,
+      "exact_numeric_hits": 0,
+      "best": {
+        "index": 2,
+        "family": "case5_edge_mutation",
+        "label": "case5_edge0_12to01",
+        "kick": 0.1,
+        "scope": "unrestricted_auxiliary",
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "saved_target_max_abs": 0.3826834323650911,
+        "rebuilt_target_max_abs": 0.3826834323650911,
+        "exact_numeric_hit": false
+      }
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge0_12to01",
+      "kick": 0.0,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.5000000000000006,
+      "rebuilt_target_max_abs": 0.5000000000000006,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 1,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge0_12to01",
+      "kick": 0.02,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.38268343236509283,
+      "rebuilt_target_max_abs": 0.38268343236509283,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 2,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge0_12to01",
+      "kick": 0.1,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.3826834323650911,
+      "rebuilt_target_max_abs": 0.3826834323650911,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 3,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge1_01to12",
+      "kick": 0.0,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.5000000000000004,
+      "rebuilt_target_max_abs": 0.5000000000000004,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 4,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge1_01to12",
+      "kick": 0.02,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.6710361221258779,
+      "rebuilt_target_max_abs": 0.6710361221258779,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 5,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge1_01to12",
+      "kick": 0.1,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.6950984235108919,
+      "rebuilt_target_max_abs": 0.6950984235108919,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 6,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge2_12to01",
+      "kick": 0.0,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.5000000000000004,
+      "rebuilt_target_max_abs": 0.5000000000000004,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 7,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge2_12to01",
+      "kick": 0.02,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.6532814894299469,
+      "rebuilt_target_max_abs": 0.6532814894299469,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 8,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge2_12to01",
+      "kick": 0.1,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.3826834456987973,
+      "rebuilt_target_max_abs": 0.3826834456987973,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 9,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge3_01to12",
+      "kick": 0.0,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 1.8477590650225733,
+      "rebuilt_target_max_abs": 1.8477590650225733,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 10,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge3_01to12",
+      "kick": 0.02,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.7653668502590185,
+      "rebuilt_target_max_abs": 0.7653668502590185,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 11,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge3_01to12",
+      "kick": 0.1,
+      "scope": "unrestricted_auxiliary",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.7602826500532183,
+      "rebuilt_target_max_abs": 0.7602826500532183,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 12,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge4_02to01",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.923879532511287,
+      "rebuilt_target_max_abs": 0.923879532511287,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 13,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge4_02to01",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799138755712,
+      "rebuilt_target_max_abs": 0.3604799138755712,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 14,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge4_02to01",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.36047991628829207,
+      "rebuilt_target_max_abs": 0.36047991628829207,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 15,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge4_02to12",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.5000000000000004,
+      "rebuilt_target_max_abs": 0.5000000000000004,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 16,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge4_02to12",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799110057158,
+      "rebuilt_target_max_abs": 0.3604799110057158,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 17,
+      "family": "case5_edge_mutation",
+      "label": "case5_edge4_02to12",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799110038507,
+      "rebuilt_target_max_abs": 0.3604799110038507,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 18,
+      "family": "exact6_deletion",
+      "label": "delete0",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.9238795325112873,
+      "rebuilt_target_max_abs": 0.9238795325112873,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 19,
+      "family": "exact6_deletion",
+      "label": "delete0",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799110034743,
+      "rebuilt_target_max_abs": 0.3604799110034743,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 20,
+      "family": "exact6_deletion",
+      "label": "delete0",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3826834336073853,
+      "rebuilt_target_max_abs": 0.3826834336073853,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 21,
+      "family": "exact6_deletion",
+      "label": "delete1",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.9238795325112871,
+      "rebuilt_target_max_abs": 0.9238795325112871,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 22,
+      "family": "exact6_deletion",
+      "label": "delete1",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.36047991125273693,
+      "rebuilt_target_max_abs": 0.36047991125273693,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 23,
+      "family": "exact6_deletion",
+      "label": "delete1",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799116298192,
+      "rebuilt_target_max_abs": 0.3604799116298192,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 24,
+      "family": "exact6_deletion",
+      "label": "delete2",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.9238795325112871,
+      "rebuilt_target_max_abs": 0.9238795325112871,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 25,
+      "family": "exact6_deletion",
+      "label": "delete2",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3826834476866553,
+      "rebuilt_target_max_abs": 0.3826834476866553,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 26,
+      "family": "exact6_deletion",
+      "label": "delete2",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3826834398749277,
+      "rebuilt_target_max_abs": 0.3826834398749277,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 27,
+      "family": "exact6_deletion",
+      "label": "delete3",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.5000000000000008,
+      "rebuilt_target_max_abs": 0.5000000000000008,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 28,
+      "family": "exact6_deletion",
+      "label": "delete3",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799126391075,
+      "rebuilt_target_max_abs": 0.3604799126391075,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 29,
+      "family": "exact6_deletion",
+      "label": "delete3",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799117156547,
+      "rebuilt_target_max_abs": 0.3604799117156547,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 30,
+      "family": "exact6_deletion",
+      "label": "delete4",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.9238795325112871,
+      "rebuilt_target_max_abs": 0.9238795325112871,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 31,
+      "family": "exact6_deletion",
+      "label": "delete4",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.31889824253860793,
+      "rebuilt_target_max_abs": 0.31889824253860793,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 32,
+      "family": "exact6_deletion",
+      "label": "delete4",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "saved_target_max_abs": 0.3826834526393786,
+      "rebuilt_target_max_abs": 0.3826834526393786,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 33,
+      "family": "exact6_deletion",
+      "label": "delete5",
+      "kick": 0.0,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.5000000000000007,
+      "rebuilt_target_max_abs": 0.5000000000000007,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 34,
+      "family": "exact6_deletion",
+      "label": "delete5",
+      "kick": 0.02,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.36047991103623184,
+      "rebuilt_target_max_abs": 0.36047991103623184,
+      "exact_numeric_hit": false
+    },
+    {
+      "index": 35,
+      "family": "exact6_deletion",
+      "label": "delete5",
+      "kick": 0.1,
+      "scope": "PATH",
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "saved_target_max_abs": 0.3604799256012635,
+      "rebuilt_target_max_abs": 0.3604799256012635,
+      "exact_numeric_hit": false
+    }
+  ],
+  "evidence_level": "独立L2复验：36条保存坐标逐条全矩阵重建",
+  "boundary": "PATH只含24轨，另12轨保留02边、仅作unrestricted辅助；零命中不证明PATH 5-CZ不存在。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

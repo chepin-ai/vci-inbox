@@ -1,0 +1,13 @@
+{
+  "status": "S2_TWO_6CZ_TO5_INDEPENDENT_REBUILD_PASS",
+  "runs": 24,
+  "hits": 0,
+  "max_saved_metric_rebuild_difference": 0.0,
+  "max_full_matrix_second_decode_difference": 0.0,
+  "best": {
+    "89d2d0d1": 0.3382196341236988,
+    "89d2d6d2": 0.3382196344808475
+  },
+  "seconds": 0.03932356834411621,
+  "sha256": "f5f160e0f254c702bdcb20e652efaaf59459abdfa3ba112c3bbb4c09faf52fc4"
+}

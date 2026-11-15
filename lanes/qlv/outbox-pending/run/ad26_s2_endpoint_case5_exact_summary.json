@@ -1,0 +1,88 @@
+{
+  "beat": "AD-26",
+  "status": "S2_THETA0_DIAGONAL_AND_UNRESTRICTED_5CZ_EXACT_PASS",
+  "field": "Q(w), w=exp(i*pi/8), w^8+1=0, Fraction coefficients",
+  "known_answer_gate": {
+    "field_relation": "w^8+1=0 exact",
+    "rz_ry_cases": 35,
+    "rz_ry_unitarity": "exact zero",
+    "numeric_crosscheck_max": 6.497413668604471e-16,
+    "ordered_identity": "A^dagger CZ CZ A = I exact",
+    "wrong_order_control_nonzero": 32,
+    "maj_toffoli_identity": "exact zero",
+    "maj_squared_nonidentity_entries": 6
+  },
+  "diagonal_identity": {
+    "formula": "H_1 target(0,0) H_1 = (cos(pi/8) I + i sin(pi/8) ZZZ) CCZ",
+    "nonzero_residual_entries": 0,
+    "cx_to_cz_nonzero_residual_entries": 0
+  },
+  "diagonal_phase_pi_over_8": [
+    1,
+    15,
+    15,
+    1,
+    15,
+    1,
+    1,
+    7
+  ],
+  "shende_markov_invariants_pi_over_8": {
+    "lambda1": 4,
+    "lambda2": 4,
+    "lambda3": 4,
+    "xi": 12,
+    "ab_over_c": 4,
+    "ac_over_b": 4,
+    "bc_over_a": 4,
+    "abc": 12
+  },
+  "case5b": {
+    "source": "Shende--Markov, On the CNOT-cost of TOFFOLI gates (2009), Theorem 14 case 5b, printed p.481",
+    "square_roots": "alpha=beta=gamma=w^2",
+    "schedule_left_to_right": [
+      "CX(1,2)",
+      "CX(0,1)",
+      "Delta(q2,w^-2)",
+      "CX(1,2)",
+      "Delta(q1,w^-2)",
+      "Delta(q2,w^-2)",
+      "CX(0,1)",
+      "CX(0,2)"
+    ],
+    "cx_edges_in_time_order": [
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "cz_count_after_H_conjugation": 5,
+    "canonical_nonzero_residual_entries": 0,
+    "full_target_including_global_phase_nonzero_residual_entries": 0,
+    "delete_02_negative_control_nonzero_entries": 8
+  },
+  "minimum_unrestricted_three_qubit_cz": 5,
+  "minimum_reason": "s(D)=(i,i,i;-i)=abc 类；三个 ab/c 型比值均为 i，不等于 xi=-i，且不属于定理14的0至4门特殊类；case 5b 给出5门构造。",
+  "evidence_level": "L1 exact arithmetic for theta=0 plus cited external classification; not a full-S^2 result",
+  "boundary": "构造使用一条02边，故只证明 unrestricted 三比特图、无辅助比特的 theta=0 端点最小5-CZ；不证明 PATH=A,B 最小5，也不给出全 S^2 5-CZ 或6-CZ最优。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

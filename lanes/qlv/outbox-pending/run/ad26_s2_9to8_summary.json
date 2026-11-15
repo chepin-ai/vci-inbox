@@ -1,0 +1,87 @@
+{
+  "beat": "AD-26",
+  "status": "S2_TWO_9CZ_TO8_TARGETED_POINT_COMPLETE",
+  "known_answer_gate_first": {
+    "89": {
+      "source_9cz_max_abs": 6.826968921430001e-16,
+      "same_point_9cz_solver_max_abs": 6.826968921430001e-16,
+      "deleted_self_target_8cz_recovery_max_abs": 1.3877787807814457e-15,
+      "merge_canonical_max_abs": 4.577566798522237e-16,
+      "changed_angle_counterexample_max_abs": 0.35355461864469395
+    },
+    "010": {
+      "source_9cz_max_abs": 1.0019015540844219e-15,
+      "same_point_9cz_solver_max_abs": 1.0019015540844219e-15,
+      "deleted_self_target_8cz_recovery_max_abs": 1.9451967258615607e-15,
+      "merge_canonical_max_abs": 4.577566798522237e-16,
+      "changed_angle_counterexample_max_abs": 0.35968883232284793
+    }
+  },
+  "theta": 0.4487989505128276,
+  "phi": 0.31,
+  "merge_canonical_max_abs": 5.978733960281817e-16,
+  "protocol": "two exact 9-CZ sources; 9 single deletions per source; kicks 0/0.02; canonical 34-core; TRF max_nfev=900 at one generic point",
+  "runs": 36,
+  "errors": 0,
+  "exact_numeric_hits": 7,
+  "per_topology": {
+    "89": {
+      "runs": 18,
+      "exact_numeric_hits": 5,
+      "best": {
+        "deleted": [
+          2
+        ],
+        "kick": 0.02,
+        "target_max_abs": 9.122732470144754e-16,
+        "nfev": 60,
+        "optimality": 1.9177547964904706e-15
+      },
+      "hit_deletions": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          7
+        ]
+      ]
+    },
+    "010": {
+      "runs": 18,
+      "exact_numeric_hits": 2,
+      "best": {
+        "deleted": [
+          8
+        ],
+        "kick": 0.02,
+        "target_max_abs": 1.5218182408308988e-15,
+        "nfev": 56,
+        "optimality": 3.5711468973435955e-15
+      },
+      "hit_deletions": [
+        [
+          1
+        ],
+        [
+          8
+        ]
+      ]
+    }
+  },
+  "evidence_level": "L2 targeted local numerical search at one generic point",
+  "boundary": "只覆盖两套9-CZ代表元的18种删门及两种扰动，共36轨；零命中不证明其他拓扑、其他代表元、该点或全S^2的8-CZ不存在。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "seconds": 34.79495286941528
+}

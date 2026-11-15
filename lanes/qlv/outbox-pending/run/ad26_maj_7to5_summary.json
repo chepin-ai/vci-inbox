@@ -1,0 +1,44 @@
+{
+  "beat": "AD-26",
+  "status": "MAJ_7TO5_TARGETED_COMPLETE",
+  "known_answer_gate_first": {
+    "ad23_sources": 7,
+    "ad23_max_abs": 8.455206652451151e-16,
+    "known_k7_solver_max_abs": 5.551115123125783e-16,
+    "merge_canonical_max_abs": 3.376611507232129e-16,
+    "double_delete_restore_max_abs": 8.455206652451151e-16,
+    "double_delete_merge_max_abs": 3.392647151090555e-16,
+    "known_k5_solver_max_abs": 3.3306690738754696e-16,
+    "k5_residual_shape": [
+      128
+    ],
+    "k5_jacobian_shape": [
+      128,
+      30
+    ]
+  },
+  "merge_canonical_max_abs": 5.558049685633556e-16,
+  "protocol": "7 exact sources x 21 pair deletions x {0,0.03} deterministic kicks; canonical 30-core; LM max_nfev=900",
+  "runs": 294,
+  "errors": 0,
+  "exact_numeric_hits": 0,
+  "best": {
+    "hit": 6,
+    "deleted": [
+      3,
+      5
+    ],
+    "kick": 0.0,
+    "target_max_abs": 0.3826834323755638,
+    "nfev": 82,
+    "optimality": 2.0679628487085857e-08
+  },
+  "exact_hit_indices": [],
+  "evidence_level": "L2 targeted local numerical search; exact hits, if any, still require algebraic certification",
+  "boundary": "只覆盖AD-23七证书的147条双删轨道及指定扰动；零命中不证明k=5不存在，更不改变4<=k<=7。",
+  "strict_interval": "4 <= k <= 7",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false
+}

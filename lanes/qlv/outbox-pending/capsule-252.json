@@ -1,0 +1,20 @@
+{
+  "seq": 252,
+  "prev": "297413d2702bd02b",
+  "ts": "20261115T192341Z",
+  "payload_sha256": "acdc4a5155f27f6d",
+  "body": {
+    "anchors": [
+      "lvlu",
+      "cisvr",
+      "qfa",
+      "lgt"
+    ],
+    "beat": "AD",
+    "board": "board-163",
+    "seat": "席",
+    "summary": "拍AD-26: MAJ保割48终态零联合命中且区间4<=k<=7不变; 全S2 6CZ L1边序A,A,B,A,B,A,8/7/6各32项Q(w)精确零且独立328点通过; theta0 unrestricted三比特图最小5CZ,PATH与全S2仍开放; 6to5及PATH定向零命中不证不存在; RAC仍WAITING_PEER_S_SIM; 16子件ALL_PASS",
+    "ts": "20261115T1923Z"
+  },
+  "cid": "efd6b2f0069552bd"
+}

@@ -1,0 +1,45 @@
+{
+  "beat": "AD-26",
+  "status": "S2_89D2_8TO7_TARGETED_POINT_COMPLETE",
+  "known_answer_gate_first": {
+    "source_8cz_max_abs": 9.31467358497575e-16,
+    "same_point_8cz_solver_max_abs": 9.31467358497575e-16,
+    "deleted_self_target_7cz_recovery_max_abs": 7.816041058999314e-16,
+    "merge_canonical_max_abs": 4.103345286324977e-16,
+    "changed_angle_counterexample_max_abs": 0.355483355153261
+  },
+  "theta": 0.4487989505128276,
+  "phi": 0.31,
+  "merge_canonical_max_abs": 5.629598648314745e-16,
+  "protocol": "one exact 8-CZ source; 8 single deletions; kicks 0/0.02; canonical 38-core; TRF max_nfev=900 at one generic point",
+  "runs": 16,
+  "errors": 0,
+  "exact_numeric_hits": 3,
+  "hit_deletions": [
+    [
+      0
+    ],
+    [
+      2
+    ],
+    [
+      6
+    ]
+  ],
+  "best": {
+    "deleted": [
+      0
+    ],
+    "kick": 0.02,
+    "target_max_abs": 1.5524059674132788e-15,
+    "nfev": 45,
+    "optimality": 3.414505281266579e-15
+  },
+  "evidence_level": "L2 targeted local numerical search at one generic point",
+  "boundary": "只覆盖89d2代表元的8种删门及两种扰动，共16轨；命中仍需延拓与精确证书，零命中不证明7-CZ不存在。",
+  "private_ci_consumption": 0,
+  "quantum_machine_actual_consumption_seconds": 0,
+  "quantum_machine_launched": false,
+  "quantum_account_quota_verified": false,
+  "seconds": 16.648693323135376
+}

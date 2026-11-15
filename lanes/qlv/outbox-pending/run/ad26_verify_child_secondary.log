@@ -1,0 +1,8 @@
+{
+  "status": "CONTROLLED_W_NORMALIZED_TRACE_SECOND_ORDER_L1_PASS",
+  "rows": 4,
+  "known_A0": 0.39269908169872414,
+  "A_squared_second_order_coefficient": 0.0625,
+  "trace_identity_max_error": 1.1102230246251565e-16,
+  "sha256": "123734d91285d40e8fb3cc54c7ff07ddf3fccaf30fe5e016dccdd65d6bd5f254"
+}
