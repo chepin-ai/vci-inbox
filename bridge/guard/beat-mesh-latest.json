@@ -1,7 +1,7 @@
 {
- "ts": "2026-11-16T16:29:19Z",
- "cross": "7db8b5505df96c12099af6e0",
- "kernel_head": "aef9227a9ccde70b",
+ "ts": "2026-11-16T17:01:13Z",
+ "cross": "4cc8c81d652314770b0d97d9",
+ "kernel_head": "a24d85bf20c61da0",
  "tips": {
   "pulses": {
    "n": 0,
@@ -15,9 +15,9 @@
    "bytes": 204979
   },
   "ledger": {
-   "seq": 969,
-   "hash": "35152b6fc0b6f290",
-   "ts": "2026-11-10T04:51:31Z"
+   "seq": 979,
+   "hash": "5949fdb8b0554c51",
+   "ts": "2026-11-16T17:00:56Z"
   },
   "home:usrm-repo": "77f9fdc678ba",
   "home:vinf-market-kernel": "e3a45501f414",
