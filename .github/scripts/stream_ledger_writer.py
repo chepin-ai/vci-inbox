@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from typing import Callable, Optional
 
 OWNER = "chepin-ai"
-REPO = "ci-control"
+REPO = "HUB-CORE"
 LEDGER_PATH = "bridge/stream-ledger.jsonl"
 API_BASE = "https://api.github.com"
 FULL_SHA256 = re.compile(r"^[0-9a-f]{64}$")
