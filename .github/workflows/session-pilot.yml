@@ -10,6 +10,10 @@ jobs:
   pilot:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout canonical ledger writer
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: "SESSION-STATE检测→判断→OTP注入"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
@@ -21,6 +25,9 @@ jobs:
           import os,json,urllib.request,urllib.error,urllib.parse,datetime,base64,hashlib,time
           NOW=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ')
           import jwt as JW
+          import sys
+          sys.path.insert(0, '.github/scripts')
+          import stream_ledger_writer as slw
           def mint():
               now=int(time.time())
               j=JW.encode({'iat':now-90,'exp':now+540,'iss':os.environ['HUBID']},os.environ['HUBK'],algorithm='RS256')
@@ -100,16 +107,10 @@ jobs:
               # 注入指针投公告板(联邦可视面) — wave-84 板面统一: 正典板=vci-inbox/ci-inbox/公告板/(公域R1净), 私仓旧板退役
               putc('vci-inbox','ci-inbox/公告板/session-pilot-latest.md',
                    '---\nts: '+NOW+'\nfrom: session-pilot(OS端递归引擎器官)\n---\n# 下一步指令已注入（OTP胶囊）\n\n- priority: '+prio+'\n- instruction: '+instr+'\n- nonce: '+nonce+' · qrand锚: '+qa+'\n- 正本: ci-control/bridge/session-pilot/NEXT-INSTRUCTION.json（一次性,消费即焚）\n','board: session-pilot 注入指针')
-              # HANDOFF 入链
-              ld,ldm=getc('ci-control','bridge/stream-ledger.jsonl')
-              if ld:
-                  _ls=[json.loads(x) for x in ld.splitlines() if x.strip()]
-                  _sq=max([x.get('seq',0) for x in _ls]+[0])+1; _ph2=''
-                  for _x in reversed(_ls):
-                      if _x.get('hash'): _ph2=_x['hash']; break
-                  e={'seq':_sq,'ts':NOW,'kind':'HANDOFF','actor':'session-pilot','nonce':nonce,'prio':prio,'instr':instr[:120]}
-                  e['hash']=hashlib.sha256((_ph2+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
-                  putc('ci-control','bridge/stream-ledger.jsonl',ld.rstrip(chr(10))+chr(10)+json.dumps(e,ensure_ascii=False)+chr(10),'ledger: HANDOFF '+nonce)
+              # HANDOFF 入链：prev/seq/hash 全部由同代共享写入器重绑。
+              e={'ts':NOW,'kind':'HANDOFF','actor':'session-pilot','nonce':nonce,'prio':prio,'instr':instr[:120]}
+              e=slw.append_ledger(e,'ledger: HANDOFF '+nonce,slw.GitHubContentsTransport(H))
+              rep['ledger_seq']=e['seq']
           elif inflight:
               rep['action']='inflight-wait'; rep['nonce']=ni.get('nonce')
           else:

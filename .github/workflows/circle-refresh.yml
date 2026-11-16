@@ -15,6 +15,10 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout canonical ledger writer
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: "三圈刷新: annex收割→圈状态→超时接力"
         env:
           HUBK: ${{ secrets.CI_OPS_HUB_KEY }}
@@ -26,6 +30,9 @@ jobs:
           import os,json,urllib.request,urllib.error,urllib.parse,datetime,base64,hashlib
           HK=os.environ['HUBK']; HID=os.environ['HUBID']
           import jwt as JW
+          import sys
+          sys.path.insert(0, '.github/scripts')
+          import stream_ledger_writer as slw
           now=int(datetime.datetime.now().timestamp())
           appjwt=JW.encode({'iat':now-90,'exp':now+540,'iss':HID},HK,algorithm='RS256')
           rq=urllib.request.Request('https://api.github.com/app/installations/154355791/access_tokens',method='POST',headers={'Authorization':'Bearer '+appjwt,'Accept':'application/vnd.github+json','User-Agent':'circle-refresh'})
@@ -77,27 +84,15 @@ jobs:
                  'session_circle':{v:('present' if not isinstance(g(f'https://api.github.com/repos/chepin-ai/{v}/contents/session'),dict) else 'absent') for v in VAULTS},
                  'consensus_circle':'beacon seq 见 vci-inbox capsules/INTAKE-LATEST(公面最小胶囊)'}
           putc('ci-control','bridge/circle-state.json',json.dumps(state,ensure_ascii=False,indent=1),f'circle-refresh: 圈状态 {TS}')
-          # (c) 账
-          old,_=getc('ci-control','bridge/stream-ledger.jsonl')
-          if not old:  # EMPTY-READ-GENESIS-01闸: 瞬败重试一拍再判
-              import time as _tm; _tm.sleep(2)
-              old,_=getc('ci-control','bridge/stream-ledger.jsonl')
-          _ls=[json.loads(x) for x in (old or '').split(chr(10)) if x.strip()]
-          _seq=max([x.get('seq',0) for x in _ls]+[0])+1  # LEGISL-06自愈立法: CIRCLE-REFRESH须带seq
-          _ph='0'*64
-          for _x in reversed(_ls):
-              if _x.get('hash'): _ph=_x['hash']; break
-          _bp=None
-          if _ph=='0'*64:  # EMPTY-READ-GENESIS-01闸(LEGISL-33): 空读/断链≠零哈希接龙; 无旗拒入链, 落FINDING而嚎
-              _bp,_=getc('ci-control','bridge/ledger-archive/BOOTSTRAP.permit')
-              if not _bp:
-                  putc('ci-control','bridge/findings/FINDING-EMPTY-READ-'+TS+'.json',json.dumps({'type':'FINDING','pattern':'EMPTY-READ-GENESIS-01','by':'circle-refresh','ts':TS,'detail':'ledger空读/读败/无hash件且无BOOTSTRAP.permit旗, 拒入链, 账段中止(快照段已行)'},ensure_ascii=False),'FINDING 空读拒入链 '+TS)
-          if _ph!='0'*64 or _bp:
-              e={'seq':_seq,'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','prev':_ph,'harvested':len(harvested),'items':harvested[:20]}  # v2.1修:prev字段入件(原仅入哈希=prev链断,e144事故)
-              prevh=_ph
-              e['hash']=hashlib.sha256((prevh+json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(',',':'))).encode()).hexdigest()
-              putc('ci-control','bridge/stream-ledger.jsonl',(old.rstrip(chr(10))+chr(10) if old else '')+json.dumps(e,ensure_ascii=False)+chr(10),'circle-refresh 入链')
-          print(json.dumps({'harvested':len(harvested),'items':harvested[:10]},ensure_ascii=False))
+          # (c) 账：同一读取代的正文+sha，由共享写入器冲突后整代重取。
+          e={'ts':TS,'kind':'CIRCLE-REFRESH','actor':'circle-refresh','harvested':len(harvested),'items':harvested[:20]}
+          _cas={}
+          try:
+              e=slw.append_ledger(e,'circle-refresh 入链',slw.GitHubContentsTransport(H),stats=_cas)
+          except slw.LedgerAppendError:
+              putc('ci-control','bridge/findings/FINDING-LEDGER-CAS-'+TS+'.json',json.dumps({'type':'FINDING','pattern':'LEDGER-CAS-02','by':'circle-refresh','ts':TS,'detail':'same-generation append failed; no fallback overwrite'},ensure_ascii=False),'FINDING ledger CAS '+TS)
+              raise
+          print(json.dumps({'harvested':len(harvested),'items':harvested[:10],'ledger_seq':e['seq'],'ledger_cas':_cas},ensure_ascii=False))
           # 备份道(D-139): 每班末叩 intake-agent+fleet-judge 各一次——30min cron自启滞后期间,保证≥2h一班兜底(ENGINE-FLEET-01§4)
           # QUOTA-SELF-DEVOUR-01闸(LEGISL-35): 备份叩门冷却7200s/目标(原义=2h兜底,非常态驱动)
           _ks_txt,_=getc('ci-control','bridge/knock-state.json')
@@ -108,7 +103,7 @@ jobs:
               if (_nown-_ks.get('cr:'+_wf,0))<=7200:
                   print(f'{_wf} backup-knock: cooldown-skip'); continue
               try:
-                  rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{_wf}/dispatches',data=json.dumps({'ref':'main','inputs':{'cause':'beat-forward'}}).encode(),method='POST',headers=H())
+                  rq=urllib.request.Request(f'https://api.github.com/repos/chepin-ai/vci-inbox/actions/workflows/{_wf}/dispatches',data=json.dumps({'ref':'main','inputs':{'cause':'beat-forward'}}).encode(),method='POST',headers=H)
                   print(f'{_wf} backup-knock:',urllib.request.urlopen(rq,timeout=15).status)
                   _knocked.append(_wf)
               except Exception as _e: print(f'{_wf} backup-knock fail(下一班再试):',str(_e)[:60])
