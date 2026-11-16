@@ -18,7 +18,7 @@ A24 = Path("/mnt/agents/output/.stash/ad24/run")
 R = Path("/mnt/agents/output/.stash/ad25/run")
 L = R.parent / "literature"
 OUT = Path("/mnt/agents/output")
-RECEIPTS = {"qlv-pub": "ad25_qlvpub_receipt.json", "vci-inbox": "ad25_vci_receipt.json", "ci-inbox": "ad25_ciinbox_receipt.json"}
+RECEIPTS = {"qlv-pub": "ad25_qlvpub_receipt.json", "vci-inbox": "ad25_vci_receipt.json", "HUB-MAIL": "ad25_ciinbox_receipt.json"}
 sha = lambda b: hashlib.sha256(b).hexdigest()
 
 

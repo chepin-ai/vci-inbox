@@ -17,7 +17,7 @@ NUMERIC = re.compile(
     r"[\"']?S_sim[\"']?\s*[:=]\s*(?:[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?|0x[0-9a-fA-F]+)",
     re.I,
 )
-NAME = re.compile(r"RAC|LGT|QUAFU", re.I)
+NAME = re.compile(r"RAC|LGT|〈RED〉", re.I)
 
 
 def main():

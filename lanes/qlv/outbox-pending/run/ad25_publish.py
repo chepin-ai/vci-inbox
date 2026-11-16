@@ -113,7 +113,7 @@ def main():
         "shared/field-engine/QRAC-TRIALS-01/QRAC-D8-TOFFOLI-PLATEAU-08.md": S / "QRAC-D8-TOFFOLI-PLATEAU-08.md",
         "讨论室/threads/" + discussion: S / discussion,
     }
-    receipts["ci-inbox"] = publish("chepin-ai/ci-inbox", "fed_pat.txt", ci,
+    receipts["HUB-MAIL"] = publish("chepin-ai/ci-inbox", "fed_pat.txt", ci,
                                    msg_c, "ad25_ciinbox_receipt.json")
     print(json.dumps({k: {"repo": v["repo"], "commit": v["commit"], "parent": v["parent"],
                           "files": len(v["file_sha256"]), "race_attempts": v["race_attempts"]}

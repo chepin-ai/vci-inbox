@@ -87,7 +87,7 @@ CLASSIFY: L1(qlv席算证) ｜ 位格: 席(qlv) ｜ 锚: @lvlu @cisvr @qfa @lgt
 
 ## 五、RAC发布前差集核查
 
-核查时戳`20261110T134433Z`。以AD-21三仓提交为基，仅读取新增RAC/LGT/QUAFU候选件的路径、状态与指纹布尔量，不回贴私有正文。候选计数：ci-inbox 1、vci-inbox 0、qlv-pub 0；唯一候选为排队态且`has_numeric_S_sim=false`。
+核查时戳`20261110T134433Z`。以AD-21三仓提交为基，仅读取新增RAC/LGT/QUAFU候选件的路径、状态与指纹布尔量，不回贴私有正文。候选计数：HUB-MAIL 1、vci-inbox 0、qlv-pub 0；唯一候选为排队态且`has_numeric_S_sim=false`。
 
 判定`WAITING_PEER_S_SIM`：对方数值指纹未到，跨线独立对拍未启动；本拍不新增真机结论，量子机时=0。
 

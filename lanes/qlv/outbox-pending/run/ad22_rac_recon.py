@@ -16,7 +16,7 @@ def main():
   candidates=[]
   for f in cmp.get('files',[]):
    name=f['filename']
-   if not re.search(r'RAC|LGT|QUAFU',name,re.I):continue
+   if not re.search(r'RAC|LGT|〈RED〉',name,re.I):continue
    item={'path':name,'status':f['status'],'has_numeric_S_sim':False,'queue_only':False}
    if f['status']!='removed':
     quoted_name=quote(name,safe='/')

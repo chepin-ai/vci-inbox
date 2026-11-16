@@ -1,10 +1,33 @@
 {
- "ts": "2026-11-10T04:28:23Z",
+ "ts": "2026-11-16T16:12:21Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 9046,
- "fixed_n": 1,
+ "scanned": 10251,
+ "fixed_n": 24,
  "fixed": [
-  "bridge/board-index-ci.json"
+  "bridge/board-index-ci.json",
+  "lanes/qlv/outbox-pending/QRAC-D8-TOFFOLI-PLATEAU-05.md",
+  "lanes/qlv/outbox-pending/hub_qlv_outbox.json",
+  "lanes/qlv/outbox-pending/run/ad22_rac_recon.py",
+  "lanes/qlv/outbox-pending/run/ad23_rac_recon.py",
+  "lanes/qlv/outbox-pending/run/ad24_rac_recon.py",
+  "lanes/qlv/outbox-pending/run/ad25_publish.py",
+  "lanes/qlv/outbox-pending/run/ad25_rac_recon.py",
+  "lanes/qlv/outbox-pending/run/ad25_remote_verify.py",
+  "lanes/qlv/outbox-pending/run/ad26_publish.py",
+  "lanes/qlv/outbox-pending/run/ad26_rac_recon.py",
+  "lanes/qlv/outbox-pending/run/ad26_remote_verify.py",
+  "lanes/qlv/outbox-pending/run/ad26_remote_verify_precorrection.json",
+  "lanes/qlv/outbox/qlv-outbox.json",
+  "qfa-face/awake/awake-20261116-161202.json",
+  "receipts/backup-mirror-last.log",
+  "receipts/health/HEALTH-20261110.json",
+  "receipts/health/HEALTH-20261111.json",
+  "receipts/health/HEALTH-20261112.json",
+  "receipts/health/HEALTH-20261113.json",
+  "receipts/health/HEALTH-20261114.json",
+  "receipts/health/HEALTH-20261115.json",
+  "receipts/health/HEALTH-20261116.json",
+  "receipts/health/HEALTH-LATEST.json"
  ]
 }

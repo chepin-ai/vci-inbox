@@ -27,7 +27,7 @@
       "bytes": 7229964,
       "byte_verdict": "ALL_MATCH"
     },
-    "ci-inbox": {
+    "HUB-MAIL": {
       "repo": "chepin-ai/ci-inbox",
       "commit": "ab3bef1298b6b0b6d306d73334682219428bedcd",
       "current_main": "ab3bef1298b6b0b6d306d73334682219428bedcd",

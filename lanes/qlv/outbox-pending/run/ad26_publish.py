@@ -126,10 +126,10 @@ def main():
         previous_ci = json.loads((R / "ad26_ciinbox_receipt.json").read_text())
         same_ci = all(hashlib.sha256(src.read_bytes()).hexdigest() == previous_ci["file_sha256"][target]
                       for target, src in ci.items())
-        receipts["ci-inbox"] = previous_ci if same_ci else publish(
+        receipts["HUB-MAIL"] = previous_ci if same_ci else publish(
             "chepin-ai/ci-inbox", "fed_pat.txt", ci, msg_c, "ad26_ciinbox_receipt.json")
     else:
-        receipts["ci-inbox"] = publish("chepin-ai/ci-inbox", "fed_pat.txt", ci,
+        receipts["HUB-MAIL"] = publish("chepin-ai/ci-inbox", "fed_pat.txt", ci,
                                        msg_c, "ad26_ciinbox_receipt.json")
     print(json.dumps({k: {"repo": val["repo"], "commit": val["commit"], "parent": val["parent"],
                           "files": len(val["file_sha256"]), "race_attempts": val["race_attempts"]}

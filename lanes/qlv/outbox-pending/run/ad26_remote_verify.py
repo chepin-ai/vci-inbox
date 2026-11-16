@@ -22,7 +22,7 @@ A25 = Path("/mnt/agents/output/.stash/ad25/run")
 R = Path("/mnt/agents/output/.stash/ad26/run")
 OUT = Path("/mnt/agents/output")
 RECEIPTS = {"qlv-pub": "ad26_qlvpub_receipt.json", "vci-inbox": "ad26_vci_receipt.json",
-            "ci-inbox": "ad26_ciinbox_receipt.json"}
+            "HUB-MAIL": "ad26_ciinbox_receipt.json"}
 sha = lambda b: hashlib.sha256(b).hexdigest()
 
 
