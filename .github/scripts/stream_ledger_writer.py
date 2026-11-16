@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from typing import Callable, Optional
 
 OWNER = "chepin-ai"
-REPO = "HUB-CORE"
+REPO = "ci-control"
 LEDGER_PATH = "bridge/stream-ledger.jsonl"
 API_BASE = "https://api.github.com"
 FULL_SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -82,6 +82,7 @@ class GitHubContentsTransport:
         self.api_base = api_base.rstrip("/")
         self.opener = opener or urllib.request.urlopen
         self.timeout = timeout
+        self.last_commit_sha = None
 
     def headers(self):
         return self._headers() if callable(self._headers) else dict(self._headers)
@@ -109,6 +110,7 @@ class GitHubContentsTransport:
         return Generation(status, text, data.get("sha"))
 
     def write_same_generation(self, content: str, message: str, sha: str) -> int:
+        self.last_commit_sha = None
         body = {
             "message": message,
             "content": base64.b64encode(content.encode()).decode(),
@@ -118,7 +120,14 @@ class GitHubContentsTransport:
             self.url(), data=json.dumps(body).encode(), method="PUT", headers=self.headers())
         try:
             with self.opener(request, timeout=self.timeout) as response:
-                return response.status
+                status = response.status
+                if status in (200, 201):
+                    try:
+                        payload = json.loads(response.read().decode())
+                        self.last_commit_sha = payload.get("commit", {}).get("sha")
+                    except Exception:
+                        self.last_commit_sha = None
+                return status
         except urllib.error.HTTPError as exc:
             return exc.code
         except (OSError, TimeoutError):
