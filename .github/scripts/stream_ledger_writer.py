@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from typing import Callable, Optional
 
 OWNER = "chepin-ai"
-REPO = "HUB-CORE"
+REPO = "ci-control"
 LEDGER_PATH = "bridge/stream-ledger.jsonl"
 API_BASE = "https://api.github.com"
 FULL_SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -146,7 +146,8 @@ def append_ledger(event: dict, label: str, transport, retries=6,
     if not isinstance(label, str) or not label.strip():
         raise ValueError("label must be nonempty")
     counters = {"reads": 0, "read_retries": 0, "writes": 0,
-                "conflict_retries": 0, "write_retries": 0, "appended": 0}
+                "conflict_retries": 0, "write_retries": 0, "appended": 0,
+                "read_statuses": [], "write_statuses": []}
     if stats is not None:
         stats.clear()
         stats.update(counters)
@@ -159,6 +160,7 @@ def append_ledger(event: dict, label: str, transport, retries=6,
     for attempt in range(retries):
         generation = transport.read()
         bump("reads")
+        counters["read_statuses"].append(generation.status)
         if generation.status in (400, 401, 403):
             raise LedgerAppendError(f"LEDGER-CAS-02 fatal read status {generation.status}; append refused")
         if generation.status != 200 or generation.text is None or not generation.sha:
@@ -175,6 +177,7 @@ def append_ledger(event: dict, label: str, transport, retries=6,
         message = f"{label} seq{stored['seq']}"
         status = transport.write_same_generation(new_text, message, generation.sha)
         bump("writes")
+        counters["write_statuses"].append(status)
         if status in (200, 201):
             bump("appended")
             return stored
@@ -183,7 +186,8 @@ def append_ledger(event: dict, label: str, transport, retries=6,
         bump("conflict_retries" if status in (409, 412, 422) else "write_retries")
         if attempt + 1 < retries:
             sleep(2 * (attempt + 1))
-    raise LedgerAppendError("LEDGER-CAS-02 append retries exhausted; no stale overwrite attempted")
+    raise LedgerAppendError("LEDGER-CAS-02 append retries exhausted; no stale overwrite attempted; " +
+                            f"read_statuses={counters['read_statuses']} write_statuses={counters['write_statuses']}")
 
 
 def _entry(seq, previous, marker="kat"):
