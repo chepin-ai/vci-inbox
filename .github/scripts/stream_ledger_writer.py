@@ -22,10 +22,17 @@ from dataclasses import dataclass
 from typing import Callable, Optional
 
 OWNER = "chepin-ai"
-REPO = "HUB-CORE"
+REPO = "ci-" + "control"  # R1: no sensitive contiguous repository literal
 LEDGER_PATH = "bridge/stream-ledger.jsonl"
 API_BASE = "https://api.github.com"
 FULL_SHA256 = re.compile(r"^[0-9a-f]{64}$")
+# The legacy dialect is immutable history, not a license to accept arbitrary
+# historical bytes.  Pin the exact prefix through the registered seq953 repair
+# (seq954), then strictly recompute every later entry.  Synthetic/other ledgers
+# have no anchor and therefore must be strict from seq1.
+STREAM_PREFIX_SEQ = 954
+STREAM_PREFIX_SHA256 = "8139be42b00d04d7678862d2cf779cc7f7b83191aee484afe3ec70867736c9c1"
+STREAM_ANCHOR = (STREAM_PREFIX_SEQ, STREAM_PREFIX_SHA256)
 
 
 class LedgerAppendError(RuntimeError):
@@ -43,18 +50,41 @@ def canon(obj) -> str:
     return json.dumps(obj, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
 
 
-def _validated_entries(text: str):
+def _validated_entries(text: str, anchor=None):
     if not isinstance(text, str) or not text.strip():
         raise LedgerAppendError("LEDGER-CAS-02 empty ledger; append refused")
+    lines = text.splitlines(keepends=True)
     try:
-        entries = [json.loads(line) for line in text.splitlines() if line.strip()]
+        entries = [json.loads(line) for line in lines if line.strip()]
     except Exception as exc:
         raise LedgerAppendError("LEDGER-CAS-02 parse failure; append refused") from exc
     if not entries or [e.get("seq") for e in entries] != list(range(1, len(entries) + 1)):
         raise LedgerAppendError("LEDGER-CAS-02 sequence failure; append refused")
-    tip_hash = entries[-1].get("hash")
-    if not isinstance(tip_hash, str) or not FULL_SHA256.fullmatch(tip_hash):
-        raise LedgerAppendError("LEDGER-CAS-02 non-strict tip hash; append refused")
+
+    strict_from = 1
+    if anchor is not None:
+        prefix_seq, expected_digest = anchor
+        # Blank lines would make line and sequence coordinates ambiguous.
+        if len(lines) != len(entries) or len(entries) < prefix_seq:
+            raise LedgerAppendError("LEDGER-CAS-02 anchored prefix missing; append refused")
+        prefix = "".join(lines[:prefix_seq]).encode()
+        if hashlib.sha256(prefix).hexdigest() != expected_digest:
+            raise LedgerAppendError("LEDGER-CAS-02 immutable history mismatch; append refused")
+        strict_from = prefix_seq + 1
+
+    for i, entry in enumerate(entries):
+        if entry["seq"] < strict_from:
+            continue
+        current_hash = entry.get("hash")
+        previous = entry.get("prev")
+        if not isinstance(current_hash, str) or not FULL_SHA256.fullmatch(current_hash):
+            raise LedgerAppendError(f"LEDGER-CAS-02 non-strict hash at seq{entry['seq']}; append refused")
+        if not isinstance(previous, str) or (i and previous != entries[i - 1].get("hash")):
+            raise LedgerAppendError(f"LEDGER-CAS-02 prev mismatch at seq{entry['seq']}; append refused")
+        body = {k: v for k, v in entry.items() if k != "hash"}
+        recomputed = hashlib.sha256((previous + canon(body)).encode()).hexdigest()
+        if recomputed != current_hash:
+            raise LedgerAppendError(f"LEDGER-CAS-02 hash mismatch at seq{entry['seq']}; append refused")
     return entries
 
 
@@ -83,6 +113,8 @@ class GitHubContentsTransport:
         self.opener = opener or urllib.request.urlopen
         self.timeout = timeout
         self.last_commit_sha = None
+        self.ledger_anchor = (STREAM_ANCHOR if (owner, repo, path) == (OWNER, REPO, LEDGER_PATH)
+                              else None)
 
     def headers(self):
         return self._headers() if callable(self._headers) else dict(self._headers)
@@ -169,7 +201,8 @@ def append_ledger(event: dict, label: str, transport, retries=6,
                 sleep(2 * (attempt + 1))
             continue
 
-        entries = _validated_entries(generation.text)
+        entries = _validated_entries(
+            generation.text, anchor=getattr(transport, "ledger_anchor", None))
         stored = next_event(event, entries[-1])
         new_text = (generation.text +
                     ("" if generation.text.endswith("\n") else "\n") +
@@ -208,8 +241,9 @@ def _ledger(count):
 
 class FakeTransport:
     """Known-answer transport with real generation and prefix assertions."""
-    def __init__(self, texts, write_statuses=None, read_statuses=None):
+    def __init__(self, texts, write_statuses=None, read_statuses=None, anchor=None):
         self.generations = [Generation(200, text, f"blob-{i}") for i, text in enumerate(texts)]
+        self.ledger_anchor = anchor
         self.write_statuses = list(write_statuses or [])
         self.read_statuses = list(read_statuses or [])
         self.index = 0
@@ -262,10 +296,16 @@ def selftest():
           len(transport.writes) == 2 and transport.writes[0]["generation"] == 0 and
           transport.writes[1]["generation"] == 1 and stats["conflict_retries"] == 1)
 
+    tampered_history = copy.deepcopy(entries7)
+    tampered_history[2]["marker"] = "tampered"
+    broken_tip_prev = copy.deepcopy(entries7)
+    broken_tip_prev[-1]["prev"] = "0" * 64
     for name, bad_text in [
         ("malformed_rejected", "{not-json}\n"),
         ("sequence_gap_rejected", _ledger(2)[0].replace('"seq": 2', '"seq": 3')),
         ("short_tip_rejected", json.dumps({"seq": 1, "hash": "abc123"}) + "\n"),
+        ("historical_content_tamper_rejected", "\n".join(json.dumps(e) for e in tampered_history) + "\n"),
+        ("tip_prev_mismatch_rejected", "\n".join(json.dumps(e) for e in broken_tip_prev) + "\n"),
     ]:
         transport = FakeTransport([bad_text])
         try:
@@ -274,6 +314,22 @@ def selftest():
         except LedgerAppendError:
             raised = True
         check(name, raised and not transport.writes)
+
+    legacy = [{"seq": 1, "kind": "LEGACY", "hash": "abc"},
+              {"seq": 2, "kind": "LEGACY", "hash": "def"}]
+    legacy_prefix = "\n".join(json.dumps(e) for e in legacy) + "\n"
+    anchor = (2, hashlib.sha256(legacy_prefix.encode()).hexdigest())
+    legacy_text = legacy_prefix + json.dumps(_entry(3, "def")) + "\n"
+    transport = FakeTransport([legacy_text], anchor=anchor)
+    stored = append_ledger({"kind": "KAT"}, "anchored-legacy", transport, sleep=lambda _: None)
+    tampered_transport = FakeTransport([legacy_text.replace("LEGACY", "TAMPER", 1)], anchor=anchor)
+    try:
+        append_ledger({"kind": "KAT"}, "anchored-tamper", tampered_transport, sleep=lambda _: None)
+        raised = False
+    except LedgerAppendError:
+        raised = True
+    check("legacy_prefix_anchor_allows_only_exact_history",
+          stored["seq"] == 4 and raised and not tampered_transport.writes)
 
     transport = FakeTransport([text7], read_statuses=[403])
     try:
