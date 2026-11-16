@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from typing import Callable, Optional
 
 OWNER = "chepin-ai"
-REPO = "HUB-CORE"
+REPO = "ci-control"
 LEDGER_PATH = "bridge/stream-ledger.jsonl"
 API_BASE = "https://api.github.com"
 FULL_SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -150,7 +150,7 @@ def append_ledger(event: dict, label: str, transport, retries=6,
     for attempt in range(retries):
         generation = transport.read()
         bump("reads")
-        if generation.status in (400, 401, 403, 404):
+        if generation.status in (400, 401, 403):
             raise LedgerAppendError(f"LEDGER-CAS-02 fatal read status {generation.status}; append refused")
         if generation.status != 200 or generation.text is None or not generation.sha:
             bump("read_retries")
@@ -169,7 +169,7 @@ def append_ledger(event: dict, label: str, transport, retries=6,
         if status in (200, 201):
             bump("appended")
             return stored
-        if status in (400, 401, 403, 404):
+        if status in (400, 401, 403):
             raise LedgerAppendError(f"LEDGER-CAS-02 fatal write status {status}; append refused")
         bump("conflict_retries" if status in (409, 412, 422) else "write_retries")
         if attempt + 1 < retries:
@@ -277,6 +277,18 @@ def selftest():
     except LedgerAppendError:
         raised = True
     check("retry_exhaustion_never_reports_append", raised and len(transport.writes) == 2 and transport.appended_text is None)
+
+    transport = FakeTransport([text7], read_statuses=[404, 200])
+    stored = append_ledger({"kind": "KAT"}, "transient-404", transport, sleep=lambda _: None, stats=stats)
+    check("transient_404_full_reread_then_append", stored["seq"] == 8 and stats["read_retries"] == 1 and len(transport.writes) == 1)
+
+    transport = FakeTransport([text7], read_statuses=[404, 404])
+    try:
+        append_ledger({"kind": "KAT"}, "persistent-404", transport, retries=2, sleep=lambda _: None)
+        raised = False
+    except LedgerAppendError:
+        raised = True
+    check("persistent_404_zero_writes", raised and not transport.writes)
 
     return {"verdict": "PASS", "tests": results, "test_count": len(results),
             "real_remote_writes": 0}
