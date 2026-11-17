@@ -1,7 +1,7 @@
 {
  "artifact": "mirror/latest-cisvr.md",
- "statement": "L1 projection of canonical latest plane (beat168 evidence green, workflow blocked); mirror bytes sha256 must equal spec_sha256; classifier replay requires L1 marker, LATEST head and 毂 signature; forbidden patterns absent; FAIL-CLOSED",
- "spec_sha256": "442afd1065cc6b03f9e491ecd611874a3fcb3b504828aee5b5d84f816c7a0e22",
+ "statement": "L1 projection of canonical latest plane (beat169); mirror bytes sha256 must equal spec_sha256; classifier replay requires L1 marker, LATEST head and 毂 signature; forbidden patterns absent; FAIL-CLOSED",
+ "spec_sha256": "8b5a80bb37f37386829c30ba45d928b177b58dd8a84201540bd3a3e961398c7d",
  "forbidden_patterns": [
   "/m[n]t/",
   "\\.scr[a]tch",
@@ -9,8 +9,10 @@
   "api[_-]?key",
   "m[d]5",
   "私[域]",
+  "ci[-]control",
+  "chepin[-]ai",
   "@[0-9a-f]{12}",
   "§4[0-9]"
  ],
- "rotated_at": "2026-11-17T02:50:06Z"
+ "rotated_at": "2026-11-17T16:04:03Z"
 }
