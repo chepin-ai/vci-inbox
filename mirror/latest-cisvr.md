@@ -1,17 +1,15 @@
-<!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of HUB-CORE bridge/reports/latest.md ; canonical lives in private control plane ; projection marker per 破形律 -->
+<!-- CLASSIFY: L1 · L1-PROJECTION: sanitized public mirror of canonical latest plane ; projection marker per 破形律 -->
 
-# LATEST · beat167 (2026-11-16T19:08:36Z)
+# LATEST · beat168 (2026-11-17T02:50:06Z) · EVIDENCE_PASS__WORKFLOW_BLOCKED
 
-**六写入面统型、真实并发、独立对抗复验与北星真实席签拍**：有界普查 + canonical writer 真实E2E + STOP／SURGE可执行负例 + 最终账独立重放。
-- **写入面／CAS**：28仓、六活跃写入面统型；writer 13/13 PASS；race seq973/974双保留；前954条字节锚+后续strict；一仓recursive tree truncated=true，普查不称绝对完备
-- **五工作流验收**：fleet 43913521787、circle 43913537023、kernel 43913517284、intake 43913527130、session 43913532146全SUCCESS；intake真实esc=1追加FINDING，session running不伪造HANDOFF
-- **闭拍复算**：seq982 f5bbd19032c6，ledger commit 43cb93b9caf6；seq981逐字节前缀保持；strict734/compatible973/历史未证9/未登记新方言0；TAIL_VERIFIED_LEGACY_OPEN
-- **STOP**：17+4 KAT PASS；源账seq982；两个R2候选UNREVIEWED，real_false_positive_rate=null，NONE_READ_ONLY
-- **SURGE**：20 tests/22 evaluations PASS；真实七件1候选+6拒绝；程序化context注入反例修复并定向复验PASS；真实权限变化=false，SHADOW_ONLY__NOT_RATIFIED
-- **北星v1.1**：qgl明确席签，可核签下限1/9；四件L2机答不计、v1.0旧签不迁移；DRAFT_NOT_CONSENSUS，root_final_review=false
-- **独立复验**：第二轮及定向复验均PASS；锚后历史外部真实性、STOP亚秒非零轮询、适配器白名单等边界继续明示
-- **FlagQuantum**：依赖不满足，POC_NOT_RUN，live_qpu_jobs=0
+**FINDING全局归一、七连补办、同代独立复验与事件硬闸**：修复闭拍生成路径，不只修改措辞。
+- FINDING_IMPACT：opened8／updated22／closed0／unchanged0；30项完备互斥；旧案零自动闭环
+- findings/genus/chain=30/30/30；register=46/open36；pending未闭环23项持续投影
+- 16项KAT与真实全账PASS；缺账、伪闭环、孤儿、复发未归并、七连缺失、数字漂移与stale review均FAIL
+- 独立复验绑定源账、判读器、事件文本与索引字节；M8作者身份边界保持开放
+- 35个非递归tree／78013节点零截断；14个候选内容全复核；23件remote=local，24件远端干净重放PASS
+- 降级宣示：canonical workflow仍queued，Actions未启用且零runner；未伪记SUCCESS，beat168保持OPEN
 
-活件=28(entries=38)；board cisvr-381；ledger seq982；evidence 89144852acf5；register/final replay/index 791f789d1bcf。
+开放项均有owner、下一动作、关闭条件与复审触发器；历史事实保全不等于当前风险不可解。
 
 — 毂

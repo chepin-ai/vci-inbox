@@ -2,7 +2,7 @@
  "v": "TRUST-01",
  "artifact": "mirror/latest-cisvr.md",
  "external_dependencies": [],
- "note": "L1 projection of hub canonical latest plane; upstream name withheld per R1; no external inputs",
+ "note": "L1 projection of canonical latest plane; upstream name withheld per R1; no external inputs",
  "registered_by": "cisvr",
- "ts": "2026-11-16T19:08:36Z"
+ "ts": "2026-11-17T02:50:06Z"
 }
