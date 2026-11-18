@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-17T14:49:58Z",
+ "ts": "2026-11-18T14:29:38Z",
  "repos": {
   "ci-build": {
    "pushed_at": "2026-09-30T07:41:17Z",
@@ -17,17 +17,17 @@
    "wf": 1
   },
   "ci-control": {
-   "pushed_at": "2026-11-17T06:18:33Z",
+   "pushed_at": "2026-11-17T16:06:12Z",
    "archived": false,
    "wf": 10
   },
   "ci-control-backup": {
-   "pushed_at": "2026-11-17T13:46:39Z",
+   "pushed_at": "2026-11-18T13:21:33Z",
    "archived": false,
    "wf": 10
   },
   "ci-inbox": {
-   "pushed_at": "2026-11-17T14:46:39Z",
+   "pushed_at": "2026-11-18T14:21:28Z",
    "archived": false,
    "wf": 10
   },
@@ -37,7 +37,7 @@
    "wf": 1
   },
   "ci-logs": {
-   "pushed_at": "2026-11-16T13:57:50Z",
+   "pushed_at": "2026-11-17T14:51:28Z",
    "archived": false,
    "wf": 0
   },
@@ -82,17 +82,17 @@
    "wf": 4
   },
   "vci-cfts": {
-   "pushed_at": "2026-11-17T14:47:11Z",
+   "pushed_at": "2026-11-18T14:25:14Z",
    "archived": false,
    "wf": 12
   },
   "vci-inbox": {
-   "pushed_at": "2026-11-17T14:46:52Z",
+   "pushed_at": "2026-11-18T14:21:40Z",
    "archived": false,
    "wf": 54
   },
   "vci-lgt": {
-   "pushed_at": "2026-11-17T14:47:38Z",
+   "pushed_at": "2026-11-18T14:24:03Z",
    "archived": false,
    "wf": 20
   },
@@ -102,37 +102,37 @@
    "wf": 1
   },
   "vci-qfa": {
-   "pushed_at": "2026-11-17T10:35:35Z",
+   "pushed_at": "2026-11-18T10:38:43Z",
    "archived": false,
    "wf": 10
   },
   "vci-qgl": {
-   "pushed_at": "2026-11-17T14:47:14Z",
+   "pushed_at": "2026-11-18T14:29:06Z",
    "archived": false,
    "wf": 13
   },
   "vci-qlv": {
-   "pushed_at": "2026-11-17T14:47:22Z",
+   "pushed_at": "2026-11-18T14:23:50Z",
    "archived": false,
    "wf": 15
   },
   "vci-qtlv": {
-   "pushed_at": "2026-11-17T14:49:37Z",
+   "pushed_at": "2026-11-18T14:25:48Z",
    "archived": false,
    "wf": 54
   },
   "vci-ucif2": {
-   "pushed_at": "2026-11-17T14:46:56Z",
+   "pushed_at": "2026-11-18T14:23:25Z",
    "archived": false,
    "wf": 12
   },
   "vci-usrm": {
-   "pushed_at": "2026-11-17T14:47:06Z",
+   "pushed_at": "2026-11-18T14:23:54Z",
    "archived": false,
    "wf": 38
   },
   "vci-vinf": {
-   "pushed_at": "2026-11-17T14:47:15Z",
+   "pushed_at": "2026-11-18T14:23:53Z",
    "archived": false,
    "wf": 33
   },
@@ -217,14 +217,8 @@
    "KEY-RELAY-QC-02 (拍47·本仓量子钥→vci-qtlv seal接力·名级回执)": 1,
    "miniprobe": 6
   },
-  "vci-lgt": {
-   "key-sentinel-01": 3
-  },
   "vci-qlv": {
    "key-sentinel-01": 5
-  },
-  "vci-qtlv": {
-   "key-sentinel-01": 3
   },
   "vinf-market-kernel": {
    "inbox-relay-vinf": 5,
@@ -255,13 +249,13 @@
  ],
  "line_backlog": {
   "usrm": {
-   "inbox_files": 522
+   "inbox_files": 523
   },
   "cfts": {
    "inbox_files": 210
   },
   "qgl": {
-   "inbox_files": 204
+   "inbox_files": 205
   },
   "ucif2": {
    "inbox_files": 235
@@ -284,7 +278,7 @@
  },
  "ci_control_runner": "DEAD(zero-runner)",
  "severity": [
-  "fail24:ci-build,ci-bus,ci-control,ci-control-backup,ci-inbox,ci-logs,ci-playground,ci-root,ci-worker-01,ci-worker-02,github-repo-cfts,quantum-go-ledger,ucif2-formalization-kernel,usrm-repo,vci-lgt,vci-qlv,vci-qtlv,vinf-market-kernel",
+  "fail24:ci-build,ci-bus,ci-control,ci-control-backup,ci-inbox,ci-logs,ci-playground,ci-root,ci-worker-01,ci-worker-02,github-repo-cfts,quantum-go-ledger,ucif2-formalization-kernel,usrm-repo,vci-qlv,vinf-market-kernel",
   "ci-control-runner-dead"
  ]
 }
