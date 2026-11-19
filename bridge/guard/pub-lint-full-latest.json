@@ -1,10 +1,15 @@
 {
- "ts": "2026-11-16T16:29:19Z",
+ "ts": "2026-11-19T17:43:12Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 10254,
- "fixed_n": 1,
+ "scanned": 10729,
+ "fixed_n": 6,
  "fixed": [
-  "bridge/board-index-ci.json"
+  "bridge/board-index-ci.json",
+  "receipts/backup-mirror-last.log",
+  "receipts/health/HEALTH-20261117.json",
+  "receipts/health/HEALTH-20261118.json",
+  "receipts/health/HEALTH-20261119.json",
+  "receipts/health/HEALTH-LATEST.json"
  ]
 }
