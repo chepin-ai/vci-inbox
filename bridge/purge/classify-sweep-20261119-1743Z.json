@@ -1,0 +1,59 @@
+{
+ "ts": "2026-11-19T17:43:00Z",
+ "receipts": [
+  {
+   "repo": "vci-inbox",
+   "archived": 1,
+   "deleted": 1,
+   "gate_planted": false
+  },
+  {
+   "repo": "vci-usrm",
+   "archived": 2,
+   "deleted": 2,
+   "gate_planted": false
+  },
+  {
+   "repo": "vci-qgl",
+   "archived": 2,
+   "deleted": 2,
+   "gate_planted": false
+  },
+  {
+   "repo": "vci-cfts",
+   "archived": 3,
+   "deleted": 3,
+   "gate_planted": false
+  },
+  {
+   "repo": "vci-vinf",
+   "archived": 2,
+   "deleted": 2,
+   "gate_planted": false
+  },
+  {
+   "repo": "vci-ucif2",
+   "archived": 2,
+   "deleted": 2,
+   "gate_planted": false
+  },
+  {
+   "repo": "vci-library",
+   "archived": 0,
+   "deleted": 0,
+   "gate_planted": false
+  },
+  {
+   "repo": "ci-worker-01",
+   "archived": 0,
+   "deleted": 0,
+   "gate_planted": false
+  },
+  {
+   "repo": "ci-worker-02",
+   "archived": 0,
+   "deleted": 0,
+   "gate_planted": false
+  }
+ ]
+}
