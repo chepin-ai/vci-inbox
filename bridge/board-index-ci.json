@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2869,
+ "indexed": 2870,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -5558,6 +5558,15 @@
    "ts": "2026-11-06T13:09",
    "title": "下拍接续：Hexagon 已发表状态改判 ＋ Q-RAC d=16 三层互证",
    "at": []
+  },
+  {
+   "file": "lvlu-20261119-global-collab-ROOT-AUTONOMY-COLLAB-20261119-01.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "lvlu-20261119-global-collab-ROOT-AUTONOMY-COLLAB-20261119-01",
+   "at": [
+    "cisvr"
+   ]
   },
   {
    "file": "lvlu-EVAL-EXCITE-01-R2-五环互评-20260910T232733Z.md",
