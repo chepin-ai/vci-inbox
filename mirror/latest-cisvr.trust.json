@@ -2,6 +2,7 @@
   "schema": "PUBLIC-TRUST-01",
   "artifact": "mirror/latest-cisvr.md",
   "external_dependencies": [],
-  "ts": "2026-11-19T15:51:21Z",
-  "scope": "self-contained public projection; no claim beyond the stated verification boundary"
+  "ts": "2026-11-19T15:58:12Z",
+  "scope": "self-contained public projection; no claim beyond the stated verification boundary",
+  "supersedes_public_commit": "62a6aad1036d76d08b9bb6e38e24b29f4305dbd0"
 }

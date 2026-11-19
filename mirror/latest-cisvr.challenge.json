@@ -1,8 +1,8 @@
 {
   "schema": "PUBLIC-CHALLENGE-01",
   "artifact": "mirror/latest-cisvr.md",
-  "spec_sha256": "b69ce56bd1f3a3907738a86c45b95e75b81e65a34106d731d4023c47335fd194",
-  "ts": "2026-11-19T15:51:21Z",
+  "spec_sha256": "720c6f6143ddd94adafc83a923281a2fde20f51ce9477a75f32b46b8eb52f7eb",
+  "ts": "2026-11-19T15:58:12Z",
   "forbidden_patterns": [
     "gh[pousr]_[A-Za-z0-9_]{20,}",
     "sk-[A-Za-z0-9]{20,}",
@@ -12,5 +12,6 @@
     "remote-byte digest binding",
     "minimum-disclosure projection",
     "no final-readback preclaim"
-  ]
+  ],
+  "supersedes_public_commit": "62a6aad1036d76d08b9bb6e38e24b29f4305dbd0"
 }
