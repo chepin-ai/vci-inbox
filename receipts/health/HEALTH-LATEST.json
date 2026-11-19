@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-18T14:29:38Z",
+ "ts": "2026-11-19T14:39:31Z",
  "repos": {
   "ci-build": {
    "pushed_at": "2026-09-30T07:41:17Z",
@@ -17,17 +17,17 @@
    "wf": 1
   },
   "ci-control": {
-   "pushed_at": "2026-11-17T16:06:12Z",
+   "pushed_at": "2026-11-19T06:22:13Z",
    "archived": false,
    "wf": 10
   },
   "ci-control-backup": {
-   "pushed_at": "2026-11-18T13:21:33Z",
+   "pushed_at": "2026-11-19T13:47:11Z",
    "archived": false,
    "wf": 10
   },
   "ci-inbox": {
-   "pushed_at": "2026-11-18T14:21:28Z",
+   "pushed_at": "2026-11-19T14:36:44Z",
    "archived": false,
    "wf": 10
   },
@@ -37,7 +37,7 @@
    "wf": 1
   },
   "ci-logs": {
-   "pushed_at": "2026-11-17T14:51:28Z",
+   "pushed_at": "2026-11-18T14:30:54Z",
    "archived": false,
    "wf": 0
   },
@@ -62,37 +62,37 @@
    "wf": 4
   },
   "github-repo-cfts": {
-   "pushed_at": "2026-10-07T05:33:29Z",
+   "pushed_at": "2026-11-19T06:20:34Z",
    "archived": false,
    "wf": 5
   },
   "quantum-go-ledger": {
-   "pushed_at": "2026-10-08T04:50:11Z",
+   "pushed_at": "2026-11-19T06:21:00Z",
    "archived": false,
    "wf": 2
   },
   "ucif2-formalization-kernel": {
-   "pushed_at": "2026-10-05T22:02:15Z",
+   "pushed_at": "2026-11-19T06:21:18Z",
    "archived": false,
    "wf": 11
   },
   "usrm-repo": {
-   "pushed_at": "2026-11-06T13:59:28Z",
+   "pushed_at": "2026-11-19T06:21:26Z",
    "archived": false,
    "wf": 4
   },
   "vci-cfts": {
-   "pushed_at": "2026-11-18T14:25:14Z",
+   "pushed_at": "2026-11-19T14:39:55Z",
    "archived": false,
    "wf": 12
   },
   "vci-inbox": {
-   "pushed_at": "2026-11-18T14:21:40Z",
+   "pushed_at": "2026-11-19T14:37:00Z",
    "archived": false,
    "wf": 54
   },
   "vci-lgt": {
-   "pushed_at": "2026-11-18T14:24:03Z",
+   "pushed_at": "2026-11-19T14:40:01Z",
    "archived": false,
    "wf": 20
   },
@@ -102,42 +102,42 @@
    "wf": 1
   },
   "vci-qfa": {
-   "pushed_at": "2026-11-18T10:38:43Z",
+   "pushed_at": "2026-11-19T09:25:50Z",
    "archived": false,
    "wf": 10
   },
   "vci-qgl": {
-   "pushed_at": "2026-11-18T14:29:06Z",
+   "pushed_at": "2026-11-19T14:40:07Z",
    "archived": false,
    "wf": 13
   },
   "vci-qlv": {
-   "pushed_at": "2026-11-18T14:23:50Z",
+   "pushed_at": "2026-11-19T14:39:55Z",
    "archived": false,
    "wf": 15
   },
   "vci-qtlv": {
-   "pushed_at": "2026-11-18T14:25:48Z",
+   "pushed_at": "2026-11-19T14:39:50Z",
    "archived": false,
    "wf": 54
   },
   "vci-ucif2": {
-   "pushed_at": "2026-11-18T14:23:25Z",
+   "pushed_at": "2026-11-19T14:39:23Z",
    "archived": false,
    "wf": 12
   },
   "vci-usrm": {
-   "pushed_at": "2026-11-18T14:23:54Z",
+   "pushed_at": "2026-11-19T14:39:52Z",
    "archived": false,
    "wf": 38
   },
   "vci-vinf": {
-   "pushed_at": "2026-11-18T14:23:53Z",
+   "pushed_at": "2026-11-19T14:39:52Z",
    "archived": false,
    "wf": 33
   },
   "vinf-market-kernel": {
-   "pushed_at": "2026-10-01T00:25:01Z",
+   "pushed_at": "2026-11-19T06:21:32Z",
    "archived": false,
    "wf": 5
   }
@@ -188,7 +188,7 @@
    "x-fire-receiver": 4
   },
   "ci-worker-01": {
-   "hub-tower": 30
+   "hub-tower": 29
   },
   "ci-worker-02": {
    "hub-failover": 2
@@ -218,7 +218,7 @@
    "miniprobe": 6
   },
   "vci-qlv": {
-   "key-sentinel-01": 5
+   "key-sentinel-01": 9
   },
   "vinf-market-kernel": {
    "inbox-relay-vinf": 5,
@@ -233,11 +233,7 @@
   "ci-code",
   "ci-library",
   "ci-playground",
-  "ci-root",
-  "github-repo-cfts",
-  "quantum-go-ledger",
-  "ucif2-formalization-kernel",
-  "vinf-market-kernel"
+  "ci-root"
  ],
  "zero_wf": [
   "ci-build",
@@ -249,31 +245,31 @@
  ],
  "line_backlog": {
   "usrm": {
-   "inbox_files": 523
+   "inbox_files": 525
   },
   "cfts": {
-   "inbox_files": 210
+   "inbox_files": 213
   },
   "qgl": {
-   "inbox_files": 205
+   "inbox_files": 207
   },
   "ucif2": {
-   "inbox_files": 235
+   "inbox_files": 237
   },
   "vinf": {
-   "inbox_files": 123
+   "inbox_files": 125
   },
   "qfa": {
-   "inbox_files": 189
+   "inbox_files": 191
   },
   "qlv": {
-   "inbox_files": 170
+   "inbox_files": 172
   },
   "lgt": {
-   "inbox_files": 205
+   "inbox_files": 207
   },
   "qtlv": {
-   "inbox_files": 204
+   "inbox_files": 206
   }
  },
  "ci_control_runner": "DEAD(zero-runner)",
