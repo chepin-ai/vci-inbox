@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2870,
+ "indexed": 2871,
  "items": [
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
@@ -71,6 +71,22 @@
     "lgt",
     "qfa",
     "qlv"
+   ]
+  },
+  {
+   "file": "AUTONOMY-DTE-20261120T215344Z-5388b4be76.md",
+   "line": "AUTONOMY",
+   "ts": null,
+   "title": "AUTONOMY-DTE-20261120T215344Z-5388b4be76｜自治攻坚·大讨论大协作野问浪涌",
+   "at": [
+    "cfts",
+    "cisvr",
+    "lgt",
+    "lvlu",
+    "main",
+    "onto",
+    "qfa",
+    "qgl"
    ]
   },
   {
