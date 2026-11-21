@@ -1,0 +1,2612 @@
+{
+  "acceptance_status": "CONTENT_COMPLETE__FIXED_ANSWER_COMMIT_AND_INDEPENDENT_REPLAY_PENDING",
+  "census": {
+    "artifact": "BEAT173-三通道回答总账-01.json",
+    "coverage": {
+      "declared_paths": 28,
+      "default_paths": 28,
+      "method": "fixed paths and commits?path only; no truncated-tree absence inference",
+      "semantic_paths": 9,
+      "tasks": 28
+    },
+    "sha256": "cf2bdfbd705dcf54737bdd0cbe3aaac216c31f6acdc3ab5e4526916d2968cdd7",
+    "summary": {
+      "declared_current": 0,
+      "default_current": 5,
+      "hosted_success_tasks": 14,
+      "machine_answered_tasks": 10,
+      "seat_answers_proven": 0,
+      "semantic_current": 9,
+      "substantive_acceptance_proven_by_this_census": 0,
+      "task_bound_declared": 0,
+      "tasks": 28
+    },
+    "ts": "2026-11-21T08:01:38.732558Z"
+  },
+  "findings": [
+    {
+      "fact": "First alternate-path census omitted ANS-T-B173 default answers.",
+      "id": "B173-F01",
+      "original_facts_preserved": true,
+      "status": "COVERAGE_CORRECTED_BY_DEFAULT_DIRECT_AUDIT"
+    },
+    {
+      "evidence": "BEAT173-Responder探针发布与E2E-01.json",
+      "fact": "Responder ignored answer_path and JSON output.",
+      "id": "B173-F02",
+      "status": "OPERATIONALLY_CLOSED_BY_FIX_AND_HOSTED_PROBE"
+    },
+    {
+      "evidence": "BEAT173-Responder探针发布与E2E-01.json",
+      "fact": "Root inbox was outside push/watch/scope coverage.",
+      "id": "B173-F03",
+      "status": "OPERATIONALLY_CLOSED_BY_FIX_AND_HOSTED_PROBE"
+    },
+    {
+      "evidence": "BEAT173-HUB任务全生命周期精确代际-03.json",
+      "fact": "HUB task was guard-quarantine-renamed and its quarantine copy later removed before the manual dispatch run.",
+      "id": "B173-F04",
+      "status": "ROOT_CAUSE_EXACT_DIFF_PASS__MAINLINE_INDEX_ANSWER_THIS_FILE"
+    },
+    {
+      "fact": "Canonical quick 2000 completed but did not converge or improve the bound.",
+      "id": "B173-F05",
+      "status": "OPEN_FULL_AND_CONVERGENCE_NOT_PROVEN"
+    },
+    {
+      "fact": "Independent QFA verifier generation 01 computed checks but exited 1 during receipt printing.",
+      "id": "B173-F06",
+      "status": "GENERATION_PRESERVED__CLEAN_GENERATION_02_PASS"
+    },
+    {
+      "fact": "Probe preflight generations 01-04 failed in marker extraction, test boolean aggregation, or transport.",
+      "id": "B173-F07",
+      "status": "ZERO_REMOTE_WRITE__GENERATION_05_PREFLIGHT_PASS"
+    },
+    {
+      "fact": "HUB index generation 02 embedded the certificate decomposition object instead of its scalar cert field; independent verification exited 1.",
+      "id": "B173-F08",
+      "status": "GENERATION_PRESERVED__CORRECTED_IN_GENERATION_04__NOT_PUBLISHED"
+    }
+  ],
+  "generated_utc": "2026-11-21T08:12:19.654436Z",
+  "index_generation_history": [
+    {
+      "generation": "BUILD_RUN_01",
+      "reported_sha256": "43f198aeb27d4a80ec989d522e7cee2ab10782f26b942af84e21b845ac87ba5a",
+      "status": "FAIL_MISSING_PREFLIGHT_RECEIPT"
+    },
+    {
+      "generation": "ANSWER_02",
+      "reported_sha256": "ef0986a5592c3ada496d0fb5c4ea2745008ece252b303a7fddb7a69135db451f",
+      "status": "FAIL_INDEPENDENT_TYPE_CHECK__PRESERVED_SEPARATELY"
+    },
+    {
+      "generation": "BUILD_RUN_02",
+      "reported_sha256": "7bc09b2e64435be1bc24b1d511df2404c7c9c9cb4e62a9eba7ad58973bd149d3",
+      "status": "REPORTED_PASS__CURRENTLY_MISSING__NOT_RECOMPUTED_INPUT"
+    },
+    {
+      "generation": "VERIFY_01",
+      "reported_sha256": "e9978bb10da56d3427feef393a04d4aa3f2fedea6a28c0eeeeb606d3284146d6",
+      "status": "FAIL_CERTIFICATE_OBJECT_VS_SCALAR_TYPE_CHECK"
+    },
+    {
+      "generation": "BUILD_RUN_03",
+      "reported_sha256": "05a09a3c4b8db0f020d7c9cb1c1a475626f7f7abf97a14e32da918f862b672e7",
+      "status": "FAIL_MISSING_BUILD_RUN_02_DEPENDENCY_REMOVED_IN_04"
+    }
+  ],
+  "machine_answer": true,
+  "north_star": "Advance every research line to reproducible, falsifiable, independently replayable substantive results; machine answers do not replace seat approval.",
+  "open_items": [
+    "Exact quantum<=3/4 theorem, model equivalence, and external novelty remain OPEN.",
+    "Canonical full run and convergence remain OPEN; quick is not full.",
+    "All tasks without fixed executable acceptance evidence remain OPEN even when hosted SUCCESS or generic machine answers exist.",
+    "No seat answer or federation consensus is proven.",
+    "QGL wake receipt, HUB business recovery, and inherited BEAT172 scientific open items remain OPEN.",
+    "USRM real LLM SUCCESS and committed-only QFA fields remain OPEN.",
+    "Formal OPEN-REGISTER conversion and private-repository visibility remain OPEN.",
+    "This index requires external fixed-answer-commit publication and independent replay; self-hash is not embedded recursively.",
+    "Transient local receipt persistence, including the currently missing build-run-02 receipt, remains OPEN; only stable artifacts are recomputed inputs."
+  ],
+  "private_answer_bodies_included": false,
+  "public_safe": true,
+  "reported_but_currently_missing_artifacts": [
+    {
+      "artifact": "BEAT173-Responder探针预检-01.json",
+      "reported_sha256": "8f08a130fecc25d7f3f32ec445eaeb54606ae91fc55838f5530912c4ecdd1e24",
+      "status": "REPORTED_GENERATION__MISSING_AT_INDEX_BUILD__NOT_USED_AS_RECOMPUTED_INPUT"
+    },
+    {
+      "artifact": "BEAT173-Responder探针预检-02.json",
+      "reported_sha256": "5e51a1379a190c154873cb21d982bece916f0ee2227ff793b21e6e221cb52b1d",
+      "status": "REPORTED_GENERATION__MISSING_AT_INDEX_BUILD__NOT_USED_AS_RECOMPUTED_INPUT"
+    }
+  ],
+  "research_results": {
+    "HUB_TASK_LIFECYCLE": {
+      "add_commit": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+      "quarantine_delete_commit": "4eb9d06eda5befdb636ba17e275e2d8ca8d674d7",
+      "rename_commit": "236a57cfc8e591546aad82a583fc5cbd6586ae3d",
+      "status": "EXACT_DIFF_PASS__ORIGINAL_TASK_WAS_NOT_SILENTLY_DROPPED_FROM_AUDIT",
+      "verdict": "PASS_HUB_TASK_ADD_RENAME_QUARANTINE_THEN_DELETE_EXACT_LIFECYCLE"
+    },
+    "QFA_BP07_NUMERIC_UB": {
+      "certificate": 0.7527858612248398,
+      "independent_verdict": "PASS_INDEPENDENT_NUMERIC_UB_0_7527858612248398__EXACT_3_OVER_4_NOT_PROVEN",
+      "known_quantum_lower_bound": 0.75,
+      "model_boundary": "Same frozen NPA model only; model equivalence and external novelty remain OPEN.",
+      "old_certificate_recomputed": 0.7537703607542332,
+      "status": "FLOATING_DUAL_NUMERIC_UB_INDEPENDENTLY_RECOMPUTED__EXACT_3_OVER_4_NOT_PROVEN"
+    },
+    "RESPONDER_ROOT_INBOX_PROBE": {
+      "answer_commit": "72587b43ae95b4f5525c1829c018e9ef2ab0a7c5",
+      "answer_sha256": "6075d0149bc1d9c3281834e5582a9c084474564acc7523530b2ffcb056ce5c4f",
+      "probe_commit": "dc35e4828802f705ec1138fc18378c72ef9b5a49",
+      "run_id": 44882323098,
+      "status": "INFRASTRUCTURE_PASS_ONLY__GENERIC_ACCEPTANCE_NOT_MET",
+      "verdict": "PASS_ROOT_INBOX_PUSH_TO_DECLARED_JSON_E2E__INFRA_ONLY__GENERIC_ACCEPTANCE_NOT_MET"
+    }
+  },
+  "schema": "BEAT173-HUB-PUBLIC-SAFE-LINEAGE-INDEX-01",
+  "seat_answer": false,
+  "self_publication": {
+    "answer_commit": null,
+    "answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-hub.json",
+    "status": "EXTERNAL_PUBLICATION_RECEIPT_REQUIRED"
+  },
+  "source_artifacts": [
+    {
+      "artifact": "BEAT173-全域逐线广播发布.json",
+      "bytes": 34487,
+      "sha256": "0b30f2c92d31f4a78b3836a2165eabf82d7383eace6a6cbf7d28d0de847c9bdb",
+      "verdict": "PASS_27_REPOSITORY_PUBLISH_AND_READBACK__28_TASKS_INCL_LVLU_RELAY__ANSWERS_PENDING"
+    },
+    {
+      "artifact": "BEAT173-全域逐线回答轮询-01.json",
+      "bytes": 50630,
+      "sha256": "a666bffeb8111cbf3a3c218054163deb03265859a32518470c5391e9b446db0e",
+      "verdict": "PASS_READ_ONLY_FIXED_PATH_CENSUS__PUBLICATION_WORKFLOW_ANSWER_AND_SEAT_STATES_SEPARATED"
+    },
+    {
+      "artifact": "BEAT173-工作流消费审计-01.json",
+      "bytes": 120036,
+      "sha256": "daf6318ef1ec73d40536db32bb39eecb45cd5be33adeaaadec77586092e2f8c9",
+      "verdict": "FACT_GENERATION_PRESERVED"
+    },
+    {
+      "artifact": "BEAT173-语义机答证据审计-01.json",
+      "bytes": 18304,
+      "sha256": "21e647f4d00345c62550219446fc02699a59b7fcf17a2940ec400bf2ba823547",
+      "verdict": "FACT_GENERATION_PRESERVED"
+    },
+    {
+      "artifact": "BEAT173-默认机答证据审计-01.json",
+      "bytes": 14821,
+      "sha256": "003e9a669a46cb50f019bc3281ef320a0e052a9a6708049d921b6c0b5df32426",
+      "verdict": "FACT_GENERATION_PRESERVED"
+    },
+    {
+      "artifact": "BEAT173-三通道回答总账-01.json",
+      "bytes": 181666,
+      "sha256": "cf2bdfbd705dcf54737bdd0cbe3aaac216c31f6acdc3ab5e4526916d2968cdd7",
+      "verdict": "FACT_GENERATION_PRESERVED"
+    },
+    {
+      "artifact": "BEAT173-Responder修复-KAT-01.json",
+      "bytes": 1386,
+      "sha256": "fcd6e2e06cf15d0b62346a6ce126210a07bbca91dcb77227f7c898964e7c87fb",
+      "verdict": "PASS_RESPONDER_JSON_AND_ROOT_INBOX_KAT"
+    },
+    {
+      "artifact": "BEAT173-Responder修复发布-01.json",
+      "bytes": 1267,
+      "sha256": "e005922e559defa9565c48098cebc11911a1366bfe6c35dd7c34b5a516063857",
+      "verdict": "PASS_RESPONDER_FIX_PUBLISH_READBACK__HOSTED_E2E_PENDING"
+    },
+    {
+      "artifact": "BEAT173-Responder修复-E2E-01.json",
+      "bytes": 2114,
+      "sha256": "1da1fa8911edd0414e9a47526818e3f891cedf5f7ec5a46a88e54cfbb846dc5f",
+      "verdict": "FAIL_OR_PENDING_NO_REDSPATCH_NO_SUCCESS_CLAIMED"
+    },
+    {
+      "artifact": "BEAT173-Responder失败日志诊断-01.json",
+      "bytes": 476,
+      "sha256": "054f00d97959e697dda39a9417cafaafbe9254f8df32d3d0ac39de009d6e2a15",
+      "verdict": "FACT_GENERATION_PRESERVED"
+    },
+    {
+      "artifact": "BEAT173-Responder探针预检-03.json",
+      "bytes": 2621,
+      "sha256": "c34ed87f3a926ae9f5d44ee453f9ef769d272d52a6b4eda014f81e45b370627b",
+      "verdict": "FAIL_PROBE_PREFLIGHT_NO_REMOTE_WRITE"
+    },
+    {
+      "artifact": "BEAT173-Responder探针预检-04.json",
+      "bytes": 479,
+      "sha256": "a3c24585bd91fa396456ac1292f8c3598780d700d38e794afaeccf6372144c91",
+      "verdict": "FAIL_PROBE_PREFLIGHT_NO_REMOTE_WRITE"
+    },
+    {
+      "artifact": "BEAT173-Responder探针预检-05.json",
+      "bytes": 2552,
+      "sha256": "7de46ec89490d3be8cc7f3fbf921b00dfead2d41f63b01dda17f6645b48e0e00",
+      "verdict": "PASS_PROBE_PREFLIGHT_AND_DISCRIMINATING_CONTROLS__REMOTE_PUBLISH_PENDING"
+    },
+    {
+      "artifact": "BEAT173-Responder探针发布与E2E-01.json",
+      "bytes": 4158,
+      "sha256": "64a2ff35f5e660c41dbae950a4b7d34b503e96d294796812baa9fe7e3111858a",
+      "verdict": "PASS_ROOT_INBOX_PUSH_TO_DECLARED_JSON_E2E__INFRA_ONLY__GENERIC_ACCEPTANCE_NOT_MET"
+    },
+    {
+      "artifact": "BEAT173-HUB任务消失精确代际-01.json",
+      "bytes": 2137,
+      "sha256": "8c362f64f4b59e8d0b5ef5e4c4b28aa0b81564634617b6f3dd4729cf4f6c0dc6",
+      "verdict": "FAIL_OR_INCOMPLETE_EXACT_DIFF"
+    },
+    {
+      "artifact": "BEAT173-HUB任务隔离精确代际-02.json",
+      "bytes": 3018,
+      "sha256": "e0d4736680a2899cad91ac0ac95795cc1e508048a8730a712dd5a29302e07525",
+      "verdict": "FAIL_OR_INCOMPLETE_QUARANTINE_PROOF"
+    },
+    {
+      "artifact": "BEAT173-HUB任务全生命周期精确代际-03.json",
+      "bytes": 3473,
+      "sha256": "b2a84af4b4e6805f32fc9dfd49fd070ad5b546fe7cfe14a10b5e6d9d49093dbc",
+      "verdict": "PASS_HUB_TASK_ADD_RENAME_QUARANTINE_THEN_DELETE_EXACT_LIFECYCLE"
+    },
+    {
+      "artifact": "BEAT173-QFA-上界独立复验-01.json",
+      "bytes": 2245,
+      "sha256": "12d2f7625c1ed22934b47c8a03f7148fa4324d2c8f157ba23cae663366082200",
+      "verdict": "PASS_INDEPENDENT_NUMERIC_UB_0_7527858612248398__EXACT_3_OVER_4_NOT_PROVEN"
+    },
+    {
+      "artifact": "BEAT173-QFA-上界独立复验-02.json",
+      "bytes": 2245,
+      "sha256": "39c16ba2bffb283cc6fc2cf4de6b2464175ff6d7542da6171ddd841e402b72c2",
+      "verdict": "PASS_INDEPENDENT_NUMERIC_UB_0_7527858612248398__EXACT_3_OVER_4_NOT_PROVEN"
+    },
+    {
+      "artifact": "rac4-completeness-polish-l1-02.json",
+      "bytes": 1829,
+      "sha256": "3939fadc000b19e8caaf4157d4c1f69f4313fd94b092c90e8e0abb49ecd32546",
+      "verdict": "PASS_L1_OPTIMIZED_NUMERIC_DUAL_UB__INDEPENDENT_REPLAY_REQUIRED"
+    },
+    {
+      "artifact": "rac4-completeness-polish-l1-02.npz",
+      "bytes": 1113388,
+      "sha256": "9ff8b2728f7bd48b6cd45d4adb80fba9624d890179363203d36c672522bf4a7f",
+      "verdict": "FIXED_NUMERIC_INPUT_OR_VERIFIER"
+    },
+    {
+      "artifact": "rac4-completeness-equalities-01.npz",
+      "bytes": 107536,
+      "sha256": "67a76bb877d37f0687628d1bed69174f637258d533da01bf72c9763841dfa446",
+      "verdict": "FIXED_NUMERIC_INPUT_OR_VERIFIER"
+    },
+    {
+      "artifact": "rac4-canonical-2000.json",
+      "bytes": 2578,
+      "sha256": "357ede0b5145df703f14862052de1eae8c77c29cf73e7536723f4aa1a59bb65f",
+      "verdict": "VALID_BUT_NOT_IMPROVED_OR_NOT_CONVERGED"
+    },
+    {
+      "artifact": "independent_verify_completeness.py",
+      "bytes": 8778,
+      "sha256": "1066f14936176eb44e1af641edf2ddb94ea7fe5b9363482b9c82e88c039a33cf",
+      "verdict": "FIXED_NUMERIC_INPUT_OR_VERIFIER"
+    }
+  ],
+  "source_task": {
+    "answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-hub.json",
+    "task_commit": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+    "task_id": "T-B173-HUB-01"
+  },
+  "tasks": [
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ci-bus.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-CI-BUS-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "eb97af632f5e312e6cac6543d777e28f2539339b",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ci-bus.json",
+      "hosted_success_run_ids": [],
+      "lane": "ci-bus",
+      "machine_answered_at_census": false,
+      "repository": "ci-bus",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "eb97af632f5e312e6cac6543d777e28f2539339b",
+      "task_id": "T-B173-CI-BUS-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-ci-bus-20261121.md",
+      "task_sha256": "ed3b7bab7cd9268f0f310d08e84ec9c3a74299440822987a65fc20722564b7ed",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ci-code.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-CI-CODE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "52b50f939975adfaf5b6ae9347f0ddffc408f97d",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ci-code.json",
+      "hosted_success_run_ids": [],
+      "lane": "ci-code",
+      "machine_answered_at_census": false,
+      "repository": "ci-code",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "52b50f939975adfaf5b6ae9347f0ddffc408f97d",
+      "task_id": "T-B173-CI-CODE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-ci-code-20261121.md",
+      "task_sha256": "df67b8b54ec6155c2df2614be9d68dfb2a45ae39b77e2fffeb9012ba77196752",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-canonical.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-CANONICAL-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "43b79e3079daeb84804ce96711b9e0e05e82435f",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-canonical.json",
+      "hosted_success_run_ids": [],
+      "lane": "canonical",
+      "machine_answered_at_census": false,
+      "repository": "ci-control",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "531ce51cca3ccf06e2520b0c7f960f913063dd0d",
+      "task_id": "T-B173-CANONICAL-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-canonical-20261121.md",
+      "task_sha256": "7d49850dcfa438e68c1256887006cf949ac0ee981daf89872678d09de8b7a85d",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-canonical-review.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-CANONICAL-REVIEW-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "b327acbb7dea38dd65829b6e00d5bfebb297218c",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-canonical-review.json",
+      "hosted_success_run_ids": [],
+      "lane": "canonical-review",
+      "machine_answered_at_census": false,
+      "repository": "ci-control-backup",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "b327acbb7dea38dd65829b6e00d5bfebb297218c",
+      "task_id": "T-B173-CANONICAL-REVIEW-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-canonical-review-20261121.md",
+      "task_sha256": "057ba7e080295225b04aa8cfb2c849e7b78c2c4fc5da250a25da64b0599bdf77",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-coordination.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-COORDINATION-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "821cdab3554bf7379edd665763ef805cb40284ec",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-coordination.json",
+      "hosted_success_run_ids": [],
+      "lane": "coordination",
+      "machine_answered_at_census": false,
+      "repository": "ci-inbox",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "17201cfe80a8b0ebba0b4651389e20a9ccfa73ab",
+      "task_id": "T-B173-COORDINATION-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-coordination-20261121.md",
+      "task_sha256": "a8044a5445561b04b06196a1dc0a6005c804754d5b124cbf61368e5b985ed1c7",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-lineage.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-LINEAGE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "b141bbc6ac2bb408ce2e89eb5f48d6d66826f439",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-lineage.json",
+      "hosted_success_run_ids": [],
+      "lane": "lineage",
+      "machine_answered_at_census": false,
+      "repository": "ci-library",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "b141bbc6ac2bb408ce2e89eb5f48d6d66826f439",
+      "task_id": "T-B173-LINEAGE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-lineage-20261121.md",
+      "task_sha256": "5df30c099ec07125b434a85f27ade89aaffd10a2be264931fb283b74a7c4c985",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-evidence.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-EVIDENCE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "b5217466190cb8bf05f4d84f6ae6ae5db8c20daf",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-evidence.json",
+      "hosted_success_run_ids": [],
+      "lane": "evidence",
+      "machine_answered_at_census": false,
+      "repository": "ci-logs",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "b5217466190cb8bf05f4d84f6ae6ae5db8c20daf",
+      "task_id": "T-B173-EVIDENCE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-evidence-20261121.md",
+      "task_sha256": "ca7ff8610390810130b68b7b80997b83c0b39fd93914e6140d2cf94aa60b5c80",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-sandbox.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-SANDBOX-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "226861b2ef54158f7dd3a1041ca13e59f8e05956",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-sandbox.json",
+      "hosted_success_run_ids": [],
+      "lane": "sandbox",
+      "machine_answered_at_census": false,
+      "repository": "ci-playground",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "226861b2ef54158f7dd3a1041ca13e59f8e05956",
+      "task_id": "T-B173-SANDBOX-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-sandbox-20261121.md",
+      "task_sha256": "584f3c036b2293ae17070a64ffe72137a9adfc69dadc08816d01e54c838d67e1",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-north-star.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-NORTH-STAR-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "4a24e6e051db5372dcd8f213515d50e207515e8a",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-north-star.json",
+      "hosted_success_run_ids": [],
+      "lane": "north-star",
+      "machine_answered_at_census": false,
+      "repository": "ci-root",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "4a24e6e051db5372dcd8f213515d50e207515e8a",
+      "task_id": "T-B173-NORTH-STAR-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-north-star-20261121.md",
+      "task_sha256": "cc44fe1bc846a8c15c89a9ca9f2c17bdb13721b124666d61fa72a8bd8417435a",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-worker-01.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-WORKER-01-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "f4e8461ca3e84033d186ba25f38c7d5b93f61922",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-worker-01.json",
+      "hosted_success_run_ids": [
+        44862233185
+      ],
+      "lane": "worker-01",
+      "machine_answered_at_census": false,
+      "repository": "ci-worker-01",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "ecd6f87ed3b54a87ace226ef9035823422d3fac6",
+      "task_id": "T-B173-WORKER-01-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-worker-01-20261121.md",
+      "task_sha256": "3141d5968408b655005c24d12a1e54b2ea294db8bef17155d53fbee87d163bd6",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:39:18Z",
+          "event": "push",
+          "head_sha": "ecd6f87ed3b54a87ace226ef9035823422d3fac6",
+          "id": 44862233185,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:39:29Z",
+          "workflow_id": 349856248
+        },
+        {
+          "conclusion": "failure",
+          "created_at": "2026-11-21T03:39:18Z",
+          "event": "push",
+          "head_sha": "ecd6f87ed3b54a87ace226ef9035823422d3fac6",
+          "id": 44862233193,
+          "name": "hub-tower",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:39:28Z",
+          "workflow_id": 352151517
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-worker-02.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-WORKER-02-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "1f41378f1990e13ce341cda489d25b59423bfdbb",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-worker-02.json",
+      "hosted_success_run_ids": [
+        44862244141
+      ],
+      "lane": "worker-02",
+      "machine_answered_at_census": false,
+      "repository": "ci-worker-02",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "ae19be6a3b22b0d3a0471df1d7bedb559f7add0c",
+      "task_id": "T-B173-WORKER-02-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-worker-02-20261121.md",
+      "task_sha256": "1f7da016e7ef6c2db68f93c3af8c0ae3e2e8405d608d5cb253ff00823a2e4af6",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:39:27Z",
+          "event": "push",
+          "head_sha": "ae19be6a3b22b0d3a0471df1d7bedb559f7add0c",
+          "id": 44862244141,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:39:36Z",
+          "workflow_id": 349856286
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-cfts-private.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-CFTS-PRIVATE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "8f3ffcaee639075c32ed64920a53777f1e3d6548",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-cfts-private.json",
+      "hosted_success_run_ids": [],
+      "lane": "cfts-private",
+      "machine_answered_at_census": false,
+      "repository": "github-repo-cfts",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "8f3ffcaee639075c32ed64920a53777f1e3d6548",
+      "task_id": "T-B173-CFTS-PRIVATE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-cfts-private-20261121.md",
+      "task_sha256": "0b70f908cb07555225b5979bc31e08e96b3805110efe7a1fc2e2a86bdec34a86",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qgl-private.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-QGL-PRIVATE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "fa015c8ab1d81042adcc316e653535aa5a5f6965",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qgl-private.json",
+      "hosted_success_run_ids": [],
+      "lane": "qgl-private",
+      "machine_answered_at_census": false,
+      "repository": "quantum-go-ledger",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "fa015c8ab1d81042adcc316e653535aa5a5f6965",
+      "task_id": "T-B173-QGL-PRIVATE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-qgl-private-20261121.md",
+      "task_sha256": "7dceafe11c9e3b7bb0168f208df3fac8b1f3a02d2d3e4720915451ff09473175",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ucif2-private.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-UCIF2-PRIVATE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "d496362e20cf688d68f0fc5d1486cb4ba5b8d95c",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ucif2-private.json",
+      "hosted_success_run_ids": [],
+      "lane": "ucif2-private",
+      "machine_answered_at_census": false,
+      "repository": "ucif2-formalization-kernel",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "d496362e20cf688d68f0fc5d1486cb4ba5b8d95c",
+      "task_id": "T-B173-UCIF2-PRIVATE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-ucif2-private-20261121.md",
+      "task_sha256": "e7cd31eb5e62da1569d1eee7fb427e3af1b7584d5f9b0791aa2be8b97bbc4183",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-usrm-private.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-USRM-PRIVATE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "2c1e7e34fe23a9c50f4798cdc16b303973d1b9f0",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-usrm-private.json",
+      "hosted_success_run_ids": [],
+      "lane": "usrm-private",
+      "machine_answered_at_census": false,
+      "repository": "usrm-repo",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "2c1e7e34fe23a9c50f4798cdc16b303973d1b9f0",
+      "task_id": "T-B173-USRM-PRIVATE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-usrm-private-20261121.md",
+      "task_sha256": "2a92384258fbe345dda86c96c8fb649dafb769728a6cf82c6ce876cbeb41e315",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-cfts.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": "5031bc9d97409a88d701c3a4a89c11e3b3f3dfba",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-CFTS-01.md",
+          "positive_control_marker": false,
+          "sha256": "29b4094cb0496bc13f61ba77b31eacbcc97bd6f6eafce85de5b96a04a379bf32",
+          "task_commit_bound": false,
+          "task_id_bound": true,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "d1b6cd959ccc1d97c58a63ec4314bef8e774fa08",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": true,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-cfts-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "9818b732fc71a0b367e4045abcc7a539872271bd9927fb677c77f3e30fbbfd40",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "02270ad1aff75b29a0165567643bc99b112e1fe7",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-cfts.json",
+      "hosted_success_run_ids": [
+        44862315652,
+        44862315712,
+        44862316047,
+        44862315738,
+        44862315705
+      ],
+      "lane": "cfts",
+      "machine_answered_at_census": true,
+      "repository": "vci-cfts",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "3bccd5b0bd4a0062e357f10272c6b79a5043b6c3",
+      "task_id": "T-B173-CFTS-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-cfts-20261121.md",
+      "task_sha256": "e305699a93f1380ce16f67b289384f2681b0420c5c7cb0fe9403fccebfc3e7bf",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:19Z",
+          "event": "push",
+          "head_sha": "3bccd5b0bd4a0062e357f10272c6b79a5043b6c3",
+          "id": 44862315652,
+          "name": "TASK-RESPONDER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:34Z",
+          "workflow_id": 355566356
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:19Z",
+          "event": "push",
+          "head_sha": "3bccd5b0bd4a0062e357f10272c6b79a5043b6c3",
+          "id": 44862315712,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:42Z",
+          "workflow_id": 349856335
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:19Z",
+          "event": "push",
+          "head_sha": "3bccd5b0bd4a0062e357f10272c6b79a5043b6c3",
+          "id": 44862316047,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:28Z",
+          "workflow_id": 356478590
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:19Z",
+          "event": "push",
+          "head_sha": "3bccd5b0bd4a0062e357f10272c6b79a5043b6c3",
+          "id": 44862315738,
+          "name": "SEMANTIC-RESPONDER-05 (vinf代铸cfts版·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:48Z",
+          "workflow_id": 361648018
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:19Z",
+          "event": "push",
+          "head_sha": "3bccd5b0bd4a0062e357f10272c6b79a5043b6c3",
+          "id": 44862315705,
+          "name": "CFTS-TOWER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:50:34Z",
+          "workflow_id": 352149284
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-hub.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-HUB-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "856a9f7082f8fb7ea7a7b79015a8f903bbb368c1",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-hub.json",
+      "hosted_success_run_ids": [
+        44862331837,
+        44862331835,
+        44862331836,
+        44862331929
+      ],
+      "lane": "hub",
+      "machine_answered_at_census": false,
+      "repository": "vci-inbox",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+      "task_id": "T-B173-HUB-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-hub-20261121.md",
+      "task_sha256": "00931c84059049aab5bdee61c191a43e8757bb4366cc42d48367c39a3cafd104",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331837,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:47Z",
+          "workflow_id": 343997052
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331835,
+          "name": "kernel-loop",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:44Z",
+          "workflow_id": 344924134
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331836,
+          "name": "kernel-resident-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:03Z",
+          "workflow_id": 364591374
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331929,
+          "name": "TASK-RESPONDER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:46Z",
+          "workflow_id": 355566586
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-lgt.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-LGT-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "ebefa94de51f6dc300e25de1afd99bf45db6f2dc",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": true,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-lgt-20261121.md",
+          "positive_control_marker": true,
+          "sha256": "c130f4b1a8cf27f18afcb23699d7d5a6f8c9741f3b06cf1e4d473a5938209b42",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "1f3fe27141b92fea96dfd872a6b7c5f53770c1ba",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-lgt.json",
+      "hosted_success_run_ids": [
+        44862344655,
+        44862344605,
+        44862344601
+      ],
+      "lane": "lgt",
+      "machine_answered_at_census": true,
+      "repository": "vci-lgt",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "66b2f5a95bc700b1815743d13f638bb760da6a0d",
+      "task_id": "T-B173-LGT-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-lgt-20261121.md",
+      "task_sha256": "3980c6e81e247433e88841e2eb4de7963d30558b396bc2a5c5dcafaad718f0e4",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:39Z",
+          "event": "push",
+          "head_sha": "66b2f5a95bc700b1815743d13f638bb760da6a0d",
+          "id": 44862344655,
+          "name": "SEMANTIC-RESPONDER-05 (毂代铸lgt版(源vinf轨)·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:11Z",
+          "workflow_id": 361647929
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:39Z",
+          "event": "push",
+          "head_sha": "66b2f5a95bc700b1815743d13f638bb760da6a0d",
+          "id": 44862344605,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:49Z",
+          "workflow_id": 356478640
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:39Z",
+          "event": "push",
+          "head_sha": "66b2f5a95bc700b1815743d13f638bb760da6a0d",
+          "id": 44862344601,
+          "name": "LGT-TOWER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:53Z",
+          "workflow_id": 353791066
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-external.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-EXTERNAL-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "e0c38991cca35c59d36cae67363725b50f70a54d",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-external.json",
+      "hosted_success_run_ids": [
+        44862365599
+      ],
+      "lane": "external",
+      "machine_answered_at_census": false,
+      "repository": "vci-library",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "30035ef4f4f86034a63ae255ca44cb31debd66ca",
+      "task_id": "T-B173-EXTERNAL-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-external-20261121.md",
+      "task_sha256": "a9b0c8b4f7b9f3e561e1f9127dc0f257ff2653db7635d2ec2137d4c772b2ee2b",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:54Z",
+          "event": "push",
+          "head_sha": "30035ef4f4f86034a63ae255ca44cb31debd66ca",
+          "id": 44862365599,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:03Z",
+          "workflow_id": 349856437
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qfa.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-QFA-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "7652e879bc4e7898e3e6843e3590236c419ec58a",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-qfa-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "50754e7e1798f195347d20122c4c9f4585f654ca3995fb625966f222356bb383",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "51f98c8f0caead7729b753ef6643b9c4ac176f3e",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qfa.json",
+      "hosted_success_run_ids": [
+        44862378498,
+        44862378512
+      ],
+      "lane": "qfa",
+      "machine_answered_at_census": true,
+      "repository": "vci-qfa",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "32907e42bb9d7e5be5555eab8665eb4a13714a06",
+      "task_id": "T-B173-QFA-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-qfa-20261121.md",
+      "task_sha256": "a335ae31dcd114d877b93788b8ac2626b173bbe4225928b842c61ff963ed9ef4",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:03Z",
+          "event": "push",
+          "head_sha": "32907e42bb9d7e5be5555eab8665eb4a13714a06",
+          "id": 44862378498,
+          "name": "SEMANTIC-RESPONDER-05 (vinf代铸qfa版·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:38Z",
+          "workflow_id": 361647956
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:03Z",
+          "event": "push",
+          "head_sha": "32907e42bb9d7e5be5555eab8665eb4a13714a06",
+          "id": 44862378512,
+          "name": "QFA-TOWER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:16Z",
+          "workflow_id": 353791099
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qgl.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": "5a3c626d6ce94c433cf39f81380e260bd48e4dbe",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-QGL-01.md",
+          "positive_control_marker": false,
+          "sha256": "12a8cc37940a1ac7c471676484c3d61ad2a561802451b8d5f71263af5707b051",
+          "task_commit_bound": false,
+          "task_id_bound": true,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "e2c8a0edf0fcbfeb2df5f0d294181d18eed2bd07",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-qgl-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "7dac0819dba5adc98d1e0ef2d174505193943adfd61495dcf2d6ccd570e1b85c",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "043983f4a5c9df5e9772b6ea9708de137f41e632",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qgl.json",
+      "hosted_success_run_ids": [
+        44862391873,
+        44862391777,
+        44862391744,
+        44862391755,
+        44862391821
+      ],
+      "lane": "qgl",
+      "machine_answered_at_census": true,
+      "repository": "vci-qgl",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "7884f4f456eb691aec9252458aa8f64bca820339",
+      "task_id": "T-B173-QGL-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-qgl-20261121.md",
+      "task_sha256": "9faedd8286be57c867d61b72488954f10038c8f2fd57ccf1dd9a6f00d9471dd7",
+      "workflow_runs": [
+        {
+          "conclusion": "cancelled",
+          "created_at": "2026-11-21T03:41:23Z",
+          "event": "repository_dispatch",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862405010,
+          "name": "qgl-tower",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:33Z",
+          "workflow_id": 352022904
+        },
+        {
+          "conclusion": "cancelled",
+          "created_at": "2026-11-21T03:41:23Z",
+          "event": "repository_dispatch",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862405015,
+          "name": "line-drive",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:34Z",
+          "workflow_id": 366914045
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:13Z",
+          "event": "push",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862391873,
+          "name": "TASK-RESPONDER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:31Z",
+          "workflow_id": 355565439
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:13Z",
+          "event": "push",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862391777,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:35Z",
+          "workflow_id": 356478478
+        },
+        {
+          "conclusion": "failure",
+          "created_at": "2026-11-21T03:41:13Z",
+          "event": "push",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862391735,
+          "name": "qgl-heartbeat",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:24Z",
+          "workflow_id": 356920145
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:13Z",
+          "event": "push",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862391744,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:29Z",
+          "workflow_id": 349856685
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:13Z",
+          "event": "push",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862391755,
+          "name": "qgl-tower",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:33Z",
+          "workflow_id": 352022904
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:13Z",
+          "event": "push",
+          "head_sha": "7884f4f456eb691aec9252458aa8f64bca820339",
+          "id": 44862391821,
+          "name": "SEMANTIC-RESPONDER-05 (vinf代铸qgl版·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:52Z",
+          "workflow_id": 361648001
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qlv.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-QLV-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "0b486d51e09eebe1a9c54ae1ad2d17d85a9745fd",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-qlv-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "4efacbb063d55af427958f44914b4e2d6179c7ca71660bc12d45c9c8dac46b36",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "1ee181e0d891657f080e2c71ea8bfb4dc50f3793",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qlv.json",
+      "hosted_success_run_ids": [
+        44862411776,
+        44862411967,
+        44862403430,
+        44862403466,
+        44862403458
+      ],
+      "lane": "qlv",
+      "machine_answered_at_census": true,
+      "repository": "vci-qlv",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "0a572349210cfbce3dec3578a037323a36c9e3a2",
+      "task_id": "T-B173-QLV-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-qlv-20261121.md",
+      "task_sha256": "5353b34b2e5d9cab189d6c3f43665825a16110cbc7e686495250f87449d67578",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:28Z",
+          "event": "repository_dispatch",
+          "head_sha": "0a572349210cfbce3dec3578a037323a36c9e3a2",
+          "id": 44862411776,
+          "name": "KEY-SENTINEL-LINE-01 (qfa代铸·覆写权归原线·SCAN-OWN-KEYS-01机件化)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:17Z",
+          "workflow_id": 356294365
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:28Z",
+          "event": "repository_dispatch",
+          "head_sha": "0a572349210cfbce3dec3578a037323a36c9e3a2",
+          "id": 44862411967,
+          "name": "line-drive",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:35Z",
+          "workflow_id": 366912148
+        },
+        {
+          "conclusion": "failure",
+          "created_at": "2026-11-21T03:41:28Z",
+          "event": "repository_dispatch",
+          "head_sha": "0a572349210cfbce3dec3578a037323a36c9e3a2",
+          "id": 44862411712,
+          "name": "key-sentinel-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:43:41Z",
+          "workflow_id": 357312892
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:22Z",
+          "event": "push",
+          "head_sha": "0a572349210cfbce3dec3578a037323a36c9e3a2",
+          "id": 44862403430,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:15Z",
+          "workflow_id": 356478610
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:22Z",
+          "event": "push",
+          "head_sha": "0a572349210cfbce3dec3578a037323a36c9e3a2",
+          "id": 44862403466,
+          "name": "QLV-TOWER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:52:34Z",
+          "workflow_id": 354100976
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:22Z",
+          "event": "push",
+          "head_sha": "0a572349210cfbce3dec3578a037323a36c9e3a2",
+          "id": 44862403458,
+          "name": "SEMANTIC-RESPONDER-05 (毂代铸qlv版(源vinf轨)·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:45:05Z",
+          "workflow_id": 361648019
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qtlv.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-QTLV-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "85c13b75bc9bbb17a4173a5c25bb958cec1103ca",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 1,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": true,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-qtlv-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "1ec6861e5239e0b101ee416bebf4a699b4f11dfac8267ba93877bf21a3b47e21",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "60706b7faba6fc9bc5342505be27d630608b5618",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-qtlv.json",
+      "hosted_success_run_ids": [
+        44862414176,
+        44862414159,
+        44862414119,
+        44862414140,
+        44862414120
+      ],
+      "lane": "qtlv",
+      "machine_answered_at_census": true,
+      "repository": "vci-qtlv",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "f5ae01d34cb8c14b470a11defeb4baeded6c0598",
+      "task_id": "T-B173-QTLV-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-qtlv-20261121.md",
+      "task_sha256": "5510548b2176814eb665abc659bb38004d7d4edf6a4630b7c313136e7a94e2ad",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:30Z",
+          "event": "push",
+          "head_sha": "f5ae01d34cb8c14b470a11defeb4baeded6c0598",
+          "id": 44862414176,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:01Z",
+          "workflow_id": 356476006
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:30Z",
+          "event": "push",
+          "head_sha": "f5ae01d34cb8c14b470a11defeb4baeded6c0598",
+          "id": 44862414159,
+          "name": "qtlv-intake-watch",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:20Z",
+          "workflow_id": 358918952
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:30Z",
+          "event": "push",
+          "head_sha": "f5ae01d34cb8c14b470a11defeb4baeded6c0598",
+          "id": 44862414119,
+          "name": "SEMANTIC-RESPONDER-05 (毂代铸qtlv版(源vinf轨)·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:28Z",
+          "workflow_id": 361647972
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:30Z",
+          "event": "push",
+          "head_sha": "f5ae01d34cb8c14b470a11defeb4baeded6c0598",
+          "id": 44862414140,
+          "name": "SEMANTIC-RESPONDER-04 (vinf代铸qtlv版·机读缺口补位·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:13Z",
+          "workflow_id": 360727972
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:30Z",
+          "event": "push",
+          "head_sha": "f5ae01d34cb8c14b470a11defeb4baeded6c0598",
+          "id": 44862414120,
+          "name": "QTLV-TOWER-03",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:59:04Z",
+          "workflow_id": 356291809
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ucif2.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": "44174b8dbdefc59b4722f07e5fae114b8e28e1a8",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-UCIF2-01.md",
+          "positive_control_marker": false,
+          "sha256": "ef9b6b885dc34ca8e837bfb2b16cf3cabdb03cf414e799262f35396ce3393a51",
+          "task_commit_bound": false,
+          "task_id_bound": true,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "72a287c961ef762c093c3f214ecdfc24633b44c4",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-ucif2-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "d72d546c9ff0ad223f43035edbf947406598113f0a37b34307ec3634a5e26fab",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "d6e2cf8b056f0009d5c4631820bb96ad86fb4dea",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-ucif2.json",
+      "hosted_success_run_ids": [
+        44862424724,
+        44862424753,
+        44862424732,
+        44862424736,
+        44862424735
+      ],
+      "lane": "ucif2",
+      "machine_answered_at_census": true,
+      "repository": "vci-ucif2",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "0691d900c7671e786c7527d7aa1aae0a30fc4556",
+      "task_id": "T-B173-UCIF2-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-ucif2-20261121.md",
+      "task_sha256": "1966a9ae381079720199831418330ca7c32938632228182b70d3c8e5e1e97742",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:38Z",
+          "event": "push",
+          "head_sha": "0691d900c7671e786c7527d7aa1aae0a30fc4556",
+          "id": 44862424724,
+          "name": "SEMANTIC-RESPONDER-05 (vinf代铸ucif2版·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:45:16Z",
+          "workflow_id": 361647982
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:38Z",
+          "event": "push",
+          "head_sha": "0691d900c7671e786c7527d7aa1aae0a30fc4556",
+          "id": 44862424753,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:43:03Z",
+          "workflow_id": 349856700
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:38Z",
+          "event": "push",
+          "head_sha": "0691d900c7671e786c7527d7aa1aae0a30fc4556",
+          "id": 44862424732,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:08Z",
+          "workflow_id": 356478659
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:38Z",
+          "event": "push",
+          "head_sha": "0691d900c7671e786c7527d7aa1aae0a30fc4556",
+          "id": 44862424736,
+          "name": "TASK-RESPONDER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:42:33Z",
+          "workflow_id": 355566448
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:41:38Z",
+          "event": "push",
+          "head_sha": "0691d900c7671e786c7527d7aa1aae0a30fc4556",
+          "id": 44862424735,
+          "name": "UCIF2-TOWER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:52:17Z",
+          "workflow_id": 352252122
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-usrm.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-USRM-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "f2313582c320f23d081b80224e2c6b72dfa7a7be",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-usrm-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "c3d95b5aadd0eddd5af49183692a0ca24fadf5e9a64e6299753a74a91f50bba5",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "be47f86272db2b28fc931516ae01224ff11891c7",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-usrm.json",
+      "hosted_success_run_ids": [
+        44862543573,
+        44862543601,
+        44862543580,
+        44862543652,
+        44862543642
+      ],
+      "lane": "usrm",
+      "machine_answered_at_census": true,
+      "repository": "vci-usrm",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "3642554ccf67235c1bfd1ebf9e0b84a562d9084a",
+      "task_id": "T-B173-USRM-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-usrm-20261121.md",
+      "task_sha256": "a6d045141b18aa42085a0d39bf169af6a19bc362eb2743f7800d1724a4090b06",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:07Z",
+          "event": "push",
+          "head_sha": "3642554ccf67235c1bfd1ebf9e0b84a562d9084a",
+          "id": 44862543573,
+          "name": "USRM-TOWER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:54:12Z",
+          "workflow_id": 352019761
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:07Z",
+          "event": "push",
+          "head_sha": "3642554ccf67235c1bfd1ebf9e0b84a562d9084a",
+          "id": 44862543601,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:43:50Z",
+          "workflow_id": 349856662
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:07Z",
+          "event": "push",
+          "head_sha": "3642554ccf67235c1bfd1ebf9e0b84a562d9084a",
+          "id": 44862543580,
+          "name": "line-inbox-ack",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:43:35Z",
+          "workflow_id": 351580021
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:07Z",
+          "event": "push",
+          "head_sha": "3642554ccf67235c1bfd1ebf9e0b84a562d9084a",
+          "id": 44862543652,
+          "name": "SEMANTIC-RESPONDER-05 (vinf代铸usrm版·拍40互锚对称件·覆写权归原线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:44:38Z",
+          "workflow_id": 361647947
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:07Z",
+          "event": "push",
+          "head_sha": "3642554ccf67235c1bfd1ebf9e0b84a562d9084a",
+          "id": 44862543642,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:44:04Z",
+          "workflow_id": 356478441
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-vinf.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": "378c3e26a3503d3a6becdd7fe6cdcc9bd1d486ca",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-VINF-01.md",
+          "positive_control_marker": false,
+          "sha256": "bb69137ad77e633976ef9a617615357ac68fce3e8df3e30a1a19bcce82cc7d60",
+          "task_commit_bound": false,
+          "task_id_bound": true,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        },
+        "semantic": {
+          "acceptance_status": null,
+          "answer_commit": "2b5d16136be0c52590a2f61a949bb3159fef877e",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-SEM-TASK-BEAT173-LINEAGE-COLLAB-01-vinf-20261121.md",
+          "positive_control_marker": false,
+          "sha256": "cdb87968a716cba412a8721849c6b57b2075fbd036c46bd7b6331b969bf2e6c2",
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "a8bea942efa0b86bf572bc7b3501f741b9e08d60",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-vinf.json",
+      "hosted_success_run_ids": [
+        44862555378,
+        44862555373,
+        44862555330,
+        44862555364,
+        44862555315,
+        44862555312,
+        44862555459
+      ],
+      "lane": "vinf",
+      "machine_answered_at_census": true,
+      "repository": "vci-vinf",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+      "task_id": "T-B173-VINF-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-vinf-20261121.md",
+      "task_sha256": "0fea96179fdb404683a2dea3b6d487b5e6db80091817b4a8c703d67feefed649",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:15Z",
+          "event": "push",
+          "head_sha": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+          "id": 44862555378,
+          "name": "VINF-TOWER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:55:14Z",
+          "workflow_id": 352248217
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:15Z",
+          "event": "push",
+          "head_sha": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+          "id": 44862555373,
+          "name": "SEMANTIC-RESPONDER-04 (枢PIVOT-01代铸vinf版·源vci-qfa·机读缺口补位·覆写权归原线·precedent lgt-118)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:45:02Z",
+          "workflow_id": 369704430
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:15Z",
+          "event": "push",
+          "head_sha": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+          "id": 44862555330,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:44:54Z",
+          "workflow_id": 349856735
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:15Z",
+          "event": "push",
+          "head_sha": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+          "id": 44862555364,
+          "name": "TASK-RESPONDER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:45:20Z",
+          "workflow_id": 355574638
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:15Z",
+          "event": "push",
+          "head_sha": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+          "id": 44862555315,
+          "name": "SI-AUTOPILOT-01 (qfa代铸·覆写权归原线·代产闭律·级名不滥)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:45:22Z",
+          "workflow_id": 356478542
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:15Z",
+          "event": "push",
+          "head_sha": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+          "id": 44862555312,
+          "name": "SEMANTIC-RESPONDER-05 (枢PIVOT-01代铸vinf版·源vci-qfa·拍40互锚对称件·覆写权归原线·precedent lgt-118)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:45:23Z",
+          "workflow_id": 369704431
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:43:15Z",
+          "event": "push",
+          "head_sha": "c27a984479298d030ea905e4b9ba3b7dbc81daa8",
+          "id": 44862555459,
+          "name": "SI3-LOOP-13 (vinf场感应-迭代 orchestrator·圈层网塔·直通场·瞬传·覆写权归各线)",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:46:03Z",
+          "workflow_id": 361875925
+        }
+      ]
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-vinf-private.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "inbox/ANS-T-B173-VINF-PRIVATE-01.md",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "3ac0357bbcc5247e7606720c5809030612cc1a9f",
+      "declared_answer_path": "outbox/ANS-BEAT173-LINEAGE-COLLAB-01-vinf-private.json",
+      "hosted_success_run_ids": [],
+      "lane": "vinf-private",
+      "machine_answered_at_census": false,
+      "repository": "vinf-market-kernel",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "3ac0357bbcc5247e7606720c5809030612cc1a9f",
+      "task_id": "T-B173-VINF-PRIVATE-01",
+      "task_path": "inbox/TASK-BEAT173-LINEAGE-COLLAB-01-vinf-private-20261121.md",
+      "task_sha256": "5ebf3665152cf4c3fc6686515d7ed0fc86d6f9e335b793c8dad743e17f8b7403",
+      "workflow_runs": []
+    },
+    {
+      "answer_channels": {
+        "declared": {
+          "acceptance_status": null,
+          "answer_commit": null,
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "NOT_VISIBLE_AT_CURRENT_HEAD",
+          "fixed_bytes_match_current": false,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "lanes/lvlu/outbox/ANS-BEAT173-LINEAGE-COLLAB-01-lvlu.json",
+          "positive_control_marker": false,
+          "sha256": null,
+          "task_commit_bound": false,
+          "task_id_bound": false,
+          "task_to_answer_reachable": false,
+          "workflow_run_id": null
+        },
+        "default": {
+          "acceptance_status": null,
+          "answer_commit": "910083e4eb9a0cb1461a32f3a70f8b092f6d3699",
+          "artifact_sha256_literals_count": 0,
+          "command_markers": 0,
+          "current_state": "OBSERVED",
+          "fixed_bytes_match_current": true,
+          "independent_replay_marker": false,
+          "negative_control_marker": false,
+          "path": "lanes/lvlu/inbox/ANS-T-B173-LVLU-01.md",
+          "positive_control_marker": false,
+          "sha256": "20fc912d07289e4a6e93b4e7776b63141d6eec520fa88f601e8647005a4a7b66",
+          "task_commit_bound": false,
+          "task_id_bound": true,
+          "task_to_answer_reachable": true,
+          "workflow_run_id": null
+        }
+      },
+      "current_head_at_census": "a3e521187639c7b2ddf5224392bb87b21a813bbf",
+      "declared_answer_path": "lanes/lvlu/outbox/ANS-BEAT173-LINEAGE-COLLAB-01-lvlu.json",
+      "hosted_success_run_ids": [
+        44862331837,
+        44862331835,
+        44862331836,
+        44862331929
+      ],
+      "lane": "lvlu",
+      "machine_answered_at_census": true,
+      "repository": "vci-inbox",
+      "seat_answered": false,
+      "substantive_acceptance": "OPEN_OR_EXTERNAL_RECEIPT_REQUIRED",
+      "task_commit": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+      "task_id": "T-B173-LVLU-01",
+      "task_path": "lanes/lvlu/inbox/TASK-BEAT173-LINEAGE-COLLAB-01-lvlu-20261121.md",
+      "task_sha256": "388fe2bd59521b1578cf1109535d484ffcd4afd16099bb8d7ab8794ae931aa31",
+      "workflow_runs": [
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331837,
+          "name": "pub-guard",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:47Z",
+          "workflow_id": 343997052
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331835,
+          "name": "kernel-loop",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:44Z",
+          "workflow_id": 344924134
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331836,
+          "name": "kernel-resident-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:41:03Z",
+          "workflow_id": 364591374
+        },
+        {
+          "conclusion": "success",
+          "created_at": "2026-11-21T03:40:30Z",
+          "event": "push",
+          "head_sha": "a96c0d8b2d640229de8b4bb3153eeafff7f650fc",
+          "id": 44862331929,
+          "name": "TASK-RESPONDER-01",
+          "status": "completed",
+          "updated_at": "2026-11-21T03:40:46Z",
+          "workflow_id": 355566586
+        }
+      ]
+    }
+  ]
+}
