@@ -117,18 +117,29 @@ def main():
                 try:
                     tid = t.get("task", "")
                     if not tid or tid in done or answered(tid): continue
+                    requested = (t.get("answer_path") or "").replace("..", "").lstrip("/")
+                    if requested and os.path.exists(requested): continue
                     if LANE_SCOPE and t.get("line") and t["line"] not in LANE_SCOPE: continue
                     sig = t.get("line") or LINE
                     hf = next((h for k,h in HANDLERS.items() if tid==k or tid.startswith(k+"-R")), h_status)
                     verdict, ev = hf(t, text)
-                    outp = (t.get("output") or "").replace("..", "").lstrip("/")
-                    if not re.fullmatch(r"[\w\-/.\u4e00-\u9fff]+\.md", outp or ""):
+                    outp = (t.get("answer_path") or t.get("output") or "").replace("..", "").lstrip("/")
+                    if not re.fullmatch(r"[\w\-/.\u4e00-\u9fff]+\.(md|json)", outp or ""):
                         outp = os.path.join(os.path.dirname(f), f"ANS-{tid}.md")
                     os.makedirs(os.path.dirname(outp) or ".", exist_ok=True)
-                    body = (f"CLASSIFY: L1({sig}线SI2/SI0机层直答·TASK-RESPONDER-01自产自答·毂驱)\n"
-                        f"# ANS-{tid} · {sig}机层应答 {NOW}\n应: {b} · deadline即拍 · 判词:{verdict}\n\n"
-                        f"## 机读证据\n{ev}\n\n## 位格声明\n本件系机层(SI2/SI0)受毂TASK直驱自产自答;"
-                        f"席层(SI1)深判位空挂SI3-LOOP-01,醒拍可覆写本判。#noauto\n——{sig}塔器(TASK-RESPONDER-01)")
+                    if outp.lower().endswith(".json"):
+                        payload = {"schema": "TASK-RESPONDER-01", "task": tid,
+                                   "source_task_file": f, "source_task_commit": sh("git", "log", "-1", "--format=%H", "--", f),
+                                   "workflow_run_id": os.environ.get("GITHUB_RUN_ID", ""),
+                                   "lane": sig, "ts": NOW, "verdict": verdict, "evidence": ev,
+                                   "acceptance_status": "NOT_MET_GENERIC_STATUS_ONLY",
+                                   "machine_answer": True, "seat_answer": False}
+                        body = json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+                    else:
+                        body = (f"CLASSIFY: L1({sig}线SI2/SI0机层直答·TASK-RESPONDER-01自产自答·毂驱)\n"
+                            f"# ANS-{tid} · {sig}机层应答 {NOW}\n应: {b} · deadline即拍 · 判词:{verdict}\n\n"
+                            f"## 机读证据\n{ev}\n\n## 位格声明\n本件系机层(SI2/SI0)受毂TASK直驱自产自答;"
+                            f"席层(SI1)深判位空挂SI3-LOOP-01,醒拍可覆写本判。#noauto\n——{sig}塔器(TASK-RESPONDER-01)")
                     open(outp, "w", encoding="utf-8").write(body)
                     made.append(outp); done.add(tid)
                 except Exception as ex:
