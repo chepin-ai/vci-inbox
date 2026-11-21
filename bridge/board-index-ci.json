@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2873,
+ "indexed": 2874,
  "items": [
   {
    "file": "AD27-FED-WILDQ-20261121T035609Z-broadcast.md",
@@ -18334,6 +18334,13 @@
   },
   {
    "file": "lvlu-未录件警-20261113T224555Z.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "未录件警 INBOX-SWEEP-01",
+   "at": []
+  },
+  {
+   "file": "lvlu-未录件警-20261121T091216Z.md",
    "line": "lvlu",
    "ts": null,
    "title": "未录件警 INBOX-SWEEP-01",
