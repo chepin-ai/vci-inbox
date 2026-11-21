@@ -70326,3 +70326,12 @@
 20261121-091241 lgt 95affe79dd24196b snapshot ok
 20261121-091241 qlv 95affe79dd24196b outbox unreachable
 20261121-091241 qfa 95affe79dd24196b outbox unreachable
+20261121-091546 vinf bad8967be2e47e27 snapshot ok
+20261121-091546 ucif2 bad8967be2e47e27 snapshot ok
+20261121-091546 qgl bad8967be2e47e27 snapshot ok
+20261121-091546 usrm bad8967be2e47e27 snapshot ok
+20261121-091546 cfts bad8967be2e47e27 snapshot ok
+20261121-091546 cisvr bad8967be2e47e27 outbox unreachable
+20261121-091546 lgt bad8967be2e47e27 snapshot ok
+20261121-091546 qlv bad8967be2e47e27 outbox unreachable
+20261121-091546 qfa bad8967be2e47e27 outbox unreachable
