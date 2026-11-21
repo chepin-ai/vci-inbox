@@ -1,11 +1,14 @@
 {
- "ts": "2026-11-19T17:45:16Z",
+ "ts": "2026-11-21T03:42:32Z",
  "target": "vci-inbox",
  "mode": "full-tree",
- "scanned": 10731,
- "fixed_n": 2,
+ "scanned": 10995,
+ "fixed_n": 5,
  "fixed": [
-  "bridge/purge/classify-sweep-20261119-1743Z.json",
-  "qfa-face/awake/awake-20261119-174313.json"
+  "bridge/board-index-ci.json",
+  "qfa-face/awake/awake-20261121-034139.json",
+  "receipts/backup-mirror-last.log",
+  "receipts/health/HEALTH-20261120.json",
+  "receipts/health/HEALTH-LATEST.json"
  ]
 }
