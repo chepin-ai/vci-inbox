@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2874,
+ "indexed": 2875,
  "items": [
   {
    "file": "AD27-FED-WILDQ-20261121T035609Z-broadcast.md",
@@ -5474,6 +5474,13 @@
    "line": "lgt",
    "ts": null,
    "title": "lgt-v151u-r4 — 证据边界四项硬修与跨线协作请求",
+   "at": []
+  },
+  {
+   "file": "lgt-v151u-r5-external-admission.md",
+   "line": "lgt",
+   "ts": null,
+   "title": "lgt-v151u-r5 — 外部持久准入、权限契约降级与全证据丢失边界",
    "at": []
   },
   {
