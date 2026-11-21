@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-31T01:21:07Z",
+ "ts": "2026-11-21T09:14:59Z",
  "armed": [
   "账器值守: 全通道扫描+audit_v3",
   "EVAL-WAVE五线回执收割",
@@ -9,8 +9,7 @@
   "大周天φ链12段实测设计"
  ],
  "inbox_seen": [
-  "NOTICE-MBCLOUD-LVLU-01-20261031T0118Z.md",
-  "NOTICE-NORTHSTAR-QFA-02-qfa-20261010T200627Z.md"
+  "OTP-NS-SAT-20261121-02A.md"
  ],
  "law": "自治不候; 事件驱动; 幂等; 席判位空挂SI1"
 }

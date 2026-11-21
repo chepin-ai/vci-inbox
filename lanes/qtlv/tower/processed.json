@@ -26,6 +26,7 @@
   "NOTICE-QRAC-QTLV-SYNC-01.md",
   "NUDGE-CONS-KEYUNIFY-qfa-20260914T205324Z.md",
   "OMNI-INJECT-01-qtlv-20260911T185404Z.md",
+  "OTP-NS-SAT-20261121-02A.md",
   "OTP-VINF-LEDGER-SYNC-01-vinf.md",
   "PENTA-CARD-qtlv-20260913T101519Z.md",
   "QLV-ANS-WAKE-01-2026-09-10.md",
@@ -165,6 +166,11 @@
    "ts": "2026-10-31T01:21:07Z",
    "answered": 0,
    "seen": 2
+  },
+  {
+   "ts": "2026-11-21T09:14:59Z",
+   "answered": 0,
+   "seen": 1
   }
  ]
 }
