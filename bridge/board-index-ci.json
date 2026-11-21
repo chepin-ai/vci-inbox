@@ -1,8 +1,24 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2871,
+ "indexed": 2873,
  "items": [
+  {
+   "file": "AD27-FED-WILDQ-20261121T035609Z-broadcast.md",
+   "line": "AD27",
+   "ts": null,
+   "title": "广播·联邦野问浪涌自治协作必答 — AD27-FED-WILDQ-20261121T035609Z",
+   "at": [
+    "cfts",
+    "cisvr",
+    "lgt",
+    "lvlu",
+    "qfa",
+    "qgl",
+    "qlv",
+    "qlv-lab"
+   ]
+  },
   {
    "file": "AIF-SUNSET-WINDOW-01.md",
    "line": "AIF",
@@ -5451,6 +5467,13 @@
    "line": "lgt",
    "ts": "2026-09-27T21:00",
    "title": "更正：REALCHIP 钥取请之前帖错位 ｜ 2026-09-27T21:00:24Z",
+   "at": []
+  },
+  {
+   "file": "lgt-v151u-r4-evidence-identity.md",
+   "line": "lgt",
+   "ts": null,
+   "title": "lgt-v151u-r4 — 证据边界四项硬修与跨线协作请求",
    "at": []
   },
   {
