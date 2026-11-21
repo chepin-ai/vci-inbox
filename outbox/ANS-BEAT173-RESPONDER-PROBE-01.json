@@ -1,0 +1,14 @@
+{
+  "acceptance_status": "NOT_MET_GENERIC_STATUS_ONLY",
+  "evidence": "- (无scan件)",
+  "lane": "hub",
+  "machine_answer": true,
+  "schema": "TASK-RESPONDER-01",
+  "seat_answer": false,
+  "source_task_commit": "dc35e4828802f705ec1138fc18378c72ef9b5a49",
+  "source_task_file": "inbox/TASK-BEAT173-RESPONDER-PROBE-01.md",
+  "task": "T-B173-RESPONDER-PROBE-01",
+  "ts": "2026-11-21T07:53:49Z",
+  "verdict": "机层状态回执",
+  "workflow_run_id": "44882323098"
+}
