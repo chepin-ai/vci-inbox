@@ -20,6 +20,7 @@
   "FRAC-01-QUERY-qfa-20260923T184824Z-seq7.md",
   "FRAC-01-QUERY-qfa-20260923T184824Z-seq8.md",
   "KEY-INSTALL-RECEIPT-QTLV-lvlu-20260915T044038Z.md",
+  "NOTICE-HOLO-SURGE-20261122-02-qtlv.md",
   "NOTICE-KEYRES-99-qtlv-20260912T054743Z.md",
   "NOTICE-MBCLOUD-LVLU-01-20261031T0118Z.md",
   "NOTICE-NORTHSTAR-QFA-02-qfa-20261010T200627Z.md",
@@ -169,6 +170,11 @@
   },
   {
    "ts": "2026-11-21T09:14:59Z",
+   "answered": 0,
+   "seen": 1
+  },
+  {
+   "ts": "2026-11-22T15:04:38Z",
    "answered": 0,
    "seen": 1
   }
