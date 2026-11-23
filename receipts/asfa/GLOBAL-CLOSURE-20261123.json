@@ -1,0 +1,80 @@
+{
+  "schema": "asfa-global-closure-receipt/v1",
+  "observed_at": "2026-11-23T23:46:52.582316+00:00",
+  "implementation_commit": "51ff34b7079f71536a0abb40512afd5ddd5f2a11",
+  "asfa_identity": {
+    "codename": "asfa-ai",
+    "private_host": "chepin-ai/asfa-ai",
+    "public_code": "chepin-ai/test"
+  },
+  "qfa_public": {
+    "repo": "chepin-ai/vci-qfa",
+    "origin": "qfa-ai"
+  },
+  "global_wave": {
+    "delivered": 14,
+    "protocol_answers_seen": 22,
+    "unique_answers_accepted": 2,
+    "independent_crosschecks": 2,
+    "duplicate_answer_rejections": 18,
+    "research_verdict": "OPEN"
+  },
+  "external_ci": [
+    {
+      "workflow": "build-test-smoke",
+      "run_id": 45291329432,
+      "conclusion": "success",
+      "head_sha": "51ff34b7079f71536a0abb40512afd5ddd5f2a11"
+    },
+    {
+      "workflow": "lean-federation",
+      "run_id": 45291527973,
+      "conclusion": "success",
+      "head_sha": "51ff34b7079f71536a0abb40512afd5ddd5f2a11"
+    },
+    {
+      "workflow": "qios-independent-crosscheck",
+      "run_id": 45289708599,
+      "target": "usrm",
+      "conclusion": "success"
+    },
+    {
+      "workflow": "qios-independent-crosscheck",
+      "run_id": 45289712612,
+      "target": "qfa-ai",
+      "conclusion": "success"
+    }
+  ],
+  "lean_artifact": {
+    "run_id": 45291527973,
+    "artifact_id": 14875120289,
+    "artifact_name": "lean-federation-r1-51ff34b7079f71536a0abb40512afd5ddd5f2a11",
+    "artifact_sha256": "43c8b24db858e12075053eaabe5f5e63bf5aeb05ecf38912bd84792dbd516fc3",
+    "oracle": {
+      "schema_version": "qf-lean-federation-oracle/v1",
+      "self_test": {
+        "relation_known_answers": 8,
+        "synthetic_valid": 2,
+        "synthetic_rejections": 4,
+        "projection_known_answers": 3
+      },
+      "report_sha256": "1c2805394c0f83f982ce35d6368e725fb51367d37d0262aff824e87a549577a8",
+      "verdict": "PASS",
+      "declarations": 6,
+      "attestations": 6,
+      "projections": 36,
+      "forged_real_report": "REJECTED_BEFORE_ACCEPTANCE",
+      "boundary": "Independent source, capsule, registry and projection oracle. FORMAL_R1 only; no sandboxed/multi-kernel replay, global activation, CI, federation ACK, or informal-statement fidelity claim."
+    }
+  },
+  "resolved_deviation": {
+    "failed_runs": [
+      45290554692,
+      45290892572
+    ],
+    "cause": "RsProxy 504",
+    "fix": "standard crates.io sparse registry",
+    "verified_by": 45291329432
+  },
+  "boundary": "Four requested capabilities are established: global discussion, line responses, cross-line implementation and external CI. Research remains OPEN; no PASS promotion or universal completion is claimed."
+}
