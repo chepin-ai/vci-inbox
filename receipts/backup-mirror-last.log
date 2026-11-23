@@ -1,9 +1,10 @@
-== clone ci-control 2026-11-22T12:47:55Z
+== clone ci-control 2026-11-23T15:13:43Z
 Cloning into bare repository '/tmp/mir'...
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/chepin-ai/ci-control.git/'
+/home/runner/work/_temp/e667dcc8-4afa-455b-8ca5-09f522f34ef9.sh: line 6: cd: /tmp/mir: No such file or directory
 == push mirror
-Pushing to https://github.com/chepin-ai/ci-control-backup.git
-POST git-receive-pack (9422 bytes)
-To https://github.com/chepin-ai/ci-control-backup.git
-   43b79e307..d3f01d8f9  HEAD -> main
+fatal: not a git repository (or any of the parent directories): .git
 push_rc=0
-== tip: d3f01d8f9
+fatal: not a git repository (or any of the parent directories): .git
+== tip: 
