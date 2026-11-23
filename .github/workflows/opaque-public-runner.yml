@@ -1,0 +1,198 @@
+name: opaque-public-runner
+on:
+  workflow_dispatch:
+    inputs:
+      nonce:
+        description: Opaque one-time task selector
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: opaque-public-runner
+  cancel-in-progress: false
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CI_OS_PAT: ${{ secrets.AI_FULL_PAT }}
+      TASK_NONCE: ${{ inputs.nonce }}
+    steps:
+      - name: Run opaque task and return private artifacts
+        run: |
+          python3 - <<'PYDRIVER'
+          import base64
+          import hashlib
+          import json
+          import os
+          import re
+          import shutil
+          import subprocess
+          import sys
+          import tempfile
+          from pathlib import Path, PurePosixPath
+          from urllib.parse import quote
+          import requests
+
+          API = 'https://api.github.com'
+          TOKEN = os.environ.pop('CI_OS_PAT', '')
+          NONCE = os.environ.pop('TASK_NONCE', '')
+          RUN_ID = os.environ.get('GITHUB_RUN_ID', 'unknown')
+          session = requests.Session()
+          session.headers.update({
+              'Authorization': 'Bearer ' + TOKEN,
+              'Accept': 'application/vnd.github+json',
+              'X-GitHub-Api-Version': '2022-11-28',
+              'User-Agent': 'opaque-public-runner',
+          })
+
+          def request(method, path, **kwargs):
+              response = session.request(method, API + path, timeout=45, **kwargs)
+              return response
+
+          def require(method, path, **kwargs):
+              response = request(method, path, **kwargs)
+              if not response.ok:
+                  raise RuntimeError('api_request_failed_' + str(response.status_code))
+              return response.json()
+
+          def content(repo, path):
+              response = request('GET', '/repos/' + repo + '/contents/' + quote(path))
+              if response.status_code == 404:
+                  return None
+              if not response.ok:
+                  raise RuntimeError('content_request_failed_' + str(response.status_code))
+              return base64.b64decode(response.json()['content'])
+
+          def private_repositories():
+              page = 1
+              while True:
+                  batch = require('GET', '/user/repos', params={
+                      'visibility': 'private', 'affiliation': 'owner',
+                      'per_page': 100, 'page': page,
+                  })
+                  for item in batch:
+                      yield item
+                  if len(batch) < 100:
+                      return
+                  page += 1
+
+          def commit_artifacts(repo, branch, prefix, artifacts):
+              ref = require('GET', '/repos/' + repo + '/git/ref/heads/' + branch)
+              base_commit = ref['object']['sha']
+              base = require('GET', '/repos/' + repo + '/git/commits/' + base_commit)
+              tree = []
+              hashes = {}
+              for relative, data in artifacts:
+                  digest = hashlib.sha256(data).hexdigest()
+                  if re.search(rb'(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|KGAT_[A-Za-z0-9]{16,}|sk-[A-Za-z0-9]{20,})', data):
+                      raise RuntimeError('secret_pattern_in_artifact')
+                  blob = require('POST', '/repos/' + repo + '/git/blobs', json={
+                      'content': base64.b64encode(data).decode(), 'encoding': 'base64',
+                  })
+                  tree.append({
+                      'path': str(PurePosixPath(prefix) / RUN_ID / relative),
+                      'mode': '100644', 'type': 'blob', 'sha': blob['sha'],
+                  })
+                  hashes[relative] = digest
+              if not tree:
+                  raise RuntimeError('empty_artifact_set')
+              new_tree = require('POST', '/repos/' + repo + '/git/trees', json={
+                  'base_tree': base['tree']['sha'], 'tree': tree,
+              })
+              commit = require('POST', '/repos/' + repo + '/git/commits', json={
+                  'message': 'chore: opaque public-runner receipt ' + RUN_ID,
+                  'tree': new_tree['sha'], 'parents': [base_commit],
+              })
+              updated = request('PATCH', '/repos/' + repo + '/git/refs/heads/' + branch,
+                                json={'sha': commit['sha'], 'force': False})
+              if not updated.ok:
+                  raise RuntimeError('fast_forward_failed')
+              return commit['sha'], hashes
+
+          def main():
+              if not TOKEN or not NONCE:
+                  raise RuntimeError('missing_channel_input')
+              wanted = hashlib.sha256(NONCE.encode()).hexdigest()
+              matches = []
+              for repo in private_repositories():
+                  marker = content(repo['full_name'], '.ci-os/public-line.json')
+                  if marker is None:
+                      continue
+                  config = json.loads(marker)
+                  if config.get('enabled') is True and config.get('channel_nonce_sha256') == wanted:
+                      matches.append((repo, config))
+              if len(matches) != 1:
+                  raise RuntimeError('selector_must_match_exactly_once')
+              repo, config = matches[0]
+              full_name = repo['full_name']
+              branch = repo['default_branch']
+              bundle_dir = config['bundle_dir'].strip('/')
+              tree = require('GET', '/repos/' + full_name + '/git/trees/' + quote(branch, safe=''),
+                             params={'recursive': 1})
+              if tree.get('truncated'):
+                  raise RuntimeError('tree_truncated')
+              entries = [entry for entry in tree.get('tree', [])
+                         if entry.get('type') == 'blob'
+                         and entry.get('path', '').startswith(bundle_dir + '/')
+                         and entry.get('size', 0) <= 1000000]
+              if not entries or sum(entry.get('size', 0) for entry in entries) > 12000000:
+                  raise RuntimeError('invalid_bundle_size')
+              with tempfile.TemporaryDirectory() as temporary:
+                  root = Path(temporary)
+                  bundle = root / 'bundle'
+                  bundle.mkdir()
+                  for entry in entries:
+                      relative = PurePosixPath(entry['path']).relative_to(bundle_dir)
+                      if relative.is_absolute() or '..' in relative.parts:
+                          raise RuntimeError('unsafe_bundle_path')
+                      destination = bundle / Path(*relative.parts)
+                      destination.parent.mkdir(parents=True, exist_ok=True)
+                      destination.write_bytes(content(full_name, entry['path']))
+                  entrypoint = config['entrypoint']
+                  if PurePosixPath(entrypoint).is_absolute() or '..' in PurePosixPath(entrypoint).parts:
+                      raise RuntimeError('unsafe_entrypoint')
+                  private_log = root / 'runner-private.log'
+                  child_env = {
+                      'PATH': os.environ.get('PATH', ''),
+                      'HOME': str(root / 'home'),
+                      'LANG': 'C.UTF-8',
+                      'PYTHONUNBUFFERED': '1',
+                      'PIP_CACHE_DIR': str(root / 'pip-cache'),
+                  }
+                  Path(child_env['HOME']).mkdir()
+                  with private_log.open('wb') as log:
+                      completed = subprocess.run(
+                          ['bash', str(bundle / entrypoint)], cwd=bundle,
+                          env=child_env, stdout=log, stderr=subprocess.STDOUT,
+                          timeout=540, check=False,
+                      )
+                  artifact_root = bundle / config['artifact_dir']
+                  artifacts = []
+                  if artifact_root.is_dir():
+                      for path in sorted(artifact_root.rglob('*')):
+                          if path.is_file() and path.stat().st_size <= 1000000:
+                              relative = str(path.relative_to(artifact_root))
+                              artifacts.append((relative, path.read_bytes()))
+                  artifacts.append(('runner-private.log', private_log.read_bytes()))
+                  receipt = {
+                      'schema': 1, 'public_run_id': RUN_ID,
+                      'entrypoint_exit': completed.returncode,
+                      'selector_sha256': wanted,
+                      'source_tree': tree['sha'],
+                  }
+                  artifacts.append(('run-receipt.json', json.dumps(receipt, indent=2).encode()))
+                  commit_sha, hashes = commit_artifacts(
+                      full_name, branch, config['return_prefix'].strip('/'), artifacts)
+                  if completed.returncode != 0:
+                      raise RuntimeError('private_entrypoint_failed_artifacts_returned')
+                  print(json.dumps({'status': 'PASS', 'artifacts_returned': len(artifacts)}))
+
+          try:
+              main()
+          except Exception as error:
+              # Do not leak repository names, private URLs, task text, or credentials.
+              print(json.dumps({'status': 'FAIL', 'error_class': type(error).__name__}))
+              sys.exit(1)
+          PYDRIVER
