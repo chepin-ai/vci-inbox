@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2875,
+ "indexed": 2877,
  "items": [
   {
    "file": "AD27-FED-WILDQ-20261121T035609Z-broadcast.md",
@@ -18510,6 +18510,13 @@
    "at": []
   },
   {
+   "file": "lvlu-钥事件-20261123T091522Z.md",
+   "line": "lvlu",
+   "ts": "2026-11-23T09:09",
+   "title": "钥事件 SECRETS-META-01",
+   "at": []
+  },
+  {
    "file": "lvlu-钥况警-20260913.md",
    "line": "lvlu",
    "ts": null,
@@ -18525,6 +18532,13 @@
   },
   {
    "file": "lvlu-钥况警-20260915.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "钥况警: h_key=0.67 < 0.85",
+   "at": []
+  },
+  {
+   "file": "lvlu-钥况警-20261123.md",
    "line": "lvlu",
    "ts": null,
    "title": "钥况警: h_key=0.67 < 0.85",
