@@ -1,0 +1,83 @@
+{
+  "schema": "asfa-global-ci-receipt/v1",
+  "observed_at": "2026-11-23T23:19:27.699602+00:00",
+  "asfa": {
+    "codename": "asfa-ai",
+    "private_identity_host": "chepin-ai/asfa-ai",
+    "public_code": "chepin-ai/test"
+  },
+  "implementation_commit": "eb41a964b05455accefcb4c2ffbb8e5c8033b2de",
+  "external_ci": [
+    {
+      "id": 45287359099,
+      "name": "build-test-smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "eb41a964b05455accefcb4c2ffbb8e5c8033b2de",
+      "event": "push",
+      "created_at": "2026-11-23T23:16:31Z",
+      "updated_at": "2026-11-23T23:17:33Z",
+      "url": "https://api.github.com/repos/chepin-ai/test/actions/runs/45287359099"
+    },
+    {
+      "id": 45287359270,
+      "name": "lean-federation",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "eb41a964b05455accefcb4c2ffbb8e5c8033b2de",
+      "event": "push",
+      "created_at": "2026-11-23T23:16:31Z",
+      "updated_at": "2026-11-23T23:16:55Z",
+      "url": "https://api.github.com/repos/chepin-ai/test/actions/runs/45287359270"
+    }
+  ],
+  "lean_artifact": {
+    "artifact": {
+      "id": 14871029646,
+      "name": "lean-federation-r1-eb41a964b05455accefcb4c2ffbb8e5c8033b2de",
+      "size_in_bytes": 11152,
+      "created_at": "2026-11-23T23:16:53Z"
+    },
+    "zip_sha256": "c832f05c780d726b0dcfb9d58b2ba6ade757b43e5a373b6489a6dc3b8880181f",
+    "oracle": {
+      "schema_version": "qf-lean-federation-oracle/v1",
+      "self_test": {
+        "relation_known_answers": 8,
+        "synthetic_valid": 2,
+        "synthetic_rejections": 4,
+        "projection_known_answers": 3
+      },
+      "report_sha256": "e5a97a06cb7aa4679864c816fd2ee66db5da2bf77074f820d5e96f9f949c774d",
+      "verdict": "PASS",
+      "declarations": 6,
+      "attestations": 6,
+      "projections": 36,
+      "forged_real_report": "REJECTED_BEFORE_ACCEPTANCE",
+      "boundary": "Independent source, capsule, registry and projection oracle. FORMAL_R1 only; no sandboxed/multi-kernel replay, global activation, CI, federation ACK, or informal-statement fidelity claim."
+    }
+  },
+  "global_wave": {
+    "delivered": 14,
+    "protocol_answers_seen": 20,
+    "unique_answers_accepted": 2,
+    "duplicate_answer_rejections": 18,
+    "research_verdict": "OPEN",
+    "independent_crosschecks": 0
+  },
+  "cross_line_implementation": {
+    "usrm": {
+      "authenticated_answer_commit": "491b29a86a0f40d4d0ec454ec6dcba7dd03f5fd1",
+      "loop_guard_commit": "562fb29262aacdb99010e1a7be603c1c2cc7510a",
+      "e2e_run": 45284008539,
+      "guard_run": 45286403540
+    },
+    "qfa": {
+      "authenticated_answer_commit": "bf2d1936df3efec1e7457c376d237cc2c7d4fe00",
+      "loop_guard_commit": "703c9d9e0945d673b0697b7f4fdb7c35fc95eacd",
+      "e2e_run": 45284023261,
+      "guard_run": 45286410920
+    }
+  },
+  "identity_broadcast_commit": "e449128483a1e89fe0255885dd69a49b9fbeaabe",
+  "boundary": "External CI and two line responses are established. Global research remains OPEN; no independent crosscheck or consensus is claimed."
+}
