@@ -1,0 +1,119 @@
+{
+  "schema": "asfa-content-gate-closure-receipt/v1",
+  "observed_at": "2026-11-24T01:25:07.337213Z",
+  "implementation_commit": "de0c58f01c00384a79ab8b7537ecfd4c457d8405",
+  "hmac_oracle_fix_commit": "0afc2211ab2183116504be135d67556e23f82bad",
+  "evidence_commit": "4ff86c843198eb10a4a182d3edaedd7fd72cca71",
+  "public_code": "chepin-ai/test",
+  "content_gate": {
+    "qios_tests": "145_PASS",
+    "double_pass_without_proof": "OPEN",
+    "scoped_question_coverage": [
+      "WQ-QI-LEAN-FED-01"
+    ],
+    "scoped_verdict_after_real_proof": "PASS",
+    "scoped_loop_id": "LOOP-484df50249d98668939d8a3a",
+    "scoped_peer_role": "TEST_LOOP_ONLY_NOT_A_REAL_LGT_RESEARCH_ANSWER",
+    "integration_global_verdict": "OPEN",
+    "integration_global_open_items": 39,
+    "proof_id": "eb2bfa14f43e2c13a4331e6f9c59a4d3c4ad00b6ccb7d7102d3b09aca2de1359",
+    "receipt_bindings": "4/4_INDEPENDENTLY_RECOMPUTED",
+    "proof_id_recompute": "PASS",
+    "evidence_grade": "FORMAL_R1_ONLY",
+    "manifest": "docs/evidence/qios-content-gate-2026-11-24/manifest.json",
+    "manifest_sha256": "2010267d37e430ce90508c2378634bd63ee4a79888c0fb0f1770554f25721ca3"
+  },
+  "global_wave": {
+    "delivered": 14,
+    "protocol_answers_seen": 22,
+    "unique_answers_accepted": 2,
+    "independent_crosschecks": 2,
+    "duplicate_answer_rejections": 18,
+    "ledger_entries": 179,
+    "open_items": 30,
+    "research_verdict": "OPEN",
+    "promotion": false
+  },
+  "external_ci": [
+    {
+      "id": 45298448970,
+      "name": "build-test-smoke",
+      "head_sha": "de0c58f01c00384a79ab8b7537ecfd4c457d8405",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 45298449084,
+      "name": "lean-federation",
+      "head_sha": "de0c58f01c00384a79ab8b7537ecfd4c457d8405",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 45298449022,
+      "name": "qios-content-gate",
+      "head_sha": "de0c58f01c00384a79ab8b7537ecfd4c457d8405",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 45302380928,
+      "name": "build-test-smoke",
+      "head_sha": "0afc2211ab2183116504be135d67556e23f82bad",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 45304071654,
+      "name": "build-test-smoke",
+      "head_sha": "4ff86c843198eb10a4a182d3edaedd7fd72cca71",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    }
+  ],
+  "artifact_archives": [
+    {
+      "run_id": 45298449022,
+      "artifact_id": 14876899412,
+      "name": "qios-content-proof-de0c58f01c00384a79ab8b7537ecfd4c457d8405",
+      "archive_sha256": "bf35bf912ad70598c9bb477bc8fcf295fed54e7046099f15740283838299d194"
+    },
+    {
+      "run_id": 45298449084,
+      "artifact_id": 14876334964,
+      "name": "lean-federation-r1-de0c58f01c00384a79ab8b7537ecfd4c457d8405",
+      "archive_sha256": "d81bdcd770a90eef67105786ebf6f7e222c7765b4566a47e9ff2e33180cc8e61"
+    }
+  ],
+  "resolved_deviation": {
+    "class": "WRONG_HMAC_SECRET_IN_POLL_AND_INITIAL_ORACLE_PROCESS",
+    "event_ids": [
+      "EVT-dbd040e1edff6b81328d7bed",
+      "EVT-9cfd972cb872f887d15c95b7"
+    ],
+    "remote_event_content_changed": false,
+    "signature_rule_relaxed": false,
+    "correct_key_replay": "BOTH_OPEN_WITH_EMPTY_ERRORS",
+    "state_evidence_digest_unchanged": true,
+    "saved_anomaly_rejected_by_fixed_oracle": true,
+    "new_adjudication_divergence_controls": 3
+  },
+  "final_verification": {
+    "remote_equals_local": true,
+    "clean_archive_manifest": "23/23_PASS",
+    "remote_artifact_byte_readback": "23/23_PASS",
+    "credential_scan": "PASS",
+    "final_evidence_ci_run": 45304071654
+  },
+  "boundary": "Content-gate implementation, its scoped FORMAL_R1 integration and the HMAC adjudication divergence are closed with external evidence. The real global research wave remains OPEN; usrm/QFA content is not proved, no R2, ZK, alliance-active or universal completion is claimed."
+}
