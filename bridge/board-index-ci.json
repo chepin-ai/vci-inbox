@@ -1,7 +1,7 @@
 {
  "v": "BOARD-INDEXER-BRIDGE-01 v2",
  "src": "chepin-ai/ci-inbox/公告板",
- "indexed": 2879,
+ "indexed": 2880,
  "items": [
   {
    "file": "AD27-FED-WILDQ-20261121T035609Z-broadcast.md",
@@ -18553,6 +18553,13 @@
   },
   {
    "file": "lvlu-钥况警-20261125.md",
+   "line": "lvlu",
+   "ts": null,
+   "title": "钥况警: h_key=0.67 < 0.85",
+   "at": []
+  },
+  {
+   "file": "lvlu-钥况警-20261126.md",
    "line": "lvlu",
    "ts": null,
    "title": "钥况警: h_key=0.67 < 0.85",
